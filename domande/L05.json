@@ -1,0 +1,2145 @@
+{
+  "lezione": 5,
+  "generato_con": "claude-sonnet-5-5",
+  "domande": [
+    {
+      "id": "L05-T01-01",
+      "tipo": "L05-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nella ricorrenza T(n) = a·T(n/b) + f(n) del teorema principale, il parametro a rappresenta:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il fattore di divisione: ogni sottoproblema ha dimensione n/a",
+        "La dimensione dell'input",
+        "Il numero dei sottoproblemi in cui si divide il problema",
+        "Il costo del lavoro svolto fuori dalle chiamate ricorsive"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "a ≥ 1 è il numero di chiamate ricorsive, cioè di sottoproblemi, generate da ogni chiamata. Il fattore di divisione è b (i sottoproblemi hanno dimensione n/b), il costo del lavoro non ricorsivo è f(n) e la dimensione dell'input è n."
+    },
+    {
+      "id": "L05-T01-02",
+      "tipo": "L05-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il teorema principale si applica a ricorrenze T(n) = a·T(n/b) + f(n) in cui a e b sono costanti che soddisfano:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "a ≥ 1 e b > 1",
+        "a ≥ 1 e b ≥ 1",
+        "a > 0 e b > 1",
+        "a ≥ b > 1"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "a conta le chiamate ricorsive, quindi è almeno 1; b > 1 perché con b = 1 il sottoproblema avrebbe ancora dimensione n e la ricorsione non si ridurrebbe mai. Non si richiede a ≥ b: la ricerca binaria ha a = 1 e b = 2."
+    },
+    {
+      "id": "L05-T01-03",
+      "tipo": "L05-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo divide l'input di dimensione n in 4 parti uguali, risolve ricorsivamente solo 3 di esse e poi ricombina i risultati con un lavoro lineare in n. Nella ricorrenza T(n) = a·T(n/b) + f(n) che lo descrive, quali sono i valori di a, b e f(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "a = 4, b = 3, f(n) = Θ(n)",
+        "a = 4, b = 4, f(n) = Θ(n)",
+        "a = 3, b = 4, f(n) = Θ(1)",
+        "a = 3, b = 4, f(n) = Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Le chiamate ricorsive sono 3, quindi a = 3; ciascuna lavora su n/4 elementi, quindi b = 4; il lavoro non ricorsivo è lineare, quindi f(n) = Θ(n): T(n) = 3T(n/4) + Θ(n). Scambiare a e b è un errore tipico; con a = 4 si conterebbero anche le parti non risolte."
+    },
+    {
+      "id": "L05-T01-04",
+      "tipo": "L05-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nella ricorrenza T(n) = a·T(n/b) + f(n), il termine f(n) rappresenta:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il costo complessivo delle a chiamate ricorsive, cioè a·T(n/b)",
+        "Il costo del lavoro non ricorsivo, cioè dividere e ricombinare le soluzioni",
+        "Il numero dei sottoproblemi in cui si divide il problema",
+        "La dimensione di ciascun sottoproblema ottenuto dalla divisione"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il costo di una chiamata è la somma di due parti: le chiamate ricorsive, già contate nel termine a·T(n/b), e il lavoro non ricorsivo f(n). Il numero dei sottoproblemi è a e la loro dimensione è n/b."
+    },
+    {
+      "id": "L05-T01-05",
+      "tipo": "L05-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo risolve un problema di dimensione n richiamando se stesso su 2 sottoproblemi, ciascuno di dimensione n/4, e poi scorrendo tutto l'input una volta. Nella ricorrenza T(n) = a·T(n/b) + f(n) che lo descrive, quanto vale b?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2",
+        "4",
+        "n/4",
+        "log₄ n"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni sottoproblema ha dimensione n/4, quindi il fattore di divisione è b = 4; i sottoproblemi sono 2, quindi a = 2, e il lavoro lineare è f(n) = Θ(n). Il valore 2 è a, n/4 è la dimensione di un sottoproblema (non b) e log₄ n è la profondità della ricorsione."
+    },
+    {
+      "id": "L05-T01-06",
+      "tipo": "L05-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "La ricerca binaria su un array ordinato di n elementi confronta la chiave con l'elemento centrale e prosegue la ricerca in una sola metà. Quali valori hanno a, b e f(n) in T(n) = a·T(n/b) + f(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "a = 1, b = 2, f(n) = Θ(1)",
+        "a = 2, b = 1, f(n) = Θ(1)",
+        "a = 2, b = 2, f(n) = Θ(1)",
+        "a = 1, b = 2, f(n) = Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "A ogni passo c'è un confronto (lavoro Θ(1)) e una sola chiamata ricorsiva (a = 1) su metà dell'input (b = 2): T(n) = T(n/2) + Θ(1). Scambiare a e b darebbe b = 1, che viola il vincolo b > 1."
+    },
+    {
+      "id": "L05-T01-07",
+      "tipo": "L05-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per quale coppia di valori la ricorrenza T(n) = a·T(n/b) + f(n) rispetta i vincoli richiesti dal teorema principale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "a = 5, b = 1",
+        "a = 1/2, b = 4",
+        "a = 4, b = 3",
+        "a = 2, b = 1/2"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Servono a ≥ 1 e b > 1, e solo la coppia a = 4, b = 3 li rispetta. Con b = 1 il sottoproblema resterebbe di dimensione n; con a = 1/2 non si può fare mezza chiamata ricorsiva; con b = 1/2 i sottoproblemi sarebbero più grandi del problema."
+    },
+    {
+      "id": "L05-T01-08",
+      "tipo": "L05-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si consideri T(n) = 2T(n/4) + Θ(n) con n = 64. Dopo quanti passi di divisione i sottoproblemi hanno dimensione 1, cioè quanto vale la profondità log_b n della ricorsione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "2",
+        "16",
+        "3"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "La profondità è log_b n = log₄ 64 = 3: 64 → 16 → 4 → 1. Il valore 6 = log₂ 64 usa a al posto di b come base; 2 è il valore di a, non una profondità; 16 è la dimensione dei sottoproblemi al primo livello."
+    },
+    {
+      "id": "L05-T02-01",
+      "tipo": "L05-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nel teorema principale, se f(n) ∈ O(n^(log_b a − ε)) per qualche costante ε > 0, la soluzione di T(n) = a·T(n/b) + f(n) è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = Θ(f(n))",
+        "T(n) = Θ(n^(log_b a))",
+        "T(n) = Θ(n^(log_b a) · log n)",
+        "T(n) = Θ(n log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "È il primo caso: f(n) è polinomialmente più piccola di n^(log_b a), quindi il costo è dominato dalle foglie dell'albero e T(n) = Θ(n^(log_b a)). Θ(f(n)) è la soluzione del terzo caso; nel teorema il fattore log n compare solo nel secondo caso, quando f(n) e n^(log_b a) hanno lo stesso ordine."
+    },
+    {
+      "id": "L05-T02-02",
+      "tipo": "L05-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si sa che f(n) = Θ(n^(log_b a)), con a ≥ 1 e b > 1. Quale espressione è uguale alla soluzione di T(n) = a·T(n/b) + f(n) data dal teorema principale, per qualunque scelta di a e b?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(f(n))",
+        "Θ(n^(log_b a + 1))",
+        "Θ(f(n) · log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "È il secondo caso: T(n) = Θ(n^(log_b a) · log n) e, poiché f(n) = Θ(n^(log_b a)), la stessa soluzione si scrive Θ(f(n) · log n). Θ(f(n)) dimentica il fattore log n, Θ(n^(log_b a + 1)) moltiplica per n invece che per log n, e Θ(n log n) vale solo quando log_b a = 1 (per esempio nel mergesort, a = b = 2)."
+    },
+    {
+      "id": "L05-T02-03",
+      "tipo": "L05-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale delle seguenti condizioni su f(n) caratterizza il primo caso del teorema principale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) ∈ O(n^(log_b a − ε)) per qualche costante ε > 0",
+        "f(n) ∈ O(n^(log_b a))",
+        "f(n) ∈ Ω(n^(log_b a + ε)) per qualche costante ε > 0",
+        "f(n) ∈ Θ(n^(log_b a))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Nel primo caso f(n) deve stare polinomialmente sotto n^(log_b a), cioè con uno scarto di un fattore n^ε. La sola condizione O(n^(log_b a)) includerebbe anche le f(n) dello stesso ordine, che appartengono al secondo caso, e quelle che differiscono solo per un fattore logaritmico, per le quali il teorema non si applica."
+    },
+    {
+      "id": "L05-T02-04",
+      "tipo": "L05-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul terzo caso del teorema principale è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Se f(n) ∈ Ω(n^(log_b a + ε)) per qualche ε > 0, allora T(n) = Θ(f(n)), senza altre condizioni",
+        "Se f(n) ∈ Ω(n^(log_b a + ε)) e a·f(n/b) ≤ c·f(n) per una costante c < 1, allora T(n) = Θ(n^(log_b a))",
+        "Se f(n) ∈ Ω(n^(log_b a + ε)) e a·f(n/b) ≤ c·f(n) per una costante c < 1, allora T(n) = Θ(f(n))",
+        "Se f(n) ∈ Ω(n^(log_b a + ε)) e a·f(n/b) ≤ c·f(n) per una costante c < 1, allora T(n) = Θ(f(n) · log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il terzo caso ha due condizioni: f polinomialmente più grande di n^(log_b a) e regolarità a·f(n/b) ≤ c·f(n) con c < 1. Allora il costo è dominato dalla radice: T(n) = Θ(f(n)). Θ(n^(log_b a)) è la soluzione del primo caso; il fattore log n non compare nel terzo caso."
+    },
+    {
+      "id": "L05-T02-05",
+      "tipo": "L05-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In quale situazione il teorema principale garantisce che il costo totale è dominato dal lavoro svolto alla radice, cioè T(n) = Θ(f(n))?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Quando f(n) è polinomialmente più piccola di n^(log_b a)",
+        "Quando f(n) ha lo stesso ordine di n^(log_b a)",
+        "Quando f(n) è polinomialmente più grande di n^(log_b a), anche senza la condizione di regolarità",
+        "Quando f(n) è polinomialmente più grande di n^(log_b a) e vale la condizione di regolarità"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "E4",
+        null
+      ],
+      "spiegazione": "È il terzo caso: f(n) ∈ Ω(n^(log_b a + ε)) più la regolarità a·f(n/b) ≤ c·f(n) con c < 1. Se f è più piccola domina n^(log_b a) (primo caso); se ha lo stesso ordine ogni livello costa circa uguale (secondo caso). La regolarità fa parte delle ipotesi del terzo caso."
+    },
+    {
+      "id": "L05-T02-06",
+      "tipo": "L05-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti affermazioni sul teorema principale è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nel caso 1 basta f(n) ∈ O(n^(log_b a)), senza lo scarto ε",
+        "Nei casi 1 e 3 lo scarto tra f(n) e n^(log_b a) deve essere polinomiale (n^ε)",
+        "Nel caso 2 la soluzione è sempre Θ(n log n), qualunque siano a e b",
+        "Nel caso 3 la soluzione è Θ(n^(log_b a)), come nel caso 1"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Per i casi 1 e 3 serve uno scarto polinomiale: un fattore solo logaritmico non basta (per questo il teorema non si applica a 2T(n/2) + Θ(n log n)). Nel caso 2 la soluzione è Θ(n^(log_b a) · log n), che coincide con Θ(n log n) solo se log_b a = 1; nel caso 3 la soluzione è Θ(f(n))."
+    },
+    {
+      "id": "L05-T03-01",
+      "tipo": "L05-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per la ricorrenza T(n) = 9T(n/3) + Θ(n²), la funzione n^(log_b a) con cui il teorema principale confronta f(n) è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n",
+        "n²",
+        "n³",
+        "√n"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "a = 9, b = 3: log₃ 9 = 2 perché 3² = 9, quindi n^(log_b a) = n². n viene dal confronto fatto senza calcolare l'esponente, n³ da a/b = 3 e √n da log₉ 3 (base e argomento scambiati)."
+    },
+    {
+      "id": "L05-T03-02",
+      "tipo": "L05-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per la ricorrenza T(n) = 7T(n/2) + Θ(n), la funzione n^(log_b a) con cui il teorema principale confronta f(n) è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n",
+        "n^(7/2)",
+        "n^(log₇ 2)",
+        "n^(log₂ 7)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "a = 7, b = 2: 2² = 4 < 7 < 8 = 2³, quindi log₂ 7 ≈ 2,807 non è intero e n^(log₂ 7) non si semplifica. n è il confronto di default, n^(7/2) viene da a/b = 3,5 e n^(log₇ 2) ≈ n^0,356 da base e argomento scambiati."
+    },
+    {
+      "id": "L05-T03-03",
+      "tipo": "L05-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si consideri la ricorrenza T(n) = T(n/3) + Θ(n²). Quale funzione n^(log_b a) si confronta con f(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "n",
+        "n^(1/3)",
+        "log n"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "a = 1, b = 3: log₃ 1 = 0 perché 3⁰ = 1, quindi n^(log_b a) = n⁰ = 1, qualunque sia b. n viene dallo scrivere n al posto di n⁰ = 1, n^(1/3) da a/b e log n è la soluzione di T(n/3) + Θ(1), non la funzione con cui si confronta f(n)."
+    },
+    {
+      "id": "L05-T03-04",
+      "tipo": "L05-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nell'albero della ricorsione di T(n) = 4T(n/8) + Θ(n), con n potenza di 8, il numero di foglie è a^(log_b n). Quanto vale, in funzione di n?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n",
+        "√n",
+        "n^(2/3)",
+        "n^(3/2)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "a^(log_b n) = n^(log_b a) = n^(log₈ 4) = n^(2/3), perché 8^(2/3) = 4: per esempio con n = 64 ci sono 4² = 16 foglie e 64^(2/3) = 16. n^(1/2) viene da a/b = 1/2, n^(3/2) da log₄ 8 (base e argomento scambiati) e n corrisponderebbe a un albero con a = b."
+    },
+    {
+      "id": "L05-T03-05",
+      "tipo": "L05-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per la ricorrenza T(n) = 16T(n/8) + Θ(n), quanto vale l'esponente log_b a con cui il teorema principale confronta f(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "2",
+        "3/4",
+        "4/3"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "a = 16, b = 8: log₈ 16 = 4/3 perché 8^(4/3) = (∛8)⁴ = 2⁴ = 16. Quindi si confronta f(n) = n con n^(4/3). L'esponente 1 viene dal confronto con n, 2 da a/b = 16/8 e 3/4 da log₁₆ 8 (base e argomento scambiati)."
+    },
+    {
+      "id": "L05-T03-06",
+      "tipo": "L05-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per la ricorrenza T(n) = 5T(n/4) + Θ(n²), la funzione n^(log_b a) con cui il teorema principale confronta f(n) è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n^(log₄ 5)",
+        "n",
+        "n^(5/4)",
+        "n^(log₅ 4)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "a = 5, b = 4: 4¹ = 4 < 5 < 16 = 4², quindi log₄ 5 ≈ 1,161 non è intero e n^(log₄ 5) non si semplifica. n è il confronto di default, n^(5/4) viene da a/b e n^(log₅ 4) ≈ n^0,861 da base e argomento scambiati."
+    },
+    {
+      "id": "L05-T04-01",
+      "tipo": "L05-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A quale caso del teorema principale si riconduce la ricorrenza T(n) = 3T(n/2) + Θ(n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Il teorema principale non si applica"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "a = 3, b = 2: n^(log₂ 3) ≈ n^1,585. f(n) = n ∈ O(n^(log₂ 3 − ε)) con ε = 1/2, quindi è il primo caso e T(n) = Θ(n^(log₂ 3)). Chi confronta f con n senza calcolare l'esponente risponde «secondo caso»; il fatto che log₂ 3 non sia intero non impedisce di applicare il teorema."
+    },
+    {
+      "id": "L05-T04-02",
+      "tipo": "L05-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si consideri T(n) = 16T(n/2) + Θ(n²), con T(1) = Θ(1). Quale caso del teorema principale si applica?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Al primo caso del teorema principale",
+        "Il teorema principale non si applica"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "a = 16, b = 2: n^(log₂ 16) = n⁴. f(n) = n² ∈ O(n^(4 − ε)) con ε = 2, quindi è il primo caso e T(n) = Θ(n⁴). Il termine n² può sembrare «grande», ma va confrontato con n⁴, non con n."
+    },
+    {
+      "id": "L05-T04-03",
+      "tipo": "L05-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A quale caso del teorema principale appartiene la ricorrenza T(n) = T(n/3) + Θ(1), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Il teorema principale non si applica"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "a = 1, b = 3: n^(log₃ 1) = n⁰ = 1. f(n) = Θ(1) ha lo stesso ordine di n⁰, quindi è il secondo caso e T(n) = Θ(log n). Non è il primo caso: f non è polinomialmente più piccola di 1, anche se è una costante."
+    },
+    {
+      "id": "L05-T04-04",
+      "tipo": "L05-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Data la ricorrenza T(n) = 9T(n/3) + Θ(n²), con T(1) = Θ(1), qual è il caso del teorema principale che la risolve?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Il teorema principale non si applica",
+        "Al secondo caso del teorema principale"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "a = 9, b = 3: n^(log₃ 9) = n². f(n) = Θ(n²) ha lo stesso ordine, quindi è il secondo caso e T(n) = Θ(n² log n). Chi pensa che un termine n² porti sempre al terzo caso, o confronta f con n, risponde «terzo caso»; ma n² è proprio n^(log_b a)."
+    },
+    {
+      "id": "L05-T04-05",
+      "tipo": "L05-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "A quale caso del teorema principale appartiene T(n) = 2T(n/16) + Θ(√n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Il teorema principale non si applica"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "E4"
+      ],
+      "spiegazione": "a = 2, b = 16: log₁₆ 2 = 1/4 perché 16^(1/4) = 2, quindi n^(log_b a) = n^(1/4). f(n) = √n = n^(1/2) ∈ Ω(n^(1/4 + ε)) con ε = 1/4 e la regolarità vale: 2·√(n/16) = √n/2 ≤ (1/2)·√n. È il terzo caso e T(n) = Θ(√n). Chi confronta f con n vede √n più piccola e risponde «primo caso»; l'esponente 1/4 non intero non rende il teorema inapplicabile."
+    },
+    {
+      "id": "L05-T04-06",
+      "tipo": "L05-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale caso del teorema principale si applica alla ricorrenza T(n) = 4T(n/2) + Θ(n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al secondo caso del teorema principale",
+        "Al primo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Il teorema principale non si applica"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "a = 4, b = 2: n^(log₂ 4) = n². f(n) = n ∈ O(n^(2 − ε)) con ε = 1, quindi è il primo caso e T(n) = Θ(n²). Confrontare f con n farebbe pensare al secondo caso, ma l'esponente da usare è log₂ 4 = 2."
+    },
+    {
+      "id": "L05-T04-07",
+      "tipo": "L05-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si consideri la ricorrenza T(n) = T(n/2) + Θ(n), con T(1) = Θ(1). A quale caso del teorema principale appartiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Il teorema principale non si applica",
+        "Al terzo caso del teorema principale"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "a = 1, b = 2: n^(log₂ 1) = n⁰ = 1. f(n) = n ∈ Ω(n^(0 + ε)) con ε = 1 e la regolarità vale: 1·(n/2) ≤ (1/2)·n. È il terzo caso e T(n) = Θ(n). Confrontando f con n (invece che con n⁰ = 1) si direbbe secondo caso."
+    },
+    {
+      "id": "L05-T04-08",
+      "tipo": "L05-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si consideri T(n) = 5T(n/2) + Θ(n²), con T(1) = Θ(1). A quale caso del teorema principale appartiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Il teorema principale non si applica"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "a = 5, b = 2: n^(log₂ 5) ≈ n^2,32. f(n) = n² ∈ O(n^(log₂ 5 − ε)) con ε = 0,3, quindi è il primo caso e T(n) = Θ(n^(log₂ 5)). Il termine n² non domina, anche se è un quadrato; e l'esponente non intero non rende il teorema inapplicabile."
+    },
+    {
+      "id": "L05-T05-01",
+      "tipo": "L05-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 4T(n/2) + Θ(n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n² log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "a = 4, b = 2: n^(log₂ 4) = n². f(n) = n ∈ O(n^(2 − ε)) con ε = 1: primo caso, T(n) = Θ(n²). Θ(n log n) è l'errore di chi confronta f con n e applica il caso 2; Θ(n) è Θ(f(n)), ma le foglie dominano; Θ(n² log n) aggiunge un fattore log n che compare solo nel secondo caso."
+    },
+    {
+      "id": "L05-T05-02",
+      "tipo": "L05-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 7T(n/2) + Θ(n²), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n^(log₂ 7) log n)",
+        "Θ(n^(7/2))",
+        "Θ(n^(log₂ 7))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "a = 7, b = 2: n^(log₂ 7) ≈ n^2,81. f(n) = n² ∈ O(n^(log₂ 7 − ε)) con ε = 0,8: primo caso, T(n) = Θ(n^(log₂ 7)). Θ(n²) sarebbe giusta se dominasse f, ma domina n^(log₂ 7); Θ(n^(7/2)) viene da a/b = 3,5 al posto di log₂ 7."
+    },
+    {
+      "id": "L05-T05-03",
+      "tipo": "L05-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 9T(n/3) + Θ(n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n² log n)",
+        "Θ(n³)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "a = 9, b = 3: n^(log₃ 9) = n². f(n) = n ∈ O(n^(2 − ε)) con ε = 1: primo caso, T(n) = Θ(n²). Θ(n log n) confronta f con n invece che con n²; Θ(n² log n) è il secondo caso, ma f non ha lo stesso ordine di n²; Θ(n³) viene da a/b = 3."
+    },
+    {
+      "id": "L05-T05-04",
+      "tipo": "L05-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 2T(n/2) + Θ(1), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "a = b = 2: n^(log₂ 2) = n. f(n) = Θ(1) ∈ O(n^(1 − ε)) con ε = 1/2: primo caso, T(n) = Θ(n): le foglie sono n e dominano. Θ(1) è Θ(f(n)); Θ(n log n) è il secondo caso (mergesort), ma qui f è molto più piccola di n; Θ(log n) è la soluzione di T(n/2) + Θ(1)."
+    },
+    {
+      "id": "L05-T05-05",
+      "tipo": "L05-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 8T(n/2) + Θ(n²), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(n³ log n)",
+        "Θ(n⁴)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "a = 8, b = 2: n^(log₂ 8) = n³. f(n) = n² ∈ O(n^(3 − ε)) con ε = 1: primo caso, T(n) = Θ(n³). Θ(n²) è Θ(f(n)), Θ(n³ log n) è il secondo caso e Θ(n⁴) viene da a/b = 4."
+    },
+    {
+      "id": "L05-T05-06",
+      "tipo": "L05-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 3T(n/9) + Θ(1), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(√n log n)",
+        "Θ(√n)",
+        "Θ(n^(1/3))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "a = 3, b = 9: n^(log₉ 3) = n^(1/2) = √n, perché 9^(1/2) = 3. f(n) = Θ(1) è polinomialmente più piccola: primo caso, T(n) = Θ(√n). Θ(1) è Θ(f(n)); Θ(√n log n) è il secondo caso; Θ(n^(1/3)) viene da a/b = 1/3."
+    },
+    {
+      "id": "L05-T06-01",
+      "tipo": "L05-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = T(n/3) + Θ(1), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "a = 1, b = 3: n^(log₃ 1) = n⁰ = 1 e f(n) = Θ(1) ha lo stesso ordine: secondo caso, T(n) = Θ(1 · log n) = Θ(log n) (la base del logaritmo non conta). Θ(1) dimentica il fattore log n; Θ(n) e Θ(n log n) sono troppo grandi: c'è una sola chiamata con costo costante per livello e i livelli sono log₃ n."
+    },
+    {
+      "id": "L05-T06-02",
+      "tipo": "L05-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 27T(n/9) + Θ(n^(3/2)), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n^(3/2) log n)",
+        "Θ(n^(3/2))",
+        "Θ(n log n)",
+        "Θ(n^(5/2))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E5"
+      ],
+      "spiegazione": "a = 27, b = 9: log₉ 27 = 3/2 perché 9^(3/2) = (√9)³ = 27, quindi n^(log_b a) = n^(3/2) e f(n) = Θ(n^(3/2)) ha lo stesso ordine: secondo caso, T(n) = Θ(n^(3/2) log n). Θ(n^(3/2)) dimentica il fattore log n; Θ(n log n) è la soluzione del mergesort ricordata a memoria; Θ(n^(5/2)) moltiplica per n invece che per log n."
+    },
+    {
+      "id": "L05-T06-03",
+      "tipo": "L05-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 2T(n/4) + Θ(√n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n)",
+        "Θ(n log n)",
+        "Θ(√n log n)",
+        "Θ(√n log² n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "a = 2, b = 4: n^(log₄ 2) = n^(1/2) = √n e f(n) = Θ(√n) ha lo stesso ordine: secondo caso, T(n) = Θ(√n log n). Θ(√n) dimentica il fattore log n; Θ(n log n) è la soluzione del mergesort, che qui non vale perché log₄ 2 = 1/2 e non 1."
+    },
+    {
+      "id": "L05-T06-04",
+      "tipo": "L05-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 8T(n/2) + Θ(n³), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(n log n)",
+        "Θ(n⁴)",
+        "Θ(n³ log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E5",
+        null
+      ],
+      "spiegazione": "a = 8, b = 2: n^(log₂ 8) = n³ e f(n) = Θ(n³) ha lo stesso ordine: secondo caso, T(n) = Θ(n³ log n). Θ(n³) dimentica il fattore log n; Θ(n log n) è la soluzione del mergesort ricordata a memoria; Θ(n⁴) moltiplica per n invece che per log n."
+    },
+    {
+      "id": "L05-T06-05",
+      "tipo": "L05-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 4T(n/4) + Θ(n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n log² n)",
+        "Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "E5"
+      ],
+      "spiegazione": "a = b = 4: n^(log₄ 4) = n e f(n) = Θ(n) ha lo stesso ordine: secondo caso, T(n) = Θ(n log n). Qui il risultato coincide con quello del mergesort perché log_b a = 1. Θ(n) dimentica il fattore log n, Θ(n log² n) aggiunge un logaritmo di troppo e Θ(n²) moltiplica per n invece che per log n."
+    },
+    {
+      "id": "L05-T06-06",
+      "tipo": "L05-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 2T(n/8) + Θ(n^(1/3)), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n^(1/3))",
+        "Θ(n log n)",
+        "Θ(n^(1/3) log n)",
+        "Θ(n^(4/3))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E5"
+      ],
+      "spiegazione": "a = 2, b = 8: log₈ 2 = 1/3 perché 8^(1/3) = 2, quindi n^(log_b a) = n^(1/3) e f(n) = Θ(n^(1/3)) ha lo stesso ordine: secondo caso, T(n) = Θ(n^(1/3) log n). Θ(n^(1/3)) dimentica il fattore log n; Θ(n log n) è la soluzione del mergesort ricordata a memoria; Θ(n^(4/3)) moltiplica per n invece che per log n."
+    },
+    {
+      "id": "L05-T07-01",
+      "tipo": "L05-T07",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 2T(n/2) + Θ(n²), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n² log n)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "a = b = 2: n^(log₂ 2) = n. f(n) = n² ∈ Ω(n^(1 + ε)) con ε = 1 e la regolarità vale: 2·(n/2)² = n²/2 ≤ (1/2)·n². Terzo caso, T(n) = Θ(n²). Il fattore log n (Θ(n² log n)) compare solo nel secondo caso; Θ(n) e Θ(n log n) sono le soluzioni del primo e del secondo caso, che qui non valgono."
+    },
+    {
+      "id": "L05-T07-02",
+      "tipo": "L05-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 8T(n/2) + Θ(n⁴), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n⁴ log n)",
+        "Θ(n³)",
+        "Θ(n⁴)",
+        "Θ(n³ log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "a = 8, b = 2: n^(log₂ 8) = n³. f(n) = n⁴ ∈ Ω(n^(3 + ε)) con ε = 1 e la regolarità vale: 8·(n/2)⁴ = n⁴/2 ≤ (1/2)·n⁴. Terzo caso, T(n) = Θ(n⁴). Θ(n³) è la soluzione del primo caso, Θ(n³ log n) quella del secondo, Θ(n⁴ log n) un logaritmo di troppo."
+    },
+    {
+      "id": "L05-T07-03",
+      "tipo": "L05-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 3T(n/2) + Θ(n²), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n² log n)",
+        "Θ(n²)",
+        "Θ(n^(log₂ 3))",
+        "Θ(n^(log₂ 3) log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "a = 3, b = 2: n^(log₂ 3) ≈ n^1,585. f(n) = n² ∈ Ω(n^(log₂ 3 + ε)) con ε = 0,4 e la regolarità vale: 3·(n/2)² = (3/4)·n² ≤ (3/4)·n². Terzo caso, T(n) = Θ(n²). Θ(n^(log₂ 3)) è la soluzione del primo caso e Θ(n^(log₂ 3) log n) quella del secondo; Θ(n² log n) aggiunge un logaritmo."
+    },
+    {
+      "id": "L05-T07-04",
+      "tipo": "L05-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = 2T(n/8) + Θ(n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n^(1/3))",
+        "Θ(n^(1/3) log n)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "a = 2, b = 8: n^(log₈ 2) = n^(1/3), perché 8^(1/3) = 2. f(n) = n ∈ Ω(n^(1/3 + ε)) con ε = 1/2 e la regolarità vale: 2·(n/8) = n/4 ≤ (1/4)·n. Terzo caso, T(n) = Θ(n). Θ(n^(1/3)) è la soluzione del primo caso, Θ(n^(1/3) log n) quella del secondo, Θ(n log n) un logaritmo di troppo."
+    },
+    {
+      "id": "L05-T07-05",
+      "tipo": "L05-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = T(n/2) + Θ(n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(1)",
+        "Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "a = 1, b = 2: n^(log₂ 1) = n⁰ = 1. f(n) = n ∈ Ω(n^(0 + ε)) con ε = 1 e la regolarità vale: n/2 ≤ (1/2)·n. Terzo caso, T(n) = Θ(n): il costo è dominato dalla radice (n + n/2 + n/4 + … ≤ 2n). Θ(log n) è la soluzione della ricerca binaria, Θ(n log n) quella del mergesort, Θ(1) quella del primo caso."
+    },
+    {
+      "id": "L05-T07-06",
+      "tipo": "L05-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione dell'equazione di ricorrenza T(n) = T(n/4) + Θ(√n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n log n)",
+        "Θ(1)",
+        "Θ(√n)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "a = 1, b = 4: n^(log₄ 1) = n⁰ = 1. f(n) = √n ∈ Ω(n^(0 + ε)) con ε = 1/2 e la regolarità vale: √(n/4) = (1/2)·√n. Terzo caso, T(n) = Θ(√n). Θ(1) è la soluzione del primo caso, Θ(log n) quella del secondo, Θ(√n log n) aggiunge un logaritmo."
+    },
+    {
+      "id": "L05-T08-01",
+      "tipo": "L05-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Per T(n) = 3T(n/4) + f(n), quale condizione di regolarità deve soddisfare f(n) perché si possa applicare il terzo caso del teorema principale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n/4) ≤ c·f(n) per una costante c < 1 e per n sufficientemente grande",
+        "3·f(n/4) ≤ c·f(n) per una costante c < 1 e per n sufficientemente grande",
+        "4·f(n/3) ≤ c·f(n) per una costante c < 1 e per n sufficientemente grande",
+        "3·f(n/4) ≤ c·f(n) per una costante c ≤ 1 e per n sufficientemente grande"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Con a = 3 e b = 4 la regolarità è 3·f(n/4) ≤ c·f(n) con c < 1: il lavoro complessivo dei tre sottoproblemi di dimensione n/4 deve essere una frazione costante, minore di 1, di quello della radice. Senza il fattore 3 si guarderebbe un solo sottoproblema; 4·f(n/3) scambia a e b; con c = 1 non è garantito che i costi dei livelli decrescano."
+    },
+    {
+      "id": "L05-T08-02",
+      "tipo": "L05-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale caso del teorema principale richiede la condizione di regolarità a·f(n/b) ≤ c·f(n), con c < 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il terzo caso, quando f(n) è polinomialmente più grande di n^(log_b a)",
+        "Il primo caso, quando f(n) è polinomialmente più piccola di n^(log_b a)",
+        "Il secondo caso, quando f(n) ∈ Θ(n^(log_b a))",
+        "Tutti e tre i casi"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "La regolarità serve solo nel terzo caso, per garantire che i costi dei livelli decrescano scendendo nell'albero, così che la radice domini. Nei casi 1 e 2 le condizioni riguardano soltanto il confronto tra f(n) e n^(log_b a)."
+    },
+    {
+      "id": "L05-T08-03",
+      "tipo": "L05-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per T(n) = 4T(n/2) + Θ(n³), con f(n) = n³, quanto vale il rapporto a·f(n/b) / f(n) che compare nella condizione di regolarità?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1/8",
+        "1/2",
+        "2",
+        "1"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "a·f(n/b) = 4·(n/2)³ = 4n³/8 = n³/2, quindi il rapporto è 1/2 < 1 e la regolarità vale con c = 1/2 (terzo caso: n^(log₂ 4) = n² e n³ è polinomialmente più grande). 1/8 è il rapporto f(n/b)/f(n), cioè quello che si ottiene dimenticando il fattore a; 2 è a/b; 1 è il rapporto che si otterrebbe usando n^(log₂ 4) = n² al posto di f(n) = n³."
+    },
+    {
+      "id": "L05-T08-04",
+      "tipo": "L05-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per T(n) = 3T(n/2) + Θ(n²), con f(n) = n², qual è il minimo valore di c per cui a·f(n/b) ≤ c·f(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1/4",
+        "3/2",
+        "3/4",
+        "1"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "a·f(n/b) = 3·(n/2)² = 3n²/4, quindi il minimo c è 3/4 < 1 e la regolarità vale (n^(log₂ 3) ≈ n^1,585 e n² è polinomialmente più grande: terzo caso). 1/4 è il valore che si ottiene dimenticando il fattore a; 3/2 è a/b; con c = 1 la disuguaglianza vale, ma non è il minimo e non è un valore ammesso dal teorema."
+    },
+    {
+      "id": "L05-T08-05",
+      "tipo": "L05-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A che cosa serve la condizione di regolarità nel terzo caso del teorema principale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "A garantire che il costo dei livelli cresca geometricamente, così che dominino le foglie",
+        "A garantire che a sia un numero intero, così che le chiamate si possano contare",
+        "A garantire che f(n) sia un polinomio, così che si possa calcolare n^(log_b a)",
+        "A garantire che il costo dei livelli decresca geometricamente, così che domini la radice"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "a·f(n/b) ≤ c·f(n) con c < 1 significa che il costo totale di un livello è al più una frazione c di quello del livello precedente: i costi formano una serie geometrica decrescente e la somma è Θ(f(n)), dominata dalla radice. La condizione non riguarda né la natura di a né la forma di f."
+    },
+    {
+      "id": "L05-T08-06",
+      "tipo": "L05-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Per T(n) = 2T(n/2) + Θ(n^k), con k > 0, per quali valori di k la funzione f(n) = n^k soddisfa la regolarità a·f(n/b) ≤ c·f(n) con una costante c < 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "k ≥ 1",
+        "k < 1",
+        "k > 1",
+        "Per ogni k > 0"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "a·f(n/b) = 2·(n/2)^k = 2^(1 − k)·n^k, quindi c = 2^(1 − k), che è minore di 1 se e solo se k > 1. Per k = 1 si ha c = 1 (e 2T(n/2) + Θ(n) è il secondo caso); per k < 1 si ha c > 1."
+    },
+    {
+      "id": "L05-T09-01",
+      "tipo": "L05-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "A quale caso del teorema principale appartiene la ricorrenza T(n) = T(n/3) + Θ(log n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Il teorema principale non si applica",
+        "Al terzo caso del teorema principale"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E3",
+        null,
+        "E1"
+      ],
+      "spiegazione": "a = 1, b = 3: n^(log₃ 1) = 1. f(n) = log n è Ω(1) ma non Ω(n^ε) per nessun ε > 0, perché ogni potenza di log n cresce meno di qualunque n^ε; non è nemmeno Θ(1). Nessun caso vale: il teorema non è applicabile (la soluzione è Θ(log² n)). Chi vede che log n cresce più di 1 risponde «terzo caso»."
+    },
+    {
+      "id": "L05-T09-02",
+      "tipo": "L05-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si consideri T(n) = 4T(n/2) + Θ(n²/log n), con T(1) = Θ(1). Quale caso del teorema principale si applica?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il teorema principale non si applica",
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "n^(log₂ 4) = n². f(n) = n²/log n è O(n²) ma non O(n^(2 − ε)) per nessun ε > 0: è dominata, ma non polinomialmente; non è nemmeno Θ(n²). Nessun caso vale e il teorema non è applicabile. Il primo caso richiede ε > 0, che qui manca."
+    },
+    {
+      "id": "L05-T09-03",
+      "tipo": "L05-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "A quale caso del teorema principale appartiene T(n) = 9T(n/3) + Θ(n² log n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Il teorema principale non si applica",
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "n^(log₃ 9) = n². f(n) = n² log n è Ω(n²) ma non Ω(n^(2 + ε)) per nessun ε > 0: è dominante, ma non polinomialmente; non è nemmeno Θ(n²). Nessun caso vale e il teorema non è applicabile."
+    },
+    {
+      "id": "L05-T09-04",
+      "tipo": "L05-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Data la ricorrenza T(n) = 2T(n/4) + Θ(√n · log n), con T(1) = Θ(1), a quale caso del teorema principale si riconduce?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Il teorema principale non si applica"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E3",
+        "E2",
+        null
+      ],
+      "spiegazione": "n^(log₄ 2) = √n. Il rapporto f(n)/√n = log n non è costante (quindi non è il secondo caso) e non è né una potenza n^ε né una potenza n^(−ε) (quindi non è né il terzo né il primo caso). Il teorema non è applicabile."
+    },
+    {
+      "id": "L05-T09-05",
+      "tipo": "L05-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Per quale delle seguenti ricorrenze il teorema principale non è applicabile?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = 2T(n/2) + Θ(n² log n)",
+        "T(n) = 3T(n/2) + Θ(n)",
+        "T(n) = 4T(n/2) + Θ(n²)",
+        "T(n) = 4T(n/2) + Θ(n² log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E5",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Per 4T(n/2) + Θ(n² log n): n^(log₂ 4) = n² e f(n)/n² = log n, che è solo logaritmico: nessun caso. Per 2T(n/2) + Θ(n² log n) invece n^(log₂ 2) = n e f(n) ∈ Ω(n^(1 + ε)) con ε = 1: terzo caso (la regolarità vale: 2·(n/2)²·log(n/2) ≤ (1/2)·n² log n), quindi T(n) = Θ(n² log n). 3T(n/2) + Θ(n) è il primo caso e 4T(n/2) + Θ(n²) il secondo."
+    },
+    {
+      "id": "L05-T09-06",
+      "tipo": "L05-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "A quale caso del teorema principale appartiene T(n) = 4T(n/2) + Θ(n³ log n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Il teorema principale non si applica"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "altro",
+        "E5"
+      ],
+      "spiegazione": "n^(log₂ 4) = n². f(n) = n³ log n ∈ Ω(n^(2 + ε)) con ε = 1: lo scarto polinomiale c'è, il fattore log n è in più. La regolarità vale: 4·(n/2)³·log(n/2) = (n³/2)(log n − 1) ≤ (1/2)·n³ log n. È il terzo caso e T(n) = Θ(n³ log n). La presenza di un logaritmo non rende inapplicabile il teorema quando c'è già uno scarto polinomiale."
+    },
+    {
+      "id": "L05-T09-07",
+      "tipo": "L05-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale caso del teorema principale si applica alla ricorrenza T(n) = 2T(n/2) + Θ(n/log n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Il teorema principale non si applica",
+        "Al terzo caso del teorema principale"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "n^(log₂ 2) = n. f(n) = n/log n è O(n) ma non O(n^(1 − ε)) per nessun ε > 0: è dominata, ma non polinomialmente (dispensa, Limiti, Esempio 1). Non è nemmeno Θ(n). Nessun caso vale e il teorema non è applicabile."
+    },
+    {
+      "id": "L05-T09-08",
+      "tipo": "L05-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si consideri T(n) = 27T(n/3) + Θ(n³/log n), con T(1) = Θ(1). A quale caso del teorema principale appartiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il teorema principale non si applica",
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "n^(log₃ 27) = n³. Il rapporto f(n)/n³ = 1/log n non è costante e non è una potenza n^(−ε): f è dominata ma non polinomialmente. Il primo caso richiede f ∈ O(n^(3 − ε)) con ε > 0, quindi non vale, e nessun altro caso vale: il teorema non è applicabile."
+    },
+    {
+      "id": "L05-T10-01",
+      "tipo": "L05-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una sola delle seguenti ricorrenze ha la forma richiesta dal teorema principale e rientra in uno dei suoi tre casi. Quale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = 2T(n − 1) + Θ(1)",
+        "T(n) = 3T(n/4) + Θ(n²)",
+        "T(n) = T(n − 2) + Θ(n)",
+        "T(n) = T(n/2) + T(n/3) + Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "3T(n/4) + Θ(n²) ha la forma a·T(n/b) + f(n) con a = 3, b = 4: n^(log₄ 3) ≈ n^0,79 e n² è polinomialmente più grande, con regolarità 3·(n/4)² = (3/16)·n²: terzo caso, T(n) = Θ(n²). T(n − 1) e T(n − 2) riducono n di una costante e non di un fattore; T(n/2) + T(n/3) ha sottoproblemi di dimensioni diverse."
+    },
+    {
+      "id": "L05-T10-02",
+      "tipo": "L05-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A quale caso del teorema principale appartiene la ricorrenza T(n) = T(n − 1) + Θ(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Al primo caso del teorema principale",
+        "Al secondo caso del teorema principale",
+        "Al terzo caso del teorema principale",
+        "Il teorema principale non si applica"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "T(n − 1) riduce n di 1 e non di un fattore b > 1: la ricorrenza non ha la forma a·T(n/b) + f(n) e nessun caso si applica. Si risolve per iterazione: T(n) = n + (n − 1) + … + 1 = Θ(n²). Θ(n log n), che darebbe il secondo caso, è sbagliato."
+    },
+    {
+      "id": "L05-T10-03",
+      "tipo": "L05-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il teorema principale è applicabile a T(n) = 6T(n/2) + Θ(n²)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì: primo caso, T(n) = Θ(n^(log₂ 6))",
+        "No, perché log₂ 6 non è un numero intero",
+        "No, perché 6 non è una potenza di 2",
+        "Sì: terzo caso, T(n) = Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "La forma è corretta (a = 6 ≥ 1, b = 2 > 1) e basta confrontare f(n) = n² con n^(log₂ 6) ≈ n^2,585: n² è polinomialmente più piccola, quindi primo caso e T(n) = Θ(n^(log₂ 6)). Un esponente non intero non è un ostacolo: sulla forma il teorema chiede soltanto a ≥ 1 e b > 1 costanti. Il terzo caso richiederebbe f più grande di n^(log₂ 6)."
+    },
+    {
+      "id": "L05-T10-04",
+      "tipo": "L05-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il teorema principale si può applicare a una sola delle seguenti ricorrenze. Quale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/3) + T(2n/3) + Θ(n)",
+        "T(n) = n·T(n/2) + Θ(1)",
+        "T(n) = 6T(n/3) + Θ(n²)",
+        "T(n) = 4T(n/2) + Θ(n² log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "6T(n/3) + Θ(n²) ha la forma giusta (a = 6, b = 3): n^(log₃ 6) ≈ n^1,63 e n² è polinomialmente più grande, con regolarità 6·(n/3)² = (2/3)·n²: terzo caso, T(n) = Θ(n²). T(n/3) + T(2n/3) ha sottoproblemi di dimensioni diverse e non si riduce a un solo coefficiente a; n·T(n/2) ha un coefficiente che dipende da n; 4T(n/2) + Θ(n² log n) ha la forma giusta, ma f supera n^(log₂ 4) = n² solo per un fattore logaritmico."
+    },
+    {
+      "id": "L05-T10-05",
+      "tipo": "L05-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per quale delle seguenti ricorrenze il teorema principale è applicabile?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/2) + Θ(n)",
+        "T(n) = 2T(n − 1) + Θ(n²)",
+        "T(n) = T(n − 1) + Θ(n)",
+        "T(n) = T(n/2) + Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "T(n/2) + Θ(n) ha la forma a·T(n/b) + f(n) con a = 1, b = 2: n^(log₂ 1) = 1 e f(n) = n è polinomialmente più grande, con regolarità n/2 ≤ (1/2)·n: terzo caso, T(n) = Θ(n). 2T(n − 1) + Θ(n²) e T(n − 1) + Θ(n) hanno sottoproblemi di dimensione n − 1, non n/b: leggerli con b = 1 non è ammesso, serve b > 1. T(n/2) + Θ(log n) ha la forma giusta, ma f supera n⁰ = 1 solo per un fattore logaritmico: nessuno dei tre casi vale."
+    },
+    {
+      "id": "L05-T10-06",
+      "tipo": "L05-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il teorema principale non è applicabile a una sola delle seguenti ricorrenze. Quale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = 3T(n/2) + Θ(n)",
+        "T(n) = T(n/2) + Θ(1)",
+        "T(n) = 4T(n/2) + Θ(n²)",
+        "T(n) = 2T(n − 2) + Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "2T(n − 2) riduce n di una costante e non di un fattore: non ha la forma a·T(n/b) + f(n) e va risolta con un altro metodo (iterazione o sostituzione). Le altre tre hanno la forma corretta: 3T(n/2) + Θ(n) è il primo caso, anche se log₂ 3 non è intero; T(n/2) + Θ(1) e 4T(n/2) + Θ(n²) sono il secondo caso."
+    },
+    {
+      "id": "L05-T11-01",
+      "tipo": "L05-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il teorema principale non si applica alla ricorrenza T(n) = 2T(n/2) + Θ(n log n), con T(1) = Θ(1). La sua soluzione è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log² n)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n log log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "n^(log₂ 2) = n e f(n) = n log n: il rapporto è log n. Il livello i dell'albero costa 2^i · (n/2^i) · log(n/2^i) = n·(log n − i); sommando su i = 0 … log n − 1 si ottiene n·(log n + (log n − 1) + … + 1) = Θ(n log² n) (Esercizio 13). Θ(n log n) = Θ(f(n)) è la risposta del terzo caso (e anche quella del secondo), Θ(n) quella del primo; ma qui nessun caso vale."
+    },
+    {
+      "id": "L05-T11-02",
+      "tipo": "L05-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il teorema principale non si applica alla ricorrenza T(n) = 4T(n/2) + Θ(n²/log n), con T(1) = Θ(1). La sua soluzione è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²/log n)",
+        "Θ(n²)",
+        "Θ(n² log n)",
+        "Θ(n² log log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "n^(log₂ 4) = n². Il livello i ha 4^i sottoproblemi di dimensione n/2^i, ciascuno di costo (n/2^i)²/log(n/2^i): in tutto n²/(log n − i). Sommando su i = 0 … log n − 1 si ottiene n²·(1/log n + … + 1/2 + 1) = Θ(n² log log n) (somma armonica). Θ(n²/log n) è Θ(f(n)) (caso 3), Θ(n²) è il primo caso (e coincide con Θ(f(n) · log n)), Θ(n² log n) è il secondo caso."
+    },
+    {
+      "id": "L05-T11-03",
+      "tipo": "L05-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il teorema principale non si applica alla ricorrenza T(n) = T(n/2) + Θ(log n), con T(1) = Θ(1). La sua soluzione è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(log² n)",
+        "Θ(1)",
+        "Θ(log log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "n^(log₂ 1) = 1 e f(n) = log n: il rapporto è log n. Il livello i costa log(n/2^i) = log n − i; sommando su i = 0 … log n − 1 si ottiene log n + (log n − 1) + … + 1 = Θ(log² n). Θ(log n) = Θ(f(n)) è la risposta del terzo caso (e anche quella del secondo, 1 · log n), Θ(1) quella del primo."
+    },
+    {
+      "id": "L05-T11-04",
+      "tipo": "L05-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il teorema principale non si applica alla ricorrenza T(n) = 3T(n/3) + Θ(n log² n), con T(1) = Θ(1). La sua soluzione è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log² n)",
+        "Θ(n)",
+        "Θ(n log³ n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "n^(log₃ 3) = n e f(n) = n log² n: il rapporto è log² n. Il livello i costa n·(log n − i·log₂ 3)²; sommando su circa log₃ n livelli si ottiene n·Θ(log³ n), cioè un logaritmo in più di f (se f = n^(log_b a)·log^k n con k ≥ 0, T(n) = Θ(n^(log_b a)·log^(k+1) n)). Θ(n log² n) = Θ(f(n)) è il terzo caso, Θ(n) il primo, Θ(n log n) il secondo."
+    },
+    {
+      "id": "L05-T11-05",
+      "tipo": "L05-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il teorema principale non si applica alla ricorrenza T(n) = 2T(n/4) + Θ(√n log n), con T(1) = Θ(1). La sua soluzione è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n log n)",
+        "Θ(√n)",
+        "Θ(√n log log n)",
+        "Θ(√n log² n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "n^(log₄ 2) = √n e f(n) = √n log n: il rapporto è log n. Il livello i ha 2^i sottoproblemi di dimensione n/4^i, ciascuno di costo √(n/4^i)·log(n/4^i), in tutto √n·(log n − 2i); sommando su circa log₄ n livelli si ottiene √n·Θ(log² n). Θ(√n log n) = Θ(f(n)) è la risposta del terzo caso (e anche quella del secondo), Θ(√n) quella del primo."
+    },
+    {
+      "id": "L05-T11-06",
+      "tipo": "L05-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il teorema principale non si applica alla ricorrenza T(n) = 2T(n/4) + Θ(√n/log n), con T(1) = Θ(1). La sua soluzione è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n/log n)",
+        "Θ(√n log log n)",
+        "Θ(√n)",
+        "Θ(√n log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "n^(log₄ 2) = √n e f(n)/√n = 1/log n. Il livello i ha 2^i sottoproblemi di dimensione n/4^i, ciascuno di costo √(n/4^i)/log(n/4^i): in tutto √n/(log n − 2i) = √n/(2·(log₄ n − i)). Sommando su i = 0 … log₄ n − 1 si ottiene (√n/2)·(1 + 1/2 + … + 1/log₄ n) = Θ(√n log log n) (somma armonica). Θ(√n/log n) è Θ(f(n)) (caso 3), Θ(√n) il primo caso (ed è anche Θ(f(n) · log n)), Θ(√n log n) il secondo."
+    },
+    {
+      "id": "L05-T12-01",
+      "tipo": "L05-T12",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il metodo di sostituzione per risolvere una ricorrenza consiste nel:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "espandere T(n) in funzione di T(n − 1), T(n − 2), … fino al caso base e sommare i termini ottenuti",
+        "confrontare f(n) con n^(log_b a) e scegliere uno dei tre casi",
+        "disegnare l'albero della ricorsione e sommare i costi di ogni livello",
+        "ipotizzare la forma della soluzione e verificarla per induzione, sostituendola nella ricorrenza"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "La sostituzione parte da un'ipotesi sulla soluzione e la dimostra per induzione, inserendola nella ricorrenza. Espandere fino al caso base è il metodo iterativo, il confronto con n^(log_b a) è il teorema principale, la somma dei costi dei livelli è il metodo dell'albero."
+    },
+    {
+      "id": "L05-T12-02",
+      "tipo": "L05-T12",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale sequenza di passi descrive la procedura tipica del metodo di sostituzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ipotizzare la soluzione; verificarla per induzione (caso base, ipotesi induttiva, passo induttivo); scegliere le costanti",
+        "Ipotizzare la soluzione; verificare il passo induttivo; scegliere le costanti, senza controllare il caso base",
+        "Espandere la ricorrenza; riconoscere lo schema che si ripete; sommare i termini",
+        "Calcolare n^(log_b a); confrontarlo con f(n); scegliere il caso corrispondente"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "La procedura ha tre passi: ipotesi, verifica per induzione (con caso base, ipotesi induttiva e passo induttivo) e scelta delle costanti. Senza il caso base l'induzione non è completa: le costanti scelte per il passo potrebbero non valere per n piccolo."
+    },
+    {
+      "id": "L05-T12-03",
+      "tipo": "L05-T12",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Uno studente dimostra per sostituzione che T(n) ≤ cn² per ogni n ≥ 1 e conclude che T(n) = Θ(n²). Che cosa si può dire della conclusione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "È giustificata: dimostrare O(n²) è sufficiente per ottenere Θ(n²)",
+        "È giustificata, purché la costante c sia scelta abbastanza grande",
+        "Non è giustificata: ha dimostrato solo un limite superiore, serve anche T(n) ≥ c'n²",
+        "Non è giustificata: con il metodo di sostituzione non si può dimostrare una Θ"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "T(n) ≤ cn² dà soltanto T(n) = O(n²): per Θ(n²) serve anche T(n) ≥ c'n², dimostrata a parte e con la propria costante (nell'Esempio 1 della dispensa c = max{a, b} per O e c = min{a/2, b} per Ω). Una c grande non aggiunge un limite inferiore, e il metodo di sostituzione permette di dimostrare entrambi i versi."
+    },
+    {
+      "id": "L05-T12-04",
+      "tipo": "L05-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul metodo di sostituzione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Trova la soluzione partendo dalla sola ricorrenza, senza bisogno di un'ipotesi",
+        "Permette di verificare una soluzione ipotizzata, ma non la trova da solo",
+        "Per dimostrare un'ipotesi basta il passo induttivo: il caso base si può omettere",
+        "Coincide con il metodo iterativo: si sostituisce la ricorrenza in se stessa"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "E1"
+      ],
+      "spiegazione": "La sostituzione è un metodo di verifica: serve una congettura (che può venire dal metodo iterativo o da quello dell'albero) da dimostrare per induzione, caso base compreso. Il metodo iterativo è un'altra tecnica, che espande la ricorrenza."
+    },
+    {
+      "id": "L05-T12-05",
+      "tipo": "L05-T12",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Per eliminare la notazione asintotica si introducono costanti positive a e b. Come si riscrive la ricorrenza T(n) = T(n − 1) + Θ(n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1) + an per n > 1, senza fissare il valore di T(1)",
+        "T(n) = T(n − 1) + n per n > 1, con T(1) = 1",
+        "T(n) = a·T(n − 1) + n per n > 1, con T(1) = b",
+        "T(n) = T(n − 1) + an per n > 1, con T(1) = b"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Θ(n) diventa an e Θ(1) diventa la costante b, che fissa il caso base: T(1) = b e T(n) = T(n − 1) + an per n > 1. Senza il valore di T(1) la ricorrenza non è completa e il caso base dell'induzione non si può controllare; il coefficiente a sta sul termine non ricorsivo, non davanti a T(n − 1)."
+    },
+    {
+      "id": "L05-T12-06",
+      "tipo": "L05-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una dimostrazione per sostituzione di T(n) ≤ cn² procede così: si suppone T(k) ≤ ck² per ogni k < n e si verifica che da qui segue T(n) ≤ cn². Che cosa manca per completarla?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il controllo del caso base e la scelta di c adatta al caso base e al passo",
+        "Niente: l'ipotesi induttiva e il passo induttivo bastano a completarla",
+        "La dimostrazione di T(n) ≥ cn², senza la quale T(n) ≤ cn² non è valida",
+        "Il calcolo di n^(log_b a) e il suo confronto con f(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "L'induzione ha bisogno del caso base, e la costante c va scelta in modo da rispettare insieme il vincolo del caso base e quello del passo. Per un limite superiore non serve provare anche quello inferiore, e n^(log_b a) riguarda il teorema principale."
+    },
+    {
+      "id": "L05-T13-01",
+      "tipo": "L05-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia T(1) = 7 e T(n) = T(n − 1) + 4n per n > 1. Con il metodo di sostituzione si vuole dimostrare T(n) ≤ cn² per ogni n ≥ 1. Quale scelta di c completa la dimostrazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "c = 4",
+        "c = 2",
+        "c = 7",
+        "Qualsiasi costante c > 0"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il passo induttivo dà T(n) ≤ cn² − 2cn + c + 4n ≤ cn² − cn + 4n ≤ cn² se c ≥ 4; il caso base richiede T(1) = 7 ≤ c·1², cioè c ≥ 7. Vanno rispettati entrambi: c = max{4, 7} = 7. c = 4 chiude il passo ma non il caso base; c = 2 = min{a/2, b} è la scelta della dimostrazione di Ω; non va bene qualsiasi c, perché ci sono due vincoli."
+    },
+    {
+      "id": "L05-T13-02",
+      "tipo": "L05-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia T(1) = 2 e T(n) = T(n − 1) + 6n per n > 1. Con il metodo di sostituzione si vuole dimostrare T(n) ≥ cn² per ogni n ≥ 1. Quale scelta di c completa la dimostrazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "c = 6",
+        "c = 2",
+        "c = 3",
+        "Qualsiasi costante c > 0"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Il caso base richiede T(1) = 2 ≥ c·1², cioè c ≤ 2; il passo induttivo richiede c ≤ a/2 = 3. Per Ω servono entrambi, quindi c = min{3, 2} = 2. c = 3 rispetta il passo ma non il caso base; c = 6 = max{a, b} è la scelta per O; con c grande la disuguaglianza T(n) ≥ cn² è falsa."
+    },
+    {
+      "id": "L05-T13-03",
+      "tipo": "L05-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia T(1) = b e T(n) = T(n − 1) + an per n > 1, con a e b costanti positive. Per dimostrare T(n) ≤ cn² per ogni n ≥ 1, quale vincolo su c impone il caso base n = 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "c ≥ b",
+        "c ≤ b",
+        "c ≥ a",
+        "c ≤ a/2"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Per n = 1 occorre T(1) = b ≤ c·1² = c, cioè c ≥ b. Il vincolo c ≤ b è quello del caso base della dimostrazione di Ω; c ≥ a è il vincolo del passo induttivo per O e c ≤ a/2 quello del passo per Ω."
+    },
+    {
+      "id": "L05-T13-04",
+      "tipo": "L05-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per T(n) = T(n − 1) + 2n si dimostra T(n) ≤ cn² usando l'ipotesi induttiva T(n − 1) ≤ c(n − 1)², da cui T(n) ≤ c(n − 1)² + 2n. Qual è lo sviluppo corretto di questo termine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cn² − c + 2n",
+        "cn² − 2cn + 1 + 2n",
+        "cn² + 2cn + c + 2n",
+        "cn² − 2cn + c + 2n"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "(n − 1)² = n² − 2n + 1, quindi c(n − 1)² + 2n = cn² − 2cn + c + 2n. Scrivere (n − 1)² = n² − 1 dà il termine −c al posto di −2cn + c; dimenticare il fattore c sull'ultimo termine o sbagliare il segno di 2cn sono altri errori di sviluppo."
+    },
+    {
+      "id": "L05-T13-05",
+      "tipo": "L05-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia T(1) = b e T(n) = T(n − 1) + an per n > 1, con a e b costanti positive. La scelta c = a chiude la dimostrazione di T(n) ≤ cn² per ogni n ≥ 1:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "sempre, perché il caso base non pone vincoli su c",
+        "solo se b ≤ a",
+        "solo se b ≥ a",
+        "mai: serve sempre c > a"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il passo induttivo è soddisfatto da c = a, ma il caso base richiede T(1) = b ≤ c: con c = a questo vale solo se b ≤ a. Se b > a la scelta giusta è c = max{a, b} = b. Dimenticare il caso base porta a pensare che c = a funzioni sempre."
+    },
+    {
+      "id": "L05-T13-06",
+      "tipo": "L05-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia T(n) = T(n − 1) + an per n > 1, con a costante positiva. Nella dimostrazione di T(n) ≥ cn² (c costante positiva) il passo induttivo dà T(n) ≥ cn² − 2cn + c + an. Quale delle seguenti condizioni su c garantisce che questo valore sia ≥ cn² per ogni n ≥ 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "c ≥ a",
+        "c ≤ a",
+        "c ≤ a/2",
+        "Qualsiasi costante c > 0"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Serve −2cn + c + an ≥ 0. Con c ≤ a/2 si ha 2cn ≤ an, quindi c + an − 2cn ≥ c > 0 e la disuguaglianza vale. La condizione c ≥ a è quella della dimostrazione di O; c ≤ a non basta (con c = a e n = 2 si ottiene 3a < 4a = cn²); non va bene qualsiasi c."
+    },
+    {
+      "id": "L05-T14-01",
+      "tipo": "L05-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia T(1) = 5 e T(n) = 2T(n/2) + 3 per n > 1. Si vuole dimostrare per induzione T(n) ≤ cn − d. Con quale coppia (c, d) il passo induttivo e il caso base sono entrambi verificati?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "c = 4, d = 3",
+        "c = 10, d = 2",
+        "c = 10, d = 0",
+        "c = 8, d = 3"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E5",
+        "E4",
+        "E3",
+        null
+      ],
+      "spiegazione": "Il passo dà 2(c·n/2 − d) + 3 = cn − 2d + 3 ≤ cn − d se d ≥ 3; il caso base richiede 5 ≤ c − d. La coppia (8, 3) rispetta entrambi i vincoli (di fatto T(n) = 8n − 3). La coppia (4, 3) rispetta il passo ma non il caso base (c − d = 1 < 5); (10, 2) non rispetta il passo, perché per O serve d ≥ a e non d ≤ a; (10, 0) è l'ipotesi cn, che dà cn + 3 per qualunque c."
+    },
+    {
+      "id": "L05-T14-02",
+      "tipo": "L05-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia T(1) = b e T(n) = 2T(n/2) + a per n > 1, con a e b costanti positive. Provando T(n) ≤ cn − d, il passo induttivo dà cn − 2d + a. Per quali valori di d questo valore è ≤ cn − d?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "d ≥ a",
+        "d ≤ a",
+        "d ≥ b",
+        "d ≥ a/2"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "cn − 2d + a ≤ cn − d equivale a a ≤ d, cioè d ≥ a. Il vincolo d ≤ a è quello della dimostrazione di Ω (con T(n) ≥ cn − d); d ≥ b non c'entra con il passo (b compare nel caso base, c − d ≥ b); con d = a/2 si avrebbe cn − 2d + a = cn, che non è ≤ cn − d."
+    },
+    {
+      "id": "L05-T14-03",
+      "tipo": "L05-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia T(1) = 1 e T(n) = 4T(n/2) + 3 per n > 1. Provando per sostituzione T(n) ≤ cn² si ottiene T(n) ≤ 4c(n/2)² + 3 = cn² + 3. Un compagno conclude «quindi T(n) = O(n²), perché cn² + 3 = O(n²)». Dove sbaglia?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Non sbaglia: cn² + 3 = O(n²), quindi la dimostrazione è completa",
+        "Sbaglia perché T(n) non è O(n²): bisogna dimostrare T(n) = O(n² log n)",
+        "Il passo deve ridare T(n) ≤ cn² con la stessa c, e cn² + 3 ≤ cn² non vale per nessuna c",
+        "Sbaglia solo perché non ha scelto una c abbastanza grande: con c ≥ 3 la dimostrazione riesce"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "L'induzione deve ridare esattamente T(n) ≤ cn² con la stessa costante c, ma cn² + 3 supera cn² per ogni c: dire che cn² + 3 = O(n²) cambierebbe la costante a ogni passo, e una c più grande non aiuta. Con l'ipotesi rafforzata T(n) ≤ cn² − d il passo dà cn² − 4d + 3 ≤ cn² − d se d ≥ 1 e il caso base chiede c − d ≥ 1: per esempio c = 2, d = 1 (infatti T(n) = 2n² − 1). Quindi T(n) = Θ(n²), non Θ(n² log n)."
+    },
+    {
+      "id": "L05-T14-04",
+      "tipo": "L05-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con il metodo di sostituzione si dimostra T(n) ≤ cn − d per T(1) = b e T(n) = 2T(n/2) + a, con a e b costanti positive. Quali vincoli devono soddisfare c e d?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "d ≤ a e c − d ≥ b",
+        "d ≥ a e c − d ≥ b",
+        "d ≥ a, senza nessun vincolo dal caso base",
+        "c ≥ a e d ≥ b"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "Il passo induttivo dà cn − 2d + a ≤ cn − d se d ≥ a; il caso base T(1) = b ≤ c·1 − d richiede c − d ≥ b. Il vincolo d ≤ a è quello della dimostrazione di Ω; ignorare il caso base lascia libera la scelta di c, ma l'induzione non parte; scambiare i ruoli di a e b dà vincoli che non discendono né dal passo né dal caso base."
+    },
+    {
+      "id": "L05-T14-05",
+      "tipo": "L05-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Con il metodo di sostituzione si dimostra T(n) ≥ cn − d per T(1) = b e T(n) = 2T(n/2) + a, con a e b costanti positive. Quali vincoli devono soddisfare c e d?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "d ≥ a e c − d ≥ b",
+        "d ≤ a, senza nessun vincolo dal caso base",
+        "d ≥ a e c − d ≤ b",
+        "d ≤ a e c − d ≤ b"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E5",
+        "E4",
+        null
+      ],
+      "spiegazione": "Per Ω il passo dà cn − 2d + a ≥ cn − d se d ≤ a; il caso base b ≥ c − d richiede c − d ≤ b. La coppia d ≥ a e c − d ≥ b è quella della dimostrazione di O; d ≥ a con c − d ≤ b inverte solo il vincolo del passo. Senza il vincolo del caso base c potrebbe essere troppo grande e la disuguaglianza fallirebbe già per n = 1."
+    },
+    {
+      "id": "L05-T14-06",
+      "tipo": "L05-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia T(1) = 7 e T(n) = 2T(n/2) + 4 per n > 1. Si vuole dimostrare per induzione T(n) ≥ cn − d. Con quale coppia (c, d) il passo induttivo e il caso base sono entrambi verificati?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "c = 12, d = 4",
+        "c = 8, d = 4",
+        "c = 8, d = 6",
+        "c = 10, d = 1"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E4",
+        "E5"
+      ],
+      "spiegazione": "Per Ω servono d ≤ a = 4 (passo: cn − 2d + 4 ≥ cn − d) e c − d ≤ b = 7 (caso base). La coppia (8, 4) li rispetta. Le coppie (12, 4) e (10, 1) rispettano il passo ma non il caso base (c − d vale 8 e 9, più di 7); (8, 6) ha d > a: il passo non si chiude, perché dà 8n − 8, che è minore di 8n − 6."
+    },
+    {
+      "id": "L05-T15-01",
+      "tipo": "L05-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Siano T₁(n) = 4T₁(n/2) + Θ(n) e T₂(n) = 4T₂(n/2) + Θ(1), entrambe con caso base Θ(1). Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T₁(n) = Θ(n²) e T₂(n) = Θ(n²): ridurre f(n) da n a 1 non cambia la soluzione",
+        "T₁(n) = Θ(n²) e T₂(n) = Θ(n): con f(n) più piccola la soluzione diminuisce",
+        "T₁(n) = Θ(n) e T₂(n) = Θ(1), perché domina f(n)",
+        "T₁(n) = Θ(n² log n) e T₂(n) = Θ(n²), perché f(n) = n aggiunge un fattore log n"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "In entrambe n^(log₂ 4) = n² e f(n) (n oppure 1) è polinomialmente più piccola: primo caso, T₁(n) = T₂(n) = Θ(n²). Nel primo caso la soluzione non dipende da f(n): ridurre f non la migliora, perché dominano le foglie dell'albero."
+    },
+    {
+      "id": "L05-T15-02",
+      "tipo": "L05-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Per quale valore di a la ricorrenza T(n) = a·T(n/3) + Θ(n) ha soluzione Θ(n log n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "a = 2",
+        "a = 9",
+        "a = 3",
+        "a = 1"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Θ(n log n) è la soluzione del secondo caso con f(n) = n, quindi serve log₃ a = 1, cioè a = 3 (in generale a = b^k con f(n) = n^k). Con a = 2 (per ricordo del mergesort) si ha log₃ 2 < 1 e domina f: Θ(n); con a = 9 (b² al posto di b^k) si ha log₃ 9 = 2 e dominano le foglie: Θ(n²); con a = 1 si ha Θ(n)."
+    },
+    {
+      "id": "L05-T15-03",
+      "tipo": "L05-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Siano T₁(n) = 2T₁(n/2) + Θ(n) e T₂(n) = 3T₂(n/2) + Θ(n), entrambe con caso base Θ(1). Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T₁(n) = Θ(n log n) e T₂(n) = Θ(n log n): un sottoproblema in più cambia solo una costante",
+        "T₁(n) = Θ(n log n) e T₂(n) = Θ(n^(log₂ 3)), quindi T₂ cresce asintoticamente più di T₁",
+        "T₁(n) = Θ(n log n) e T₂(n) = Θ(n^(3/2)), quindi T₂ cresce asintoticamente più di T₁",
+        "T₁(n) = Θ(n) e T₂(n) = Θ(n): in entrambe domina f(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Per T₁: n^(log₂ 2) = n e f(n) = n ha lo stesso ordine: secondo caso, Θ(n log n). Per T₂: n^(log₂ 3) ≈ n^1,585 e f(n) = n è polinomialmente più piccola: primo caso, Θ(n^(log₂ 3)). Il sottoproblema in più cambia il caso e l'esponente, non solo una costante; n^(3/2) viene da a/b invece che da log₂ 3."
+    }
+  ]
+}

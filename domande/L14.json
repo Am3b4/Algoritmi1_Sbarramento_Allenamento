@@ -1,0 +1,2590 @@
+{
+  "lezione": 14,
+  "generato_con": "claude-sonnet-5-5",
+  "domande": [
+    {
+      "id": "L14-T01-01",
+      "tipo": "L14-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale delle seguenti proprietà è sempre vera in un albero binario di ricerca con chiavi distinte?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La chiave minima si trova nella radice",
+        "La chiave massima si trova in una foglia",
+        "Per ogni nodo, le chiavi del sottoalbero sinistro sono minori della sua chiave e quelle del sottoalbero destro sono maggiori",
+        "Tutte le foglie si trovano allo stesso livello"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E2"
+      ],
+      "spiegazione": "È la definizione di ABR, e vale per ogni nodo e per l'intero sottoalbero. Il minimo sta nella radice solo se la radice non ha figlio sinistro; il massimo è il nodo più a destra, che può avere un figlio sinistro; le foglie possono stare a livelli diversi (un ABR non è né un heap né un albero completo)."
+    },
+    {
+      "id": "L14-T01-02",
+      "tipo": "L14-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale delle seguenti affermazioni è vera per ogni albero binario di ricerca con chiavi distinte?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ogni nodo contiene almeno due chiavi in ordine crescente",
+        "La visita in ordine restituisce le chiavi in ordine strettamente crescente",
+        "La chiave di ogni nodo è minore delle chiavi dei suoi figli",
+        "Le chiavi maggiori della radice si trovano nel sottoalbero sinistro"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "Sinistro, nodo, destro: poiché a sinistra ci sono le chiavi minori e a destra le maggiori, la visita in ordine produce una sequenza crescente. Un nodo di un ABR ha una sola chiave (più chiavi per nodo sono dei B-alberi); 'padre minore dei figli' è la proprietà dell'heap minimo; le chiavi maggiori stanno a destra."
+    },
+    {
+      "id": "L14-T01-03",
+      "tipo": "L14-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario di ricerca ha n chiavi distinte. Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "È sempre un albero completo, di altezza ⌊log₂ n⌋",
+        "La chiave massima si trova sempre in una foglia",
+        "Ogni nodo può contenere più chiavi ordinate",
+        "Può essere una catena di n nodi, con altezza n − 1"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "E5",
+        null
+      ],
+      "spiegazione": "L'ABR non impone nessun vincolo sulla forma: inserendo le chiavi in ordine crescente si ottiene una catena di altezza n − 1. Non è completo né bilanciato in generale; il massimo è il nodo più a destra, che può avere un figlio sinistro; un nodo contiene una sola chiave."
+    },
+    {
+      "id": "L14-T01-04",
+      "tipo": "L14-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Quale dei seguenti alberi binari NON è un albero binario di ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "40(20(10, 30), 60(50, 70(65, -)))",
+        "40(10(-, 20(-, 30(25, -))), 60)",
+        "40(20(10, 30(25, 45)), 60(50, 70))",
+        "40(20(10(-, 15), 35(30, -)), 60(45, 70))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "In 40(20(10, 30(25, 45)), 60(50, 70)) la chiave 45 è giusta rispetto al padre 30, ma sta nel sottoalbero sinistro di 40 ed è maggiore di 40: non è un ABR. Gli altri tre sono ABR (la visita in ordine è crescente): in 40(20(10, 30), 60(50, 70(65, -))) il massimo 70 non è una foglia, perché ha il figlio sinistro 65; 40(10(-, 20(-, 30(25, -))), 60) è sbilanciato, con foglie a livelli diversi, ma rispetta la proprietà in ogni nodo."
+    },
+    {
+      "id": "L14-T01-05",
+      "tipo": "L14-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Quale dei seguenti alberi binari è un albero binario di ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "50(30(20, 55), 70(60, 80(-, 90)))",
+        "50(30(20, 40(35, -)), 70(60, 80(-, 85(90, -))))",
+        "50(30(20, 40(35, -)), 70(60, 80(-, 90)))",
+        "50(70(80(90, -), 60), 30(40(-, 35), 20))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "E4"
+      ],
+      "spiegazione": "50(30(20, 40(35, -)), 70(60, 80(-, 90))) rispetta il vincolo in ogni nodo: la visita in ordine dà 20, 30, 35, 40, 50, 60, 70, 80, 90, crescente. In 50(30(20, 55), 70(60, 80(-, 90))) 55 è giusto rispetto al padre 30, ma sta nel sottoalbero sinistro di 50 ed è maggiore di 50. In 50(30(20, 40(35, -)), 70(60, 80(-, 85(90, -)))) 90 è figlio sinistro di 85 ma è maggiore di 85. In 50(70(80(90, -), 60), 30(40(-, 35), 20)) le chiavi maggiori stanno a sinistra: è lo speculare di un ABR."
+    },
+    {
+      "id": "L14-T01-06",
+      "tipo": "L14-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Quale dei seguenti alberi binari è un albero binario di ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "40(15(10, 25(20, 45)), 60(50, 75))",
+        "40(15(10, 25(20, 30)), 60(50, 75))",
+        "40(15(10, 25(20, 30)), 60(50, 55))",
+        "40(15(10, 25(20, 30)), 60(50, 60))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "40(15(10, 25(20, 30)), 60(50, 75)) rispetta il vincolo in ogni nodo: la visita in ordine dà 10, 15, 20, 25, 30, 40, 50, 60, 75, crescente. In 40(15(10, 25(20, 45)), 60(50, 75)) 45 è giusto rispetto al padre 25, ma sta nel sottoalbero sinistro di 40 ed è maggiore di 40. In 40(15(10, 25(20, 30)), 60(50, 55)) 55 è figlio destro di 60 ma è minore di 60. In 40(15(10, 25(20, 30)), 60(50, 60)) la chiave 60 è ripetuta: il figlio destro deve essere strettamente maggiore."
+    },
+    {
+      "id": "L14-T01-07",
+      "tipo": "L14-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Quale dei seguenti alberi binari è un albero binario di ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "18(9(4, 12(10, 20)), 30(22, 41(35, -)))",
+        "18(30(41(-, 35), 22), 9(12, 4))",
+        "18(9(4, 12), 30(22, 41(45, -)))",
+        "18(9(4, 12), 30(22, 41(35, -)))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "18(9(4, 12), 30(22, 41(35, -))) rispetta il vincolo in ogni nodo: la visita in ordine dà 4, 9, 12, 18, 22, 30, 35, 41, crescente. In 18(9(4, 12(10, 20)), 30(22, 41(35, -))) 20 è giusto rispetto al padre 12, ma sta nel sottoalbero sinistro di 18 ed è maggiore di 18. In 18(30(41(-, 35), 22), 9(12, 4)) le chiavi maggiori stanno a sinistra: è lo speculare di un ABR. In 18(9(4, 12), 30(22, 41(45, -))) 45 è figlio sinistro di 41 ma è maggiore di 41."
+    },
+    {
+      "id": "L14-T01-08",
+      "tipo": "L14-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Quale dei seguenti alberi binari è un albero binario di ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "33(21(-, 27(24, 36)), 45(40, 52))",
+        "33(45(52, 40), 21(27(-, 24), -))",
+        "33(21(-, 27(24, -)), 45(40, 52))",
+        "33(21(-, 27(24, -)), 45(40, 38))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "33(21(-, 27(24, -)), 45(40, 52)) rispetta il vincolo in ogni nodo: la visita in ordine dà 21, 24, 27, 33, 40, 45, 52, crescente. In 33(21(-, 27(24, 36)), 45(40, 52)) 36 è giusto rispetto al padre 27, ma sta nel sottoalbero sinistro di 33 ed è maggiore di 33. In 33(45(52, 40), 21(27(-, 24), -)) le chiavi maggiori stanno a sinistra: è lo speculare di un ABR. In 33(21(-, 27(24, -)), 45(40, 38)) 38 è figlio destro di 45 ma è minore di 45."
+    },
+    {
+      "id": "L14-T02-01",
+      "tipo": "L14-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un albero binario di ricerca non vuoto, dove si trova la chiave minima?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nella foglia più a sinistra",
+        "Nel nodo più a sinistra, che può non essere una foglia",
+        "Nella radice",
+        "Nella foglia più profonda"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Per trovare il minimo si scende sempre a sinistra finché esiste il figlio sinistro. Il nodo in cui ci si ferma è il minimo, anche se ha un figlio destro (in quel caso non è una foglia e la foglia più a sinistra ha una chiave maggiore). Il minimo sta nella radice solo se la radice non ha figlio sinistro; la foglia più profonda non ha legame con l'ordine delle chiavi."
+    },
+    {
+      "id": "L14-T02-02",
+      "tipo": "L14-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un albero binario di ricerca non vuoto, dove si trova la chiave massima?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nella foglia più a destra",
+        "Nella radice",
+        "Nella foglia più profonda",
+        "Nel nodo più a destra, che può avere un figlio sinistro"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Per trovare il massimo si scende sempre a destra finché esiste il figlio destro. Il nodo più a destra può avere un figlio sinistro: in quel caso non è una foglia e tutte le foglie hanno chiavi minori di lui. Il massimo sta nella radice solo se la radice non ha figlio destro."
+    },
+    {
+      "id": "L14-T02-03",
+      "tipo": "L14-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 62(30(18(-, 24(21, -)), 45(40, 55(50, -))), 80(70, 90)), quali sono la chiave minima e la chiave massima del sottoalbero sinistro della radice (cioè del sottoalbero di radice 30)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "18 e 55",
+        "21 e 55",
+        "18 e 50",
+        "30 e 55"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E4",
+        "E2"
+      ],
+      "spiegazione": "Minimo: da 30 si scende a sinistra in 18, che non ha figlio sinistro (ha il figlio destro 24, quindi non è una foglia). Massimo: da 30 si scende a destra in 45 e poi in 55, che non ha figlio destro (ha il figlio sinistro 50). 21 è la foglia più a sinistra e 50 la foglia più a destra del sottoalbero; 30 è la sua radice."
+    },
+    {
+      "id": "L14-T02-04",
+      "tipo": "L14-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 50(30(20(-, 25), 40(35(32, -), 45)), 80(70, 90)), qual è la chiave minima?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "25",
+        "50",
+        "20",
+        "32"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Si scende a sinistra da 50 a 30 e poi a 20, che non ha figlio sinistro: il minimo è 20. Il nodo 20 ha però il figlio destro 25, quindi 25 (la foglia più a sinistra) è maggiore di 20. 50 è la radice; 32 è la foglia più profonda."
+    },
+    {
+      "id": "L14-T02-05",
+      "tipo": "L14-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 35(20(10(5(2, -), -), 25), 55(45, 70(60, -))), qual è la chiave massima?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "60",
+        "70",
+        "35",
+        "2"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Si scende a destra da 35 a 55 e poi a 70, che non ha figlio destro: il massimo è 70. Ha un figlio sinistro (60), quindi non è una foglia: 60 è la foglia più a destra ma è minore di 70. 35 è la radice; 2 è la foglia più profonda e anche il minimo, non il massimo."
+    },
+    {
+      "id": "L14-T02-06",
+      "tipo": "L14-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un albero binario di ricerca con n nodi ha altezza h. Qual è il costo, nel caso peggiore, della ricerca della chiave minima con l'algoritmo della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(log h)",
+        "Θ(h)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Si scende lungo il cammino sinistro dalla radice: al più h passi, e nel caso peggiore (nodo più a sinistra alla profondità massima) proprio h. Θ(1) varrebbe se il minimo fosse sempre nella radice (come nell'heap minimo), ma in un ABR non è così. Θ(log n) vale solo se h = Θ(log n), cioè se l'albero è bilanciato."
+    },
+    {
+      "id": "L14-T02-07",
+      "tipo": "L14-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 30(10(5, 20), 50(40(-, 45), 70(60(55, -), 80))), qual è la chiave minima del sottoalbero destro della radice (cioè del sottoalbero di radice 50)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "40",
+        "45",
+        "50",
+        "55"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il sottoalbero destro ha radice 50; da lì si scende a sinistra in 40, che non ha figlio sinistro: è il minimo (e il successore di 30). 40 ha il figlio destro 45, quindi 45 è la foglia più a sinistra ma è maggiore di 40. 50 è la radice del sottoalbero; 55 è la foglia più profonda."
+    },
+    {
+      "id": "L14-T02-08",
+      "tipo": "L14-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 15(-, 30(20(-, 25), 45(40, 50(-, 60)))), qual è la chiave minima?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "25",
+        "60",
+        "15",
+        "20"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La radice 15 non ha figlio sinistro: il minimo è la radice stessa. Succede per esempio quando le chiavi più piccole vengono inserite per prime. 25 è la foglia più a sinistra, 60 la foglia più profonda, 20 il minimo del sottoalbero destro (il successore della radice)."
+    },
+    {
+      "id": "L14-T03-01",
+      "tipo": "L14-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale visita di un albero binario di ricerca restituisce le chiavi in ordine crescente?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La visita in ordine: sottoalbero sinistro, nodo, sottoalbero destro",
+        "La visita in pre-ordine: nodo, sottoalbero sinistro, sottoalbero destro",
+        "La visita per livelli, dalla radice verso le foglie",
+        "La visita in post-ordine: sottoalbero sinistro, sottoalbero destro, nodo"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Nella visita in ordine si visita prima il sottoalbero sinistro (chiavi minori), poi il nodo, poi il destro (chiavi maggiori): le chiavi escono in ordine crescente, qualunque sia la forma dell'albero. Pre-ordine, post-ordine e visita per livelli dipendono dalla forma e in generale non danno chiavi ordinate."
+    },
+    {
+      "id": "L14-T03-02",
+      "tipo": "L14-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale visita di un albero binario di ricerca restituisce le chiavi in ordine decrescente?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Prima il sottoalbero sinistro, poi il nodo, poi il sottoalbero destro",
+        "Prima il nodo, poi il sottoalbero destro, poi il sinistro",
+        "Prima il sottoalbero destro, poi il nodo, poi il sottoalbero sinistro",
+        "La visita per livelli, dall'ultimo livello alla radice"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E1",
+        null,
+        "E1"
+      ],
+      "spiegazione": "È la visita in ordine con i figli scambiati: prima le chiavi maggiori (sottoalbero destro), poi il nodo, poi le minori. La visita in ordine normale dà l'ordine crescente. Le visite che mettono la radice prima di uno dei sottoalberi, o che procedono per livelli, non producono sequenze ordinate in generale."
+    },
+    {
+      "id": "L14-T03-03",
+      "tipo": "L14-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si ordinano n chiavi distinte inserendole una alla volta, nell'ordine in cui arrivano, in un ABR inizialmente vuoto (con l'inserimento della dispensa, senza ribilanciamento) e poi stampandole con la visita in ordine. Qual è il costo complessivo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "Nel caso peggiore le chiavi arrivano già ordinate (o in ordine inverso) e l'albero diventa una catena: l'i-esimo inserimento scende di i − 1 livelli, in totale 0 + 1 + … + (n − 1) = Θ(n²); la visita finale aggiunge solo Θ(n). Θ(n log n) vale se l'albero resta bilanciato; Θ(n) conta solo la visita in ordine."
+    },
+    {
+      "id": "L14-T03-04",
+      "tipo": "L14-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 27, 40, 15, 33, 8, 21, 50, 12, 36. Quale sequenza produce la visita in ordine (in-order) dell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "27, 15, 40, 8, 21, 33, 50, 12, 36",
+        "27, 40, 15, 33, 8, 21, 50, 12, 36",
+        "12, 8, 21, 15, 36, 33, 50, 40, 27",
+        "8, 12, 15, 21, 27, 33, 36, 40, 50"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Non serve costruire l'albero: la visita in ordine dà le chiavi in ordine crescente, cioè 8, 12, 15, 21, 27, 33, 36, 40, 50. Gli altri distrattori sono la visita per livelli (27, 15, 40, 8, 21, 33, 50, 12, 36), la sequenza di inserimento (27, 40, 15, 33, 8, 21, 50, 12, 36), la visita in post-ordine (12, 8, 21, 15, 36, 33, 50, 40, 27) dell'albero 27(15(8(-, 12), 21), 40(33(-, 36), 50))."
+    },
+    {
+      "id": "L14-T03-05",
+      "tipo": "L14-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 60, 25, 80, 10, 45, 70, 95, 30, 50, 5. Quale sequenza produce la visita in ordine (in-order) dell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5, 10, 25, 30, 45, 50, 60, 70, 80, 95",
+        "60, 25, 10, 5, 45, 30, 50, 80, 70, 95",
+        "60, 25, 80, 10, 45, 70, 95, 5, 30, 50",
+        "60, 25, 80, 10, 45, 70, 95, 30, 50, 5"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Non serve costruire l'albero: la visita in ordine dà le chiavi in ordine crescente, cioè 5, 10, 25, 30, 45, 50, 60, 70, 80, 95. Gli altri distrattori sono la visita in pre-ordine (60, 25, 10, 5, 45, 30, 50, 80, 70, 95), la visita per livelli (60, 25, 80, 10, 45, 70, 95, 5, 30, 50), la sequenza di inserimento (60, 25, 80, 10, 45, 70, 95, 30, 50, 5) dell'albero 60(25(10(5, -), 45(30, 50)), 80(70, 95))."
+    },
+    {
+      "id": "L14-T03-06",
+      "tipo": "L14-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 34, 18, 50, 7, 26, 41, 60, 22. Si visita l'albero scambiando i ruoli dei figli: prima il sottoalbero destro, poi il nodo, poi il sinistro. Quale sequenza di chiavi si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "34, 18, 50, 7, 26, 41, 60, 22",
+        "34, 18, 7, 26, 22, 50, 41, 60",
+        "60, 50, 41, 34, 26, 22, 18, 7",
+        "7, 18, 22, 26, 34, 41, 50, 60"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La visita con i figli scambiati restituisce le chiavi in ordine decrescente: 60, 50, 41, 34, 26, 22, 18, 7. Gli altri distrattori sono la sequenza di inserimento, la pre-order dell'albero 34(18(7, 26(22, -)), 50(41, 60)) e l'ordine crescente (visita in ordine normale)."
+    },
+    {
+      "id": "L14-T03-07",
+      "tipo": "L14-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si stampano le chiavi di un ABR con n nodi e altezza h in ordine crescente, con la visita in ordine ricorsiva. Quali sono il costo in tempo e lo spazio (pila della ricorsione)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tempo Θ(n log n), spazio O(h)",
+        "Tempo Θ(n), spazio O(h)",
+        "Tempo Θ(n), spazio O(1)",
+        "Tempo Θ(h), spazio O(h)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E4",
+        "E4"
+      ],
+      "spiegazione": "Ogni nodo viene visitato una volta con lavoro costante: Θ(n), qualunque sia la forma. La ricorsione arriva al più alla profondità h, quindi la pila occupa O(h): O(log n) se l'albero è bilanciato, O(n) se è una catena. La stampa non è un ordinamento per confronti, quindi non serve n log n; una visita ricorsiva non usa spazio costante; non si può visitare tutto l'albero in Θ(h)."
+    },
+    {
+      "id": "L14-T03-08",
+      "tipo": "L14-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 30, 12, 45, 12, 20, 38, 50, con l'algoritmo della dispensa (una chiave già presente non viene inserita di nuovo). Quale sequenza produce la visita in ordine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "30, 12, 45, 12, 20, 38, 50",
+        "12, 12, 20, 30, 38, 45, 50",
+        "20, 12, 38, 50, 45, 30",
+        "12, 20, 30, 38, 45, 50"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "La seconda chiave 12 è già presente e viene ignorata: l'albero è 30(12(-, 20), 45(38, 50)) con 6 nodi. La visita in ordine dà 12, 20, 30, 38, 45, 50. Ordinare tutta la sequenza data darebbe un 12 ripetuto; la sequenza di inserimento e la post-order non sono ordinate."
+    },
+    {
+      "id": "L14-T04-01",
+      "tipo": "L14-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un albero binario di ricerca ha n nodi e altezza h, senza alcuna ipotesi di bilanciamento. Qual è il costo, nel caso peggiore, della ricerca di una chiave con l'algoritmo della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(log h)",
+        "Θ(h)",
+        "Θ(h²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La ricerca scende lungo un solo cammino dalla radice, un livello per iterazione: nel caso peggiore arriva a profondità h. Θ(log n) vale solo se h = Θ(log n), cioè se l'albero è bilanciato; log h confonde con la ricerca binaria su un array; non ci sono due livelli di ricerca che si moltiplichino."
+    },
+    {
+      "id": "L14-T04-02",
+      "tipo": "L14-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario di ricerca ha n nodi e altezza h, senza alcuna ipotesi di bilanciamento. Si cancella un nodo con due figli: si cerca prima il nodo e poi il suo successore (minimo del sottoalbero destro). Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(h)",
+        "Θ(h²)",
+        "Θ(log n)",
+        "Θ(log h)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Dalla radice si scende fino al nodo e poi, proseguendo nello stesso verso, fino al successore: i due tratti formano un unico cammino verso il basso, e la loro lunghezza totale è al più h. Si sommano, non si moltiplicano; il resto è lavoro costante."
+    },
+    {
+      "id": "L14-T04-03",
+      "tipo": "L14-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario di ricerca ha n nodi e altezza h, senza alcuna ipotesi di bilanciamento. Qual è lo spazio aggiuntivo usato, nel caso peggiore, dalla versione ricorsiva dell'inserimento (pila delle chiamate)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(h²)",
+        "Θ(h)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "La ricorsione scende di un livello a ogni chiamata e le chiamate restano sulla pila fino al ritorno: nel caso peggiore (nuova foglia sotto il nodo più profondo) le chiamate aperte insieme sono h + 2, una per nodo del cammino più quella sul sottoalbero vuoto, quindi Θ(h). Lo spazio costante è proprio della versione iterativa. Θ(log n) vale solo per un albero bilanciato."
+    },
+    {
+      "id": "L14-T04-04",
+      "tipo": "L14-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario di ricerca ha n nodi e altezza h, senza alcuna ipotesi di bilanciamento. Quale affermazione sullo spazio aggiuntivo della ricerca (nel caso peggiore) è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Entrambe le versioni usano spazio Θ(1)",
+        "La versione iterativa usa spazio Θ(1), quella ricorsiva spazio Θ(h)",
+        "Entrambe le versioni usano spazio Θ(h)",
+        "La versione iterativa usa spazio Θ(h), quella ricorsiva spazio Θ(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "L'iterativa ha un ciclo e poche variabili: spazio costante. La ricorsiva ha una chiamata per ogni livello visitato, tutte aperte insieme sulla pila: nel caso peggiore (chiave assente sotto la foglia più profonda) h + 2 chiamate, cioè Θ(h). Anche se ogni chiamata fa lavoro costante, la pila cresce con la profondità."
+    },
+    {
+      "id": "L14-T04-05",
+      "tipo": "L14-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario di ricerca ha n nodi e altezza h, senza alcuna ipotesi di bilanciamento. Qual è il costo della ricerca di una chiave nel caso migliore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1)",
+        "Θ(h)",
+        "Θ(log n)",
+        "Θ(log h)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Nel caso migliore la chiave cercata è nella radice (o l'albero è vuoto) e basta un confronto: O(1). Θ(h) è il caso peggiore; il costo dipende dalla posizione della chiave, non sempre dall'altezza."
+    },
+    {
+      "id": "L14-T04-06",
+      "tipo": "L14-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario di ricerca ha n nodi e altezza h, senza alcuna ipotesi di bilanciamento. Si cerca la chiave massima con la versione ricorsiva: se il nodo non ha figlio destro si restituisce la sua chiave, altrimenti si richiama la funzione sul figlio destro. Quali sono il tempo e lo spazio (pila delle chiamate) nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tempo Θ(h), spazio Θ(1)",
+        "Tempo Θ(log n), spazio Θ(log n)",
+        "Tempo Θ(h), spazio Θ(h)",
+        "Tempo Θ(log h), spazio Θ(log h)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E1",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Si scende lungo il cammino destro: nel caso peggiore il nodo più a destra è a profondità h, quindi si fanno h + 1 chiamate, ognuna con lavoro costante e tutte aperte insieme sulla pila: tempo Θ(h) e spazio Θ(h). Lo spazio costante è della versione iterativa; Θ(log n) vale solo se l'albero è bilanciato; log h confonde con la ricerca binaria."
+    },
+    {
+      "id": "L14-T04-07",
+      "tipo": "L14-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario di ricerca ha 100 nodi e altezza 14 (un albero con un solo nodo ha altezza 0). Cercando una chiave non presente, quanti nodi vengono visitati al massimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "7",
+        "15",
+        "14",
+        "100"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Si visita al più un nodo per livello: i livelli sono h + 1 = 15, perché l'altezza conta gli archi del cammino più lungo e i nodi del cammino sono uno in più. 7 = ⌈log₂ 100⌉ presupporrebbe un albero bilanciato, ma qui l'altezza è 14; 14 conta gli archi invece dei nodi; 100 sarebbe una visita di tutto l'albero."
+    },
+    {
+      "id": "L14-T04-08",
+      "tipo": "L14-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario di ricerca ha n nodi e altezza h, senza alcuna ipotesi di bilanciamento. Qual è il costo dell'inserimento nel caso migliore, per esempio quando la radice non ha figlio sinistro e la nuova chiave è minore della radice?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(h)",
+        "Θ(log n)",
+        "O(1)",
+        "Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E5",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La nuova chiave diventa subito figlio sinistro della radice: un confronto e un nuovo nodo, costo O(1). Θ(h) è il caso peggiore (nuova foglia alla massima profondità); l'inserimento non scende sempre fino in fondo all'albero."
+    },
+    {
+      "id": "L14-T05-01",
+      "tipo": "L14-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Di un albero binario di ricerca con n nodi non si sa nulla sulla forma (non si sa se sia bilanciato). Quale affermazione sul costo della ricerca nel caso peggiore è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Costa Θ(n) per ogni albero con n nodi",
+        "Costa O(log n) qualunque sia l'albero",
+        "Costa O(n) qualunque sia l'albero, e Θ(n) per alcuni alberi (per esempio le catene)",
+        "Costa Θ(log n) per ogni albero con n nodi"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E1",
+        null,
+        "E1"
+      ],
+      "spiegazione": "L'altezza vale al più n − 1, quindi la ricerca visita al più n nodi: O(n) per ogni ABR. Arriva a Θ(n) quando l'altezza è proporzionale a n, per esempio su una catena; su un albero bilanciato costa Θ(log n). Senza ipotesi di bilanciamento non si può né garantire O(log n) né dire che il costo sia Θ(n) per ogni albero."
+    },
+    {
+      "id": "L14-T05-02",
+      "tipo": "L14-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un ABR bilanciato con n nodi si inserisce una nuova chiave. Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(1)",
+        "Θ(n log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Un albero bilanciato ha altezza Θ(log n) e l'inserimento scende lungo un solo cammino fino al sottoalbero vuoto in cui attaccare la nuova foglia, con costo Θ(h) = Θ(log n) nel caso peggiore. Θ(n) vale per un albero degenere, ma qui l'albero è bilanciato."
+    },
+    {
+      "id": "L14-T05-03",
+      "tipo": "L14-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono le chiavi n, n − 1, …, 2, 1, in quest'ordine, in un ABR inizialmente vuoto. Qual è il costo complessivo degli n inserimenti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ogni chiave è minore di tutte le precedenti e diventa figlio sinistro dell'ultima inserita: l'albero è una catena. L'inserimento della i-esima chiave scende di i − 1 livelli: 0 + 1 + … + (n − 1) = n(n − 1)/2 = Θ(n²). Θ(n log n) varrebbe solo se l'albero restasse bilanciato."
+    },
+    {
+      "id": "L14-T05-04",
+      "tipo": "L14-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono le chiavi 1, 2, 3, …, n in un ABR inizialmente vuoto, in quest'ordine. Qual è il costo dell'ultimo inserimento, quello della chiave n?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(1)",
+        "Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Prima di inserire n l'albero è una catena di n − 1 nodi (ogni chiave è figlia destra della precedente): per arrivare in fondo servono n − 1 confronti, quindi Θ(n). Θ(log n) presuppone un albero bilanciato; Θ(n²) è il costo di tutti gli inserimenti insieme."
+    },
+    {
+      "id": "L14-T05-05",
+      "tipo": "L14-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un ABR bilanciato con n nodi si cerca la chiave minima. Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Si scende sempre a sinistra: al più h passi. In un albero bilanciato h = Θ(log n), e il minimo può stare a profondità Θ(log n) (per esempio in un albero perfetto): Θ(log n). Θ(n) vale per una catena sinistra."
+    },
+    {
+      "id": "L14-T05-06",
+      "tipo": "L14-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si costruisce un ABR a partire da n chiavi distinte, inserendole una alla volta in un albero inizialmente vuoto, senza alcuna ipotesi sull'ordine delle chiavi. Qual è il costo complessivo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Nel caso peggiore l'ordine delle chiavi produce una catena (per esempio un ordine crescente) e l'i-esimo inserimento costa Θ(i): in totale Θ(n²). Θ(n log n) si avrebbe se ogni inserimento costasse log n, cioè se l'albero restasse sempre bilanciato, ma le operazioni della dispensa non ribilanciano l'albero."
+    },
+    {
+      "id": "L14-T05-07",
+      "tipo": "L14-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si inseriscono le chiavi 1, 2, 3, …, n in un ABR inizialmente vuoto, in quest'ordine. Qual è il costo, nel caso peggiore, della ricerca della chiave minima e della ricerca della chiave massima nell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Minimo Θ(log n), massimo Θ(log n)",
+        "Minimo Θ(n), massimo Θ(1)",
+        "Minimo Θ(n), massimo Θ(n)",
+        "Minimo Θ(1), massimo Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "L'albero è una catena verso destra: la chiave 1 è la radice, che non ha figlio sinistro, quindi il minimo si trova con un solo controllo; la chiave n è in fondo alla catena, a profondità n − 1, quindi il massimo richiede Θ(n) passi. Con log n si suppone un albero bilanciato."
+    },
+    {
+      "id": "L14-T05-08",
+      "tipo": "L14-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su un ABR bilanciato con n nodi si eseguono n ricerche di chiavi qualsiasi. Qual è il costo complessivo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni ricerca in un albero bilanciato costa Θ(log n) nel caso peggiore; con n ricerche (l'albero non cambia) il costo è n · Θ(log n) = Θ(n log n). Θ(n²) si avrebbe con n ricerche su una catena, o contando O(n) per ricerca; Θ(log n) è il costo di una sola ricerca."
+    },
+    {
+      "id": "L14-T06-01",
+      "tipo": "L14-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si vogliono inserire le chiavi 2, 5, 9, 14, 17, 23, 30 in un ABR inizialmente vuoto, in modo da ottenere un albero di altezza minima (un albero con un solo nodo ha altezza 0). Quale ordine di inserimento va bene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "14, 2, 5, 9, 17, 23, 30",
+        "14, 23, 5, 30, 2, 17, 9",
+        "2, 30, 5, 23, 9, 17, 14",
+        "14, 2, 23, 5, 17, 30, 9"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E1"
+      ],
+      "spiegazione": "L'ordine 14, 23, 5, 30, 2, 17, 9 dà 14(5(2, 9), 23(17, 30)): la mediana 14 è la radice, 5 e 23 (le mediane delle due metà) arrivano prima dei loro figli; altezza 2 = ⌊log₂ 7⌋. In 14, 2, 5, 9, 17, 23, 30 la mediana è per prima ma il resto è in ordine crescente: due catene, altezza 3. In 14, 2, 23, 5, 17, 30, 9 la radice del sottoalbero sinistro è 2 invece di 5: altezza 3. 2, 30, 5, 23, 9, 17, 14 è a zig-zag: ogni chiave è il minimo o il massimo delle rimanenti, quindi è una catena di altezza 6."
+    },
+    {
+      "id": "L14-T06-02",
+      "tipo": "L14-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si vogliono inserire le chiavi da 1 a 9 in un ABR inizialmente vuoto in modo che l'albero abbia l'altezza minima possibile. Quale ordine di inserimento va bene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5, 1, 2, 3, 4, 6, 7, 8, 9",
+        "1, 9, 2, 8, 3, 7, 4, 6, 5",
+        "5, 4, 3, 2, 1, 6, 7, 8, 9",
+        "5, 2, 8, 1, 3, 6, 9, 4, 7"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E1",
+        null
+      ],
+      "spiegazione": "Con 9 chiavi l'altezza minima è ⌊log₂ 9⌋ = 3. L'ordine (5, 2, 8, 1, 3, 6, 9, 4, 7) dà 5(2(1, 3(-, 4)), 8(6(-, 7), 9)), di altezza 3: dopo la radice 5 vengono i figli 2 e 8, e ogni altra chiave arriva dopo il proprio padre. Negli ordini (5, 1, 2, 3, 4, 6, 7, 8, 9) e (5, 4, 3, 2, 1, 6, 7, 8, 9) la mediana 5 è per prima ma i due gruppi di chiavi restanti vengono inseriti in ordine e formano catene (altezza 4). (1, 9, 2, 8, 3, 7, 4, 6, 5) è a zig-zag e dà una catena di altezza 8."
+    },
+    {
+      "id": "L14-T06-03",
+      "tipo": "L14-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si inseriscono le chiavi da 1 a 7 in un ABR inizialmente vuoto. Quale dei seguenti ordini di inserimento NON produce una catena (un albero in cui ogni nodo ha al più un figlio)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3, 1, 2, 4, 5, 6, 7",
+        "7, 1, 6, 2, 5, 3, 4",
+        "7, 6, 5, 4, 3, 2, 1",
+        "1, 2, 3, 7, 6, 5, 4"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Si ottiene una catena solo se ogni chiave inserita è il minimo o il massimo di quelle non ancora inserite. In (3, 1, 2, 4, 5, 6, 7) la prima chiave 3 non lo è: l'albero è 3(1(-, 2), 4(-, 5(-, 6(-, 7)))), in cui 3 ha due figli. Gli altri tre ordini sono catene di altezza 6: (7, 6, 5, 4, 3, 2, 1) è decrescente, (1, 2, 3, 7, 6, 5, 4) prende prima le chiavi minori in ordine crescente e poi le maggiori in ordine decrescente, e (7, 1, 6, 2, 5, 3, 4) è l'ordine a zig-zag, che sembra bilanciato ma è anch'esso una catena."
+    },
+    {
+      "id": "L14-T06-04",
+      "tipo": "L14-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è l'altezza minima che può avere un albero binario di ricerca con 12 chiavi distinte? (L'albero vuoto ha altezza −1, un albero con un solo nodo ha altezza 0.)",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4",
+        "11",
+        "3",
+        "6"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "L'altezza minima con n chiavi è ⌊log₂ n⌋ = ⌊log₂ 12⌋ = 3: un albero di altezza 2 ha al più 7 nodi, uno di altezza 3 ne ha fino a 15. Il valore 4 è il numero di livelli (altezza contata in nodi); 11 = n − 1 è l'altezza massima."
+    },
+    {
+      "id": "L14-T06-05",
+      "tipo": "L14-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono le 7 chiavi 1, 2, …, 7 in un ABR inizialmente vuoto, usando ordini diversi. Quale affermazione sull'altezza dell'albero ottenuto è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "È sempre 2, perché ⌊log₂ 7⌋ = 2",
+        "Dipende dall'ordine di inserimento: può essere qualunque valore da 2 a 6",
+        "È sempre 6, perché le chiavi sono 7",
+        "Dipende dall'ordine: va da 3 a 7"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E4",
+        "E3"
+      ],
+      "spiegazione": "Lo stesso insieme di chiavi dà alberi diversi con ordini diversi: l'ordine 4, 2, 6, 1, 3, 5, 7 dà altezza 2 (il minimo, ⌊log₂ 7⌋), le catene danno altezza 6 (il massimo, n − 1). L'intervallo 3–7 conta l'altezza in nodi invece che in archi."
+    },
+    {
+      "id": "L14-T06-06",
+      "tipo": "L14-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 15, 90, 22, 81, 30, 45, 60. Qual è l'altezza dell'albero ottenuto (un albero con un solo nodo ha altezza 0)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "2",
+        "7",
+        "3"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Ogni chiave inserita è il minimo o il massimo di quelle non ancora inserite (15, poi 90, poi 22, 81, 30, 45, 60): ogni nuovo nodo diventa figlio dell'ultimo inserito e l'albero è la catena 15(-, 90(22(-, 81(30(-, 45(-, 60)), -)), -)), di altezza 6. Alternare chiavi piccole e grandi non bilancia l'albero: 2 = ⌊log₂ 7⌋ sarebbe l'altezza di un albero bilanciato; 7 conta i nodi invece degli archi."
+    },
+    {
+      "id": "L14-T07-01",
+      "tipo": "L14-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 53, 31, 76, 22, 44, 65, 38, 47, 45, 46. Qual è l'altezza dell'albero ottenuto (un albero con un solo nodo ha altezza 0)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "3",
+        "5",
+        "4"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E4",
+        null,
+        "E5"
+      ],
+      "spiegazione": "L'albero è 53(31(22, 44(38, 47(45(-, 46), -))), 76(65, -)). Il cammino più lungo è 53 → 31 → 44 → 47 → 45 → 46: 5 archi. 6 conta i nodi del cammino; 3 = ⌊log₂ 10⌋ supporrebbe un albero bilanciato; 4 si ottiene sbagliando direzione in 47 con la chiave 45 (che va a sinistra, perché 45 < 47)."
+    },
+    {
+      "id": "L14-T07-02",
+      "tipo": "L14-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 58, 34, 81, 20, 45, 66, 93, 27, 40, 52, 38. Qual è il padre del nodo con chiave 38?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "40",
+        "52",
+        "27",
+        "45"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "L'albero è 58(34(20(-, 27), 45(40(38, -), 52)), 81(66, 93)). 38 scende dalla radice: 58 (a sinistra), 34 (a destra), 45 (a sinistra), 40 (a sinistra): diventa figlio sinistro di 40. 52 è la chiave inserita subito prima, ma la nuova chiave va confrontata a partire dalla radice; 27 si ottiene sbagliando direzione in 34 (andando a sinistra invece che a destra); 45 è il nonno."
+    },
+    {
+      "id": "L14-T07-03",
+      "tipo": "L14-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 47, 23, 71, 12, 35, 59, 88, 30, 41, 38, 44. Quante foglie ha l'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4",
+        "5",
+        "7",
+        "6"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "L'albero è 47(23(12, 35(30, 41(38, 44))), 71(59, 88)). Le foglie sono 12, 30, 38, 44, 59, 88: sei. Il valore 4 è il numero di foglie dell'albero bilanciato che si otterrebbe mettendo ricorsivamente la mediana in radice, ma l'inserimento non riorganizza l'albero: la prima chiave resta la radice e ogni chiave diventa una nuova foglia."
+    },
+    {
+      "id": "L14-T07-04",
+      "tipo": "L14-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 64, 29, 85, 17, 46, 73, 91, 38, 55, 33, 50. Qual è la visita in pre-ordine (nodo, sottoalbero sinistro, sottoalbero destro) dell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "64, 29, 17, 38, 46, 33, 55, 50, 85, 73, 91",
+        "64, 29, 17, 46, 38, 33, 55, 50, 85, 73, 91",
+        "64, 29, 85, 17, 46, 73, 91, 38, 55, 33, 50",
+        "17, 33, 38, 50, 55, 46, 29, 73, 91, 85, 64"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "L'albero è 64(29(17, 46(38(33, -), 55(50, -))), 85(73, 91)), e la pre-order è 64, 29, 17, 46, 38, 33, 55, 50, 85, 73, 91. La sequenza di inserimento (che qui coincide con la visita per livelli) e la post-order (17, 33, 38, 50, 55, 46, 29, 73, 91, 85, 64) sono altre sequenze; l'opzione con 17, 38, 46 nasce sbagliando direzione in 29 con la chiave 38, che va a destra perché 38 > 29."
+    },
+    {
+      "id": "L14-T07-05",
+      "tipo": "L14-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 36, 62, 18, 45, 80, 9, 27, 50, 71, 23, 31, 40. A quale profondità si trova la chiave 50? (La radice ha profondità 0.)",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "7",
+        "4",
+        "2",
+        "3"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "L'albero è 36(18(9, 27(23, 31)), 62(45(40, 50), 80(71, -))). 50 si raggiunge con 36 → 62 → 45 → 50: tre archi dalla radice, quindi profondità 3. 4 conta i nodi del cammino invece degli archi; 7 sarebbe la profondità in una catena, in cui ogni chiave è figlia della precedente (confronto solo con l'ultima chiave inserita)."
+    },
+    {
+      "id": "L14-T07-06",
+      "tipo": "L14-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 44, 26, 63, 15, 38, 52, 75, 31, 47, 20. Qual è la visita per livelli (dalla radice, livello dopo livello, da sinistra a destra) dell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "44, 26, 63, 15, 38, 52, 75, 20, 31, 47",
+        "44, 26, 63, 20, 38, 52, 75, 15, 31, 47",
+        "44, 26, 63, 15, 38, 47, 52, 20, 31, 75",
+        "44, 26, 63, 15, 38, 52, 75, 31, 47, 20"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "L'albero è 44(26(15(-, 20), 38(31, -)), 63(52(47, -), 75)): livello 0: 44; livello 1: 26, 63; livello 2: 15, 38, 52, 75; livello 3: 20, 31, 47. La visita per livelli non coincide con la sequenza di inserimento: le tre chiavi del livello 3 si leggono da sinistra a destra come 20, 31, 47, mentre sono state inserite nell'ordine 31, 47, 20. L'opzione con 47 al livello 2 nasce mettendo 52 dal lato sbagliato (a destra di 63 invece che a sinistra); quella con 20 al livello 2 scambia 15 e 20."
+    },
+    {
+      "id": "L14-T08-01",
+      "tipo": "L14-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 52(30(18(-, 24), 41), 70(-, 84(77, -))). Quale sequenza di inserimento, a partire dall'albero vuoto, può averlo generato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "52, 30, 24, 18, 41, 70, 84, 77",
+        "52, 70, 30, 84, 18, 77, 41, 24",
+        "52, 30, 70, 18, 41, 84, 77",
+        "nessuna di queste"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "In 52, 70, 30, 84, 18, 77, 41, 24 la radice 52 è la prima e ogni chiave arriva dopo il proprio padre (70 e 30 dopo 52, 84 dopo 70, 18 e 41 dopo 30, 77 dopo 84, 24 dopo 18), con tutte e sole le 8 chiavi: genera l'albero anche se non coincide con la visita per livelli. Nella sequenza con 24 prima di 18 il nodo 24 diventa figlio sinistro di 30 e 18 finisce sotto di lui. Nella sequenza di 7 chiavi manca 24."
+    },
+    {
+      "id": "L14-T08-02",
+      "tipo": "L14-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 40(22(10, 31), 58(47, 66(-, 72))). Quale sequenza di inserimento, a partire dall'albero vuoto, può averlo generato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "40, 58, 22, 47, 66, 72, 10",
+        "40, 22, 10, 31, 66, 58, 47, 72",
+        "31, 22, 40, 10, 58, 47, 66, 72",
+        "nessuna di queste"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Nessuna sequenza è valida. La sequenza 40, 58, 22, 47, 66, 72, 10 ha 7 chiavi: manca 31. In 40, 22, 10, 31, 66, 58, 47, 72 la chiave 66 arriva prima di 58, suo padre: diventa figlio destro della radice e 58 gli finisce sotto a sinistra. La sequenza 31, 22, 40, 10, 58, 47, 66, 72 inizia da 31, che diventerebbe la radice invece di 40."
+    },
+    {
+      "id": "L14-T08-03",
+      "tipo": "L14-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 63(27(12, 45(38, 52)), 80(71, 90)). Quale sequenza di inserimento, a partire dall'albero vuoto, può averlo generato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "63, 27, 12, 38, 45, 52, 80, 71, 90",
+        "27, 12, 45, 38, 52, 63, 80, 71, 90",
+        "63, 80, 27, 45, 90, 12, 71, 38, 52",
+        "63, 27, 80, 12, 45, 71, 90, 38"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "E1"
+      ],
+      "spiegazione": "In 63, 80, 27, 45, 90, 12, 71, 38, 52 la radice 63 è la prima e ogni chiave segue il proprio padre; le 9 chiavi sono tutte presenti. Nella sequenza con 38 prima di 45 il nodo 38 diventerebbe figlio destro di 27 e 45 finirebbe sotto di lui. La sequenza che inizia da 27 darebbe un albero con radice 27. In quella di 8 chiavi manca 52."
+    },
+    {
+      "id": "L14-T08-04",
+      "tipo": "L14-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 35(20(14, 28), 49(41, 57(-, 63))). Quale sequenza di inserimento, a partire dall'albero vuoto, può averlo generato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "35, 20, 49, 14, 28, 41, 57, 63, 52",
+        "35, 20, 49, 14, 28, 63, 41, 57",
+        "35, 49, 20, 41, 14, 28, 57",
+        "nessuna di queste"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E1",
+        null
+      ],
+      "spiegazione": "Nessuna sequenza è valida. La sequenza 35, 20, 49, 14, 28, 41, 57, 63, 52 contiene anche 52, che non è nell'albero. In 35, 20, 49, 14, 28, 63, 41, 57 la chiave 63 arriva prima di 57, suo padre: diventa figlio destro di 49 e 57 finisce a sinistra di 63. La sequenza 35, 49, 20, 41, 14, 28, 57 ha 7 chiavi: manca 63."
+    },
+    {
+      "id": "L14-T08-05",
+      "tipo": "L14-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 44(25(-, 33(29, 38)), 62(51, -)). Quale sequenza di inserimento, a partire dall'albero vuoto, può averlo generato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "44, 62, 25, 51, 33, 38, 29",
+        "44, 25, 29, 33, 38, 62, 51",
+        "44, 25, 62, 33, 51, 29",
+        "nessuna di queste"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "In 44, 62, 25, 51, 33, 38, 29 la radice è la prima e ogni chiave segue il proprio padre (62 e 25 dopo 44, 51 dopo 62, 33 dopo 25, 38 e 29 dopo 33); sono tutte e sole le 7 chiavi. Non coincide con la visita per livelli, ma questo non è richiesto. Con 29 prima di 33 il nodo 29 diventerebbe figlio destro di 25 e 33 finirebbe sotto di lui. La sequenza 44, 25, 62, 33, 51, 29 ha 6 chiavi: manca 38."
+    },
+    {
+      "id": "L14-T08-06",
+      "tipo": "L14-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 55(31(24, 47(40, -)), 78(66(60, -), 89)). Quale sequenza di inserimento, a partire dall'albero vuoto, può averlo generato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "55, 31, 24, 40, 47, 78, 66, 60, 89",
+        "55, 78, 31, 89, 66, 47, 24, 60, 40",
+        "55, 31, 78, 24, 47, 66, 89, 40, 64",
+        "55, 31, 78, 24, 47, 66, 89, 40"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "E1"
+      ],
+      "spiegazione": "In 55, 78, 31, 89, 66, 47, 24, 60, 40 la radice è la prima e ogni chiave segue il proprio padre; le 9 chiavi ci sono tutte. Con 40 prima di 47 il nodo 40 diventerebbe figlio destro di 31 e 47 finirebbe sotto di lui. La sequenza che termina con 40, 64 ha 64 al posto di 60; la sequenza che termina con 89, 40 non contiene 60."
+    },
+    {
+      "id": "L14-T08-07",
+      "tipo": "L14-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 38(19(8, 27), 64(50, 73(-, 81))). Quale sequenza di inserimento, a partire dall'albero vuoto, può averlo generato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "38, 64, 19, 50, 73, 8, 27",
+        "38, 19, 8, 27, 50, 73, 64, 81",
+        "64, 38, 19, 73, 8, 27, 50, 81",
+        "nessuna di queste"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Nessuna sequenza è valida. La sequenza 38, 64, 19, 50, 73, 8, 27 ha 7 chiavi: manca 81. In 38, 19, 8, 27, 50, 73, 64, 81 le chiavi 50 e 73 arrivano prima del loro padre 64: 50 diventerebbe figlio destro di 38, 73 figlio destro di 50 e 64 finirebbe a sinistra di 73. La sequenza 64, 38, 19, 73, 8, 27, 50, 81 parte da 64, che diventerebbe la radice."
+    },
+    {
+      "id": "L14-T08-08",
+      "tipo": "L14-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 29(14(7, 21), 47(35(32, -), 56)). Quale sequenza di inserimento, a partire dall'albero vuoto, può averlo generato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "47, 29, 14, 56, 35, 7, 21, 32",
+        "29, 14, 47, 7, 21, 32, 35, 56",
+        "29, 47, 14, 35, 7, 56, 32",
+        "29, 47, 14, 56, 35, 21, 7, 32"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E2",
+        "E1",
+        null
+      ],
+      "spiegazione": "In 29, 47, 14, 56, 35, 21, 7, 32 la radice 29 è la prima e ogni chiave segue il proprio padre (47 e 14 dopo 29, 56 e 35 dopo 47, 21 e 7 dopo 14, 32 dopo 35); sono tutte le 8 chiavi. La sequenza che inizia da 47 darebbe un albero con radice 47. Con 32 prima di 35, il nodo 32 diventerebbe figlio sinistro di 47 e 35 finirebbe sotto di lui. La sequenza 29, 47, 14, 35, 7, 56, 32 ha 7 chiavi: manca 21."
+    },
+    {
+      "id": "L14-T09-01",
+      "tipo": "L14-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un ABR contiene chiavi intere tra 1 e 100 e si cerca la chiave 37, presente nell'albero. Quale delle seguenti sequenze NON può essere la sequenza dei nodi visitati dalla ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "85, 5, 70, 15, 52, 33, 41, 37",
+        "10, 90, 20, 60, 30, 65, 37",
+        "1, 12, 20, 29, 33, 37",
+        "3, 99, 25, 48, 30, 40, 36, 37"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "E2"
+      ],
+      "spiegazione": "Dopo aver visitato 10, 90, 20, 60, 30 l'intervallo ammesso per le chiavi successive è (30, 60), e 65 non ci sta, anche se è corretto rispetto al nodo immediatamente precedente (30). Le altre sequenze restringono l'intervallo a ogni passo senza violazioni: anche gli zig-zag sono normali, perché la ricerca passa da un lato all'altro delle chiavi visitate."
+    },
+    {
+      "id": "L14-T09-02",
+      "tipo": "L14-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un ABR contiene chiavi intere tra 1 e 1000 e si cerca la chiave 382, presente nell'albero. Quale delle seguenti sequenze NON può essere la sequenza dei nodi visitati dalla ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "900, 120, 700, 250, 600, 310, 450, 340, 382",
+        "900, 700, 560, 450, 390, 382",
+        "60, 640, 90, 510, 200, 440, 380, 382",
+        "700, 150, 500, 100, 300, 382"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "E2",
+        null
+      ],
+      "spiegazione": "Dopo aver visitato 700, 150, 500 l'intervallo ammesso per le chiavi successive è (150, 500), e 100 non ci sta, anche se è corretto rispetto al nodo immediatamente precedente (500). Le altre sequenze restringono l'intervallo a ogni passo senza violazioni: anche gli zig-zag sono normali, perché la ricerca passa da un lato all'altro delle chiavi visitate."
+    },
+    {
+      "id": "L14-T09-03",
+      "tipo": "L14-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un ABR contiene chiavi intere tra 1 e 100 e si cerca la chiave 64, presente nell'albero. Quale delle seguenti sequenze può essere la sequenza dei nodi visitati dalla ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "30, 85, 50, 72, 58, 78, 64",
+        "95, 20, 48, 35, 57, 64",
+        "45, 90, 50, 80, 55, 70, 60, 66, 64",
+        "72, 90, 60, 64"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Solo 45, 90, 50, 80, 55, 70, 60, 66, 64 rispetta sempre l'intervallo, che si restringe passo dopo passo fino a contenere 64. Le altre no: in 30, 85, 50, 72, 58, 78, 64 la chiave 78 è fuori dall'intervallo (58, 72) che resta dopo 30, 85, 50, 72, 58; in 95, 20, 48, 35, 57, 64 la chiave 35 è fuori dall'intervallo (48, 95) che resta dopo 95, 20, 48; in 72, 90, 60, 64 la chiave 90 è fuori dall'intervallo (−∞, 72) che resta dopo 72."
+    },
+    {
+      "id": "L14-T09-04",
+      "tipo": "L14-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un ABR contiene chiavi intere tra 1 e 500 e si cerca la chiave 215, presente nell'albero. Quale delle seguenti sequenze può essere la sequenza dei nodi visitati dalla ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "300, 60, 250, 120, 230, 180, 220, 190, 215",
+        "100, 400, 170, 260, 190, 280, 215",
+        "450, 90, 150, 110, 200, 215",
+        "330, 410, 260, 215"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Solo 300, 60, 250, 120, 230, 180, 220, 190, 215 rispetta sempre l'intervallo, che si restringe passo dopo passo fino a contenere 215. Le altre no: in 100, 400, 170, 260, 190, 280, 215 la chiave 280 è fuori dall'intervallo (190, 260) che resta dopo 100, 400, 170, 260, 190; in 450, 90, 150, 110, 200, 215 la chiave 110 è fuori dall'intervallo (150, 450) che resta dopo 450, 90, 150; in 330, 410, 260, 215 la chiave 410 è fuori dall'intervallo (−∞, 330) che resta dopo 330."
+    },
+    {
+      "id": "L14-T09-05",
+      "tipo": "L14-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un ABR contiene chiavi intere tra 1 e 100 e si cerca la chiave 75, presente nell'albero. Quale delle seguenti sequenze NON può essere la sequenza dei nodi visitati dalla ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "40, 95, 55, 85, 62, 80, 70, 78, 75",
+        "12, 30, 44, 61, 70, 75",
+        "82, 30, 79, 55, 90, 70, 75",
+        "90, 10, 82, 33, 79, 60, 77, 75"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Dopo aver visitato 82, 30, 79, 55 l'intervallo ammesso per le chiavi successive è (55, 79), e 90 non ci sta, anche se è corretto rispetto al nodo immediatamente precedente (55). Le altre sequenze restringono l'intervallo a ogni passo senza violazioni: anche gli zig-zag sono normali, perché la ricerca passa da un lato all'altro delle chiavi visitate."
+    },
+    {
+      "id": "L14-T09-06",
+      "tipo": "L14-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un ABR contiene chiavi intere tra 1 e 1000 e si cerca la chiave 640, presente nell'albero. Quale delle seguenti sequenze può essere la sequenza dei nodi visitati dalla ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "100, 950, 300, 720, 500, 780, 640",
+        "800, 200, 700, 450, 660, 590, 650, 620, 640",
+        "990, 120, 400, 350, 600, 640",
+        "700, 820, 650, 640"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Solo 800, 200, 700, 450, 660, 590, 650, 620, 640 rispetta sempre l'intervallo, che si restringe passo dopo passo fino a contenere 640. Le altre no: in 100, 950, 300, 720, 500, 780, 640 la chiave 780 è fuori dall'intervallo (500, 720) che resta dopo 100, 950, 300, 720, 500; in 990, 120, 400, 350, 600, 640 la chiave 350 è fuori dall'intervallo (400, 990) che resta dopo 990, 120, 400; in 700, 820, 650, 640 la chiave 820 è fuori dall'intervallo (−∞, 700) che resta dopo 700."
+    },
+    {
+      "id": "L14-T10-01",
+      "tipo": "L14-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 50(30(20, 40), 70(60(55, 65), 80)) si cancella la chiave 50 con l'algoritmo della dispensa (nodo con due figli sostituito dal successore). Quale chiave prende il posto di 50?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "70",
+        "55",
+        "80",
+        "40"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E2"
+      ],
+      "spiegazione": "Il successore è il minimo del sottoalbero destro: da 70 si scende a sinistra in 60 e poi in 55, che non ha figlio sinistro. La chiave 55 viene copiata nella radice e il nodo 55 viene rimosso: l'albero diventa 55(30(20, 40), 70(60(-, 65), 80)). 70 è il figlio destro, ma non il minimo (60 e 55 sono minori); 80 è il massimo del sottoalbero destro e 40 il massimo del sottoalbero sinistro (il predecessore, che la dispensa non usa)."
+    },
+    {
+      "id": "L14-T10-02",
+      "tipo": "L14-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nella cancellazione di un nodo con due figli con l'algoritmo della dispensa, quanti figli può avere il nodo successore (il minimo del sottoalbero destro)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Può averne due",
+        "Al più uno, che può essere il sinistro",
+        "Nessuno: il successore è sempre una foglia",
+        "Nessuno oppure uno solo, che è sempre il figlio destro"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il successore è il nodo più a sinistra del sottoalbero destro, quindi non ha figlio sinistro (altrimenti non sarebbe il minimo). Può però avere un figlio destro, che prende il suo posto quando il successore viene rimosso. Quindi la rimozione del successore è un caso a zero o a un solo figlio; non è necessariamente una foglia."
+    },
+    {
+      "id": "L14-T10-03",
+      "tipo": "L14-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nella cancellazione di un nodo con due figli con l'algoritmo della dispensa, il successore s (minimo del sottoalbero destro) non è il figlio destro del nodo cancellato e ha un figlio destro c. Dopo aver copiato la chiave di s nel nodo cancellato, che fine fa c?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Prende il posto di s: diventa figlio sinistro del padre di s",
+        "Viene eliminato insieme a s",
+        "Diventa figlio destro del padre di s",
+        "Diventa figlio sinistro del nodo cancellato"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Rimuovere s è un caso a un solo figlio: s è sostituito dal suo unico figlio c, con tutto il suo sottoalbero. Poiché s è il figlio sinistro del proprio padre (il percorso verso il minimo va sempre a sinistra), c diventa figlio sinistro di quel padre; tutte le sue chiavi sono maggiori di s e minori del padre di s, quindi la proprietà dell'ABR resta valida. Eliminare c perderebbe chiavi che non vanno cancellate."
+    },
+    {
+      "id": "L14-T10-04",
+      "tipo": "L14-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 40(22(-, 30(26, 35)), 60(50, 75)) si cancella la chiave 22, che ha un solo figlio. Come si procede con l'algoritmo della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si eliminano il nodo 22 e tutto il suo sottoalbero",
+        "Si copia in 22 la chiave del successore e si rimuove il successore",
+        "Il nodo 22 è sostituito dal suo unico figlio 30, con tutto il suo sottoalbero",
+        "Si copia in 22 la chiave 35, il massimo del suo sottoalbero, e si rimuove 35"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E5",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Con un solo figlio basta collegare il figlio (30, con i suoi nodi 26 e 35) al padre 40, al posto di 22: l'albero diventa 40(30(26, 35), 60(50, 75)). Non si perde nessun'altra chiave. Il successore di 22 sarebbe 26, ma la copia della chiave del successore serve solo nel caso di due figli."
+    },
+    {
+      "id": "L14-T10-05",
+      "tipo": "L14-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nella versione ricorsiva della cancellazione della dispensa, cancella(root, x) è chiamata su un nodo root con chiave x che ha solo il figlio destro. Che cosa restituisce, per essere collegato al padre?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "None, perché il nodo è stato eliminato",
+        "root.right, cioè il figlio destro con tutto il suo sottoalbero",
+        "root, con la chiave sostituita da quella del successore",
+        "root.left, cioè il figlio sinistro (None)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "Se manca il figlio sinistro, il nodo è sostituito dal figlio destro: la funzione restituisce root.right, e il chiamante lo assegna al figlio corrispondente del padre. Restituire None perderebbe il sottoalbero destro; la copia della chiave del successore è prevista solo per i nodi con due figli."
+    },
+    {
+      "id": "L14-T10-06",
+      "tipo": "L14-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 45(25(15, 35), 70(-, 85(75, 90))) si cancella la chiave 45 con l'algoritmo della dispensa (successore). Quale chiave prende il posto di 45 e come si presenta il sottoalbero destro dopo la cancellazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "70, e il sottoalbero destro diventa 85(75, 90)",
+        "90, e il sottoalbero destro diventa 70(-, 85(75, -))",
+        "35, e il sottoalbero sinistro diventa 25(15, -)",
+        "70, e il sottoalbero destro diventa 85(75, -)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il minimo del sottoalbero destro è 70, perché 70 non ha figlio sinistro: il successore coincide con il figlio destro. La sua chiave va nella radice e il nodo 70 viene rimosso: il suo figlio destro 85(75, 90) prende il suo posto. Risultato: 70(25(15, 35), 85(75, 90)). 90 sarebbe il massimo e 35 il predecessore (la dispensa usa il successore); nell'opzione con 70 e sottoalbero destro 85(75, -) si perde la chiave 90."
+    },
+    {
+      "id": "L14-T11-01",
+      "tipo": "L14-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Dall'ABR 40(20(10, 30), 70(50(45, 60(55(-, 58), 65)), 90)) si cancella la chiave 50 con l'algoritmo della dispensa. Qual è la visita per livelli (dalla radice, livello per livello, da sinistra a destra) dell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "40, 20, 70, 10, 30, 55, 90, 45, 60, 58, 65",
+        "40, 20, 70, 10, 30, 60, 90, 55, 65, 45, 58",
+        "40, 20, 70, 10, 30, 55, 90, 45, 60, 65",
+        "40, 20, 70, 10, 30, 45, 90, 60, 55, 65, 58"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il nodo 50 ha due figli. Il successore è il minimo del sottoalbero destro: da 60 si scende a sinistra in 55, che non ha figlio sinistro ma ha il figlio destro 58. La chiave 55 va al posto di 50 e il nodo 55 è sostituito da 58: l'albero diventa 40(20(10, 30), 70(55(45, 60(58, 65)), 90)). Promuovere il figlio destro 60 (appendendo 45 sotto 55) dà la sequenza con 60 al livello 2; dimenticare 58 lo fa sparire; con il predecessore 45 la chiave 45 sale al posto di 50."
+    },
+    {
+      "id": "L14-T11-02",
+      "tipo": "L14-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 38(17(9, 26(21(-, 24), 30)), 55(46, 70(62(58, -), 81))). Si cancella prima la chiave 38 e poi, dall'albero ottenuto, la chiave 17, sempre con l'algoritmo della dispensa. Qual è la visita in pre-ordine dell'albero finale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "46, 21, 9, 26, 30, 55, 70, 62, 58, 81",
+        "30, 9, 26, 21, 24, 55, 46, 70, 62, 58, 81",
+        "46, 21, 9, 26, 24, 30, 55, 70, 62, 58, 81",
+        "38, 21, 9, 26, 24, 30, 55, 46, 70, 62, 58, 81"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Cancellando 38 (due figli) il successore è 46, il minimo del sottoalbero destro, che è foglia: la radice diventa 46 e 55 perde il figlio sinistro. Poi si cancella 17 dall'albero ottenuto: il successore è il minimo del sottoalbero di 26, cioè 21, che ha il figlio destro 24: 21 sostituisce 17 e 24 prende il posto di 21. Risultato 46(21(9, 26(24, 30)), 55(-, 70(62(58, -), 81))), con pre-order 46, 21, 9, 26, 24, 30, 55, 70, 62, 58, 81. Perdere 24, usare il predecessore o applicare la seconda cancellazione all'albero di partenza dà le altre sequenze."
+    },
+    {
+      "id": "L14-T11-03",
+      "tipo": "L14-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Dall'ABR 47(25(12, 33(29(-, 31), 40)), 68(56, 83(75, 91))) si cancella la chiave 25 con l'algoritmo della dispensa. Qual è la visita in pre-ordine dell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "47, 29, 12, 33, 40, 68, 56, 83, 75, 91",
+        "47, 12, 33, 29, 31, 40, 68, 56, 83, 75, 91",
+        "47, 33, 29, 12, 31, 40, 68, 56, 83, 75, 91",
+        "47, 29, 12, 33, 31, 40, 68, 56, 83, 75, 91"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "E1",
+        null
+      ],
+      "spiegazione": "Il nodo 25 ha due figli. Il successore è il minimo del sottoalbero destro: da 33 si scende a 29, che non ha figlio sinistro ma ha il figlio destro 31. La chiave 29 va al posto di 25 e il nodo 29 è sostituito da 31: l'albero diventa 47(29(12, 33(31, 40)), 68(56, 83(75, 91))), con pre-order 47, 29, 12, 33, 31, 40, 68, 56, 83, 75, 91. Se si dimentica 31 si perde una chiave; con il predecessore 12 la chiave 12 salirebbe al posto di 25; promuovere il figlio destro 33 al posto di 25 (appendendo 12 sotto 29) dà la sequenza che comincia con 47, 33, 29."
+    },
+    {
+      "id": "L14-T11-04",
+      "tipo": "L14-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 35(18(7, 24(21, 29)), 52(41(38(-, 40), 47), 60(-, 77))). Si cancella prima la chiave 60 e poi, dall'albero ottenuto, la chiave 35, con l'algoritmo della dispensa. Qual è la visita in pre-ordine dell'albero finale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "38, 18, 7, 24, 21, 29, 52, 41, 47, 77",
+        "38, 18, 7, 24, 21, 29, 52, 41, 40, 47, 77",
+        "29, 18, 7, 24, 21, 52, 41, 38, 40, 47, 77",
+        "38, 18, 7, 24, 21, 29, 52, 41, 40, 47, 60, 77"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Il nodo 60 ha solo il figlio destro 77, che lo sostituisce. Poi 35 ha due figli: il successore è il minimo del sottoalbero destro, 38 (52 → 41 → 38), che ha il figlio destro 40: 38 sostituisce 35 e 40 prende il posto di 38. Risultato 38(18(7, 24(21, 29)), 52(41(40, 47), 77)), con pre-order 38, 18, 7, 24, 21, 29, 52, 41, 40, 47, 77. Applicare la seconda cancellazione all'albero di partenza lascerebbe 60 nell'albero."
+    },
+    {
+      "id": "L14-T11-05",
+      "tipo": "L14-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si inseriscono in un ABR inizialmente vuoto, nell'ordine, le chiavi 41, 20, 62, 11, 30, 50, 75, 25, 34, 27; poi si cancella la chiave 20 con l'algoritmo della dispensa. Quale chiave è il figlio sinistro del nodo 30 nell'albero risultante?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nessuna: 30 non ha figlio sinistro",
+        "27",
+        "25",
+        "34"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "L'albero costruito è 41(20(11, 30(25(-, 27), 34)), 62(50, 75)). Il nodo 20 ha due figli e il suo successore è il minimo del sottoalbero destro: da 30 a sinistra in 25 (senza figlio sinistro, con il figlio destro 27). 25 viene copiato al posto di 20 e il nodo 25 è sostituito da 27, che diventa il figlio sinistro di 30. Se si perde 27, 30 resterebbe senza figlio sinistro; con il predecessore 11 la chiave 25 resterebbe sotto 30; 34 è il figlio destro di 30."
+    },
+    {
+      "id": "L14-T11-06",
+      "tipo": "L14-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Si consideri l'ABR 35(18(7, 24(21, 29)), 52(41(38(-, 40), 47), 60(-, 77))). Si cancella prima la chiave 18 e poi, dall'albero ottenuto, la chiave 35, con l'algoritmo della dispensa. Quale chiave si trova ora nella radice e quale è il figlio sinistro della radice?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Radice 52; figlio sinistro: 41",
+        "Radice 29; figlio sinistro: 7",
+        "Radice 38; figlio sinistro: 21",
+        "Radice 38; figlio sinistro: 18"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Cancellando 18 (due figli) il successore è 21, il minimo del sottoalbero di 24, che è foglia: l'albero diventa 35(21(7, 24(-, 29)), 52(41(38(-, 40), 47), 60(-, 77))). Poi 35 ha due figli e il suo successore è 38 (52 → 41 → 38), con il figlio destro 40: la radice diventa 38 e il suo figlio sinistro resta 21. Promuovendo il figlio destro 52 la radice sarebbe 52 con figlio sinistro 41; con 29 e 7 si usa il predecessore; con 18 si applica la seconda cancellazione all'albero di partenza."
+    },
+    {
+      "id": "L14-T12-01",
+      "tipo": "L14-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 40(18(10, 28(22(20, 25), 35)), 62(50, 77)), qual è il predecessore di 28, cioè la massima chiave minore di 28?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "25",
+        "22",
+        "18",
+        "35"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E1",
+        "E4"
+      ],
+      "spiegazione": "Le chiavi in ordine sono 10, 18, 20, 22, 25, 28, 35, 40, 50, 62, 77: prima di 28 c'è 25. Con le regole: 28 ha il sottoalbero sinistro 22(20, 25) e il predecessore è il massimo di quel sottoalbero (una volta a sinistra, poi sempre a destra), cioè 25. 22 è il figlio sinistro, ma non il massimo; 18 è il padre; 35 è il successore."
+    },
+    {
+      "id": "L14-T12-02",
+      "tipo": "L14-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 55(30(15, 42(36(-, 38), 48)), 70(62, 81)), qual è il predecessore di 36, cioè la massima chiave minore di 36?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "42",
+        "Nessuno: 36 non ha figlio sinistro",
+        "30",
+        "38"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Le chiavi in ordine sono 15, 30, 36, 38, 42, 48, 55, 62, 70, 81: prima di 36 c'è 30. Con le regole: 36 non ha sottoalbero sinistro, quindi si risale: 36 è figlio sinistro di 42, 42 è figlio destro di 30, e 30 è il primo antenato raggiunto da destra. 42 è il padre; 38 è il successore; il predecessore esiste anche senza sottoalbero sinistro."
+    },
+    {
+      "id": "L14-T12-03",
+      "tipo": "L14-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 44(20(8, 31(26, 38(35, -))), 63(52, 75)), qual è il successore di 38, cioè la minima chiave maggiore di 38?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "31",
+        "44",
+        "35",
+        "Nessuno: 38 non ha figlio destro"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Le chiavi in ordine sono 8, 20, 26, 31, 35, 38, 44, 52, 63, 75: dopo 38 c'è 44. Con le regole: 38 non ha sottoalbero destro, quindi si risale: 38 è figlio destro di 31, 31 è figlio destro di 20 e 20 è figlio sinistro di 44, il primo antenato raggiunto da sinistra. 31 è il padre; 35 è il predecessore."
+    },
+    {
+      "id": "L14-T12-04",
+      "tipo": "L14-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 33(21(12(-, 17), 27), 48(40, 57)), qual è il predecessore di 12?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "21",
+        "17",
+        "33",
+        "Nessuno: 12 è la chiave minima"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "Le chiavi in ordine sono 12, 17, 21, 27, 33, 40, 48, 57: 12 è la prima, quindi non ha predecessore. Anche se 12 non è una foglia (ha il figlio destro 17), nessun antenato è raggiunto da destra: scendendo da 33 si va sempre a sinistra. 21 è il padre; 17 è il successore."
+    },
+    {
+      "id": "L14-T12-05",
+      "tipo": "L14-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Notazione: k(S, D) è il nodo con chiave k, sottoalbero sinistro S e sottoalbero destro D; '-' indica un sottoalbero vuoto e una foglia si scrive con la sola chiave. Nell'ABR 52(30(18(12, -), 41(36, 47)), 70(60, 88)), qual è il predecessore della chiave 43 (che non è presente nell'albero), cioè la massima chiave dell'albero minore di 43?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "47",
+        "36",
+        "41",
+        "30"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Le chiavi in ordine sono 12, 18, 30, 36, 41, 47, 52, 60, 70, 88: la massima minore di 43 è 41. Con l'algoritmo che scende dalla radice: 52 > 43 si va a sinistra; 30 < 43 candidato 30, a destra; 41 < 43 candidato 41, a destra; 47 > 43 a sinistra, dove non c'è nulla: il candidato finale è 41. 47 è il successore di 43."
+    },
+    {
+      "id": "L14-T12-06",
+      "tipo": "L14-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un ABR ha n nodi e altezza h. Qual è il costo, nel caso peggiore, della ricerca del predecessore di una chiave x con l'algoritmo che scende dalla radice ricordando il candidato (senza puntatori ai padri)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(h)",
+        "Θ(1)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "Si percorre un solo cammino dalla radice verso il basso, con lavoro costante a ogni nodo: al più h + 1 nodi, quindi Θ(h) nel caso peggiore. Non serve visitare tutto l'albero (Θ(n)), e il costo non è costante. Θ(log n) vale solo se l'albero è bilanciato."
+    },
+    {
+      "id": "L14-T13-01",
+      "tipo": "L14-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul confronto tra un albero binario di ricerca e un heap minimo, entrambi con n chiavi distinte, è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La visita in ordine di un ABR restituisce le chiavi ordinate; in un heap minimo in generale no",
+        "In entrambe le strutture la visita in ordine restituisce le chiavi in ordine crescente",
+        "In un heap minimo una chiave si cerca in O(log n), come in un ABR bilanciato",
+        "In un ABR il minimo si trova in tempo O(1), come in un heap minimo"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Nell'ABR ogni nodo sta tra il suo sottoalbero sinistro e il destro, quindi la visita in ordine è crescente. Nell'heap minimo ogni padre è minore dei figli, ma non c'è alcun ordine tra fratelli né tra sottoalberi: la visita in ordine non è ordinata (per esempio nell'heap [1, 5, 2] si legge 5, 1, 2). La ricerca di una chiave nell'heap costa O(n) e il minimo dell'ABR costa O(h): solo nell'heap è O(1)."
+    },
+    {
+      "id": "L14-T13-02",
+      "tipo": "L14-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un'applicazione deve eseguire molte ricerche di una chiave, molti inserimenti e a volte stampare tutte le chiavi in ordine crescente, con la stampa in tempo O(n). Quale struttura, con n chiavi, è più adatta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Un heap minimo",
+        "Una tabella hash",
+        "Una lista concatenata non ordinata",
+        "Un ABR bilanciato"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Nell'ABR bilanciato ricerca e inserimento costano O(log n) e la visita in ordine stampa le chiavi ordinate in Θ(n). L'heap non è un albero di ricerca: cercare una chiave costa O(n) e l'ordine non è visibile. La tabella hash cerca in O(1) in media ma non mantiene alcun ordine, quindi per la stampa ordinata servirebbe un ordinamento a parte (più di O(n) in generale). Nella lista la ricerca costa Ω(n)."
+    },
+    {
+      "id": "L14-T13-03",
+      "tipo": "L14-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul costo della ricerca di una chiave in un albero binario di ricerca con n nodi, di forma non nota, è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Costa sempre O(log n), perché un ABR è bilanciato come un heap",
+        "Costa sempre Θ(n), perché bisogna esaminare tutti i nodi",
+        "Nel caso peggiore può costare Θ(n), per esempio se l'albero è una catena",
+        "Costa sempre O(1), perché basta confrontare con la radice"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La ricerca costa O(h), e h può valere fino a n − 1: un ABR costruito con inserimenti in ordine crescente è una catena, e la ricerca dell'ultima chiave visita n nodi. Gli ABR della dispensa non si ribilanciano, a differenza degli heap, che sono sempre quasi completi. Su un albero bilanciato invece costa O(log n), e il confronto con la sola radice non basta."
+    },
+    {
+      "id": "L14-T13-04",
+      "tipo": "L14-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si confrontano un heap minimo e un ABR bilanciato, entrambi con n chiavi distinte. Quale operazione ha lo stesso costo asintotico nel caso peggiore nelle due strutture?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Cercare se una chiave x è presente",
+        "Inserire una nuova chiave",
+        "Trovare la chiave minima",
+        "Stampare tutte le chiavi in ordine crescente"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "L'inserimento costa Θ(log n) in entrambi: l'heap fa risalire la chiave lungo un cammino di lunghezza ⌊log₂ n⌋, l'ABR bilanciato scende lungo un cammino di lunghezza Θ(log n). La ricerca costa O(n) nell'heap e Θ(log n) nell'ABR; il minimo costa O(1) nell'heap e Θ(log n) nell'ABR; la stampa ordinata costa Θ(n) nell'ABR (visita in ordine) ma Θ(n log n) nell'heap, perché la visita in ordine di un heap non è ordinata e servono n estrazioni del minimo."
+    },
+    {
+      "id": "L14-T13-05",
+      "tipo": "L14-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sull'altezza di un heap e di un ABR, entrambi con n chiavi distinte, è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "L'altezza dell'heap è sempre ⌊log₂ n⌋; quella dell'ABR dipende dall'ordine di inserimento",
+        "Un ABR con n chiavi ha sempre altezza ⌊log₂ n⌋, come un heap",
+        "Un heap è un albero binario di ricerca con la chiave minima nella radice",
+        "In un ABR la chiave minima si trova sempre nella radice, come in un heap minimo"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "L'heap è un albero quasi completo, quindi la sua altezza è ⌊log₂ n⌋ qualunque sia l'ordine di inserimento. L'ABR non si ribilancia: le stesse chiavi inserite in ordini diversi danno altezze da ⌊log₂ n⌋ a n − 1. L'heap non è un albero di ricerca (fratelli e sottoalberi non sono ordinati) e il minimo dell'ABR è il nodo più a sinistra, non necessariamente la radice."
+    },
+    {
+      "id": "L14-T13-06",
+      "tipo": "L14-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si costruiscono un heap minimo (costruzione bottom-up) e un ABR (inserendo le chiavi una alla volta) a partire da n chiavi distinte in ordine qualsiasi. Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Heap O(n); ABR Θ(n log n), perché l'ABR resta bilanciato",
+        "Heap Θ(n log n); ABR Θ(n)",
+        "Heap Θ(n²); ABR Θ(n log n)",
+        "Heap O(n); ABR Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "L'heap si costruisce in O(n) con la procedura bottom-up. L'ABR non si ribilancia: nel caso peggiore (per esempio chiavi già ordinate) diventa una catena e l'i-esimo inserimento costa Θ(i), in totale Θ(n²). Θ(n log n) vale solo se l'albero resta bilanciato."
+    },
+    {
+      "id": "L14-T14-01",
+      "tipo": "L14-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un ABR con n nodi e altezza h è visitato con una visita in ordine \"potata\" per elencare le chiavi comprese in [x, y]: si scende nel sottoalbero sinistro solo se x < chiave del nodo e nel destro solo se chiave del nodo < y. Se nessuna chiave dell'albero cade in [x, y], qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(h)",
+        "Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Anche senza chiavi da restituire la visita deve scendere lungo i cammini che portano verso x e y: nel caso peggiore (intervallo che cade tra due chiavi adiacenti a grande profondità) visita Θ(h) nodi. Dimenticare la discesa dà Θ(k) = Θ(1); Θ(log n) presuppone un albero bilanciato; la visita potata non esamina tutto l'albero."
+    },
+    {
+      "id": "L14-T14-02",
+      "tipo": "L14-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Due ABR, T1 e T2, hanno altezze h1 e h2 e tutte le chiavi di T1 sono minori di tutte quelle di T2. Per fonderli in un solo ABR si scende in parallelo lungo il cammino destro di T1 e lungo il cammino sinistro di T2, fermandosi appena uno dei due finisce, poi si attacca T2 come figlio destro del massimo di T1 oppure T1 come figlio sinistro del minimo di T2. Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(h1 + h2)",
+        "Θ(min(h1, h2))",
+        "Θ(max(h1, h2))",
+        "Θ(n1 + n2), dove n1 e n2 sono i numeri di nodi"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E2",
+        "E2"
+      ],
+      "spiegazione": "La discesa in parallelo si ferma al primo cammino che termina: servono al più min(h1, h2) + 1 passi, poi basta un'assegnazione di puntatore (spazio O(1)). Scendere in entrambi gli alberi fino in fondo costerebbe Θ(h1 + h2) o Θ(max(h1, h2)); ricostruire tutto con le visite costerebbe Θ(n1 + n2), ma non serve perché le chiavi sono già separate."
+    },
+    {
+      "id": "L14-T14-03",
+      "tipo": "L14-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Due ABR, T1 con n1 nodi e T2 con n2 nodi, hanno chiavi distinte qualsiasi (non separate). Si fondono con questo algoritmo: visita in ordine dei due alberi (due liste ordinate), fusione delle due liste come nel mergesort, costruzione di un ABR bilanciato dalla lista ottenuta (elemento centrale come radice, ricorsivamente). Qual è il costo totale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n1 + n2)",
+        "Θ(n2 log n1)",
+        "Θ((n1 + n2) log(n1 + n2))",
+        "Θ(n1 · n2)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni fase costa Θ(n1 + n2): le visite in ordine visitano ogni nodo una volta, la fusione delle liste è lineare come nel mergesort, e la costruzione dell'albero bilanciato dalla lista ordinata tocca ogni elemento una volta. Θ(n2 log n1) è il costo che si attribuirebbe all'inserimento delle n2 chiavi una per una in T1, ma vale solo se T1 restasse bilanciato; senza ipotesi di bilanciamento, nel caso peggiore, quell'approccio costa molto di più."
+    },
+    {
+      "id": "L14-T15-01",
+      "tipo": "L14-T15",
+      "formato": "aperta",
+      "difficolta": 1,
+      "testo": "Scrivere lo pseudocodice (stile Python) di una funzione ricorsiva cerca(nodo, x) che, dato il puntatore alla radice di un albero binario di ricerca (nodi con campi key, left, right), restituisca il nodo che contiene la chiave x oppure None se x non è presente. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def cerca(nodo, x):\n    if nodo is None:\n        return None\n    if nodo.key == x:\n        return nodo\n    if x < nodo.key:\n        return cerca(nodo.left, x)\n    return cerca(nodo.right, x)",
+      "controlli": [
+        "Caso base: nodo is None restituisce None, senza accedere ai campi di nodo",
+        "Se nodo.key == x restituisce il nodo stesso (non la chiave né True)",
+        "Una sola chiamata ricorsiva, sul lato giusto (x < nodo.key → left, altrimenti right), preceduta da return",
+        "Nessuna variabile globale"
+      ],
+      "spiegazione": "La funzione segue un solo cammino dalla radice: tempo O(h) (O(log n) se l'albero è bilanciato, O(n) nel caso peggiore), spazio O(h) per la pila delle chiamate. Se manca return davanti alla chiamata ricorsiva la funzione restituisce None ogni volta che x non è nella radice."
+    },
+    {
+      "id": "L14-T15-02",
+      "tipo": "L14-T15",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice (stile Python) di una funzione ricorsiva profondita(nodo, x) che, dato il puntatore alla radice di un albero binario di ricerca (nodi con campi key, left, right), restituisca la profondità della chiave x (la radice ha profondità 0) oppure −1 se x non è presente. La funzione deve percorrere un solo cammino dalla radice.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def profondita(nodo, x):\n    if nodo is None:\n        return -1\n    if nodo.key == x:\n        return 0\n    if x < nodo.key:\n        d = profondita(nodo.left, x)\n    else:\n        d = profondita(nodo.right, x)\n    if d == -1:\n        return -1\n    return d + 1",
+      "controlli": [
+        "Caso base: nodo is None restituisce −1",
+        "Se nodo.key == x restituisce 0",
+        "Una sola chiamata ricorsiva, sul lato giusto",
+        "Se la chiamata restituisce −1 (chiave assente) si propaga −1 invece di sommare 1",
+        "Altrimenti restituisce il risultato della chiamata più 1"
+      ],
+      "spiegazione": "Ogni chiamata ricorsiva scende di un livello, quindi il valore restituito dal sottoalbero va aumentato di 1; se la chiave è assente il −1 deve restare −1 (altrimenti si restituirebbe 0 o altri valori ambigui). Tempo O(h), spazio O(h)."
+    },
+    {
+      "id": "L14-T15-03",
+      "tipo": "L14-T15",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice (stile Python) di una funzione ricorsiva minimo_maggiore_uguale(nodo, x) che, dato il puntatore alla radice di un albero binario di ricerca (nodi con campi key, left, right), restituisca la più piccola chiave dell'albero maggiore o uguale a x, oppure None se tutte le chiavi sono minori di x. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def minimo_maggiore_uguale(nodo, x):\n    if nodo is None:\n        return None\n    if nodo.key == x:\n        return nodo.key\n    if nodo.key < x:\n        return minimo_maggiore_uguale(nodo.right, x)\n    c = minimo_maggiore_uguale(nodo.left, x)\n    if c is None:\n        return nodo.key\n    return c",
+      "controlli": [
+        "Caso base: nodo is None restituisce None",
+        "Se nodo.key == x restituisce x; se nodo.key < x tutta la ricerca prosegue solo nel sottoalbero destro",
+        "Se nodo.key > x la chiave del nodo è una candidata: si cerca nel sottoalbero sinistro e, se non c'è nulla di meglio (None), si restituisce nodo.key",
+        "Una sola chiamata ricorsiva per nodo (percorso unico dalla radice), con return davanti"
+      ],
+      "spiegazione": "Se la chiave del nodo è minore di x nessuna chiave del sottoalbero sinistro può servire; se è maggiore, il nodo è un candidato e un candidato migliore può stare solo a sinistra. Si percorre un solo cammino: tempo O(h), spazio O(h) per la pila."
+    },
+    {
+      "id": "L14-T16-01",
+      "tipo": "L14-T16",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice (stile Python) di una funzione ricorsiva inserisci(root, x) che inserisce la chiave x nell'albero binario di ricerca di radice root (nodi NodoABR con campi key, left, right e costruttore NodoABR(x)) e restituisce la radice dell'albero risultante. Questa volta sono ammesse chiavi ripetute: una chiave uguale a quella di un nodo va inserita nel sottoalbero destro di quel nodo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def inserisci(root, x):\n    if root is None:\n        return NodoABR(x)\n    if x < root.key:\n        root.left = inserisci(root.left, x)\n    else:\n        root.right = inserisci(root.right, x)    # le chiavi uguali vanno a destra\n    return root",
+      "controlli": [
+        "Caso base: root is None → return NodoABR(x), che è il modo in cui il nuovo nodo viene collegato al padre",
+        "Se x < root.key si scende a sinistra, altrimenti (anche se x == root.key) a destra",
+        "Il risultato della chiamata ricorsiva è assegnato a root.left o root.right",
+        "Alla fine restituisce root"
+      ],
+      "spiegazione": "L'unica differenza rispetto all'inserimento senza duplicati è che il caso x == root.key non si ferma: si va a destra. Ogni chiave ripetuta diventa quindi una nuova foglia nel sottoalbero destro. Tempo O(h) (Θ(h) nel caso peggiore), spazio O(h)."
+    },
+    {
+      "id": "L14-T16-02",
+      "tipo": "L14-T16",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice (stile Python) di una funzione ricorsiva inserisci(root, x) che inserisce la chiave x nell'albero binario di ricerca di radice root e restituisce la radice dell'albero risultante. I nodi NodoABR hanno i campi key, count, left, right; NodoABR(x) crea un nodo con chiave x e count = 1. Se x è già presente non si crea un nuovo nodo, ma si incrementa il campo count del nodo che contiene x.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def inserisci(root, x):\n    if root is None:\n        return NodoABR(x)           # il costruttore pone count = 1\n    if x == root.key:\n        root.count = root.count + 1\n    elif x < root.key:\n        root.left = inserisci(root.left, x)\n    else:\n        root.right = inserisci(root.right, x)\n    return root",
+      "controlli": [
+        "Caso base: root is None → return NodoABR(x)",
+        "Se x == root.key incrementa root.count e non crea nodi né scende ulteriormente",
+        "Altrimenti scende a sinistra o a destra assegnando il risultato a root.left o root.right",
+        "Alla fine restituisce root"
+      ],
+      "spiegazione": "L'albero ha una sola copia di ogni chiave, e count registra quante volte è stata inserita. Si scende lungo un solo cammino: tempo O(h), spazio O(h) per la pila. Se non si assegna il risultato della chiamata ricorsiva, i nuovi nodi non vengono collegati."
+    },
+    {
+      "id": "L14-T16-03",
+      "tipo": "L14-T16",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice (stile Python) di una funzione ricorsiva inserisci(root, x) che inserisce la chiave x nell'albero binario di ricerca di radice root (nodi NodoABR con campi key, left, right e costruttore NodoABR(x)) e restituisce una coppia (radice, inserito): la radice dell'albero risultante e un booleano che vale True se x è stata inserita, False se era già presente (e in tal caso l'albero non cambia).",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def inserisci(root, x):\n    if root is None:\n        return NodoABR(x), True\n    if x == root.key:\n        return root, False\n    if x < root.key:\n        root.left, inserito = inserisci(root.left, x)\n    else:\n        root.right, inserito = inserisci(root.right, x)\n    return root, inserito",
+      "controlli": [
+        "Caso base: root is None → return NodoABR(x), True",
+        "Se x == root.key → return root, False, senza modificare l'albero",
+        "Il figlio e il flag vengono entrambi ricevuti dalla chiamata ricorsiva: root.left, inserito = inserisci(root.left, x)",
+        "Alla fine restituisce root, inserito (il flag va propagato fino alla radice)"
+      ],
+      "spiegazione": "Il flag deve risalire fino al chiamante: ogni livello lo riceve dal livello inferiore e lo restituisce. L'albero ha lo stesso aspetto dell'inserimento senza duplicati della dispensa. Tempo O(h), spazio O(h)."
+    },
+    {
+      "id": "L14-T17-01",
+      "tipo": "L14-T17",
+      "formato": "aperta",
+      "difficolta": 1,
+      "testo": "Progettare una funzione ricorsiva che, data la radice di un albero binario di ricerca (campi key, left, right), restituisca la chiave di valore minimo presente nell'albero, oppure None se l'albero è vuoto. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def minimo(root):\n    if root is None:\n        return None\n    if root.left is None:\n        return root.key\n    return minimo(root.left)",
+      "controlli": [
+        "Caso base per l'albero vuoto: restituisce None",
+        "La condizione di arresto è root.left is None (il minimo può avere un figlio destro), non 'il nodo è una foglia'",
+        "Restituisce la chiave (root.key), non il nodo",
+        "Chiamata ricorsiva solo a sinistra, preceduta da return"
+      ],
+      "spiegazione": "Tutte le chiavi minori di un nodo stanno nel suo sottoalbero sinistro: il minimo è il nodo più a sinistra, che può avere un figlio destro. Si percorre un solo cammino verso sinistra: tempo O(h), spazio O(h) per la pila."
+    },
+    {
+      "id": "L14-T17-02",
+      "tipo": "L14-T17",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Progettare una funzione ricorsiva che, data la radice di un albero binario qualsiasi (non di ricerca: le chiavi sono interi distinti senza alcun ordine; campi key, left, right), restituisca la chiave di valore massimo, oppure None se l'albero è vuoto. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def massimo(root):\n    if root is None:\n        return None\n    m = root.key\n    ms = massimo(root.left)\n    md = massimo(root.right)\n    if ms is not None and ms > m:\n        m = ms\n    if md is not None and md > m:\n        m = md\n    return m",
+      "controlli": [
+        "Caso base: albero vuoto → None",
+        "Non si può usare la proprietà dell'ABR: vanno visitati entrambi i sottoalberi",
+        "Il risultato dei sottoalberi può essere None (sottoalbero vuoto) e va controllato prima del confronto",
+        "Restituisce il massimo tra root.key e i massimi dei due sottoalberi"
+      ],
+      "spiegazione": "Senza la proprietà di ricerca il massimo può trovarsi in qualunque nodo, quindi si visitano tutti i nodi: Θ(n) tempo, spazio O(h) per la pila. Confrontare None con un intero provoca un errore: i risultati dei sottoalberi vanno controllati."
+    },
+    {
+      "id": "L14-T17-03",
+      "tipo": "L14-T17",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Progettare una funzione ricorsiva che, data la radice di un albero binario di ricerca (campi key, left, right), restituisca la seconda chiave più grande, oppure None se l'albero ha meno di due nodi. La funzione deve percorrere un solo cammino dalla radice (tempo O(h)); è ammessa una funzione ausiliaria ricorsiva.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def massimo(root):\n    if root is None:\n        return None\n    if root.right is None:\n        return root.key\n    return massimo(root.right)\n\ndef secondo_massimo(root):\n    if root is None:\n        return None\n    if root.right is None:\n        # root contiene il massimo: il secondo e' il massimo del sottoalbero sinistro\n        return massimo(root.left)\n    if root.right.left is None and root.right.right is None:\n        # il figlio destro e' il massimo e non ha figli: il secondo e' root.key\n        return root.key\n    return secondo_massimo(root.right)",
+      "controlli": [
+        "Caso base: albero vuoto → None",
+        "Se root non ha figlio destro, root contiene il massimo: la seconda chiave è il massimo del sottoalbero sinistro (None se non c'è)",
+        "Se il figlio destro è una foglia, è il massimo e la risposta è root.key",
+        "Altrimenti si scende a destra con return secondo_massimo(root.right)",
+        "Nessuna visita completa dell'albero"
+      ],
+      "spiegazione": "Il massimo è il nodo più a destra m. Il secondo è il massimo del sottoalbero sinistro di m, se m ha un figlio sinistro, altrimenti il padre di m (None se m è la radice e non ha figlio sinistro). La funzione scende a destra finché trova m (la funzione ausiliaria massimo serve per il sottoalbero sinistro di m); tempo O(h), spazio O(h)."
+    },
+    {
+      "id": "L14-T18-01",
+      "tipo": "L14-T18",
+      "formato": "aperta",
+      "difficolta": 1,
+      "testo": "Progettare una procedura ricorsiva che, data la radice di un albero binario di ricerca (campi key, left, right), ne stampi le chiavi in ordine decrescente. Valutarne la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def stampa_decrescente(nodo):\n    if nodo is not None:\n        stampa_decrescente(nodo.right)\n        print(nodo.key)\n        stampa_decrescente(nodo.left)",
+      "controlli": [
+        "Controllo che il nodo non sia None (caso base senza accedere ai campi)",
+        "Ordine delle operazioni: prima il sottoalbero destro, poi la stampa della chiave, poi il sinistro",
+        "Due chiamate ricorsive, una per sottoalbero, senza variabili globali",
+        "Costo: Θ(n) tempo, O(h) spazio"
+      ],
+      "spiegazione": "È la visita in ordine con i figli scambiati: le chiavi del sottoalbero destro sono maggiori di quella del nodo, quindi vanno stampate prima. Ogni nodo è visitato una volta: Θ(n). Lo spazio è la profondità massima della ricorsione, O(h): O(log n) se l'albero è bilanciato, O(n) nel caso peggiore."
+    },
+    {
+      "id": "L14-T18-02",
+      "tipo": "L14-T18",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Progettare una funzione ricorsiva chiavi_ordinate(nodo, lista) che, dato il puntatore alla radice di un albero binario di ricerca (campi key, left, right) e una lista (inizialmente vuota), aggiunga alla lista le chiavi in ordine crescente e restituisca la lista. Valutarne la complessità temporale. Si chiede di non costruire liste intermedie con concatenazioni (sinistra + [chiave] + destra).",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def chiavi_ordinate(nodo, lista):\n    if nodo is not None:\n        chiavi_ordinate(nodo.left, lista)\n        lista.append(nodo.key)\n        chiavi_ordinate(nodo.right, lista)\n    return lista",
+      "controlli": [
+        "Caso base: nodo None → nessuna chiave aggiunta (si restituisce la lista invariata)",
+        "Ordine: chiamata sul sottoalbero sinistro, append della chiave, chiamata sul destro",
+        "Si usa append sulla stessa lista passata come parametro, senza concatenazioni",
+        "Alla fine restituisce la lista",
+        "Costo: Θ(n) tempo"
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e l'append è O(1) ammortizzato: Θ(n) in tutto. Costruire invece sinistra + [chiave] + destra copia le liste a ogni livello: in totale O(n · h), cioè Θ(n²) su un albero degenere. Spazio per la pila: O(h), oltre alla lista di uscita di n elementi."
+    },
+    {
+      "id": "L14-T18-03",
+      "tipo": "L14-T18",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Progettare una funzione ricorsiva k_esimo(nodo, k) che, dato il puntatore alla radice di un albero binario di ricerca (campi key, left, right) e un intero k ≥ 1, restituisca la k-esima chiave più piccola (k = 1 è il minimo), oppure None se l'albero ha meno di k chiavi. Non si possono usare variabili globali né liste di appoggio con tutte le chiavi; è ammessa una funzione ausiliaria ricorsiva. Valutarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def k_esimo(nodo, k):\n    return cerca_k(nodo, k)[0]\n\ndef cerca_k(nodo, k):\n    # restituisce (chiave, k residuo): la chiave e' None se non e' ancora stata trovata\n    if nodo is None:\n        return None, k\n    chiave, k = cerca_k(nodo.left, k)\n    if chiave is not None:\n        return chiave, k\n    k = k - 1\n    if k == 0:\n        return nodo.key, 0\n    return cerca_k(nodo.right, k)",
+      "controlli": [
+        "Si usa la visita in ordine, con un contatore dei nodi già visti che viene fatto risalire e ridiscendere (valore restituito o parametro), non una variabile globale",
+        "Caso base: nodo None → nessuna chiave trovata e contatore invariato",
+        "Dopo il sottoalbero sinistro, se la chiave è già stata trovata la si restituisce subito; altrimenti si decrementa k e, se k vale 0, la chiave del nodo è la risposta",
+        "Altrimenti si prosegue nel sottoalbero destro con il k residuo",
+        "Costo O(n) nel caso peggiore (O(h + k) con la visita che si ferma alla k-esima)"
+      ],
+      "spiegazione": "La visita in ordine incontra le chiavi in ordine crescente: la k-esima incontrata è la k-esima più piccola. La funzione ausiliaria restituisce la coppia (chiave, k residuo) per propagare sia l'eventuale risultato sia il numero di chiavi ancora da contare. Con k fissato la visita si ferma alla k-esima chiave: si visitano i nodi fino a quella, più i nodi del cammino verso di essa, cioè O(h + k); nel caso peggiore O(n). Spazio O(h)."
+    },
+    {
+      "id": "L14-T19-01",
+      "tipo": "L14-T19",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Progettare una funzione ricorsiva info(nodo) che, dato il puntatore alla radice di un albero binario qualsiasi (campi key, left, right; chiavi intere), restituisca una tripla (ok, mn, mx): ok vale True se l'albero è un albero binario di ricerca (chiavi distinte; per ogni nodo con chiave x le chiavi del sottoalbero sinistro sono minori di x e quelle del destro maggiori di x), e in tal caso mn e mx sono la chiave minima e la massima (None se l'albero è vuoto); se ok è False, mn e mx possono valere qualsiasi cosa. Ogni nodo deve essere visitato una sola volta: non si possono calcolare minimo e massimo con visite separate. Valutarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def info(nodo):\n    if nodo is None:\n        return True, None, None          # l'albero vuoto è un ABR\n    ok_s, min_s, max_s = info(nodo.left)\n    ok_d, min_d, max_d = info(nodo.right)\n    if not ok_s or not ok_d:\n        return False, None, None\n    if max_s is not None and max_s >= nodo.key:\n        return False, None, None\n    if min_d is not None and min_d <= nodo.key:\n        return False, None, None\n    mn = nodo.key if min_s is None else min_s\n    mx = nodo.key if max_d is None else max_d\n    return True, mn, mx",
+      "controlli": [
+        "Caso base: nodo None → (True, None, None), senza accedere ai campi",
+        "La chiave del nodo va confrontata con il massimo del sottoalbero sinistro e con il minimo del destro, non solo con i figli (il controllo locale accetta 10(5(2, 12), 15))",
+        "Confronti stretti: max_s >= nodo.key o min_d <= nodo.key → False (chiavi distinte); i valori None dei sottoalberi vuoti vanno esclusi dal confronto",
+        "Il minimo del sottoalbero è min_s se esiste, altrimenti nodo.key; il massimo è max_d se esiste, altrimenti nodo.key",
+        "Una sola visita in post-ordine: tempo Θ(n), spazio O(h)"
+      ],
+      "spiegazione": "Un nodo rispetta la proprietà se tutte le chiavi a sinistra sono minori e tutte quelle a destra maggiori, cioè se il massimo del sinistro e il minimo del destro stanno dalla parte giusta: le due chiamate restituiscono proprio questi valori, insieme all'esito del controllo nei sottoalberi. Ogni nodo è visitato una volta con lavoro costante: Θ(n) tempo, O(h) spazio per la pila. Ricalcolare minimo e massimo con una visita separata per ogni nodo costerebbe O(n · h), cioè Θ(n²) nel caso peggiore."
+    },
+    {
+      "id": "L14-T19-02",
+      "tipo": "L14-T19",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Progettare una funzione ricorsiva is_abr(radice) che, dato il puntatore alla radice di un albero binario qualsiasi (campi key, left, right), restituisca True se l'albero è un albero binario di ricerca (chiavi distinte, sinistro minore e destro maggiore per ogni nodo) e False altrimenti, usando la visita in ordine: l'albero è un ABR se e solo se la sequenza delle chiavi visitate è strettamente crescente. Non si possono usare variabili globali né liste con tutte le chiavi; è ammessa una funzione ausiliaria ricorsiva.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def is_abr(radice):\n    ok, _ = controlla(radice, None)\n    return ok\n\ndef controlla(nodo, prec):\n    # visita in ordine: restituisce (ok, ultima chiave vista)\n    if nodo is None:\n        return True, prec\n    ok, prec = controlla(nodo.left, prec)\n    if not ok:\n        return False, prec\n    if prec is not None and nodo.key <= prec:\n        return False, prec\n    return controlla(nodo.right, nodo.key)",
+      "controlli": [
+        "Si controlla che ogni chiave sia maggiore della precedente nella visita in ordine (confronto stretto)",
+        "L'ultima chiave vista viene passata e restituita dalla funzione ausiliaria (niente variabili globali)",
+        "Ordine: sottoalbero sinistro, controllo del nodo, sottoalbero destro",
+        "Se il sottoalbero sinistro ha già fallito si restituisce False senza continuare",
+        "Caso base: nodo None → (True, prec) con prec invariato"
+      ],
+      "spiegazione": "La visita in ordine di un ABR produce chiavi strettamente crescenti, e viceversa: basta confrontare ogni chiave con quella visitata subito prima. Tempo O(n), spazio O(h). La funzione ausiliaria restituisce la coppia (ok, ultima chiave vista) perché il valore della chiave precedente deve passare da un sottoalbero all'altro."
+    },
+    {
+      "id": "L14-T19-03",
+      "tipo": "L14-T19",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Progettare una funzione ricorsiva is_abr_dup(radice) che, dato il puntatore alla radice di un albero binario qualsiasi (campi key, left, right), restituisca True se l'albero rispetta questa variante della proprietà dell'ABR, che ammette chiavi ripetute: per ogni nodo con chiave x, le chiavi del sottoalbero sinistro sono strettamente minori di x e quelle del sottoalbero destro sono maggiori o uguali a x. Si può usare una funzione ausiliaria ricorsiva. Valutarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def verifica(nodo, minimo, massimo):\n    # sinistro < chiave <= destro: i duplicati stanno a destra\n    if nodo is None:\n        return True\n    if minimo is not None and nodo.key < minimo:\n        return False\n    if massimo is not None and nodo.key >= massimo:\n        return False\n    return verifica(nodo.left, minimo, nodo.key) and verifica(nodo.right, nodo.key, massimo)\n\ndef is_abr_dup(radice):\n    return verifica(radice, None, None)",
+      "controlli": [
+        "Serve l'intervallo imposto da tutti gli antenati, non solo dal padre",
+        "Il confronto è asimmetrico: il limite minimo è inclusivo (nodo.key < minimo → False), il limite massimo è esclusivo (nodo.key >= massimo → False)",
+        "Scendendo a sinistra il massimo diventa nodo.key; scendendo a destra il minimo diventa nodo.key",
+        "Caso base: nodo None → True; i risultati dei due sottoalberi si combinano con and"
+      ],
+      "spiegazione": "Rispetto all'ABR con chiavi distinte cambia solo la stretta di un confronto: una chiave uguale al limite minimo (cioè a un antenato dal quale si è scesi a destra) è ammessa, una uguale al limite massimo (antenato dal quale si è scesi a sinistra) no. Ogni nodo è esaminato una volta: tempo O(n), spazio O(h)."
+    },
+    {
+      "id": "L14-T20-01",
+      "tipo": "L14-T20",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un B-albero la radice contiene 2 chiavi, ognuno dei suoi figli contiene 3 chiavi e i figli dei figli sono foglie (tutte allo stesso livello). Quante foglie ha l'albero?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "12",
+        "9",
+        "15"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "E2"
+      ],
+      "spiegazione": "Un nodo interno con k chiavi ha k + 1 figli: la radice, con 2 chiavi, ha 3 figli; ognuno di essi, con 3 chiavi, ha 4 figli, che sono le foglie: 3 · 4 = 12. 6 = 2 · 3 dà un figlio per chiave; 9 = 3 · 3 applica k + 1 solo alla radice; 15 = 3 · 5 dà 2k − 1 figli a ogni nodo (3 alla radice, 5 ai suoi figli), confondendo con il numero massimo di chiavi 2t − 1."
+    },
+    {
+      "id": "L14-T20-02",
+      "tipo": "L14-T20",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un B-albero, un nodo interno contiene k chiavi. Quanti figli ha?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "k",
+        "2k − 1",
+        "k − 1",
+        "k + 1"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E1",
+        null
+      ],
+      "spiegazione": "Le k chiavi del nodo, in ordine crescente, dividono i valori in k + 1 intervalli e a ciascuno corrisponde un figlio. È la stessa regola dell'ABR: 1 chiave, 2 figli."
+    },
+    {
+      "id": "L14-T20-03",
+      "tipo": "L14-T20",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale delle seguenti affermazioni è vera per un B-albero?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tutte le foglie si trovano allo stesso livello",
+        "È un albero binario in cui ogni nodo contiene una sola chiave",
+        "È un albero quasi completo: tutti i livelli sono pieni, tranne l'ultimo, riempito da sinistra",
+        "Le foglie possono trovarsi a livelli molto diversi, come in un ABR"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E4",
+        "E3"
+      ],
+      "spiegazione": "In un B-albero le foglie stanno tutte alla stessa profondità, e questo, insieme al numero minimo di chiavi per nodo, mantiene l'albero bilanciato. Non è un albero binario con una chiave per nodo (quello è un ABR) e non è un albero quasi completo (quella è la forma dell'heap): un nodo contiene molte chiavi e ha più di due figli."
+    },
+    {
+      "id": "L14-T20-04",
+      "tipo": "L14-T20",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Perché i B-alberi sono adatti a gestire grandi insiemi di chiavi in memoria secondaria (dischi)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sono alberi binari di ricerca che usano meno puntatori, quindi occupano meno spazio sul disco",
+        "Permettono di trovare una chiave sempre in un solo accesso al disco",
+        "Ogni nodo contiene molte chiavi e occupa un blocco: l'altezza è piccola e quindi servono pochi accessi al disco",
+        "Non richiedono che le chiavi di un nodo siano ordinate"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Un B-albero ha nodi molto grandi, ognuno con molte chiavi e molti figli: l'altezza resta piccola (logaritmica con una base grande) e ogni discesa legge poche pagine del disco. Non è un albero binario, e la ricerca non costa un solo accesso; le chiavi di un nodo sono in ordine crescente."
+    },
+    {
+      "id": "L14-T20-05",
+      "tipo": "L14-T20",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un B-albero contiene n chiavi. Quale affermazione sulla sua altezza è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Può arrivare a Θ(n), come in un ABR degenere",
+        "È O(log n), perché le foglie sono allo stesso livello e ogni nodo ha molti figli",
+        "È sempre Θ(1), perché ogni nodo contiene molte chiavi",
+        "È Θ(n log n) nel caso peggiore"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "L'altezza di un B-albero è O(log n) (più precisamente O(log_t n)): ricerca, inserimento e cancellazione visitano O(log n) nodi. Un B-albero non può degenerare in una catena, a differenza dell'ABR. L'altezza non è costante: cresce, lentamente, con n."
+    },
+    {
+      "id": "L14-T20-06",
+      "tipo": "L14-T20",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un B-albero, un nodo interno ha 8 figli. Quante chiavi contiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "7",
+        "8",
+        "15",
+        "9"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Con k chiavi un nodo interno ha k + 1 figli, quindi 8 figli corrispondono a 7 chiavi: le 7 chiavi in ordine dividono i valori in 8 intervalli, uno per figlio. 8 attribuisce una chiave a ogni figlio; 15 = 2·8 − 1 confonde con la formula del numero massimo di chiavi; 9 sarebbe k + 1 applicato al contrario."
+    },
+    {
+      "id": "L14-T20-07",
+      "tipo": "L14-T20",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti è una differenza corretta tra un B-albero e un albero binario di ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Entrambi sono alberi binari, ma il B-albero contiene più chiavi in ogni nodo",
+        "Il B-albero è un albero quasi completo, l'ABR no",
+        "Nel B-albero le chiavi non sono ordinate, nell'ABR sì",
+        "Un B-albero ha tutte le foglie allo stesso livello e non può degenerare in una catena; un ABR può"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il B-albero è bilanciato per costruzione (foglie tutte allo stesso livello, altezza O(log n)), mentre l'ABR può avere altezza fino a n − 1. Un nodo di B-albero ha più chiavi, in ordine crescente, e più di due figli: non è un albero binario. La forma quasi completa è quella dell'heap, non del B-albero."
+    },
+    {
+      "id": "L14-T20-08",
+      "tipo": "L14-T20",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale proprietà dei B-alberi ne garantisce l'altezza logaritmica nel numero di chiavi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ogni nodo ha al più due figli e una sola chiave",
+        "Le foglie sono tutte allo stesso livello e ogni nodo, tranne la radice, ha un numero minimo di chiavi",
+        "L'albero è sempre quasi completo, come un heap",
+        "Le chiavi vengono inserite sempre in ordine casuale"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Foglie tutte allo stesso livello più un numero minimo di chiavi (e quindi di figli) per ogni nodo non radice impediscono all'albero di allungarsi: l'altezza è O(log n). Un albero binario con una chiave per nodo è un ABR e può degenerare; la forma quasi completa è quella dell'heap; l'ordine di arrivo delle chiavi non cambia questa garanzia."
+    }
+  ]
+}

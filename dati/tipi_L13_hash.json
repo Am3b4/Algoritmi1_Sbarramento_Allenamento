@@ -1,0 +1,531 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 13,
+    "titolo": "Dizionari e tabelle hash",
+    "file": "PL13.pdf",
+    "contenuti": [
+      "Dizionario: insieme dinamico con le operazioni insert, search, delete; coppie (chiave, valore), chiave univoca; esempi (matricola, ISBN, codice fiscale)",
+      "Tabelle ad indirizzamento diretto: chiavi intere in [0, m − 1], operazioni O(1); limiti quando l'universo è enorme rispetto ai dati (numeri telefonici, codice fiscale)",
+      "Tabelle hash: funzione hash h : U → {0, …, m − 1} con m ≪ |U|; esempio h(k) = k mod m",
+      "Collisioni e due strategie di gestione: indirizzamento chiuso (liste di trabocco) e indirizzamento aperto",
+      "Liste di trabocco: codice Python di insert (con aggiornamento), search, delete; fattore di carico α = n/m; costo medio O(1 + α); rehashing e suo costo O(n)",
+      "Indirizzamento aperto con scansione lineare h′(k, i) = (h(k) + i) mod m: codice di insert (riuso della prima cella DELETED), search (si ferma su None), delete (marcatura DELETED); clustering primario",
+      "Costi dell'indirizzamento aperto: ricerca con insuccesso in media 1/(1 − α) accessi (α = 0,5 → 2; 0,75 → 4; 0,9 → 10), caso peggiore O(m); prova con q_i ≤ α^i; effetto dei DELETED su α; rehashing con soglia sui DELETED",
+      "Esercizi: inserimenti con m = 10 con liste di trabocco e con scansione lineare; ricostruire una sequenza di inserimento compatibile con una tabella data"
+    ],
+    "nota": "Prove ufficiali: maggio 2026 domanda 12 (definizione di collisione) e luglio 2026 domanda 12 (caso peggiore con liste di trabocco). Per le varianti: (1) la dispensa chiama 'indirizzamento chiuso' le liste di trabocco, ma al lucido 33 usa 'hash chiuso' per l'indirizzamento aperto: nelle domande usare solo 'liste di trabocco' e 'indirizzamento aperto'; (2) il lucido 30 dice che le celle DELETED 'non possono essere riutilizzate', ma il codice di insert (lucido 24) scrive nella prima DELETED incontrata: seguire sempre il codice; (3) il numero del lucido 7 sul codice fiscale (26⁸ · 10⁷ = 2 · 10¹⁷) è impreciso (vale circa 2 · 10¹⁸): non chiederlo come calcolo."
+  },
+  "tipi": [
+    {
+      "id": "L13-T01",
+      "titolo": "Operazioni del dizionario e ruolo della chiave",
+      "argomento": "Dizionari",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 13, 'Dizionari e Operazioni Fondamentali' ed 'Esempi di Dizionari' (matricola, ISBN, codice fiscale).",
+      "descrizione": "Domanda di definizione: quali sono le tre operazioni fondamentali di un dizionario, cos'è la chiave, che relazione c'è tra chiave e valore; oppure, in uno scenario concreto, quale dato può fare da chiave.",
+      "conoscenze": [
+        "Un dizionario gestisce un insieme dinamico di dati con tre operazioni: insert (inserisce), search (cerca), delete (elimina).",
+        "Ogni elemento è una coppia (chiave, valore); la chiave identifica in modo univoco l'elemento.",
+        "La relazione chiave → valore è una mappatura: ogni chiave è legata a un solo valore (chiavi diverse possono avere valori uguali).",
+        "Esempi della dispensa: matricola → dati dello studente; ISBN → dati del libro; codice fiscale → dati del cittadino.",
+        "La chiave non è la posizione in memoria: nelle tabelle hash la posizione è h(k); solo nell'indirizzamento diretto coincide con la chiave."
+      ],
+      "procedimento": [
+        "Per le operazioni: ricordare le tre fondamentali (insert, search, delete).",
+        "Per la chiave: chiedersi se il dato identifica un solo elemento dell'insieme e se a esso corrisponde un solo valore."
+      ],
+      "trappole": [
+        "Mettere tra le operazioni fondamentali l'ordinamento, la ricerca del minimo o una visita (non fanno parte del dizionario).",
+        "Pensare che a una chiave possano essere associati più valori contemporaneamente.",
+        "Scegliere come chiave un dato non univoco (nome e cognome, data di nascita, titolo del libro).",
+        "Pensare che la chiave debba essere sempre un intero non negativo (è un requisito del solo indirizzamento diretto).",
+        "Confondere la chiave con la posizione dell'elemento nella tabella."
+      ],
+      "come_generare_varianti": "Tre forme: (a) quale tra quattro operazioni NON è fondamentale per un dizionario (tre tra insert, search, delete e una tra ordinamento, ricerca del minimo, visita in ordine, concatenazione); (b) quale affermazione sulla chiave è corretta (una sola: univoca, legata a un solo valore; distrattori: più valori, sempre intera, coincide con la posizione); (c) in uno scenario (università, biblioteca, anagrafe, magazzino, parcheggio) quale campo può fare da chiave: una sola opzione univoca (matricola, ISBN, codice fiscale, codice prodotto, targa), tre non univoche (cognome, titolo, data, colore, città). Evitare campi discutibili (email, numero di telefono condiviso)."
+    },
+    {
+      "id": "L13-T02",
+      "titolo": "Indirizzamento diretto: quando è adatto",
+      "argomento": "Indirizzamento diretto",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 13, 'Funzionamento delle Tabelle ad Indirizzamento Diretto', 'Vantaggi e Svantaggi', 'Quando l'Accesso Diretto è Inefficiente' (numeri telefonici: 10¹⁰ combinazioni contro circa 100 milioni in uso; codice fiscale contro meno di 60 milioni di cittadini).",
+      "descrizione": "Si chiede come funziona una tabella ad indirizzamento diretto, quanto costano le operazioni, e soprattutto in quale scenario è adatta (chiavi intere in un intervallo piccolo e noto, densamente usato) e in quale spreca memoria (universo delle chiavi enorme rispetto ai dati).",
+      "conoscenze": [
+        "Array di m posizioni, una per ogni possibile chiave; chiavi intere nell'intervallo [0, m − 1]; l'elemento con chiave k sta in T[k].",
+        "insert, search e delete costano O(1); non ci sono collisioni.",
+        "Requisiti: chiavi intere non negative e intervallo noto in anticipo.",
+        "La memoria è proporzionale alla dimensione dell'universo |U| delle chiavi, non al numero n di chiavi memorizzate.",
+        "Inefficiente se l'universo è grande e poco popolato: cellulari 10¹⁰ combinazioni contro circa 10⁸ numeri in uso; codici fiscali, universo enorme contro meno di 60 milioni di cittadini.",
+        "Adatta se l'universo è piccolo e quasi tutto usato: camere numerate di un albergo, giorni dell'anno, posti numerati di una sala."
+      ],
+      "procedimento": [
+        "Controllare che le chiavi siano interi non negativi in un intervallo noto.",
+        "Confrontare la dimensione dell'intervallo |U| con il numero n di dati: se |U| è paragonabile a n va bene, se |U| ≫ n serve una tabella hash."
+      ],
+      "trappole": [
+        "Scegliere l'indirizzamento diretto perché le operazioni sono O(1), senza guardare la dimensione dell'universo.",
+        "Pensare che basti che le chiavi siano interi: matricole a 7 cifre per 200 studenti sono interi, ma l'universo (10⁷) è enorme rispetto ai dati.",
+        "Pensare che la memoria dipenda dal numero di elementi inseriti invece che da |U|.",
+        "Credere che l'indirizzamento diretto abbia collisioni o richieda liste di trabocco."
+      ],
+      "come_generare_varianti": "Forma principale: quattro scenari concreti con dati e chiavi esplicite; uno solo con chiavi intere in un intervallo piccolo, noto e quasi tutto usato (camere 0–499 di un albergo con 500 camere, giorni dell'anno 1–366, 900 prodotti con codice a 3 cifre); gli altri con universo enorme (numeri di telefono, codici fiscali, ISBN, matricole a 7 cifre per un corso di 200 studenti, targhe). Almeno un distrattore deve avere chiavi intere ma universo enorme. Altre forme: costo delle operazioni (O(1); distrattori O(log n), O(n), O(1 + α)); principale svantaggio (memoria proporzionale a |U|; distrattori: operazioni lente, collisioni, chiavi solo stringhe)."
+    },
+    {
+      "id": "L13-T03",
+      "titolo": "Funzione hash: compressione dell'universo e calcolo di k mod m",
+      "argomento": "Funzione hash",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 13, 'Tabelle Hash' (h : U → {0, 1, …, m − 1}, vantaggiosa quando m ≪ |U|) ed 'Esempio: Funzione di Hash Modulo' (m = 10: h(18) = 8, h(41) = 1, h(22) = 2).",
+      "descrizione": "Si chiede cosa fa una funzione hash (porta l'universo delle chiavi negli indici 0, …, m − 1 di una tabella più piccola, per risparmiare memoria) oppure si fa calcolare h(k) = k mod m per alcune chiavi.",
+      "conoscenze": [
+        "h : U → {0, 1, …, m − 1}: ogni chiave viene mandata in un indice valido della tabella T di dimensione m.",
+        "Scopo: ridurre la memoria rispetto all'indirizzamento diretto; conviene quando m ≪ |U|.",
+        "h(k) = k mod m è il resto della divisione intera di k per m: è sempre tra 0 e m − 1. La cella m non esiste.",
+        "Se k < m allora h(k) = k; se k è multiplo di m allora h(k) = 0.",
+        "Esempio della dispensa (m = 10): h(18) = 8, h(41) = 1, h(22) = 2."
+      ],
+      "procedimento": [
+        "Dividere k per m e prendere il resto (non il quoziente).",
+        "Controllare che ogni risultato sia compreso tra 0 e m − 1."
+      ],
+      "trappole": [
+        "Usare il quoziente k // m invece del resto k % m.",
+        "Usare l'ultima cifra (mod 10) anche quando m non è 10.",
+        "Indicare la cella m per una chiave multipla di m: la cella m non esiste, il resto è 0.",
+        "Pensare che la funzione hash ordini le chiavi o le renda univoche."
+      ],
+      "come_generare_varianti": "Forma numerica: m tra 7, 8, 11, 13 (a volte 10), tre chiavi di cui una multipla di m e una minore di m; opzioni = terne di indici. Distrattori: terna dei quozienti, terna con mod 10 invece di mod m, terna corretta tranne 'm' al posto di 0 per il multiplo. Controllare che le quattro terne siano diverse. Forma concettuale: codominio di h ({0, …, m − 1}; distrattori {1, …, m}, U, {0, …, |U| − 1}) o scopo (risparmiare memoria quando m ≪ |U|; distrattori: ordinare, eliminare le collisioni, rendere le chiavi univoche)."
+    },
+    {
+      "id": "L13-T04",
+      "titolo": "Definizione di collisione",
+      "argomento": "Collisioni",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 13, 'Gestione delle Collisioni'. Prova di maggio 2026, domanda 12 (una collisione avviene quando si inseriscono due chiavi con lo stesso valore hash).",
+      "descrizione": "Si chiede quando avviene una collisione; varianti: perché le collisioni sono inevitabili, o quale coppia di chiavi collide per una m data.",
+      "conoscenze": [
+        "Collisione: due chiavi diverse k₁ ≠ k₂ con h(k₁) = h(k₂), cioè mandate nella stessa posizione della tabella.",
+        "Sono inevitabili: la tabella ha m ≪ |U| celle, quindi molte chiavi dell'universo hanno lo stesso indice.",
+        "La tabella hash non impedisce le collisioni: le gestisce (liste di trabocco o indirizzamento aperto).",
+        "Con h(k) = k mod m collidono le chiavi con lo stesso resto (per m = 10, la stessa ultima cifra).",
+        "Reinserire la stessa chiave non è una collisione: è un aggiornamento del valore.",
+        "Nell'indirizzamento diretto non ci sono collisioni."
+      ],
+      "procedimento": [
+        "Calcolare h per le chiavi coinvolte.",
+        "C'è collisione se e solo se due chiavi diverse hanno lo stesso valore hash."
+      ],
+      "trappole": [
+        "Pensare che la collisione sia il tentativo di inserire in una tabella piena.",
+        "Confondere la collisione con il reinserimento di una chiave già presente.",
+        "Pensare che una buona funzione hash elimini del tutto le collisioni.",
+        "Pensare che la tabella hash 'risolva' le collisioni nel senso che non avvengono mai (opzione d della prova di maggio)."
+      ],
+      "come_generare_varianti": "(a) Definizione, riformulando la domanda di maggio ('Una collisione si verifica quando…', 'Si parla di collisione se…'); distrattori: tabella vuota, chiave nulla, tabella piena, stessa chiave reinserita, 'non avviene mai con una buona funzione hash'. (b) Data m (7, 10, 11) e quattro coppie di chiavi, quale coppia collide: una sola coppia con lo stesso resto; distrattori: coppia di chiavi uguali, coppia con la stessa prima cifra, coppia con resti diversi di 1. (c) Perché sono inevitabili: m ≪ |U|; distrattori: funzione hash scritta male, tabella troppo grande, chiavi non intere."
+    },
+    {
+      "id": "L13-T05",
+      "titolo": "Liste di trabocco e indirizzamento aperto a confronto",
+      "argomento": "Collisioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 13, 'Gestione delle Collisioni' (indirizzamento chiuso o liste di trabocco; indirizzamento aperto), 'Struttura delle Tabelle Hash con Liste di Trabocco', 'Indirizzamento aperto'.",
+      "descrizione": "Si chiede dove finisce una chiave che collide con ciascuna delle due strategie, quale strategia usa strutture ausiliarie, quale permette più di m chiavi, in quale serve la marcatura DELETED.",
+      "conoscenze": [
+        "Liste di trabocco (la dispensa le chiama anche indirizzamento chiuso): ogni cella contiene una lista (array dinamico o lista a puntatori); tutte le chiavi con lo stesso h(k) stanno nella lista T[h(k)].",
+        "Indirizzamento aperto: tutti gli elementi stanno dentro la tabella, senza strutture ausiliarie; in caso di collisione si esplorano altre celle finché se ne trova una libera (la dispensa usa la scansione lineare).",
+        "Con le liste di trabocco la tabella non si riempie mai: si possono memorizzare più di m chiavi. Con l'indirizzamento aperto al più m.",
+        "Solo l'indirizzamento aperto richiede la marcatura DELETED per cancellare; con le liste la coppia si rimuove davvero."
+      ],
+      "procedimento": [
+        "Chiedersi dove va la chiave che collide: in una lista attaccata alla cella (liste di trabocco) o in un'altra cella della tabella (indirizzamento aperto)."
+      ],
+      "trappole": [
+        "Scambiare i nomi: pensare che 'indirizzamento aperto' significhi liste esterne alla tabella.",
+        "Pensare che la chiave che collide sovrascriva quella presente o venga scartata.",
+        "Pensare che anche con le liste di trabocco la tabella possa riempirsi.",
+        "Pensare che DELETED serva anche con le liste di trabocco."
+      ],
+      "come_generare_varianti": "Domande brevi: 'Con l'indirizzamento aperto (o con le liste di trabocco) dove viene memorizzata una chiave che collide?'; 'Quale strategia usa strutture dati ausiliarie?'; 'Con quale strategia si possono memorizzare più di m chiavi?'; 'In quale strategia la cancellazione marca la cella come DELETED?'. Distrattori dalle trappole e dalla strategia opposta. Usare solo i termini 'liste di trabocco' e 'indirizzamento aperto' (eventualmente 'indirizzamento chiuso (liste di trabocco)' come al lucido 10); non usare 'hash aperto' e 'hash chiuso', che la dispensa usa in modo incoerente."
+    },
+    {
+      "id": "L13-T06",
+      "titolo": "Liste di trabocco: tabella dopo una sequenza di inserimenti",
+      "argomento": "Liste di trabocco",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 13, Esercizio 1 (m = 10, h(k) = k mod m, chiavi 23, 54, 87, 12, 6, 45, 67, 89, 3) e funzione insert con liste di trabocco.",
+      "descrizione": "Si inserisce una sequenza di chiavi in una tabella con liste di trabocco e si chiede il contenuto di una cella (con l'ordine delle chiavi), la lunghezza della lista più lunga o quante liste restano vuote.",
+      "conoscenze": [
+        "Ogni chiave va nella lista T[h(k)] e non cambia mai cella.",
+        "La insert della dispensa usa append: la nuova chiave va in fondo alla lista, quindi le chiavi di una lista sono in ordine di inserimento.",
+        "Esercizio 1 (m = 10): T[2] = [12], T[3] = [23, 3], T[4] = [54], T[5] = [45], T[6] = [6], T[7] = [87, 67], T[9] = [89]; T[0], T[1], T[8] vuote."
+      ],
+      "procedimento": [
+        "Calcolare h(k) = k mod m per ogni chiave.",
+        "Accodare la chiave alla lista T[h(k)], nell'ordine dato.",
+        "Leggere la cella richiesta (o contare lunghezze e liste vuote)."
+      ],
+      "trappole": [
+        "Applicare la scansione lineare (chiave che collide nella cella libera successiva) anche con le liste di trabocco.",
+        "Inserire in testa invece che in fondo (la dispensa usa append).",
+        "Usare il quoziente k // m invece del resto.",
+        "Contare tra le celle usate anche le liste vuote, o viceversa."
+      ],
+      "come_generare_varianti": "m tra 7 e 13 (spesso 10), 7–10 chiavi a due cifre con almeno due gruppi di collisione (2–3 chiavi con lo stesso resto). Chiedere: il contenuto di una cella con l'ordine; la lunghezza massima; il numero di liste vuote. Distrattori: risultato ottenuto con la scansione lineare; lista in ordine inverso; risultato con il quoziente (scegliere le chiavi in modo che il quoziente dia una lista diversa e non vuota). Verificare la tabella con una simulazione della insert della dispensa."
+    },
+    {
+      "id": "L13-T07",
+      "titolo": "Liste di trabocco: aggiornamento, cancellazione e valori restituiti",
+      "argomento": "Liste di trabocco",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 13, 'Inserimento con Liste di Trabocco' (inserisce o aggiorna), 'Ricerca con Liste di Trabocco' (valore oppure None), 'Cancellazione con Liste di Trabocco' (remove; True o False).",
+      "descrizione": "Si esegue una sequenza mista di insert, search e delete (con almeno una chiave ripetuta) su una tabella con liste di trabocco; si chiede lo stato finale di una lista o il valore restituito da un'operazione. Variante: perché insert scorre la lista prima di inserire.",
+      "conoscenze": [
+        "insert scorre T[h(k)]: se trova la chiave ne aggiorna il valore e termina; altrimenti accoda [key, value]. Non crea mai duplicati.",
+        "Per questo anche insert costa O(1 + α) in media e non O(1): deve controllare la lista.",
+        "search restituisce il valore associato, oppure None se la chiave non c'è.",
+        "delete rimuove davvero la coppia (remove) e restituisce True; restituisce False se la chiave non c'è. Nessun segnaposto DELETED.",
+        "Ogni operazione tocca solo la lista T[h(k)]."
+      ],
+      "procedimento": [
+        "Eseguire le operazioni in ordine, lavorando solo sulla lista T[h(k)].",
+        "Per ogni insert controllare prima se la chiave è già nella lista: se sì, aggiornare il valore in posto.",
+        "Per delete togliere la coppia; per search leggere il valore o restituire None."
+      ],
+      "trappole": [
+        "Accodare un duplicato quando la chiave è già presente.",
+        "Ignorare l'aggiornamento e lasciare il valore vecchio.",
+        "Lasciare un segnaposto DELETED nella lista (confusione con l'indirizzamento aperto).",
+        "Pensare che search di una chiave assente restituisca False (restituisce None) o che delete restituisca il valore."
+      ],
+      "come_generare_varianti": "m = 5 o 7; 3–4 chiavi con lo stesso hash e qualche chiave altrove; 5–7 operazioni con almeno un insert su una chiave già presente (con valore nuovo) e un delete. Chiedere lo stato di una lista, il risultato di una search, oppure il valore restituito da un delete (True/False, anche su chiave già cancellata). Distrattori: lista con duplicato; lista con il valore vecchio; lista con 'DELETED'; valore restituito sbagliato (False al posto di None, il valore al posto di True). Verificare con una simulazione."
+    },
+    {
+      "id": "L13-T08",
+      "titolo": "Fattore di carico: calcolo e quando può superare 1",
+      "argomento": "Fattore di carico",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 13, 'Considerazioni sulla Complessità delle Operazioni' (α = n/m, caso n ≫ m), 'Ricerca con insuccesso nell'indirizzamento aperto' ed 'Effetto dei DELETED sulle prestazioni' (n = coppie valide + celle DELETED).",
+      "descrizione": "Si calcola α = n/m da n e m, oppure si chiede se un certo valore di α è possibile con le liste di trabocco o con l'indirizzamento aperto, e cosa significa.",
+      "conoscenze": [
+        "α = n/m: numero di chiavi diviso numero di celle. Con le liste di trabocco e hash uniforme è la lunghezza media di una lista.",
+        "Liste di trabocco: α può valere più di 1 (n > m): le liste sono più lunghe in media, ma tutto funziona.",
+        "Indirizzamento aperto: al più una chiave per cella, quindi n ≤ m e 0 ≤ α ≤ 1; con α = 1 la tabella è piena.",
+        "Nell'indirizzamento aperto, nella stima dei costi n conta le celle diverse da None: coppie valide più celle DELETED."
+      ],
+      "procedimento": [
+        "Dividere n per m.",
+        "Controllare la strategia: con l'indirizzamento aperto un valore maggiore di 1 è impossibile; con le liste è ammesso."
+      ],
+      "trappole": [
+        "Credere che α non possa mai superare 1 (vale solo per l'indirizzamento aperto).",
+        "Calcolare m/n invece di n/m.",
+        "Pensare che con α > 1 le liste di trabocco smettano di funzionare o che gli inserimenti falliscano.",
+        "Dimenticare le celle DELETED nel calcolo di α per l'indirizzamento aperto."
+      ],
+      "come_generare_varianti": "Dare m (100, 500, 1000), n (multiplo o frazione di m) e la strategia; chiedere α o quale affermazione è vera. Includere casi con α > 1 sulle liste (ammesso) e casi con n > m sull'indirizzamento aperto (impossibile). Variante DELETED: m = 20, 8 coppie valide e 4 celle DELETED → nella stima α = 12/20 = 0,6, non 0,4. Distrattori: m/n; 'impossibile perché α ≤ 1'; 'la tabella è piena, gli inserimenti falliscono'; α senza DELETED."
+    },
+    {
+      "id": "L13-T09",
+      "titolo": "Costo medio con liste di trabocco: O(1 + α)",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 13, 'Considerazioni sulla Complessità delle Operazioni' (calcolo dell'indice O(1) più scansione della lista O(α): O(1 + α) per inserimento, ricerca e cancellazione).",
+      "descrizione": "Si chiede il costo medio di insert, search o delete con liste di trabocco, in funzione di α oppure di n e m; spesso con m fissa o legata a n, così che il costo vada semplificato.",
+      "conoscenze": [
+        "Con funzione hash uniforme: O(1) per calcolare h(k) più O(α) per scorrere la lista: O(1 + α) = O(1 + n/m), per tutte e tre le operazioni.",
+        "Se m è proporzionale a n (α costante, anche maggiore di 1) il costo medio è O(1).",
+        "Se m è fissa e n cresce, α = n/m cresce con n e il costo medio diventa O(n).",
+        "Se m = √n, α = √n e il costo medio è O(√n).",
+        "1/(1 − α) è la formula dell'indirizzamento aperto: con le liste non si usa (per α ≥ 1 non avrebbe senso).",
+        "L'1 in 1 + α è il calcolo dell'hash: anche con α vicino a 0 il costo è almeno costante."
+      ],
+      "procedimento": [
+        "Calcolare α = n/m (eventualmente in funzione di n).",
+        "Sostituire in O(1 + α) e semplificare."
+      ],
+      "trappole": [
+        "Usare 1/(1 − α), la formula dell'indirizzamento aperto.",
+        "Rispondere 'O(1) sempre' ricordando lo slogan 'la ricerca in una tabella hash è costante'.",
+        "Dare come costo medio quello del caso peggiore (lunghezza della lista più lunga, Θ(n)) quando α è costante.",
+        "Rispondere O(α) dimenticando il calcolo dell'hash (sbagliato se α può tendere a 0)."
+      ],
+      "come_generare_varianti": "Variare la relazione tra m e n: m fissa (100, 1000), m = n/10, m = 2n, m = √n, m = n/log n. Chiedere il costo medio di una ricerca, di un inserimento o di una cancellazione. Distrattori: O(1/(1 − α)); O(1) sempre; O(n) (caso peggiore) quando la risposta è O(1); O(log n). Assicurarsi che una sola opzione coincida con O(1 + n/m) semplificata. Forma teorica: 'il costo medio di una ricerca con liste di trabocco è' con opzioni O(1 + α), O(1/(1 − α)), O(α²), O(log α)."
+    },
+    {
+      "id": "L13-T10",
+      "titolo": "Caso peggiore con liste di trabocco",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Prova di luglio 2026, domanda 12 (ricerca nel caso peggiore: dell'ordine del massimo delle lunghezze delle liste di trabocco). Dispensa 13, 'Considerazioni sulla Complessità delle Operazioni' (se n ≫ m le liste si allungano).",
+      "descrizione": "Si chiede il costo di ricerca, inserimento o cancellazione nel caso peggiore con liste di trabocco: è dell'ordine della lunghezza della lista più lunga; se tutte le chiavi collidono, Θ(n).",
+      "conoscenze": [
+        "Ogni operazione scorre solo la lista T[h(k)]; nel caso peggiore è la lista più lunga.",
+        "Costo nel caso peggiore: dell'ordine del massimo delle lunghezze delle liste di trabocco.",
+        "Se tutte le n chiavi hanno lo stesso hash si ha un'unica lista di n elementi: Θ(n).",
+        "α è una media: una lista può essere molto più lunga di α.",
+        "Con le liste non esiste un 'numero massimo di chiavi memorizzabili' e m non limita la lunghezza delle liste."
+      ],
+      "procedimento": [
+        "Individuare la lista che viene scandita nel caso peggiore (la più lunga) e contarne gli elementi."
+      ],
+      "trappole": [
+        "Rispondere 'costante' (vale solo in media, con α limitato).",
+        "Rispondere 'dell'ordine del fattore di carico' (è il caso medio).",
+        "Rispondere 'dell'ordine del numero massimo di chiavi memorizzabili' o 'di m' (ragionamento da indirizzamento aperto)."
+      ],
+      "come_generare_varianti": "(a) Riproporre la domanda di luglio cambiando operazione (ricerca, inserimento, cancellazione) e ordine delle opzioni; distrattori fissi: costante, ordine di α, ordine del numero massimo di chiavi memorizzabili o di m. (b) Versione numerica: n chiavi tutte con lo stesso hash → Θ(n) (distrattori Θ(1), Θ(1 + α), Θ(log n)); oppure tabella data con liste di lunghezze 1, 4, 2, 0, 3 → nel caso peggiore una ricerca esamina 4 elementi (distrattori: 2 = media arrotondata, 10 = totale, 5 = numero di celle)."
+    },
+    {
+      "id": "L13-T11",
+      "titolo": "Rehashing: quando si fa, cosa fa, quanto costa",
+      "argomento": "Rehashing",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 13, 'Cos'è il rehashing', 'Complessità, Vantaggi e svantaggi' (costo O(n)), 'Effetto dei DELETED sulle prestazioni e il Rehashing', 'Rehashing con Indirizzamento aperto' (soglia sui DELETED, es. 20%).",
+      "descrizione": "Si chiede cos'è il rehashing, quando conviene farlo (con le liste e con l'indirizzamento aperto), quanto costa e cosa succede alle chiavi e alle celle DELETED.",
+      "conoscenze": [
+        "Rehashing: si crea una nuova tabella (di solito più grande), si ricalcola l'hash di ogni elemento con il nuovo m e lo si reinserisce.",
+        "Liste di trabocco: si fa quando α è troppo alto, le liste troppo lunghe, le prestazioni degradano.",
+        "Indirizzamento aperto: si fa quando le celle DELETED superano una soglia (es. 20%) o la tabella è troppo piena; si reinseriscono solo le coppie valide, le DELETED spariscono.",
+        "Costo: O(n).",
+        "Le chiavi cambiano posizione perché h(k) = k mod m dipende da m (37: cella 7 con m = 10, cella 17 con m = 20).",
+        "Vantaggi: liste più corte, ricerche più veloci. Svantaggi: operazione costosa, nuova memoria, rallentamenti temporanei."
+      ],
+      "procedimento": [
+        "Ricordare causa (α alto, troppi DELETED), procedimento (nuova tabella, ricalcolo dell'hash, reinserimento delle sole coppie valide) e costo (O(n))."
+      ],
+      "trappole": [
+        "Pensare che le celle si copino nella stessa posizione senza ricalcolare l'hash.",
+        "Pensare che vengano ricopiate anche le celle DELETED.",
+        "Dare costo O(1) o O(n²).",
+        "Pensare che si faccia quando α è basso, per risparmiare memoria."
+      ],
+      "come_generare_varianti": "Forme: costo del rehashing (O(n); distrattori O(1), O(log n), O(n²)); quando si fa (α troppo alto; troppe DELETED; distrattori: α basso, dopo ogni inserimento, quando avviene una collisione); cosa succede alle DELETED (eliminate; distrattori: ricopiate, trasformate in None nella stessa posizione); dove finisce una chiave dopo il rehashing da m a m′ (calcolare k mod m′; distrattore: stessa cella di prima)."
+    },
+    {
+      "id": "L13-T12",
+      "titolo": "Scansione lineare: tabella dopo una sequenza di inserimenti",
+      "argomento": "Indirizzamento aperto",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 13, Esercizio 2 (m = 10, chiavi 23, 54, 87, 12, 6, 45, 67, 89, 3 con scansione lineare: 3 finisce nella cella 0 dopo il giro), 'Ricerca Lineare in Indirizzamento aperto' (h′(k, i) = (h(k) + i) mod m) e funzione insert.",
+      "descrizione": "Si inseriscono chiavi in una tabella con indirizzamento aperto e scansione lineare; si chiede la cella finale di una chiave, il contenuto della tabella o quante celle esamina un inserimento. Le sequenze più insidiose fanno passare la scansione dalla cella m − 1 alla cella 0.",
+      "conoscenze": [
+        "Sequenza di scansione: h(k), h(k) + 1, h(k) + 2, … tutto mod m. Dopo la cella m − 1 viene la cella 0; la cella m non esiste.",
+        "Senza DELETED, la chiave va nella prima cella None della scansione.",
+        "Una chiave spostata può occupare la cella 'di casa' di un'altra chiave, che a sua volta dovrà spostarsi: l'ordine di inserimento conta.",
+        "Esercizio 2: 67 va in 8 (7 occupata); 3 esamina 3, 4, 5, 6, 7, 8, 9, 0 e finisce in 0. Tabella finale: 0:3, 2:12, 3:23, 4:54, 5:45, 6:6, 7:87, 8:67, 9:89, cella 1 vuota.",
+        "Se la tabella non è piena si trova una cella libera in al più m tentativi."
+      ],
+      "procedimento": [
+        "Per ogni chiave, nell'ordine: calcolare h(k).",
+        "Se la cella è occupata passare a (h(k) + 1) mod m, poi (h(k) + 2) mod m, e così via.",
+        "Scrivere la chiave nella prima cella libera e aggiornare la tabella prima della chiave successiva."
+      ],
+      "trappole": [
+        "Dimenticare il modulo e indicare una cella ≥ m (10, 11, 12 con m = 10).",
+        "Lasciare la chiave nella sua cella h(k) come con le liste.",
+        "Non tenere conto delle chiavi già spostate (tabella non aggiornata).",
+        "Dire che l'inserimento fallisce arrivati in fondo all'array, anche se ci sono celle libere all'inizio."
+      ],
+      "come_generare_varianti": "m = 10 (oppure 7 o 11), 6–9 chiavi con collisioni che si accumulano sulle ultime celle (hash 7, 8, 9), così che la scansione passi alle celle 0, 1, 2; almeno una chiave deve trovare la sua cella occupata da una chiave spostata. Chiedere la cella di una chiave, il contenuto finale di una cella o il numero di celle esaminate da un inserimento. Distrattori: indice senza modulo (≥ m); cella h(k); cella ottenuta ignorando le chiavi spostate; 'inserimento fallito'. Verificare ogni traccia simulando la insert della dispensa."
+    },
+    {
+      "id": "L13-T13",
+      "titolo": "Scansione lineare: ricerca e celle esaminate",
+      "argomento": "Indirizzamento aperto",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 13, 'Operazione di Ricerca (indirizzamento aperto)' (si ferma su uno slot vuoto o sulla chiave; al più m tentativi).",
+      "descrizione": "Data una tabella con scansione lineare, si chiede quante e quali celle esamina search per una chiave (presente o assente) e cosa restituisce.",
+      "conoscenze": [
+        "search parte da h(k) e prosegue con (h(k) + i) mod m.",
+        "Si ferma: sulla chiave cercata (restituisce il valore); su una cella None (la chiave non c'è, restituisce None); dopo m tentativi.",
+        "Una cella occupata da un'altra chiave, anche con hash diverso, non ferma la ricerca.",
+        "Le celle DELETED non fermano la ricerca (vedi L13-T14).",
+        "La cella None finale conta come accesso: E[accessi] = 1 + accessi a celle occupate."
+      ],
+      "procedimento": [
+        "Partire da h(k) ed elencare le celle visitate applicando il modulo.",
+        "Fermarsi alla chiave o al primo None (o dopo m celle).",
+        "Contare le celle elencate, compresa quella che ferma la ricerca."
+      ],
+      "trappole": [
+        "Fermarsi alla cella h(k) se contiene un'altra chiave.",
+        "Fermarsi alla cella m − 1 (dimenticare il modulo).",
+        "Non contare la cella None che chiude la ricerca.",
+        "Pensare che una ricerca con insuccesso esamini sempre tutte le m celle."
+      ],
+      "come_generare_varianti": "Tabella m = 10 con un blocco di celle occupate che attraversa la fine dell'array (es. 8, 9, 0, 1, 2, 3) e altre celle vuote. Chiedere il numero di celle esaminate da una ricerca con insuccesso che parte dentro il blocco, o da una ricerca con successo di una chiave spostata. Distrattori: 1 (solo h(k)); conteggio senza la cella None; conteggio fermato alla cella m − 1; m. Le varianti con DELETED appartengono a L13-T14."
+    },
+    {
+      "id": "L13-T14",
+      "titolo": "Cancellazione con DELETED e ricerca successiva",
+      "argomento": "Indirizzamento aperto",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 13, 'Operazione di Cancellazione (indirizzamento aperto)' (la chiave viene marcata DELETED, non rimossa) e funzione search (salta le celle DELETED).",
+      "descrizione": "Si chiede perché la cancellazione con scansione lineare marca la cella come DELETED invece di rimetterla a None, oppure si esegue una ricerca dopo una cancellazione e si chiedono risultato e celle esaminate.",
+      "conoscenze": [
+        "delete cerca la chiave come search; se la trova scrive 'DELETED' nella cella e restituisce True; se incontra None prima, restituisce False.",
+        "Motivo: una chiave inserita dopo può aver scavalcato quella cella; se la cella tornasse None, la ricerca si fermerebbe lì e non troverebbe più chiavi presenti.",
+        "search e delete saltano le DELETED senza fermarsi; insert ricorda la prima DELETED per riusarla (L13-T15).",
+        "Le DELETED contano come celle occupate nel fattore di carico e allungano le scansioni finché non si fa rehashing.",
+        "delete non sposta le altre chiavi."
+      ],
+      "procedimento": [
+        "Applicare delete: trovare la chiave e marcare la sua cella come DELETED.",
+        "Per la ricerca successiva: partire da h(k), saltare le DELETED, fermarsi alla chiave o al primo None."
+      ],
+      "trappole": [
+        "Trattare la DELETED come None e concludere che la chiave cercata non c'è.",
+        "Pensare che delete faccia scalare indietro le chiavi successive del blocco.",
+        "Pensare che rimettere None sarebbe equivalente e più efficiente.",
+        "Dimenticare il modulo nel proseguire la scansione oltre la cella m − 1."
+      ],
+      "come_generare_varianti": "Partire da una tabella con un blocco che attraversa la fine dell'array; cancellare una chiave in mezzo al blocco; poi cercare una chiave che sta dopo nel blocco. Chiedere risultato e celle esaminate, oppure cosa succederebbe se la cella fosse rimessa a None. Forma concettuale: 'perché si marca DELETED?' (risposta: per non interrompere le ricerche delle chiavi che hanno scavalcato la cella; distrattori: per risparmiare memoria, per poter annullare la cancellazione, per velocizzare l'inserimento). Distrattori numerici: 'non trovata, si ferma alla DELETED'; 'non trovata, si ferma alla cella m − 1'; 'trovata in una cella spostata indietro'. Verificare con una simulazione."
+    },
+    {
+      "id": "L13-T15",
+      "titolo": "Inserimento con celle DELETED: riuso della prima",
+      "argomento": "Indirizzamento aperto",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 13, 'Operazione di Inserimento (indirizzamento aperto)' e 'Implementazione Operazione di Inserimento' (variabile first_deleted; valore −1 se non c'è posto).",
+      "descrizione": "In una tabella con celle DELETED si inserisce una chiave; si chiede in quale cella finisce, quante celle esamina insert o cosa succede se la chiave è già presente più avanti nella scansione.",
+      "conoscenze": [
+        "insert scandisce da h(k) con il modulo; alla prima DELETED ne memorizza la posizione (first_deleted) e continua.",
+        "Se trova la chiave stessa: ne aggiorna il valore in quella cella e termina (la DELETED non viene usata).",
+        "Se trova una cella None: inserisce nella prima DELETED incontrata, se esiste, altrimenti nella cella None.",
+        "Se esaurisce gli m tentativi: inserisce nella prima DELETED se c'è, altrimenti restituisce −1 (tabella piena).",
+        "Continua dopo la DELETED per non creare duplicati: la chiave potrebbe essere già presente più avanti.",
+        "Nota: il lucido 30 dice che le DELETED 'non possono essere riutilizzate', ma il codice della dispensa le riusa; vale il codice."
+      ],
+      "procedimento": [
+        "Seguire la scansione da h(k) con il modulo, annotando la prima DELETED.",
+        "Fermarsi alla chiave (aggiornamento in posto) o al primo None.",
+        "Scegliere la cella: prima DELETED se c'è, altrimenti il None trovato."
+      ],
+      "trappole": [
+        "Inserire nel primo None ignorando la DELETED incontrata prima.",
+        "Fermarsi alla prima DELETED senza controllare il resto del blocco (possibile duplicato).",
+        "Mettere la chiave nella DELETED anche quando è già presente più avanti (va aggiornata dov'è).",
+        "Dimenticare il modulo nel passare dalla cella m − 1 alla 0."
+      ],
+      "come_generare_varianti": "Tabella con un blocco che attraversa la fine dell'array e una o due DELETED. Inserire (a) una chiave nuova con hash prima della DELETED (va nella prima DELETED, dopo aver scandito fino al None); (b) una chiave già presente dopo la DELETED (aggiornamento in posto, la DELETED resta). Chiedere la cella e il numero di celle esaminate. Distrattori: primo None; DELETED con conteggio fermato alla DELETED; cella senza modulo; per (b), la DELETED. Verificare con una simulazione della insert della dispensa."
+    },
+    {
+      "id": "L13-T16",
+      "titolo": "Sequenza di inserimento compatibile con una tabella",
+      "argomento": "Indirizzamento aperto",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 13, Esercizio 3 (m = 10, tabella 0:88, 1:41, 2:22, 3:38, 8:18, 9:39; una sequenza possibile: 18, 39, 41, 22, 88, 38). La domanda 13 di luglio 2026 usa uno schema simile (ricostruire un ordine di inserimento compatibile), ma su un ABR: è un tipo di L14, non di questa lezione.",
+      "descrizione": "Data una tabella costruita con scansione lineare, si chiede quale tra quattro sequenze di inserimento può averla prodotta, quale chiave è stata inserita per ultima, o quale vincolo d'ordine è obbligatorio.",
+      "conoscenze": [
+        "Una chiave nella sua cella h(k) trovava quella cella libera quando è stata inserita.",
+        "Una chiave nella cella j ≠ h(k): al suo inserimento erano occupate tutte le celle da h(k) a j − 1 (con il modulo) e la cella j era libera.",
+        "Quindi le chiavi in quelle celle sono state inserite prima, qualunque sia il loro hash.",
+        "Esercizio 3: 88 (h = 8) è in 0, quindi 18 (cella 8) e 39 (cella 9) prima di 88; 38 (h = 8) è in 3, quindi tutte le altre prima di 38: 38 è per forza l'ultima. Le sequenze compatibili sono 40, per esempio 18, 39, 41, 22, 88, 38.",
+        "Per controllare una sequenza basta simularla."
+      ],
+      "procedimento": [
+        "Per ogni chiave fuori dalla sua cella h(k), elencare le celle scavalcate (con il modulo) e scrivere i vincoli 'prima di'.",
+        "Scartare le sequenze che violano un vincolo.",
+        "In caso di dubbio simulare la sequenza e confrontare con la tabella."
+      ],
+      "trappole": [
+        "Pensare che chiavi con lo stesso hash possano essere inserite in qualunque ordine.",
+        "Dimenticare il giro: per una chiave con h = 8 le celle 8, 9, 0, 1, 2 sono consecutive.",
+        "Considerare solo le chiavi con lo stesso hash e non quelle con hash diverso che occupano il percorso.",
+        "Scegliere la sequenza in ordine di indice di cella."
+      ],
+      "come_generare_varianti": "Tabella m = 10 con 5–7 chiavi, almeno un blocco che attraversa la fine dell'array e almeno una chiave che scavalca chiavi con hash diverso. Opzioni: quattro sequenze, una sola compatibile (simulare tutte e quattro). Distrattori: sequenza con due chiavi dello stesso hash invertite; sequenza in cui una chiave scavalcata è inserita dopo chi la scavalca; sequenza in ordine di indice di cella. Altre forme: 'quale chiave è stata inserita per forza per ultima' (solo se è forzata); opzione 'nessuna di queste' ammessa se verificata."
+    },
+    {
+      "id": "L13-T17",
+      "titolo": "Clustering primario",
+      "argomento": "Indirizzamento aperto",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 13, 'Ricerca Lineare in Indirizzamento aperto' (Problema: clustering primario).",
+      "descrizione": "Si chiede cos'è il clustering primario, quale tecnica lo produce e che effetto ha sulle prestazioni.",
+      "conoscenze": [
+        "Clustering primario: con la scansione lineare le chiavi tendono a raggrupparsi in blocchi contigui di celle occupate.",
+        "Una chiave il cui hash cade dentro un blocco finisce in fondo al blocco e lo allunga: i blocchi lunghi tendono a crescere ancora.",
+        "Effetto: scansioni più lunghe per inserimento e ricerca.",
+        "Riguarda l'indirizzamento aperto con scansione lineare; esistono strategie di esplorazione alternative che lo attenuano (la dispensa non le descrive).",
+        "Non riguarda le liste di trabocco."
+      ],
+      "procedimento": [
+        "Riconoscere la definizione (blocchi contigui di celle occupate) e associarla alla scansione lineare."
+      ],
+      "trappole": [
+        "Confonderlo con la collisione tra due chiavi.",
+        "Confonderlo con l'allungamento delle liste di trabocco.",
+        "Confonderlo con l'accumulo di celle DELETED.",
+        "Pensare che si verifichi anche con le liste di trabocco."
+      ],
+      "come_generare_varianti": "Forme: definizione; tecnica che lo causa (scansione lineare; distrattori: liste di trabocco, indirizzamento diretto, rehashing); effetto (scansioni più lunghe; distrattori: spreco di memoria, chiavi perse, tabella che non si riempie mai). Forma numerica: tabella con un blocco di celle occupate, chiedere dove finisce una chiave con hash all'inizio del blocco (in fondo al blocco) e quindi quanto diventa lungo il blocco. Distrattori: collisione, liste lunghe, DELETED."
+    },
+    {
+      "id": "L13-T18",
+      "titolo": "Costo dell'indirizzamento aperto: medio 1/(1 − α) e peggiore O(m)",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 13, 'Ricerca con insuccesso nell'indirizzamento aperto: Complessità' (tabella: α = 0,5 → 2; 0,75 → 4; 0,9 → 10; caso pessimo O(m)), 'Prova formale della complessità nel caso medio', 'Inserimento e Cancellazione: Complessità', 'Considerazioni finali' (dire sempre O(1) è impreciso).",
+      "descrizione": "Si chiede il numero medio di accessi o il costo medio di ricerca, inserimento o cancellazione per un dato α; oppure il costo nel caso peggiore; oppure quando è corretto dire che le operazioni sono O(1).",
+      "conoscenze": [
+        "Con funzione hash uniforme, una ricerca con insuccesso fa in media al più 1/(1 − α) accessi; anche inserimento e cancellazione costano in media O(1/(1 − α)).",
+        "Valori: α = 0,5 → 2; α = 0,75 → 4; α = 0,8 → 5; α = 0,9 → 10; per α → 1 il degrado è drastico (la stima diventa imprecisa: gli accessi non superano m).",
+        "Il costo medio è O(1) solo se α è limitato da una costante minore di 1 (es. α ≤ 0,5): dire sempre O(1) è impreciso.",
+        "Caso peggiore: tabella quasi piena, si scandiscono fino a m celle: O(m). Se la tabella è piena, insert restituisce −1.",
+        "Idea della prova: la probabilità di almeno i accessi a celle occupate è q_i ≤ α^i; Σ α^i = α/(1 − α); più l'accesso finale alla cella libera: 1/(1 − α).",
+        "1 + α è il costo medio delle liste di trabocco, non dell'indirizzamento aperto.",
+        "Nell'indirizzamento aperto α ≤ 1, e nel calcolo di α le DELETED contano come occupate."
+      ],
+      "procedimento": [
+        "Calcolare α = n/m (DELETED comprese).",
+        "Per il caso medio applicare 1/(1 − α); per il caso peggiore rispondere O(m)."
+      ],
+      "trappole": [
+        "Usare 1 + α (formula delle liste di trabocco).",
+        "Calcolare 1/α oppure 1 − α.",
+        "Rispondere O(1) indipendentemente da α.",
+        "Dare 1/(1 − α) come caso peggiore (è il caso medio), o O(1) come caso peggiore.",
+        "Non contare le celle DELETED nel calcolo di α (nella stima le DELETED contano come occupate)."
+      ],
+      "come_generare_varianti": "Forma numerica: dare α (0,5; 0,75; 0,8; 0,9; 0,95) oppure n e m (m = 1000, n = 900 → 10); chiedere il numero medio di accessi di una ricerca con insuccesso. Distrattori: 1 + α; 1/α; m (tutta la tabella); valore della tabella per un α diverso. Forma caso peggiore: costo di ricerca/inserimento nel caso peggiore (O(m); distrattori O(1/(1 − α)), O(1), O(log m)). Forma concettuale: 'quando la ricerca costa O(1) in media?' (α limitato da una costante < 1; distrattori: sempre; mai; solo se non ci sono collisioni). Usare sempre α < 1; con DELETED contarle in n."
+    }
+  ]
+}

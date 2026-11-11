@@ -1,0 +1,2306 @@
+{
+  "lezione": 7,
+  "generato_con": "claude-haiku-5-5",
+  "domande": [
+    {
+      "id": "L07-T01-01",
+      "tipo": "L07-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il Selection Sort della dispensa all'array A = [5, 8, 3, 9, 1, 6, 4]. Come appare A dopo le prime 2 iterazioni del ciclo esterno (for i)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 3, 5, 8, 9, 6, 4]",
+        "[3, 5, 1, 6, 4, 8, 9]",
+        "[1, 3, 8, 9, 5, 6, 4]",
+        "[3, 5, 8, 9, 1, 6, 4]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Ogni passata porta il minimo della parte non ordinata in posizione i con un solo scambio: passata 0: minimo 1 in posizione 4, scambiato con A[0]; passata 1: minimo 3 in posizione 2, scambiato con A[1]. Il risultato è [1, 3, 8, 9, 5, 6, 4]."
+    },
+    {
+      "id": "L07-T01-02",
+      "tipo": "L07-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il Selection Sort della dispensa all'array A = [4, 1, 6, 2, 7, 3, 5]. Come appare A dopo le prime 3 iterazioni del ciclo esterno (for i)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 2, 3, 4, 6, 7, 5]",
+        "[1, 2, 3, 4, 5, 6, 7]",
+        "[1, 2, 4, 6, 7, 3, 5]",
+        "[1, 2, 3, 4, 7, 6, 5]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E2",
+        null
+      ],
+      "spiegazione": "Ogni passata porta il minimo della parte non ordinata in posizione i con un solo scambio: passata 0: minimo 1 in posizione 1, scambiato con A[0]; passata 1: minimo 2 in posizione 3, scambiato con A[1]; passata 2: minimo 3 in posizione 5, scambiato con A[2]. Il risultato è [1, 2, 3, 4, 7, 6, 5]."
+    },
+    {
+      "id": "L07-T01-03",
+      "tipo": "L07-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Si applica il Selection Sort della dispensa all'array A = [1, 8, 5, 3, 9, 6]. Come appare A dopo le prime 2 iterazioni del ciclo esterno (for i)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 3, 5, 8, 9, 6]",
+        "[1, 3, 8, 5, 9, 6]",
+        "[1, 3, 5, 6, 8, 9]",
+        "[1, 5, 8, 3, 9, 6]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "Ogni passata porta il minimo della parte non ordinata in posizione i con un solo scambio: passata 0: minimo 1 in posizione 0, già al suo posto; passata 1: minimo 3 in posizione 3, scambiato con A[1]. Il risultato è [1, 3, 5, 8, 9, 6]."
+    },
+    {
+      "id": "L07-T01-04",
+      "tipo": "L07-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il Selection Sort della dispensa all'array A = [6, 5, 4, 3, 2, 1, 7]. Come appare A dopo le prime 2 iterazioni del ciclo esterno (for i)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 2, 6, 5, 4, 3, 7]",
+        "[1, 2, 4, 3, 5, 6, 7]",
+        "[4, 3, 2, 1, 5, 6, 7]",
+        "[4, 5, 6, 3, 2, 1, 7]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "Ogni passata porta il minimo della parte non ordinata in posizione i con un solo scambio: passata 0: minimo 1 in posizione 5, scambiato con A[0]; passata 1: minimo 2 in posizione 4, scambiato con A[1]. Il risultato è [1, 2, 4, 3, 5, 6, 7]."
+    },
+    {
+      "id": "L07-T01-05",
+      "tipo": "L07-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Si applica il Selection Sort della dispensa all'array A = [9, 3, 7, 1, 8, 2, 6, 4]. Come appare A dopo la prima iterazione del ciclo esterno (for i)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 9, 3, 7, 8, 2, 6, 4]",
+        "[3, 7, 1, 8, 2, 6, 4, 9]",
+        "[1, 3, 7, 9, 8, 2, 6, 4]",
+        "[3, 9, 7, 1, 8, 2, 6, 4]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Ogni passata porta il minimo della parte non ordinata in posizione i con un solo scambio: passata 0: minimo 1 in posizione 3, scambiato con A[0]. Il risultato è [1, 3, 7, 9, 8, 2, 6, 4]."
+    },
+    {
+      "id": "L07-T01-06",
+      "tipo": "L07-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si applica il Selection Sort della dispensa all'array A = [4, 7, 2, 8, 5, 1, 3]. Come appare A dopo le prime 3 iterazioni del ciclo esterno (for i)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 2, 3, 4, 7, 8, 5]",
+        "[2, 4, 1, 3, 5, 7, 8]",
+        "[2, 4, 7, 8, 5, 1, 3]",
+        "[1, 2, 3, 8, 5, 4, 7]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E2",
+        null
+      ],
+      "spiegazione": "Ogni passata porta il minimo della parte non ordinata in posizione i con un solo scambio: passata 0: minimo 1 in posizione 5, scambiato con A[0]; passata 1: minimo 2 in posizione 2, scambiato con A[1]; passata 2: minimo 3 in posizione 6, scambiato con A[2]. Il risultato è [1, 2, 3, 8, 5, 4, 7]."
+    },
+    {
+      "id": "L07-T02-01",
+      "tipo": "L07-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica l'Insertion Sort della dispensa all'array A = [5, 2, 8, 1, 7, 3]. Come appare A dopo le prime 3 iterazioni del ciclo for (i = 1, …, 3)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[2, 5, 8, 1, 7, 3]",
+        "[1, 2, 3, 5, 7, 8]",
+        "[1, 2, 5, 7, 8, 3]",
+        "[1, 2, 5, 8, 7, 3]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "All'iterazione i l'elemento A[i] entra nel prefisso ordinato A[0..i−1], spostando a destra i maggiori; dopo 3 iterazioni A[0..3] è ordinato e il resto è intatto. Risultato: [1, 2, 5, 8, 7, 3]."
+    },
+    {
+      "id": "L07-T02-02",
+      "tipo": "L07-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Si applica l'Insertion Sort della dispensa all'array A = [9, 4, 6, 2, 7, 1, 5]. Come appare A dopo le prime 2 iterazioni del ciclo for (i = 1, …, 2)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[4, 6, 9, 2, 7, 1, 5]",
+        "[4, 9, 6, 2, 7, 1, 5]",
+        "[1, 2, 6, 4, 7, 9, 5]",
+        "[4, 2, 6, 1, 5, 7, 9]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "All'iterazione i l'elemento A[i] entra nel prefisso ordinato A[0..i−1], spostando a destra i maggiori; dopo 2 iterazioni A[0..2] è ordinato e il resto è intatto. Risultato: [4, 6, 9, 2, 7, 1, 5]."
+    },
+    {
+      "id": "L07-T02-03",
+      "tipo": "L07-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si applica l'Insertion Sort della dispensa all'array A = [3, 7, 3, 1, 6, 2, 8, 4]. Come appare A dopo le prime 4 iterazioni del ciclo for (i = 1, …, 4)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 3, 3, 7, 6, 2, 8, 4]",
+        "[1, 3, 3, 6, 7, 2, 8, 4]",
+        "[1, 2, 3, 3, 6, 7, 8, 4]",
+        "[1, 2, 3, 3, 4, 6, 7, 8]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "All'iterazione i l'elemento A[i] entra nel prefisso ordinato A[0..i−1], spostando a destra i maggiori; dopo 4 iterazioni A[0..4] è ordinato e il resto è intatto. Risultato: [1, 3, 3, 6, 7, 2, 8, 4]."
+    },
+    {
+      "id": "L07-T02-04",
+      "tipo": "L07-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica l'Insertion Sort della dispensa all'array A = [8, 6, 5, 7, 2, 4]. Come appare A dopo le prime 4 iterazioni del ciclo for (i = 1, …, 4)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[5, 6, 7, 8, 2, 4]",
+        "[2, 4, 5, 6, 8, 7]",
+        "[2, 5, 6, 7, 8, 4]",
+        "[2, 4, 5, 6, 7, 8]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "All'iterazione i l'elemento A[i] entra nel prefisso ordinato A[0..i−1], spostando a destra i maggiori; dopo 4 iterazioni A[0..4] è ordinato e il resto è intatto. Risultato: [2, 5, 6, 7, 8, 4]."
+    },
+    {
+      "id": "L07-T02-05",
+      "tipo": "L07-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Insertion Sort della dispensa su A = [6, 2, 5, 5, 8, 1]: quanti elementi vengono spostati a destra durante l'iterazione i = 3 del ciclo for?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2",
+        "3",
+        "4",
+        "1"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Prima dell'iterazione 3 l'array è [2, 5, 6, 5, 8, 1] e x = 5. Tra gli elementi di A[0..2] solo il 6 è strettamente maggiore di x, quindi si sposta 1 elemento. Se si spostassero anche gli uguali (>=) ne sarebbero 2."
+    },
+    {
+      "id": "L07-T02-06",
+      "tipo": "L07-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Insertion Sort della dispensa su A = [7, 3, 7, 1, 7, 2]: quanti elementi vengono spostati a destra durante l'iterazione i = 4 del ciclo for?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "0",
+        "2",
+        "4",
+        "3"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Prima dell'iterazione 4 l'array è [1, 3, 7, 7, 7, 2] e x = 7. Nessun elemento di A[0..3] è strettamente maggiore di 7, quindi non si sposta nulla. Se si spostassero anche gli uguali (>=) si sposterebbero i due 7."
+    },
+    {
+      "id": "L07-T03-01",
+      "tipo": "L07-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il Bubble Sort della dispensa all'array A = [6, 1, 5, 3, 8, 2, 7]. Come appare A dopo le prime 2 iterazioni del ciclo esterno?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 3, 5, 2, 6, 7, 8]",
+        "[6, 1, 5, 3, 2, 7, 8]",
+        "[1, 5, 3, 6, 2, 7, 8]",
+        "[1, 2, 5, 3, 8, 6, 7]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Ogni passata scambia le coppie adiacenti fuori ordine da sinistra a destra, e alla fine di ciascuna passata l'ultimo posto ancora libero contiene il massimo della parte non ordinata. Risultato: [1, 3, 5, 2, 6, 7, 8]."
+    },
+    {
+      "id": "L07-T03-02",
+      "tipo": "L07-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il Bubble Sort della dispensa all'array A = [4, 9, 1, 7, 3, 8]. Come appare A dopo le prime 3 iterazioni del ciclo esterno?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[4, 3, 1, 7, 8, 9]",
+        "[1, 3, 4, 7, 8, 9]",
+        "[1, 4, 3, 7, 8, 9]",
+        "[1, 3, 4, 7, 9, 8]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Ogni passata scambia le coppie adiacenti fuori ordine da sinistra a destra, e alla fine di ciascuna passata l'ultimo posto ancora libero contiene il massimo della parte non ordinata. Risultato: [1, 3, 4, 7, 8, 9]."
+    },
+    {
+      "id": "L07-T03-03",
+      "tipo": "L07-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Si applica il Bubble Sort della dispensa all'array A = [8, 5, 9, 2, 6, 1, 4]. Come appare A dopo la prima iterazione del ciclo esterno?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[8, 5, 4, 2, 6, 1, 9]",
+        "[5, 8, 9, 2, 6, 1, 4]",
+        "[5, 8, 2, 6, 1, 4, 9]",
+        "[1, 5, 9, 2, 6, 8, 4]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E3"
+      ],
+      "spiegazione": "La passata confronta da sinistra a destra le coppie adiacenti: (8,5) scambio, (8,9) no, poi (9,2), (9,6), (9,1), (9,4) tutti scambi, e il 9 arriva in fondo. Risultato: [5, 8, 2, 6, 1, 4, 9]. [1, 5, 9, 2, 6, 8, 4] è il Selection Sort e [5, 8, 9, 2, 6, 1, 4] l'Insertion Sort dopo un passo; [8, 5, 4, 2, 6, 1, 9] sposta solo il massimo."
+    },
+    {
+      "id": "L07-T03-04",
+      "tipo": "L07-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si applica il Bubble Sort della dispensa all'array A = [2, 7, 4, 9, 1, 5, 3]. Come appare A dopo le prime 3 iterazioni del ciclo esterno?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[2, 4, 1, 5, 3, 7, 9]",
+        "[1, 2, 3, 9, 7, 5, 4]",
+        "[2, 4, 7, 9, 1, 5, 3]",
+        "[2, 1, 4, 3, 5, 7, 9]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "E3",
+        null
+      ],
+      "spiegazione": "Ogni passata scambia le coppie adiacenti fuori ordine da sinistra a destra, e alla fine di ciascuna passata l'ultimo posto ancora libero contiene il massimo della parte non ordinata. Risultato: [2, 1, 4, 3, 5, 7, 9]."
+    },
+    {
+      "id": "L07-T03-05",
+      "tipo": "L07-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il Bubble Sort della dispensa all'array A = [3, 8, 1, 6, 5, 9, 2]. Come appare A dopo le prime 2 iterazioni del ciclo esterno?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 3, 5, 6, 2, 8, 9]",
+        "[3, 2, 1, 6, 5, 8, 9]",
+        "[3, 1, 6, 5, 8, 2, 9]",
+        "[1, 2, 3, 6, 5, 9, 8]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Ogni passata scambia le coppie adiacenti fuori ordine da sinistra a destra, e alla fine di ciascuna passata l'ultimo posto ancora libero contiene il massimo della parte non ordinata. Risultato: [1, 3, 5, 6, 2, 8, 9]."
+    },
+    {
+      "id": "L07-T03-06",
+      "tipo": "L07-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il Bubble Sort della dispensa ad A = [5, 2, 9, 7, 1, 6, 3]. Dopo 2 passate, in quale posizione (indice da 0) si trova il valore 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "2",
+        "0",
+        "4"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Dopo 2 passate l'array è [2, 5, 1, 6, 3, 7, 9]: il valore 1 si trova all'indice 2. Il minimo arretra di al più una posizione per passata, quindi non può essere arrivato all'inizio."
+    },
+    {
+      "id": "L07-T04-01",
+      "tipo": "L07-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo della dispensa viene eseguito su A = [7, 2, 9, 4, 1, 6, 3] e, dopo un certo numero di iterazioni complete del ciclo esterno, l'array vale [2, 4, 7, 9, 1, 6, 3]. Quale algoritmo può averlo prodotto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Selection Sort",
+        "Insertion Sort",
+        "Nessuno dei tre",
+        "Bubble Sort"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "È l'Insertion Sort dopo 3 iterazioni: il prefisso [2, 4, 7, 9] contiene i primi quattro elementi dell'input ordinati e il resto [1, 6, 3] è intatto. Non è il Selection Sort, perché in testa non c'è il minimo 1; il prefisso dell'Insertion Sort non è in posizione finale."
+    },
+    {
+      "id": "L07-T04-02",
+      "tipo": "L07-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo della dispensa viene eseguito su A = [5, 8, 2, 9, 1, 6, 4] e, dopo un certo numero di iterazioni complete del ciclo esterno, l'array vale [1, 2, 8, 9, 5, 6, 4]. Quale algoritmo può averlo prodotto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nessuno dei tre",
+        "Insertion Sort",
+        "Selection Sort",
+        "Bubble Sort"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "È il Selection Sort dopo 2 passate: A[0..1] = [1, 2] contiene i 2 minimi in posizione finale, e il resto differisce dall'input solo per gli scambi. Non è il Bubble Sort, che porta i massimi in fondo (qui l'ultimo elemento è 4), né l'Insertion Sort, il cui prefisso sarebbe fatto da 5, 8, 2."
+    },
+    {
+      "id": "L07-T04-03",
+      "tipo": "L07-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo della dispensa viene eseguito su A = [4, 7, 1, 9, 3, 8, 2, 6] e, dopo un certo numero di iterazioni complete del ciclo esterno, l'array vale [1, 4, 3, 7, 2, 6, 8, 9]. Quale algoritmo può averlo prodotto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Selection Sort",
+        "Nessuno dei tre",
+        "Insertion Sort",
+        "Bubble Sort"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "È il Bubble Sort dopo 2 passate: gli ultimi due posti contengono i 2 massimi, 8 e 9, al loro posto, e la parte sinistra è disordinata. Non è il Selection Sort (il secondo elemento dovrebbe essere 2) né l'Insertion Sort (il prefisso sarebbe fatto dai primi elementi dell'input, 4 e 7)."
+    },
+    {
+      "id": "L07-T04-04",
+      "tipo": "L07-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un algoritmo della dispensa viene eseguito su A = [8, 3, 6, 1, 9, 4] e, dopo un certo numero di iterazioni complete del ciclo esterno, l'array vale [6, 3, 8, 1, 9, 4]. Quale algoritmo può averlo prodotto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nessuno dei tre",
+        "Selection Sort",
+        "Insertion Sort",
+        "Bubble Sort"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Non è il Selection Sort: dopo la prima passata in testa ci sarebbe il minimo 1, non il 6. Non è l'Insertion Sort: il prefisso [6, 3] non è ordinato. Non è il Bubble Sort: in fondo ci sarebbe il massimo 9, non il 4."
+    },
+    {
+      "id": "L07-T04-05",
+      "tipo": "L07-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un algoritmo della dispensa viene eseguito su A = [2, 9, 5, 7, 1, 8] e, dopo un certo numero di iterazioni complete del ciclo esterno, l'array vale [2, 5, 9, 7, 1, 8]. Quale algoritmo può averlo prodotto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Selection Sort",
+        "Insertion Sort",
+        "Nessuno dei tre",
+        "Bubble Sort"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "È l'Insertion Sort dopo 2 iterazioni: il prefisso [2, 5, 9] contiene i primi tre elementi dell'input ordinati e il resto [7, 1, 8] è intatto. Non è il Selection Sort, perché in testa non c'è il minimo 1, né il Bubble Sort, perché in fondo non c'è il massimo 9."
+    },
+    {
+      "id": "L07-T04-06",
+      "tipo": "L07-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un algoritmo della dispensa viene eseguito su A = [6, 1, 8, 3, 7, 2, 5] e, dopo un certo numero di iterazioni complete del ciclo esterno, l'array vale [1, 3, 2, 5, 6, 7, 8]. Quale algoritmo può averlo prodotto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Selection Sort",
+        "Nessuno dei tre",
+        "Bubble Sort",
+        "Insertion Sort"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "È il Bubble Sort dopo 3 passate: gli ultimi tre posti contengono i 3 massimi, 6, 7 e 8, in posizione finale. Non è il Selection Sort (il secondo elemento dovrebbe essere 2) né l'Insertion Sort (il prefisso [1, 3, 2] non è ordinato)."
+    },
+    {
+      "id": "L07-T05-01",
+      "tipo": "L07-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il Bubble Sort con flag scambi (versione ottimizzata della dispensa) riceve un array di n elementi già ordinato in senso crescente. Qual è la classe del suo costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1)",
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "La prima passata fa n − 1 confronti e nessuno scambio: il flag interrompe l'algoritmo. Il costo è lineare, non costante, perché ogni coppia adiacente va confrontata."
+    },
+    {
+      "id": "L07-T05-02",
+      "tipo": "L07-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il Bubble Sort senza flag (versione base della dispensa) riceve un array già ordinato di n elementi. Qual è la classe del suo costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E5",
+        null
+      ],
+      "spiegazione": "Nella versione base il ciclo interno gira sempre: Σ (n − i − 1) = n(n−1)/2 confronti su ogni input, anche su un array ordinato."
+    },
+    {
+      "id": "L07-T05-03",
+      "tipo": "L07-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il Bubble Sort con flag scambi riceve un array di n elementi ordinato in senso decrescente, con elementi distinti. Qual è la classe del suo costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "O(1)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Su un array decrescente ogni passata fa scambi, quindi il flag non interrompe mai il ciclo: n − 1 passate e n(n−1)/2 confronti, cioè Θ(n²). Il flag non migliora il caso peggiore."
+    },
+    {
+      "id": "L07-T05-04",
+      "tipo": "L07-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quanti confronti esegue il Bubble Sort con flag scambi su un array già ordinato di n = 10 elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "45",
+        "9",
+        "10",
+        "90"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La prima passata confronta le n − 1 = 9 coppie adiacenti, non fa scambi e il flag ferma l'algoritmo. 45 = n(n−1)/2 è il costo della versione senza flag."
+    },
+    {
+      "id": "L07-T05-05",
+      "tipo": "L07-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanti confronti esegue il Bubble Sort con flag scambi su un array già ordinato di n = 20 elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "190",
+        "0",
+        "19",
+        "20"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Una sola passata di n − 1 = 19 confronti senza scambi: il flag termina subito. 190 = n(n−1)/2 è il numero di confronti della versione base."
+    },
+    {
+      "id": "L07-T05-06",
+      "tipo": "L07-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanti confronti esegue il Bubble Sort con flag scambi su un array di n = 8 elementi ordinato in senso decrescente, con elementi distinti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "7",
+        "56",
+        "24",
+        "28"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "Su un array decrescente ogni passata fa scambi, quindi il flag non interrompe il ciclo: n − 1 = 7 passate e n(n−1)/2 = 28 confronti. 7 è il numero di confronti di una sola passata, come se il flag accelerasse il caso peggiore; 24 = n·log₂ n."
+    },
+    {
+      "id": "L07-T05-07",
+      "tipo": "L07-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul Bubble Sort con flag scambi è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nel caso migliore fa n − 1 confronti",
+        "Nel caso migliore non fa alcun confronto",
+        "Nel caso migliore fa n(n−1)/2 confronti",
+        "Nel caso migliore fa circa n·log₂ n confronti"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Nel caso migliore (array ordinato) la prima passata confronta le n − 1 coppie adiacenti e il flag termina l'algoritmo."
+    },
+    {
+      "id": "L07-T05-08",
+      "tipo": "L07-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanti confronti esegue il Bubble Sort senza flag su un array già ordinato di n elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "0",
+        "n(n−1)/2",
+        "n log₂ n",
+        "n − 1"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E5"
+      ],
+      "spiegazione": "Senza flag il ciclo interno gira su tutte le coppie in ogni passata, anche se non c'è nessuno scambio: n(n−1)/2 confronti. Il valore n − 1 è quello della versione con flag."
+    },
+    {
+      "id": "L07-T06-01",
+      "tipo": "L07-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quanti confronti esegue il Selection Sort della dispensa su un array di n = 7 elementi, qualunque sia l'input?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "49",
+        "14",
+        "21"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Per ogni i il ciclo interno fa n − i − 1 confronti: in totale n(n−1)/2 = 21, su ogni input. Il valore 6 = n − 1 è il risultato di chi pensa che il Selection Sort si fermi subito su un array ordinato."
+    },
+    {
+      "id": "L07-T06-02",
+      "tipo": "L07-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanti confronti esegue l'Insertion Sort della dispensa su un array già ordinato di n = 9 elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "8",
+        "36",
+        "9",
+        "72"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Su un array ordinato il while si ferma subito: un confronto per iterazione, n − 1 = 8 in totale. 36 = n(n−1)/2 sarebbe il costo del Selection Sort, attribuito per errore all'Insertion Sort."
+    },
+    {
+      "id": "L07-T06-03",
+      "tipo": "L07-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul caso medio dell'Insertion Sort è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n), perché in media si sposta solo metà degli elementi",
+        "Θ(n²), perché in media all'iterazione i si sposta circa metà dei i elementi precedenti",
+        "Θ(n), perché la maggior parte degli elementi è già al suo posto",
+        "Θ(n³), perché il ciclo interno è annidato"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Nel caso medio l'iterazione i fa circa i/2 spostamenti: in totale circa n(n−1)/4 spostamenti, quindi Θ(n²). Dimezzare il numero di spostamenti non cambia la classe."
+    },
+    {
+      "id": "L07-T06-04",
+      "tipo": "L07-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo del Selection Sort della dispensa su un array già ordinato in senso crescente?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), perché non deve fare nessuno scambio utile",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n³)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il numero di confronti del Selection Sort non dipende dall'input: anche se il minimo è già in posizione, per trovarlo scorre tutta la parte non ordinata, n(n−1)/2 confronti in totale, quindi Θ(n²)."
+    },
+    {
+      "id": "L07-T06-05",
+      "tipo": "L07-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo nel caso migliore dell'Insertion Sort della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Nel caso migliore (array ordinato) ogni iterazione fa un solo confronto e nessuno spostamento: n − 1 confronti, quindi Θ(n). Il costo Θ(n²) appartiene al caso peggiore."
+    },
+    {
+      "id": "L07-T06-06",
+      "tipo": "L07-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale affermazione sui costi di Selection Sort e Insertion Sort (versioni della dispensa) è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il Selection Sort fa n(n−1)/2 confronti su qualunque input",
+        "Il Selection Sort fa n − 1 confronti su un array ordinato",
+        "L'Insertion Sort nel caso medio costa Θ(n log n)",
+        "L'Insertion Sort fa Θ(n²) confronti anche nel caso migliore"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il ciclo interno del Selection Sort scorre sempre tutta la parte non ordinata: n(n−1)/2 confronti su ogni input. L'Insertion Sort, invece, ha costo Θ(n) nel caso migliore e Θ(n²) nel peggiore, quindi va sempre specificato il caso."
+    },
+    {
+      "id": "L07-T07-01",
+      "tipo": "L07-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un array contiene n elementi distinti in ordine decrescente. Quali sono i costi, nell'ordine, di Selection Sort, Insertion Sort e Bubble Sort con flag scambi (versioni della dispensa)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²), Θ(n²), Θ(n²)",
+        "Θ(n), Θ(n²), Θ(n²)",
+        "Θ(n²), Θ(n²), Θ(n)",
+        "Θ(n²), Θ(n), Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il Selection Sort fa sempre n(n−1)/2 confronti. Su un array decrescente l'Insertion Sort sposta ogni elemento in testa (i spostamenti all'iterazione i) e il Bubble Sort con flag fa n − 1 passate con scambi: tutti Θ(n²)."
+    },
+    {
+      "id": "L07-T07-02",
+      "tipo": "L07-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array contiene n elementi tutti uguali. Quali tra Selection Sort, Insertion Sort e Bubble Sort con flag scambi (versioni della dispensa) hanno costo Θ(n²)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Selection Sort e Insertion Sort",
+        "Solo Selection Sort",
+        "Nessuno dei tre",
+        "Tutti e tre"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il Selection Sort fa sempre n(n−1)/2 confronti. Insertion e Bubble con flag usano il confronto stretto '>': con elementi uguali non ci sono spostamenti né scambi, e costano Θ(n). Chi pensa che l'Insertion Sort sposti anche gli uguali gli attribuisce Θ(n²)."
+    },
+    {
+      "id": "L07-T07-03",
+      "tipo": "L07-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array contiene n elementi distinti già ordinati in senso crescente. Quali sono i costi, nell'ordine, di Selection Sort, Insertion Sort e Bubble Sort senza flag (versioni della dispensa)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), Θ(n), Θ(n²)",
+        "Θ(n²), Θ(n), Θ(n)",
+        "Θ(n²), Θ(n), Θ(n²)",
+        "Θ(n²), Θ(n²), Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Selection Sort fa n(n−1)/2 confronti su ogni input. L'Insertion Sort fa un confronto per iterazione su un array ordinato. Il Bubble Sort senza flag gira sempre su tutte le coppie: Θ(n²)."
+    },
+    {
+      "id": "L07-T07-04",
+      "tipo": "L07-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo del Bubble Sort senza flag scambi (versione base della dispensa) su un array di n elementi tutti uguali?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "O(1)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Senza flag il ciclo interno gira comunque su tutte le coppie adiacenti: n(n−1)/2 confronti, anche se A[j] > A[j+1] è sempre falso e non si fa nessuno scambio, quindi Θ(n²). Θ(n) vale solo per la versione con flag."
+    },
+    {
+      "id": "L07-T07-05",
+      "tipo": "L07-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array di n elementi tutti uguali. Quanti spostamenti esegue l'Insertion Sort della dispensa in tutto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "0",
+        "n(n−1)/2",
+        "n − 1",
+        "n"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il while controlla A[j] > x, che è falso subito tra elementi uguali: nessuno spostamento. Se il confronto fosse ≥, si sposterebbero tutti gli elementi precedenti: n(n−1)/2 spostamenti."
+    },
+    {
+      "id": "L07-T07-06",
+      "tipo": "L07-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un array di n elementi tutti uguali. Quanti confronti esegue l'Insertion Sort della dispensa in tutto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n(n−1)/2",
+        "n − 1",
+        "n",
+        "0"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni iterazione esegue un solo confronto, A[j] > x, che è falso: n − 1 confronti. Con il confronto ≥ invece si avrebbero circa n(n−1)/2 confronti."
+    },
+    {
+      "id": "L07-T08-01",
+      "tipo": "L07-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array di n elementi è [n, 1, 2, …, n − 1]: il massimo è in prima posizione e il resto è ordinato. Quali sono i costi di Insertion Sort e Bubble Sort con flag scambi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Entrambi Θ(n log n)",
+        "Entrambi Θ(n)",
+        "Entrambi Θ(n²)",
+        "Insertion Θ(n), Bubble Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "altro",
+        "E5"
+      ],
+      "spiegazione": "Nell'Insertion Sort ogni iterazione sposta solo il massimo di una posizione a destra, con al più due confronti: n − 1 spostamenti, Θ(n). Nel Bubble Sort con flag il massimo arriva in fondo già nella prima passata e la seconda non fa scambi: 2 passate, Θ(n). Il Bubble Sort è lento solo quando un elemento deve arretrare di molte posizioni."
+    },
+    {
+      "id": "L07-T08-02",
+      "tipo": "L07-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array grande di n elementi è ordinato tranne che per 3 elementi scambiati tra loro. Quale algoritmo garantisce il costo migliore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Merge Sort",
+        "Quick Sort con pivot sempre il primo elemento",
+        "Insertion Sort",
+        "Selection Sort"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Insertion Sort costa Θ(n + numero di spostamenti): con c elementi fuori posto, c costante, costa Θ(n). Merge Sort costa Θ(n log n) su ogni input; Quick Sort con pivot fisso può degenerare; Selection Sort non si adatta all'input."
+    },
+    {
+      "id": "L07-T08-03",
+      "tipo": "L07-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array di n elementi è [3, 4, 5, …, n, 1, 2]: è ordinato tranne i due valori più piccoli, che stanno in fondo. Qual è il costo del Bubble Sort con flag scambi su questo input?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "O(1)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "In ogni passata l'1 e il 2 arretrano di una sola posizione, e devono arrivare dal fondo all'inizio: servono n − 1 passate con scambi, quindi n(n−1)/2 confronti, Θ(n²). Il flag non aiuta perché fino all'ultima passata c'è sempre almeno uno scambio."
+    },
+    {
+      "id": "L07-T08-04",
+      "tipo": "L07-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su un array grande quasi ordinato, con pochi elementi fuori posto, qual è il costo del Selection Sort della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(1)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il Selection Sort non si adatta all'input: cerca il minimo su tutta la parte non ordinata in ogni passata, quindi n(n−1)/2 confronti anche su array quasi ordinati."
+    },
+    {
+      "id": "L07-T08-05",
+      "tipo": "L07-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un array grande di n elementi è ordinato tranne il valore 2, che si trova in ultima posizione: [1, 3, 4, …, n, 2]. Quale algoritmo ha il costo migliore su questo input?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Bubble Sort con flag scambi",
+        "Insertion Sort",
+        "Heap Sort",
+        "Quick Sort con pivot sempre il primo elemento"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "L'Insertion Sort fa un confronto per ciascuno dei primi elementi e all'ultima iterazione sposta n − 2 elementi per inserire il 2: Θ(n). Nel Bubble Sort con flag il 2 arretra di una posizione per passata: n − 1 passate, Θ(n²). Heap Sort costa Θ(n log n) su ogni input e il Quick Sort con pivot fisso su input quasi ordinato può degenerare in Θ(n²)."
+    },
+    {
+      "id": "L07-T08-06",
+      "tipo": "L07-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul costo su array quasi ordinato è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il Quick Sort con pivot fisso costa Θ(n log n) su ogni array quasi ordinato",
+        "Il Selection Sort costa Θ(n) su un array quasi ordinato",
+        "L'Insertion Sort costa Θ(n) se gli elementi fuori posto sono in numero costante",
+        "Il Bubble Sort con flag costa sempre Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E4",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Insertion Sort è adattivo: ogni elemento fuori posto costa O(n) spostamenti e, con c costante, il totale è Θ(n). Le altre affermazioni sono false: il pivot fisso del Quick Sort può essere quadratico, il Selection Sort non si adatta, e il flag non basta quando gli elementi devono arretrare di molte posizioni."
+    },
+    {
+      "id": "L07-T08-07",
+      "tipo": "L07-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale algoritmo ha costo O(n) su un array di n elementi in cui solo 2 elementi sono fuori posto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Bubble Sort senza flag",
+        "Merge Sort",
+        "Selection Sort",
+        "Insertion Sort"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E1",
+        "E4",
+        null
+      ],
+      "spiegazione": "Insertion Sort fa circa n confronti più un numero di spostamenti pari alle coppie fuori ordine, che sono poche: costo lineare. Il Bubble Sort senza flag fa sempre n(n−1)/2 confronti."
+    },
+    {
+      "id": "L07-T08-08",
+      "tipo": "L07-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array di n elementi è ordinato in senso crescente tranne gli ultimi 5 posti, che contengono i 5 valori più grandi in ordine decrescente. Qual è il costo del Bubble Sort con flag scambi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "O(1)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Gli elementi fuori posto stanno tutti negli ultimi 5 posti e ciascuno deve spostarsi al più di 4 posizioni: 4 passate con scambi e una quinta senza scambi, in cui il flag ferma l'algoritmo. Sono 5 passate di meno di n confronti ciascuna, quindi Θ(n). Con il minimo in fondo servirebbero invece n − 1 passate e Θ(n²)."
+    },
+    {
+      "id": "L07-T09-01",
+      "tipo": "L07-T09",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale tra Bubble Sort, Selection Sort e Insertion Sort (versioni della dispensa) NON è stabile?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nessuno dei tre",
+        "Solo Bubble Sort",
+        "Solo Selection Sort",
+        "Solo Insertion Sort"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il Selection Sort scambia elementi a distanza, e questo può invertire l'ordine relativo di due elementi uguali. Bubble e Insertion usano confronti stretti e scambi tra adiacenti: sono stabili."
+    },
+    {
+      "id": "L07-T09-02",
+      "tipo": "L07-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si ordina con il Selection Sort della dispensa l'array [3a, 1, 3b, 2], dove 3a e 3b hanno la stessa chiave 3. Dopo l'ordinamento, quale dei due 3 viene prima?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3a, poi 3b",
+        "Non si può dire",
+        "Sono in ordine casuale",
+        "3b, poi 3a"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Prima passata: il minimo 1 va in testa con lo scambio tra 3a e 1, quindi [1, 3a, 3b, 2]. Seconda passata: il 2 va in posizione 1 scambiandosi con 3a, quindi [1, 2, 3b, 3a]: il 3b è passato davanti al 3a."
+    },
+    {
+      "id": "L07-T09-03",
+      "tipo": "L07-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'Insertion Sort della dispensa il confronto A[j] > x viene sostituito con A[j] >= x. L'algoritmo resta stabile?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "No, diventa instabile: un elemento uguale può superare il suo precedente",
+        "Sì, resta stabile perché sposta solo gli elementi maggiori",
+        "Sì: cambia solo il numero di spostamenti eseguiti",
+        "Sì: resta stabile perché è ancora in loco"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Con >= un elemento uguale a x viene spostato davanti al suo uguale: su [2a, 2b] si ottiene [2b, 2a]. Con il confronto stretto questo non accade, e l'Insertion Sort della dispensa è stabile."
+    },
+    {
+      "id": "L07-T09-04",
+      "tipo": "L07-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanta memoria aggiuntiva usa il Counting Sort della dispensa, su n interi con valore massimo k?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1)",
+        "O(k)",
+        "O(n)",
+        "O(n log k)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il Counting Sort usa l'array C di k + 1 celle, quindi spazio O(k). Non è in loco: non ha memoria O(1) per i conteggi."
+    },
+    {
+      "id": "L07-T09-05",
+      "tipo": "L07-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra Selection Sort e Counting Sort è in loco (usa memoria aggiuntiva O(1))?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Solo Counting Sort",
+        "Entrambi",
+        "Solo Selection Sort",
+        "Nessuno dei due"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Selection Sort scambia elementi dentro l'array e usa solo poche variabili: in loco. Counting Sort usa l'array C di dimensione O(k): non è in loco."
+    },
+    {
+      "id": "L07-T09-06",
+      "tipo": "L07-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo di ordinamento è stabile quando:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "non usa memoria aggiuntiva, cioè è in loco",
+        "scambia solo elementi adiacenti",
+        "ordina solo array di interi distinti",
+        "elementi con la stessa chiave restano nell'ordine relativo che avevano nell'input"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "La stabilità riguarda l'ordine relativo di elementi con la stessa chiave, non la memoria usata. Non tutti gli algoritmi quadratici sono stabili: il Selection Sort non lo è."
+    },
+    {
+      "id": "L07-T10-01",
+      "tipo": "L07-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Insertion Sort in cui la posizione di inserimento è trovata con la ricerca binaria. Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n² log n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "La ricerca binaria riduce i confronti a Θ(n log n) in totale, ma nel caso peggiore bisogna comunque spostare i elementi all'iterazione i: Θ(n²) spostamenti dominano."
+    },
+    {
+      "id": "L07-T10-02",
+      "tipo": "L07-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'Insertion Sort con ricerca binaria della posizione, quale è l'ordine di grandezza del numero totale di confronti nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n² log n)",
+        "Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Ogni ricerca binaria su A[0..i−1] costa O(log i) confronti: la somma su i da 1 a n − 1 è Θ(n log n). Gli spostamenti invece sono Θ(n²) e vanno contati a parte."
+    },
+    {
+      "id": "L07-T10-03",
+      "tipo": "L07-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Insertion Sort con ricerca binaria eseguita sempre, anche su un array già ordinato. Qual è il costo nel caso migliore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Anche su un array ordinato ogni inserimento richiede una ricerca binaria di costo Θ(log i), e non si ottiene più il caso migliore Θ(n) dell'Insertion Sort standard. Il totale è Θ(n log n)."
+    },
+    {
+      "id": "L07-T10-04",
+      "tipo": "L07-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La ricerca binaria della posizione riduce il costo dell'Insertion Sort nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì, scende a Θ(n log n)",
+        "Sì, scende a Θ(n)",
+        "No, il costo resta Θ(n²)",
+        "Sì, scende a Θ(n² / log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il vantaggio riguarda solo i confronti, che diventano Θ(n log n). Gli spostamenti restano Θ(n²) nel caso peggiore, e sono loro a determinare il costo."
+    },
+    {
+      "id": "L07-T10-05",
+      "tipo": "L07-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'Insertion Sort con ricerca binaria della posizione, quale parte del lavoro determina il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "I confronti della ricerca binaria, Θ(n log n) in tutto",
+        "La ricerca binaria, che costa Θ(n) a ogni inserimento",
+        "Il prodotto tra ricerca binaria e spostamenti, Θ(n² log n)",
+        "Gli spostamenti, che restano Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "E2",
+        null
+      ],
+      "spiegazione": "Il costo totale è la somma di confronti e spostamenti: Θ(n log n) + Θ(n²) = Θ(n²). Il guadagno sui confronti non si riflette sul costo complessivo."
+    },
+    {
+      "id": "L07-T10-06",
+      "tipo": "L07-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo medio dell'Insertion Sort con ricerca binaria della posizione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n² log n)",
+        "Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Nel caso medio gli spostamenti sono circa n(n−1)/4, quindi Θ(n²). La ricerca binaria abbassa solo la parte dei confronti."
+    },
+    {
+      "id": "L07-T11-01",
+      "tipo": "L07-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un algoritmo di ordinamento basato su confronti ordina 5 elementi distinti. Quante foglie ha almeno il suo albero di decisione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "120",
+        "5",
+        "32",
+        "7"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E1",
+        "E4"
+      ],
+      "spiegazione": "Le permutazioni di 5 elementi sono 5! = 120, e ogni permutazione è una foglia. Né n foglie né 2ⁿ foglie bastano in generale; 7 è il numero minimo di confronti nel caso peggiore, non il numero di foglie."
+    },
+    {
+      "id": "L07-T11-02",
+      "tipo": "L07-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo di ordinamento basato su confronti ordina 5 elementi distinti. Qual è l'altezza minima del suo albero di decisione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "7",
+        "120",
+        "10"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Servono almeno 5! = 120 foglie. Un albero di altezza h ha al più 2^h foglie: 2⁶ = 64 < 120 ≤ 128 = 2⁷, quindi h ≥ 7. Arrotondando log₂ 120 ≈ 6,91 per difetto si otterrebbe 6."
+    },
+    {
+      "id": "L07-T11-03",
+      "tipo": "L07-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo di ordinamento basato su confronti ordina 3 elementi distinti. Quanti confronti deve fare almeno nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2",
+        "6",
+        "3",
+        "9"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Le permutazioni sono 3! = 6, quindi l'albero ha almeno 6 foglie e altezza h ≥ log₂ 6 ≈ 2,58, cioè h ≥ 3. Il valore 2 nasce da un arrotondamento per difetto."
+    },
+    {
+      "id": "L07-T11-04",
+      "tipo": "L07-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo di ordinamento basato su confronti ordina 6 elementi distinti. Qual è il numero minimo di confronti nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "9",
+        "720",
+        "6",
+        "10"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "Le permutazioni sono 6! = 720 e 2⁹ = 512 < 720 ≤ 1024 = 2¹⁰: l'altezza minima è 10. Log₂ 720 ≈ 9,49 va arrotondato per eccesso."
+    },
+    {
+      "id": "L07-T11-05",
+      "tipo": "L07-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nel modello dell'albero di decisione, cosa rappresentano le foglie?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Le permutazioni dell'input, cioè gli ordinamenti possibili",
+        "I confronti eseguiti dall'algoritmo",
+        "Gli elementi dell'array, una foglia per elemento",
+        "I passi di scambio"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Ogni nodo interno è un confronto tra due elementi, e ogni foglia è l'output di una delle permutazioni possibili. Il cammino dalla radice a una foglia è un'esecuzione."
+    },
+    {
+      "id": "L07-T11-06",
+      "tipo": "L07-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero di decisione di un algoritmo di ordinamento, il numero di confronti che l'algoritmo esegue nel caso peggiore corrisponde a:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La profondità della foglia più vicina alla radice",
+        "L'altezza dell'albero",
+        "Il numero di foglie",
+        "Il numero di nodi interni"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Il cammino più lungo, cioè l'altezza, corrisponde al caso peggiore. La profondità minima di una foglia corrisponde invece al caso migliore."
+    },
+    {
+      "id": "L07-T12-01",
+      "tipo": "L07-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo basato su confronti ordina n elementi distinti. Nel caso peggiore, quanti confronti deve fare almeno?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ω(n²)",
+        "Ω(n log n)",
+        "O(n log n)",
+        "Ω(n!)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "L'albero di decisione ha almeno n! foglie, quindi altezza almeno log₂ n! = Ω(n log n) nel caso peggiore. Il limite è inferiore (Ω), non superiore (O); Ω(n!) confonde il numero di foglie con l'altezza."
+    },
+    {
+      "id": "L07-T12-02",
+      "tipo": "L07-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il limite Ω(n log n) per gli algoritmi basati su confronti vale anche nel caso migliore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì, vale per ogni input di n elementi",
+        "Sì, ma solo per gli algoritmi quadratici",
+        "No: nel caso migliore un algoritmo per confronti può costare Θ(n)",
+        "Sì, ma solo per input con elementi distinti"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il limite riguarda il caso peggiore. Insertion Sort su un array ordinato fa n − 1 confronti, quindi Θ(n) nel caso migliore."
+    },
+    {
+      "id": "L07-T12-03",
+      "tipo": "L07-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Perché il Counting Sort non contraddice il limite inferiore Ω(n log n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Contraddice il teorema, perché ordina in O(n + k)",
+        "Il limite vale solo per n pari",
+        "È in loco, quindi non è soggetto al limite",
+        "Non usa confronti tra elementi: usa i valori come indici dell'array C"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il teorema vale per gli algoritmi basati su confronti. Counting Sort usa i valori come indici e sfrutta ipotesi sull'input (interi in un intervallo limitato): non rientra nella classe."
+    },
+    {
+      "id": "L07-T12-04",
+      "tipo": "L07-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "log₂ n! = Θ(n log n)",
+        "Ogni algoritmo di ordinamento, di qualunque tipo, richiede Ω(n log n) nel caso peggiore",
+        "Ogni algoritmo per confronti richiede Ω(n log n) su ogni input",
+        "Il limite Ω(n log n) riguarda solo il Counting Sort"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "n! ≥ (n/2)^(n/2) dà log₂ n! = Ω(n log n), e n! ≤ nⁿ dà log₂ n! ≤ n log₂ n: quindi log₂ n! = Θ(n log n). Il limite vale solo per gli algoritmi per confronti e solo nel caso peggiore: il Counting Sort, che non confronta, ordina in O(n) quando k = O(n)."
+    },
+    {
+      "id": "L07-T12-05",
+      "tipo": "L07-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è l'argomento che dimostra il limite Ω(n log n) per gli ordinamenti basati su confronti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Un albero di decisione ha almeno n foglie, quindi l'altezza è almeno log₂ n",
+        "Un albero di decisione ha almeno n! foglie, quindi la sua altezza è almeno log₂ n!",
+        "Il Counting Sort ordina in tempo lineare, quindi il limite non vale",
+        "Basta contare i confronti dell'Insertion Sort nel caso peggiore"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Ogni algoritmo per confronti corrisponde a un albero con almeno n! foglie, e un albero di altezza h ha al più 2^h foglie. Il Counting Sort non è un controesempio, perché non confronta gli elementi."
+    },
+    {
+      "id": "L07-T12-06",
+      "tipo": "L07-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il limite inferiore Ω(n log n) per l'ordinamento basato su confronti è un limite:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "superiore, raggiunto da ogni algoritmo per confronti",
+        "inferiore, valido anche per il caso medio e per il caso migliore",
+        "inferiore, valido per il caso peggiore di ogni algoritmo per confronti",
+        "esatto, raggiunto dal Counting Sort"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Ω descrive un limite inferiore: nessun algoritmo per confronti può fare meno di Ω(n log n) confronti nel caso peggiore, mentre nel caso migliore può bastare Θ(n). Merge Sort e Heap Sort raggiungono il limite, perché costano Θ(n log n) nel caso peggiore; l'Insertion Sort nel caso peggiore costa di più."
+    },
+    {
+      "id": "L07-T13-01",
+      "tipo": "L07-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dopo il ciclo di conteggio, quanto vale l'array C del Counting Sort della dispensa su A = [4, 1, 2, 4, 0, 2]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 1, 2, 0]",
+        "[1, 2, 4, 4, 6]",
+        "[1, 1, 2, 0, 2]",
+        "[0, 1, 2, 2, 4, 4]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "k = 4, quindi C ha 5 celle, una per i valori 0, …, 4: C[v] conta le occorrenze di v, e il 3, che non compare, ha C[3] = 0. [1, 2, 4, 4, 6] sono le somme cumulative, che la versione della dispensa non calcola; [1, 1, 2, 0] perde una cella; [0, 1, 2, 2, 4, 4] è l'array ordinato."
+    },
+    {
+      "id": "L07-T13-02",
+      "tipo": "L07-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante celle ha l'array C del Counting Sort della dispensa su A = [9, 3, 0, 7, 3, 1, 9, 2]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "9",
+        "8",
+        "11",
+        "10"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il massimo è 9: C ha max + 1 = 10 celle, una per ciascun valore da 0 a 9, anche quelli che non compaiono."
+    },
+    {
+      "id": "L07-T13-03",
+      "tipo": "L07-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanto vale l'array C del Counting Sort della dispensa su A = [5, 2, 5, 0, 2, 5]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 0, 2, 0, 0, 3]",
+        "[0, 2, 0, 0, 3]",
+        "[1, 1, 3, 3, 3, 6]",
+        "[0, 2, 2, 5, 5, 5]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "C[v] conta le occorrenze di v: 0 compare 1 volta, 2 due volte, 5 tre volte. C ha 6 celle, a partire dal valore 0, quindi non si perde la cella 0. Risultato [1, 0, 2, 0, 0, 3]."
+    },
+    {
+      "id": "L07-T13-04",
+      "tipo": "L07-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Counting Sort della dispensa con interi negativi: A = [−2, 1, −2, 0], offset min. Quanto vale l'array C?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[0, 2, 0, 1, 1]",
+        "[2, 0, 1, 1]",
+        "[2, 2, 3, 4]",
+        "[−2, −2, 0, 1]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Con interi negativi il valore x si conta in C[x − min]: min = −2 e max = 1, quindi C ha 4 celle e il −2 si conta in C[0]. Risultato [2, 0, 1, 1]; mettere il minimo in C[1] sposterebbe tutti i conteggi."
+    },
+    {
+      "id": "L07-T13-05",
+      "tipo": "L07-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Counting Sort della dispensa con interi negativi: A = [−5, 3, 10, −1, 0, 7], offset min. Quante celle ha C?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "15",
+        "11",
+        "16",
+        "6"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E4",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Con min = −5 e max = 10, k = max − min = 15, e C ha k + 1 = 16 celle. 11 = max + 1 è la lunghezza che si ottiene usando x come indice, senza offset."
+    },
+    {
+      "id": "L07-T13-06",
+      "tipo": "L07-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanto vale l'array C del Counting Sort della dispensa su A = [6, 6, 1, 3, 6]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[0, 1, 0, 1, 0]",
+        "[0, 1, 1, 2, 2, 2, 5]",
+        "[1, 3, 6, 6, 6]",
+        "[0, 1, 0, 1, 0, 0, 3]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Il valore 6 compare tre volte, il 3 e l'1 una volta, i valori 0, 2, 4 e 5 non compaiono: C = [0, 1, 0, 1, 0, 0, 3] con 7 celle, da 0 a 6."
+    },
+    {
+      "id": "L07-T14-01",
+      "tipo": "L07-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il Counting Sort con l'offset min (C ha max − min + 1 celle e il valore x si conta in C[x − min]) ordina n interi compresi tra n² e n² + n, con n² e n² + n entrambi presenti. Quali sono il costo in tempo e lo spazio aggiuntivo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tempo Θ(n²), spazio Θ(n²)",
+        "Tempo Θ(n), spazio Θ(1)",
+        "Tempo Θ(n log n), spazio Θ(n)",
+        "Tempo Θ(n), spazio Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Con l'offset conta l'ampiezza dell'intervallo: k = max − min = n, quindi il tempo è Θ(n + k) = Θ(n) e C ha n + 1 celle, spazio Θ(n). Θ(n²) è il costo che si avrebbe usando il massimo n² + n invece dell'ampiezza."
+    },
+    {
+      "id": "L07-T14-02",
+      "tipo": "L07-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Counting Sort della dispensa su n interi compresi tra 0 e n, con il valore n presente. Quali sono il costo in tempo e lo spazio aggiuntivo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tempo Θ(n), spazio Θ(n)",
+        "Tempo Θ(n), spazio Θ(1)",
+        "Tempo Θ(n²), spazio Θ(n)",
+        "Tempo Θ(n log n), spazio Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con k = n il tempo è O(n + k) = O(n) e l'array C ha n + 1 celle: spazio O(n). Lo spazio non è costante, quindi il Counting Sort non è in loco."
+    },
+    {
+      "id": "L07-T14-03",
+      "tipo": "L07-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il Counting Sort della dispensa ordina n = 20 interi compresi tra 0 e 10⁶, e il valore 10⁶ compare. Quale affermazione sul costo è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Circa 20 passi, perché il Counting Sort è lineare in n",
+        "Circa 10⁶ passi e un array C di 10⁶ + 1 celle: domina k, non n",
+        "Circa 20·log₂ 20 passi, come un algoritmo per confronti",
+        "Circa 10⁶ passi, ma senza memoria aggiuntiva"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "E2"
+      ],
+      "spiegazione": "Il tempo è O(n + k) e lo spazio è O(k): con k = 10⁶ il termine dominante è k, anche se n = 20. Il Counting Sort conviene quando k è confrontabile con n."
+    },
+    {
+      "id": "L07-T14-04",
+      "tipo": "L07-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Counting Sort della dispensa su n = 10 interi compresi tra −10 e 990, con −10 e 990 entrambi presenti. Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Non si può applicare, perché ordina solo interi non negativi",
+        "Tempo O(n) perché n è piccolo",
+        "Tempo O(n + k) con k = max − min = 1000: domina l'ampiezza dell'intervallo, non n",
+        "Tempo O(n log n), come un algoritmo per confronti"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Con interi qualsiasi si usa l'offset min e k = max − min = 1000: il costo è O(n + k). Il Counting Sort si applica anche ai negativi, con C indicizzato da x − min."
+    },
+    {
+      "id": "L07-T14-05",
+      "tipo": "L07-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array di n interi non negativi contiene solo 3 valori distinti, e il valore massimo è n³. Quali sono il costo in tempo e lo spazio aggiuntivo del Counting Sort della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tempo Θ(n), spazio Θ(1), perché i valori distinti sono solo 3",
+        "Tempo Θ(n), spazio Θ(n³)",
+        "Tempo Θ(n log n), spazio Θ(1)",
+        "Tempo Θ(n³), spazio Θ(n³)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il Counting Sort dipende dal valore massimo k = n³, non dal numero di valori distinti: C ha n³ + 1 celle, quasi tutte a zero, e inizializzarle e scorrerle costa Θ(n³). Il tempo è Θ(n + n³) = Θ(n³)."
+    },
+    {
+      "id": "L07-T14-06",
+      "tipo": "L07-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quando il Counting Sort della dispensa conviene rispetto a un algoritmo Θ(n log n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Quando k = O(n)",
+        "Sempre, perché il suo costo è O(n)",
+        "Quando k = O(n²)",
+        "Quando k = O(2ⁿ)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il costo è O(n + k): con k = O(n) è lineare, quindi migliore di Θ(n log n). Con k molto più grande di n il costo cresce anche se non si confronta nulla."
+    },
+    {
+      "id": "L07-T15-01",
+      "tipo": "L07-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Bucket Sort della dispensa con k = 4 bucket su A = [4, 31, 12, 9, 25, 6, 18, 2]. Quali elementi finiscono nel bucket di indice 3, nell'ordine in cui compaiono in A?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[31, 25]",
+        "[25]",
+        "[18]",
+        "[12]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "M = 31, quindi i = ⌊4x/32⌋: 31 → ⌊124/32⌋ = 3 e 25 → ⌊100/32⌋ = 3, mentre 18 → ⌊72/32⌋ = 2. Dividendo per M il 31 andrebbe nel bucket 4, che non esiste, e nel 3 resterebbe solo 25; arrotondando per eccesso nel bucket 3 finirebbe 18; con x // k solo 12."
+    },
+    {
+      "id": "L07-T15-02",
+      "tipo": "L07-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Bucket Sort della dispensa con k = 3 bucket su A = [11, 5, 27, 14, 8, 20]. In quale bucket (indice da 0) finisce il valore 14?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2",
+        "1",
+        "4",
+        "3"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "M = 27, quindi i = ⌊14·3/28⌋ = ⌊42/28⌋ = 1 (42/28 = 1,5). Arrotondando per eccesso si otterrebbe 2; con x // k = 14 // 3 si otterrebbe 4, un bucket che non esiste."
+    },
+    {
+      "id": "L07-T15-03",
+      "tipo": "L07-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Bucket Sort della dispensa con k = 5 bucket su A = [33, 4, 7, 22, 15, 20, 24]. Quali elementi finiscono nel bucket di indice 3, nell'ordine in cui compaiono in A?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[15, 20]",
+        "[22, 20, 24]",
+        "[22, 24]",
+        "[15]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "E3"
+      ],
+      "spiegazione": "M = 33, quindi i = ⌊5x/34⌋: 22 → ⌊110/34⌋ = 3 e 24 → ⌊120/34⌋ = 3, mentre 20 → ⌊100/34⌋ = 2 e 15 → ⌊75/34⌋ = 2. Dividendo per M anche il 20 finirebbe nel bucket 3 (100/33 ≈ 3,03); arrotondando per eccesso ci finirebbero 15 e 20; con x // k solo 15."
+    },
+    {
+      "id": "L07-T15-04",
+      "tipo": "L07-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Bucket Sort della dispensa con k = 4 bucket su A = [30, 9, 17, 4, 22, 11]. In quale bucket (indice da 0) finisce il valore 22?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "5",
+        "4",
+        "2"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "M = 30, quindi i = ⌊22·4/31⌋ = ⌊88/31⌋ = 2 (88/31 ≈ 2,84). Arrotondando per eccesso si otterrebbe 3; con x // k = 22 // 4 si otterrebbe 5, un bucket che non esiste."
+    },
+    {
+      "id": "L07-T15-05",
+      "tipo": "L07-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Bucket Sort della dispensa con k = 4 bucket su A = [15, 37, 26, 33, 21, 23, 25, 36]. Quanti elementi finiscono nel bucket di indice 3?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "M = 37, quindi i = ⌊4x/38⌋: nel bucket 3 vanno 37, 33 e 36 (148/38 ≈ 3,9; 132/38 ≈ 3,5; 144/38 ≈ 3,8). Dividendo per M il 37 finirebbe nel bucket 4, che non esiste (risultato 2); arrotondando per eccesso ci finirebbero 26, 21, 23 e 25 (4); con x // k solo 15 (1)."
+    },
+    {
+      "id": "L07-T15-06",
+      "tipo": "L07-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Bucket Sort della dispensa con k = 3 bucket su A = [5, 50, 21, 14, 36, 9, 28]. In quale bucket (indice da 0) finisce il valore 36?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "2",
+        "12",
+        "4"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "M = 50, quindi i = ⌊36·3/51⌋ = ⌊108/51⌋ = 2 (108/51 ≈ 2,12). Arrotondando per eccesso si otterrebbe 3, un bucket che non esiste; con x // k = 36 // 3 si otterrebbe 12."
+    },
+    {
+      "id": "L07-T16-01",
+      "tipo": "L07-T16",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Bucket Sort con k = n bucket, elementi equidistribuiti tra i bucket, e ogni bucket ordinato con Insertion Sort. Qual è il costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "O(n)",
+        "O(n log n)",
+        "Θ(n³)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con dati equidistribuiti e k = Θ(n) ogni bucket ha Θ(1) elementi: l'Insertion Sort su ciascuno costa O(1), e la distribuzione più la concatenazione costano O(n + k) = O(n)."
+    },
+    {
+      "id": "L07-T16-02",
+      "tipo": "L07-T16",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Bucket Sort con k = n bucket e tutti gli elementi finiscono nello stesso bucket, che viene ordinato con Merge Sort. Qual è il costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "O(n + k)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Distribuire e concatenare costano O(n + k) = O(n), ma il bucket pieno contiene n elementi e il Merge Sort lo ordina in Θ(n log n): questo domina. Θ(n²) sarebbe il costo con l'Insertion Sort."
+    },
+    {
+      "id": "L07-T16-03",
+      "tipo": "L07-T16",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Bucket Sort con k = 4 bucket costanti, elementi equidistribuiti, e ogni bucket ordinato con Insertion Sort. Qual è il costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n), perché i bucket sono pochi",
+        "O(n log n)",
+        "O(n + k)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "E4",
+        null
+      ],
+      "spiegazione": "Con k costante ogni bucket contiene circa n/4 elementi: Insertion Sort costa circa (n/4)² per bucket, in totale Θ(n²). Il costo lineare richiede k = Θ(n)."
+    },
+    {
+      "id": "L07-T16-04",
+      "tipo": "L07-T16",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Bucket Sort con k = n bucket: metà degli elementi finisce nel primo bucket e metà nell'ultimo, e ogni bucket viene ordinato con Insertion Sort. Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "O(n), perché k = Θ(n)",
+        "O(n log n)",
+        "O(n + k)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "Due bucket con circa n/2 elementi ciascuno costano (n/2)² ciascuno con Insertion Sort: in totale Θ(n²). Il fatto che k = Θ(n) non basta se la distribuzione non è uniforme."
+    },
+    {
+      "id": "L07-T16-05",
+      "tipo": "L07-T16",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale condizione garantisce che il Bucket Sort della dispensa abbia costo lineare O(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "k = Θ(n), anche senza distribuzione uniforme",
+        "Elementi equidistribuiti tra i bucket e k = Θ(n)",
+        "k costante e dati qualsiasi",
+        "Solo elementi distinti"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il costo è O(n + Σ costo dei bucket). Lineare solo se i bucket restano piccoli: servono dati equidistribuiti e un numero di bucket proporzionale a n."
+    },
+    {
+      "id": "L07-T16-06",
+      "tipo": "L07-T16",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Bucket Sort con k = √n bucket, elementi equidistribuiti, e ogni bucket ordinato con Insertion Sort. Qual è il costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n)",
+        "Θ(n²)",
+        "Θ(n√n)",
+        "O(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E5",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Ogni bucket contiene circa √n elementi e costa circa (√n)² = n con Insertion Sort; con √n bucket il totale è √n · n = Θ(n√n)."
+    }
+  ]
+}

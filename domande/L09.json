@@ -1,0 +1,1823 @@
+{
+  "lezione": 9,
+  "generato_con": "claude-haiku-5-5",
+  "domande": [
+    {
+      "id": "L09-T01-01",
+      "tipo": "L09-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un min-heap è un albero binario che:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "ha tutte le foglie allo stesso livello e ogni nodo ha valore minore o uguale a quello dei figli",
+        "è un albero di ricerca bilanciato in cui il minimo sta in radice",
+        "è completo o quasi completo e ogni nodo ha valore minore o uguale a quello dei figli",
+        "è completo o quasi completo e ogni nodo ha valore maggiore o uguale a quello dei figli"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Il min-heap ha due proprietà: forma completa o quasi completa e ordine (ogni nodo è minore o uguale ai figli), quindi il minimo sta in radice. Le foglie possono stare su due livelli diversi. L'ultima opzione descrive un max-heap."
+    },
+    {
+      "id": "L09-T01-02",
+      "tipo": "L09-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un max-heap è un albero binario che:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "è completo o quasi completo e ogni nodo ha valore minore o uguale a quello dei figli",
+        "è completo o quasi completo e ogni nodo ha valore maggiore o uguale a quello dei figli",
+        "è un albero di ricerca bilanciato in cui il massimo sta in radice",
+        "ha tutte le foglie allo stesso livello e ogni nodo ha valore maggiore o uguale a quello dei figli"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il max-heap ha la forma del min-heap (completo o quasi completo) e l'ordine rovesciato: ogni nodo è maggiore o uguale ai figli, quindi il massimo sta in radice. Un albero di ricerca non ha questo ordine: il padre è maggiore del figlio sinistro ma minore del destro."
+    },
+    {
+      "id": "L09-T01-03",
+      "tipo": "L09-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sui min-heap è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ogni min-heap è un array ordinato in modo crescente",
+        "In un min-heap il figlio sinistro di ogni nodo è minore del figlio destro",
+        "Ogni array ordinato in modo crescente è un min-heap",
+        "In un min-heap ogni nodo ha valore maggiore o uguale a quello dei figli"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E5",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Un array crescente soddisfa A[(i − 1)//2] ≤ A[i] per ogni i, quindi è un min-heap. Il contrario è falso: [1, 3, 2] è un min-heap ma non è ordinato. Tra fratelli non c'è nessun ordine."
+    },
+    {
+      "id": "L09-T01-04",
+      "tipo": "L09-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale forma deve avere un min-heap?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Un albero binario completo o quasi completo",
+        "Un albero binario di ricerca bilanciato",
+        "Un albero binario in cui il figlio sinistro di ogni nodo è minore del destro",
+        "Un albero binario in cui tutte le foglie stanno allo stesso livello"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E5",
+        "E3"
+      ],
+      "spiegazione": "La forma è la proprietà di compattezza: albero completo o quasi completo, con l'ultimo livello riempito da sinistra. Un albero con tutte le foglie allo stesso livello è solo un caso particolare (quello completo). Un albero di ricerca non è la forma richiesta."
+    },
+    {
+      "id": "L09-T01-05",
+      "tipo": "L09-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quali proprietà deve avere un max-heap?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "è un array ordinato in modo decrescente, con il massimo in prima posizione",
+        "è completo o quasi completo, e ogni nodo ha valore maggiore o uguale a quello dei figli",
+        "è un albero di ricerca bilanciato, con il massimo nella foglia più a destra",
+        "ha tutte le foglie allo stesso livello, e ogni nodo ha valore maggiore o uguale a quello dei figli"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il max-heap ha la forma del min-heap (completo o quasi completo) e l'ordine rovesciato: ogni nodo è maggiore o uguale ai figli, quindi il massimo sta in radice. Un array ordinato in modo decrescente è solo un caso particolare di max-heap; un albero di ricerca ordina i figli tra loro, l'heap no; le foglie possono stare su due livelli diversi."
+    },
+    {
+      "id": "L09-T01-06",
+      "tipo": "L09-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario è un min-heap se e solo se:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "è completo o quasi completo, e ogni padre ha valore minore o uguale a quello dei figli",
+        "è un albero di ricerca bilanciato in cui ogni padre è minore dei figli",
+        "è completo o quasi completo, e il figlio sinistro di ogni nodo è minore del destro",
+        "ha tutte le foglie allo stesso livello, e ogni padre ha valore minore o uguale a quello dei figli"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E5",
+        "E3"
+      ],
+      "spiegazione": "La definizione chiede entrambe le proprietà: forma completa o quasi completa e ordine padre ≤ figli. Il confronto tra fratelli non è richiesto, e le foglie possono stare su due livelli diversi."
+    },
+    {
+      "id": "L09-T01-07",
+      "tipo": "L09-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Rispetto a un albero di ricerca, un min-heap è diverso perché:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "tra il figlio sinistro e il destro di un nodo c'è un ordine, come in un albero di ricerca",
+        "tra fratelli non c'è nessun ordine, ma ogni padre è minore o uguale ai figli",
+        "le foglie stanno tutte allo stesso livello, come in un albero completo",
+        "ogni nodo è maggiore o uguale ai figli, come in un max-heap"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Nell'heap l'ordine va solo da padre a figlio: tra fratelli non c'è nessun ordine, mentre in un albero di ricerca il figlio sinistro è minore del nodo e il destro è maggiore. Le foglie allo stesso livello sono un caso particolare, non la definizione. L'ordine con ≥ è quello del max-heap."
+    },
+    {
+      "id": "L09-T01-08",
+      "tipo": "L09-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale affermazione sulla struttura di un min-heap con n nodi è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "tutti i livelli tranne l'ultimo sono pieni, e le foglie possono stare su due livelli diversi",
+        "le foglie stanno tutte sullo stesso livello e tutti i livelli sono pieni",
+        "ogni nodo interno ha sempre esattamente due figli",
+        "il massimo sta in radice e l'ultimo livello è sempre pieno"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "In un albero quasi completo tutti i livelli tranne l'ultimo sono pieni, e l'ultimo è riempito da sinistra. Per questo, quando n è pari, un nodo interno ha un solo figlio, e le foglie possono stare su due livelli. In un min-heap in radice c'è il minimo, non il massimo, e l'ultimo livello non è sempre pieno."
+    },
+    {
+      "id": "L09-T02-01",
+      "tipo": "L09-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale dei seguenti array, con indici da 0, è un min-heap?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[2, 6, 3, 9, 7, 4, 5, 1, 10]",
+        "[2, 6, 3, 9, 7, 4, 5, 12, 10]",
+        "[6, 2, 9, 1, 4, 8, 10]",
+        "[9, 7, 8, 6, 5, 4, 3]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Nel secondo array ogni figlio è maggiore o uguale al padre. Nel primo la radice e i suoi figli vanno bene, ma A[7] = 1 è sotto A[3] = 9, a livello 3: la violazione è più in basso. Il terzo è un albero di ricerca letto per livelli, con la radice 6 maggiore del figlio 2. L'ultimo è un max-heap."
+    },
+    {
+      "id": "L09-T02-02",
+      "tipo": "L09-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale dei seguenti array, con indici da 0, è un max-heap?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[20, 5, 30, 2, 9, 25, 40]",
+        "[1, 4, 2, 6, 5, 3, 7]",
+        "[30, 25, 28, 10, 20, 27, 9]",
+        "[30, 25, 28, 26, 20, 27, 9]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E4",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Il terzo array è un max-heap: ogni figlio è minore o uguale al padre. Il primo è un albero di ricerca letto per livelli, con la radice 20 minore del figlio 30. Il secondo è un min-heap. Nell'ultimo la radice e i figli vanno bene, ma A[3] = 26 è sotto A[1] = 25, a un livello più profondo."
+    },
+    {
+      "id": "L09-T02-03",
+      "tipo": "L09-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale dei seguenti array, con indici da 0, è un min-heap?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[3, 8, 5, 12, 10, 9, 7, 4, 20, 11]",
+        "[7, 4, 12, 2, 6, 10, 15, 1, 3, 5]",
+        "[3, 8, 5, 12, 10, 9, 7, 15, 20, 11]",
+        "[30, 20, 25, 15, 10, 12, 9, 8, 5, 6]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Il terzo array ha ogni figlio maggiore o uguale al padre. Nel primo la radice e i figli vanno bene, ma A[7] = 4 è sotto A[3] = 12: la violazione è a livello 3. Il secondo è un albero di ricerca letto per livelli, con la radice 7 maggiore del figlio 4. L'ultimo è un max-heap."
+    },
+    {
+      "id": "L09-T02-04",
+      "tipo": "L09-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale dei seguenti array, con indici da 0, è un max-heap?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[40, 20, 50, 10, 30, 45, 60, 5, 15, 25]",
+        "[5, 8, 9, 12, 10, 15, 11, 30, 20, 13]",
+        "[50, 44, 46, 40, 20, 45, 30, 41, 35, 18]",
+        "[50, 44, 46, 40, 20, 45, 30, 10, 35, 18]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E4",
+        "E1",
+        null
+      ],
+      "spiegazione": "L'ultimo array ha ogni figlio minore o uguale al padre. Nel terzo radice e figli vanno bene, ma A[7] = 41 è sotto A[3] = 40, a livello 3. Il primo è un albero di ricerca letto per livelli, con la radice 40 minore del figlio 50. Il secondo è un min-heap."
+    },
+    {
+      "id": "L09-T02-05",
+      "tipo": "L09-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale dei seguenti array, con indici da 0, è un min-heap?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[4, 9, 6, 11, 13, 7, 8]",
+        "[4, 9, 6, 11, 13, 5, 8]",
+        "[13, 11, 12, 9, 10, 4, 8]",
+        "[6, 3, 8, 2, 4, 7, 9]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E4",
+        "E3"
+      ],
+      "spiegazione": "Nel primo ogni figlio è maggiore o uguale al padre. Nel secondo A[5] = 5 è sotto A[2] = 6: la violazione è a livello 2, mentre radice e figli vanno bene. Il terzo è un max-heap. Il quarto è un albero di ricerca letto per livelli, con la radice 6 maggiore del figlio 3."
+    },
+    {
+      "id": "L09-T02-06",
+      "tipo": "L09-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale dei seguenti array, con indici da 0, è un max-heap?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 3, 2, 8, 4, 6, 5, 9, 10]",
+        "[60, 40, 55, 20, 30, 50, 35, 5, 10]",
+        "[45, 30, 60, 20, 40, 55, 70, 10, 25, 35]",
+        "[60, 40, 55, 20, 30, 50, 35, 25, 10]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E3",
+        "E1"
+      ],
+      "spiegazione": "Il secondo array ha ogni figlio minore o uguale al padre. Nell'ultimo la radice e i figli vanno bene, ma A[7] = 25 è sotto A[3] = 20, a livello 3. Il terzo è un albero di ricerca letto per livelli, con la radice 45 minore del figlio 60. Il primo è un min-heap."
+    },
+    {
+      "id": "L09-T03-01",
+      "tipo": "L09-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un min-heap con n = 11 elementi distinti, memorizzato in un array con indici da 0, dove può trovarsi il massimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "sempre nell'ultima posizione dell'array, cioè l'indice 10",
+        "in una foglia qualsiasi, cioè in un indice da 5 a 10",
+        "solo nell'ultimo livello, cioè in un indice da 7 a 10",
+        "in una posizione qualsiasi, anche nella radice"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Con valori distinti ogni nodo interno ha un figlio più grande, quindi il massimo non ha figli: sta in una foglia. Con n = 11 le foglie sono gli indici da 11//2 = 5 a 10, e le foglie 5 e 6 stanno al livello 2, non all'ultimo. Tra le foglie non c'è ordine, quindi può essere una qualsiasi; in radice c'è il minimo."
+    },
+    {
+      "id": "L09-T03-02",
+      "tipo": "L09-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un max-heap con n ≥ 7 elementi distinti, memorizzato in un array con indici da 0, dove può trovarsi il terzo elemento più grande?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "sempre in posizione 1 oppure 2, cioè tra i figli della radice",
+        "in un indice da 1 a 6, cioè al livello 1 o 2",
+        "sempre in posizione 2, figlio destro della radice",
+        "nel sottoalbero più a destra, come in un albero di ricerca"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "Tutti gli antenati del terzo più grande sono più grandi di lui, e gli elementi più grandi sono solo due: quindi ha al più due antenati e sta al livello 1 o 2, cioè in un indice da 1 a 6 (in radice c'è il massimo). Può stare al livello 2, sotto il secondo più grande, quindi non è sempre un figlio della radice; e nell'heap non c'è un sottoalbero privilegiato come nell'albero di ricerca."
+    },
+    {
+      "id": "L09-T03-03",
+      "tipo": "L09-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un min-heap con n = 10 elementi distinti, memorizzato in un array con indici da 0, dove può trovarsi il terzo elemento più piccolo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "in un indice da 1 a 6, cioè al livello 1 o 2",
+        "solo nell'indice 1 oppure nell'indice 2",
+        "sempre nel sottoalbero sinistro della radice, come in un albero di ricerca",
+        "in una posizione qualsiasi da 0 a 9"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Tutti gli antenati del terzo più piccolo sono più piccoli di lui, e gli elementi più piccoli sono solo due: quindi ha al più due antenati e sta al livello 1 o 2, cioè in un indice da 1 a 6 (in radice c'è il minimo). Può stare al livello 2, sotto il secondo più piccolo, quindi non è solo negli indici 1 e 2; e nell'heap non c'è un sottoalbero privilegiato come nell'albero di ricerca."
+    },
+    {
+      "id": "L09-T04-01",
+      "tipo": "L09-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un max-heap di n elementi, quanto costa, nel caso peggiore, cercare il minimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il minimo sta in una foglia, e le circa n/2 foglie non sono ordinate tra loro: bisogna esaminarle tutte, quindi il costo è Θ(n). Θ(1) vale per leggere il massimo, che è in radice; Θ(log n) è il costo di una discesa, che non porta al minimo; non serve ordinare nulla."
+    },
+    {
+      "id": "L09-T04-02",
+      "tipo": "L09-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quanto costa, nel caso peggiore, cercare il massimo in un min-heap di n elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(1)",
+        "Θ(n log n)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "E3",
+        null
+      ],
+      "spiegazione": "Il massimo di un min-heap sta in una foglia, e le foglie non sono ordinate tra loro: si esaminano tutte, Θ(n). Θ(1) è il costo di leggere il minimo in radice; Θ(log n) quello di una discesa."
+    },
+    {
+      "id": "L09-T04-03",
+      "tipo": "L09-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un max-heap con n elementi, quante foglie bisogna esaminare per essere sicuri di trovare il minimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1, cioè solo l'ultimo elemento dell'array",
+        "circa log₂ n, cioè un cammino dalla radice a una foglia",
+        "tutte le foglie, cioè ⌈n/2⌉",
+        "n, cioè tutti gli elementi"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Ogni nodo interno ha un figlio minore o uguale, quindi il minimo si trova sempre in una foglia e i nodi interni non servono. Le foglie sono gli indici da n//2 a n − 1, cioè ⌈n/2⌉ nodi, e la proprietà di ordine non dice nulla sull'ordine tra loro: una foglia saltata potrebbe essere proprio quella con il minimo. Un cammino dalla radice a una foglia tocca circa log₂ n nodi e non basta."
+    },
+    {
+      "id": "L09-T04-04",
+      "tipo": "L09-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un max-heap di n elementi, quanto costano nel caso peggiore leggere il massimo e trovare il minimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1) e Θ(1)",
+        "Θ(1) e Θ(log n)",
+        "Θ(1) e Θ(n)",
+        "Θ(1) e Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il massimo è in radice: leggerlo costa Θ(1). Il minimo sta in una delle circa n/2 foglie, che non sono ordinate tra loro: trovarlo costa Θ(n). Gli altri abbinamenti confondono la ricerca del minimo con la lettura della radice, oppure assumono una discesa (Θ(log n)) o un ordinamento (Θ(n log n))."
+    },
+    {
+      "id": "L09-T04-05",
+      "tipo": "L09-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un min-heap di n elementi leggere il minimo costa Θ(1). Quanto costa, nel caso peggiore, trovare il massimo, e perché?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1): il massimo è sempre nell'ultima posizione dell'array",
+        "Θ(n): il massimo può essere in una qualunque delle circa n/2 foglie",
+        "Θ(log n): basta scendere verso il figlio maggiore fino a una foglia",
+        "Θ(n log n): bisogna prima ordinare gli elementi"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Con valori distinti il massimo di un min-heap è in una foglia, ma in una qualunque: le foglie sono circa n/2 e non sono ordinate tra loro, quindi vanno esaminate tutte, Θ(n). L'ultima posizione è solo una delle foglie, e scendere verso il figlio maggiore segue un solo cammino, che può non arrivare al massimo."
+    },
+    {
+      "id": "L09-T04-06",
+      "tipo": "L09-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dato un max-heap di n elementi, quale affermazione sul costo di trovare il minimo è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "È logaritmico: basta scendere lungo un cammino fino a una foglia",
+        "È lineare: bisogna esaminare le foglie, circa n/2, che non sono ordinate tra loro",
+        "È costante: il minimo è sempre l'ultimo elemento dell'array",
+        "È n log n: prima bisogna ordinare l'heap"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E4",
+        "E3"
+      ],
+      "spiegazione": "Il minimo sta tra le circa n/2 foglie, senza ordine tra loro: la ricerca è lineare. Una discesa lungo un cammino non lo raggiunge, il minimo non è sempre all'ultimo posto e non serve ordinare l'heap."
+    },
+    {
+      "id": "L09-T04-07",
+      "tipo": "L09-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In un min-heap di n elementi distinti si cerca il massimo così: partendo dalla radice si scende ogni volta verso il figlio maggiore, fino a una foglia, e si restituisce quella foglia. Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Costa O(log n), ma in generale non restituisce il massimo",
+        "Costa O(log n) e restituisce sempre il massimo, che sta in una foglia",
+        "La discesa è inutile: il massimo si legge in radice in O(1)",
+        "La discesa è inutile: il massimo è sempre l'ultimo elemento dell'array"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "E4"
+      ],
+      "spiegazione": "La discesa segue un solo cammino di al più log₂ n archi, ma le foglie non sono ordinate tra loro: nel min-heap [1, 2, 3, 100, 4, 5, 6] si scende da 1 a 3 e poi a 6, mentre il massimo 100 è sotto il 2. Per trovarlo davvero bisogna esaminare tutte le foglie, Θ(n). In radice c'è il minimo, e il massimo non è per forza l'ultimo elemento."
+    },
+    {
+      "id": "L09-T04-08",
+      "tipo": "L09-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un min-heap di n elementi, quanto costano nel caso peggiore cercare il massimo ed estrarre il minimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n) per il massimo; O(log n) per estrarre il minimo",
+        "O(1) per il massimo; O(log n) per estrarre il minimo",
+        "O(log n) per entrambi",
+        "Θ(n) per entrambi"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il massimo sta tra le foglie, non ordinate tra loro, e va cercato linearmente: Θ(n). Estrarre il minimo costa O(log n), perché l'ultimo elemento scende lungo un solo cammino. La lettura O(1) vale per il minimo, in radice; una discesa O(log n) non basta per trovare il massimo."
+    },
+    {
+      "id": "L09-T05-01",
+      "tipo": "L09-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un min-heap contiene 12 elementi. Qual è la sua altezza, con la radice a livello 0?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4",
+        "11",
+        "3",
+        "6"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "I livelli 0, 1 e 2 contengono 1 + 2 + 4 = 7 nodi; i restanti 5 stanno al livello 3. L'altezza è quindi 3 = ⌊log₂ 12⌋. Il 4 è ⌈log₂ 12⌉ (ed è anche il numero di livelli, cioè l'altezza più 1); 11 = n − 1 sarebbe l'altezza di un albero degenere, che un heap non è mai."
+    },
+    {
+      "id": "L09-T05-02",
+      "tipo": "L09-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un min-heap contiene 40 elementi. Qual è la sua altezza, con la radice a livello 0?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "5",
+        "39",
+        "20"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "I livelli da 0 a 4 contengono 1 + 2 + 4 + 8 + 16 = 31 nodi, e 31 < 40 ≤ 63: i 9 nodi restanti stanno al livello 5, quindi l'altezza è 5 = ⌊log₂ 40⌋. Il 6 è ⌈log₂ 40⌉ (ed è anche il numero di livelli); 39 = n − 1 sarebbe l'altezza di un albero degenere."
+    },
+    {
+      "id": "L09-T05-03",
+      "tipo": "L09-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un heap di altezza 4, con la radice a livello 0, contiene almeno quanti nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "16",
+        "31",
+        "5",
+        "15"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Per avere altezza 4 bisogna riempire i livelli da 0 a 3 (1 + 2 + 4 + 8 = 15 nodi) e avere almeno un nodo al livello 4: il minimo è 16 = 2⁴. Il 31 = 2⁵ − 1 è il massimo, quello dell'albero completo, che un heap non è obbligato a essere; 15 dimentica il nodo del livello 4."
+    },
+    {
+      "id": "L09-T05-04",
+      "tipo": "L09-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe asintotica dell'altezza di un min-heap con n elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(log² n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "L'heap è quasi completo: ogni livello è pieno tranne l'ultimo, quindi l'altezza è ⌊log₂ n⌋, cioè Θ(log n). Θ(n) vale per un albero binario qualsiasi, che può essere degenere, ma non per un heap."
+    },
+    {
+      "id": "L09-T05-05",
+      "tipo": "L09-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nella dimostrazione che l'altezza di un heap è O(log n), che disuguaglianza si ricava dal fatto che i livelli da 0 a h − 1 sono pieni?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n < 2^h − 1",
+        "n > h²",
+        "n = 2^(h+1) − 1",
+        "n > 2^h − 1"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "altro",
+        "E4",
+        null
+      ],
+      "spiegazione": "I livelli da 0 a h − 1 sono pieni e contengono Σ_{i=0..h−1} 2^i = 2^h − 1 nodi, e l'ultimo livello ha almeno un nodo: quindi n > 2^h − 1, da cui h < log₂(n + 1). L'uguaglianza n = 2^(h+1) − 1 vale solo quando anche l'ultimo livello è pieno."
+    },
+    {
+      "id": "L09-T05-06",
+      "tipo": "L09-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un heap ha altezza 3, con la radice a livello 0. Quanti nodi può contenere?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "da 4 a 7",
+        "da 8 a 15",
+        "esattamente 15",
+        "da 4 a 15"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "I livelli 0, 1 e 2 devono essere pieni (7 nodi) e il livello 3 ha da 1 a 8 nodi: quindi da 8 = 2³ a 15 = 2⁴ − 1 nodi. «Da 4 a 7» tratta l'altezza 3 come se fosse il numero di livelli; 15 è solo il caso dell'albero completo; 4 nodi formerebbero un albero degenere, che non è un heap."
+    },
+    {
+      "id": "L09-T06-01",
+      "tipo": "L09-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un min-heap con n = 11 elementi è memorizzato in un array con indici da 0. Qual è l'indice del padre dell'elemento in posizione 8?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4",
+        "7",
+        "3",
+        "2"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il padre di i è (i − 1)//2 = 7//2 = 3, perché 2·3 + 2 = 8. Il 4 è 8//2, cioè la formula con indici da 1, che qui non è valida."
+    },
+    {
+      "id": "L09-T06-02",
+      "tipo": "L09-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un min-heap con n = 8 elementi è memorizzato in un array con indici da 0. Quali indici sono figli dell'elemento in posizione 3?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "7 e 8",
+        "solo 7",
+        "6 e 7",
+        "solo 6"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "I figli di 3 sono 2·3 + 1 = 7 e 2·3 + 2 = 8. L'indice 8 non esiste, perché gli indici vanno da 0 a 7: il nodo 3 ha solo il figlio sinistro. Il 6 e il 7 vengono dalle formule con indici da 1, 2i e 2i + 1."
+    },
+    {
+      "id": "L09-T06-03",
+      "tipo": "L09-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un min-heap con n = 10 elementi è memorizzato in un array con indici da 0. Quali indici sono nodi interni?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "da 0 a 4",
+        "da 0 a 5",
+        "da 0 a 3",
+        "da 1 a 4"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Un nodo i è interno se ha almeno il figlio sinistro, cioè 2i + 1 < 10: quindi i ≤ 4. Il 5 non è interno, perché i suoi figli sarebbero 11 e 12, che non esistono."
+    },
+    {
+      "id": "L09-T06-04",
+      "tipo": "L09-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un min-heap con n = 9 elementi è memorizzato in un array con indici da 0. Quanti dei suoi nodi sono foglie?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4",
+        "5",
+        "2",
+        "9"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Le foglie sono gli indici da n//2 = 4 a 8: sono 5 nodi. Il 2 conta solo quelle dell'ultimo livello (indici 7 e 8); l'indice 4, per esempio, è una foglia già sul livello 2."
+    },
+    {
+      "id": "L09-T06-05",
+      "tipo": "L09-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un min-heap con n = 20 elementi è memorizzato in un array con indici da 0, con la radice a livello 0. A quale livello si trova l'elemento in posizione 15?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "4",
+        "5",
+        "7"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il livello k contiene gli indici da 2^k − 1 a 2^(k+1) − 2: il livello 3 va da 7 a 14, il livello 4 da 15 a 30. Quindi 15 è il primo nodo del livello 4, e infatti ⌊log₂(15 + 1)⌋ = 4. Il 3 viene da ⌊log₂ 15⌋, la formula valida con indici da 1; il 7 è l'indice del padre, (15 − 1)//2."
+    },
+    {
+      "id": "L09-T06-06",
+      "tipo": "L09-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un min-heap con n = 11 elementi è memorizzato in un array con indici da 0. Quali indici sono foglie?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "da 5 a 10",
+        "da 7 a 10",
+        "da 5 a 11",
+        "da 4 a 10"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Le foglie sono gli indici da n//2 = 5 a n − 1 = 10: per il nodo 5 si ha 2·5 + 1 = 11 ≥ n, quindi è una foglia anche se sta sul livello 2. Da 7 a 10 sarebbero solo quelle dell'ultimo livello."
+    },
+    {
+      "id": "L09-T07-01",
+      "tipo": "L09-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia A = [6, 71, 22, 79, 94, 90, 49, 91] un min-heap con indici da 0. Si esegue heappush(A, 58): l'elemento è aggiunto in fondo e risale finché è minore del padre. Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[6, 71, 22, 58, 94, 90, 49, 91, 79]",
+        "[6, 71, 22, 79, 94, 90, 49, 91, 58]",
+        "[6, 58, 22, 71, 94, 90, 49, 91, 79]",
+        "[6, 71, 22, 79, 58, 90, 49, 91, 94]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E5"
+      ],
+      "spiegazione": "58 entra in posizione 8; il padre (8 − 1)//2 = 3 vale 79: scambio. Dalla posizione 3 il padre è 1 (valore 71): scambio. Dalla posizione 1 il padre è 0 (valore 6): 58 non è minore, stop. Fermarsi dopo il primo scambio lascia 58 in posizione 3; con la formula a base 1 (8//2 = 4) si scambia con 94."
+    },
+    {
+      "id": "L09-T07-02",
+      "tipo": "L09-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia A = [99, 82, 88, 65, 8, 76, 69, 60] un max-heap con indici da 0 (ogni nodo è maggiore o uguale ai figli). Si inserisce 91 come in heappush, ma risalendo finché il nuovo elemento è maggiore del padre. Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[99, 91, 88, 82, 8, 76, 69, 60, 65]",
+        "[99, 82, 88, 91, 8, 76, 69, 60, 65]",
+        "[99, 91, 88, 82, 76, 69, 65, 60, 8]",
+        "[99, 91, 82, 65, 88, 76, 69, 60, 8]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E5"
+      ],
+      "spiegazione": "91 entra in posizione 8; il padre (8 − 1)//2 = 3 vale 65: scambio. Dalla posizione 3 il padre è 1 (valore 82): scambio. Dalla posizione 1 il padre è 0 (valore 99): 91 non è maggiore, stop. Fermarsi dopo il primo scambio lascia 91 in posizione 3; l'array ordinato non è lo stato reale; con la formula a base 1 (8//2 = 4) si scambia con 8."
+    },
+    {
+      "id": "L09-T07-03",
+      "tipo": "L09-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia A = [14, 24, 72, 25, 75, 74, 82, 88] un min-heap con indici da 0. Si esegue heappush(A, 48): l'elemento è aggiunto in fondo e risale finché è minore del padre. Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[14, 24, 48, 25, 72, 74, 82, 88, 75]",
+        "[14, 24, 72, 25, 75, 74, 82, 88, 48]",
+        "[14, 24, 25, 48, 72, 74, 75, 82, 88]",
+        "[14, 24, 72, 48, 75, 74, 82, 88, 25]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E3",
+        "E6"
+      ],
+      "spiegazione": "48 entra in posizione 8; il padre (8 − 1)//2 = 3 vale 25 e 48 non è minore: nessuno scambio, 48 resta in fondo. Con la formula a base 1 il padre sarebbe 8//2 = 4 (valore 75) e 48 salirebbe per errore; scambiarlo comunque con il padre 25 rompe l'ordine."
+    },
+    {
+      "id": "L09-T07-04",
+      "tipo": "L09-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [91, 61, 53, 7, 21, 32, 24, 3] un max-heap con indici da 0 (ogni nodo è maggiore o uguale ai figli). Si inserisce 97 come in heappush, ma risalendo finché il nuovo elemento è maggiore del padre. Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[91, 61, 53, 7, 21, 32, 24, 3, 97]",
+        "[97, 91, 53, 61, 21, 32, 24, 3, 7]",
+        "[97, 91, 61, 7, 53, 32, 24, 3, 21]",
+        "[97, 91, 61, 53, 32, 24, 21, 7, 3]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E5",
+        "E3"
+      ],
+      "spiegazione": "97 entra in posizione 8 ed è maggiore di tutti: scambio con 7 (posizione 3), poi con 61 (posizione 1), poi con 91 (posizione 0), e arriva in radice. Lasciarlo in fondo dimentica la risalita; con la formula a base 1 (8//2 = 4) risale lungo le posizioni 4, 2, 1, 0, che non sono i suoi antenati."
+    },
+    {
+      "id": "L09-T07-05",
+      "tipo": "L09-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia A = [13, 33, 46, 35, 71, 99, 96, 76] un min-heap con indici da 0. Si esegue heappush(A, 19): l'elemento è aggiunto in fondo e risale finché è minore del padre. Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[13, 33, 46, 19, 71, 99, 96, 76, 35]",
+        "[13, 33, 46, 35, 71, 99, 96, 76, 19]",
+        "[13, 19, 46, 33, 71, 99, 96, 76, 35]",
+        "[13, 19, 33, 35, 46, 99, 96, 76, 71]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E5"
+      ],
+      "spiegazione": "19 entra in posizione 8; il padre (8 − 1)//2 = 3 vale 35: scambio. Dalla posizione 3 il padre è 1 (valore 33): scambio. Dalla posizione 1 il padre è 0 (valore 13): 19 non è minore, stop. Fermarsi dopo il primo scambio lascia 19 in posizione 3; con la formula a base 1 (8//2 = 4) risale lungo le posizioni 4, 2, 1."
+    },
+    {
+      "id": "L09-T07-06",
+      "tipo": "L09-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [92, 50, 46, 49, 16, 25, 41, 3, 31] un max-heap con indici da 0 (ogni nodo è maggiore o uguale ai figli). Si inserisce 77 come in heappush, ma risalendo finché il nuovo elemento è maggiore del padre. Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[92, 77, 46, 49, 50, 25, 41, 3, 31, 16]",
+        "[92, 50, 46, 49, 16, 25, 41, 3, 31, 77]",
+        "[92, 77, 50, 49, 46, 41, 31, 25, 16, 3]",
+        "[92, 77, 50, 49, 46, 25, 41, 3, 31, 16]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "spiegazione": "77 entra in posizione 9; il padre (9 − 1)//2 = 4 vale 16: scambio. Dalla posizione 4 il padre è 1 (valore 50): scambio. Dalla posizione 1 il padre è 0 (valore 92): 77 non è maggiore, stop. Lasciarlo in fondo dimentica la risalita; con la formula a base 1 (9//2 = 4, poi 4//2 = 2) risale lungo le posizioni 4, 2, 1."
+    },
+    {
+      "id": "L09-T08-01",
+      "tipo": "L09-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [2, 9, 19, 55, 48, 75, 97] un min-heap con indici da 0. Si esegue heappop(A). Qual è il contenuto di A dopo l'operazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[9, 97, 19, 55, 48, 75]",
+        "[9, 48, 19, 55, 97, 75]",
+        "[9, 55, 19, 97, 48, 75]",
+        "[9, 19, 55, 48, 75, 97]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "heappop restituisce 2 e porta l'ultimo elemento, 97, in radice. Figli 9 e 19: il minore è 9, scambio (97 in posizione 1). Figli di 1: 55 e 48, il minore è il destro 48, scambio (97 in posizione 4, una foglia). Fermarsi dopo il primo scambio lascia 97 sopra 55 e 48; scendere sempre a sinistra lascia 55 sopra 48."
+    },
+    {
+      "id": "L09-T08-02",
+      "tipo": "L09-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [65, 50, 63, 47, 41, 58, 35, 4, 12] un max-heap con indici da 0 (ogni nodo è maggiore o uguale ai figli). Si esegue l'estrazione del massimo, con la discesa che scambia con il figlio maggiore. Qual è il contenuto di A dopo l'operazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[63, 50, 12, 47, 41, 58, 35, 4]",
+        "[50, 63, 47, 41, 58, 35, 4, 12]",
+        "[63, 58, 50, 47, 41, 35, 12, 4]",
+        "[63, 50, 58, 47, 41, 12, 35, 4]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "L'estrazione restituisce 65 e porta l'ultimo elemento, 12, in radice. Figli 50 e 63: il maggiore è il destro 63, scambio (12 in posizione 2). Figli di 2: 58 e 35, il maggiore è 58, scambio (12 in posizione 5, una foglia). Fermarsi dopo il primo scambio lascia 12 sopra 58; far scorrere gli elementi a sinistra non porta l'ultimo in radice."
+    },
+    {
+      "id": "L09-T08-03",
+      "tipo": "L09-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [1, 29, 9, 63, 77, 96, 67, 71, 74, 78] un min-heap con indici da 0. Si esegue heappop(A). Qual è il contenuto di A dopo l'operazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[9, 29, 67, 63, 77, 96, 78, 71, 74]",
+        "[29, 63, 9, 71, 77, 96, 67, 78, 74]",
+        "[29, 9, 63, 77, 96, 67, 71, 74, 78]",
+        "[9, 29, 63, 67, 71, 74, 77, 78, 96]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "heappop restituisce 1 e porta l'ultimo elemento, 78, in radice. Figli 29 e 9: il minore è il destro 9, scambio (78 in posizione 2). Figli di 2: 96 e 67, il minore è 67, scambio (78 in posizione 6, una foglia). Scendere sempre a sinistra mette 29 in radice sopra 9; l'array ordinato non è lo stato reale."
+    },
+    {
+      "id": "L09-T08-04",
+      "tipo": "L09-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia A = [86, 61, 26, 27, 31, 5, 10, 24] un max-heap con indici da 0 (ogni nodo è maggiore o uguale ai figli). Si esegue l'estrazione del massimo, con la discesa che scambia con il figlio maggiore. Qual è il contenuto di A dopo l'operazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[61, 27, 26, 24, 31, 5, 10]",
+        "[61, 24, 26, 27, 31, 5, 10]",
+        "[61, 31, 26, 27, 24, 5, 10]",
+        "[61, 31, 27, 26, 24, 10, 5]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "E4"
+      ],
+      "spiegazione": "L'estrazione restituisce 86 e porta l'ultimo elemento, 24, in radice. Figli 61 e 26: il maggiore è 61, scambio (24 in posizione 1). Figli di 1: 27 e 31, il maggiore è il destro 31, scambio (24 in posizione 4, una foglia). Fermarsi dopo il primo scambio lascia 24 sopra 27 e 31; scendere sempre a sinistra lascia 27 sopra 31."
+    },
+    {
+      "id": "L09-T08-05",
+      "tipo": "L09-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia A = [4, 9, 5, 10, 10, 11, 5] un min-heap con indici da 0. Si esegue heappop(A). Qual è il contenuto di A dopo l'operazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[9, 5, 10, 10, 11, 5]",
+        "[5, 5, 9, 10, 10, 11]",
+        "[5, 9, 5, 10, 10, 11]",
+        "[5, 9, 5, 10, 10, 11, 5]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E4",
+        null,
+        "E5"
+      ],
+      "spiegazione": "heappop restituisce 4 e porta l'ultimo elemento, 5, in radice: [5, 9, 5, 10, 10, 11]. Il figlio minore è il 5 in posizione 2 e 5 ≤ 5, quindi la discesa si ferma subito, senza scambi. Far scorrere gli elementi a sinistra dà [9, 5, 10, 10, 11, 5]; tenere anche la vecchia ultima casella dà un array di 7 elementi."
+    },
+    {
+      "id": "L09-T08-06",
+      "tipo": "L09-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [99, 88, 93, 49, 69, 40, 76, 2, 18, 36] un max-heap con indici da 0 (ogni nodo è maggiore o uguale ai figli). Si esegue l'estrazione del massimo, con la discesa che scambia con il figlio maggiore. Qual è il contenuto di A dopo l'operazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[93, 88, 36, 49, 69, 40, 76, 2, 18]",
+        "[88, 49, 93, 36, 69, 40, 76, 2, 18]",
+        "[88, 93, 49, 69, 40, 76, 2, 18, 36]",
+        "[93, 88, 76, 49, 69, 40, 36, 2, 18]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "L'estrazione restituisce 99 e porta l'ultimo elemento, 36, in radice. Figli 88 e 93: il maggiore è il destro 93, scambio (36 in posizione 2). Figli di 2: 40 e 76, il maggiore è 76, scambio (36 in posizione 6, una foglia). Fermarsi dopo il primo scambio lascia 36 sopra 76; scendere sempre a sinistra mette 88 in radice sopra 93."
+    },
+    {
+      "id": "L09-T09-01",
+      "tipo": "L09-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un min-heap inizialmente vuoto si inseriscono, uno dopo l'altro e con heappush, gli elementi [77, 48, 81, 60, 59, 33], in quest'ordine. Qual è il contenuto del vettore alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[48, 59, 33, 77, 60, 81]",
+        "[33, 59, 48, 77, 60, 81]",
+        "[33, 48, 59, 60, 77, 81]",
+        "[33, 48, 77, 60, 59, 81]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E5"
+      ],
+      "spiegazione": "Gli inserimenti danno, uno dopo l'altro, lo stato [33, 59, 48, 77, 60, 81]. Se ogni elemento risale di un solo livello si ottiene [48, 59, 33, 77, 60, 81]; heapify sullo stesso array dà [33, 48, 77, 60, 59, 81]: i due metodi non coincidono in generale."
+    },
+    {
+      "id": "L09-T09-02",
+      "tipo": "L09-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un max-heap inizialmente vuoto si inseriscono, uno dopo l'altro, gli elementi [32, 55, 64, 65, 52, 57, 75], in quest'ordine. Ogni inserimento è come heappush, ma il nuovo elemento risale finché è maggiore del padre. Qual è il contenuto del vettore alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[64, 65, 75, 32, 52, 55, 57]",
+        "[75, 65, 64, 57, 55, 52, 32]",
+        "[75, 64, 65, 32, 52, 55, 57]",
+        "[75, 65, 64, 55, 52, 57, 32]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E5"
+      ],
+      "spiegazione": "Gli inserimenti danno, uno dopo l'altro, lo stato [75, 64, 65, 32, 52, 55, 57]. Se ogni elemento risale di un solo livello si ottiene [64, 65, 75, 32, 52, 55, 57]; heapify sullo stesso array dà [75, 65, 64, 55, 52, 57, 32]: i due metodi non coincidono in generale."
+    },
+    {
+      "id": "L09-T09-03",
+      "tipo": "L09-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un min-heap inizialmente vuoto si inseriscono, uno dopo l'altro e con heappush, gli elementi [38, 55, 14, 10, 60, 38], in quest'ordine. Qual è il contenuto del vettore alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[10, 14, 38, 55, 60, 38]",
+        "[14, 10, 38, 55, 60, 38]",
+        "[10, 14, 38, 38, 55, 60]",
+        "[10, 38, 14, 55, 60, 38]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E5"
+      ],
+      "spiegazione": "Gli inserimenti danno, uno dopo l'altro, lo stato [10, 14, 38, 55, 60, 38]. Se ogni elemento risale di un solo livello si ottiene [14, 10, 38, 55, 60, 38]; heapify sullo stesso array dà [10, 38, 14, 55, 60, 38]: i due metodi non coincidono in generale."
+    },
+    {
+      "id": "L09-T09-04",
+      "tipo": "L09-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In un min-heap inizialmente vuoto si inseriscono, uno dopo l'altro e con heappush, gli elementi [56, 21, 73, 49, 13, 12]. Poi si esegue una heappop. Qual è il contenuto del vettore alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[12, 13, 73, 56, 49]",
+        "[21, 56, 13, 73, 49]",
+        "[13, 21, 49, 56, 73]",
+        "[13, 21, 73, 56, 49]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "E3",
+        null
+      ],
+      "spiegazione": "Dopo i 6 inserimenti l'heap è [12, 21, 13, 56, 49, 73]; la heappop estrae 12, porta 73 in radice e lo scambia con il figlio minore 13, dando [13, 21, 73, 56, 49]. Scendere sempre verso il figlio sinistro dà [21, 56, 13, 73, 49]; far risalire ogni elemento di un solo livello porta a un heap diverso, da cui si ottiene [12, 13, 73, 56, 49]."
+    },
+    {
+      "id": "L09-T09-05",
+      "tipo": "L09-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In un max-heap inizialmente vuoto si inseriscono, uno dopo l'altro, gli elementi [40, 58, 15, 89, 26, 76] (append e risalita finché il nuovo elemento è maggiore del padre). Poi si estrae il massimo: l'ultimo elemento va in radice e scende scambiandosi con il figlio maggiore. Qual è il contenuto del vettore alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[76, 58, 15, 40, 26]",
+        "[58, 40, 76, 15, 26]",
+        "[89, 40, 76, 15, 26]",
+        "[76, 58, 40, 26, 15]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Dopo i 6 inserimenti l'heap è [89, 58, 76, 40, 26, 15]; l'estrazione toglie 89, porta 15 in radice e lo scambia con il figlio maggiore 76, dando [76, 58, 15, 40, 26]. Scendere sempre verso il figlio sinistro dà [58, 40, 76, 15, 26]; far risalire ogni elemento di un solo livello lascia 89 fuori dalla radice, e l'estrazione toglie 58 dando [89, 40, 76, 15, 26]."
+    },
+    {
+      "id": "L09-T09-06",
+      "tipo": "L09-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In un max-heap inizialmente vuoto si inseriscono, uno dopo l'altro, gli elementi [30, 45, 37, 14, 23, 89] (append e risalita finché il nuovo elemento è maggiore del padre). Poi si estrae il massimo: l'ultimo elemento va in radice e scende scambiandosi con il figlio maggiore. Qual è il contenuto del vettore alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[89, 30, 37, 14, 23]",
+        "[37, 30, 45, 14, 23]",
+        "[45, 30, 37, 14, 23]",
+        "[45, 37, 30, 23, 14]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E4",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Dopo i 6 inserimenti l'heap è [89, 30, 45, 14, 23, 37] (89 risale fino in radice); l'estrazione toglie 89, porta 37 in radice e lo scambia con il figlio maggiore 45, dando [45, 30, 37, 14, 23]. Scendere sempre verso il figlio sinistro dà [37, 30, 45, 14, 23]; far risalire ogni elemento di un solo livello lascia 89 in posizione 2, e l'estrazione toglie 45 dando [89, 30, 37, 14, 23]."
+    },
+    {
+      "id": "L09-T10-01",
+      "tipo": "L09-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [23, 25, 7, 31, 56, 13, 54] un array con indici da 0. Si esegue heapify(A) per un max-heap (ogni nodo maggiore o uguale ai figli): per i da n//2 − 1 fino a 0, si fa scendere A[i] scambiandolo con il figlio maggiore finché serve. Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[56, 23, 54, 31, 25, 13, 7]",
+        "[56, 31, 54, 23, 25, 13, 7]",
+        "[25, 56, 54, 31, 23, 13, 7]",
+        "[56, 31, 54, 23, 25, 7, 13]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "heapify parte dal nodo 2 e risale fino alla radice, facendo scendere ogni nodo verso il figlio maggiore. Il risultato è [56, 31, 54, 23, 25, 13, 7]. Fermarsi dopo il primo scambio in ogni discesa dà [56, 23, 54, 31, 25, 13, 7]."
+    },
+    {
+      "id": "L09-T10-02",
+      "tipo": "L09-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [24, 54, 31, 41, 30, 38, 52, 35, 10] un array con indici da 0. Si esegue heapify(A) con il codice della dispensa per un min-heap: per i da n//2 − 1 fino a 0, heapify_down(A, i). Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[24, 35, 31, 41, 30, 38, 52, 54, 10]",
+        "[24, 30, 31, 10, 54, 38, 52, 35, 41]",
+        "[10, 24, 31, 35, 30, 38, 52, 54, 41]",
+        "[10, 24, 31, 30, 41, 38, 52, 54, 35]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "heapify parte dal nodo 3 e risale fino alla radice, facendo scendere ogni nodo verso il figlio minore. Il risultato è [10, 24, 31, 35, 30, 38, 52, 54, 41]. Scambiare sempre con il figlio sinistro dà [24, 35, 31, 41, 30, 38, 52, 54, 10]."
+    },
+    {
+      "id": "L09-T10-03",
+      "tipo": "L09-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [59, 42, 5, 18, 57, 1, 28, 56, 12] un array con indici da 0. Si esegue heapify(A) con il codice della dispensa per un min-heap: per i da n//2 − 1 fino a 0, heapify_down(A, i). Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 12, 5, 18, 57, 59, 28, 56, 42]",
+        "[1, 12, 59, 42, 57, 5, 28, 56, 18]",
+        "[18, 42, 1, 56, 57, 5, 28, 59, 12]",
+        "[5, 18, 1, 12, 57, 59, 28, 56, 42]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "heapify parte dal nodo 3 e risale fino alla radice, facendo scendere ogni nodo verso il figlio minore. Il risultato è [1, 12, 5, 18, 57, 59, 28, 56, 42]. Fermarsi dopo il primo scambio in ogni discesa dà [1, 12, 59, 42, 57, 5, 28, 56, 18]."
+    },
+    {
+      "id": "L09-T10-04",
+      "tipo": "L09-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Sia A = [37, 13, 26, 8, 24, 22, 56, 15, 39] un array con indici da 0. Si esegue heapify(A) per un max-heap (ogni nodo maggiore o uguale ai figli): per i da n//2 − 1 fino a 0, si fa scendere A[i] scambiandolo con il figlio maggiore finché serve. Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[56, 39, 37, 13, 24, 22, 26, 15, 8]",
+        "[37, 15, 26, 13, 24, 22, 56, 8, 39]",
+        "[56, 39, 37, 24, 13, 22, 26, 8, 15]",
+        "[56, 39, 37, 15, 24, 22, 26, 13, 8]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E4",
+        null
+      ],
+      "spiegazione": "heapify parte dal nodo 3 e risale fino alla radice, facendo scendere ogni nodo verso il figlio maggiore. Il risultato è [56, 39, 37, 15, 24, 22, 26, 13, 8]. Fermarsi dopo il primo scambio in ogni discesa dà [56, 39, 37, 13, 24, 22, 26, 15, 8]."
+    },
+    {
+      "id": "L09-T10-05",
+      "tipo": "L09-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia A = [30, 51, 48, 44, 23, 40, 53, 57, 3, 18] un array con indici da 0. Si esegue heapify(A) con il codice della dispensa per un min-heap: per i da n//2 − 1 fino a 0, heapify_down(A, i). Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[3, 30, 40, 51, 18, 48, 53, 57, 44, 23]",
+        "[3, 18, 40, 44, 23, 48, 53, 57, 51, 30]",
+        "[30, 44, 40, 51, 18, 48, 53, 57, 3, 23]",
+        "[30, 23, 40, 3, 18, 48, 53, 57, 44, 51]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "heapify parte dal nodo 4 e risale fino alla radice, facendo scendere ogni nodo verso il figlio minore. Il risultato è [3, 18, 40, 44, 23, 48, 53, 57, 51, 30]. Fermarsi dopo il primo scambio in ogni discesa dà [3, 30, 40, 51, 18, 48, 53, 57, 44, 23]."
+    },
+    {
+      "id": "L09-T10-06",
+      "tipo": "L09-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia A = [59, 32, 10, 1, 6, 26, 41, 44, 45] un array con indici da 0. Si esegue heapify(A) per un max-heap (ogni nodo maggiore o uguale ai figli): per i da n//2 − 1 fino a 0, si fa scendere A[i] scambiandolo con il figlio maggiore finché serve. Qual è il contenuto di A alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[59, 45, 41, 44, 6, 26, 10, 32, 1]",
+        "[59, 45, 41, 32, 6, 26, 10, 44, 1]",
+        "[59, 32, 41, 45, 6, 26, 10, 44, 1]",
+        "[59, 45, 41, 44, 6, 10, 26, 1, 32]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "heapify parte dal nodo 3 e risale fino alla radice, facendo scendere ogni nodo verso il figlio maggiore. Il risultato è [59, 45, 41, 44, 6, 26, 10, 32, 1]. Fermarsi dopo il primo scambio in ogni discesa dà [59, 45, 41, 32, 6, 26, 10, 44, 1]."
+    },
+    {
+      "id": "L09-T11-01",
+      "tipo": "L09-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Costruire un min-heap a partire da un array di n elementi con heapify costa, nel caso peggiore:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "heapify fa scendere circa n/2 nodi, ma il lavoro di ogni nodo è proporzionale alla sua altezza, e i nodi alti sono pochi: il costo totale è Θ(n). La stima (n/2)·O(log n) = O(n log n) è un limite superiore vero ma non stretto; Θ(log n) è il costo di una sola discesa."
+    },
+    {
+      "id": "L09-T11-02",
+      "tipo": "L09-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Inserire n elementi uno alla volta con heappush in un heap inizialmente vuoto costa, nel caso peggiore:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Nel caso peggiore (per esempio elementi inseriti in ordine decrescente) ogni nuovo elemento risale fino alla radice, cioè di ⌊log₂ i⌋ livelli quando l'heap ha i elementi: in totale Θ(n log n). Θ(n) è il costo di heapify, che lavora dal basso verso la radice, non degli inserimenti."
+    },
+    {
+      "id": "L09-T11-03",
+      "tipo": "L09-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Perché heapify costa O(n) anche se ogni heapify_down può costare O(log n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "perché la maggior parte dei nodi sta in basso e scende di pochi livelli",
+        "perché ogni heapify_down costa O(1)",
+        "perché vengono processati solo log n nodi",
+        "perché l'array è già quasi ordinato"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il lavoro di un nodo è proporzionale alla sua altezza, e i nodi alti sono pochi: Σ i·2^(h−i) < 2·2^h = O(n). Non è vero che ogni discesa costa O(1): quella dalla radice può fare h scambi, ma i nodi costosi sono pochi. I nodi processati sono circa n/2, e l'array di partenza può essere qualsiasi."
+    },
+    {
+      "id": "L09-T11-04",
+      "tipo": "L09-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione sul costo nel caso peggiore della costruzione di un min-heap con n elementi è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "heapify su un array costa Θ(n log n), perché chiama n/2 volte una funzione O(log n)",
+        "heapify su un array costa Θ(n), mentre n heappush costano Θ(n log n)",
+        "heapify costa Θ(log n), come un singolo heapify_down",
+        "n heappush costano Θ(n), come heapify"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "heapify chiama heapify_down su circa n/2 nodi, ma la stima (n/2)·log n non è stretta: il costo totale è Θ(n). Gli inserimenti, nel caso peggiore, risalgono ciascuno fino alla radice: Θ(n log n)."
+    },
+    {
+      "id": "L09-T11-05",
+      "tipo": "L09-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue heapify (min-heap) su un array di n = 15 elementi, che forma un albero completo di altezza 3. Qual è il numero massimo di scambi che heapify può eseguire in totale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "21",
+        "11",
+        "3",
+        "7"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Ogni nodo scende al più di tanti livelli quanta è la sua altezza: 4 nodi ad altezza 1, 2 ad altezza 2 e la radice ad altezza 3, quindi 4·1 + 2·2 + 1·3 = 11 scambi (succede, per esempio, con l'array in ordine decrescente). 21 = 7·3 suppone che tutti i 7 nodi interni scendano di 3 livelli; 7 conta uno scambio per nodo; 3 è il costo di una sola discesa."
+    },
+    {
+      "id": "L09-T11-06",
+      "tipo": "L09-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per costruire un min-heap a partire da n elementi, quale metodo ha costo O(n) nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n heappush successivi",
+        "heapify sull'array",
+        "ordinare l'array con mergesort",
+        "inserire gli elementi uno alla volta in un array mantenuto ordinato"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "heapify costa O(n). Gli n heappush costano Θ(n log n) nel caso peggiore; mergesort produce un array ordinato (che è un min-heap) ma costa Θ(n log n); mantenere un array ordinato costa O(n) per inserimento, Θ(n²) in totale."
+    },
+    {
+      "id": "L09-T12-01",
+      "tipo": "L09-T12",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un min-heap di n elementi, quanto costa inserire un elemento nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(1)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il nuovo elemento va in fondo e, nel caso peggiore, risale fino alla radice, cioè di ⌊log₂ n⌋ livelli: Θ(log n). Pensare che costi Θ(1) perché è un append dimentica la risalita."
+    },
+    {
+      "id": "L09-T12-02",
+      "tipo": "L09-T12",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Su un min-heap di n elementi, quanto costa leggere il minimo senza rimuoverlo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(1)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il minimo è in A[0]: leggerlo costa Θ(1). Θ(log n) è il costo di estrarlo, che è un'operazione diversa, perché dopo l'heap va ripristinato."
+    },
+    {
+      "id": "L09-T12-03",
+      "tipo": "L09-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sulla libreria heapq di Python è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "heapq.heappop(A) restituisce il massimo di A",
+        "heapq.heapify(A) costa Θ(n log n) nel caso peggiore",
+        "heapq.heapify(A) trasforma la lista A in un min-heap in tempo O(n)",
+        "heapq.heappush(A, x) costa O(1), perché aggiunge x in fondo"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "E2"
+      ],
+      "spiegazione": "heapq implementa un min-heap su normali list: heappop restituisce il minimo, heapify costa O(n) (quindi non Θ(n log n)) e heappush, dopo l'aggiunta in fondo, fa risalire l'elemento: O(log n)."
+    },
+    {
+      "id": "L09-T12-04",
+      "tipo": "L09-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Confronto tra un min-heap e un array ordinato in modo crescente, usati per inserire elementi e per estrarre il minimo: quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "l'array ordinato è sempre migliore, perché il minimo costa O(1) in entrambi",
+        "il min-heap inserisce in O(log n), l'array ordinato in O(n)",
+        "il min-heap inserisce in O(1), perché fa solo un append",
+        "l'array non ordinato estrae il minimo in O(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Nel min-heap inserimento ed estrazione del minimo costano O(log n); nell'array ordinato l'inserimento costa O(n), perché bisogna spostare elementi. Leggere il minimo costa O(1) in entrambi, ma è solo una parte del quadro."
+    },
+    {
+      "id": "L09-T12-05",
+      "tipo": "L09-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un min-heap di n elementi, quanto costa estrarre il minimo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Estrarre il minimo sposta l'ultimo elemento in radice e, nel caso peggiore, lo fa scendere fino a una foglia, cioè di ⌊log₂ n⌋ livelli: Θ(log n). Leggere il minimo, invece, costa Θ(1) e non lo toglie."
+    },
+    {
+      "id": "L09-T12-06",
+      "tipo": "L09-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia A una list Python qualsiasi, su cui non è stato chiamato heapq.heapify. Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "heapq.heappop(A) restituisce comunque il minimo di A",
+        "A non è in generale un heap: A[0] può non essere il minimo",
+        "heapq.heappush(A, x) costa O(1), perché fa solo un append",
+        "A è sempre un heap, perché i suoi elementi stanno in un array"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "Una list qualunque non è in generale un heap: per esempio in [5, 1, 3] A[0] = 5 non è il minimo, e heappop restituirebbe 5. Le funzioni di heapq funzionano correttamente solo su una list che è già un heap. heappush, oltre all'append, fa risalire l'elemento: O(log n)."
+    },
+    {
+      "id": "L09-T13-01",
+      "tipo": "L09-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si consideri la funzione seguente, che usa la libreria heapq. Quanto costa nel caso peggiore ordina(A), con A di n elementi, e che cosa contiene A dopo la chiamata?",
+      "codice": "import heapq\n\ndef ordina(A):\n    heapq.heapify(A)\n    B = []\n    while A:\n        B.append(heapq.heappop(A))\n    return B",
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n); A è vuota",
+        "Θ(n log n); A contiene gli stessi elementi, ordinati",
+        "Θ(n); A è vuota",
+        "Θ(n²); A è vuota"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "E4"
+      ],
+      "spiegazione": "heapify costa O(n), poi ci sono n estrazioni da O(log n): totale Θ(n log n). Ogni heappop toglie un elemento da A e lo aggiunge a B, quindi alla fine A è vuota e il risultato ordinato sta nella nuova lista B: l'algoritmo non ordina in loco. Θ(n) ignora le n estrazioni; Θ(n²) confonde con quicksort."
+    },
+    {
+      "id": "L09-T13-02",
+      "tipo": "L09-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Heapsort nella versione con heapq e lista B, su un array già ordinato in modo crescente di n elementi distinti, costa:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n log² n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "E5"
+      ],
+      "spiegazione": "heapify costa O(n) anche su input ordinato, e le n estrazioni costano O(log n) ciascuna; con elementi distinti l'ultimo elemento portato in radice deve comunque scendere, e il totale resta Θ(n log n). Θ(n) ignora le estrazioni; Θ(n²) è il caso peggiore di quicksort."
+    },
+    {
+      "id": "L09-T13-03",
+      "tipo": "L09-T13",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo di heapsort, nella versione della dispensa, nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n log² n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E4",
+        null,
+        "E5"
+      ],
+      "spiegazione": "heapify costa O(n), poi n estrazioni da O(log n): Θ(n log n). Θ(n) ignora le estrazioni, Θ(n²) confonde con il caso peggiore di quicksort, Θ(n log² n) moltiplica male i fattori."
+    },
+    {
+      "id": "L09-T13-04",
+      "tipo": "L09-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Heapsort della dispensa (heapq, lista B): quale affermazione sullo spazio è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "È in loco, perché ordina la lista A",
+        "Usa spazio aggiuntivo O(1), perché heapq non alloca strutture",
+        "Usa spazio aggiuntivo O(n), perché alloca la lista B",
+        "Usa spazio aggiuntivo O(log n) per la ricorsione"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La lista B contiene tutti gli n elementi estratti, quindi lo spazio extra è O(n): l'algoritmo non è in loco. Non c'è ricorsione, e heappop e heapify usano spazio costante."
+    },
+    {
+      "id": "L09-T13-05",
+      "tipo": "L09-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si confrontano heapsort e insertion sort su un array quasi ordinato di n elementi distinti. Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Heapsort costa Θ(n) sull'array quasi ordinato, come insertion sort",
+        "Heapsort costa O(n), perché heapify costa O(n)",
+        "Heapsort ha caso peggiore Θ(n²), come quicksort",
+        "Heapsort costa Θ(n log n) anche sull'array quasi ordinato, mentre insertion sort può costare O(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "E4",
+        null
+      ],
+      "spiegazione": "Heapsort fa comunque n estrazioni da O(log n), e con elementi distinti costa Θ(n log n) anche su input quasi ordinato. Insertion sort, su un array quasi ordinato, può costare O(n). Le altre affermazioni dimenticano le estrazioni o confondono con quicksort."
+    },
+    {
+      "id": "L09-T13-06",
+      "tipo": "L09-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'heapsort della dispensa (heapq.heapify su A, poi n heappop), quanto costano nel caso peggiore la fase di costruzione e la fase delle estrazioni?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n) per la costruzione, Θ(n log n) per le estrazioni",
+        "Θ(n) per la costruzione, Θ(n log n) per le estrazioni",
+        "Θ(n) per la costruzione, Θ(n) per le estrazioni",
+        "Θ(n) per la costruzione, Θ(n² log n) per le estrazioni"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E1",
+        "E5"
+      ],
+      "spiegazione": "heapify costa Θ(n); ognuna delle n estrazioni costa O(log n), e nel caso peggiore il totale è Θ(n log n), che domina. Contare le estrazioni come Θ(n) porta a dire che heapsort è lineare; Θ(n² log n) moltiplica n per n log n invece che per log n."
+    }
+  ]
+}

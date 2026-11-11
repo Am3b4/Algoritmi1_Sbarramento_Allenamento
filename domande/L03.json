@@ -1,0 +1,1915 @@
+{
+  "lezione": 3,
+  "generato_con": "claude-sonnet-5-5",
+  "domande": [
+    {
+      "id": "L03-T01-01",
+      "tipo": "L03-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Le equazioni di ricorrenza servono a esprimere:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il comportamento di un algoritmo iterativo che usa cicli for e while",
+        "Il valore calcolato da una funzione ricorsiva su un dato input",
+        "Il tempo di esecuzione di un algoritmo ricorsivo, tramite il tempo sui sottoproblemi",
+        "Nessuna di queste"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Un'equazione di ricorrenza esprime il tempo di esecuzione (talvolta lo spazio) di un algoritmo ricorsivo in funzione del tempo sui sottoproblemi più piccoli. Non descrive un algoritmo iterativo né il valore calcolato, che è dato dalla definizione ricorsiva (per esempio n! = n·(n − 1)!)."
+    },
+    {
+      "id": "L03-T01-02",
+      "tipo": "L03-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale grandezza di un algoritmo ricorsivo si descrive con un'equazione di ricorrenza come T(n) = 2T(n/2) + Θ(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il tempo di esecuzione in funzione della dimensione n dell'input",
+        "Il valore restituito dalla funzione sull'input di dimensione n",
+        "Il numero di iterazioni di un ciclo che scorre l'input",
+        "La struttura dati in cui sono memorizzati gli n elementi"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "T(n) indica il tempo su un input di dimensione n; i termini T(·) sono i tempi delle chiamate ricorsive e Θ(n) è il lavoro svolto fuori dalle chiamate. Non è il valore calcolato né un conteggio di iterazioni."
+    },
+    {
+      "id": "L03-T01-03",
+      "tipo": "L03-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In T(n) = T(n − 1) + Θ(1), con T(0) = Θ(1), cosa rappresenta il termine T(n − 1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il valore restituito dalla chiamata ricorsiva su n − 1",
+        "Il caso base dell'equazione di ricorrenza",
+        "Il numero di iterazioni di un ciclo ripetuto n − 1 volte",
+        "Il tempo della chiamata ricorsiva su un input di dimensione n − 1"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "E1",
+        null
+      ],
+      "spiegazione": "T(n − 1) è il tempo della chiamata ricorsiva, fatta su un input più piccolo di una unità. Non è un valore calcolato, né il caso base (che è T(0)), né il conteggio di un ciclo."
+    },
+    {
+      "id": "L03-T01-04",
+      "tipo": "L03-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In T(n) = T(n − 1) + Θ(1), con T(0) = Θ(1), cosa rappresenta il termine Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il caso base della ricorrenza, cioè il tempo per n = 0",
+        "Il lavoro svolto dalla singola chiamata, escluse le chiamate ricorsive",
+        "Il valore restituito dalla funzione a ogni chiamata ricorsiva",
+        "Il tempo della chiamata ricorsiva su un input di dimensione n − 1"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Θ(1) è il lavoro non ricorsivo di ogni chiamata (confronti, prodotti, assegnamenti). Il caso base è T(0) = Θ(1), un'altra parte dell'equazione; il tempo della chiamata su n − 1 è il termine T(n − 1)."
+    },
+    {
+      "id": "L03-T01-05",
+      "tipo": "L03-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti è l'equazione di ricorrenza (caso base e passo ricorsivo) che descrive il tempo di fattorialeR(n)?",
+      "codice": "def fattorialeR(n):\n    if n == 0:\n        return 1\n    return n * fattorialeR(n - 1)",
+      "albero": null,
+      "opzioni": [
+        "n! = 1 se n = 0; n! = n·(n − 1)! se n > 0",
+        "T(n) = n·T(n − 1) se n > 0",
+        "T(n) = Θ(n) per ogni n, senza passo ricorsivo",
+        "T(n) = Θ(1) se n = 0; T(n) = T(n − 1) + Θ(1) se n > 0"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il tempo è il caso base Θ(1) più il passo ricorsivo T(n − 1) + Θ(1): una sola chiamata su n − 1 e un prodotto di costo costante. n! = n·(n − 1)! è la definizione ricorsiva del valore, non del tempo. T(n) = n·T(n − 1) moltiplica il tempo per n, ma ogni invocazione fa una sola chiamata; Θ(n) è la soluzione, non un'equazione di ricorrenza."
+    },
+    {
+      "id": "L03-T01-06",
+      "tipo": "L03-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Di un algoritmo ricorsivo si scrive T(n) = T(n − 1) + Θ(n). Cosa dice questa equazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il tempo su n elementi è quello su n − 1 elementi più un lavoro Θ(n) svolto nella chiamata",
+        "La funzione restituisce il valore ottenuto dalla chiamata su n − 1 sommato a n",
+        "Il caso base costa Θ(n) e il passo ricorsivo è la sola chiamata T(n − 1)",
+        "Un algoritmo iterativo esegue, a ogni passo, un ciclo di n iterazioni"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E4",
+        "E1"
+      ],
+      "spiegazione": "Il termine T(n − 1) è il tempo della chiamata ricorsiva e Θ(n) il lavoro della chiamata fuori dalla ricorsione (per esempio uno slicing o un ciclo). L'equazione riguarda il tempo, non il valore restituito."
+    },
+    {
+      "id": "L03-T01-07",
+      "tipo": "L03-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'equazione T(n) = T(n − 1) + Θ(1) per n > 0, con T(0) = Θ(1), qual è il ruolo di T(0) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Rappresenta il lavoro non ricorsivo svolto da ogni chiamata",
+        "Rappresenta il valore restituito dalla funzione per n = 0",
+        "Dà il tempo sull'input più piccolo e interrompe la ricorrenza",
+        "Dà il tempo dell'intero algoritmo per ogni valore di n"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "T(0) = Θ(1) è il caso base: il tempo sul sottoproblema più piccolo, dove le chiamate ricorsive finiscono. Il lavoro non ricorsivo di ogni chiamata è il Θ(1) del passo ricorsivo."
+    },
+    {
+      "id": "L03-T01-08",
+      "tipo": "L03-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per fattorialeR valgono le due formule n! = n·(n − 1)! e T(n) = T(n − 1) + Θ(1). Quale affermazione le descrive correttamente?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Entrambe descrivono il valore restituito dalla funzione",
+        "La prima definisce il valore calcolato, la seconda il tempo di esecuzione",
+        "La prima descrive il tempo di esecuzione, la seconda il valore calcolato",
+        "Entrambe descrivono il tempo di esecuzione"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "n! = n·(n − 1)! è la definizione ricorsiva del valore; T(n) = T(n − 1) + Θ(1) è l'equazione di ricorrenza del tempo. Sono due equazioni diverse sullo stesso codice."
+    },
+    {
+      "id": "L03-T02-01",
+      "tipo": "L03-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Cosa succede chiamando f(10)?",
+      "codice": "def f(n):\n    if n == 0:\n        return 0\n    return n + f(n - 3)",
+      "albero": null,
+      "opzioni": [
+        "Restituisce 22: somma 10 + 7 + 4 + 1 e poi si ferma",
+        "Restituisce 0, il valore del caso base n == 0",
+        "Restituisce 55: somma tutti i numeri da 10 a 1",
+        "Non raggiunge mai il caso base e termina con stack overflow"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Partendo da 10 e togliendo 3 si ottiene 10, 7, 4, 1, −2, −5, …: n == 0 non è mai vero e le chiamate continuano finché lo stack si esaurisce (in Python RecursionError). Con caso base n <= 0 si otterrebbe 22; 55 deriva dal leggere n − 3 come n − 1."
+    },
+    {
+      "id": "L03-T02-02",
+      "tipo": "L03-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Cosa restituisce g(12)?",
+      "codice": "def g(n):\n    if n == 1:\n        return 1\n    return 2 * g(n // 2)",
+      "albero": null,
+      "opzioni": [
+        "1",
+        "8",
+        "16",
+        "Nessun valore: la catena di chiamate non termina e si ha stack overflow"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "12 → 6 → 3 → 1: il caso base n == 1 è raggiunto dopo tre chiamate ricorsive, quindi il risultato è 2 · 2 · 2 · 1 = 8. Il valore 1 è quello del solo caso base, senza i fattori 2 aggiunti nella risalita."
+    },
+    {
+      "id": "L03-T02-03",
+      "tipo": "L03-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Cosa succede chiamando s(-2)?",
+      "codice": "def s(n):\n    if n == 0:\n        return 0\n    return n + s(n - 1)",
+      "albero": null,
+      "opzioni": [
+        "Il parametro si allontana da 0: stack overflow",
+        "Restituisce 0, il valore del caso base n == 0",
+        "Restituisce −3: somma −2 + (−1) e poi si ferma",
+        "Restituisce 3: somma 2 + 1, i valori assoluti"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Da −2 la chiamata successiva è s(−3), poi s(−4), …: il parametro si allontana da 0 e il caso base n == 0 non è mai raggiunto, quindi si ha stack overflow. Che il parametro decresca non basta: il caso base deve essere raggiungibile dall'input."
+    },
+    {
+      "id": "L03-T02-04",
+      "tipo": "L03-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si vuole che f(n) termini per ogni n ≥ 0 e restituisca la somma dei termini positivi n + (n − 2) + (n − 4) + … Quale modifica basta?",
+      "codice": "def f(n):\n    if n == 0:\n        return 0\n    return n + f(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "Nessuna: il parametro decresce a ogni chiamata, quindi f termina comunque",
+        "Sostituire return 0 con return 1",
+        "Sostituire la condizione n == 0 con n <= 0",
+        "Sostituire n − 2 con n − 1 nella chiamata ricorsiva"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Per n dispari il parametro assume i valori n, n − 2, …, 1, −1, −3, … e salta lo 0. Con la condizione n <= 0 il caso base è raggiunto da ogni n ≥ 0, pari o dispari, senza cambiare i termini sommati. Il solo decrescere non garantisce la terminazione; cambiare il valore restituito non rende raggiungibile il caso base; con n − 1 la funzione terminerebbe ma sommerebbe tutti i numeri da n a 1."
+    },
+    {
+      "id": "L03-T02-05",
+      "tipo": "L03-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Cosa restituisce f(9)?",
+      "codice": "def f(n):\n    if n <= 0:\n        return 0\n    return n + f(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "25 (9 + 7 + 5 + 3 + 1)",
+        "45 (9 + 8 + … + 1)",
+        "0",
+        "Nessun valore: il caso base non è mai raggiunto e si ha stack overflow"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Con la condizione n <= 0 il caso base è raggiunto: i parametri sono 9, 7, 5, 3, 1, −1. Si somma 9 + 7 + 5 + 3 + 1 = 25 e la chiamata con −1 restituisce 0. Il valore 45 si ottiene leggendo n − 2 come n − 1."
+    },
+    {
+      "id": "L03-T02-06",
+      "tipo": "L03-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Cosa succede chiamando h(0)?",
+      "codice": "def h(n):\n    if n == 1:\n        return 1\n    return 1 + h(n // 2)",
+      "albero": null,
+      "opzioni": [
+        "Restituisce 1, il valore del caso base n == 1",
+        "Restituisce 0, perché 0 // 2 vale 0",
+        "Restituisce 2: una chiamata ricorsiva più il caso base",
+        "Il parametro resta 0 e non vale mai 1: stack overflow"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Da n = 0 si ha 0 // 2 = 0: il parametro non cambia e non vale mai 1, quindi la catena di chiamate è infinita. Per n ≥ 1 il caso base sarebbe raggiunto; n = 0 è il caso limite."
+    },
+    {
+      "id": "L03-T03-01",
+      "tipo": "L03-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di somma(A, 0) su una lista di n elementi?",
+      "codice": "def somma(A, i):\n    if i == len(A):\n        return 0\n    return A[i] + somma(A, i + 1)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = T(n/2) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(n)",
+        "T(n) = 2T(n − 1) + Θ(1)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Ogni invocazione fa una sola chiamata, su una porzione con un elemento in meno (l'indice i avanza di uno), più un'addizione e un confronto di costo costante: T(n) = T(n − 1) + Θ(1). Non c'è dimezzamento, e per avere Θ(n) servirebbe uno slicing o un ciclo sulla lista."
+    },
+    {
+      "id": "L03-T03-02",
+      "tipo": "L03-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di cerca(A, 0, n − 1, x) nel caso peggiore, su una lista di n ≥ 1 elementi?",
+      "codice": "def cerca(A, i, j, x):\n    if i == j:\n        return A[i] == x\n    m = (i + j) // 2\n    return cerca(A, i, m, x) or cerca(A, m + 1, j, x)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/2) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Nel caso peggiore (per esempio x non è nella lista) il primo termine dell'or è falso, quindi vengono eseguite entrambe le chiamate, ciascuna su circa metà degli elementi, più lavoro costante: T(n) = 2T(n/2) + Θ(1). T(n/2) + Θ(1) conta una sola chiamata, come se l'or ne eseguisse sempre una; per avere Θ(n) servirebbe un ciclo o uno slicing sulla porzione."
+    },
+    {
+      "id": "L03-T03-03",
+      "tipo": "L03-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di h(n)?",
+      "codice": "def h(n):\n    if n <= 1:\n        return 1\n    return h(n - 1) + h(n - 2) + 1",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = T(n − 1) + T(n − 2) + Θ(1)",
+        "T(n) = T(n − 1) + T(n − 2) + Θ(n)",
+        "T(n) = 2T(n/2) + Θ(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Per n > 1 ci sono due chiamate, su n − 1 e n − 2, più due somme di costo costante: T(n) = T(n − 1) + T(n − 2) + Θ(1). T(n − 1) + Θ(1) conta una sola chiamata; il lavoro fuori dalle chiamate non è Θ(n)."
+    },
+    {
+      "id": "L03-T03-04",
+      "tipo": "L03-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di q(n)?",
+      "codice": "def q(n):\n    if n <= 0:\n        return 0\n    return 1 + q(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = T(n − 2) + Θ(n)",
+        "T(n) = 2T(n − 2) + Θ(1)",
+        "T(n) = T(n − 2) + Θ(1)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "Una sola chiamata, su n − 2, più un'addizione: T(n) = T(n − 2) + Θ(1). Scrivere T(n − 1) ignora che il parametro cala di 2; non c'è lavoro Θ(n) fuori dalla chiamata."
+    },
+    {
+      "id": "L03-T03-05",
+      "tipo": "L03-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di c(n)?",
+      "codice": "def c(n):\n    if n <= 1:\n        return 1\n    a = c(n // 3)\n    b = c(n // 3)\n    d = c(n // 3)\n    return a + b + d",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/3) + Θ(1)",
+        "T(n) = 3T(n/3) + Θ(1)",
+        "T(n) = 2T(n/3) + Θ(1)",
+        "T(n) = 3T(n/3) + Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "Tre chiamate, ciascuna su n // 3, più due somme di costo costante: T(n) = 3T(n/3) + Θ(1). I termini si sommano: T(n/3) o 2T(n/3) contano meno chiamate di quelle eseguite; il lavoro non ricorsivo è costante."
+    },
+    {
+      "id": "L03-T03-06",
+      "tipo": "L03-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di d(n)?",
+      "codice": "def d(n):\n    if n <= 1:\n        return 1\n    a = d(n // 2)\n    return a + a",
+      "albero": null,
+      "opzioni": [
+        "T(n) = 2T(n/2) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = T(n/2) + Θ(1)",
+        "T(n) = T(n/2) + Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Nel codice c'è una sola chiamata, d(n // 2), il cui risultato è salvato in a e poi usato due volte nella somma: T(n) = T(n/2) + Θ(1). 2T(n/2) + Θ(1) conterebbe due volte una chiamata il cui risultato è riusato."
+    },
+    {
+      "id": "L03-T04-01",
+      "tipo": "L03-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di massimo(A) su una lista di n elementi?",
+      "codice": "def massimo(A):\n    if len(A) == 1:\n        return A[0]\n    m = massimo(A[1:])\n    if A[0] > m:\n        return A[0]\n    return m",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(2ⁿ)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Una chiamata su k elementi copia A[1:], cioè k − 1 elementi: lavoro Θ(k) oltre alla chiamata ricorsiva. T(n) = T(n − 1) + Θ(n) ⇒ Θ(n²). Θ(n) sarebbe il costo con un indice al posto dello slicing."
+    },
+    {
+      "id": "L03-T04-02",
+      "tipo": "L03-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di binario(n)? La concatenazione di stringhe costa quanto la lunghezza del risultato.",
+      "codice": "def binario(n):\n    if n <= 1:\n        return str(n)\n    return binario(n // 2) + str(n % 2)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/2) + Θ(log n)",
+        "T(n) = T(n/2) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(log n)",
+        "T(n) = 2T(n/2) + Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "binario(n // 2) restituisce una stringa di circa log n caratteri: concatenarle str(n % 2) costa Θ(log n). La chiamata è su n // 2, quindi T(n) = T(n/2) + Θ(log n). T(n/2) + Θ(1) ignora il costo della concatenazione."
+    },
+    {
+      "id": "L03-T04-03",
+      "tipo": "L03-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di pal(A) nel caso peggiore, su una lista di n elementi?",
+      "codice": "def pal(A):\n    if len(A) <= 1:\n        return True\n    if A[0] != A[-1]:\n        return False\n    return pal(A[1:-1])",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il caso peggiore è una lista palindroma. Una chiamata su k elementi copia A[1:-1], cioè k − 2 elementi, e le chiamate sono circa n/2: T(n) = T(n − 2) + Θ(n) ⇒ Θ(n²). Trascurando il costo della copia si otterrebbe Θ(n)."
+    },
+    {
+      "id": "L03-T04-04",
+      "tipo": "L03-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale affermazione sui costi di somma1(A) e somma2(A, 0) su una lista di n elementi è vera?",
+      "codice": "def somma1(A):\n    if len(A) == 0:\n        return 0\n    return A[0] + somma1(A[1:])\n\ndef somma2(A, i):\n    if i == len(A):\n        return 0\n    return A[i] + somma2(A, i + 1)",
+      "albero": null,
+      "opzioni": [
+        "Entrambe costano Θ(n), perché lo slicing non ha alcun costo",
+        "Entrambe costano Θ(n), perché lo slicing aggiunge solo una costante a ogni chiamata",
+        "somma1 costa Θ(n²), somma2 costa Θ(n)",
+        "somma1 costa Θ(n), somma2 costa Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "somma1 copia A[1:] a ogni chiamata: T(n) = T(n − 1) + Θ(n) ⇒ Θ(n²). somma2 usa l'indice, con lavoro costante per chiamata: T(n) = T(n − 1) + Θ(1) ⇒ Θ(n). Lo slicing non è gratuito e non costa una costante: copia la porzione."
+    },
+    {
+      "id": "L03-T04-05",
+      "tipo": "L03-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di inversa(A) su una lista di n elementi?",
+      "codice": "def inversa(A):\n    if len(A) == 0:\n        return\n    print(A[-1])\n    inversa(A[:-1])",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(n)",
+        "T(n) = T(n − 1) + Θ(n²)",
+        "T(n) = T(n/2) + Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Una chiamata su n elementi copia A[:-1], cioè n − 1 elementi: lavoro Θ(n) oltre alla chiamata su una lista con un elemento in meno, quindi T(n) = T(n − 1) + Θ(n), che dà Θ(n²). T(n − 1) + Θ(1) tratta lo slicing come gratuito."
+    },
+    {
+      "id": "L03-T04-06",
+      "tipo": "L03-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di rovescia(s) su una stringa di n caratteri?",
+      "codice": "def rovescia(s):\n    if s == \"\":\n        return \"\"\n    return rovescia(s[1:]) + s[0]",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n³)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "In una chiamata su n caratteri, s[1:] copia n − 1 caratteri e la concatenazione con s[0] crea una stringa lunga n: lavoro Θ(n) oltre alla chiamata su n − 1 caratteri. T(n) = T(n − 1) + Θ(n) ⇒ Θ(n²)."
+    },
+    {
+      "id": "L03-T05-01",
+      "tipo": "L03-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la complessità spaziale di power(x, n)?",
+      "codice": "def power(x, n):\n    if n == 0:\n        return 1\n    a = power(x, n // 2)\n    if n % 2 == 0:\n        return a * a\n    return x * a * a",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Lo spazio è la profondità massima dello stack. A ogni chiamata n viene dimezzato (n // 2) fino a 0: per n ≥ 1 sono ⌊log₂ n⌋ + 2 frame attivi insieme, quindi Θ(log n). Θ(n) è lo spazio della versione semplice; Θ(1) dimentica i frame sullo stack."
+    },
+    {
+      "id": "L03-T05-02",
+      "tipo": "L03-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è la complessità spaziale di somma(A, 0) su una lista di n elementi?",
+      "codice": "def somma(A, i):\n    if i == len(A):\n        return 0\n    return A[i] + somma(A, i + 1)",
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n²)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Le chiamate somma(A, 0), somma(A, 1), …, somma(A, n) sono tutte attive insieme prima che la più interna termini: profondità n + 1, quindi spazio Θ(n). Θ(1) dimentica i frame dello stack, anche se la funzione non crea liste."
+    },
+    {
+      "id": "L03-T05-03",
+      "tipo": "L03-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Contando la chiamata iniziale e quella del caso base, quanti frame sono attivi insieme, al massimo, durante fattoriale(7)?",
+      "codice": "def fattoriale(n):\n    if n == 0:\n        return 1\n    return n * fattoriale(n - 1)",
+      "albero": null,
+      "opzioni": [
+        "8",
+        "7",
+        "9",
+        "28"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Le chiamate fattoriale(7), fattoriale(6), …, fattoriale(0) sono attive insieme prima che la più interna termini: sono 8, compresa quella del caso base. 7 dimentica fattoriale(0)."
+    },
+    {
+      "id": "L03-T05-04",
+      "tipo": "L03-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Durante l'esecuzione di F(6), qual è il massimo numero di frame attivi contemporaneamente, contando la chiamata iniziale e quella del caso base?",
+      "codice": "def F(n):\n    if n <= 1:\n        return n\n    return F(n - 1) + F(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "25",
+        "6",
+        "8",
+        "7"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La catena più lunga è F(6) → F(5) → F(4) → F(3) → F(2) → F(1): 6 frame attivi insieme. Le chiamate totali sono 25, ma non sono mai tutte attive contemporaneamente: F(n − 2) parte dopo che il ramo di F(n − 1) ha liberato i suoi frame."
+    },
+    {
+      "id": "L03-T05-05",
+      "tipo": "L03-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la complessità spaziale di palindroma(A, 0, n − 1) nel caso peggiore?",
+      "codice": "def palindroma(A, inizio, fine):\n    if inizio >= fine:\n        return True\n    if A[inizio] != A[fine]:\n        return False\n    return palindroma(A, inizio + 1, fine - 1)",
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n²)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ogni chiamata restringe la porzione di due elementi: nel caso peggiore (lista palindroma) si fanno circa n/2 chiamate, tutte attive insieme sullo stack: Θ(n). Θ(1) dimentica lo stack; Θ(log n) richiederebbe un dimezzamento che non c'è."
+    },
+    {
+      "id": "L03-T05-06",
+      "tipo": "L03-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Contando la chiamata iniziale e quella del caso base, quanti frame sono attivi insieme, al massimo, durante power(3, 21)?",
+      "codice": "def power(x, n):\n    if n == 0:\n        return 1\n    a = power(x, n // 2)\n    if n % 2 == 0:\n        return a * a\n    return x * a * a",
+      "albero": null,
+      "opzioni": [
+        "6",
+        "5",
+        "22",
+        "10"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "I parametri delle chiamate sono 21, 10, 5, 2, 1, 0: sei frame attivi insieme, compresi la chiamata iniziale e quella del caso base. 5 dimentica il caso base; 22 sono i frame della versione semplice (parametri 21, 20, …, 0), che ha profondità lineare in n."
+    },
+    {
+      "id": "L03-T06-01",
+      "tipo": "L03-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Raggiunto il caso base di una funzione ricorsiva, in che ordine vengono rimossi i frame dallo stack di sistema?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "In ordine inverso a quello di creazione: l'ultimo frame aggiunto è il primo a essere rimosso",
+        "Nello stesso ordine in cui sono stati creati: il primo frame aggiunto è il primo a essere rimosso",
+        "Tutti insieme, nello stesso istante, quando termina la chiamata iniziale",
+        "In ordine casuale, a seconda dei valori dei parametri"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Lo stack è una struttura LIFO: la chiamata più interna (il caso base) termina per prima, poi quella che l'ha invocata, e così via fino alla chiamata iniziale, verso cui risalgono i valori calcolati."
+    },
+    {
+      "id": "L03-T06-02",
+      "tipo": "L03-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione sulla ricorsione, rispetto all'iterazione, è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "È sempre asintoticamente più lenta della versione iterativa equivalente",
+        "Usa meno memoria perché ha meno variabili locali",
+        "Il caso base è facoltativo se il parametro diminuisce a ogni chiamata",
+        "Il codice è spesso più compatto e leggibile, ma si usa più memoria"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "Vantaggio della ricorsione: codice più compatto e leggibile per problemi con struttura ricorsiva; svantaggio: più chiamate attive insieme, quindi più memoria. Non è in generale più lenta né più veloce (fattorialeR e fattorialeI sono entrambe Θ(n)) e senza caso base la catena di chiamate non finisce."
+    },
+    {
+      "id": "L03-T06-03",
+      "tipo": "L03-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale confronto tra fattorialeR(n) e fattorialeI(n) è corretto?",
+      "codice": "def fattorialeR(n):\n    if n == 0:\n        return 1\n    return n * fattorialeR(n - 1)\n\ndef fattorialeI(n):\n    r = 1\n    for i in range(2, n + 1):\n        r = r * i\n    return r",
+      "albero": null,
+      "opzioni": [
+        "fattorialeR è asintoticamente più lenta: Θ(n²) contro Θ(n) di fattorialeI",
+        "Hanno lo stesso tempo Θ(n); lo spazio è Θ(n) per fattorialeR e Θ(1) per fattorialeI",
+        "fattorialeR usa spazio Θ(1) e fattorialeI usa spazio Θ(n)",
+        "Hanno lo stesso tempo Θ(n) e lo stesso spazio Θ(1), perché nessuna crea liste"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Entrambe fanno Θ(n) prodotti di costo costante (n la ricorsiva, n − 1 l'iterativa): tempo Θ(n). fattorialeR tiene n + 1 frame attivi insieme (spazio Θ(n)); fattorialeI usa solo due variabili (spazio Θ(1)). La ricorsione non cambia la classe del tempo; cambia lo spazio."
+    },
+    {
+      "id": "L03-T06-04",
+      "tipo": "L03-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quando conviene preferire la versione iterativa a quella ricorsiva?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sempre, perché l'iterazione è asintoticamente più veloce della ricorsione",
+        "Quando la funzione ricorsiva ha più di un caso base da controllare",
+        "Quando è altrettanto semplice, soprattutto se serve risparmiare memoria",
+        "Mai, perché la ricorsione usa sempre meno memoria dell'iterazione"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Se esiste una versione iterativa altrettanto semplice, di solito conviene perché evita lo stack di chiamate (fattorialeI: spazio Θ(1) contro Θ(n)). Non è un fatto di velocità asintotica: per il fattoriale il tempo è lo stesso, Θ(n) in entrambe le versioni."
+    },
+    {
+      "id": "L03-T06-05",
+      "tipo": "L03-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Perché una funzione ricorsiva usa in genere più memoria di una iterativa equivalente?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Perché ci sono molte chiamate attive insieme, ognuna con un frame sullo stack",
+        "Non è vero: ne usa meno, perché ha meno variabili locali da memorizzare",
+        "Perché il codice della funzione viene copiato in memoria a ogni nuova chiamata",
+        "Perché i frame restano sullo stack finché l'intero programma non termina"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni chiamata attiva occupa un frame (parametri, posizione nel codice). Con la ricorsione le chiamate attive insieme sono molte, quindi lo stack cresce. I frame vengono rimossi appena la chiamata termina, e il codice non viene copiato."
+    },
+    {
+      "id": "L03-T06-06",
+      "tipo": "L03-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Cosa succede se il caso base di una funzione ricorsiva non viene mai raggiunto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nulla di grave: se il parametro diminuisce a ogni chiamata la funzione si ferma comunque",
+        "Le chiamate si accumulano finché lo stack si esaurisce: stack overflow (RecursionError)",
+        "La funzione restituisce 0, il valore predefinito, e termina normalmente",
+        "L'interprete rimuove i frame più vecchi e l'esecuzione continua senza errori"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Senza un caso base raggiungibile la catena di chiamate è infinita: i frame si accumulano fino all'esaurimento dello stack. Il parametro può decrescere senza mai assumere il valore del caso base (per esempio n == 0 con n negativo)."
+    },
+    {
+      "id": "L03-T07-01",
+      "tipo": "L03-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di pot3(n)?",
+      "codice": "def pot3(n):\n    if n == 0:\n        return 1\n    r = pot3(n // 2)\n    if n % 2 == 0:\n        return r * r\n    return 3 * r * r",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Ogni invocazione fa una sola chiamata, su n // 2, e salva il risultato in r: T(n) = T(n/2) + Θ(1) ⇒ Θ(log n). r * r è un prodotto, non una seconda chiamata. Θ(n) sarebbe il costo della versione semplice (chiamata su n − 1)."
+    },
+    {
+      "id": "L03-T07-02",
+      "tipo": "L03-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di potenza(x, n), per n ≥ 1?",
+      "codice": "def potenza(x, n):\n    if n == 1:\n        return x\n    k = potenza(x, n // 2)\n    if n % 2 == 0:\n        return k * k\n    return x * k * k",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/2) + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = T(n/2) + Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "In entrambi i rami c'è una sola chiamata, su n // 2: il risultato è salvato in k e usato due volte, quindi k * k non è una seconda chiamata. Anche per n dispari la chiamata è su (n − 1)/2, cioè circa n/2: T(n) = T(n/2) + Θ(1) ⇒ Θ(log n)."
+    },
+    {
+      "id": "L03-T07-03",
+      "tipo": "L03-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di lenta(x, n)?",
+      "codice": "def lenta(x, n):\n    if n == 0:\n        return 1\n    if n % 2 == 0:\n        return lenta(x, n // 2) * lenta(x, n // 2)\n    return x * lenta(x, n // 2) * lenta(x, n // 2)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/2) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(n)",
+        "T(n) = 2T(n/2) + Θ(1)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "In ogni ramo ci sono due chiamate distinte, entrambe su n // 2, perché il risultato non è salvato: T(n) = 2T(n/2) + Θ(1). Non si può scrivere T(n/2) + Θ(1) come nella versione che salva il risultato in una variabile."
+    },
+    {
+      "id": "L03-T07-04",
+      "tipo": "L03-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sui costi di semplice(x, n) e veloce(x, n) è vera?",
+      "codice": "def semplice(x, n):\n    if n == 0:\n        return 1\n    return x * semplice(x, n - 1)\n\ndef veloce(x, n):\n    if n == 0:\n        return 1\n    a = veloce(x, n // 2)\n    if n % 2 == 0:\n        return a * a\n    return x * a * a",
+      "albero": null,
+      "opzioni": [
+        "Entrambe costano Θ(n), perché servono comunque n moltiplicazioni",
+        "semplice costa Θ(n), veloce costa Θ(log n)",
+        "Entrambe costano Θ(log n)",
+        "semplice costa Θ(log n), veloce costa Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "semplice fa una chiamata su n − 1: T(n) = T(n − 1) + Θ(1) ⇒ Θ(n). veloce fa una chiamata su n // 2: T(n) = T(n/2) + Θ(1) ⇒ Θ(log n). Il numero di moltiplicazioni di veloce è proporzionale a log₂ n (una o due per chiamata), non a n."
+    },
+    {
+      "id": "L03-T07-05",
+      "tipo": "L03-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante chiamate a veloce, compresa la chiamata iniziale e quella del caso base, vengono eseguite durante veloce(2, 100)?",
+      "codice": "def veloce(x, n):\n    if n == 0:\n        return 1\n    a = veloce(x, n // 2)\n    if n % 2 == 0:\n        return a * a\n    return x * a * a",
+      "albero": null,
+      "opzioni": [
+        "8",
+        "101",
+        "7",
+        "50"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "I parametri sono 100, 50, 25, 12, 6, 3, 1, 0: otto chiamate. 7 dimentica la chiamata con n = 0; 101 è il conteggio della versione con la chiamata su n − 1 (parametri 100, 99, …, 0)."
+    },
+    {
+      "id": "L03-T07-06",
+      "tipo": "L03-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Le funzioni A e B calcolano xⁿ. Quale affermazione sui loro tempi è corretta?",
+      "codice": "def A(x, n):\n    if n == 0:\n        return 1\n    a = A(x, n // 2)\n    if n % 2 == 0:\n        return a * a\n    return x * a * a\n\ndef B(x, n):\n    if n == 0:\n        return 1\n    if n % 2 == 0:\n        return B(x, n // 2) * B(x, n // 2)\n    return x * B(x, n // 2) * B(x, n // 2)",
+      "albero": null,
+      "opzioni": [
+        "Hanno entrambe T(n) = T(n/2) + Θ(1), perché in entrambe l'esponente si dimezza",
+        "Hanno entrambe T(n) = 2T(n/2) + Θ(1), perché a * a conta come una seconda chiamata",
+        "B è più veloce di A, perché non usa la variabile a",
+        "A segue T(n) = T(n/2) + Θ(1) e B segue T(n) = 2T(n/2) + Θ(1): B fa due chiamate su n/2, A una sola"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "In A la chiamata A(x, n // 2) è salvata in a e usata due volte: una sola chiamata. In B le due occorrenze B(x, n // 2) sono due chiamate distinte: T(n) = 2T(n/2) + Θ(1), che fa perdere il vantaggio del dimezzamento. Il prodotto a * a non è una chiamata."
+    },
+    {
+      "id": "L03-T08-01",
+      "tipo": "L03-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale coppia (ricorrenza, costo nel caso peggiore) descrive spec(A) su una lista di n elementi?",
+      "codice": "def spec(A):\n    if len(A) < 2:\n        return True\n    return A[0] == A[-1] and spec(A[1:-1])",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 2) + Θ(1), Θ(n)",
+        "T(n) = T(n − 2) + Θ(n), Θ(n²)",
+        "T(n) = T(n/2) + Θ(1), Θ(log n)",
+        "T(n) = 2T(n − 1) + Θ(1), Θ(2ⁿ)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E6",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Una chiamata su n elementi copia A[1:-1], cioè n − 2 elementi: lavoro Θ(n) oltre alla chiamata su n − 2. Nel caso peggiore (lista palindroma) T(n) = T(n − 2) + Θ(n) ⇒ Θ(n²). Considerando gratuita la copia si avrebbe T(n − 2) + Θ(1), cioè Θ(n); non c'è dimezzamento e non ci sono due chiamate."
+    },
+    {
+      "id": "L03-T08-02",
+      "tipo": "L03-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quali sono i costi di pal(A, 0, n − 1) nel caso migliore e nel caso peggiore?",
+      "codice": "def pal(A, i, j):\n    if i >= j:\n        return True\n    if A[i] != A[j]:\n        return False\n    return pal(A, i + 1, j - 1)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n) in entrambi i casi",
+        "Migliore O(1), peggiore Θ(n²)",
+        "Migliore O(1), peggiore Θ(n)",
+        "Migliore Θ(log n), peggiore Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Se gli estremi sono diversi la funzione restituisce False dopo un solo confronto: O(1). Se la lista è palindroma si fanno circa n/2 chiamate di costo costante: Θ(n). Non ci sono slicing, quindi non c'è Θ(n²)."
+    },
+    {
+      "id": "L03-T08-03",
+      "tipo": "L03-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante chiamate a pal, compresa la prima e quella del caso base, vengono eseguite con pal(A, 0, 7) e A = [3, 1, 4, 2, 2, 4, 1, 3]?",
+      "codice": "def pal(A, i, j):\n    if i >= j:\n        return True\n    if A[i] != A[j]:\n        return False\n    return pal(A, i + 1, j - 1)",
+      "albero": null,
+      "opzioni": [
+        "4",
+        "8",
+        "3",
+        "5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E5",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Gli estremi coincidono a ogni passo: le chiamate hanno (i, j) = (0, 7), (1, 6), (2, 5), (3, 4), (4, 3). L'ultima ha i >= j ed è il caso base. In totale 5 chiamate; 4 dimentica quella del caso base."
+    },
+    {
+      "id": "L03-T08-04",
+      "tipo": "L03-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante chiamate a pal, compresa la prima, vengono eseguite con pal(A, 0, 5) e A = [6, 2, 9, 5, 2, 6]?",
+      "codice": "def pal(A, i, j):\n    if i >= j:\n        return True\n    if A[i] != A[j]:\n        return False\n    return pal(A, i + 1, j - 1)",
+      "albero": null,
+      "opzioni": [
+        "3",
+        "4",
+        "2",
+        "6"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Le chiamate sono (0, 5), (1, 4), (2, 3). In (2, 3) si confronta A[2] = 9 con A[3] = 5: sono diversi e la funzione restituisce False senza altre chiamate. 4 è il conteggio di chi non considera l'uscita anticipata."
+    },
+    {
+      "id": "L03-T08-05",
+      "tipo": "L03-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul costo di palindroma(A, 0, n − 1) nel caso peggiore è corretta?",
+      "codice": "def palindroma(A, inizio, fine):\n    if inizio >= fine:\n        return True\n    if A[inizio] != A[fine]:\n        return False\n    return palindroma(A, inizio + 1, fine - 1)",
+      "albero": null,
+      "opzioni": [
+        "Lavorando dai due estremi la lista si dimezza a ogni chiamata, quindi il costo è Θ(log n)",
+        "Si fanno circa n/2 chiamate, ciascuna di costo costante, quindi il costo è Θ(n)",
+        "Ogni chiamata ne fa due ricorsive, una per ciascun estremo, quindi il costo è Θ(2ⁿ)",
+        "Ogni chiamata copia la porzione di lista da controllare, quindi il costo è Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "A ogni chiamata la porzione perde due elementi (uno per estremo), quindi T(n) = T(n − 2) + Θ(1) ⇒ Θ(n): circa n/2 chiamate, ciascuna con due confronti. Non c'è dimezzamento, la chiamata ricorsiva è una sola e con gli indici non si copia nulla."
+    },
+    {
+      "id": "L03-T08-06",
+      "tipo": "L03-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quante chiamate a pal, compresa la prima e quella del caso base, vengono eseguite con pal(A, 0, 8) e A = [8, 3, 5, 1, 7, 1, 5, 3, 8]?",
+      "codice": "def pal(A, i, j):\n    if i >= j:\n        return True\n    if A[i] != A[j]:\n        return False\n    return pal(A, i + 1, j - 1)",
+      "albero": null,
+      "opzioni": [
+        "5",
+        "4",
+        "9",
+        "6"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Le chiamate hanno (i, j) = (0, 8), (1, 7), (2, 6), (3, 5), (4, 4). L'ultima, con i == j (un solo elemento), è il caso base. In totale 5 chiamate; 4 dimentica quella del caso base."
+    },
+    {
+      "id": "L03-T09-01",
+      "tipo": "L03-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Permuta(n) restituisce la lista delle permutazioni di {1, …, n}. Quante liste restituisce e qual è il suo costo?",
+      "codice": "def Permuta(n):\n    if n == 1:\n        return [[1]]\n    ris = []\n    for p in Permuta(n - 1):\n        for i in range(n):\n            ris.append(p[:i] + [n] + p[i:])\n    return ris",
+      "albero": null,
+      "opzioni": [
+        "n! liste, costo Θ(n!)",
+        "n! liste, costo Θ(n·n!)",
+        "2ⁿ liste, costo Θ(2ⁿ)",
+        "n! liste, costo Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Al livello n si costruiscono n·(n − 1)! = n! liste, ognuna con slicing e concatenazione in Θ(n): Θ(n·n!), e i livelli inferiori costano meno. Θ(n!) dimentica il costo di costruire ogni lista; Θ(n²) guarda solo i due for, ma il ciclo esterno scorre (n − 1)! permutazioni."
+    },
+    {
+      "id": "L03-T09-02",
+      "tipo": "L03-T09",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quante liste restituisce Permuta(4)?",
+      "codice": "def Permuta(n):\n    if n == 1:\n        return [[1]]\n    ris = []\n    for p in Permuta(n - 1):\n        for i in range(n):\n            ris.append(p[:i] + [n] + p[i:])\n    return ris",
+      "albero": null,
+      "opzioni": [
+        "24",
+        "16",
+        "4",
+        "96"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Permuta(n) restituisce n! liste, ciascuna di lunghezza n: per n = 4 sono 4! = 24 liste. 16 = 2⁴ confonde n! con 2ⁿ; 96 è il numero totale di elementi nelle liste (4 · 24)."
+    },
+    {
+      "id": "L03-T09-03",
+      "tipo": "L03-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante volte viene chiamata la funzione Permuta durante l'esecuzione di Permuta(5), compresa la chiamata iniziale?",
+      "codice": "def Permuta(n):\n    if n == 1:\n        return [[1]]\n    ris = []\n    for p in Permuta(n - 1):\n        for i in range(n):\n            ris.append(p[:i] + [n] + p[i:])\n    return ris",
+      "albero": null,
+      "opzioni": [
+        "206",
+        "15",
+        "25",
+        "5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ogni invocazione con n > 1 fa una sola chiamata, Permuta(n − 1): le chiamate sono Permuta(5), Permuta(4), …, Permuta(1), cioè 5. La chiamata Permuta(n − 1) non viene ripetuta n volte: il ciclo for scorre le sue permutazioni dopo che ha restituito il risultato. 206 = 1 + 5 + 5·4 + 5·4·3 + 5·4·3·2 è il conteggio di chi crede che Permuta(n − 1) sia chiamata n volte a ogni livello."
+    },
+    {
+      "id": "L03-T09-04",
+      "tipo": "L03-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il costo di Permuta(n) è Θ(n·n!) e non Θ(n!). Qual è il motivo?",
+      "codice": "def Permuta(n):\n    if n == 1:\n        return [[1]]\n    ris = []\n    for p in Permuta(n - 1):\n        for i in range(n):\n            ris.append(p[:i] + [n] + p[i:])\n    return ris",
+      "albero": null,
+      "opzioni": [
+        "Ognuna delle n! liste ha n elementi e costruirla con slicing e concatenazione costa Θ(n)",
+        "Permuta(n − 1) viene chiamata n volte, quindi il costo si moltiplica per n",
+        "Le liste restituite sono n·n! e non n!, perché ogni permutazione compare n volte",
+        "La funzione fa n! chiamate ricorsive, ciascuna con un lavoro di costo Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Le liste restituite sono n!, ma ciascuna è lunga n e viene costruita con p[:i] + [n] + p[i:], che costa Θ(n). Le invocazioni di Permuta sono n in tutto, una per livello (Permuta(n), Permuta(n − 1), …, Permuta(1))."
+    },
+    {
+      "id": "L03-T09-05",
+      "tipo": "L03-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il minimo costo asintotico di un algoritmo che scrive esplicitamente tutte le permutazioni di {1, …, n}, ciascuna come lista di n elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n!)",
+        "Θ(n·n!)",
+        "Θ(2ⁿ)",
+        "Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "L'output è fatto di n! liste di n elementi: solo scriverlo richiede Θ(n·n!) e Permuta raggiunge questo costo. Θ(n!) conta le permutazioni ma non la loro lunghezza; Θ(2ⁿ) e Θ(n²) sono più piccoli della dimensione dell'output."
+    },
+    {
+      "id": "L03-T09-06",
+      "tipo": "L03-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Permuta(5) restituisce una lista di liste. Quanti numeri compaiono in totale, sommando le lunghezze di tutte le liste restituite?",
+      "codice": "def Permuta(n):\n    if n == 1:\n        return [[1]]\n    ris = []\n    for p in Permuta(n - 1):\n        for i in range(n):\n            ris.append(p[:i] + [n] + p[i:])\n    return ris",
+      "albero": null,
+      "opzioni": [
+        "120",
+        "3125",
+        "600",
+        "25"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Permuta(5) restituisce 5! = 120 liste, ciascuna di lunghezza 5: 120 · 5 = 600 numeri. 120 conta solo le liste e non la loro lunghezza, cioè il costo Θ(n) per costruirne ciascuna."
+    },
+    {
+      "id": "L03-T10-01",
+      "tipo": "L03-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di fib(n)?",
+      "codice": "def fib(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    return fib(n - 1) + fib(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1) + T(n − 2) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(1)",
+        "T(n) = T(n − 1) + T(n − 2) + Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Per n > 1 ci sono due chiamate, su n − 1 e n − 2, più una somma di costo costante: T(n) = T(n − 1) + T(n − 2) + Θ(1). Con una sola chiamata o con un dimezzamento si sbaglia il numero e la dimensione dei sottoproblemi; il lavoro fuori dalle chiamate è una somma, non Θ(n)."
+    },
+    {
+      "id": "L03-T10-02",
+      "tipo": "L03-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Perché FibonacciR(n) è molto più lenta della versione iterativa?",
+      "codice": "def FibonacciR(n):\n    if n <= 1:\n        return n\n    return FibonacciR(n - 1) + FibonacciR(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "Perché i numeri di Fibonacci diventano molto grandi e le somme costano di più",
+        "Perché gli stessi valori F(k) vengono ricalcolati molte volte da chiamate ridondanti",
+        "Perché il caso base n <= 1 viene raggiunto troppo tardi",
+        "Perché lo stack di sistema si esaurisce già per n piccoli"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "FibonacciR richiama sé stessa su n − 1 e n − 2 senza salvare i risultati: lo stesso F(k) è calcolato più volte e il costo è Θ(2ⁿ). La versione iterativa calcola ogni valore una volta sola, in Θ(n)."
+    },
+    {
+      "id": "L03-T10-03",
+      "tipo": "L03-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di G(n)?",
+      "codice": "def G(n):\n    if n <= 2:\n        return 1\n    return G(n - 1) + G(n - 2) + G(n - 3)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = T(n − 1) + T(n − 2) + Θ(1)",
+        "T(n) = T(n − 1) + T(n − 2) + T(n − 3) + Θ(n)",
+        "T(n) = T(n − 1) + T(n − 2) + T(n − 3) + Θ(1)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Per n > 2 ci sono tre chiamate, su n − 1, n − 2 e n − 3, più due somme di costo costante: T(n) = T(n − 1) + T(n − 2) + T(n − 3) + Θ(1). Con meno termini si contano meno chiamate di quelle eseguite; il lavoro non ricorsivo è costante, non Θ(n)."
+    },
+    {
+      "id": "L03-T10-04",
+      "tipo": "L03-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di FibonacciR(n)?",
+      "codice": "def FibonacciR(n):\n    if n <= 1:\n        return n\n    return FibonacciR(n - 1) + FibonacciR(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n), perché calcola una volta ciascuno degli n valori",
+        "Θ(n), perché lo stack arriva a profondità n",
+        "Θ(2ⁿ), perché ricalcola più volte gli stessi valori",
+        "Θ(n²), perché ogni valore richiede fino a n somme"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "T(n) = T(n − 1) + T(n − 2) + Θ(1) ⇒ Θ(2ⁿ): il costo è dovuto alle chiamate ridondanti. Θ(n) è il costo della versione iterativa e anche lo spazio di FibonacciR (profondità dello stack): tempo e spazio sono due cose diverse."
+    },
+    {
+      "id": "L03-T10-05",
+      "tipo": "L03-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un confronto sperimentale FibonacciR(40) richiede molto più tempo di FibonacciI(5000), pur con n molto minore. Qual è la spiegazione?",
+      "codice": "def FibonacciR(n):\n    if n <= 1:\n        return n\n    return FibonacciR(n - 1) + FibonacciR(n - 2)\n\ndef FibonacciI(n):\n    a, b = 0, 1\n    for i in range(2, n + 1):\n        a, b = b, a + b\n    return b",
+      "albero": null,
+      "opzioni": [
+        "FibonacciR ha costo Θ(2ⁿ) per le chiamate ridondanti, FibonacciI ha costo Θ(n)",
+        "I valori di FibonacciR(40) sono molto più grandi di quelli di FibonacciI(5000)",
+        "FibonacciR ha profondità dello stack pari a 2⁴⁰",
+        "FibonacciI ha costo Θ(1), perché non è ricorsiva"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il tempo di FibonacciR cresce come 2ⁿ perché ricalcola più volte gli stessi valori; FibonacciI fa n − 1 somme. F(5000) è un numero molto più grande di F(40): la differenza di tempo non dipende dalla grandezza dei valori. La profondità dello stack di FibonacciR è Θ(n), non esponenziale."
+    },
+    {
+      "id": "L03-T10-06",
+      "tipo": "L03-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In fibo i risultati delle due chiamate ricorsive sono salvati nelle variabili a e b. Qual è il costo di fibo(n)?",
+      "codice": "def fibo(n):\n    if n < 2:\n        return n\n    a = fibo(n - 1)\n    b = fibo(n - 2)\n    return a + b",
+      "albero": null,
+      "opzioni": [
+        "Θ(n): salvando i risultati in a e b, ogni valore F(k) viene calcolato una volta sola",
+        "Θ(2ⁿ): a e b vengono da due chiamate distinte, che ricalcolano più volte gli stessi valori",
+        "Θ(n): c'è una sola chiamata ricorsiva per livello, T(n) = T(n − 1) + Θ(1)",
+        "Θ(n²): le chiamate sono n, ma le somme costano sempre di più perché i numeri crescono"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "a = fibo(n − 1) e b = fibo(n − 2) sono due chiamate distinte: una variabile evita di ripetere una chiamata quando la stessa chiamata comparirebbe due volte (come a * a nella potenza veloce), ma qui le chiamate sono diverse e ognuna ricalcola i suoi sottoproblemi. T(n) = T(n − 1) + T(n − 2) + Θ(1) ⇒ Θ(2ⁿ), come FibonacciR. La lentezza dipende dal numero di chiamate, non dalla grandezza dei numeri."
+    },
+    {
+      "id": "L03-T11-01",
+      "tipo": "L03-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Durante l'esecuzione di F(6), quante volte viene chiamata F(3)?",
+      "codice": "def F(n):\n    if n <= 1:\n        return n\n    return F(n - 1) + F(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "1",
+        "8",
+        "5",
+        "3"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E2",
+        null
+      ],
+      "spiegazione": "F(6) chiama F(5) e F(4); F(5) chiama F(4) e F(3); le due F(4) chiamano ciascuna F(3): in totale F(3) è chiamata 1 + 2 = 3 volte, una da F(5) e una da ciascuna delle due F(4). 1 è la risposta di chi pensa che i valori vengano riusati; 8 è il valore di F(6) e 5 il numero di chiamate a F(2)."
+    },
+    {
+      "id": "L03-T11-02",
+      "tipo": "L03-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante chiamate a F vengono eseguite in totale durante F(6), compresa la chiamata iniziale?",
+      "codice": "def F(n):\n    if n <= 1:\n        return n\n    return F(n - 1) + F(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "25",
+        "12",
+        "8",
+        "7"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Ogni chiamata con n ≥ 2 ne fa altre due. Le chiamate sono 25: 12 con n ≥ 2 (nodi interni) e 13 con n ≤ 1 (casi base). 12 dimentica le chiamate del caso base; 8 è il valore F(6)."
+    },
+    {
+      "id": "L03-T11-03",
+      "tipo": "L03-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Cosa stampa f(3)?",
+      "codice": "def f(n):\n    if n == 0:\n        return\n    print(n)\n    f(n - 1)\n    print(n * 10)",
+      "albero": null,
+      "opzioni": [
+        "30 20 10 1 2 3",
+        "3 2 1 10 20 30",
+        "3 2 1 30 20 10",
+        "3 30 2 20 1 10"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La prima print avviene prima della chiamata ricorsiva, nella discesa: 3, 2, 1. La seconda avviene dopo, nella risalita, quando i frame vengono rimossi in ordine inverso: 10, 20, 30. 30 20 10 1 2 3 si ottiene scambiando la posizione delle due print."
+    },
+    {
+      "id": "L03-T11-04",
+      "tipo": "L03-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante chiamate a pal, compresa la prima e quella del caso base, vengono eseguite con pal(A, 0, 5) e A = [4, 7, 2, 2, 7, 4]?",
+      "codice": "def pal(A, i, j):\n    if i >= j:\n        return True\n    if A[i] != A[j]:\n        return False\n    return pal(A, i + 1, j - 1)",
+      "albero": null,
+      "opzioni": [
+        "3",
+        "6",
+        "4",
+        "5"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Le chiamate hanno (i, j) = (0, 5), (1, 4), (2, 3), (3, 2). L'ultima ha i >= j ed è il caso base: 4 chiamate. 3 dimentica quella del caso base."
+    },
+    {
+      "id": "L03-T11-05",
+      "tipo": "L03-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Durante l'esecuzione di F(7), quante volte viene chiamata F(2)?",
+      "codice": "def F(n):\n    if n <= 1:\n        return n\n    return F(n - 1) + F(n - 2)",
+      "albero": null,
+      "opzioni": [
+        "1",
+        "5",
+        "8",
+        "13"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Durante F(n), F(k) con 1 ≤ k ≤ n viene chiamata F(n − k + 1) volte: per n = 7 e k = 2, F(6) = 8 volte. 1 è la risposta di chi pensa che i valori vengano riusati; 5 è il numero di chiamate a F(3) e 13 il valore di F(7), che è anche il numero di chiamate a F(1)."
+    },
+    {
+      "id": "L03-T11-06",
+      "tipo": "L03-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quali sono, in ordine, i valori del parametro n nelle chiamate a veloce eseguite durante veloce(2, 22)?",
+      "codice": "def veloce(x, n):\n    if n == 0:\n        return 1\n    a = veloce(x, n // 2)\n    if n % 2 == 0:\n        return a * a\n    return x * a * a",
+      "albero": null,
+      "opzioni": [
+        "22, 11, 5, 2, 1, 0",
+        "22, 11, 5, 2, 1",
+        "22, 11, 6, 3, 2, 1, 0",
+        "22, 21, 20, …, 1, 0"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "A ogni chiamata il parametro diventa n // 2: 22, 11, 5, 2, 1, 0. L'ultima, con n = 0, è il caso base: sono 6 chiamate. 22, 11, 5, 2, 1 dimentica il caso base; 22, 21, …, 0 è la sequenza della versione con la chiamata su n − 1."
+    },
+    {
+      "id": "L03-T12-01",
+      "tipo": "L03-T12",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quali sono tempo e spazio di FibLista(n)?",
+      "codice": "def FibLista(n):\n    F = [0] * (n + 1)\n    F[1] = 1\n    for i in range(2, n + 1):\n        F[i] = F[i - 1] + F[i - 2]\n    return F[n]",
+      "albero": null,
+      "opzioni": [
+        "Tempo Θ(n), spazio Θ(1)",
+        "Tempo Θ(n), spazio Θ(n)",
+        "Tempo Θ(2ⁿ), spazio Θ(n)",
+        "Tempo Θ(n²), spazio Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo fa n − 1 iterazioni di costo costante: tempo Θ(n). La lista F ha n + 1 elementi: spazio Θ(n). Θ(2ⁿ) è il tempo di FibonacciR, che ricalcola i valori; Θ(1) di spazio è della versione che conserva solo due valori."
+    },
+    {
+      "id": "L03-T12-02",
+      "tipo": "L03-T12",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione su FibDue(n), per n ≥ 1, è corretta?",
+      "codice": "def FibDue(n):\n    prec, corr = 0, 1\n    for _ in range(n - 1):\n        prec, corr = corr, prec + corr\n    return corr",
+      "albero": null,
+      "opzioni": [
+        "Tempo Θ(n) e spazio Θ(n), perché calcola tutti i valori da F(2) a F(n)",
+        "Tempo Θ(2ⁿ) e spazio Θ(n), perché usa la stessa relazione di FibonacciR",
+        "Tempo Θ(log n) e spazio Θ(1), perché aggiorna solo due variabili",
+        "Tempo Θ(n) e spazio Θ(1), perché conserva solo gli ultimi due valori"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il ciclo fa n − 1 iterazioni di costo costante: tempo Θ(n). Calcola tutti i valori da F(2) a F(n), ma ne conserva solo due alla volta (prec e corr): spazio Θ(1). Usa la stessa relazione di FibonacciR, ma calcola ogni valore una volta sola."
+    },
+    {
+      "id": "L03-T12-03",
+      "tipo": "L03-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul calcolo dei numeri di Fibonacci è vera? La formula di Binet è F(n) = (Φⁿ − (1 − Φ)ⁿ)/√5, con Φ = (1 + √5)/2.",
+      "codice": "def FibonacciR(n):\n    if n <= 1:\n        return n\n    return FibonacciR(n - 1) + FibonacciR(n - 2)\n\ndef FibonacciI(n):\n    a, b = 0, 1\n    for i in range(2, n + 1):\n        a, b = b, a + b\n    return b",
+      "albero": null,
+      "opzioni": [
+        "FibonacciR è esponenziale per le chiamate ridondanti, mentre FibonacciI è lineare",
+        "FibonacciI e FibonacciR hanno lo stesso costo, perché calcolano lo stesso valore",
+        "La formula di Binet è sempre esatta in Python, qualunque sia n",
+        "FibonacciI usa spazio Θ(n), perché calcola tutti i valori fino a F(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E1"
+      ],
+      "spiegazione": "FibonacciR costa Θ(2ⁿ) perché ricalcola più volte gli stessi valori; FibonacciI costa Θ(n). Calcolare lo stesso valore non implica lo stesso costo. La formula di Binet usa numeri in virgola mobile: per n grandi gli arrotondamenti possono dare errori. FibonacciI conserva solo due variabili: spazio Θ(1)."
+    },
+    {
+      "id": "L03-T12-04",
+      "tipo": "L03-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per n grandi, perché si preferisce FibonacciI alla formula di Binet?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Non c'è motivo: la formula di Binet è sempre esatta in Python con qualsiasi n",
+        "Perché Binet richiede una lista di n elementi",
+        "Perché Binet usa numeri in virgola mobile e gli arrotondamenti possono dare errori",
+        "Perché Binet usa la ricorsione e occupa Θ(n) di stack"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La formula F(n) = (Φⁿ − (1 − Φ)ⁿ)/√5 coinvolge √5 e potenze in virgola mobile: per n grandi gli arrotondamenti possono dare risultati non esatti. FibonacciI usa solo somme di interi."
+    },
+    {
+      "id": "L03-T12-05",
+      "tipo": "L03-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quali sono le complessità spaziali di FibonacciR, FibonacciL e FibonacciO, in questo ordine?",
+      "codice": "def FibonacciR(n):\n    if n <= 1:\n        return n\n    return FibonacciR(n - 1) + FibonacciR(n - 2)\n\ndef FibonacciL(n):\n    F = [0] * (n + 1)\n    F[1] = 1\n    for i in range(2, n + 1):\n        F[i] = F[i - 1] + F[i - 2]\n    return F[n]\n\ndef FibonacciO(n):\n    a, b = 0, 1\n    for i in range(2, n + 1):\n        a, b = b, a + b\n    return b",
+      "albero": null,
+      "opzioni": [
+        "Θ(1), Θ(n), Θ(1)",
+        "Θ(n), Θ(1), Θ(n)",
+        "Θ(n), Θ(n), Θ(1)",
+        "Θ(2ⁿ), Θ(n), Θ(1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "FibonacciR ha profondità dello stack n, quindi spazio Θ(n), anche se non crea liste. FibonacciL salva i valori in una lista di n + 1 elementi: Θ(n). FibonacciO conserva solo due variabili: Θ(1)."
+    },
+    {
+      "id": "L03-T12-06",
+      "tipo": "L03-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quali sono i tempi di FibonacciR e di FibonacciI (versione con due variabili), in questo ordine?",
+      "codice": "def FibonacciR(n):\n    if n <= 1:\n        return n\n    return FibonacciR(n - 1) + FibonacciR(n - 2)\n\ndef FibonacciI(n):\n    a, b = 0, 1\n    for i in range(2, n + 1):\n        a, b = b, a + b\n    return b",
+      "albero": null,
+      "opzioni": [
+        "Θ(n) e Θ(n), perché calcolano lo stesso valore",
+        "Θ(n) e Θ(2ⁿ)",
+        "Θ(2ⁿ) e Θ(2ⁿ)",
+        "Θ(2ⁿ) e Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "FibonacciR ricalcola gli stessi valori: Θ(2ⁿ). FibonacciI fa n − 1 iterazioni di costo costante: Θ(n). Lo stesso risultato non implica lo stesso costo."
+    },
+    {
+      "id": "L03-T13-01",
+      "tipo": "L03-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Problema: data una lista A di n interi, calcolare la somma degli elementi pari (per [3, 4, 6, 1] la risposta è 10). Quale schema ricorsivo è corretto e ha costo descritto da T(n) = T(n − 1) + Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si calcola ricorsivamente la somma dei pari sulle due metà della lista e si sommano i due risultati",
+        "Si calcola ricorsivamente la somma dei pari tra i primi n − 1 elementi e si aggiunge 1 se A[n − 1] è pari",
+        "Si calcola ricorsivamente la somma dei pari tra i primi n − 1 elementi e si aggiunge A[n − 1] se è pari",
+        "Si calcola ricorsivamente la somma dei pari tra i primi n − 1 elementi e si aggiunge sempre A[n − 1], anche se è dispari"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Una sola chiamata sui primi n − 1 elementi più un controllo e un'addizione di costo costante: T(n) = T(n − 1) + Θ(1). Lo schema sulle due metà è corretto ma ha ricorrenza 2T(n/2) + Θ(1); gli altri due hanno la ricorrenza giusta ma calcolano una quantità diversa (un conteggio, o la somma di tutti gli elementi)."
+    },
+    {
+      "id": "L03-T13-02",
+      "tipo": "L03-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Problema: data una lista A di n interi, contare le sottoliste contigue A[i..j] con somma pari (per [2, 1, 1] la risposta è 3). Quale schema ricorsivo è corretto e ha costo descritto da T(n) = T(n − 1) + Θ(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si risolve sui primi n − 1 elementi e si aggiungono le sottoliste con somma pari che terminano in A[n − 1], contate con un ciclo",
+        "Si risolve sui primi n − 1 elementi e si aggiunge 1 se A[n − 1] è pari, perché la sottolista [A[n − 1]] ha somma pari",
+        "Si risolve sulle due metà della lista, con una chiamata ricorsiva per ciascuna, e si sommano i due risultati",
+        "Si risolve due volte sui primi n − 1 elementi, una includendo A[n − 1] e una escludendolo, e si sommano i risultati"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Le sottoliste che terminano in A[n − 1] sono n e si contano con un ciclo Θ(n) sommando all'indietro; le altre le conta la chiamata sui primi n − 1 elementi: T(n) = T(n − 1) + Θ(n) ⇒ Θ(n²). Lo schema che aggiunge 1 se A[n − 1] è pari ha costo T(n − 1) + Θ(1) e perde le sottoliste più lunghe; quello sulle due metà perde le sottoliste a cavallo; l'ultimo ha ricorrenza con due chiamate."
+    },
+    {
+      "id": "L03-T13-03",
+      "tipo": "L03-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Problema: data una lista A di n interi positivi e un intero x, stabilire se esiste un sottoinsieme degli elementi con somma x. Quale schema ricorsivo è corretto e, nel caso peggiore, ha costo descritto da T(n) = 2T(n − 1) + O(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si cerca x separatamente nelle due metà della lista e si restituisce l'or dei due risultati",
+        "Si controlla solo se x − A[n − 1] si ottiene con i primi n − 1 elementi, cioè l'ultimo elemento è sempre incluso",
+        "Si calcola ricorsivamente la somma di tutti gli elementi della lista e la si confronta con x",
+        "Si restituisce l'or tra due chiamate sui primi n − 1 elementi: una cerca x − A[n − 1], l'altra cerca x"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Per ogni elemento ci sono due possibilità, includerlo (si cerca x − A[n − 1]) oppure no (si cerca x), ciascuna su n − 1 elementi: due chiamate e lavoro costante, T(n) = 2T(n − 1) + O(1). Gli altri due schemi sbagliano: con A = [1, 2] e x = 3 la ricerca nelle due metà risponde no, e con A = [3, 2] e x = 3 includere sempre l'ultimo elemento risponde no, mentre la risposta è sì."
+    },
+    {
+      "id": "L03-T13-04",
+      "tipo": "L03-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Problema: convertire un intero n ≥ 0 in una stringa binaria (per 6 la risposta è \"110\"). Quale schema ricorsivo è corretto e ha costo descritto da T(n) = T(n/2) + Θ(log n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si converte ricorsivamente n // 2 e si antepone alla stringa ottenuta il bit n % 2",
+        "Si converte ricorsivamente n // 2 e si concatena alla fine della stringa ottenuta il bit n % 2",
+        "Si converte ricorsivamente n − 1 e si somma 1 al numero binario ottenuto",
+        "Si converte ricorsivamente n // 2 due volte e si concatenano le due stringhe"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "binario(n // 2) dà le cifre alte e il bit n % 2 va aggiunto in fondo; la concatenazione costa quanto la lunghezza del risultato, cioè Θ(log n), e la chiamata è su n // 2: T(n) = T(n/2) + Θ(log n). Anteporre il bit inverte le cifre (per 6 darebbe \"011\"); lo schema su n − 1 ha un'altra ricorrenza; quello con due chiamate ripete le cifre alte e dà una stringa sbagliata (per 6 darebbe \"1111\")."
+    },
+    {
+      "id": "L03-T13-05",
+      "tipo": "L03-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di coppie(A, n) con n = len(A)?",
+      "codice": "def coppie(A, n):\n    if n <= 1:\n        return 0\n    c = coppie(A, n - 1)\n    for i in range(n - 1):\n        if A[i] == A[n - 1]:\n            c = c + 1\n    return c",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1) + Θ(n)",
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = 2T(n − 1) + O(1)",
+        "T(n) = T(n/2) + Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Una sola chiamata su n − 1 e un ciclo che confronta A[n − 1] con i precedenti, Θ(n): T(n) = T(n − 1) + Θ(n) ⇒ Θ(n²). T(n − 1) + Θ(1) ignora il costo del ciclo."
+    },
+    {
+      "id": "L03-T13-06",
+      "tipo": "L03-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale equazione di ricorrenza descrive il tempo di ss(A, n, x) nel caso peggiore?",
+      "codice": "def ss(A, n, x):\n    if x == 0:\n        return True\n    if n == 0:\n        return False\n    return ss(A, n - 1, x - A[n - 1]) or ss(A, n - 1, x)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1) + O(1)",
+        "T(n) = 2T(n/2) + O(1)",
+        "T(n) = 2T(n − 1) + O(1)",
+        "T(n) = T(n − 1) + Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Nel caso peggiore il primo termine dell'or è falso e quindi vengono eseguite entrambe le chiamate, ciascuna su n − 1 elementi, con lavoro costante: T(n) = 2T(n − 1) + O(1). Una sola chiamata non è sufficiente a descrivere l'or; i sottoproblemi non sono due metà."
+    },
+    {
+      "id": "L03-T14-01",
+      "tipo": "L03-T14",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere una funzione ricorsiva in Python che, dati un numero x ≠ 0 e un intero n (positivo, nullo o negativo), restituisca xⁿ.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def potenza(x, n):\n    if n == 0:\n        return 1\n    if n < 0:\n        return 1 / potenza(x, -n)\n    return x * potenza(x, n - 1)",
+      "controlli": [
+        "Caso base n == 0 con return 1, senza chiamate ricorsive",
+        "Gestione di n negativo con xⁿ = 1 / x⁻ⁿ (la chiamata ricorsiva usa −n, non n)",
+        "Passo ricorsivo x * potenza(x, n − 1): la chiamata è su n − 1, non su n",
+        "Nessun uso di x ** n o di cicli: la funzione deve essere ricorsiva"
+      ],
+      "spiegazione": "Caso base: x⁰ = 1. Per n < 0 si usa xⁿ = 1 / x⁻ⁿ e ci si riconduce a un esponente positivo; passo ricorsivo xⁿ = x · xⁿ⁻¹. Ricorrenza T(n) = T(n − 1) + Θ(1): costo Θ(|n|), spazio Θ(|n|) sullo stack. Se il testo garantisse n ≥ 0, il ramo per n < 0 si potrebbe omettere."
+    },
+    {
+      "id": "L03-T14-02",
+      "tipo": "L03-T14",
+      "formato": "aperta",
+      "difficolta": 1,
+      "testo": "Scrivere una funzione ricorsiva in Python che, dato l'intero n ≥ 0, restituisca la somma 1 + 2 + … + n (con valore 0 per n = 0).",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def somma_fino_a(n):\n    if n == 0:\n        return 0\n    return n + somma_fino_a(n - 1)",
+      "controlli": [
+        "Caso base n == 0 con return 0 (non return 1)",
+        "Passo ricorsivo n + somma_fino_a(n − 1)",
+        "La chiamata ricorsiva è su n − 1: con somma_fino_a(n) si avrebbe ricorsione infinita",
+        "Nessun ciclo e nessuna formula chiusa n(n + 1)/2"
+      ],
+      "spiegazione": "Caso base: la somma vuota vale 0. Passo ricorsivo: 1 + … + n = n + (1 + … + (n − 1)). Ricorrenza T(n) = T(n − 1) + Θ(1), costo Θ(n), spazio Θ(n) per lo stack."
+    },
+    {
+      "id": "L03-T14-03",
+      "tipo": "L03-T14",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere una funzione ricorsiva in Python che, dati un numero x e un intero n ≥ 0, restituisca xⁿ con costo Θ(log n).",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def power(x, n):\n    if n == 0:\n        return 1\n    a = power(x, n // 2)\n    if n % 2 == 0:\n        return a * a\n    return x * a * a",
+      "controlli": [
+        "Caso base n == 0 con return 1",
+        "Una sola chiamata ricorsiva su n // 2, con il risultato salvato in una variabile",
+        "Distinzione tra n pari (a * a) e n dispari (x * a * a)",
+        "Non scrivere power(x, n // 2) * power(x, n // 2): due chiamate darebbero costo Θ(n)",
+        "Nessun uso di x ** n o di cicli"
+      ],
+      "spiegazione": "Caso base: x⁰ = 1. Se n è pari xⁿ = (x^(n/2))²; se è dispari xⁿ = x · (x^((n−1)/2))². Una sola chiamata su n // 2: T(n) = T(n/2) + Θ(1) ⇒ Θ(log n), con spazio Θ(log n) sullo stack. Con due chiamate si avrebbe 2T(n/2) + Θ(1), cioè Θ(n)."
+    },
+    {
+      "id": "L03-T14-04",
+      "tipo": "L03-T14",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere una funzione ricorsiva in Python che, dato l'intero n ≥ 0, restituisca la stringa con la rappresentazione binaria di n (per esempio \"110\" per n = 6 e \"0\" per n = 0).",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def binario(n):\n    if n <= 1:\n        return str(n)\n    return binario(n // 2) + str(n % 2)",
+      "controlli": [
+        "Caso base n <= 1 con return str(n), che copre sia 0 sia 1",
+        "Chiamata ricorsiva su n // 2 (non su n − 1)",
+        "Il bit n % 2 va concatenato dopo la stringa restituita, non prima",
+        "Nessun uso di bin() o di cicli while"
+      ],
+      "spiegazione": "Caso base: per n = 0 e n = 1 la rappresentazione è str(n). Per n ≥ 2 le cifre di n // 2 sono le cifre alte, e il bit meno significativo n % 2 va in fondo. Ricorrenza T(n) = T(n/2) + Θ(log n), perché la concatenazione costa quanto la lunghezza della stringa, circa log n."
+    }
+  ]
+}

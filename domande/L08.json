@@ -1,0 +1,1984 @@
+{
+  "lezione": 8,
+  "generato_con": "claude-haiku-5-5",
+  "domande": [
+    {
+      "id": "L08-T01-01",
+      "tipo": "L08-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nel mergesort ricorsivo della dispensa, in quale fase di ogni chiamata si svolge il lavoro Θ(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nella divisione: la partizione attorno a un pivot, fatta prima delle chiamate",
+        "Nella combinazione: la fusione (fondi) delle due metà già ordinate",
+        "Nella divisione: si sceglie il valore che separa le due metà",
+        "Nelle due chiamate ricorsive, che costano Θ(n) ciascuna"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "La divisione a metà (m = (i + j) // 2) non confronta valori; il lavoro Θ(n) è in fondi, chiamata dopo le due ricorsioni. La partizione attorno a un pivot è propria del quicksort."
+    },
+    {
+      "id": "L08-T01-02",
+      "tipo": "L08-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nel quicksort in loco (Quick_sort con Partiziona, pivot = primo elemento), quale affermazione sul lavoro di ogni chiamata è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il lavoro Θ(n) è nella fusione finale, fatta dopo le due chiamate ricorsive",
+        "Il lavoro Θ(n) è in Partiziona, ma dopo le due chiamate serve una fusione Θ(n)",
+        "Il lavoro è Θ(1): la partizione scambia solo due elementi",
+        "Il lavoro Θ(n) è in Partiziona, fatta prima delle chiamate ricorsive; dopo di esse non resta nulla da combinare"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Partiziona scorre l'intervallo e costa Θ(n) prima delle due chiamate. Dopo la partizione il pivot è già al suo posto e le parti vengono ordinate ricorsivamente: non c'è nessuna fusione."
+    },
+    {
+      "id": "L08-T01-03",
+      "tipo": "L08-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nel paradigma divide et impera, quale elenco descrive le tre fasi, nell'ordine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Dividere il problema in sottoproblemi dello stesso tipo, risolverli ricorsivamente, combinare le soluzioni",
+        "Risolvere i sottoproblemi con un ciclo iterativo, senza chiamate ricorsive, poi combinare",
+        "Dividere, risolvere un solo sottoproblema ricorsivamente e scartare l'altra metà, come nella ricerca binaria",
+        "Ordinare i sottoproblemi, poi dividerli, poi combinare"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Le tre fasi sono dividere, risolvere ricorsivamente, combinare. La ricerca binaria somiglia al paradigma ma risolve un solo sottoproblema e non combina nulla; risolvere con un ciclo non è la fase ricorsiva che definisce il paradigma."
+    },
+    {
+      "id": "L08-T01-04",
+      "tipo": "L08-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sulla divisione del mergesort e del quicksort (versioni della dispensa) è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il mergesort divide per valore scegliendo un pivot; il quicksort divide sempre a metà",
+        "Il mergesort divide per valore e il quicksort per posizione",
+        "Il mergesort divide sempre a metà per posizione; il quicksort divide in parti la cui dimensione dipende dal pivot",
+        "Entrambi dividono sempre a metà per posizione, perché la divisione non dipende dai valori"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "merge_sort usa m = (i + j) // 2 e non guarda i valori. Quick_sort divide attorno al pivot, quindi le due parti possono avere dimensioni molto diverse."
+    },
+    {
+      "id": "L08-T01-05",
+      "tipo": "L08-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nel quicksort (versione in loco con Partiziona, pivot = primo elemento), quale fase del paradigma non fa lavoro?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La divisione, perché il pivot non viene confrontato con gli altri elementi",
+        "La combinazione: dopo le due chiamate ricorsive l'array è già ordinato",
+        "Nessuna: il quicksort ha una fase di fusione finale di costo Θ(n)",
+        "La risoluzione ricorsiva, perché le chiamate lavorano sempre su un solo elemento"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il lavoro Θ(n) è tutto in Partiziona, che precede le chiamate. Dopo di esse non c'è nulla da combinare."
+    },
+    {
+      "id": "L08-T01-06",
+      "tipo": "L08-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nel codice della dispensa, dove si trova la chiamata a fondi in merge_sort e dove la chiamata a Partiziona in Quick_sort, rispetto alle due chiamate ricorsive?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "fondi prima delle chiamate ricorsive; Partiziona dopo",
+        "Entrambe dopo le chiamate ricorsive",
+        "Entrambe prima delle chiamate ricorsive",
+        "fondi dopo le chiamate ricorsive; Partiziona prima"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "merge_sort divide a metà senza guardare i valori, ordina le due metà e solo dopo le fonde: il lavoro è nella combinazione. Quick_sort chiama prima Partiziona e poi ordina le due parti, che non vanno più combinate. Invertire le due posizioni è lo scambio dei ruoli tra i due algoritmi."
+    },
+    {
+      "id": "L08-T02-01",
+      "tipo": "L08-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il costo computazionale del mergesort su un array di n elementi in ordine decrescente è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "O(n)",
+        "Θ(n log n)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il mergesort divide sempre a metà e fonde sempre tutto: il costo non dipende dall'ordine dei valori. Θ(n²) è il caso peggiore del quicksort, non del mergesort."
+    },
+    {
+      "id": "L08-T02-02",
+      "tipo": "L08-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il costo del mergesort su n elementi tutti uguali è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Ω(n²)",
+        "Θ(n log² n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Anche con tutti i valori uguali le divisioni e le fusioni sono le stesse: Θ(n log n). Ω(n²) è falsa: n log n cresce meno di n²."
+    },
+    {
+      "id": "L08-T02-03",
+      "tipo": "L08-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nel caso migliore, il costo del mergesort su n elementi è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "O(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Il mergesort non ha un caso migliore più veloce: la struttura delle chiamate è sempre la stessa, quindi Θ(n log n). Θ(n) è il caso migliore di insertion sort (e di bubble sort con flag), non del mergesort."
+    },
+    {
+      "id": "L08-T02-04",
+      "tipo": "L08-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nel caso peggiore, il costo del mergesort su n elementi è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Ω(n²)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Caso peggiore e migliore coincidono per il mergesort: Θ(n log n). Il Θ(n²) del quicksort non vale qui."
+    },
+    {
+      "id": "L08-T02-05",
+      "tipo": "L08-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la stima più precisa (stretta) del costo del mergesort su n elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n log² n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La stima stretta è Θ(n log n): il mergesort è sia O(n log n) sia Ω(n log n) in ogni caso. O(n) è falsa, perché l'algoritmo deve fare comunque tutte le fusioni; Θ(n²) è il caso peggiore del quicksort."
+    },
+    {
+      "id": "L08-T02-06",
+      "tipo": "L08-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array quasi ordinato di n elementi viene ordinato con il mergesort. Il costo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n log log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il mergesort fa comunque tutte le divisioni e fusioni, anche se l'input è quasi ordinato: Θ(n log n). Pensare che fonda meno e costi Θ(n) è l'errore tipico."
+    },
+    {
+      "id": "L08-T02-07",
+      "tipo": "L08-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il costo del mergesort nel caso medio, su input casuali di n elementi, è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "O(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Il mergesort non è randomizzato e ha lo stesso costo in ogni caso: Θ(n log n). Il Θ(n²) appartiene al caso peggiore del quicksort."
+    },
+    {
+      "id": "L08-T02-08",
+      "tipo": "L08-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di merge_sort(A, 0, n − 1) della dispensa (versione con indici) su n elementi, nel caso peggiore e nel caso migliore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²) nel caso peggiore, Θ(n log n) nel caso migliore",
+        "Θ(n log n) in entrambi i casi",
+        "Θ(n log n) nel caso peggiore, Θ(n) nel caso migliore",
+        "Θ(n²) nel caso peggiore, Θ(n) nel caso migliore"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Le divisioni a metà e le fusioni non dipendono dai valori: la ricorrenza 2T(n/2) + Θ(n) vale per ogni input, quindi Θ(n log n) sia nel caso peggiore sia nel migliore. Θ(n²) è il caso peggiore del quicksort; Θ(n) è il caso migliore di insertion sort."
+    },
+    {
+      "id": "L08-T03-01",
+      "tipo": "L08-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale equazione di ricorrenza descrive il costo di merge_sort(A) su n = len(A) > 1 elementi? (fondi(As, Ad) è la fusione della dispensa.)",
+      "codice": "def merge_sort(A):\n    if len(A) <= 1:\n        return A\n    m = len(A) // 2\n    As = merge_sort(A[:m])\n    Ad = merge_sort(A[m:])\n    return fondi(As, Ad)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/2) + Θ(n)",
+        "T(n) = 2T(n/2) + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(n)",
+        "T(n) = T(n/2) + Θ(1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Due chiamate su metà (2T(n/2)) e fondi su n elementi, Θ(n). T(n/2) dimentica una delle due chiamate; Θ(1) dimentica il costo di fondi; T(n/2) + Θ(1) è la forma della ricerca binaria."
+    },
+    {
+      "id": "L08-T03-02",
+      "tipo": "L08-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un mergesort modificato divide l'array in tre parti uguali, le ordina ricorsivamente e le fonde in tempo lineare. Quale ricorrenza descrive il suo costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/3) + Θ(n)",
+        "T(n) = 3T(n/3) + Θ(n)",
+        "T(n) = 3T(n/3) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Tre chiamate su n/3 e lavoro lineare non ricorsivo. Scrivere T(n/3) dimentica due chiamate; Θ(1) dimentica la fusione; T(n − 1) + Θ(n) è la ricorrenza del quicksort nel caso peggiore."
+    },
+    {
+      "id": "L08-T03-03",
+      "tipo": "L08-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un mergesort modificato divide l'array in quattro parti uguali, le ordina ricorsivamente e le fonde in tempo Θ(n). Qual è il suo costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n log² n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La ricorrenza è T(n) = 4T(n/4) + Θ(n): log₄ n livelli, ciascuno di costo Θ(n), quindi Θ(n log n) (la base del logaritmo non cambia la classe). Θ(n) si ottiene dimenticando il costo lineare della fusione (4T(n/4) + Θ(1))."
+    },
+    {
+      "id": "L08-T03-04",
+      "tipo": "L08-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un algoritmo divide l'input in due parti di dimensione n/4 e 3n/4, ricorre su entrambe e combina in tempo Θ(n). Qual è il suo costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n log² n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Le due parti sono in proporzione costante: ogni livello dell'albero di ricorsione costa al più cn, i primi log₄ n livelli costano esattamente cn e la profondità è log_{4/3} n = Θ(log n), quindi Θ(n log n). Una divisione sbilanciata in proporzione non dà Θ(n²)."
+    },
+    {
+      "id": "L08-T03-05",
+      "tipo": "L08-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il mergesort viene modificato: la fusione è sostituita da un algoritmo che costa Θ(n²) su n elementi, mentre le chiamate restano due, su metà. Quale ricorrenza descrive il costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = 2T(n/2) + Θ(n²)",
+        "T(n) = T(n/2) + Θ(n²)",
+        "T(n) = 2T(n/2) + Θ(n)",
+        "T(n) = T(n − 1) + Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Due chiamate su metà più un lavoro quadratico: 2T(n/2) + Θ(n²). Con T(n/2) si dimentica una chiamata; con T(n − 1) si confonde la forma del quicksort."
+    },
+    {
+      "id": "L08-T03-06",
+      "tipo": "L08-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una versione del mergesort divide in due metà, ricorre solo sulla metà sinistra e poi fonde in tempo lineare. Quale ricorrenza descrive il costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/2) + Θ(1)",
+        "T(n) = T(n/2) + Θ(n)",
+        "T(n) = 2T(n/2) + Θ(n)",
+        "T(n) = T(n − 1) + Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Una sola chiamata su metà: T(n/2), con il lavoro lineare di fusione che resta Θ(n). T(n/2) + Θ(1) è la ricerca binaria, senza fusione; T(n − 1) + Θ(n) è il quicksort nel caso peggiore; 2T(n/2) + Θ(n) fa due chiamate."
+    },
+    {
+      "id": "L08-T04-01",
+      "tipo": "L08-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quanto costa fondi(As, Ad) su liste ordinate di lunghezza n e m, nella versione della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n·m)",
+        "Θ(min(n, m))",
+        "Θ(n + m)",
+        "Θ(log(n + m))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Ogni elemento viene aggiunto a B una sola volta e ogni iterazione dei while costa O(1): Θ(n + m). Θ(n·m) pensa a un confronto di tutti contro tutti; Θ(min(n, m)) dimentica la copia degli elementi rimasti."
+    },
+    {
+      "id": "L08-T04-02",
+      "tipo": "L08-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si fonde con fondi una lista As di 1 elemento con una lista Ad di n elementi, e l'unico elemento di As è minore di tutti quelli di Ad. Qual è il costo in Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il primo while fa un solo confronto, poi si copiano gli n elementi di Ad: Θ(n). Θ(1) dimentica la copia."
+    },
+    {
+      "id": "L08-T04-03",
+      "tipo": "L08-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanti elementi vengono aggiunti a B in totale da fondi(As, Ad), con len(As) = n e len(Ad) = m?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "min(n, m)",
+        "n·m",
+        "n + m − 1",
+        "n + m"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ogni elemento di As e di Ad finisce in B una volta sola: n + m. Il valore min(n, m) dimentica la copia della lista più lunga; n·m pensa a un confronto per ogni coppia."
+    },
+    {
+      "id": "L08-T04-04",
+      "tipo": "L08-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tre liste di 5 elementi ciascuna vengono fuse in sequenza: A = L1; A = fondi(A, L2); A = fondi(A, L3). Quanti elementi vengono aggiunti a B in totale, sommando le due fusioni?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "25",
+        "20",
+        "15",
+        "30"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Prima fusione: 5 + 5 = 10 elementi. Seconda fusione: la lista accumulata ha 10 elementi, più 5: 15. Totale 25. Il valore 20 suppone che A resti lunga 5."
+    },
+    {
+      "id": "L08-T04-05",
+      "tipo": "L08-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si fondono a coppie, livello per livello, come nel mergesort, N liste ordinate di K elementi ciascuna, con N potenza di 2. Qual è il costo totale in Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(KN²)",
+        "Θ(KN log N)",
+        "Θ(KN)",
+        "Θ(K²N)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ci sono log N livelli e ogni livello fonde tutti gli N·K elementi: Θ(KN log N). Θ(KN²) è il costo della fusione in sequenza, non a coppie."
+    },
+    {
+      "id": "L08-T04-06",
+      "tipo": "L08-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si fonde una lista di n elementi con una di log n elementi, con fondi. Qual è il costo in Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n·log n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il costo è Θ(n + log n) = Θ(n). Θ(log n) dimentica la copia degli n elementi rimasti; Θ(n log n) pensa a un confronto di tutti contro tutti."
+    },
+    {
+      "id": "L08-T05-01",
+      "tipo": "L08-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue fondi(As, Ad) della dispensa con As = [2, 5, 6, 9] e Ad = [1, 3, 4, 8, 10, 11]. Quanti confronti As[i] <= Ad[j] vengono eseguiti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "10",
+        "8",
+        "9",
+        "4"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "B cresce così: 1, 2, 3, 4, 5, 6, 8, 9: dopo il 9 As è esaurita e il primo while finisce dopo 8 confronti; 10 e 11 vengono copiati senza confronti. 10 = n + m conta anche le copie; 9 = n + m − 1 è solo il massimo possibile; 4 = min(n, m) suppone un confronto per ogni elemento della lista più corta."
+    },
+    {
+      "id": "L08-T05-02",
+      "tipo": "L08-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con As = [1, 2, 8] e Ad = [3, 4, 5, 6], al termine del primo while di fondi(As, Ad) della dispensa, quanto vale i (l'indice che scorre As, inizialmente 0)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2",
+        "6",
+        "3",
+        "4"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Si prendono 1 e 2 da As (i = 2), poi 3, 4, 5, 6 da Ad: Ad si esaurisce e il primo while termina con i = 2, dopo 6 confronti. Pensare che i e j avanzino insieme a ogni iterazione fa fermare il ciclo con i = 3; 6 è il numero di confronti, non il valore di i."
+    },
+    {
+      "id": "L08-T05-03",
+      "tipo": "L08-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con As = [3, 5, 7] e Ad = [3, 4, 9], quale elemento viene aggiunto per primo a B da fondi, e da quale lista?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3, preso da Ad",
+        "4, preso da Ad",
+        "3, preso da As",
+        "5, preso da As"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il test è As[i] <= Ad[j]: con valori uguali vince As, quindi il primo 3 viene da As. Invertire il <= fa prendere il 3 da Ad."
+    },
+    {
+      "id": "L08-T05-04",
+      "tipo": "L08-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con As = [4, 9, 12] e Ad = [1, 6, 7, 10, 11], dopo tre confronti del primo while di fondi(As, Ad) della dispensa, quanto vale j (l'indice che scorre Ad, inizialmente 0)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "1",
+        "4",
+        "2"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Confronto 1: 4 > 1, si prende 1 da Ad (j = 1). Confronto 2: 4 <= 6, si prende 4 da As (i = 1). Confronto 3: 9 > 6, si prende 6 da Ad (j = 2). Il valore 3 si otterrebbe pensando che j avanzi a ogni confronto."
+    },
+    {
+      "id": "L08-T05-05",
+      "tipo": "L08-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue fondi(As, Ad) della dispensa con As = [1, 6, 7, 12, 15] e Ad = [2, 5, 8]. Quanti confronti As[i] <= Ad[j] vengono eseguiti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "8",
+        "7",
+        "3"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il primo while finisce quando Ad si esaurisce, dopo 6 confronti; 12 e 15 vengono copiati senza confronti. Contare n + m include le copie; n + m − 1 è il massimo teorico, non il valore di questa traccia."
+    },
+    {
+      "id": "L08-T05-06",
+      "tipo": "L08-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue fondi(As, Ad) della dispensa con As = [2, 3, 4, 9, 10, 11] e Ad = [1, 12, 13]. Quanti confronti As[i] <= Ad[j] vengono eseguiti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "9",
+        "8",
+        "7",
+        "3"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il primo while esegue 7 confronti: prima 1 da Ad, poi 2, 3, 4, 9, 10, 11 da As, finché As si esaurisce. Le copie finali (12, 13) non si confrontano."
+    },
+    {
+      "id": "L08-T06-01",
+      "tipo": "L08-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue merge_sort(A, 0, 7) (versione con indici) su A = [13, 26, 2, 18, 8, 3, 17, 12]. Qual è il contenuto di A subito dopo la quarta chiamata a fondi?",
+      "codice": "def merge_sort(A, i, j):\n    if i < j:\n        m = (i + j) // 2\n        merge_sort(A, i, m)\n        merge_sort(A, m + 1, j)\n        fondi(A, i, m, j)",
+      "albero": null,
+      "opzioni": [
+        "[13, 26, 2, 18, 3, 8, 12, 17]",
+        "[2, 13, 18, 26, 3, 8, 12, 17]",
+        "[2, 13, 18, 26, 3, 8, 17, 12]",
+        "[2, 13, 18, 26, 8, 3, 17, 12]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Le fusioni avvengono in post-ordine: [0..1], [2..3], [0..3], poi [4..5]. Dopo quattro fusioni A[0..3] e A[4..5] sono ordinati e A[6..7] = 17, 12 non è ancora stato toccato. Fondere livello per livello dà [13, 26, 2, 18, 3, 8, 12, 17]; le altre due opzioni sono lo stato dopo cinque e dopo tre fusioni."
+    },
+    {
+      "id": "L08-T06-02",
+      "tipo": "L08-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue merge_sort(A, 0, 7) (versione con indici) su un array di 8 elementi. Quale intervallo viene fuso alla quarta chiamata a fondi?",
+      "codice": "def merge_sort(A, i, j):\n    if i < j:\n        m = (i + j) // 2\n        merge_sort(A, i, m)\n        merge_sort(A, m + 1, j)\n        fondi(A, i, m, j)",
+      "albero": null,
+      "opzioni": [
+        "A[4..5]",
+        "A[6..7]",
+        "A[0..4]",
+        "A[0..3]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Le prime tre fusioni sono [0..1], [2..3] e [0..3]: prima si ordina tutta la metà sinistra. La quarta è [4..5]. Il mergesort iterativo fonde invece prima tutte le coppie, quindi la sua quarta fusione sarebbe [6..7]; fermarsi una fusione prima dà [0..3]."
+    },
+    {
+      "id": "L08-T06-03",
+      "tipo": "L08-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante chiamate a fondi fa merge_sort(A, 0, n − 1) (versione con indici) su un array di n = 9 elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "7",
+        "9",
+        "4",
+        "8"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ogni nodo interno dell'albero delle chiamate fa una fusione: su n elementi sono n − 1 fusioni, quindi 8. Fermarsi una fusione prima o dopo dà 7 o 9."
+    },
+    {
+      "id": "L08-T06-04",
+      "tipo": "L08-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue merge_sort(A, 0, 7) (versione con indici) su A = [10, 19, 2, 7, 13, 8, 1, 17]. Qual è il contenuto di A subito dopo la terza chiamata a fondi?",
+      "codice": "def merge_sort(A, i, j):\n    if i < j:\n        m = (i + j) // 2\n        merge_sort(A, i, m)\n        merge_sort(A, m + 1, j)\n        fondi(A, i, m, j)",
+      "albero": null,
+      "opzioni": [
+        "[10, 19, 2, 7, 8, 13, 1, 17]",
+        "[2, 7, 10, 19, 13, 8, 1, 17]",
+        "[10, 19, 2, 7, 13, 8, 1, 17]",
+        "[2, 7, 10, 19, 8, 13, 1, 17]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E3"
+      ],
+      "spiegazione": "Le prime tre fusioni sono [0..1], [2..3] (che non cambiano nulla) e [0..3]: la metà sinistra diventa [2, 7, 10, 19] e la destra è ancora come nell'input. Il mergesort iterativo farebbe invece come terza fusione la coppia [4..5]; le altre due opzioni sono lo stato dopo due e dopo quattro fusioni."
+    },
+    {
+      "id": "L08-T06-05",
+      "tipo": "L08-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue merge_sort(A, 0, 5) (versione con indici) su A = [16, 17, 12, 6, 3, 2]. Qual è il contenuto di A subito dopo la terza chiamata a fondi?",
+      "codice": "def merge_sort(A, i, j):\n    if i < j:\n        m = (i + j) // 2\n        merge_sort(A, i, m)\n        merge_sort(A, m + 1, j)\n        fondi(A, i, m, j)",
+      "albero": null,
+      "opzioni": [
+        "[16, 17, 6, 12, 2, 3]",
+        "[12, 16, 17, 6, 2, 3]",
+        "[12, 16, 17, 6, 3, 2]",
+        "[12, 16, 17, 3, 6, 2]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "m = 2: la metà sinistra è A[0..2], divisa in A[0..1] e A[2]. Fusioni: [0..1], [0..2] → [12, 16, 17, …], poi a destra [3..4] → [12, 16, 17, 3, 6, 2]. Con la metà più grande a destra la terza fusione sarebbe [4..5]; il mergesort iterativo fonde prima le tre coppie; fermarsi una fusione prima lascia A[3..5] intatto."
+    },
+    {
+      "id": "L08-T06-06",
+      "tipo": "L08-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue merge_sort(A, 0, 8) (versione con indici) su un array di 9 elementi. Quale intervallo viene fuso alla seconda chiamata a fondi?",
+      "codice": "def merge_sort(A, i, j):\n    if i < j:\n        m = (i + j) // 2\n        merge_sort(A, i, m)\n        merge_sort(A, m + 1, j)\n        fondi(A, i, m, j)",
+      "albero": null,
+      "opzioni": [
+        "A[0..2]",
+        "A[2..3]",
+        "A[0..1]",
+        "A[3..4]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E3"
+      ],
+      "spiegazione": "m = 4: si ordina prima A[0..4], diviso in A[0..2] e A[3..4]; A[0..2] si divide in A[0..1] e A[2]. La prima fusione è [0..1], la seconda [0..2]. Il mergesort iterativo fonde invece subito la coppia [2..3]; [0..1] e [3..4] sono la prima e la terza fusione."
+    },
+    {
+      "id": "L08-T07-01",
+      "tipo": "L08-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante fasi esegue il mergesort iterativo (bottom-up) su un array di n = 9 elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "5",
+        "4",
+        "2"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Le fasi usano k = 1, 2, 4, 8 (si continua finché k < n), cioè ⌈log₂ 9⌉ = 4 fasi. Arrotondare log₂ 9 per difetto dà 3; 5 aggiunge una fase con k = 16, che non è minore di n."
+    },
+    {
+      "id": "L08-T07-02",
+      "tipo": "L08-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su A = [7, 4, 1, 8, 3, 6, 2] si eseguono in ordine le fasi con k = 1 e k = 2 del mergesort iterativo (bottom-up). Qual è A al termine della fase k = 2?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[1, 4, 7, 8, 3, 6, 2]",
+        "[1, 4, 7, 8, 2, 3, 6]",
+        "[4, 7, 1, 8, 3, 6, 2]",
+        "[1, 2, 3, 4, 6, 7, 8]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Fase k = 1: [4, 7], [1, 8], [3, 6], e il 2 resta solo. Fase k = 2: [4, 7] con [1, 8] dà [1, 4, 7, 8]; [3, 6] si fonde con [2] anche se la compagna è più corta di k. Non fondere l'ultimo blocco corto dà l'altro stato. Lo stato dopo la sola fase k = 1 è una fase in meno."
+    },
+    {
+      "id": "L08-T07-03",
+      "tipo": "L08-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante fusioni (chiamate a fondi) fa la fase con k = 2 del mergesort iterativo su un array di 7 elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "I blocchi sono [0..3] e [4..6]: il secondo blocco ha una metà destra di un solo elemento, ma si fonde lo stesso. Non fondere l'ultimo blocco corto dà 1 fusione."
+    },
+    {
+      "id": "L08-T08-01",
+      "tipo": "L08-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue Partiziona(A, 0, 6) della dispensa (pivot = primo elemento) su A = [5, 8, 3, 9, 1, 7, 4]. Qual è il contenuto di A al termine della chiamata?",
+      "codice": "def Partiziona(A, inizio, fine):\n    pivot = A[inizio]\n    i = inizio + 1\n    j = fine\n    while i <= j:\n        if A[i] < pivot:\n            i += 1\n        elif A[j] >= pivot:\n            j -= 1\n        else:\n            A[i], A[j] = A[j], A[i]\n            i += 1\n            j -= 1\n    A[inizio], A[j] = A[j], A[inizio]\n    return j",
+      "albero": null,
+      "opzioni": [
+        "[1, 4, 3, 5, 9, 7, 8]",
+        "[5, 4, 3, 1, 9, 7, 8]",
+        "[3, 1, 4, 5, 8, 9, 7]",
+        "[1, 3, 4, 5, 7, 8, 9]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il pivot 5 finisce in posizione 3 dopo lo scambio finale con A[j]. Dimenticare lo scambio lascia il pivot in testa; una partizione stabile conserva l'ordine originale dei valori; ordinare le due parti non fa parte di Partiziona."
+    },
+    {
+      "id": "L08-T08-02",
+      "tipo": "L08-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue Partiziona(A, 0, 6) della dispensa su A = [4, 9, 6, 2, 8, 3, 7]. Quale valore restituisce la funzione?",
+      "codice": "def Partiziona(A, inizio, fine):\n    pivot = A[inizio]\n    i = inizio + 1\n    j = fine\n    while i <= j:\n        if A[i] < pivot:\n            i += 1\n        elif A[j] >= pivot:\n            j -= 1\n        else:\n            A[i], A[j] = A[j], A[i]\n            i += 1\n            j -= 1\n    A[inizio], A[j] = A[j], A[inizio]\n    return j",
+      "albero": null,
+      "opzioni": [
+        "3",
+        "4",
+        "2",
+        "0"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Pivot 4: 9 e 3 si scambiano → [4, 3, 6, 2, 8, 9, 7]; poi 6 e 2 si scambiano → [4, 3, 2, 6, 8, 9, 7], con i = 3 e j = 2. Il ciclo finisce, il pivot va in A[2] e la funzione restituisce j = 2. Restituire i dà 3; 0 è la posizione iniziale del pivot, che lo scambio finale cambia."
+    },
+    {
+      "id": "L08-T08-03",
+      "tipo": "L08-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue Partiziona(A, 1, 7) della dispensa su A = [9, 4, 12, 7, 2, 10, 5, 8, 1]. Qual è il contenuto di A al termine della chiamata?",
+      "codice": "def Partiziona(A, inizio, fine):\n    pivot = A[inizio]\n    i = inizio + 1\n    j = fine\n    while i <= j:\n        if A[i] < pivot:\n            i += 1\n        elif A[j] >= pivot:\n            j -= 1\n        else:\n            A[i], A[j] = A[j], A[i]\n            i += 1\n            j -= 1\n    A[inizio], A[j] = A[j], A[inizio]\n    return j",
+      "albero": null,
+      "opzioni": [
+        "[9, 4, 2, 7, 12, 10, 5, 8, 1]",
+        "[9, 2, 4, 12, 7, 10, 5, 8, 1]",
+        "[9, 2, 12, 7, 4, 10, 5, 8, 1]",
+        "[9, 2, 4, 7, 12, 10, 5, 8, 1]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E5",
+        null
+      ],
+      "spiegazione": "Pivot A[1] = 4, i = 2, j = 7. 12 non è < 4; j scende su 8, 5, 10 fino a 2, che non è >= 4: scambio 12 ↔ 2, i = 3, j = 3. 7 >= 4: j = 2, fine ciclo. Scambio A[1] con A[2]: [9, 2, 4, 7, 12, 10, 5, 8, 1]; A[0] e A[8] sono fuori dall'intervallo e non cambiano. Muovere i e j insieme anche senza scambio dà un altro stato; lasciare il pivot in A[1] dimentica lo scambio finale."
+    },
+    {
+      "id": "L08-T08-04",
+      "tipo": "L08-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue Partiziona(A, 0, 7) della dispensa su A = [3, 11, 8, 5, 13, 2, 9, 6]. Qual è il contenuto di A al termine della chiamata?",
+      "codice": "def Partiziona(A, inizio, fine):\n    pivot = A[inizio]\n    i = inizio + 1\n    j = fine\n    while i <= j:\n        if A[i] < pivot:\n            i += 1\n        elif A[j] >= pivot:\n            j -= 1\n        else:\n            A[i], A[j] = A[j], A[i]\n            i += 1\n            j -= 1\n    A[inizio], A[j] = A[j], A[inizio]\n    return j",
+      "albero": null,
+      "opzioni": [
+        "[8, 2, 3, 5, 13, 11, 9, 6]",
+        "[2, 3, 11, 8, 5, 13, 9, 6]",
+        "[2, 3, 8, 5, 13, 11, 9, 6]",
+        "[2, 3, 5, 6, 8, 9, 11, 13]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il pivot 3 viene scambiato con A[j] nell'ultimo passo della dispensa. Scambiarlo con A[i] (la posizione raggiunta dal primo indice) è un errore frequente; la partizione stabile e l'ordinamento delle parti sono altri errori tipici."
+    },
+    {
+      "id": "L08-T08-05",
+      "tipo": "L08-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue Partiziona(A, 0, 6) della dispensa su A = [10, 3, 7, 1, 12, 5, 9]. Qual è il contenuto di A al termine della chiamata?",
+      "codice": "def Partiziona(A, inizio, fine):\n    pivot = A[inizio]\n    i = inizio + 1\n    j = fine\n    while i <= j:\n        if A[i] < pivot:\n            i += 1\n        elif A[j] >= pivot:\n            j -= 1\n        else:\n            A[i], A[j] = A[j], A[i]\n            i += 1\n            j -= 1\n    A[inizio], A[j] = A[j], A[inizio]\n    return j",
+      "albero": null,
+      "opzioni": [
+        "[10, 3, 7, 1, 9, 5, 12]",
+        "[5, 3, 7, 1, 9, 10, 12]",
+        "[1, 3, 5, 7, 9, 10, 12]",
+        "[1, 3, 7, 10, 12, 5, 9]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E5"
+      ],
+      "spiegazione": "Pivot 10: i avanza su 3, 7, 1 e si ferma su 12; da destra 9 non è >= 10: scambio 12 ↔ 9, i = 5, j = 5. 5 < 10: i = 6 > j, fine ciclo. Scambio A[0] con A[5]: [5, 3, 7, 1, 9, 10, 12]. Le due parti non vengono ordinate da Partiziona."
+    },
+    {
+      "id": "L08-T08-06",
+      "tipo": "L08-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue Partiziona(A, 0, 6) della dispensa su A = [6, 9, 2, 11, 4, 8, 1]. Qual è il contenuto di A al termine della chiamata?",
+      "codice": "def Partiziona(A, inizio, fine):\n    pivot = A[inizio]\n    i = inizio + 1\n    j = fine\n    while i <= j:\n        if A[i] < pivot:\n            i += 1\n        elif A[j] >= pivot:\n            j -= 1\n        else:\n            A[i], A[j] = A[j], A[i]\n            i += 1\n            j -= 1\n    A[inizio], A[j] = A[j], A[inizio]\n    return j",
+      "albero": null,
+      "opzioni": [
+        "[6, 1, 2, 4, 11, 8, 9]",
+        "[2, 4, 1, 6, 9, 11, 8]",
+        "[11, 1, 2, 4, 6, 8, 9]",
+        "[4, 1, 2, 6, 11, 8, 9]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E4",
+        null
+      ],
+      "spiegazione": "Pivot 6: 9 ↔ 1 → [6, 1, 2, 11, 4, 8, 9]; poi 11 ↔ 4 → [6, 1, 2, 4, 11, 8, 9], con i = 4 e j = 3. Lo scambio finale con A[j] porta il pivot in posizione 3. Lo scambio con A[i] o l'assenza dello scambio finale danno stati diversi; la partizione stabile conserva l'ordine originale degli elementi."
+    },
+    {
+      "id": "L08-T09-01",
+      "tipo": "L08-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A = [2, 14, 5, 10, 3, 12, 6, 1, 9, 4]. Si esegue Partiziona(A, 2, 9) della dispensa, con pivot = A[2]. Quale indice restituisce la funzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5",
+        "3",
+        "6",
+        "4"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "In A[3..9] = [10, 3, 12, 6, 1, 9, 4] gli elementi minori del pivot 5 sono 3 (3, 1, 4): il pivot finisce in 2 + 3 = 5. Dimenticare inizio dà 3; contare i minori in tutto l'array (sono 4) e aggiungere inizio dà 6; sbagliare di uno dà 4."
+    },
+    {
+      "id": "L08-T09-02",
+      "tipo": "L08-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A = [12, 7, 1, 15, 4, 9, 2, 11, 6, 13]. Si esegue Partiziona(A, 3, 8) della dispensa, con pivot = A[3]. Quale indice restituisce la funzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "9",
+        "7",
+        "8",
+        "5"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E1"
+      ],
+      "spiegazione": "In A[4..8] = [4, 9, 2, 11, 6] tutti e 5 gli elementi sono minori del pivot 15: il pivot finisce in 3 + 5 = 8, in fondo all'intervallo (e non in fondo all'array). Contare i minori in tutto l'array dà 9; sbagliare di uno dà 7; dimenticare inizio dà 5."
+    },
+    {
+      "id": "L08-T09-03",
+      "tipo": "L08-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dopo una chiamata a Partiziona sull'intervallo A[inizio..fine], quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La parte sinistra e la parte destra sono già ordinate",
+        "Il pivot è nella sua posizione definitiva; a sinistra ci sono solo elementi minori, a destra solo elementi maggiori o uguali",
+        "Serve una fase di fusione di Θ(n) per ottenere l'ordinamento",
+        "Il pivot finisce sempre in A[inizio]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "Dopo la partizione il pivot non si muove più, a sinistra ci sono elementi minori e a destra elementi maggiori o uguali (nella dispensa gli uguali vanno a destra). Le due parti non sono ancora ordinate: lo saranno con le chiamate ricorsive."
+    },
+    {
+      "id": "L08-T09-04",
+      "tipo": "L08-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Perché il quicksort della dispensa produce un array ordinato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Dopo le due chiamate serve una fusione Θ(n) per unire le due parti ordinate",
+        "Dopo Partiziona le due parti sono già ordinate: basta mettere il pivot in mezzo",
+        "Per induzione: le chiamate ricorsive ordinano le due parti e ogni elemento a sinistra del pivot è minore di ogni elemento a destra",
+        "Il pivot è sempre il valore mediano dell'intervallo, quindi le parti hanno la stessa dimensione"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E5",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La correttezza sta nell'induzione sulle dimensioni e nel fatto che ogni elemento a sinistra del pivot è minore di ogni elemento a destra. Non serve nessuna fusione, e dopo la sola partizione la parte sinistra non è ancora ordinata."
+    },
+    {
+      "id": "L08-T09-05",
+      "tipo": "L08-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A = [6, 13, 3, 10, 1, 8, 15, 4, 11, 2]. Si esegue Partiziona(A, 3, 9) della dispensa, con pivot = A[3]. Quale indice restituisce la funzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4",
+        "7",
+        "9",
+        "6"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "In A[4..9] = [1, 8, 15, 4, 11, 2] gli elementi minori del pivot 10 sono 4 (1, 8, 4, 2): l'indice è 3 + 4 = 7. Senza inizio si ottiene 4; contando i minori sull'intero array (6) e sommando inizio si ottiene 9; sbagliando di uno si ottiene 6."
+    },
+    {
+      "id": "L08-T09-06",
+      "tipo": "L08-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A = [8, 3, 12, 5, 14, 1, 10, 2, 6, 15]. Si esegue Partiziona(A, 0, 6) della dispensa, con pivot = A[0]. Quale indice restituisce la funzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5",
+        "4",
+        "2",
+        "3"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "E3",
+        null
+      ],
+      "spiegazione": "L'intervallo è A[0..6]: in A[1..6] = [3, 12, 5, 14, 1, 10] i minori di 8 sono 3 (3, 5, 1), quindi il pivot finisce in 0 + 3 = 3. Contando anche 2 e 6, che stanno fuori dall'intervallo, si ottiene 5; 4 e 2 sbagliano di uno."
+    },
+    {
+      "id": "L08-T10-01",
+      "tipo": "L08-T10",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale ricorrenza descrive il costo del quicksort nel caso peggiore, sapendo che Partiziona costa Θ(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = 2T(n − 1) + Θ(n)",
+        "T(n) = T(n − 1) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(n)",
+        "T(n) = 2T(n/2) + Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E5"
+      ],
+      "spiegazione": "Nel caso peggiore una parte è vuota e l'altra ha n − 1 elementi: T(n − 1) + Θ(n), che dà Θ(n²). 2T(n − 1) suppone due sottoproblemi di n − 1 elementi; T(n − 1) + Θ(1) dimentica che la partizione è lineare; 2T(n/2) + Θ(n) è il caso migliore."
+    },
+    {
+      "id": "L08-T10-02",
+      "tipo": "L08-T10",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo del quicksort nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con una parte vuota e l'altra di n − 1 elementi la somma dei costi di partizione è Θ(n²). Θ(n log n) è il costo nel caso migliore, non nel peggiore."
+    },
+    {
+      "id": "L08-T10-03",
+      "tipo": "L08-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un tutor afferma che il quicksort costa Θ(n log n) in ogni caso, come il mergesort. Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il quicksort costa Θ(n log n) in ogni caso, come il mergesort",
+        "Il quicksort costa Θ(n log n) nel caso migliore e in media, ma Θ(n²) nel caso peggiore",
+        "Nel caso peggiore il quicksort costa Θ(n log n), perché la partizione è lineare",
+        "Nel caso migliore il quicksort costa Θ(n), come l'insertion sort"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il quicksort ha caso peggiore Θ(n²) quando i pivot sono sempre estremi. Il mergesort, invece, costa Θ(n log n) in ogni caso. La linearità della partizione non garantisce il bilanciamento."
+    },
+    {
+      "id": "L08-T10-04",
+      "tipo": "L08-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale ricorrenza descrive il costo del quicksort nel caso migliore, in cui ogni pivot divide l'array a metà?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/2) + Θ(n)",
+        "T(n) = T(n − 1) + Θ(n)",
+        "T(n) = 2T(n/2) + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E5",
+        "altro",
+        null
+      ],
+      "spiegazione": "Due chiamate su metà più una partizione lineare: 2T(n/2) + Θ(n) = Θ(n log n). T(n − 1) + Θ(n) è la ricorrenza del caso peggiore; 2T(n/2) + Θ(1) dimentica che Partiziona è lineare; T(n/2) + Θ(n) ha una sola chiamata."
+    },
+    {
+      "id": "L08-T10-05",
+      "tipo": "L08-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul costo del quicksort con pivot = primo elemento è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Costa Θ(n²) su ogni input",
+        "Nel caso peggiore il costo è Θ(n log n)",
+        "È O(n²) e Ω(n log n) in generale",
+        "Nel caso migliore il costo è Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il costo è al più O(n²) (caso peggiore) e almeno Ω(n log n) (caso migliore). Θ(n²) non vale su ogni input: vale solo nel caso peggiore."
+    },
+    {
+      "id": "L08-T10-06",
+      "tipo": "L08-T10",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con il pivot scelto a caso, qual è il costo atteso del quicksort?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n) nel caso peggiore, grazie al pivot casuale",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il costo atteso con pivot casuale è Θ(n log n). Il pivot casuale rende improbabile il caso peggiore Θ(n²), ma non lo elimina: Θ(n log n) non è il costo nel caso peggiore."
+    },
+    {
+      "id": "L08-T11-01",
+      "tipo": "L08-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo del quicksort con pivot = primo elemento su un array di n elementi già ordinato in senso crescente?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il pivot è il minimo: la parte sinistra è vuota e la destra ha n − 1 elementi, quindi T(n) = T(n − 1) + Θ(n) = Θ(n²). Θ(n log n) e Θ(n) sono costi di un input bilanciato o dell'insertion sort: il quicksort non beneficia dell'ordine."
+    },
+    {
+      "id": "L08-T11-02",
+      "tipo": "L08-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su un array di n elementi tutti uguali, con pivot = primo elemento e Partiziona della dispensa, il costo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n): solo l'input crescente è il caso peggiore",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con elementi uguali la condizione A[j] >= pivot è sempre vera: j scende fino all'inizio, il pivot resta in testa e la parte destra ha n − 1 elementi. Dire che solo l'input crescente è peggiore è falso."
+    },
+    {
+      "id": "L08-T11-03",
+      "tipo": "L08-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Ogni chiamata del quicksort divide l'intervallo in una parte di un decimo e una di nove decimi. Qual è il costo in Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Le dimensioni sono in proporzione costante: ogni livello costa al più cn e la profondità è log_{10/9} n = Θ(log n), quindi O(n log n), e il quicksort non scende sotto Ω(n log n). Essere sbilanciati in proporzione non porta a Θ(n²): serve una parte di dimensione costante a ogni livello."
+    },
+    {
+      "id": "L08-T11-04",
+      "tipo": "L08-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array di n elementi distinti ha il massimo come primo elemento, e il resto è ordinato in senso crescente. Con pivot = primo elemento, il costo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n): il caso peggiore è solo l'ordine crescente",
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il primo pivot è il massimo: finisce in fondo e al suo posto in testa arriva l'ultimo elemento, che è il massimo della parte rimasta. Così il pivot è sempre il massimo dell'intervallo e ogni chiamata toglie un solo elemento: T(n − 1) + Θ(n) = Θ(n²). L'input crescente non è l'unico che costa Θ(n²)."
+    },
+    {
+      "id": "L08-T11-05",
+      "tipo": "L08-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Ogni chiamata del quicksort divide l'intervallo in una parte di 10 elementi e una di n − 11 elementi (oltre al pivot). Qual è il costo in Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E5",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La ricorrenza è T(n) = T(10) + T(n − 11) + Θ(n): a ogni livello si tolgono solo 11 elementi, quindi i livelli sono circa n/11 e la somma dei costi di partizione è Θ(n²). Θ(n log n) richiede una proporzione costante (per esempio 1/10 e 9/10), non una parte di dimensione costante."
+    },
+    {
+      "id": "L08-T11-06",
+      "tipo": "L08-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione è vera per il quicksort con pivot = primo elemento?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Solo l'array ordinato in senso crescente costa Θ(n²): gli altri input costano Θ(n log n)",
+        "L'array già ordinato in senso crescente costa Θ(n), come con l'insertion sort",
+        "Con pivot = primo elemento il costo non dipende mai dall'input",
+        "Un array già ordinato in senso crescente costa Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Con pivot = primo elemento l'array crescente dà sempre il pivot minimo e il costo Θ(n²). Anche l'array decrescente e quello con elementi uguali costano Θ(n²), quindi 'solo' è falso."
+    },
+    {
+      "id": "L08-T12-01",
+      "tipo": "L08-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nel quicksort con pivot scelto a caso (elementi distinti), quale ricorrenza descrive il tempo atteso T(n), con la media sulle n scelte del pivot?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = (1/n)·Σ_{k=0}^{n−1} [T(k) + T(n − 1 − k)] + Θ(n)",
+        "T(n) = Σ_{k=0}^{n−1} [T(k) + T(n − 1 − k)] + Θ(n)",
+        "T(n) = (1/n)·Σ_{k=0}^{n−1} (T(k) + T(n − 1 − k))/2 + Θ(n)",
+        "T(n) = (1/n)·Σ_{q=0}^{n−1} T(q) + Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Ogni posizione k del pivot ha probabilità 1/n e costa T(k) + T(n − 1 − k) + Θ(n); la media sulle k dà il fattore 1/n. Senza 1/n si sommano tutti i casi; dividere per 2 fa la media delle due chiamate, che invece vanno sommate; con un solo T(q) per volta si perde il secondo termine."
+    },
+    {
+      "id": "L08-T12-02",
+      "tipo": "L08-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nel quicksort con pivot casuale, per ordinare A[i..j] si sceglie k = random.randint(i, j) e si scambia A[i] con A[k] prima di chiamare Partiziona. Perché?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Perché così il quicksort costa Θ(n log n) anche nel caso peggiore",
+        "Perché in questo modo l'algoritmo diventa stabile",
+        "Perché Partiziona usa A[i] come pivot: così ogni elemento di A[i..j] diventa pivot con la stessa probabilità",
+        "Perché evita la ricorsione"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Partiziona prende come pivot il primo elemento: portare in A[i] un elemento scelto uniformemente rende uniforme la scelta del pivot (probabilità 1/(j − i + 1) per ciascuno). Il pivot casuale non migliora il costo del caso peggiore, lo rende solo improbabile."
+    },
+    {
+      "id": "L08-T12-03",
+      "tipo": "L08-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nel quicksort su n elementi distinti, il pivot scelto ha esattamente k elementi minori di lui (0 ≤ k ≤ n − 1). Quale espressione dà il costo per questa scelta del pivot, prima di fare la media sulle n scelte?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "(T(k) + T(n − 1 − k))/2 + Θ(n)",
+        "T(k) + T(n − 1 − k) + Θ(n)",
+        "T(k) + T(n − k) + Θ(n)",
+        "T(k − 1) + T(n − k) + Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Le parti hanno k e n − 1 − k elementi (il pivot non entra in nessuna): si sommano le due chiamate e la partizione, poi si fa la media sulle n scelte. Dividere per 2 fa una media tra le due chiamate che non serve; T(n − k) conta anche il pivot."
+    },
+    {
+      "id": "L08-T12-04",
+      "tipo": "L08-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per il quicksort con pivot scelto a caso (elementi distinti), quale coppia (tempo atteso, tempo nel caso peggiore) è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n) e Θ(n log n)",
+        "Θ(n²) e Θ(n²)",
+        "Θ(n) e Θ(n log n)",
+        "Θ(n log n) e Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "La ricorrenza con (2/n)·Σ T(q) ha soluzione Θ(n log n): è il tempo atteso. Il caso peggiore resta Θ(n²), per esempio se il pivot estratto è sempre il minimo: è improbabile, non impossibile."
+    },
+    {
+      "id": "L08-T12-05",
+      "tipo": "L08-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale identità vale per la somma Σ_{k=0}^{n−1} [T(k) + T(n − 1 − k)]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2 · Σ_{q=0}^{n−1} T(q)",
+        "Σ_{q=0}^{n−1} T(q)",
+        "n · Σ_{q=0}^{n−1} T(q)",
+        "2 · Σ_{q=1}^{n−1} T(q)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Al variare di k, sia T(k) sia T(n − 1 − k) scorrono tutti i valori da 0 a n − 1: la somma è due volte Σ T(q). Scriverla una sola volta dimentica un termine. La somma da q = 1 esclude T(0), che invece compare."
+    },
+    {
+      "id": "L08-T12-06",
+      "tipo": "L08-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con il pivot casuale, quale affermazione sul tempo atteso è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il tempo atteso è Θ(n log n) anche nel caso peggiore, grazie al pivot casuale",
+        "Il tempo atteso è Θ(n²), come nel caso peggiore",
+        "Il tempo atteso è Θ(n log n), anche se il caso peggiore Θ(n²) resta possibile",
+        "Il tempo atteso è Θ(n) perché il pivot è scelto a caso"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il tempo atteso è Θ(n log n): il caso peggiore Θ(n²) ha probabilità piccola ma non nulla. La scelta casuale non cambia il costo del caso peggiore."
+    },
+    {
+      "id": "L08-T13-01",
+      "tipo": "L08-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nella dimostrazione per sostituzione del caso medio del quicksort, che ruolo ha la scelta c = 4·max{a, b}?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Serve a dimostrare che il caso medio è Ω(n log n), cioè un limite inferiore",
+        "Serve a far valere i casi base, perché c ≥ 4b è la condizione che serve per n = 0 e n = 1",
+        "Fa valere insieme i casi base (c ≥ a) e il passo induttivo (c ≥ 4b, che assorbe il termine +bn)",
+        "Serve a rendere la ricorrenza lineare, eliminando il logaritmo"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "c ≥ a basta per n = 0 e n = 1; il passo induttivo richiede c ≥ 4b per assorbire il termine +bn. Con c = 4·max{a, b} valgono entrambe e si ottiene O(n log n). La dimostrazione non dà un limite inferiore."
+    },
+    {
+      "id": "L08-T13-02",
+      "tipo": "L08-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nella dimostrazione con ipotesi T(n) ≤ c(n + 1)·log₂(n + 2), quale condizione su c serve ai casi base n = 0 e n = 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "c ≥ a",
+        "c ≥ 4b",
+        "c ≥ b",
+        "c ≤ a"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Per n = 0 vale (n + 1)·log₂(n + 2) = 1 e per n = 1 vale 2·log₂ 3 > 1: basta c ≥ a. La condizione c ≥ 4b riguarda il passo induttivo, non i casi base."
+    },
+    {
+      "id": "L08-T13-03",
+      "tipo": "L08-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale affermazione sulla dimostrazione per sostituzione del caso medio del quicksort è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Dimostra che il caso medio è Ω(n log n), quindi un limite inferiore",
+        "La condizione c ≥ 4b serve ai casi base, mentre c ≥ a serve al passo induttivo",
+        "Dimostra che il caso medio è Θ(n²) con la stessa ipotesi",
+        "Dimostra che il caso medio è O(n log n); con c = 4·max{a, b} valgono sia i casi base sia il passo induttivo"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Con la sostituzione si dimostra il limite superiore O(n log n), non un limite inferiore. Le due condizioni hanno ruoli diversi: c ≥ a per i casi base, c ≥ 4b per il passo."
+    },
+    {
+      "id": "L08-T14-01",
+      "tipo": "L08-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanta memoria extra usa merge_sort(A, i, j) della dispensa, nella versione con indici e fondi(A, i, m, j)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n): fondi usa la lista d'appoggio B",
+        "Θ(1): con gli indici non si fanno copie di liste",
+        "Θ(log n): solo lo stack della ricorsione",
+        "Θ(n log n): come il tempo di esecuzione"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "fondi(A, i, m, j) costruisce comunque la lista B di fino a n elementi: il mergesort non è in loco. Lo stack ha profondità Θ(log n) e non è la parte dominante. Θ(n log n) confonde memoria e tempo."
+    },
+    {
+      "id": "L08-T14-02",
+      "tipo": "L08-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è lo spazio di stack del quicksort con pivot casuale nel caso medio?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1): il quicksort non usa memoria extra",
+        "O(log n)",
+        "Θ(n): come il mergesort",
+        "Θ(log² n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Con partizioni bilanciate in media la profondità della ricorsione è O(log n), e questo è lo spazio di stack del quicksort nel caso medio. Θ(1) dimentica lo stack; Θ(n) è la memoria del mergesort."
+    },
+    {
+      "id": "L08-T14-03",
+      "tipo": "L08-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra questi algoritmi della dispensa è in loco?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il mergesort con indici e fondi(A, i, m, j)",
+        "Il mergesort con slicing merge_sort(A)",
+        "Il quicksort con Partiziona",
+        "Nessuno dei due: entrambi usano Θ(n) di memoria extra"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Partiziona fa solo scambi dentro A. Il mergesort con indici non è in loco perché fondi usa B; lo slicing crea altre copie ad ogni chiamata."
+    },
+    {
+      "id": "L08-T14-04",
+      "tipo": "L08-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanto spazio di stack usa il quicksort della dispensa nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(log n), anche nel caso peggiore",
+        "Θ(n²)",
+        "Θ(1)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "E2",
+        null
+      ],
+      "spiegazione": "Nel caso peggiore la profondità delle chiamate arriva a n − 1: lo stack è Θ(n). O(log n) vale in media con partizioni bilanciate; Θ(1) dimentica lo stack."
+    },
+    {
+      "id": "L08-T14-05",
+      "tipo": "L08-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Escluso lo stack della ricorsione, quanta memoria extra usa il quicksort in loco della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), come il mergesort",
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n log n), come il tempo"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "Partiziona lavora con gli indici i e j e il pivot: solo poche variabili, più l'array stesso. Lo stack è a parte e va contato separatamente."
+    },
+    {
+      "id": "L08-T14-06",
+      "tipo": "L08-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il mergesort della dispensa è in loco?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "No: anche fondi(A, i, m, j) richiede una lista d'appoggio B di Θ(n) elementi",
+        "Sì: la versione con indici non crea sottoliste",
+        "Sì: usa solo O(log n) memoria, come lo stack",
+        "Sì, perché le operazioni di fusione lavorano sulla stessa lista"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "fondi copia gli elementi in B e poi li riscrive in A: serve memoria aggiuntiva proporzionale a n. Anche senza slicing, la versione con indici non è in loco."
+    },
+    {
+      "id": "L08-T15-01",
+      "tipo": "L08-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un'applicazione deve ordinare file grandi e ha bisogno di una garanzia Θ(n log n) qualunque sia l'input; la memoria extra Θ(n) è accettabile. Quale algoritmo conviene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Mergesort",
+        "Quicksort con pivot casuale, perché in pratica è il più veloce",
+        "Quicksort con pivot casuale, che garantisce O(n log n) nel caso peggiore",
+        "Quicksort con pivot = primo elemento"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il mergesort costa Θ(n log n) in ogni caso. Il quicksort con pivot casuale ha caso peggiore Θ(n²): la casualità lo rende improbabile, non impossibile."
+    },
+    {
+      "id": "L08-T15-02",
+      "tipo": "L08-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un'applicazione può usare solo O(log n) di memoria ausiliaria in media e vuole costo atteso O(n log n) su qualunque input, anche già ordinato. Quale algoritmo conviene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Mergesort, che ha costo garantito Θ(n log n)",
+        "Quicksort con pivot = primo elemento, che è in loco",
+        "Quicksort con pivot casuale, in loco, con stack O(log n) in media",
+        "Mergesort con indici, che usa solo Θ(1) di memoria"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il quicksort con pivot casuale è in loco, ha costo atteso Θ(n log n) su ogni input e stack O(log n) in media. Il mergesort richiede la lista d'appoggio B di Θ(n) elementi; il quicksort con pivot = primo elemento su un input ordinato costa Θ(n²) e ha stack Θ(n)."
+    },
+    {
+      "id": "L08-T15-03",
+      "tipo": "L08-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul confronto tra mergesort e quicksort è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il mergesort costa Θ(n log n) in ogni caso, mentre il quicksort può costare Θ(n²) nel caso peggiore",
+        "Il quicksort è più veloce del mergesort in senso asintotico",
+        "Quando serve una garanzia conviene il quicksort, perché in pratica è il più veloce",
+        "Il mergesort costa Θ(n²) nel caso peggiore, come l'insertion sort"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il mergesort ha la stessa classe Θ(n log n) in ogni caso. Il quicksort ha la stessa classe nel caso medio, ma il suo caso peggiore è quadratico: asintoticamente non è più veloce."
+    },
+    {
+      "id": "L08-T15-04",
+      "tipo": "L08-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array quasi ordinato va ordinato con il mergesort o con una versione del quicksort. Quale scelta evita il rischio di un costo Θ(n²)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il quicksort con pivot = primo elemento, perché su input quasi ordinati è il più veloce",
+        "Il quicksort con pivot casuale, che garantisce Θ(n log n) su ogni input",
+        "Il quicksort con pivot = ultimo elemento, che è sempre sicuro su input ordinati",
+        "Il mergesort, che costa Θ(n log n) su qualsiasi input"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il mergesort non dipende dall'ordine dei valori, quindi non ha input che lo portano a Θ(n²). Il quicksort con pivot casuale rende il caso peggiore improbabile ma non lo esclude; con pivot = primo o ultimo elemento l'input quasi ordinato è proprio un caso cattivo."
+    },
+    {
+      "id": "L08-T15-05",
+      "tipo": "L08-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sulla scelta tra mergesort e quicksort è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Se non c'è memoria per una lista d'appoggio di n elementi conviene il mergesort, che ha costo garantito",
+        "Il quicksort è più veloce del mergesort in senso asintotico",
+        "Se non c'è memoria per una lista d'appoggio di n elementi conviene il quicksort, che ordina in loco",
+        "Con il pivot casuale il quicksort garantisce O(n log n) anche nel caso peggiore"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E4",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Il mergesort usa la lista d'appoggio B di Θ(n) elementi; il quicksort lavora con scambi dentro A e usa solo lo stack, O(log n) in media. Asintoticamente il quicksort non è più veloce (Θ(n log n) in media, Θ(n²) nel caso peggiore), e il pivot casuale non dà garanzie sul caso peggiore."
+    },
+    {
+      "id": "L08-T15-06",
+      "tipo": "L08-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul quicksort con pivot casuale è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Quando serve una garanzia sul caso peggiore conviene il quicksort: è in pratica il più veloce",
+        "Non garantisce Θ(n log n) nel caso peggiore: il suo costo atteso è Θ(n log n)",
+        "Il pivot casuale garantisce O(n log n) nel caso peggiore con probabilità 1",
+        "È Θ(n log n) in ogni caso, come il mergesort"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il quicksort con pivot casuale ha costo atteso Θ(n log n) ma nessuna garanzia nel caso peggiore: la probabilità del caso Θ(n²) è piccola, non nulla."
+    }
+  ]
+}

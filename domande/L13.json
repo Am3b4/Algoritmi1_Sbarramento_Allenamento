@@ -1,0 +1,2582 @@
+{
+  "lezione": 13,
+  "generato_con": "claude-haiku-5-5",
+  "domande": [
+    {
+      "id": "L13-T01-01",
+      "tipo": "L13-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale tra queste è un'operazione fondamentale di un dizionario?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "ordinamento dei dati per chiave",
+        "insert (inserimento di una coppia chiave-valore)",
+        "ricerca del minimo",
+        "visita di tutte le coppie in ordine"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E1",
+        "E1"
+      ],
+      "spiegazione": "Le tre operazioni fondamentali del dizionario sono insert, search e delete. Ordinamento, ricerca del minimo e visita non fanno parte del dizionario."
+    },
+    {
+      "id": "L13-T01-02",
+      "tipo": "L13-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un dizionario, quanti valori sono associati a una chiave?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "più valori diversi contemporaneamente",
+        "tanti valori quante sono le celle della tabella",
+        "un solo valore, quello della coppia con quella chiave",
+        "un valore per ogni inserimento fatto con quella chiave"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "E2"
+      ],
+      "spiegazione": "La relazione chiave → valore è una mappatura: ogni chiave ha un solo valore. Il numero di celle della tabella non c'entra."
+    },
+    {
+      "id": "L13-T01-03",
+      "tipo": "L13-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un'anagrafe comunale, quale campo può fare da chiave di un dizionario dei residenti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "il cognome",
+        "la data di nascita",
+        "il comune di residenza",
+        "il codice fiscale"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E3",
+        "E3",
+        null
+      ],
+      "spiegazione": "Il codice fiscale identifica una sola persona. Cognome, data di nascita e comune sono condivisi da molti residenti, quindi non sono univoci."
+    },
+    {
+      "id": "L13-T01-04",
+      "tipo": "L13-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sulla chiave di un dizionario è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "identifica in modo univoco l'elemento, e può essere anche una stringa, come un codice ISBN",
+        "è sempre un intero non negativo",
+        "coincide sempre con la posizione dell'elemento nella tabella",
+        "più elementi possono avere la stessa chiave"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "La chiave identifica l'elemento in modo univoco. Non è necessariamente un intero, e non coincide con la posizione: in una tabella hash la posizione è h(k)."
+    },
+    {
+      "id": "L13-T01-05",
+      "tipo": "L13-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un magazzino, quale campo sceglieresti come chiave di un dizionario dei prodotti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "il reparto",
+        "il codice prodotto",
+        "il prezzo",
+        "il colore"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E3",
+        "E3"
+      ],
+      "spiegazione": "Il codice prodotto identifica un solo articolo. Reparto, prezzo e colore sono condivisi da molti prodotti."
+    },
+    {
+      "id": "L13-T01-06",
+      "tipo": "L13-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quali sono le tre operazioni fondamentali di un dizionario?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "insert, search, sort",
+        "search, ricerca del minimo, delete",
+        "insert, search, delete",
+        "insert, visita in ordine, delete"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E1",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Un dizionario gestisce insert, search e delete. L'ordinamento, la ricerca del minimo e la visita non sono operazioni del dizionario."
+    },
+    {
+      "id": "L13-T02-01",
+      "tipo": "L13-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale di questi casi è adatto all'indirizzamento diretto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "memorizzare i 200 studenti di un corso con la matricola di 7 cifre come chiave",
+        "gestire i codici fiscali dei cittadini, perché le operazioni costano O(1)",
+        "gestire i 365 giorni di un anno, con chiave il giorno numerato da 0 a 364",
+        "memorizzare 300 coppie con chiavi intere molto grandi, con liste per le collisioni"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "E4"
+      ],
+      "spiegazione": "I giorni sono interi in un intervallo piccolo e noto, quasi tutti usati: 365 celle per 365 giorni. Le matricole sono interi, ma l'universo (10⁷) è enorme rispetto a 200 dati: l'inganno sta nel fatto che le chiavi sono interi."
+    },
+    {
+      "id": "L13-T02-02",
+      "tipo": "L13-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In quale caso l'indirizzamento diretto spreca molta memoria?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "memorizzare le 500 camere di un albergo, numerate da 0 a 499",
+        "memorizzare i 100 posti numerati di una sala, da 0 a 99",
+        "memorizzare i 10000 libri di una biblioteca, con chiave il numero d'inventario da 0 a 9999",
+        "memorizzare i numeri di cellulare in uso, circa 100 milioni su 10¹⁰ possibili, con chiave il numero di 10 cifre"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "La memoria è proporzionale all'universo delle chiavi (10¹⁰ celle), non al numero di dati (circa 10⁸). Camere, posti e libri usano quasi tutte le loro celle: 10000 libri sono tanti dati, ma occupano tutte le 10000 celle."
+    },
+    {
+      "id": "L13-T02-03",
+      "tipo": "L13-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo di insert, search e delete in una tabella ad indirizzamento diretto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1) per ciascuna operazione, senza collisioni",
+        "O(log n) per ciascuna operazione",
+        "O(n) nel caso peggiore, per le collisioni",
+        "O(1 + α), come nelle liste di trabocco"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Con l'indirizzamento diretto ogni chiave ha la sua cella: non ci sono collisioni e l'accesso è O(1). O(1 + α) è la formula delle liste di trabocco."
+    },
+    {
+      "id": "L13-T02-04",
+      "tipo": "L13-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sull'indirizzamento diretto è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "la memoria è proporzionale al numero n di chiavi memorizzate",
+        "la memoria è proporzionale all'universo delle chiavi |U|, non al numero di chiavi memorizzate",
+        "richiede liste di trabocco per gestire le collisioni",
+        "funziona con chiavi stringa qualsiasi, purché univoche"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Ogni chiave possibile ha una cella, anche se vuota: lo spazio dipende da |U|. Non ci sono collisioni, quindi non servono liste."
+    },
+    {
+      "id": "L13-T02-05",
+      "tipo": "L13-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si devono memorizzare 40 dati con chiavi intere tra 0 e 9999. Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "l'indirizzamento diretto va bene, perché le operazioni costano O(1)",
+        "l'indirizzamento diretto va bene, perché le chiavi sono interi",
+        "l'indirizzamento diretto non è adatto: userebbe 10000 celle per 40 dati",
+        "l'indirizzamento diretto va bene: la memoria dipende dai 40 dati"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "L'universo è molto più grande dei dati: la tabella diretta sprecherebbe 9960 celle su 10000. Conviene una tabella hash con m piccolo."
+    },
+    {
+      "id": "L13-T02-06",
+      "tipo": "L13-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale requisito deve avere l'insieme delle chiavi per l'indirizzamento diretto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "qualsiasi tipo di chiave, perché le operazioni costano O(1)",
+        "stringhe di lunghezza fissa, ma servono liste di trabocco per le collisioni",
+        "interi anche negativi, purché in numero minore di m",
+        "essere interi non negativi in un intervallo [0, m − 1] noto in anticipo"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "L'indirizzamento diretto usa la chiave come indice: deve essere un intero non negativo in un intervallo noto. Le stringhe richiedono una funzione hash."
+    },
+    {
+      "id": "L13-T03-01",
+      "tipo": "L13-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con m = 7 e h(k) = k mod m, in quali celle vanno, nell'ordine, le chiavi 23, 14, 30?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3, 2, 4",
+        "3, 4, 0",
+        "2, 7, 2",
+        "2, 0, 2"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "h(k) è il resto della divisione per m. Il quoziente k // m dà 3, 2, 4; il resto modulo 10 dà 3, 4, 0, ma vale solo per m = 10. Per un multiplo di m la cella è 0: la cella 7 non esiste."
+    },
+    {
+      "id": "L13-T03-02",
+      "tipo": "L13-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con m = 11 e h(k) = k mod m, in quali celle vanno, nell'ordine, le chiavi 45, 22, 8?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1, 0, 8",
+        "4, 2, 0",
+        "5, 2, 8",
+        "1, 11, 8"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "h(k) è il resto della divisione per m. Il quoziente k // m dà 4, 2, 0; il resto modulo 10 dà 5, 2, 8, ma vale solo per m = 10. Per un multiplo di m la cella è 0: la cella 11 non esiste."
+    },
+    {
+      "id": "L13-T03-03",
+      "tipo": "L13-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con m = 8 e h(k) = k mod m, in quali celle vanno, nell'ordine, le chiavi 29, 16, 5?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3, 2, 0",
+        "5, 0, 5",
+        "9, 6, 5",
+        "5, 8, 5"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "h(k) è il resto della divisione per m. Il quoziente k // m dà 3, 2, 0; il resto modulo 10 dà 9, 6, 5, ma vale solo per m = 10. Per un multiplo di m la cella è 0: la cella 8 non esiste."
+    },
+    {
+      "id": "L13-T03-04",
+      "tipo": "L13-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con m = 13 e h(k) = k mod m, in quali celle vanno, nell'ordine, le chiavi 47, 26, 9?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3, 2, 0",
+        "7, 6, 9",
+        "8, 0, 9",
+        "8, 13, 9"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "h(k) è il resto della divisione per m. Il quoziente k // m dà 3, 2, 0; il resto modulo 10 dà 7, 6, 9, ma vale solo per m = 10. Per un multiplo di m la cella è 0: la cella 13 non esiste."
+    },
+    {
+      "id": "L13-T03-05",
+      "tipo": "L13-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con m = 9 e h(k) = k mod m, in quali celle vanno, nell'ordine, le chiavi 40, 18, 25?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4, 2, 2",
+        "0, 8, 5",
+        "4, 9, 7",
+        "4, 0, 7"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "h(k) è il resto della divisione per m. Il quoziente k // m dà 4, 2, 2; il resto modulo 10 dà 0, 8, 5, ma vale solo per m = 10. Per un multiplo di m la cella è 0: la cella 9 non esiste."
+    },
+    {
+      "id": "L13-T03-06",
+      "tipo": "L13-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è lo scopo della funzione hash in una tabella hash?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "portare le chiavi negli indici 0, …, m − 1 di una tabella più piccola dell'universo, per risparmiare memoria",
+        "ordinare le chiavi in ordine crescente",
+        "rendere univoche le chiavi",
+        "eliminare del tutto le collisioni"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "La funzione hash riduce l'universo U agli m indici della tabella, utile quando m è molto più piccolo di |U|. Non ordina e non rende le chiavi univoche: le collisioni restano."
+    },
+    {
+      "id": "L13-T04-01",
+      "tipo": "L13-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Siano k₁ e k₂ due chiavi e h la funzione hash di una tabella di m celle. Si ha una collisione quando:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "k₁ ≠ k₂ e h(k₁) = h(k₂)",
+        "k₁ = k₂ e h(k₁) = h(k₂)",
+        "k₁ ≠ k₂ e h(k₁) ≠ h(k₂)",
+        "si inserisce k₁ quando tutte le m celle sono occupate"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "E1"
+      ],
+      "spiegazione": "Collisione: due chiavi diverse mandate nella stessa cella. Se k₁ = k₂ si tratta di un reinserimento, cioè un aggiornamento del valore, non di una collisione; la tabella piena è un altro problema."
+    },
+    {
+      "id": "L13-T04-02",
+      "tipo": "L13-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Si parla di collisione quando, nella tabella hash:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "una stessa chiave viene inserita due volte",
+        "due chiavi distinte vengono mandate nella stessa cella",
+        "la tabella non ha più celle libere",
+        "la funzione hash restituisce un indice negativo"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Due chiavi diverse con lo stesso indice h(k) collidono. Una chiave inserita due volte è un aggiornamento; la tabella piena non è una collisione."
+    },
+    {
+      "id": "L13-T04-03",
+      "tipo": "L13-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con h(k) = k mod 7, quale coppia di chiavi collide?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5 e 5",
+        "12 e 20",
+        "10 e 17",
+        "3 e 19"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "10 e 17 hanno resto 3 nella divisione per 7: collidono. Le due chiavi uguali non formano una collisione, e le altre due coppie hanno resti diversi."
+    },
+    {
+      "id": "L13-T04-04",
+      "tipo": "L13-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con h(k) = k mod 10, quale coppia di chiavi collide?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "23 e 23",
+        "12 e 24",
+        "15 e 26",
+        "13 e 53"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "13 e 53 finiscono entrambe nella cella 3. La coppia 23 e 23 è la stessa chiave: è un aggiornamento, non una collisione."
+    },
+    {
+      "id": "L13-T04-05",
+      "tipo": "L13-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Perché le collisioni sono inevitabili in una tabella hash?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "perché le chiavi possibili sono molte più delle celle, cioè m ≪ |U|",
+        "perché la funzione hash è scritta male, e una migliore le eviterebbe",
+        "perché la tabella è troppo grande",
+        "perché le chiavi non sono intere"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con m ≪ |U| più chiavi devono finire nella stessa cella, anche con una buona funzione hash."
+    },
+    {
+      "id": "L13-T04-06",
+      "tipo": "L13-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con h(k) = k mod 10, quale coppia di chiavi collide?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "13 e 24",
+        "12 e 22",
+        "30 e 33",
+        "8 e 8"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "altro",
+        "E2"
+      ],
+      "spiegazione": "12 e 22 hanno la stessa ultima cifra, quindi lo stesso resto modulo 10. La coppia 8 e 8 è la stessa chiave: non è una collisione."
+    },
+    {
+      "id": "L13-T04-07",
+      "tipo": "L13-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Si inserisce una chiave già presente nella tabella. È una collisione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì: due inserimenti della stessa chiave collidono sempre",
+        "Sì, perché la cella h(k) è già occupata",
+        "No: è un aggiornamento del valore già associato alla chiave",
+        "Sì, ma solo con l'indirizzamento aperto"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La collisione riguarda due chiavi diverse con lo stesso valore hash. Reinserire una chiave già presente ne aggiorna il valore: non ci sono due chiavi diverse, quindi non c'è collisione."
+    },
+    {
+      "id": "L13-T04-08",
+      "tipo": "L13-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una tabella hash ben progettata:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "non ha collisioni, grazie alla funzione hash",
+        "ha collisioni solo quando si reinserisce una chiave già presente",
+        "ha collisioni solo quando è piena",
+        "può avere collisioni, che si gestiscono con liste di trabocco o con indirizzamento aperto"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E2",
+        "E1",
+        null
+      ],
+      "spiegazione": "Una buona funzione hash riduce le collisioni ma non le elimina: con m ≪ |U| restano inevitabili e vanno gestite. Reinserire una chiave presente è un aggiornamento, non una collisione."
+    },
+    {
+      "id": "L13-T05-01",
+      "tipo": "L13-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con le liste di trabocco, dove viene memorizzata una chiave k che collide con una chiave già presente in T[h(k)]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "nella prima cella libera successiva a h(k), esplorando la tabella",
+        "in fondo alla lista T[h(k)], con le altre chiavi che hanno lo stesso hash",
+        "nella cella h(k), al posto della chiave presente, che viene sovrascritta",
+        "da nessuna parte: l'inserimento fallisce se la tabella è piena"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Con le liste di trabocco tutte le chiavi con lo stesso hash stanno nella lista T[h(k)], e la insert della dispensa accoda in fondo. Cercare un'altra cella libera è l'indirizzamento aperto; con le liste la tabella non si riempie mai."
+    },
+    {
+      "id": "L13-T05-02",
+      "tipo": "L13-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale strategia per le collisioni usa strutture dati ausiliarie, come liste collegate alla tabella?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "indirizzamento aperto",
+        "indirizzamento diretto",
+        "liste di trabocco",
+        "rehashing"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Le liste di trabocco legano a ogni cella una lista con le chiavi che collidono. L'indirizzamento aperto non usa strutture esterne: tutto sta nella tabella."
+    },
+    {
+      "id": "L13-T05-03",
+      "tipo": "L13-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con quale strategia si possono memorizzare più di m chiavi in una tabella di m celle?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "indirizzamento aperto",
+        "entrambe, perché con DELETED si riusa la cella",
+        "nessuna: la tabella contiene al massimo m chiavi in ogni caso",
+        "liste di trabocco"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "Con le liste di trabocco ogni cella contiene una lista, che può crescere: non c'è un limite a m. Con l'indirizzamento aperto una cella contiene al più una chiave."
+    },
+    {
+      "id": "L13-T05-04",
+      "tipo": "L13-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In quale strategia la cancellazione marca la cella come DELETED invece di liberarla?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "indirizzamento aperto",
+        "liste di trabocco",
+        "entrambe le strategie",
+        "nessuna: la cella torna None"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Nell'indirizzamento aperto una chiave può essere scavalcata da altre: marcare DELETED evita di interrompere le ricerche. Con le liste la coppia si rimuove davvero."
+    },
+    {
+      "id": "L13-T05-05",
+      "tipo": "L13-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con l'indirizzamento aperto, quante chiavi al massimo si possono memorizzare in una tabella di m celle?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "quante ne servono: la tabella non si riempie mai, si allungano le liste",
+        "al più m, una per cella",
+        "m − 1, perché una cella serve per le cancellazioni",
+        "illimitate, come con le liste di trabocco"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con l'indirizzamento aperto ogni cella contiene al più una chiave: n ≤ m. Allungare le liste è il comportamento dell'altra strategia."
+    },
+    {
+      "id": "L13-T05-06",
+      "tipo": "L13-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale strategia cancella davvero la coppia, senza lasciare segnaposto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "indirizzamento aperto",
+        "entrambe le strategie",
+        "liste di trabocco",
+        "nessuna: entrambe lasciano un segnaposto DELETED"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Con le liste di trabocco la coppia viene tolta dalla lista (remove). L'indirizzamento aperto invece marca la cella come DELETED, per non interrompere le ricerche delle chiavi che l'hanno scavalcata."
+    },
+    {
+      "id": "L13-T06-01",
+      "tipo": "L13-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 10 e h(k) = k mod m. Si inseriscono nell'ordine le chiavi 21, 47, 11, 37, 9, 18, 28. Qual è il contenuto finale della lista T[7]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[47]",
+        "[37, 47]",
+        "[47, 37]",
+        "[]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Ogni chiave va accodata in fondo alla lista T[h(k)]: T[7] = [47, 37]. Inserendo in testa si ottiene l'ordine inverso; con la scansione lineare la chiave occupa un'altra cella; con il quoziente k // m si guarda la lista sbagliata."
+    },
+    {
+      "id": "L13-T06-02",
+      "tipo": "L13-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 7 e h(k) = k mod m. Si inseriscono nell'ordine le chiavi 14, 8, 22, 5, 19, 30. Qual è il contenuto finale della lista T[5]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[5]",
+        "[19, 5]",
+        "[]",
+        "[5, 19]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Ogni chiave va accodata in fondo alla lista T[h(k)]: T[5] = [5, 19]. Inserendo in testa si ottiene l'ordine inverso; con la scansione lineare la chiave occupa un'altra cella; con il quoziente k // m si guarda la lista sbagliata."
+    },
+    {
+      "id": "L13-T06-03",
+      "tipo": "L13-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 10 e h(k) = k mod m. Si inseriscono nell'ordine le chiavi 3, 13, 23, 7, 17, 4, 9. Dopo tutti gli inserimenti, quante liste della tabella restano vuote?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "3",
+        "7",
+        "4"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Le chiavi occupano 4 liste diverse (un hash per cella): le liste vuote sono 10 − 4 = 6. Contare le celle occupate o usare la scansione lineare dà risultati diversi."
+    },
+    {
+      "id": "L13-T06-04",
+      "tipo": "L13-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con liste di trabocco, m = 10 e h(k) = k mod m. Si inseriscono nell'ordine le chiavi 44, 14, 64, 24, 5, 15, 25. Qual è il contenuto finale della lista T[5]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[14]",
+        "[5, 15, 25]",
+        "[25, 15, 5]",
+        "[]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Ogni chiave va accodata in fondo alla lista T[h(k)]: T[5] = [5, 15, 25]. Inserendo in testa si ottiene l'ordine inverso; con la scansione lineare la chiave occupa un'altra cella; con il quoziente k // m si guarda la lista sbagliata."
+    },
+    {
+      "id": "L13-T06-05",
+      "tipo": "L13-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con liste di trabocco, m = 5 e h(k) = k mod m. Si inseriscono nell'ordine le chiavi 10, 7, 2, 12, 9, 4. Qual è il contenuto finale della lista T[2]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[7]",
+        "[12, 2, 7]",
+        "[7, 2, 12]",
+        "[10, 12]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Ogni chiave va accodata in fondo alla lista T[h(k)]: T[2] = [7, 2, 12]. Inserendo in testa si ottiene l'ordine inverso; con la scansione lineare la chiave occupa un'altra cella; con il quoziente k // m si guarda la lista sbagliata."
+    },
+    {
+      "id": "L13-T06-06",
+      "tipo": "L13-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 8 e h(k) = k mod m. Si inseriscono nell'ordine le chiavi 1, 9, 17, 25, 2, 10. Qual è la lunghezza della lista più lunga?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2",
+        "6",
+        "8",
+        "4"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "La lista più lunga ha 4 elementi: è quella con il resto più frequente. Contando per quoziente si otterrebbe 2; 6 è il numero di chiavi e 8 il numero di celle."
+    },
+    {
+      "id": "L13-T07-01",
+      "tipo": "L13-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 5 e h(k) = k mod 5, inizialmente vuota. Si eseguono nell'ordine: insert(3, 'x'), insert(8, 'y'), insert(13, 'z'), insert(8, 'w'), insert(18, 'v'), delete(13). Qual è il contenuto finale di T[3]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[[3, 'x'], [8, 'y'], [8, 'w'], [18, 'v']]",
+        "[[3, 'x'], [8, 'y'], [18, 'v']]",
+        "[[3, 'x'], [8, 'w'], 'DELETED', [18, 'v']]",
+        "[[3, 'x'], [8, 'w'], [18, 'v']]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Insert scorre la lista T[h(k)]: se trova la chiave ne aggiorna il valore in posto e non crea duplicati. Delete rimuove la coppia dalla lista, senza segnaposto DELETED (quelli sono dell'indirizzamento aperto)."
+    },
+    {
+      "id": "L13-T07-02",
+      "tipo": "L13-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 7 e h(k) = k mod 7, inizialmente vuota. Si eseguono nell'ordine: insert(9, 'p'), insert(16, 'q'), insert(2, 'r'), delete(16), insert(23, 's'). Qual è il contenuto finale di T[2]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[[9, 'p'], [2, 'r'], [23, 's']]",
+        "[[9, 'p'], 'DELETED', [2, 'r'], [23, 's']]",
+        "[[9, 'p'], [16, 'q'], [2, 'r'], [23, 's']]",
+        "[[23, 's'], [9, 'p'], [2, 'r']]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Insert scorre la lista T[h(k)]: se trova la chiave ne aggiorna il valore in posto e non crea duplicati. Delete rimuove la coppia dalla lista, senza segnaposto DELETED (quelli sono dell'indirizzamento aperto)."
+    },
+    {
+      "id": "L13-T07-03",
+      "tipo": "L13-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 5, h(k) = k mod 5, inizialmente vuota. Si eseguono nell'ordine insert(4, 'a'), insert(9, 'b'), delete(4), search(9), search(4). Che cosa restituiscono, nell'ordine, le ultime tre operazioni?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "True, 'b', False",
+        "True, 'b', None",
+        "'a', 'b', None",
+        "True, 'b', 'DELETED'"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Delete restituisce True e rimuove la coppia. Search di una chiave assente restituisce None, non False; delete restituisce True, non il valore."
+    },
+    {
+      "id": "L13-T07-04",
+      "tipo": "L13-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 6 e h(k) = k mod 6, inizialmente vuota. Si eseguono nell'ordine insert(6, 'a'), insert(12, 'b'), insert(6, 'c'), insert(18, 'd'). Qual è il contenuto finale di T[0]?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[[6, 'a'], [12, 'b'], [6, 'c'], [18, 'd']]",
+        "[[6, 'a'], [12, 'b'], [18, 'd']]",
+        "[[6, 'c'], [12, 'b'], [18, 'd']]",
+        "[[12, 'b'], [6, 'c'], [18, 'd']]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La seconda insert(6, ...) trova la chiave 6 nella lista e ne aggiorna il valore in posto: nessun duplicato, nessuna coppia ignorata."
+    },
+    {
+      "id": "L13-T07-05",
+      "tipo": "L13-T07",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Tabella hash con liste di trabocco, m = 7, h(k) = k mod 7, inizialmente vuota. Si eseguono nell'ordine insert(10, 'a'), delete(10), delete(10). Che cosa restituiscono, nell'ordine, le due delete?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "'a', False",
+        "True, True",
+        "False, False",
+        "True, False"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "La prima delete trova la coppia, la rimuove e restituisce True. La seconda non trova la chiave e restituisce False: delete non restituisce il valore."
+    },
+    {
+      "id": "L13-T07-06",
+      "tipo": "L13-T07",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Che cosa succede se si inserisce una chiave già presente in una tabella con liste di trabocco?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "il valore viene aggiornato nella coppia già presente, senza duplicati",
+        "si accoda una nuova coppia con il valore nuovo, e la chiave compare due volte",
+        "il valore vecchio resta e il nuovo viene ignorato",
+        "la coppia vecchia viene sostituita da un segnaposto DELETED"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Insert scorre la lista T[h(k)]: se trova la chiave ne aggiorna il valore in posto. Non crea duplicati e non usa DELETED."
+    },
+    {
+      "id": "L13-T08-01",
+      "tipo": "L13-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una tabella hash con liste di trabocco ha m = 100 celle e contiene n = 250 chiavi. Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "α = 2,5: le liste contengono in media 2,5 chiavi, situazione ammessa",
+        "la situazione è impossibile: α non può superare 1",
+        "α = 0,4: le liste sono in gran parte vuote",
+        "α = 2,5, ma la tabella è piena e gli inserimenti falliscono"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "α = n/m = 250/100 = 2,5. Con le liste di trabocco α può superare 1: le liste sono più lunghe in media, e tutto funziona. 0,4 è m/n."
+    },
+    {
+      "id": "L13-T08-02",
+      "tipo": "L13-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Indirizzamento aperto con m = 50 celle, 20 chiavi valide e 5 celle DELETED. Quanto vale α nella stima dei costi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "α = 0,4: le DELETED non si contano",
+        "α = 0,5, cioè 25/50: le DELETED contano come occupate",
+        "α = 2: calcolato come m/n",
+        "α = 0,1: si contano solo le DELETED"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Nell'indirizzamento aperto n conta le celle diverse da None: chiavi valide più DELETED, n = 25, quindi α = 25/50 = 0,5."
+    },
+    {
+      "id": "L13-T08-03",
+      "tipo": "L13-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una tabella hash con liste di trabocco ha m = 200 celle e contiene n = 1000 chiavi. Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "la situazione è impossibile: α non può superare 1",
+        "α = 0,2: la tabella è quasi vuota",
+        "α = 5: le liste sono lunghe in media 5, e la situazione è ammessa",
+        "α = 5, ma la tabella è piena e i nuovi inserimenti falliscono"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "α = n/m = 1000/200 = 5. Con le liste non esiste un limite ad α: il vincolo α ≤ 1 vale solo per l'indirizzamento aperto. 0,2 è m/n."
+    },
+    {
+      "id": "L13-T08-04",
+      "tipo": "L13-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con indirizzamento aperto, m = 16 celle e 12 chiavi valide senza DELETED. Quanto vale α?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "α = 1,33, cioè 16/12",
+        "α = 0,25, cioè 4/16: la frazione di celle libere",
+        "α = 12: il numero di chiavi",
+        "α = 0,75: la tabella è occupata al 75%"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "α = n/m = 12/16 = 0,75. Con l'indirizzamento aperto α ≤ 1 sempre; 16/12 è m/n, quindi sbagliato."
+    },
+    {
+      "id": "L13-T08-05",
+      "tipo": "L13-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con le liste di trabocco, α = n/m può superare 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "sì: α è la lunghezza media delle liste, e può essere maggiore di 1",
+        "no: α non può superare 1 con nessuna strategia",
+        "no, perché α = m/n, che è al più 1",
+        "sì, ma gli inserimenti falliscono quando α supera 1"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Con le liste non c'è limite a n: α è la lunghezza media delle liste. Il vincolo α ≤ 1 vale solo per l'indirizzamento aperto."
+    },
+    {
+      "id": "L13-T08-06",
+      "tipo": "L13-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In indirizzamento aperto, con 10 coppie valide e 5 celle DELETED su m = 30, quanto vale α?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "α = 0,33, cioè 10/30: le DELETED non si contano",
+        "α = 0,5, cioè 15/30: le DELETED contano",
+        "α = 2, cioè 30/15",
+        "α = 0,17, cioè 5/30"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "n = 10 coppie valide + 5 DELETED = 15, quindi α = 15/30 = 0,5. Escludere le DELETED dal conteggio sottostima α."
+    },
+    {
+      "id": "L13-T09-01",
+      "tipo": "L13-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco e funzione hash uniforme. Il numero di celle resta m = 1000, mentre il numero n di chiavi cresce senza limite. Il costo medio di una cancellazione è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1), perché con le liste di trabocco il costo medio è costante",
+        "O(n)",
+        "O(1/(1 − α))",
+        "O(√n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "α = n/1000 cresce con n, quindi O(1 + α) = O(1 + n/1000) = O(n): le liste si allungano linearmente. O(1) vale solo se α resta limitato; 1/(1 − α) è la stima dell'indirizzamento aperto e con α > 1 non ha senso."
+    },
+    {
+      "id": "L13-T09-02",
+      "tipo": "L13-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco e funzione hash uniforme; la tabella cresce con n: m = n/10. Il costo medio di una ricerca, in notazione Θ, è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), come nel caso peggiore della lista più lunga",
+        "Θ(1/(1 − α))",
+        "Θ(1)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "α = n/m = 10 è costante, quindi il costo medio Θ(1 + α) è Θ(1). Θ(n) è il caso peggiore, quando tutte le chiavi finiscono nella stessa lista; 1/(1 − α) è la stima dell'indirizzamento aperto e con α = 10 non ha senso."
+    },
+    {
+      "id": "L13-T09-03",
+      "tipo": "L13-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con liste di trabocco, funzione hash uniforme e m = n² celle. Il costo medio di una ricerca, in notazione Θ, è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(α) = Θ(1/n)",
+        "Θ(n), il caso peggiore",
+        "Θ(log n)",
+        "Θ(1)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "α = n/n² = 1/n tende a 0, quindi Θ(1 + α) = Θ(1). Scrivere Θ(α) = Θ(1/n) dimentica il calcolo dell'hash, che costa comunque un tempo costante; Θ(n) è il caso peggiore, non il medio."
+    },
+    {
+      "id": "L13-T09-04",
+      "tipo": "L13-T09",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con funzione hash uniforme, il costo medio di una ricerca con liste di trabocco è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1 + α)",
+        "O(1/(1 − α))",
+        "O(α)",
+        "O(1), sempre"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E4",
+        "E2"
+      ],
+      "spiegazione": "O(1) per calcolare h(k) più O(α) per scorrere la lista: O(1 + α). La formula 1/(1 − α) è quella dell'indirizzamento aperto."
+    },
+    {
+      "id": "L13-T09-05",
+      "tipo": "L13-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, funzione hash uniforme e m = √n celle. Il costo medio di una ricerca è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1), la ricerca in una tabella hash è sempre costante",
+        "O(√n)",
+        "O(1/(1 − α))",
+        "O(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "α = n/√n = √n, quindi O(1 + α) = O(√n): le liste crescono con n e il costo non è costante. 1/(1 − α) è la formula dell'indirizzamento aperto e con α > 1 non ha senso."
+    },
+    {
+      "id": "L13-T09-06",
+      "tipo": "L13-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Perché il costo medio con liste è O(1 + α) e non O(α)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "perché la formula corretta è 1/(1 − α)",
+        "perché la ricerca è costante in media per ogni valore di α",
+        "perché calcolare h(k) costa O(1) anche quando α è vicino a 0",
+        "perché con le liste α è sempre maggiore di 1"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Anche con α vicino a 0 bisogna calcolare l'indice h(k): il termine 1 resta. Il termine α è la scansione della lista."
+    },
+    {
+      "id": "L13-T10-01",
+      "tipo": "L13-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 8 celle e n = 16 chiavi. Le liste T[0], …, T[7] hanno lunghezze 0, 3, 1, 6, 0, 2, 3, 1. Nel caso peggiore, quante chiavi esamina una ricerca con insuccesso?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1, perché il costo è costante",
+        "2, cioè α = 16/8",
+        "6",
+        "8, cioè m"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Una ricerca con insuccesso scorre tutta la lista T[h(k)]: nel caso peggiore h(k) = 3 e la lista ha 6 chiavi. α = 2 è la lunghezza media delle liste (caso medio); m = 8 non limita la lunghezza delle liste."
+    },
+    {
+      "id": "L13-T10-02",
+      "tipo": "L13-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il costo nel caso peggiore di un inserimento con liste di trabocco è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "costante, perché basta accodare in fondo",
+        "dell'ordine di α, il fattore di carico",
+        "dell'ordine di m, il numero di celle",
+        "dell'ordine della lunghezza della lista più lunga"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Insert deve prima scorrere la lista T[h(k)] per non duplicare la chiave: nel caso peggiore scorre tutta la lista più lunga."
+    },
+    {
+      "id": "L13-T10-03",
+      "tipo": "L13-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il costo nel caso peggiore di una cancellazione con liste di trabocco è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "dell'ordine della lunghezza della lista più lunga",
+        "costante: la cancellazione tocca una sola cella",
+        "dell'ordine di α",
+        "dell'ordine di m"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Delete cerca la chiave nella lista T[h(k)] e la rimuove: nel caso peggiore scorre la lista più lunga."
+    },
+    {
+      "id": "L13-T10-04",
+      "tipo": "L13-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 5 e h(k) = k mod 5. Le liste contengono 1, 4, 2, 0 e 3 elementi. Nel caso peggiore, quanti elementi esamina una ricerca?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2, cioè α = 10/5",
+        "4",
+        "10, il numero totale di chiavi",
+        "5, il numero di celle"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Il caso peggiore è la lista più lunga, con 4 elementi. α = 10/5 = 2 è il caso medio; m = 5 è il numero di celle."
+    },
+    {
+      "id": "L13-T10-05",
+      "tipo": "L13-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una tabella hash con liste di trabocco ha m = √n celle e contiene n chiavi, tutte con lo stesso valore hash. Il costo nel caso peggiore della ricerca è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1), costante",
+        "Θ(√n), dell'ordine di α = n/m",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Tutte le chiavi stanno nella stessa lista di n elementi, che una ricerca con insuccesso scorre per intero: Θ(n). α = n/m = √n è la lunghezza media delle liste, non quella della lista più lunga."
+    },
+    {
+      "id": "L13-T10-06",
+      "tipo": "L13-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco, m = 10 e n = 1000 chiavi. Nel caso peggiore una ricerca esamina al più:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "circa 100 elementi, cioè α",
+        "10 elementi, cioè m",
+        "circa 500 elementi, la metà delle chiavi",
+        "1000 elementi, cioè tutte le n chiavi"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Nel caso peggiore tutte le 1000 chiavi finiscono nella stessa lista, che va scorsa per intero. α = 100 è la lunghezza media (caso medio); m = 10 è il numero di celle, non un limite alla lunghezza delle liste."
+    },
+    {
+      "id": "L13-T10-07",
+      "tipo": "L13-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul caso peggiore con liste di trabocco è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "è dato dalla lista più lunga, e può essere lineare in n anche se α è piccolo",
+        "è costante, come il caso medio",
+        "è proporzionale ad α",
+        "dipende da m, non dalle liste"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il caso peggiore è la lista più lunga, che può contenere molte chiavi anche se la media α è piccola. Il caso medio O(1 + α) è un'altra cosa."
+    },
+    {
+      "id": "L13-T10-08",
+      "tipo": "L13-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con liste di trabocco, in quale situazione una ricerca ha il costo massimo possibile?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "quando tutte le m celle della tabella contengono almeno una chiave",
+        "quando tutte le chiavi sono nella stessa lista e si cerca una chiave assente con quello stesso hash",
+        "quando il fattore di carico α supera 1",
+        "quando la lista della chiave cercata è vuota"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "La ricerca scorre solo la lista T[h(k)]: il costo è massimo quando quella lista contiene tutte le n chiavi e va scorsa per intero, Θ(n). α > 1 dice solo che le liste sono lunghe in media; le celle tutte occupate sono un ragionamento da indirizzamento aperto; una lista vuota è il caso migliore."
+    },
+    {
+      "id": "L13-T11-01",
+      "tipo": "L13-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un rehashing che reinserisce n coppie valide costa:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n²)",
+        "O(1), basta cambiare m",
+        "O(log n)",
+        "O(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ogni coppia viene ricalcolata e reinserita una volta: O(n). Non serve un ciclo annidato, e cambiare m da solo non basta."
+    },
+    {
+      "id": "L13-T11-02",
+      "tipo": "L13-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con liste di trabocco, quando conviene fare rehashing?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "quando α è troppo alto e le liste sono troppo lunghe",
+        "quando α è basso, per risparmiare memoria",
+        "dopo ogni inserimento, per tenere la tabella ordinata",
+        "quando avviene una collisione"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il rehashing serve a ridurre α, cioè ad accorciare le liste. Con α basso le liste sono già corte e il rehashing sarebbe uno spreco."
+    },
+    {
+      "id": "L13-T11-03",
+      "tipo": "L13-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con indirizzamento aperto, quando conviene fare rehashing?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "quando α è basso, per risparmiare memoria",
+        "quando le celle DELETED superano una soglia, per esempio il 20%, o la tabella è troppo piena",
+        "solo quando la tabella è completamente vuota",
+        "dopo ogni cancellazione"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Le DELETED non contengono coppie valide, ma allungano le scansioni e contano nel fattore di carico: quando sono troppe conviene ricostruire la tabella. La soglia del 20% è un esempio della dispensa."
+    },
+    {
+      "id": "L13-T11-04",
+      "tipo": "L13-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Dopo un rehashing con indirizzamento aperto, che fine fanno le celle DELETED?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "anche le celle DELETED vengono ricopiate nella nuova tabella",
+        "restano nella stessa posizione, perché le celle si copiano senza ricalcolare l'hash",
+        "spariscono: nella nuova tabella si reinseriscono solo le coppie valide",
+        "restano, ma spostate in fondo alla nuova tabella"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il rehashing crea una nuova tabella e reinserisce solo le coppie valide: le DELETED non passano nella nuova tabella."
+    },
+    {
+      "id": "L13-T11-05",
+      "tipo": "L13-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con liste di trabocco e h(k) = k mod m. Con m = 10 la chiave 43 sta nella lista T[3]. Dopo un rehashing a m′ = 15, in quale lista si trova 43?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T[3], la stessa di prima",
+        "T[2]",
+        "T[28]",
+        "T[13]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il rehashing ricalcola h(k) con la nuova dimensione: 43 mod 15 = 13. Lasciare 43 in T[3] è sbagliato, perché k mod m cambia con m; 28 = 43 − 15 non è ancora il resto, che deve stare tra 0 e 14."
+    },
+    {
+      "id": "L13-T11-06",
+      "tipo": "L13-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il tempo di un rehashing è dominato da:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "il ricalcolo dell'hash e il reinserimento di ogni coppia valida, O(n)",
+        "la copia delle celle senza ricalcolare l'hash, in tempo costante",
+        "la copia di tutte le celle, DELETED comprese, nella nuova tabella",
+        "la cancellazione della vecchia tabella, in tempo O(1)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Ogni coppia valida viene ricalcolata e reinserita: O(n). Copiare le celle senza ricalcolare dà risultati sbagliati, e le DELETED non vanno copiate."
+    },
+    {
+      "id": "L13-T12-01",
+      "tipo": "L13-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 17, 27, 7, 37, poi 47. In quale cella finisce 47?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cella 1",
+        "cella 10",
+        "cella 7",
+        "l'inserimento fallisce"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "h(47) = 7. Le celle 7, 8, 9 e, dopo il giro, la 0 sono occupate (da 17, 27, 7 e 37): la prima libera è la 1. La cella 10 non esiste."
+    },
+    {
+      "id": "L13-T12-02",
+      "tipo": "L13-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 8, 18, 9, 29, poi 39. In quale cella finisce 39?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cella 10",
+        "cella 2",
+        "cella 9",
+        "l'inserimento fallisce"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "8 → 8, 18 → 9, 9 → 0, 29 → 1. h(39) = 9: sono occupate la 9 e, dopo il giro, la 0 e la 1; la prima libera è la 2. La cella 10 non esiste."
+    },
+    {
+      "id": "L13-T12-03",
+      "tipo": "L13-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 7, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 6, 13, 4, poi 20. In quale cella finisce 20?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cella 7",
+        "cella 6",
+        "cella 1",
+        "l'inserimento fallisce"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "6 → 6, 13 → 0, 4 → 4. h(20) = 6: la cella 6 e, dopo il giro, la 0 sono occupate; la prima libera è la 1. Con m = 7 la cella 7 non esiste."
+    },
+    {
+      "id": "L13-T12-04",
+      "tipo": "L13-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 7, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 3, 4, 11, 18, poi 10. In quale cella finisce 10?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cella 5",
+        "cella 7",
+        "cella 3",
+        "cella 0"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "E2",
+        null
+      ],
+      "spiegazione": "3 → 3, 4 → 4, 11 (h = 4) → 5, 18 (h = 4) → 6. h(10) = 3: le celle 3, 4, 5 e 6 sono occupate e, dopo il giro, la 0 è libera. La cella 5 si ottiene dimenticando che 11 e 18 sono state spostate in 5 e 6; la cella 7 non esiste."
+    },
+    {
+      "id": "L13-T12-05",
+      "tipo": "L13-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 8, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 7, 15, 23, 14, poi 6. In quale cella finisce 6?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cella 2",
+        "cella 8",
+        "cella 6",
+        "l'inserimento fallisce"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "7 → 7, 15 → 0, 23 → 1, 14 → 6. h(6) = 6: sono occupate la 6, la 7 e, dopo il giro, la 0 e la 1; la prima libera è la 2. Con m = 8 la cella 8 non esiste."
+    },
+    {
+      "id": "L13-T12-06",
+      "tipo": "L13-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 8, 18, 28, 38. Quante celle esamina l'inserimento di 48?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "5",
+        "1",
+        "l'inserimento fallisce"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "8 → 8, 18 → 9, 28 → 0, 38 → 1. h(48) = 8: si esaminano 8, 9, 0, 1 (occupate) e la 2, libera: 5 celle. Dimenticando il modulo ci si fermerebbe dopo 3 celle alla cella 10, che non esiste."
+    },
+    {
+      "id": "L13-T13-01",
+      "tipo": "L13-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 8, 58, 9, 20, 31, 42, 53. Quante celle esamina search(88)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "8",
+        "2",
+        "7"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "search(88) parte da h = 8 e segue la scansione con il modulo: esamina 8 celle, perché la cella None che ferma la ricerca conta come accesso. Fermarsi alla prima cella o alla cella m − 1, o non contare la None, sono errori tipici."
+    },
+    {
+      "id": "L13-T13-02",
+      "tipo": "L13-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 9, 19, 29, 39. Quante celle esamina search(49)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "4",
+        "5",
+        "10"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "search(49) parte da h = 9 e segue la scansione con il modulo: esamina 5 celle, perché la cella None che ferma la ricerca conta come accesso. Fermarsi alla prima cella o alla cella m − 1, o non contare la None, sono errori tipici."
+    },
+    {
+      "id": "L13-T13-03",
+      "tipo": "L13-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 7, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 6, 13, 20, 5, 12. Quante celle esamina search(27)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "4",
+        "7",
+        "5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "search(27) parte da h = 6 e segue la scansione con il modulo: esamina 5 celle, perché la cella None che ferma la ricerca conta come accesso. Fermarsi alla prima cella o alla cella m − 1, o non contare la None, sono errori tipici."
+    },
+    {
+      "id": "L13-T13-04",
+      "tipo": "L13-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 8, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 6, 14, 22, 5, 30. Quante celle esamina search(38)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5",
+        "1",
+        "2",
+        "4"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "search(38) parte da h = 6 e segue la scansione con il modulo: esamina 5 celle, perché la cella None che ferma la ricerca conta come accesso. Fermarsi alla prima cella o alla cella m − 1, o non contare la None, sono errori tipici."
+    },
+    {
+      "id": "L13-T13-05",
+      "tipo": "L13-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 9, 19, 29, 30, 40. Quante celle esamina search(49)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "6",
+        "5",
+        "10"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "search(49) parte da h = 9 e segue la scansione con il modulo: esamina 6 celle, perché la cella None che ferma la ricerca conta come accesso. Fermarsi alla prima cella o alla cella m − 1, o non contare la None, sono errori tipici."
+    },
+    {
+      "id": "L13-T13-06",
+      "tipo": "L13-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Si inseriscono nell'ordine 2, 12, 22, 32, 42, 52. Quante celle esamina search(62)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "6",
+        "7",
+        "10"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "search(62) parte da h = 2 e segue la scansione con il modulo: esamina 7 celle, perché la cella None che ferma la ricerca conta come accesso. Fermarsi alla prima cella o alla cella m − 1, o non contare la None, sono errori tipici."
+    },
+    {
+      "id": "L13-T14-01",
+      "tipo": "L13-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m. Si inseriscono nell'ordine 9, 19, 29; poi si esegue delete(19). Che esito ha search(29) e quante celle esamina?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "restituisce None, dopo 2 celle",
+        "restituisce None, dopo 1 cella",
+        "trova 29, dopo 3 celle",
+        "trova 29, dopo 2 celle"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E4",
+        null,
+        "E2"
+      ],
+      "spiegazione": "9 → 9, 19 → 0, 29 → 1. delete(19) marca la cella 0 come DELETED. search(29) esamina 9, salta la DELETED in 0 e trova 29 in 1: 3 celle. Trattare la DELETED come None ferma la ricerca alla cella 0; delete non fa scalare indietro le chiavi."
+    },
+    {
+      "id": "L13-T14-02",
+      "tipo": "L13-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 8, h(k) = k mod m. Si inseriscono nell'ordine 7, 15, 23, 6, 14; poi si esegue delete(15). Che esito ha search(14) e quante celle esamina?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "restituisce None, dopo 3 celle",
+        "restituisce None, dopo 2 celle",
+        "trova 14, dopo 4 celle",
+        "trova 14, dopo 5 celle"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "E2",
+        null
+      ],
+      "spiegazione": "7 → 7, 15 → 0, 23 → 1, 6 → 6, 14 → 2. delete(15) marca la cella 0 come DELETED. search(14) esamina 6, 7, salta la DELETED in 0, poi 1 e trova 14 in 2: 5 celle. Trattare la DELETED come None ferma la ricerca alla cella 0; fermarsi alla cella 7 dimentica il giro."
+    },
+    {
+      "id": "L13-T14-03",
+      "tipo": "L13-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m. Si inseriscono nell'ordine 8, 18, 28, 38, 58; poi si esegue delete(28). Che esito ha search(58) e quante celle esamina?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "trova 58, dopo 5 celle",
+        "restituisce None, dopo 3 celle",
+        "restituisce None, dopo 2 celle",
+        "trova 58, dopo 4 celle"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E4",
+        "E2"
+      ],
+      "spiegazione": "8 → 8, 18 → 9, 28 → 0, 38 → 1, 58 → 2. delete(28) marca la cella 0 come DELETED. search(58) esamina 8, 9, salta la DELETED in 0, poi 1 e trova 58 in 2: 5 celle. Trattare la DELETED come None ferma la ricerca alla cella 0; delete non fa scalare indietro 38 e 58."
+    },
+    {
+      "id": "L13-T14-04",
+      "tipo": "L13-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 7, h(k) = k mod m. Si inseriscono nell'ordine 6, 13, 20, 5; poi si esegue delete(13). Che esito ha search(20) e quante celle esamina?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "restituisce None, dopo 2 celle",
+        "trova 20, dopo 3 celle",
+        "restituisce None, dopo 1 cella",
+        "trova 20, dopo 2 celle"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E4",
+        "E2"
+      ],
+      "spiegazione": "6 → 6, 13 → 0, 20 → 1, 5 → 5. delete(13) marca la cella 0 come DELETED. search(20) esamina 6, salta la DELETED in 0 e trova 20 in 1: 3 celle. Trattare la DELETED come None ferma la ricerca alla cella 0; fermarsi alla cella 6 dimentica il giro."
+    },
+    {
+      "id": "L13-T14-05",
+      "tipo": "L13-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Perché la cancellazione con indirizzamento aperto marca la cella come DELETED invece di rimetterla a None?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "per risparmiare memoria",
+        "per poter annullare la cancellazione con un'operazione successiva",
+        "perché una chiave inserita dopo può aver scavalcato quella cella, e la ricerca deve andare oltre",
+        "solo per segnalare le cancellazioni: rimettere None sarebbe ugualmente corretto"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Se la cella tornasse None, la ricerca di una chiave che l'ha scavalcata si fermerebbe lì e la darebbe per assente. Il segnaposto evita questo."
+    },
+    {
+      "id": "L13-T14-06",
+      "tipo": "L13-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dopo delete(k) con indirizzamento aperto, che effetto ha rimettere None nella cella al posto di DELETED?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "le chiavi successive scalano indietro di una posizione",
+        "la ricerca diventa più veloce e ugualmente corretta",
+        "nessuno: la ricerca salta comunque la cella None",
+        "le ricerche di chiavi che passavano per quella cella si fermano lì e danno un falso insuccesso"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Una cella None interrompe la scansione: le chiavi che, al loro inserimento, avevano scavalcato quella cella non verrebbero più trovate. Per questo serve DELETED."
+    },
+    {
+      "id": "L13-T15-01",
+      "tipo": "L13-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m. Si inseriscono nell'ordine 9, 19, 29, 39; poi delete(19). Si esegue insert(29, 'nuovo'). Alla fine, in quale cella si trova la chiave 29 con il valore 'nuovo'?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cella 3",
+        "cella 0",
+        "cella 10",
+        "cella 1"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "9 → 9, 19 → 0, 29 → 1, 39 → 2; delete(19) marca la cella 0. h(29) = 9: insert esamina 9, ricorda la DELETED in 0 e prosegue; in 1 trova 29 e ne aggiorna il valore lì. Scrivere nella DELETED creerebbe un duplicato di 29."
+    },
+    {
+      "id": "L13-T15-02",
+      "tipo": "L13-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m. Si inseriscono nell'ordine 8, 18, 28, 38; poi delete(18). Si esegue insert(48). In quale cella finisce 48 e quante celle esamina insert?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cella 9, dopo 5 celle",
+        "cella 2, dopo 5 celle",
+        "cella 9, dopo 2 celle",
+        "cella 10, dopo 3 celle"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "8 → 8, 18 → 9, 28 → 0, 38 → 1; delete(18) marca la cella 9. h(48) = 8: insert esamina 8, ricorda la DELETED in 9, prosegue con 0 e 1 (occupate) e si ferma al None in 2: 5 celle. Poi scrive 48 nella prima DELETED, la 9. Fermarsi alla DELETED dopo 2 celle non controlla che 48 non sia già più avanti."
+    },
+    {
+      "id": "L13-T15-03",
+      "tipo": "L13-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 7, h(k) = k mod m. Si inseriscono nell'ordine 6, 13, 20, 5; poi delete(13). Si esegue insert(20, 'nuovo'). Alla fine, in quale cella si trova la chiave 20 con il valore 'nuovo'?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cella 2",
+        "cella 1",
+        "cella 0",
+        "cella 7"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "6 → 6, 13 → 0, 20 → 1, 5 → 5; delete(13) marca la cella 0. h(20) = 6: insert esamina 6, ricorda la DELETED in 0 e prosegue; in 1 trova 20 e ne aggiorna il valore lì. Scrivere nella DELETED creerebbe un duplicato di 20."
+    },
+    {
+      "id": "L13-T15-04",
+      "tipo": "L13-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 8, h(k) = k mod m. Si inseriscono nell'ordine 6, 14, 22, 5; poi delete(14). Si esegue insert(30). In quale cella finisce 30 e quante celle esamina insert?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "cella 1, dopo 4 celle",
+        "cella 7, dopo 2 celle",
+        "cella 7, dopo 4 celle",
+        "cella 8, dopo 3 celle"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "6 → 6, 14 → 7, 22 → 0, 5 → 5; delete(14) marca la cella 7. h(30) = 6: insert esamina 6, ricorda la DELETED in 7, poi 0 (occupata) e 1 (None): 4 celle. Scrive 30 nella prima DELETED, la 7. La cella 1 è la scelta di chi ignora la DELETED."
+    },
+    {
+      "id": "L13-T15-05",
+      "tipo": "L13-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Cosa fa insert quando incontra una cella DELETED prima di trovare un None?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "la usa subito, senza controllare il resto della scansione",
+        "la ignora e prosegue fino al primo None",
+        "la usa anche se la chiave è già presente più avanti",
+        "la ricorda e prosegue fino al primo None; se non trova la chiave, inserisce nella DELETED"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "E3",
+        null
+      ],
+      "spiegazione": "Il controllo continua fino al primo None (o per m tentativi): solo così non si creano duplicati. Se la chiave è più avanti, si aggiorna in quella cella."
+    },
+    {
+      "id": "L13-T15-06",
+      "tipo": "L13-T15",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In una tabella con indirizzamento aperto non ci sono celle None, ma c'è una cella DELETED. Che cosa fa insert di una chiave nuova?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "la inserisce nella DELETED, perché la tabella non è piena",
+        "la scrive nella cella h(k), sovrascrivendo la chiave presente",
+        "fallisce: cerca un None, che non c'è",
+        "non la può inserire, perché le DELETED non si riusano"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Senza None, insert scandisce tutte le m celle; se non trova la chiave, scrive nella prima DELETED incontrata. Restituisce −1 (tabella piena) solo se non ci sono né None né DELETED."
+    },
+    {
+      "id": "L13-T16-01",
+      "tipo": "L13-T16",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Contenuto finale (cella: chiave): 0: 9, 1: 30, 2: 19, 7: 7, 8: 18, 9: 27; le altre celle sono vuote. Quale sequenza di inserimenti produce questa tabella?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[7, 18, 27, 9, 30, 19]",
+        "[7, 27, 18, 9, 30, 19]",
+        "[7, 18, 27, 19, 30, 9]",
+        "[9, 30, 19, 7, 18, 27]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E1",
+        "E4"
+      ],
+      "spiegazione": "27 (h = 7) sta nella cella 9: è arrivata dopo 7 e 18. 9 (h = 9) sta nella 0: dopo 27. 30 (h = 0) sta nella 1: dopo 9. 19 (h = 9) sta nella 2: dopo tutte le altre. Mettere 18 dopo 27 ignora che 27 ha scavalcato una chiave con hash diverso; l'ordine per indice di cella non rispetta i vincoli."
+    },
+    {
+      "id": "L13-T16-02",
+      "tipo": "L13-T16",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Contenuto finale (cella: chiave): 0: 28, 1: 9, 2: 19, 3: 39, 8: 8, 9: 18; le altre celle sono vuote. Quale sequenza di inserimenti produce questa tabella?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[18, 8, 28, 9, 19, 39]",
+        "[8, 18, 28, 9, 19, 39]",
+        "[28, 9, 19, 39, 8, 18]",
+        "[8, 9, 18, 28, 19, 39]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E4",
+        "E3"
+      ],
+      "spiegazione": "18 e 28 (h = 8) stanno in 9 e 0: dopo 8, in quest'ordine. 9 (h = 9) sta nella cella 1: le celle 9 e 0 erano già occupate da 18 e 28, quindi 9 arriva dopo di loro; 19 e 39 seguono 9 nell'ordine. Inserire 9 prima di 18 e 28 ignora le chiavi con hash diverso sul suo percorso."
+    },
+    {
+      "id": "L13-T16-03",
+      "tipo": "L13-T16",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 7, h(k) = k mod m, inizialmente vuota. Contenuto finale (cella: chiave): 0: 13, 1: 20, 2: 12, 5: 5, 6: 6; le altre celle sono vuote. Quale sequenza di inserimenti produce questa tabella?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[13, 6, 20, 5, 12]",
+        "[13, 20, 12, 5, 6]",
+        "[6, 13, 20, 5, 12]",
+        "[5, 12, 6, 13, 20]"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E4",
+        null,
+        "E3"
+      ],
+      "spiegazione": "13 e 20 (h = 6) stanno in 0 e 1: dopo 6, in quest'ordine. 12 (h = 5) sta nella cella 2: le celle 5, 6, 0 e 1 erano tutte occupate, quindi 12 è per forza l'ultima. Mettere 12 subito dopo 5 tiene conto solo delle chiavi con lo stesso hash."
+    },
+    {
+      "id": "L13-T16-04",
+      "tipo": "L13-T16",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 8, h(k) = k mod m, inizialmente vuota. Contenuto finale (cella: chiave): 0: 22, 1: 30, 5: 5, 6: 6, 7: 14; le altre celle sono vuote. Quale sequenza di inserimenti produce questa tabella?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[14, 6, 22, 5, 30]",
+        "[22, 30, 5, 6, 14]",
+        "[30, 5, 22, 14, 6]",
+        "[6, 14, 22, 5, 30]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "E1",
+        null
+      ],
+      "spiegazione": "6, 14, 22 e 30 hanno tutte h = 6 e occupano 6, 7 e, dopo il giro, 0 e 1: sono state inserite in quest'ordine. 5 sta nella sua cella e può arrivare in qualsiasi momento. Le altre sequenze invertono chiavi con lo stesso hash o seguono l'ordine delle celle."
+    },
+    {
+      "id": "L13-T16-05",
+      "tipo": "L13-T16",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10, h(k) = k mod m, inizialmente vuota. Contenuto finale (cella: chiave): 0: 19, 1: 29, 2: 30, 3: 40, 7: 7, 9: 9; le altre celle sono vuote. Quale sequenza di inserimenti produce questa tabella?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[9, 19, 29, 30, 40, 7]",
+        "[19, 9, 29, 30, 40, 7]",
+        "[19, 29, 30, 40, 7, 9]",
+        "[9, 30, 19, 29, 40, 7]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E4",
+        "E3"
+      ],
+      "spiegazione": "19 e 29 (h = 9) stanno in 0 e 1, dopo 9. 30 (h = 0) sta nella cella 2: quando è arrivata le celle 0 e 1 erano già occupate da 19 e 29; 40 viene dopo 30. 7 non ha vincoli. Inserire 30 prima di 19 e 29 ignora le chiavi con hash diverso sul suo percorso."
+    },
+    {
+      "id": "L13-T16-06",
+      "tipo": "L13-T16",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 7, h(k) = k mod m, inizialmente vuota. Contenuto finale (cella: chiave): 0: 19, 3: 3, 4: 10, 5: 5, 6: 12; le altre celle sono vuote. Quale sequenza di inserimenti produce questa tabella?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[12, 5, 19, 3, 10]",
+        "[5, 12, 19, 3, 10]",
+        "[19, 3, 10, 5, 12]",
+        "[10, 3, 19, 12, 5]"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E4",
+        "E1"
+      ],
+      "spiegazione": "10 (h = 3) sta nella cella 4: dopo 3. 12 e 19 (h = 5) stanno in 6 e, dopo il giro, in 0: dopo 5, in quest'ordine. La sequenza corretta rispetta entrambi i vincoli; le altre invertono chiavi con lo stesso hash o seguono l'ordine delle celle."
+    },
+    {
+      "id": "L13-T17-01",
+      "tipo": "L13-T17",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il fenomeno per cui, con la scansione lineare, blocchi di celle occupate contigue tendono a crescere sempre di più si chiama:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "collisione",
+        "clustering primario",
+        "allungamento delle liste di trabocco",
+        "accumulo di celle DELETED"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Nel clustering primario ogni chiave che cade in un blocco ne allunga la fine. La collisione è un evento puntuale, non un fenomeno di blocchi."
+    },
+    {
+      "id": "L13-T17-02",
+      "tipo": "L13-T17",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale strategia di gestione delle collisioni produce clustering primario?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "liste di trabocco",
+        "indirizzamento diretto",
+        "indirizzamento aperto con scansione lineare",
+        "rehashing con una funzione hash migliore"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il clustering nasce dalla scansione lineare: le chiavi che collidono occupano le celle successive. Con le liste di trabocco non ci sono blocchi di celle."
+    },
+    {
+      "id": "L13-T17-03",
+      "tipo": "L13-T17",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un effetto del clustering primario è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "aumento del numero di celle DELETED",
+        "spreco di memoria per le liste vuote",
+        "chiavi che non possono più essere cercate",
+        "scansioni più lunghe per inserimento e ricerca"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Blocchi lunghi significano scansioni lunghe. Il clustering primario non crea celle DELETED né spreca memoria."
+    },
+    {
+      "id": "L13-T17-04",
+      "tipo": "L13-T17",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto e scansione lineare, m = 10: le celle 2, 3 e 4 sono occupate, le altre sono vuote. Si inserisce una chiave con h(k) = 2. Quanto è lungo, dopo l'inserimento, il blocco di celle occupate contigue che la contiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4",
+        "1, cioè una collisione",
+        "3: la chiave si accoda alla lista della cella 2",
+        "5"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "La chiave con h(k) = 2 trova occupate 2, 3 e 4 e va nella cella 5: il blocco va dalla 2 alla 5 ed è lungo 4. Con l'indirizzamento aperto non ci sono liste: la chiave allunga il blocco, ed è proprio il clustering primario."
+    },
+    {
+      "id": "L13-T17-05",
+      "tipo": "L13-T17",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il clustering primario riguarda anche le liste di trabocco?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "sì, anche con le liste, dove i blocchi di chiavi crescono",
+        "no: riguarda solo l'indirizzamento aperto con scansione lineare",
+        "sì, ma solo con l'indirizzamento diretto",
+        "no, solo con una funzione hash perfetta"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con le liste ogni chiave sta in una lista separata: non ci sono blocchi di celle che si allungano."
+    },
+    {
+      "id": "L13-T17-06",
+      "tipo": "L13-T17",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Perché il clustering primario peggiora al crescere di α?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "perché due chiavi diverse finiscono nello stesso valore hash",
+        "perché le liste di trabocco si allungano",
+        "perché ogni chiave che cade in un blocco ne allunga la fine, e i blocchi più lunghi attirano altre chiavi",
+        "perché si accumulano celle DELETED"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Più celle sono occupate, più è probabile che una chiave cada in un blocco e lo allunghi: il blocco cresce su sé stesso."
+    },
+    {
+      "id": "L13-T18-01",
+      "tipo": "L13-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto, scansione lineare e buona funzione hash, fattore di carico α = 0,6. Secondo la stima della dispensa, quanti accessi fa in media (al più) una ricerca con insuccesso?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1,6",
+        "circa 1,67",
+        "2,5",
+        "1, costante"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il numero medio di accessi è al più 1/(1 − α) = 1/0,4 = 2,5. 1,6 = 1 + α è la formula delle liste di trabocco; circa 1,67 = 1/α; il costo non è indipendente da α."
+    },
+    {
+      "id": "L13-T18-02",
+      "tipo": "L13-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto, scansione lineare e buona funzione hash, m = 50 celle: 30 contengono chiavi, 10 sono DELETED, 10 sono vuote (None). Secondo la stima della dispensa, quanti accessi fa in media (al più) una ricerca con insuccesso?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1,8",
+        "1,25",
+        "2,5",
+        "5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E5",
+        null
+      ],
+      "spiegazione": "Nella stima le DELETED contano come occupate: α = (30 + 10)/50 = 0,8, quindi al più 1/(1 − α) = 5 accessi. 2,5 si ottiene ignorando le DELETED (α = 0,6); 1,8 = 1 + α è la formula delle liste di trabocco; 1,25 = 1/α."
+    },
+    {
+      "id": "L13-T18-03",
+      "tipo": "L13-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto, scansione lineare e buona funzione hash, fattore di carico α = 0,9. Secondo la stima della dispensa, quanti accessi fa in media (al più) una ricerca con insuccesso?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "10",
+        "1,9",
+        "circa 1,11",
+        "1, costante"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il numero medio di accessi è al più 1/(1 − α) = 1/0,1 = 10. 1,9 = 1 + α è la formula delle liste di trabocco; circa 1,11 = 1/α; il costo non è indipendente da α."
+    },
+    {
+      "id": "L13-T18-04",
+      "tipo": "L13-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Tabella hash con indirizzamento aperto, scansione lineare e buona funzione hash, m = 500 celle e n = 100 chiavi, nessuna cella DELETED. Secondo la stima della dispensa, quanti accessi fa in media (al più) una ricerca con insuccesso?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1,2",
+        "1,25",
+        "5",
+        "1, costante"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "α = 100/500 = 0,2, quindi il numero medio di accessi è al più 1/(1 − α) = 1/0,8 = 1,25. 1,2 = 1 + α è la formula delle liste di trabocco; 5 = 1/α; il costo non è indipendente da α."
+    },
+    {
+      "id": "L13-T18-05",
+      "tipo": "L13-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con indirizzamento aperto, nel caso peggiore una ricerca con insuccesso costa:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1/(1 − α))",
+        "O(1), come nel caso medio con α piccolo",
+        "O(m)",
+        "O(log m)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Nel caso peggiore si scandiscono fino a m celle: O(m). Il valore 1/(1 − α) è la stima del caso medio, non del caso peggiore."
+    },
+    {
+      "id": "L13-T18-06",
+      "tipo": "L13-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quando la ricerca in indirizzamento aperto costa O(1) in media?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "sempre, qualunque sia α",
+        "mai: il costo è sempre O(m)",
+        "solo quando non ci sono collisioni",
+        "quando α resta limitato da una costante minore di 1, per esempio α ≤ 0,5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Con α ≤ 0,5 la stima è al più 2 accessi, quindi costante. Quando α si avvicina a 1 il costo cresce molto rapidamente."
+    }
+  ]
+}

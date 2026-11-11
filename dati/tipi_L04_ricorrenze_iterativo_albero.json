@@ -1,0 +1,377 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 4,
+    "titolo": "Come risolvere equazioni di ricorrenza (parte 1): metodo iterativo e metodo dell'albero",
+    "file": "PL4.pdf",
+    "contenuti": [
+      "Risolvere una ricorrenza = trovare una soluzione esplicita che ne descriva il comportamento asintotico; quattro metodi (iterativo, albero, sostituzione, teorema principale), in questa lezione i primi due",
+      "Metodo iterativo: espandere la ricorrenza, riconoscere il pattern al passo k, esplicitare e semplificare la somma, usare le condizioni iniziali",
+      "Esempio 1 del metodo iterativo: T(n) = T(n−1) + Θ(1) → T(n−k) + kΘ(1), k = n − 1, Θ(n)",
+      "Esempio 2 del metodo iterativo: T(n) = 2T(n/2) + Θ(1) → 2^k·T(n/2^k) + Σ_{i=0}^{k−1} 2^i·Θ(1), k = log₂ n, 2^(log₂ n) = n, somma geometrica n − 1, Θ(n)",
+      "Metodo dell'albero per T(n) = aT(n/b) + f(n): sottoproblemi come nodi, costo di ogni livello, numero di livelli, somma dei costi dei livelli",
+      "Albero, Esempio 1: 2T(n/2) + Θ(1) → livello k costa 2^k·Θ(1), Θ(n); Esempio 2: 2T(n/2) + Θ(n) → ogni livello Θ(n), Θ(n log n)",
+      "Albero, Esempio 3 (sbilanciato): T(n/2) + T(n/4) + Θ(n) → livello k costa (3/4)^k·Θ(n), altezza ≤ log₂ n, limite superiore O(n), limite inferiore Ω(n) dalla radice, Θ(n)",
+      "Esercizi 1, 2, 3, 4, 5, 6, 8, 11, 12, 13 con soluzioni: 3T(n/2)+Θ(n), T(n−1)+Θ(2ⁿ), 4T(n/2)+Θ(n), 2T(n/2)+Θ(n³), 16T(n/2)+Θ(n²), 2T(n−1)+Θ(n), 9T(n−3)+Θ(2ⁿ), T(n/2)+Θ(n²), 2T(n/2)+Θ(n/log n), 2T(n/2)+Θ(n log n)"
+    ],
+    "nota": "Prove ufficiali: maggio 2026 domanda 3 (T(n/2) + Θ(1) → Θ(log n), tipo L04-T04) e luglio 2026 domanda 3 (2T(n−1) + Θ(n²) → Θ(2ⁿ) con suggerimento fuorviante, tipo L04-T02). Maggio domanda 2 (cosa descrive un'equazione di ricorrenza) appartiene alla Lezione 3; maggio domanda 4 e luglio domanda 2 (teorema principale) alla Lezione 5. Nella dispensa gli esercizi sono numerati con buchi (mancano 7, 9 e 10): qui si mantiene la numerazione originale. Tutte le soluzioni degli esercizi e degli esempi sono state verificate numericamente. Il lucido sul metodo dell'albero indica a > 1, ma il metodo funziona anche con a = 1 (catena di nodi)."
+  },
+  "tipi": [
+    {
+      "id": "L04-T01",
+      "titolo": "Ricorrenze sottrattive con una sola chiamata",
+      "argomento": "Metodo iterativo: ricorrenze sottrattive",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 4, 'Metodo Iterativo — Esempio 1' (T(n) = T(n−1) + Θ(1) → Θ(n)) ed Esercizio 2 (T(n) = T(n−1) + Θ(2ⁿ) → Θ(2ⁿ)). Le ricorrenze T(n−1) + Θ(1) e T(n−1) + Θ(n) compaiono anche negli esercizi della Lezione 3.",
+      "descrizione": "Ricorrenza T(n) = T(n − b) + f(n) con una sola chiamata ricorsiva e b costante (1, 2, 3). Si chiede la soluzione. Il metodo iterativo dà T(n) = T(caso base) + f(n) + f(n − b) + f(n − 2b) + …: circa n/b termini da sommare.",
+      "conoscenze": [
+        "Dopo k passi: T(n) = T(n − kb) + Σ_{i=0}^{k−1} f(n − ib). Il caso base arriva per k ≈ n/b.",
+        "T(n−1) + Θ(1) → Θ(n); T(n−1) + Θ(n) → Θ(n²); T(n−1) + Θ(n²) → Θ(n³); T(n−1) + Θ(√n) → Θ(n^(3/2)); T(n−1) + Θ(log n) → Θ(n log n) (somma di logaritmi).",
+        "T(n−1) + Θ(2ⁿ) → Θ(2ⁿ): la somma geometrica 2ⁿ + 2ⁿ⁻¹ + … + 2 è minore di 2ⁿ⁺¹ (Esercizio 2).",
+        "Sottrarre una costante b > 1 (T(n−2), T(n−3)) divide per b il numero di termini ma non cambia la classe: T(n−2) + Θ(n) → Θ(n²).",
+        "Regola pratica: con f polinomiale o logaritmica la soluzione è Θ(n·f(n)); con f esponenziale cⁿ (c > 1) è Θ(cⁿ)."
+      ],
+      "procedimento": [
+        "Espandere due o tre volte e scrivere la forma al passo k.",
+        "Ricavare k dal caso base (n − kb = 1 oppure 0, cioè k ≈ n/b).",
+        "Sommare i termini f(n − ib): somma aritmetica, di potenze, di logaritmi o geometrica."
+      ],
+      "trappole": [
+        "Leggere T(n−2) come T(n/2) e rispondere Θ(n) (per f = Θ(n)) o Θ(log n) (per f = Θ(1)).",
+        "Fermarsi al primo termine f(n) dimenticando che i termini sono circa n: Θ(n) per T(n−1) + Θ(n).",
+        "Con f esponenziale moltiplicare il numero di passi per f(n): Θ(n·2ⁿ) invece di Θ(2ⁿ).",
+        "Confondere T(n−1) + Θ(1) con 2T(n−1) + Θ(1) e rispondere Θ(2ⁿ).",
+        "Moltiplicare f(n) per un numero logaritmico di passi: Θ(n log n) per T(n−2) + Θ(n)."
+      ],
+      "come_generare_varianti": "Variare b ∈ {1, 2, 3, 5}, f ∈ {Θ(1), Θ(log n), Θ(√n), Θ(n), Θ(n²), Θ(2ⁿ), Θ(3ⁿ)} e il caso base (T(0) o T(1)). Soluzione: Θ(n·f(n)) se f è polinomiale o logaritmica, Θ(f(n)) se f è esponenziale. Distrattori: Θ(f(n)) (somma dimenticata), Θ(n·f(n)) quando f è esponenziale, la soluzione che si avrebbe con T(n/b) al posto di T(n − b) (Θ(log n), Θ(n), Θ(n log n)), Θ(2ⁿ) (confusione con 2T(n−1)). Una sola opzione nella classe giusta: non mettere Θ(n²/2) accanto a Θ(n²)."
+    },
+    {
+      "id": "L04-T02",
+      "titolo": "Ricorrenze sottrattive con più chiamate: aT(n − b) + polinomio",
+      "argomento": "Metodo iterativo: ricorrenze sottrattive",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 3,
+      "fonte": "Prova di luglio 2026, domanda 3 (T(n) = 2T(n−1) + Θ(n²) → Θ(2ⁿ), con il suggerimento Σ_{i=0}^{n−1}(n−i)² = O(n³)). Dispensa 4, Esercizio 6 (T(n) = 2T(n−1) + Θ(n) → Θ(2ⁿ)). La ricorrenza 2T(n−1) + O(1) compare negli esercizi della Lezione 3 (sottoinsieme con somma x).",
+      "descrizione": "Ricorrenza T(n) = aT(n − b) + f(n) con a ≥ 2 chiamate e f polinomiale (Θ(1), Θ(n), Θ(n²), …). Il numero di chiamate cresce in modo esponenziale e il lavoro dei livelli bassi domina: la soluzione è Θ(a^(n/b)). La domanda può contenere un suggerimento (una somma vera) che porta fuori strada.",
+      "conoscenze": [
+        "Dopo k passi: T(n) = a^k·T(n − kb) + Σ_{i=0}^{k−1} a^i·f(n − ib).",
+        "Il caso base arriva per k ≈ n/b: il primo termine vale a^(n/b)·Θ(1).",
+        "Con f polinomiale la somma Σ a^i·f(n − ib) è anch'essa Θ(a^(n/b)): per a = 2, b = 1 e f = n², ponendo j = n − i, Σ 2^i·(n − i)² = 2ⁿ·Σ j²/2^j, e Σ j²/2^j converge (vale 6).",
+        "2T(n−1) + Θ(1), Θ(n) o Θ(n²) → Θ(2ⁿ); 3T(n−1) + Θ(n²) → Θ(3ⁿ); 2T(n−2) + Θ(n) → Θ(2^(n/2)); 9T(n−3) + Θ(n) → Θ(9^(n/3)) = Θ(3^(2n/3)).",
+        "Basi diverse danno classi diverse: Θ(2ⁿ) ≠ Θ(3ⁿ) ≠ Θ(4ⁿ), e Θ(2^(n/2)) ≠ Θ(2ⁿ)."
+      ],
+      "procedimento": [
+        "Scrivere la forma al passo k, con a^k davanti a T e a^i davanti a ogni termine f.",
+        "Porre k = n/b (caso base) e valutare il primo termine a^(n/b).",
+        "Controllare che la somma non superi questo termine: con f polinomiale non lo supera, quindi Θ(a^(n/b)).",
+        "Ignorare i suggerimenti che riguardano Σ f(n − i) senza il fattore a^i."
+      ],
+      "trappole": [
+        "Seguire il suggerimento Σ(n − i)² = O(n³) e rispondere Θ(n³), dimenticando il fattore 2^i (luglio, domanda 3, opzione a).",
+        "Moltiplicare foglie e costo della radice: Θ(n²·2ⁿ), oppure aggiungere un logaritmo: Θ(n³ log n).",
+        "Combinare a caso numero di chiamate e grado: Θ(4ⁿ) per 2T(n−1) + Θ(n²) (luglio, opzione b).",
+        "Con b > 1 non dividere l'esponente: 2T(n−2) + Θ(n) dà Θ(2^(n/2)), non Θ(2ⁿ).",
+        "Ignorare a e trattare la ricorrenza come T(n−1) + f(n): Θ(n·f(n)).",
+        "Usare la base sbagliata: Θ(2ⁿ) per 3T(n−1) + … per abitudine."
+      ],
+      "come_generare_varianti": "Variare a ∈ {2, 3, 4, 9}, b ∈ {1, 2, 3} e f ∈ {Θ(1), Θ(n), Θ(n²), Θ(n log n), Θ(n³)}; la soluzione è Θ(a^(n/b)). Con b > 1 scrivere la soluzione come nella dispensa (Θ(9^(n/3))) o semplificata (Θ(2^(n/2))) e non mettere tra le opzioni due forme della stessa classe (Θ(4^(n/2)) = Θ(2ⁿ)). In circa metà delle varianti aggiungere un suggerimento vero ma inutile, nello stile di luglio: 'Ricordando che Σ_{i=0}^{n−1}(n − i)² = O(n³)' oppure 'Σ_{i=0}^{n−1}(n − i) = Θ(n²)'. Distrattori: Θ(n·f(n)) (la somma del suggerimento), Θ(f(n)·a^(n/b)) (prodotto), Θ(aⁿ) quando b > 1, una base sbagliata (Θ(4ⁿ) per a = 2, Θ(2ⁿ) per a = 3)."
+    },
+    {
+      "id": "L04-T03",
+      "titolo": "Ricorrenze sottrattive con più chiamate e costo esponenziale",
+      "argomento": "Metodo iterativo: ricorrenze sottrattive",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 4, Esercizio 8 (T(n) = 9T(n−3) + Θ(2ⁿ), T(0) = Θ(1) → Θ(9^(n/3))); Esercizio 2 come caso a = 1 (T(n−1) + Θ(2ⁿ) → Θ(2ⁿ)).",
+      "descrizione": "Ricorrenza T(n) = aT(n − b) + Θ(cⁿ): sia il numero di chiamate sia il costo non ricorsivo sono esponenziali. Bisogna confrontare la crescita di a^i con la decrescita di c^(n − ib): la soluzione è la maggiore tra Θ(cⁿ) e Θ(a^(n/b)), con un fattore n se sono uguali.",
+      "conoscenze": [
+        "Al passo i il contributo è a^i·c^(n − ib) = cⁿ·(a/c^b)^i: una serie geometrica di ragione q = a/c^b.",
+        "q < 1: domina il primo termine, Θ(cⁿ). Es. 2T(n−1) + Θ(3ⁿ) → Θ(3ⁿ); 4T(n−2) + Θ(3ⁿ) → Θ(3ⁿ).",
+        "q > 1: domina l'ultimo termine, che vale circa a^(n/b): Θ(a^(n/b)). Esercizio 8: q = 9/2³ = 9/8 → Θ(9^(n/3)); 3T(n−1) + Θ(2ⁿ) → Θ(3ⁿ).",
+        "q = 1: circa n/b termini uguali a cⁿ: Θ(n·cⁿ). Es. 2T(n−1) + Θ(2ⁿ) → Θ(n·2ⁿ); 8T(n−3) + Θ(2ⁿ) → Θ(n·2ⁿ).",
+        "9^(n/3) = 3^(2n/3) ≈ 2,08ⁿ: cresce più di 2ⁿ e meno di 3ⁿ."
+      ],
+      "procedimento": [
+        "Scrivere il termine generico a^i·c^(n − ib) e raccogliere cⁿ.",
+        "Calcolare la ragione q = a/c^b e confrontarla con 1.",
+        "Concludere con Θ(cⁿ) (q < 1), Θ(a^(n/b)) (q > 1) o Θ(n·cⁿ) (q = 1)."
+      ],
+      "trappole": [
+        "Guardare solo il costo della radice e rispondere Θ(cⁿ) anche quando q > 1 (Esercizio 8: Θ(2ⁿ) invece di Θ(9^(n/3))).",
+        "Rispondere Θ(a^(n/b)) per abitudine (come in L04-T02) anche quando q < 1.",
+        "Moltiplicare le basi: Θ((a·c)ⁿ), per esempio Θ(6ⁿ) per 2T(n−1) + Θ(3ⁿ).",
+        "Moltiplicare numero di passi e costo della radice: Θ(n·cⁿ) quando q ≠ 1.",
+        "Dimenticare di dividere l'esponente per b: Θ(9ⁿ) invece di Θ(9^(n/3)).",
+        "Con q = 1 dimenticare il fattore n: i circa n/b termini valgono tutti cⁿ, ma si risponde Θ(cⁿ) (che qui coincide con Θ(a^(n/b))) invece di Θ(n·cⁿ)."
+      ],
+      "come_generare_varianti": "Scegliere (a, b, c) con c^b ≠ a per un caso netto: (2, 1, 3), (4, 2, 3) → Θ(cⁿ); (9, 3, 2), (3, 1, 2), (5, 2, 2) → Θ(a^(n/b)). Per il caso Θ(n·cⁿ) usare c^b = a: (2, 1, 2), (4, 2, 2), (8, 3, 2), (9, 2, 3). Calcolare sempre q = a/c^b prima di scrivere la risposta. Distrattori: Θ(cⁿ), Θ(a^(n/b)), Θ(n·cⁿ), Θ((a·c)ⁿ), Θ(aⁿ) senza divisione dell'esponente; una sola opzione nella classe giusta (attenzione: Θ(4^(n/2)) = Θ(2ⁿ))."
+    },
+    {
+      "id": "L04-T04",
+      "titolo": "Ricorrenze divisive con una sola chiamata",
+      "argomento": "Metodo iterativo: ricorrenze divisive",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Prova di maggio 2026, domanda 3 (T(n) = T(n/2) + Θ(1), T(1) = Θ(1) → Θ(log n)). Dispensa 4, Esercizio 11 (T(n) = T(n/2) + Θ(n²) → Θ(n²)) e 'Metodo Iterativo - Procedura'.",
+      "descrizione": "Ricorrenza T(n) = T(n/b) + f(n) con una sola chiamata su una frazione dell'input (come la ricerca binaria). L'albero è una catena di circa log_b n nodi; la soluzione è la somma f(n) + f(n/b) + f(n/b²) + …",
+      "conoscenze": [
+        "Dopo k passi: T(n) = T(n/b^k) + Σ_{i=0}^{k−1} f(n/b^i); caso base per k = log_b n.",
+        "f = Θ(1): log_b n termini uguali → Θ(log n) (maggio, domanda 3).",
+        "f = Θ(n^d) con d > 0: somma geometrica decrescente n^d·(1 + 1/b^d + 1/b^(2d) + …) → Θ(n^d). Es. T(n/2) + Θ(n) → Θ(n); T(n/3) + Θ(n) → Θ(n); T(n/2) + Θ(n²) → Θ(n²) (Esercizio 11).",
+        "La base b (2, 3, 4, 10) cambia solo una costante.",
+        "Con f logaritmica (T(n/2) + Θ(log n)) la somma non è geometrica: vedi L04-T11."
+      ],
+      "procedimento": [
+        "Scrivere i termini f(n), f(n/b), f(n/b²), … fino a k = log_b n.",
+        "Se f è costante: contare i termini (Θ(log n)).",
+        "Se f è polinomiale: somma geometrica decrescente, domina f(n)."
+      ],
+      "trappole": [
+        "Confondere con 2T(n/2) + Θ(1) e rispondere Θ(n) (maggio, opzione b).",
+        "Moltiplicare f(n) per il numero di livelli: Θ(n log n) per T(n/2) + Θ(n), Θ(n² log n) per T(n/2) + Θ(n²).",
+        "Leggere T(n/3) come T(n − 3) e rispondere Θ(n·f(n)) (Θ(n²) per f = Θ(n)).",
+        "Rispondere Θ(log n) anche quando f non è costante.",
+        "Pensare che dividere per 3 o per 4 invece che per 2 cambi la classe."
+      ],
+      "come_generare_varianti": "Variare b ∈ {2, 3, 4, 10} e f ∈ {Θ(1), Θ(√n), Θ(n), Θ(n²), Θ(n³)}. Soluzione: Θ(log n) se f è costante, Θ(f(n)) se f è polinomiale. Distrattori: Θ(log n), Θ(n), Θ(f(n)·log n), Θ(n·f(n)) (lettura sottrattiva), Θ(n log n). Per f = Θ(1) la variante più fedele a maggio è T(n/b) + Θ(1) con opzioni Θ(n²), Θ(n), Θ(log n), Θ(n log n)."
+    },
+    {
+      "id": "L04-T05",
+      "titolo": "Passi del metodo iterativo: forma al passo k, caso base, somma",
+      "argomento": "Metodo iterativo: procedura",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 4, 'Metodo Iterativo - Procedura', Esempio 1 (T(n − k) + kΘ(1), k = n − 1) ed Esempio 2 (2^k·T(n/2^k) + Σ_{i=0}^{k−1} 2^i·Θ(1), k = log₂ n, 2^(log₂ n) = n, Σ 2^i = n − 1).",
+      "descrizione": "Domanda su un singolo passo del metodo iterativo, non sulla soluzione finale: quale espressione si ottiene dopo k espansioni, per quale k si raggiunge il caso base, quale somma resta da calcolare o quanto vale.",
+      "conoscenze": [
+        "Sottrattiva T(n) = aT(n − b) + f(n): dopo k passi a^k·T(n − kb) + Σ_{i=0}^{k−1} a^i·f(n − ib).",
+        "Divisiva T(n) = aT(n/b) + f(n): dopo k passi a^k·T(n/b^k) + Σ_{i=0}^{k−1} a^i·f(n/b^i).",
+        "Caso base T(1): n − kb = 1 → k = (n − 1)/b; n/b^k = 1 → k = log_b n. Con caso base T(0) e ricorrenza sottrattiva: k = n/b.",
+        "a^(log_b n) = n^(log_b a): 2^(log₂ n) = n, 4^(log₂ n) = n², 3^(log₂ n) = n^(log₂ 3).",
+        "Somma geometrica: Σ_{i=0}^{k−1} q^i = (q^k − 1)/(q − 1); per q = 2 e k = log₂ n vale n − 1, per q = 4 vale (n² − 1)/3."
+      ],
+      "procedimento": [
+        "Espandere due o tre volte scrivendo i coefficienti per esteso (non semplificare troppo presto).",
+        "Riconoscere il pattern: esponente di a, argomento di T, termine generico della somma.",
+        "Porre l'argomento di T uguale al caso base e ricavare k.",
+        "Sostituire k nel primo termine e nella somma; calcolare la somma."
+      ],
+      "trappole": [
+        "Dimenticare il coefficiente a^i nella somma: scrivere kΘ(1) invece di Σ 2^i·Θ(1).",
+        "Scrivere a·T(n/b^k) invece di a^k·T(n/b^k), oppure T(n/(k·b)) invece di T(n/b^k).",
+        "Usare la base sbagliata nel logaritmo: k = log_a n invece di log_b n.",
+        "Contare i termini della somma invece di sommarli: per Σ_{i<log₂ n} 4^i dire Θ(log n) invece di Θ(n²).",
+        "Scambiare sottrattive e divisive: k = log n per T(n−1), k = n/2 per T(n/2)."
+      ],
+      "come_generare_varianti": "Partire da una ricorrenza sottrattiva o divisiva (a ∈ {1, 2, 3, 4}, b ∈ {1, 2, 3, 4}, f ∈ {Θ(1), Θ(n), Θ(n²)}, caso base T(1) o T(0)) e chiedere UNA di queste cose: (1) l'espressione dopo k espansioni; (2) il valore di k che porta al caso base; (3) la somma ottenuta sostituendo k, o il suo ordine di grandezza; (4) quanto vale a^k per k al caso base. Ogni opzione sbagliata deve contenere un solo errore della lista trappole (a^i mancante, base del logaritmo, k sottrattivo e divisivo scambiati, termini contati invece che sommati)."
+    },
+    {
+      "id": "L04-T06",
+      "titolo": "Metodo iterativo e metodo dell'albero: definizioni e passi",
+      "argomento": "Metodi di risoluzione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 4, 'Metodi di risoluzione' (i quattro metodi), 'Metodo Iterativo - Procedura' (quattro passi) e 'Il Metodo dell'Albero' (forma aT(n/b) + f(n), tre passi di costruzione). Stile simile alle domande di definizione di maggio 2026 (domanda 2, Lezione 3; domanda 4, Lezione 5).",
+      "descrizione": "Domanda teorica su cosa fanno il metodo iterativo e il metodo dell'albero, in che ordine si eseguono i loro passi, per quali ricorrenze l'albero è indicato, che cosa rappresentano un nodo e un livello. Il metodo di sostituzione e il teorema principale compaiono solo come distrattori.",
+      "conoscenze": [
+        "Risolvere una ricorrenza significa trovarne una soluzione esplicita che ne descriva il comportamento asintotico.",
+        "Metodo iterativo: si espande la ricorrenza sostituendo il termine ricorsivo con la sua definizione, si riconosce il pattern generale, si esplicita e semplifica la somma, si usano le condizioni iniziali. Non richiede ipotesi preliminari sulla soluzione.",
+        "Metodo dell'albero: tecnica grafica; ogni nodo è un sottoproblema e porta il costo non ricorsivo f della sua dimensione; si calcolano il costo di ciascun livello e il numero di livelli, poi si sommano i costi dei livelli. È indicato per T(n) = aT(n/b) + f(n).",
+        "Metodo di sostituzione (si propone una soluzione e la si verifica nella ricorrenza) e teorema principale (classificazione del termine non ricorsivo) sono della Lezione 5.",
+        "Il caso base contribuisce: nell'albero con le foglie, nel metodo iterativo con il termine a^k·T(caso base)."
+      ],
+      "procedimento": [
+        "Riconoscere dalla descrizione quale metodo è: espansione e pattern (iterativo), costi per livello (albero), ipotesi da verificare (sostituzione), classificazione in casi (teorema principale).",
+        "Per l'ordine dei passi: iterativo = espandere → pattern → somma → condizioni iniziali; albero = suddividere in sottoproblemi → costo per livello → numero di livelli e somma."
+      ],
+      "trappole": [
+        "Attribuire al metodo iterativo l'ipotesi iniziale della soluzione (è il metodo di sostituzione).",
+        "Pensare che nell'albero si sommino solo le foglie o solo la radice.",
+        "Pensare che un nodo al livello k costi T(n/b^k) invece di f(n/b^k).",
+        "Pensare che il metodo dell'albero dia sempre direttamente un Θ: con alberi sbilanciati si ricavano un limite superiore e uno inferiore separati (Esempio 3)."
+      ],
+      "come_generare_varianti": "Domande come: 'Il metodo iterativo consiste nel…', 'Nel metodo dell'albero il costo di un livello è…', 'Quale passo viene dopo l'individuazione del pattern?', 'Che cosa rappresenta un nodo al livello k dell'albero di 2T(n/2) + Θ(n)?' (un sottoproblema di dimensione n/2^k con costo Θ(n/2^k)). Distrattori: le descrizioni degli altri metodi della dispensa, passi in ordine sbagliato, costo del nodo scritto con T invece che con f. Non chiedere i casi del teorema principale."
+    },
+    {
+      "id": "L04-T07",
+      "titolo": "Albero di ricorsione: nodi, costo del livello i, numero di livelli",
+      "argomento": "Metodo dell'albero",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 4, 'Il Metodo dell'Albero', Esempi 1 e 2 (al livello k: 2^k sottoproblemi di dimensione n/2^k; ultimo livello per n/2^k = 1, cioè k = log₂ n) ed Esempio 3 (costo del livello k pari a (3/4)^k·Θ(n)).",
+      "descrizione": "Domanda su una parte dell'albero di T(n) = aT(n/b) + f(n), non sulla soluzione: quanti nodi ci sono al livello i, che dimensione ha ogni sottoproblema, quanto costa il livello i, quanti livelli ci sono, quante foglie ha l'albero.",
+      "conoscenze": [
+        "Al livello i (radice = livello 0): a^i nodi, ciascuno di dimensione n/b^i e costo f(n/b^i); costo del livello a^i·f(n/b^i).",
+        "Con f(n) = n^d il costo del livello è n^d·(a/b^d)^i: costante se a = b^d, crescente se a > b^d, decrescente se a < b^d.",
+        "L'ultimo livello è quello con n/b^i = 1, cioè i = log_b n: i livelli vanno da 0 a log_b n, quindi sono Θ(log n).",
+        "Le foglie sono a^(log_b n) = n^(log_b a): 2^(log₂ n) = n, 4^(log₂ n) = n², 3^(log₂ n) = n^(log₂ 3) ≈ n^1,58.",
+        "Con a = 1 (T(n/b) + f(n)) ogni livello ha un solo nodo."
+      ],
+      "procedimento": [
+        "Nodi: ogni nodo ha a figli → a^i nodi al livello i.",
+        "Dimensione: ogni discesa divide per b → n/b^i.",
+        "Costo del livello: numero di nodi × f(dimensione).",
+        "Numero di livelli: risolvere n/b^i = 1."
+      ],
+      "trappole": [
+        "Usare a come base del logaritmo dei livelli (log_a n invece di log_b n).",
+        "Non applicare f alla dimensione ridotta: costo del livello a^i·f(n).",
+        "Trattare f come lineare anche quando non lo è: per f = n² scrivere (a/b)^i·n² invece di (a/b²)^i·n².",
+        "Contare n foglie in ogni albero (vale solo se a = b)."
+      ],
+      "come_generare_varianti": "Scegliere a ∈ {1, 2, 3, 4, 8, 9}, b ∈ {2, 3, 4} e f ∈ {Θ(1), Θ(√n), Θ(n), Θ(n²)}. Chiedere UNA di queste cose: costo totale del livello i, numero di nodi al livello i, dimensione dei sottoproblemi al livello i, numero di livelli, numero di foglie. Si può anche chiedere il costo del livello 2 con valori espliciti (es. per 3T(n/4) + Θ(n²): 9 nodi di dimensione n/16, costo (9/256)·Θ(n²)). Distrattori: base del logaritmo scambiata (log_a n), f non applicata alla dimensione ridotta (a^i·f(n)), f trattata come lineare ((a/b)^i), foglie = n."
+    },
+    {
+      "id": "L04-T08",
+      "titolo": "Albero con lo stesso costo su ogni livello",
+      "argomento": "Metodo dell'albero",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 4, 'Metodo dell'Albero — Esempio 2' (2T(n/2) + Θ(n): ogni livello costa Θ(n), log₂ n livelli → Θ(n log n)). È la ricorrenza del Merge Sort (Lezione 8).",
+      "descrizione": "T(n) = aT(n/b) + f(n) in cui ogni livello dell'albero costa quanto la radice (con f = n^d: a = b^d). La soluzione è il costo di un livello per il numero di livelli: Θ(f(n)·log n).",
+      "conoscenze": [
+        "Costo del livello i: a^i·f(n/b^i); con f(n) = n^d e a = b^d vale n^d per ogni i.",
+        "I livelli sono log_b n + 1 → T(n) = Θ(f(n)·log n).",
+        "2T(n/2) + Θ(n), 3T(n/3) + Θ(n), 4T(n/4) + Θ(n) → Θ(n log n); 4T(n/2) + Θ(n²), 9T(n/3) + Θ(n²) → Θ(n² log n); 8T(n/2) + Θ(n³) → Θ(n³ log n); 2T(n/4) + Θ(√n) → Θ(√n log n).",
+        "T(n/2) + Θ(1) è lo stesso caso con a = 1 e d = 0: Θ(log n) (vedi L04-T04)."
+      ],
+      "procedimento": [
+        "Scrivere il costo del livello i e verificare che non dipende da i.",
+        "Moltiplicarlo per il numero di livelli, Θ(log n)."
+      ],
+      "trappole": [
+        "Rispondere Θ(f(n)) considerando solo la radice.",
+        "Rispondere Θ(log n) contando solo i livelli.",
+        "Confondere 4T(n/4) + Θ(n) con 4T(n/2) + Θ(n) e rispondere Θ(n²).",
+        "Pensare che la base del logaritmo (log₃ n, log₄ n) cambi la classe."
+      ],
+      "come_generare_varianti": "Usare terne (a, b, f) con a = b^d: (2, 2, n), (3, 3, n), (4, 4, n), (8, 8, n), (4, 2, n²), (9, 3, n²), (8, 2, n³), (2, 4, √n). Distrattori: Θ(f(n)), Θ(log n), la soluzione 'foglie' calcolata male (Θ(n²) per 4T(n/4) + Θ(n), confondendo b con 2), Θ(f(n)·log² n). Si può chiedere anche al contrario: quale tra quattro ricorrenze ha soluzione Θ(n log n)."
+    },
+    {
+      "id": "L04-T09",
+      "titolo": "Albero con costo crescente: dominano le foglie",
+      "argomento": "Metodo dell'albero",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 4, 'Metodo Iterativo — Esempio 2' e 'Metodo dell'Albero — Esempio 1' (2T(n/2) + Θ(1) → Θ(n)); Esercizi 1 (3T(n/2) + Θ(n) → Θ(n^(log₂ 3))), 3 (4T(n/2) + Θ(n) → Θ(n²)) e 5 (16T(n/2) + Θ(n²) → Θ(n⁴)).",
+      "descrizione": "T(n) = aT(n/b) + f(n) in cui il costo dei livelli cresce in modo geometrico scendendo (con f = n^d: a > b^d). La somma è dominata dall'ultimo livello: la soluzione è il numero di foglie, Θ(n^(log_b a)).",
+      "conoscenze": [
+        "Costo del livello i: n^d·(a/b^d)^i, ragione q = a/b^d > 1: serie geometrica crescente, domina l'ultimo termine.",
+        "Ultimo livello: a^(log_b n) foglie di costo Θ(1) → Θ(a^(log_b n)) = Θ(n^(log_b a)).",
+        "2T(n/2) + Θ(1) → Θ(n); 3T(n/2) + Θ(n) → Θ(n^(log₂ 3)) ≈ Θ(n^1,58); 4T(n/2) + Θ(n) → Θ(n²); 8T(n/2) + Θ(n²) → Θ(n³); 16T(n/2) + Θ(n²) → Θ(n⁴); 9T(n/3) + Θ(n) → Θ(n²).",
+        "Nel metodo iterativo (Esempio 2): 2^(log₂ n)·Θ(1) = Θ(n) e Σ_{i=0}^{log₂ n − 1} 2^i = n − 1 = Θ(n)."
+      ],
+      "procedimento": [
+        "Scrivere il costo del livello i e calcolare la ragione q = a/b^d.",
+        "Se q > 1 la somma è Θ(costo dell'ultimo livello).",
+        "Calcolare l'ultimo livello: a^(log_b n) = n^(log_b a)."
+      ],
+      "trappole": [
+        "Rispondere Θ(f(n)·log n) come se i livelli costassero uguale.",
+        "Rispondere Θ(f(n)) considerando solo la radice.",
+        "Moltiplicare numero di foglie e costo della radice: Θ(n^(log_b a)·f(n)).",
+        "Invertire il logaritmo: n^(log_a b) invece di n^(log_b a) (per 3T(n/2), n^(log₃ 2)).",
+        "Con 2T(n/2) + Θ(1) rispondere Θ(log n), confondendo con T(n/2) + Θ(1)."
+      ],
+      "come_generare_varianti": "Scegliere (a, b, f) con a > b^d: (2, 2, 1), (3, 2, n), (4, 2, n), (5, 2, n), (8, 2, n²), (16, 2, n²), (9, 3, n), (27, 3, n²), (4, 2, √n). Soluzione Θ(n^(log_b a)), scritta come potenza intera quando possibile (n², n³) e come n^(log₂ 3), n^(log₂ 5) altrimenti. Distrattori: Θ(f(n)·log n), Θ(f(n)), Θ(n^(log_b a)·f(n)), Θ(n^(log_a b))."
+    },
+    {
+      "id": "L04-T10",
+      "titolo": "Albero con costo decrescente: domina la radice",
+      "argomento": "Metodo dell'albero",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 4, Esercizi 4 (2T(n/2) + Θ(n³) → Θ(n³)) e 11 (T(n/2) + Θ(n²) → Θ(n²)); serie geometrica decrescente e limite inferiore dalla radice come in 'Metodo dell'Albero — Esempio 3'.",
+      "descrizione": "T(n) = aT(n/b) + f(n) in cui il costo dei livelli decresce in modo geometrico (con f = n^d: a < b^d). La somma è dominata dalla radice: la soluzione è Θ(f(n)).",
+      "conoscenze": [
+        "Costo del livello i: n^d·(a/b^d)^i con q = a/b^d < 1: la somma è al più f(n)/(1 − q) = O(f(n)).",
+        "La radice da sola dà T(n) = Ω(f(n)); quindi T(n) = Θ(f(n)).",
+        "2T(n/2) + Θ(n³): q = 1/4 → Θ(n³). 3T(n/2) + Θ(n²): q = 3/4 → Θ(n²). 2T(n/2) + Θ(n²): q = 1/2 → Θ(n²). 7T(n/2) + Θ(n³): q = 7/8 → Θ(n³).",
+        "Avere più chiamate ricorsive non basta a superare f(n): conta il confronto tra a e b^d."
+      ],
+      "procedimento": [
+        "Scrivere il costo del livello i e calcolare la ragione q = a/b^d.",
+        "Se q < 1 la somma è Θ(costo della radice) = Θ(f(n)).",
+        "Controllo: le foglie n^(log_b a) devono essere meno di f(n)."
+      ],
+      "trappole": [
+        "Moltiplicare per il numero di livelli: Θ(f(n)·log n).",
+        "Rispondere con il numero di foglie Θ(n^(log_b a)) per abitudine.",
+        "Moltiplicare foglie e costo della radice: Θ(n^(log_b a)·f(n)).",
+        "Pensare che con a ≥ 2 chiamate la soluzione debba essere maggiore di f(n)."
+      ],
+      "come_generare_varianti": "Scegliere (a, b, f) con a < b^d: (2, 2, n²), (2, 2, n³), (3, 2, n²), (7, 2, n³), (4, 3, n²), (5, 3, n²), (1, 2, n). Soluzione Θ(f(n)). Distrattori: Θ(f(n)·log n), Θ(n^(log_b a)), Θ(n^(log_b a)·f(n)), Θ(n·f(n)). Con a = 1 la domanda coincide con L04-T04: preferire a ≥ 2."
+    },
+    {
+      "id": "L04-T11",
+      "titolo": "Livelli con costo non geometrico (fattori logaritmici)",
+      "argomento": "Metodo dell'albero",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 4, Esercizi 12 (2T(n/2) + Θ(n/log n) → Θ(n log log n)) e 13 (2T(n/2) + Θ(n log n) → Θ(n log² n)). Collegata a luglio 2026 domanda 2 (T(n/2) + Θ(log² n), a cui il teorema principale non si applica: la domanda è della Lezione 5, ma con l'albero la soluzione è Θ(log³ n)). La ricorrenza T(n/2) + Θ(log n) compare negli esercizi della Lezione 3.",
+      "descrizione": "Ricorrenze in cui il costo del livello i contiene un logaritmo della dimensione del sottoproblema, per cui i livelli non formano una serie geometrica: il costo del livello è proporzionale a (log n − i) o a 1/(log n − i). Bisogna sommare esplicitamente sui livelli.",
+      "conoscenze": [
+        "log(n/2^i) = log n − i: per i da 0 a log n − 1 assume i valori log n, log n − 1, …, 1.",
+        "2T(n/2) + Θ(n log n): livello i = n·(log n − i); somma n·(1 + 2 + … + log n) = Θ(n log² n) (Esercizio 13).",
+        "2T(n/2) + Θ(n/log n): livello i = n/(log n − i); somma n·(1 + 1/2 + … + 1/log n) = Θ(n log log n), perché la somma armonica fino a m vale Θ(log m) (Esercizio 12).",
+        "T(n/2) + Θ(log n): log n + (log n − 1) + … + 1 = Θ(log² n). T(n/2) + Θ(log² n): Σ j² fino a log n = Θ(log³ n).",
+        "4T(n/2) + Θ(n² log n): livello i = n²·(log n − i) → Θ(n² log² n); 3T(n/3) + Θ(n log n) → Θ(n log² n)."
+      ],
+      "procedimento": [
+        "Scrivere il costo del livello i come a^i·f(n/b^i) e semplificare la parte polinomiale (con a = b^d resta n^d).",
+        "Riscrivere log(n/b^i) = log n − i·log b e cambiare indice (j = log_b n − i).",
+        "Riconoscere la somma su j da 1 a log n: aritmetica (Θ(m²)), di quadrati (Θ(m³)) o armonica (Θ(log m)), con m = log n."
+      ],
+      "trappole": [
+        "Trattare log(n/2^i) come log n su tutti i livelli: nell'Esercizio 12 si ottiene (n/log n)·log n = Θ(n).",
+        "Pensare che i livelli decrescano in modo geometrico e rispondere Θ(f(n)) (Θ(n log n) per l'Esercizio 13).",
+        "Confondere la somma armonica con la somma aritmetica: Θ(n log n) o Θ(n log² n) invece di Θ(n log log n).",
+        "Ignorare il fattore logaritmico: Θ(n^d log n) come se f fosse n^d."
+      ],
+      "come_generare_varianti": "Usare f con un fattore logaritmico e a = b^d: 2T(n/2) + Θ(n log n) → Θ(n log² n); 3T(n/3) + Θ(n log n) → Θ(n log² n); 2T(n/2) + Θ(n/log n) → Θ(n log log n); 4T(n/2) + Θ(n² log n) → Θ(n² log² n); T(n/2) + Θ(log n) → Θ(log² n); T(n/2) + Θ(log² n) → Θ(log³ n). Distrattori: Θ(f(n)) (domina la radice), il risultato con il logaritmo ignorato (Θ(n^d log n)), Θ(n) per il caso armonico, e lo scambio tra Θ(n log log n) e Θ(n log² n)."
+    },
+    {
+      "id": "L04-T12",
+      "titolo": "Albero sbilanciato: T(n/c₁) + T(n/c₂) + Θ(n)",
+      "argomento": "Metodo dell'albero",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 4, 'Metodo dell'Albero — Esempio 3' (T(n/2) + T(n/4) + Θ(n): livello k pari a (3/4)^k·Θ(n), altezza ≤ log₂ n lungo il sottoproblema più grande, limite superiore O(n), limite inferiore Ω(n) dalla radice, quindi Θ(n)).",
+      "descrizione": "Ricorrenza con due (o tre) chiamate su frazioni diverse dell'input. L'albero non è completo: i rami hanno lunghezze diverse. Si chiede la soluzione, il costo di un livello, l'altezza oppure quale ragionamento (limite superiore più limite inferiore) porta al Θ.",
+      "conoscenze": [
+        "Con f(n) = Θ(n) il livello k costa al più s^k·Θ(n), dove s è la somma delle frazioni: per T(n/2) + T(n/4), s = 1/2 + 1/4 = 3/4.",
+        "s < 1: serie geometrica decrescente → O(n); la radice dà Ω(n); quindi Θ(n). Es. T(n/2) + T(n/4), T(n/2) + T(n/3) (s = 5/6), T(n/2) + T(n/4) + T(n/8) (s = 7/8), T(n/5) + T(3n/5) (s = 4/5).",
+        "s = 1 (T(n/3) + T(2n/3) + Θ(n)): ogni livello completo costa n; le altezze dei rami vanno da log₃ n a log_{3/2} n, entrambe Θ(log n) → Θ(n log n).",
+        "Altezza: la catena più lunga segue il sottoproblema più grande (n/2 → log₂ n livelli), la più corta il più piccolo (n/4 → log₄ n livelli).",
+        "Se il limite superiore e quello inferiore coincidono si ottiene il Θ."
+      ],
+      "procedimento": [
+        "Calcolare la somma s delle frazioni dei sottoproblemi.",
+        "Scrivere il costo del livello k: s^k·Θ(n) (sotto il livello del ramo più corto è anche minore).",
+        "Altezza: logaritmo in base 1/(frazione più grande).",
+        "s < 1 → Θ(n) (limite superiore dalla serie, inferiore dalla radice); s = 1 → Θ(n log n)."
+      ],
+      "trappole": [
+        "Moltiplicare n per il numero di livelli e rispondere Θ(n log n) anche quando s < 1.",
+        "Calcolare l'altezza con il sottoproblema più piccolo (log₄ n) invece che con il più grande (log₂ n).",
+        "Trattare la ricorrenza come 2T(n/2) + Θ(n) e rispondere Θ(n log n).",
+        "Moltiplicare il numero di nodi 2^k per il costo della radice: Θ(n²).",
+        "Con s = 1 rispondere Θ(n) applicando la serie geometrica."
+      ],
+      "come_generare_varianti": "Variare le frazioni: s < 1 con (1/2, 1/4), (1/2, 1/3), (1/2, 1/4, 1/8), (1/5, 3/5), (1/3, 1/2); s = 1 con (1/3, 2/3), (1/4, 3/4), (1/5, 4/5). Chiedere la soluzione, il costo del livello k ((5/6)^k·Θ(n) ecc.), l'altezza del ramo più lungo o più corto, o quale coppia di limiti giustifica il Θ. Distrattori: Θ(n log n), Θ(log n), Θ(n²), altezza con la frazione sbagliata, (1/2)^k invece di s^k."
+    }
+  ]
+}

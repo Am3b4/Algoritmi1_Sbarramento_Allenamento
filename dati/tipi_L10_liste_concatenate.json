@@ -1,0 +1,559 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 10,
+    "titolo": "Liste concatenate",
+    "file": "PL10.pdf",
+    "contenuti": [
+      "Strutture statiche (array: dimensione fissa, memoria contigua, accesso diretto) contro strutture dinamiche (liste concatenate: nodi sparsi, accesso sequenziale, overhead dei puntatori)",
+      "Navigazione: A[i] in O(1) con un calcolo sull'indirizzo; nodo i-esimo di una lista in O(i) seguendo next",
+      "Tabella array contro lista concatenata: memoria, accesso, spostamento, inserimento e rimozione",
+      "La list di Python è un array dinamico, non una lista concatenata: capacità contro lunghezza, riallocazione con copia, crescita a salti",
+      "Classe Nodo (key, next), collegamento manuale dei nodi, la variabile che punta alla testa",
+      "Costi delle operazioni: inserimento e cancellazione in testa O(1); in coda O(n) senza puntatore alla coda; cancellazione dell'ultimo Θ(n) anche con il puntatore alla coda (serve il penultimo); liste doppiamente concatenate",
+      "Esempi con versione iterativa e ricorsiva: creazione da array (Crea, CreaR), stampa (Stampa, StampaR), stampa inversa (StampaReverse con lista di appoggio, StampaReverseR), inserimento in lista ordinata (Inserisci, InserisciR), cancellazione della prima occorrenza (Cancella, CancellaR); tempo Θ(n) o O(n), spazio O(1) per le iterative e O(n) per le ricorsive",
+      "Schema ricorsivo: caso base p is None, la funzione restituisce la nuova testa, il chiamante riaggancia con p.next = f(p.next)",
+      "Garbage collection: un nodo viene liberato solo quando nessun riferimento lo punta più",
+      "Esercizi: somma e conteggio (iterativa e ricorsiva), separare posizioni pari e dispari, fusione di liste ordinate senza nuovi nodi, dividere a metà, rotazione di k posizioni, inversione in spazio O(1), palindroma (lista semplice e doppiamente concatenata), valori ripetuti, lista ciclica, ordinamento senza nuovi nodi, CancellaD e InserisciD con testa e coda"
+    ],
+    "nota": "Tre domande delle prove ufficiali vengono da questa lezione: maggio 7 (accesso all'i-esimo: O(n), con Θ(n) tra i distrattori), maggio 8 (penultimo: solo scorrendo, in tempo lineare), luglio 7 (cancellare tutti i record con valore pari: lineare). Attenzione: la versione iterativa di Inserisci nella dispensa non controlla il caso p.key == x; se x è uguale alla chiave della testa, lo inserisce una seconda volta subito dopo la testa (verificato eseguendo il codice: Inserisci su 5 → 7 con x = 5 dà 5 → 5 → 7). La versione ricorsiva InserisciR è corretta. Le varianti che tracciano Inserisci non devono usare x uguale alla chiave della testa."
+  },
+  "tipi": [
+    {
+      "id": "L10-T01",
+      "titolo": "Strutture statiche e dinamiche: array contro lista concatenata",
+      "argomento": "Array e liste",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 10, 'Strutture Statiche vs Dinamiche', 'Navigazione negli Array', 'Navigazione nelle Liste Concatenate', tabella 'Array vs Lista Concatenata'.",
+      "descrizione": "Domanda di teoria sulle differenze tra array (struttura statica) e lista concatenata (struttura dinamica): disposizione in memoria, tipo di accesso, costo di inserimento e rimozione, ridimensionamento, occupazione di memoria. Di solito si chiede quale affermazione è vera (o falsa).",
+      "conoscenze": [
+        "Array: dimensione fissa decisa all'inizio, memoria in un blocco contiguo, elementi della stessa dimensione, accesso diretto A[i] in O(1) con un calcolo sull'indirizzo iniziale; difficile da ridimensionare.",
+        "Lista concatenata: cresce e si riduce durante l'esecuzione, ogni nodo può stare ovunque in memoria, accesso sequenziale seguendo next dalla testa.",
+        "Inserire o rimuovere in mezzo a un array richiede di spostare o copiare elementi (O(n)); in una lista basta cambiare un riferimento, O(1), se si ha già il riferimento al nodo giusto (il precedente).",
+        "La lista ha un overhead di memoria: ogni nodo contiene, oltre al valore, il riferimento next (due nella doppiamente concatenata).",
+        "Gli array sono più veloci grazie all'accesso diretto; le liste sono più flessibili nella modifica della struttura."
+      ],
+      "procedimento": [
+        "Per ogni affermazione chiedersi a quale delle due strutture si riferisce la proprietà (contiguità, accesso diretto, flessibilità).",
+        "Per i costi di inserimento e rimozione controllare se l'affermazione presuppone di avere già il riferimento al nodo: senza, bisogna prima cercarlo (O(n))."
+      ],
+      "trappole": [
+        "Attribuire alla lista la contiguità in memoria o l'accesso diretto dell'array.",
+        "Pensare che la lista occupi meno memoria dell'array: in realtà ogni nodo paga il riferimento next.",
+        "Pensare che inserire in una lista costi sempre O(1), dimenticando che prima bisogna arrivare alla posizione.",
+        "Pensare che inserire in un array costi O(1) anche in mezzo."
+      ],
+      "come_generare_varianti": "Chiedere quale affermazione è vera (o falsa) tra quattro, prese dalla tabella della dispensa (memoria, accesso, spostamento, inserimento/rimozione) e dal lucido statiche/dinamiche (dimensione fissa, ridimensionamento, overhead dei puntatori). Una sola affermazione deve essere vera senza ambiguità: per il costo di inserimento in lista precisare sempre 'avendo già il riferimento al nodo precedente' oppure 'partendo dalla sola testa'. Distrattori: scambiare le proprietà delle due strutture, negare l'overhead dei puntatori, attribuire O(1) all'accesso i-esimo nella lista."
+    },
+    {
+      "id": "L10-T02",
+      "titolo": "Accesso all'i-esimo elemento e ricerca in una lista",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Prova di maggio 2026, domanda 7 (accesso all'elemento i-esimo in una lista puntata semplice: O(n), con Θ(n) tra i distrattori). Dispensa 10, 'Navigazione nelle Liste Concatenate' (accesso sequenziale: O(i) per il nodo i-esimo).",
+      "descrizione": "Si chiede il costo di raggiungere l'elemento in posizione i (o k) di una lista concatenata semplice di n nodi, oppure di cercare una chiave, anche in una lista ordinata. La risposta è lineare: O(i) per la posizione i, quindi O(n); la scelta corretta tra O e Θ è parte della domanda.",
+      "conoscenze": [
+        "Per arrivare al nodo in posizione i bisogna partire dalla testa e seguire next i volte: Θ(i).",
+        "Siccome i ≤ n − 1, il costo è O(n); non è Θ(n) per ogni i (per i = 0 costa O(1)). Per questo a maggio la risposta corretta era O(n) e non Θ(n).",
+        "Ricerca di una chiave: O(n) nel caso peggiore (chiave in fondo o assente), O(1) nel caso migliore (chiave in testa).",
+        "La ricerca binaria non si applica a una lista concatenata, anche se ordinata: per arrivare al nodo centrale serve già tempo lineare. In una lista ordinata ci si può fermare appena si supera la chiave, ma il caso peggiore resta O(n)."
+      ],
+      "procedimento": [
+        "Contare quanti next bisogna seguire dalla testa per arrivare al nodo voluto.",
+        "Esprimere il costo in funzione della posizione e poi limitarlo con n.",
+        "Se tra le opzioni ci sono sia O(n) sia Θ(n), scegliere Θ(n) solo se il costo è lineare per ogni input (per esempio l'accesso all'ultimo nodo); per una posizione generica i la risposta è O(n)."
+      ],
+      "trappole": [
+        "Rispondere O(1) per analogia con A[i] dell'array (o con la list di Python).",
+        "Rispondere Θ(n) per la posizione generica i: è il distrattore della prova di maggio.",
+        "Rispondere O(log n) per la ricerca in una lista ordinata, applicando la ricerca binaria come in un array.",
+        "Rispondere Θ(n) per la ricerca di una chiave, dimenticando che la scansione si ferma appena trova x (x nella testa: O(1))."
+      ],
+      "come_generare_varianti": "Variare cosa si raggiunge (elemento i-esimo, elemento in posizione k, elemento centrale, ultimo elemento, ricerca di una chiave x) e il tipo di lista (semplice, ordinata). Tenere sempre nelle opzioni sia O(n) sia Θ(n) quando la posizione è generica: la risposta corretta è O(n) (o Θ(i)). Per l'ultimo elemento senza puntatore alla coda la risposta è Θ(n), e allora O(1) e O(log n) sono i distrattori. Per la lista ordinata includere O(log n) come distrattore principale. Non mettere tra le opzioni due risposte entrambe corrette (per esempio Θ(i) e O(n) insieme, a meno che l'opzione le unisca come 'Θ(k), quindi O(n)')."
+    },
+    {
+      "id": "L10-T03",
+      "titolo": "Accesso al penultimo nodo e al predecessore",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Prova di maggio 2026, domanda 8 (accesso al penultimo elemento di una lista puntata semplice: solo scorrendo la lista, in tempo lineare). Dispensa 10, 'Navigazione nelle Liste Concatenate' (ogni nodo ha solo il riferimento al successivo); esercizio sulla lista doppiamente concatenata (palindroma).",
+      "descrizione": "Si chiede come (e con che costo) si raggiunge il penultimo nodo, o in generale il nodo che precede un nodo dato, in una lista semplice, eventualmente con il puntatore all'ultimo nodo; oppure il confronto con una lista doppiamente concatenata.",
+      "conoscenze": [
+        "In una lista semplice ogni nodo conosce solo il successivo (next): non si può tornare indietro.",
+        "Il penultimo si trova solo scorrendo dalla testa fino al nodo q con q.next.next is None: tempo lineare. Avere il puntatore all'ultimo nodo non aiuta, perché l'ultimo non sa chi lo precede.",
+        "Non c'è accesso diretto per posizione (niente 'indice n − 2' in O(1)).",
+        "In una lista doppiamente concatenata ogni nodo ha anche il riferimento al precedente (prev): con il puntatore alla coda il penultimo si raggiunge in O(1), al prezzo di un riferimento in più per nodo."
+      ],
+      "procedimento": [
+        "Controllare se la lista è semplice o doppiamente concatenata e quali puntatori esterni si hanno (testa, coda).",
+        "In una lista semplice: per raggiungere un predecessore bisogna partire dalla testa, quindi tempo lineare."
+      ],
+      "trappole": [
+        "Pensare che dal puntatore all'ultimo elemento si possa 'tornare indietro' di un nodo.",
+        "Pensare all'accesso diretto per indice, come in un array o in una list di Python.",
+        "Rispondere con un costo logaritmico per analogia con la ricerca binaria.",
+        "Attribuire alla lista semplice il prev della lista doppiamente concatenata."
+      ],
+      "come_generare_varianti": "Variare il nodo cercato (penultimo, terzultimo, predecessore di un nodo di cui si ha il riferimento), i puntatori disponibili (solo testa, testa e coda) e il tipo di lista (semplice, doppiamente concatenata con puntatore alla coda). Formato delle opzioni come a maggio: frasi brevi su 'come' si accede e con quale costo. Distrattori fissi: 'a partire dal puntatore all'ultimo elemento', 'con accesso diretto in tempo costante', 'con un numero logaritmico di accessi'. Se la lista è doppiamente concatenata con puntatore alla coda, la risposta corretta diventa O(1) e 'solo scorrendo, in tempo lineare' diventa un distrattore: dichiararlo chiaramente nel testo."
+    },
+    {
+      "id": "L10-T04",
+      "titolo": "Costi di inserimento e cancellazione in testa e in coda",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, 'Array vs Lista Concatenata' (inserimento e rimozione veloci se si ha il riferimento), Esempio 1 (Crea tiene q sull'ultimo nodo per aggiungere in coda), Esempi 4 e 5 (caso speciale in testa), ultimo esercizio (CancellaD e InserisciD con testa p e coda q). Collegato a maggio 8 (L10-T03).",
+      "descrizione": "Si chiede il costo di inserire o cancellare un nodo in testa o in coda, con o senza il puntatore alla coda, in una lista semplice o doppiamente concatenata; oppure quale tra quattro operazioni non costa O(1).",
+      "conoscenze": [
+        "Inserimento in testa: Nodo(x, p) diventa la nuova testa, O(1).",
+        "Cancellazione in testa: la nuova testa è p.next, O(1).",
+        "Inserimento in coda con la sola testa: bisogna arrivare all'ultimo nodo, Θ(n). Con il puntatore alla coda: O(1) (si collega coda.next e si aggiorna la coda). Crea della dispensa usa proprio una variabile q sull'ultimo nodo per aggiungere in coda in O(1).",
+        "Cancellazione dell'ultimo nodo: Θ(n) anche con il puntatore alla coda, perché bisogna mettere a None il next del penultimo e farlo diventare la nuova coda, e il penultimo si trova solo scorrendo.",
+        "Lista doppiamente concatenata con testa e coda: inserimento e cancellazione a entrambi gli estremi in O(1) (il penultimo è coda.prev).",
+        "Mantenere il puntatore alla coda ha un costo: va aggiornato quando la lista diventa vuota, quando si inserisce in una lista vuota e quando si cancella o si inserisce in fondo (CancellaD, InserisciD)."
+      ],
+      "procedimento": [
+        "Individuare quale nodo deve cambiare il proprio next (o quale puntatore esterno va aggiornato).",
+        "Chiedersi se quel nodo è raggiungibile in O(1) con i puntatori disponibili; se è un predecessore in una lista semplice, serve una scansione lineare."
+      ],
+      "trappole": [
+        "Pensare che con il puntatore alla coda anche la cancellazione dell'ultimo costi O(1).",
+        "Pensare che l'inserimento in coda costi O(1) anche senza puntatore alla coda.",
+        "Pensare che ogni inserimento o cancellazione in una lista costi O(1), ignorando la ricerca della posizione.",
+        "Dimenticare che nella lista doppiamente concatenata la cancellazione in coda diventa O(1)."
+      ],
+      "come_generare_varianti": "Fissare il tipo di lista (semplice; semplice con testa e coda; doppiamente concatenata con testa e coda) e chiedere: (a) il costo di una singola operazione (inserimento in testa, in coda, cancellazione in testa, dell'ultimo); (b) quale tra le quattro operazioni non è O(1) (o è l'unica O(1)). Il testo deve dire esplicitamente quali puntatori esterni si hanno, altrimenti la risposta non è unica. Distrattori: la cancellazione dell'ultimo con il puntatore alla coda come O(1), l'inserimento in coda senza coda come O(1), O(log n)."
+    },
+    {
+      "id": "L10-T05",
+      "titolo": "Operazione su tutti i nodi con una sola scansione",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Prova di luglio 2026, domanda 7 (cancellazione di tutti i record con valore pari in una lista concatenata semplice: lineare in n). Dispensa 10, Esempio 2 (stampa Θ(n)), Esempio 5 (cancellazione con q.next = q.next.next), Esercizi (somma, conteggio (c, n)).",
+      "descrizione": "Si chiede il costo di un'operazione che deve esaminare tutti i nodi e, per alcuni, cancellarli o modificarli (cancellare i pari, i negativi, tutte le occorrenze di x; sommare; contare; stampare). La risposta è lineare: una scansione con lavoro costante per nodo.",
+      "conoscenze": [
+        "Scorrendo la lista con un riferimento al nodo precedente, ogni cancellazione è q.next = q.next.next: O(1). Il nodo in testa si toglie restituendo p.next.",
+        "Per sapere quali nodi cancellare bisogna esaminarli tutti: almeno n passi, quindi Θ(n) (lineare) e non meno.",
+        "Il numero di nodi cancellati non cambia la classe: ogni nodo viene visitato una volta e ogni cancellazione è O(1).",
+        "La stessa operazione su una list di Python fatta con remove o pop(i) dentro un ciclo costa Θ(n²), perché ogni rimozione sposta gli elementi; sulla lista concatenata no.",
+        "Somma, conteggio, stampa, massimo: una scansione, Θ(n)."
+      ],
+      "procedimento": [
+        "Controllare se basta una sola scansione della lista.",
+        "Valutare il costo del lavoro su ciascun nodo: con il riferimento al precedente, cancellare o modificare costa O(1).",
+        "Moltiplicare: n nodi × O(1) = Θ(n)."
+      ],
+      "trappole": [
+        "Pensare che ogni cancellazione costi O(n) (come in un array o in una list di Python) e rispondere Θ(n²).",
+        "Far dipendere il costo solo dal numero k di nodi cancellati, dimenticando che bisogna esaminare tutti gli n nodi.",
+        "Rispondere costante perché 'cancellare in una lista costa O(1)'.",
+        "Rispondere logaritmico (nessun dimezzamento è possibile).",
+        "Rispondere costante perché il lavoro su un singolo nodo (sommare, contare, modificare la chiave) costa O(1), dimenticando che i nodi da esaminare sono n."
+      ],
+      "come_generare_varianti": "Variare il criterio (valori pari, dispari, negativi, maggiori di x, multipli di 3, tutte le occorrenze di x) e l'operazione (cancellare, contare, sommare, raddoppiare il valore, stampare). Formulare le opzioni anche a parole come a luglio ('logaritmico in n', 'costante', 'lineare in n', 'mai lineare in n') oppure in notazione (Θ(n²), Θ(n), Θ(k), O(1)). Distrattori: Θ(n²) (ogni cancellazione O(n)), Θ(k) con k nodi cancellati, costante, logaritmico. Per una variante di confronto si può chiedere la stessa operazione su una list di Python con remove in un ciclo (Θ(n²)): in quel caso dichiarare chiaramente la struttura."
+    },
+    {
+      "id": "L10-T06",
+      "titolo": "La list di Python come array dinamico",
+      "argomento": "Liste di Python",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, 'Le Liste di Python: Statiche o Dinamiche?' e 'Riallocazione automatica delle liste Python' (capacità 4, lunghezza 3; dopo l'aggiunta a lista piena capacità 8, lunghezza 4). Costi delle operazioni sulle list: L02-T11.",
+      "descrizione": "Si chiede che tipo di struttura è una list di Python, cosa succede quando l'array sottostante è pieno, la differenza tra capacità e lunghezza, oppure quante riallocazioni avvengono dopo una serie di append con una regola di crescita data.",
+      "conoscenze": [
+        "La list di Python è un array dinamico: memoria contigua e accesso diretto A[i] in O(1); non è una lista concatenata.",
+        "Lunghezza = numero di elementi presenti; capacità = numero di posizioni allocate. La capacità è maggiore o uguale alla lunghezza.",
+        "Quando lunghezza = capacità e si aggiunge un elemento, Python alloca un array più grande e copia tutti gli elementi: quella singola operazione costa O(n).",
+        "La crescita è 'a salti' (nella dispensa da 4 a 8), così le riallocazioni sono rare e append costa O(1) ammortizzato.",
+        "Vantaggi: flessibilità e accesso veloce. Svantaggi: alcune riallocazioni costose; inserire o togliere in testa (insert(0, x), pop(0)) resta O(n) perché sposta gli elementi."
+      ],
+      "procedimento": [
+        "Per le domande teoriche: ricordare 'array dinamico, contiguo, rialloca e copia quando è pieno'.",
+        "Per le domande numeriche: simulare gli append partendo da lunghezza e capacità date; riallocare solo quando lunghezza = capacità, applicando la regola di crescita indicata nel testo."
+      ],
+      "trappole": [
+        "Pensare che la list di Python sia una lista concatenata (nodi sparsi, insert(0, x) in O(1)).",
+        "Contare una riallocazione a ogni append.",
+        "Confondere capacità e lunghezza (per esempio dire che len restituisce la capacità).",
+        "Pensare che la riallocazione sposti solo l'elemento nuovo invece di copiare tutti gli elementi.",
+        "Dimenticare l'ultima riallocazione: non contare l'append che trova l'array di nuovo pieno alla fine della serie."
+      ],
+      "come_generare_varianti": "Due famiglie. (a) Teoria: 'che tipo di struttura è una list di Python?', 'cosa fa Python quando l'array è pieno?', 'qual è la differenza tra capacità e lunghezza?'; distrattori: lista concatenata, array statico di dimensione fissa, rialloca a ogni append, copia solo l'ultimo elemento. (b) Numerica: dare lunghezza e capacità iniziali e un numero di append, dichiarando sempre la regola di crescita (per esempio 'la capacità raddoppia quando l'array è pieno', come nell'esempio 4 → 8 della dispensa); chiedere quante riallocazioni o la capacità finale. Verificare il conto simulandolo. Distrattori: una riallocazione per append, dimenticare l'ultima riallocazione, 'nessuna perché è una lista concatenata'. Non affermare che CPython raddoppia davvero: la dispensa dice solo 'a salti'."
+    },
+    {
+      "id": "L10-T07",
+      "titolo": "Nodi e riferimenti: collegare, scollegare e garbage collection",
+      "argomento": "Nodi e riferimenti",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, 'Liste Concatenate in Python: Definizione e Collegamento' (lista = Nodo(4); lista.next = Nodo(9); lista.next.next = Nodo(7); lista = lista.next) e 'Gestione automatica della memoria (Garbage Collection)' (p.next = None con q che punta ancora al nodo 4).",
+      "descrizione": "Si mostra una sequenza di istruzioni che creano nodi con la classe Nodo e assegnano riferimenti (lista.next = ..., lista = lista.next, q = p.next, p.next = None). Si chiede quale sequenza di chiavi si legge partendo da una variabile, oppure quali nodi restano in memoria e quali vengono liberati.",
+      "conoscenze": [
+        "class Nodo con i campi key (valore) e next (riferimento al prossimo nodo, None per l'ultimo). Nodo(x, p) crea un nodo con chiave x il cui next è p.",
+        "La variabile 'lista' contiene solo il riferimento al primo nodo: assegnarle un altro nodo (lista = lista.next) non modifica i nodi, cambia solo da dove si parte.",
+        "Assegnare un campo (a.next = ...) modifica davvero la struttura.",
+        "In Python un nodo viene liberato automaticamente solo quando nessun riferimento lo punta più (né una variabile né il next di un altro nodo raggiungibile). Non serve (e non esiste nella dispensa) una cancellazione esplicita.",
+        "Un nodo scollegato dalla lista ma ancora puntato da una variabile (q) resta in memoria."
+      ],
+      "procedimento": [
+        "Disegnare i nodi come caselle [key | next] e le variabili come frecce.",
+        "Eseguire le istruzioni una per una: un assegnamento a una variabile sposta la sua freccia; un assegnamento a un campo next sposta la freccia uscente da quel nodo.",
+        "Alla fine, leggere la catena dalla variabile richiesta; un nodo è liberato se nessuna freccia (da variabili o da nodi raggiungibili) arriva a lui."
+      ],
+      "trappole": [
+        "Pensare che lista = lista.next cancelli o modifichi i nodi, oppure che non cambi nulla perché 'la lista è sempre la stessa'.",
+        "Pensare che un nodo scollegato dalla lista venga liberato anche se una variabile lo punta ancora.",
+        "Pensare che in Python bisogni liberare i nodi esplicitamente.",
+        "Perdere il resto della lista: dopo p.next = None i nodi successivi sono raggiungibili solo se un'altra variabile li punta."
+      ],
+      "come_generare_varianti": "Scrivere 3–6 istruzioni con due o tre variabili (a, b, p, q, lista) che creano nodi con Nodo(x) o Nodo(x, altro), collegano con .next, spostano le variabili (a = a.next) e scollegano (p.next = None, p.next = p.next.next). Chiedere: la sequenza di chiavi da una variabile, oppure quali nodi vengono liberati. Verificare la traccia eseguendo il codice. Distrattori: la sequenza originale (come se gli assegnamenti a variabile non contassero), liberare anche nodi ancora puntati da una variabile, 'nessun nodo viene liberato senza del'."
+    },
+    {
+      "id": "L10-T08",
+      "titolo": "Riassegnare una variabile locale contro modificare il campo next",
+      "argomento": "Nodi e riferimenti",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 10, Esempio 5 (Cancella: q.next = q.next.next; CancellaR: p.next = CancellaR(p.next, x)), Esempio 4 (InserisciR: p.next = InserisciR(p.next, x)), Esempio 2 (Stampa: p = p.next solo per scorrere). Errore ricorrente dello studente.",
+      "descrizione": "Si mostra una funzione (spesso una versione sbagliata di un esempio della dispensa) e si chiede come diventa la lista dopo la chiamata. Il punto è distinguere le istruzioni che cambiano solo una variabile locale (n = n.next, p = p.next, una chiamata ricorsiva il cui risultato non viene riagganciato) da quelle che modificano la struttura (q.next = ..., p.next = f(p.next)), e capire che il chiamante deve usare la testa restituita.",
+      "conoscenze": [
+        "Una variabile (parametro o locale) contiene solo un riferimento a un nodo. n = n.next sposta la variabile, non tocca nessun nodo: la lista resta identica.",
+        "Per togliere un nodo bisogna cambiare il campo next del nodo precedente: q.next = q.next.next. Per togliere la testa bisogna restituire p.next e il chiamante deve scrivere lista = f(lista, ...).",
+        "Schema ricorsivo della dispensa: la funzione restituisce la (nuova) testa della lista che riceve; il chiamante riaggancia con p.next = f(p.next); il caso base è p is None.",
+        "Se si scrive f(p.next) senza assegnare il risultato a p.next, ogni modifica che riguarda la testa della sottolista (cancellarla, inserire prima di lei) va persa.",
+        "Scorrere con p = p.next (come in Stampa) va bene proprio perché non si vuole modificare nulla."
+      ],
+      "procedimento": [
+        "Per ogni istruzione chiedersi: assegna una variabile (nome = ...) o un campo (nodo.next = ...)? Solo la seconda cambia la lista.",
+        "Nelle ricorsive controllare che il valore restituito dalla chiamata venga riagganciato con p.next = ...; se no, il nodo restituito dalla chiamata non viene collegato.",
+        "Controllare che il chiamante assegni il risultato alla variabile della testa.",
+        "Simulare su una lista di 3 nodi, distinguendo il caso in cui il nodo interessato è la testa da quello in cui è in mezzo."
+      ],
+      "trappole": [
+        "Pensare che n = n.next o p = p.next 'salti' un nodo e quindi lo cancelli.",
+        "Pensare che la chiamata ricorsiva CancellaR(p.next, x) modifichi la lista anche senza p.next = davanti.",
+        "Pensare che una funzione che cancella la testa funzioni anche se il chiamante non scrive lista = f(lista).",
+        "Credere che la versione sbagliata non funzioni mai: spesso funziona quando il nodo interessato è la testa (che viene restituita) e fallisce negli altri casi."
+      ],
+      "come_generare_varianti": "Partire da Cancella, CancellaR, InserisciR o Inserisci della dispensa e introdurre UNO di questi errori: (1) nella ricorsiva, chiamata senza p.next = davanti; (2) nell'iterativa, n = q.next; n = n.next (o q = q.next.next) al posto di q.next = q.next.next; (3) il chiamante scrive f(lista, x) senza lista = davanti e il nodo interessato è la testa; (4) un ciclo che fa p = p.next dentro la funzione e poi restituisce p, o non restituisce nulla. Chiedere la lista finale su 3–4 nodi, oppure per quali valori di x la funzione è corretta. Verificare eseguendo il codice. Distrattori: il risultato che si avrebbe se il codice fosse giusto, il risultato 'troncato' (come se la lista si spezzasse), la sola coda. Scegliere x in mezzo alla lista quando l'errore riguarda il riaggancio, perché in testa il codice sbagliato spesso funziona."
+    },
+    {
+      "id": "L10-T09",
+      "titolo": "Tracciare le funzioni della dispensa",
+      "argomento": "Esempi della dispensa",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, Esempio 1 (Crea, CreaR su [8,6,4,9]), Esempio 2 (Stampa, StampaR), Esercizio 3 (StampaReverse, StampaReverseR), Esempio 4 (Inserisci, InserisciR), Esempio 5 (Cancella, CancellaR).",
+      "descrizione": "Si applica una sequenza di funzioni della dispensa a una lista piccola e si chiede cosa viene stampato o come diventa la lista. Bisogna ricordare esattamente il comportamento di ciascuna: ordine di creazione, posizione della print rispetto alla chiamata ricorsiva, inserimento solo se assente, cancellazione della sola prima occorrenza.",
+      "conoscenze": [
+        "Crea e CreaR producono la lista nello stesso ordine dell'array: [8,6,4,9] → 8 → 6 → 4 → 9. CreaR crea il nodo dopo la chiamata ricorsiva ma lo mette davanti alla coda già costruita, quindi l'ordine non si inverte.",
+        "StampaR stampa prima la chiave e poi chiama sul resto: ordine diretto. StampaReverseR chiama prima sul resto e stampa dopo: ordine inverso.",
+        "StampaReverse iterativa copia le chiavi in una list e le stampa con pop() dalla fine: ordine inverso.",
+        "Inserisci e InserisciR inseriscono x mantenendo l'ordine crescente e solo se x non è già presente; restituiscono la testa (nuova se x è minore della testa o la lista è vuota).",
+        "Cancella e CancellaR eliminano solo la PRIMA occorrenza di x; se x non c'è, la lista non cambia.",
+        "Nella dispensa la versione iterativa Inserisci non gestisce x uguale alla chiave della testa (lo inserirebbe una seconda volta): le domande non devono usare quel caso."
+      ],
+      "procedimento": [
+        "Scrivere la lista come sequenza di chiavi dopo ogni chiamata.",
+        "Per Inserisci: trovare la posizione, controllare se x è già presente.",
+        "Per Cancella: togliere solo la prima occorrenza.",
+        "Per le stampe ricorsive: guardare se la print è prima (ordine diretto) o dopo (ordine inverso) la chiamata."
+      ],
+      "trappole": [
+        "Pensare che CreaR costruisca la lista al contrario perché crea il nodo dopo la chiamata ricorsiva.",
+        "Confondere StampaR e StampaReverseR.",
+        "Pensare che Cancella elimini tutte le occorrenze.",
+        "Pensare che Inserisci aggiunga x anche se è già presente."
+      ],
+      "come_generare_varianti": "Comporre 2–4 chiamate tra Crea/CreaR, Inserisci/InserisciR, Cancella/CancellaR e chiudere con Stampa/StampaR/StampaReverse/StampaReverseR, su liste di 3–5 chiavi con almeno un duplicato o un valore già presente, così che le trappole diano risultati diversi. Ogni chiamata che modifica va scritta come p = f(p, x). Non usare Inserisci (iterativa) con x uguale alla chiave della testa. Verificare con uno script e controllare che ciascun distrattore sia il risultato di una trappola precisa (cancella tutte le occorrenze; inserisce i duplicati; stampa nell'ordine sbagliato; CreaR al contrario) e che i quattro risultati siano diversi."
+    },
+    {
+      "id": "L10-T10",
+      "titolo": "Complessità temporale e spaziale: versione iterativa e ricorsiva",
+      "argomento": "Esempi della dispensa",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, Esempio 1 (Crea e CreaR: Θ(n)), Esempio 2 (Stampa: spazio O(1), StampaR: spazio O(n)), Esercizio 3 (StampaReverse: spazio O(n) per la lista temporanea; StampaReverseR: O(n) per lo stack), Esempio 4 (O(n)), Esempio 5 (tempo O(n); spazio O(1) iterativa, O(n) ricorsiva). Spazio dello stack in generale: L03.",
+      "descrizione": "Si chiede il costo in tempo e in spazio di lavoro di una funzione della dispensa (o di una simile) nella versione iterativa o ricorsiva, oppure quale affermazione sui costi delle due versioni è corretta.",
+      "conoscenze": [
+        "Tutte le funzioni della dispensa scorrono la lista al più una volta: tempo Θ(n) (creazione, stampa, stampa inversa) oppure O(n) (inserimento ordinato e cancellazione, che possono fermarsi prima).",
+        "Versione iterativa con un numero costante di variabili (p, q): spazio di lavoro O(1).",
+        "Versione ricorsiva sulla lista: una chiamata per nodo ancora aperta sullo stack, profondità fino a n: spazio O(n).",
+        "Eccezione: StampaReverse iterativa usa una list di appoggio con n chiavi, quindi spazio O(n) anche se è iterativa.",
+        "Per InserisciR e CancellaR lo spazio è O(n) nel caso peggiore (la ricorsione scende fino al punto di inserimento o di cancellazione, o fino in fondo).",
+        "Lo spazio della lista creata (output di Crea) non è spazio di lavoro; la domanda di solito chiede lo spazio di lavoro."
+      ],
+      "procedimento": [
+        "Tempo: contare quante volte si visita ogni nodo (di norma una) e il lavoro per nodo (di norma O(1)).",
+        "Spazio iterativa: contare le strutture ausiliarie (list, set); se ci sono solo variabili, O(1).",
+        "Spazio ricorsiva: profondità massima della ricorsione × spazio per chiamata."
+      ],
+      "trappole": [
+        "Pensare che ogni versione iterativa usi spazio O(1) (StampaReverse no).",
+        "Dimenticare lo stack delle chiamate e dire che la ricorsiva usa spazio O(1).",
+        "Pensare che i pop() della lista di appoggio costino O(n) ciascuno: pop() dalla fine è O(1).",
+        "Pensare che la versione ricorsiva costi di più in tempo (per esempio Θ(n²))."
+      ],
+      "come_generare_varianti": "Scegliere una coppia iterativa/ricorsiva della dispensa (o degli esercizi: somma, conteggio (c, n), lunghezza) e chiedere: (a) il costo spaziale di una delle due; (b) quale affermazione sulle due versioni è corretta. Le opzioni sono coppie (tempo, spazio). Distrattori: iterativa O(1) anche quando usa una list di appoggio; ricorsiva O(1); tempo Θ(n²) per i pop o per la ricorsione; Θ(log n). Per la cancellazione e l'inserimento usare O(n) in tempo (non Θ(n))."
+    },
+    {
+      "id": "L10-T11",
+      "titolo": "Inserimento e cancellazione: caso in testa, caso migliore e caso peggiore",
+      "argomento": "Esempi della dispensa",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, Esempio 4 (Inserisci: caso speciale in testa; 'nel caso peggiore, quando l'elemento da inserire è maggiore del massimo della lista, è necessario scorrere tutta la lista') ed Esempio 5 (Cancella: caso speciale in testa; 'nel caso peggiore l'elemento non è presente').",
+      "descrizione": "Domande sul ragionamento dietro Inserisci e Cancella: perché la funzione restituisce la testa, perché il caso in testa è trattato a parte, quale input dà il caso migliore e il peggiore, qual è il costo in ciascun caso.",
+      "conoscenze": [
+        "La funzione restituisce la testa perché la testa può cambiare: inserendo un valore minore della testa (o in una lista vuota) la nuova testa è Nodo(x, p); cancellando il primo nodo la nuova testa è p.next.",
+        "Nella versione iterativa il caso in testa è separato perché non esiste un nodo precedente di cui modificare il next; negli altri casi si avanza con q fino al nodo che precede la posizione giusta.",
+        "Inserisci: caso migliore O(1) (lista vuota, x minore della testa); caso peggiore Θ(n) (x maggiore del massimo: va in coda).",
+        "Cancella: caso migliore O(1) (x in testa); caso peggiore Θ(n) (x assente o nell'ultimo nodo).",
+        "Nel complesso: O(n). La lista ordinata non permette la ricerca binaria (nessun accesso diretto).",
+        "Inserire o cancellare, una volta trovato il predecessore, costa O(1): il costo sta nel trovarlo."
+      ],
+      "procedimento": [
+        "Individuare l'input che fa fermare subito la funzione (caso migliore) e quello che la fa arrivare in fondo (caso peggiore).",
+        "Contare i nodi visitati in ciascun caso.",
+        "Per le domande sul 'perché': chiedersi quale riferimento deve cambiare e chi lo possiede (un nodo precedente o il chiamante)."
+      ],
+      "trappole": [
+        "Rispondere Θ(log n) perché la lista è ordinata.",
+        "Rispondere O(1) perché 'inserire in una lista costa O(1)', dimenticando la ricerca della posizione.",
+        "Dire Θ(n) in ogni caso, ignorando l'uscita anticipata.",
+        "Pensare che restituire la testa serva solo per comodità e non sia necessario.",
+        "Scambiare caso migliore e caso peggiore (per esempio pensare che x assente sia il caso migliore di Cancella perché non si cancella nulla)."
+      ],
+      "come_generare_varianti": "Variare la funzione (Inserisci, InserisciR, Cancella, CancellaR, versioni con lista ordinata in modo decrescente) e la domanda: (a) costo nel caso migliore e peggiore (opzioni come coppie); (b) quale input è il caso peggiore (x maggiore del massimo, x assente, x in testa, x minore del minimo); (c) perché la funzione restituisce la testa o perché il caso in testa è separato. Distrattori: Θ(log n), O(1) in entrambi i casi, Θ(n) in entrambi i casi; per (b) scambiare caso migliore e peggiore."
+    },
+    {
+      "id": "L10-T12",
+      "titolo": "Due puntatori sulla stessa lista: metà, ciclo, palindroma, rotazione",
+      "argomento": "Esercizi della dispensa",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 10, Esercizi: dividere la lista in due metà (O(n) tempo, O(1) spazio; la seconda metà ha un nodo in più se n è dispari), rotazione di k posizioni verso destra (O(n)), palindroma su lista semplice e doppiamente concatenata (O(n) tempo, O(1) spazio), lista ciclica (O(n) tempo, O(1) spazio).",
+      "descrizione": "Si chiede quale tecnica risolve uno degli esercizi rispettando i vincoli di tempo O(n) e spazio O(1), oppure il risultato su una lista piccola (le due metà, la lista ruotata). Le tecniche usano due riferimenti che scorrono la stessa lista (lento e veloce, a distanza fissa, dai due estremi).",
+      "conoscenze": [
+        "Lista ciclica: due puntatori, uno avanza di un nodo e l'altro di due; se c'è un ciclo prima o poi puntano allo stesso nodo, se non c'è il veloce arriva a None. Tempo O(n), spazio O(1). Scorrere 'finché si trova None' non termina su una lista ciclica; un set dei nodi visitati usa spazio O(n).",
+        "Dividere a metà: contare i nodi (n) e fermarsi sul nodo in posizione ⌊n/2⌋ − 1, oppure usare lento e veloce; si spezza con q.next = None. Con n dispari la seconda metà ha un nodo in più (1 → 2 → 3 → 4 → 5 dà 1 → 2 e 3 → 4 → 5).",
+        "Rotazione di k a destra: calcolare n e la coda, usare k mod n; la nuova testa è il nodo in posizione n − k; si chiude collegando la vecchia coda alla vecchia testa e si spezza prima della nuova testa. 1 → 2 → 3 → 4 → 5 con k = 2 (o k = 7) dà 4 → 5 → 1 → 2 → 3. Tempo O(n).",
+        "Palindroma su lista doppiamente concatenata: un puntatore dalla testa e uno dalla coda che si vengono incontro confrontando le chiavi. O(n) tempo, O(1) spazio.",
+        "Palindroma su lista semplice in spazio O(1): trovare la metà, invertire in loco la seconda metà, confrontarla con la prima (ed eventualmente ripristinarla). Copiare le chiavi in una list o usare la ricorsione costa spazio O(n)."
+      ],
+      "procedimento": [
+        "Leggere i vincoli: spazio O(1) esclude list di appoggio, set e ricorsione sulla lista.",
+        "Scegliere la tecnica a due puntatori adatta (lento/veloce, testa e coda, contare e poi avanzare).",
+        "Per le domande con risultato: simulare su 5–6 nodi."
+      ],
+      "trappole": [
+        "Proporre un set dei nodi visitati o una list di appoggio quando è richiesto spazio O(1).",
+        "Proporre una soluzione ricorsiva pensando che non usi spazio.",
+        "Proporre di scorrere fino a None per scoprire un ciclo (non termina).",
+        "Nella rotazione dimenticare k mod n, o ruotare a sinistra invece che a destra.",
+        "Nella divisione dare il nodo in più alla prima metà."
+      ],
+      "come_generare_varianti": "Variare l'esercizio (ciclo, metà, palindroma semplice o doppia, rotazione) e la forma della domanda: (a) quale tecnica rispetta tempo O(n) e spazio O(1) (opzioni: la tecnica corretta, una con set o list, una ricorsiva, una che non termina o è O(n²)); (b) risultato su una lista data (rotazione con k anche maggiore di n; divisione con n pari o dispari), verificato con uno script; distrattori: rotazione a sinistra, k non ridotto modulo n, metà con il nodo in più a sinistra."
+    },
+    {
+      "id": "L10-T13",
+      "titolo": "Riorganizzare i nodi senza crearne di nuovi: fusione, separazione, ordinamento, inversione",
+      "argomento": "Esercizi della dispensa",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, Esercizi: separare posizioni pari e dispari (senza nuovi nodi, O(n) tempo, O(1) spazio), fusione di due liste ordinate senza nuovi nodi, ordinamento senza nuovi nodi, inversione in spazio O(1), valori che compaiono almeno due volte, CancellaD e InserisciD con testa e coda (O(n)). Mergesort: L08.",
+      "descrizione": "Si chiede il costo (tempo e spazio) ottenibile per un esercizio che riorganizza la lista spostando i collegamenti next invece di creare nodi, oppure come cambia la lista su un esempio piccolo.",
+      "conoscenze": [
+        "Spostare un nodo da una lista all'altra significa cambiare dei next: O(1) per nodo, nessun nodo nuovo.",
+        "Fusione di due liste ordinate di n e m nodi: si confrontano le teste e si aggancia la minore in fondo al risultato; quando una lista finisce si aggancia il resto dell'altra in O(1). Tempo O(n + m), Θ(n + m) nel caso peggiore; spazio O(1) nella versione iterativa (O(n + m) di stack nella ricorsiva).",
+        "Separare i nodi in posizione pari e dispari: una scansione che alterna i collegamenti, Θ(n) tempo, O(1) spazio. 10 → 11 → 12 → 13 → 14 → 15 dà 10 → 12 → 14 e 11 → 13 → 15 (posizioni contate da 0).",
+        "Ordinare senza nuovi nodi: mergesort sulle liste (dividere a metà + fusione) in Θ(n log n); insertion sort sui nodi in O(n²).",
+        "Inversione in spazio O(1): una scansione che gira ogni next verso il nodo precedente, Θ(n) tempo.",
+        "Valori che compaiono almeno due volte: doppia scansione O(n²) tempo e O(1) spazio; con un set o un dizionario O(n) in media ma O(n) spazio.",
+        "Con il puntatore alla coda (CancellaD, InserisciD): il costo resta O(n), ma va aggiornata la coda quando si tocca l'ultimo nodo."
+      ],
+      "procedimento": [
+        "Capire quante volte ogni nodo viene visitato e se serve una struttura ausiliaria o la ricorsione.",
+        "Ricordare che 'senza creare nuovi nodi' non obbliga a usare spazio O(n): i nodi esistenti vengono solo ricollegati."
+      ],
+      "trappole": [
+        "Pensare che serva spazio Θ(n + m) per la lista risultato, anche se non si creano nodi.",
+        "Rispondere Θ(n·m) per la fusione, come se per ogni nodo si scorresse l'altra lista.",
+        "Rispondere Θ((n + m) log(n + m)) per la fusione, confondendola con un riordinamento completo.",
+        "Pensare che una lista concatenata non si possa ordinare in Θ(n log n) senza accesso diretto."
+      ],
+      "come_generare_varianti": "Variare l'esercizio (fusione, pari/dispari, ordinamento, inversione, duplicati) e chiedere: (a) il costo in tempo e spazio della soluzione migliore (opzioni come coppie); (b) il risultato su una lista di 5–6 nodi (verificato con uno script). Distrattori: spazio pari alla lunghezza dell'output, prodotto invece di somma per la fusione, n log n per un'operazione lineare, n² per l'ordinamento migliore."
+    },
+    {
+      "id": "L10-T14",
+      "titolo": "Scrivere una cancellazione ricorsiva",
+      "argomento": "Pseudocodice su liste",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, Esempio 5 (CancellaR: cancella la prima occorrenza di x). Collegata a luglio 2026, domanda 7 (cancellare tutti i record con valore pari), che però era a risposta multipla. Formato delle domande aperte: maggio 11 e luglio 8.",
+      "descrizione": "Si chiede di scrivere una funzione ricorsiva che, data la testa p di una lista concatenata, elimini dei nodi (la prima occorrenza di x, tutte le occorrenze di x, tutti i nodi che soddisfano una condizione) e restituisca la testa della lista modificata.",
+      "conoscenze": [
+        "Schema ricorsivo fondamentale: caso base p is None → return None; la funzione restituisce la testa della lista che riceve; nel caso generale si riaggancia con p.next = f(p.next) e si restituisce p.",
+        "Se il nodo p va eliminato: per la prima occorrenza si restituisce p.next (il resto non va toccato); per tutte le occorrenze si restituisce f(p.next), cioè il resto già ripulito.",
+        "Il chiamante usa lista = f(lista): la testa può cambiare.",
+        "Tempo Θ(n) (per la prima occorrenza: O(n)), spazio O(n) per lo stack."
+      ],
+      "procedimento": [
+        "Scrivere il caso base if p is None: return None.",
+        "Scrivere il caso 'p va eliminato': return p.next oppure return f(p.next).",
+        "Scrivere il caso generale: p.next = f(p.next); return p.",
+        "Controllare a mano su una lista in cui il primo nodo e due nodi consecutivi vanno eliminati."
+      ],
+      "trappole": [
+        "Chiamare f(p.next) senza assegnare il risultato a p.next (la lista non cambia).",
+        "Scrivere p = p.next invece di restituire il nodo successivo.",
+        "Per tutte le occorrenze, restituire p.next senza ricorrere sul resto: le occorrenze successive restano.",
+        "Mancare il caso base o usare p.next is None come caso base (fallisce sulla lista vuota e non esamina l'ultimo nodo correttamente).",
+        "Usare % 2 == 1 per i dispari: con i negativi in Python funziona (−3 % 2 == 1), ma è più chiaro % 2 != 0; per i pari usare % 2 == 0."
+      ],
+      "come_generare_varianti": "Variare il criterio: prima occorrenza di x (identica alla dispensa), tutte le occorrenze di x, tutti i nodi pari, dispari, negativi, maggiori di x, ultimo nodo (caso base p.next is None dopo aver gestito la lista vuota). Chiedere anche la complessità temporale e spaziale. La soluzione deve seguire lo schema della dispensa (caso base p is None, riaggancio p.next = f(p.next)) ed essere verificata eseguendola su liste con il nodo da eliminare in testa, in mezzo, in coda, consecutivo, assente."
+    },
+    {
+      "id": "L10-T15",
+      "titolo": "Scrivere l'inserimento ricorsivo in lista ordinata",
+      "argomento": "Pseudocodice su liste",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, Esempio 4 (InserisciR, e versione iterativa Inserisci). Formato delle domande aperte: maggio 11 e luglio 8.",
+      "descrizione": "Si chiede di scrivere una funzione ricorsiva che, data la testa p di una lista ordinata e un valore x, inserisca x nella posizione giusta (eventualmente solo se non è già presente) e restituisca la testa.",
+      "conoscenze": [
+        "Caso base: p is None oppure x va prima di p (p.key > x nell'ordine crescente): return Nodo(x, p). Il nuovo nodo diventa la testa della sottolista e punta al resto.",
+        "Se p.key == x e non si vogliono duplicati: return p senza modifiche.",
+        "Caso generale: p.next = InserisciR(p.next, x); return p.",
+        "Tempo O(n) (caso peggiore: x maggiore del massimo), spazio O(n) per lo stack.",
+        "Se si ammettono i duplicati basta usare p.key >= x nel caso base (o togliere il controllo di uguaglianza)."
+      ],
+      "procedimento": [
+        "Scrivere il caso base che crea Nodo(x, p).",
+        "Gestire il duplicato.",
+        "Riagganciare con p.next = InserisciR(p.next, x) e restituire p.",
+        "Controllare: lista vuota, x minore della testa, x in mezzo, x maggiore del massimo, x già presente."
+      ],
+      "trappole": [
+        "Scrivere InserisciR(p.next, x) senza p.next = davanti: il nuovo nodo non viene collegato.",
+        "Creare Nodo(x) senza next = p, perdendo il resto della lista.",
+        "Dimenticare il caso p is None (errore su p.key quando x va in coda).",
+        "Restituire il nuovo nodo invece di p nel caso generale (si perde la parte iniziale della lista).",
+        "Invertire il confronto (inserire prima del primo nodo minore di x)."
+      ],
+      "come_generare_varianti": "Variare: ordine crescente o decrescente, duplicati ammessi o no, valore restituito (testa; oppure la coppia testa, inserito sì/no), inserimento prima della prima occorrenza di un valore y. Chiedere anche la complessità. Verificare la soluzione con uno script su tutti i casi elencati nel procedimento."
+    },
+    {
+      "id": "L10-T16",
+      "titolo": "Scrivere una funzione ricorsiva che accumula un valore (somma, conteggio, massimo)",
+      "argomento": "Pseudocodice su liste",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 10, Esercizi (somma di tutti i valori, versione iterativa e ricorsiva con complessità; coppia (c, n) con occorrenze di x e numero di nodi). Formato delle domande aperte: maggio 11 e luglio 8.",
+      "descrizione": "Si chiede di scrivere una funzione ricorsiva che scorra la lista e accumuli un valore (somma, numero di nodi, occorrenze di x, massimo, coppia (c, n)), con la sua complessità temporale e spaziale. La lista non viene modificata.",
+      "conoscenze": [
+        "Caso base p is None → valore neutro (0 per somma e conteggi); caso generale: contributo di p.key combinato con f(p.next).",
+        "Tempo Θ(n), spazio O(n) per lo stack (n chiamate annidate).",
+        "Per la coppia (c, n): caso base (0, 0); si chiama sul resto, si incrementa c se p.key == x e si restituisce (c, n + 1).",
+        "Per il massimo: la lista vuota non ha massimo; il caso base adatto è p.next is None (dopo aver escluso la lista vuota), e si restituisce max(p.key, f(p.next))."
+      ],
+      "procedimento": [
+        "Scegliere il valore del caso base (lista vuota, o ultimo nodo per il massimo).",
+        "Scrivere come il nodo corrente contribuisce al risultato del resto.",
+        "Restituire la combinazione, con return.",
+        "Indicare tempo e spazio."
+      ],
+      "trappole": [
+        "Caso base che restituisce None (poi p.key + None dà errore) o che usa p.next is None senza gestire la lista vuota.",
+        "Dimenticare di restituire il risultato della chiamata ricorsiva (manca return).",
+        "Dire che la ricorsiva usa spazio O(1).",
+        "Per il massimo usare 0 come valore della lista vuota: sbagliato se tutte le chiavi sono negative."
+      ],
+      "come_generare_varianti": "Variare il valore calcolato (somma, numero di nodi, occorrenze di x, coppia (c, n), somma dei soli pari, massimo, minimo, numero di nodi con chiave maggiore della successiva, somma delle chiavi in posizione pari) e chiedere sempre la complessità temporale e spaziale. Verificare le soluzioni con uno script, compresa la lista vuota."
+    },
+    {
+      "id": "L10-T17",
+      "titolo": "Scrivere una ricerca o una verifica ricorsiva su una lista",
+      "argomento": "Pseudocodice su liste",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Schema ricorsivo della Dispensa 10 (Esempi 4 e 5: caso base p is None, chiamata su p.next) applicato alle ricerche: contiene x, lista ordinata, posizione di x. Formato delle domande aperte: maggio 2026 domanda 11 (visita pre-order ricorsiva) e luglio 2026 domanda 8 (3ⁿ ricorsiva).",
+      "descrizione": "Si chiede una funzione ricorsiva che, data la testa p di una lista concatenata, risponda a una domanda sulla lista senza modificarla: restituisce un booleano (contiene x, è ordinata, tutte le chiavi sono pari, ci sono due nodi consecutivi uguali) oppure un valore trovato (posizione di x o −1, k-esima chiave, ultima chiave). La funzione può fermarsi prima della fine.",
+      "conoscenze": [
+        "Caso base p is None: il valore giusto per la lista vuota dipende dalla domanda. 'Esiste un nodo che…' → False; 'tutti i nodi…' → True; posizione di x → −1.",
+        "Appena la risposta è nota si restituisce senza altre chiamate (x trovato → True; coppia fuori ordine → False).",
+        "Proprietà su coppie di nodi consecutivi (ordinata, due uguali vicini): caso base p is None or p.next is None, poi si confronta p.key con p.next.key.",
+        "Posizione di x: se p.key == x si restituisce 0; altrimenti r = f(p.next, x) e si restituisce −1 se r == −1, altrimenti r + 1.",
+        "Il risultato della chiamata va restituito (return f(p.next…)), altrimenti Python restituisce None.",
+        "Tempo O(n) nel caso peggiore (Θ(1) se la risposta è nel primo nodo), spazio O(n) per lo stack."
+      ],
+      "procedimento": [
+        "Decidere il valore per la lista vuota (caso base p is None).",
+        "Se la proprietà riguarda due nodi vicini, aggiungere il caso p.next is None.",
+        "Scrivere il caso che chiude subito (risposta trovata).",
+        "Altrimenti restituire la chiamata sul resto, eventualmente combinata (r + 1, and).",
+        "Controllare su lista vuota, un nodo, risposta nel primo nodo, risposta nell'ultimo nodo."
+      ],
+      "trappole": [
+        "Caso base invertito: None → True per 'esiste' o None → False per 'tutti' (la risposta diventa sempre True o sempre False).",
+        "Chiamare f(p.next) senza return: la funzione restituisce None.",
+        "Leggere p.next.key senza controllare che p.next non sia None (errore sull'ultimo nodo).",
+        "Restituire il confronto sul solo primo nodo (return p.key == x) senza esaminare il resto.",
+        "Nella posizione restituire f(p.next, x) + 1 anche quando la chiamata vale −1 (un x assente dà n − 1 invece di −1)."
+      ],
+      "come_generare_varianti": "Variare la domanda: contiene x; numero di nodi prima della prima occorrenza di x; posizione di x o −1; k-esima chiave (None se la lista ha meno di k + 1 nodi); ultima chiave (None se vuota); lista ordinata in modo crescente o strettamente crescente; tutte le chiavi pari, positive o minori di x; esistono due nodi consecutivi con la stessa chiave; esiste un nodo con chiave uguale alla somma delle due precedenti (più difficile). Chiedere sempre la complessità. La soluzione usa i campi key e next, caso base su p is None, return davanti a ogni chiamata, nessuna variabile globale. Verificarla con uno script su lista vuota, un nodo, risposta in testa, in coda e assente."
+    },
+    {
+      "id": "L10-T18",
+      "titolo": "Scrivere una funzione ricorsiva che costruisce o allunga una lista",
+      "argomento": "Pseudocodice su liste",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 10, Esempio 4 (InserisciR: Nodo(x, p) e riaggancio p.next = f(p.next)) ed Esercizi (fusione di liste ordinate, nuova lista). Formato delle domande aperte: maggio 2026 domanda 11 (visita pre-order ricorsiva) e luglio 2026 domanda 8 (3ⁿ ricorsiva).",
+      "descrizione": "Si chiede una funzione ricorsiva che restituisce la testa di una lista nuova o con nodi aggiunti: copia della lista, copia dei soli nodi con una proprietà, inserimento in coda, duplicazione di ogni nodo, concatenazione di due liste, fusione di due liste ordinate riusando i nodi.",
+      "conoscenze": [
+        "Lista nuova: return Nodo(p.key, f(p.next)). Il costruttore Nodo(x, succ) crea il nodo già collegato al resto.",
+        "Lista modificata: p.next = f(p.next); return p (come in InserisciR).",
+        "Inserimento in coda: caso base p is None → return Nodo(x, None).",
+        "Fusione di due liste ordinate p e q: se una è vuota si restituisce l'altra; se p.key <= q.key allora p.next = Fondi(p.next, q) e si restituisce p, altrimenti simmetrico su q.",
+        "Tempo Θ(n) per copia, filtro, duplicazione e inserimento in coda; O(n + m) per concatenazione e fusione (la fusione si ferma quando una lista finisce: Θ(n + m) nel caso peggiore). Spazio O(n) (O(n + m) con due liste) per lo stack, più i nodi creati."
+      ],
+      "procedimento": [
+        "Scrivere il caso base (lista vuota: None, Nodo(x, None) o l'altra lista).",
+        "Decidere se si creano nodi nuovi (Nodo(p.key, …)) o si riusano quelli esistenti (p.next = …).",
+        "Usare il risultato della chiamata ricorsiva come next del nodo corrente.",
+        "Controllare su lista vuota, un nodo e tre nodi; per la fusione anche una lista vuota e chiavi uguali."
+      ],
+      "trappole": [
+        "Chiamare f(p.next) senza usare il risultato (né p.next = né Nodo(…, f(p.next))): i nodi nuovi non vengono collegati.",
+        "Caso base sbagliato: return None nell'inserimento in coda (x si perde) o, nella fusione, None quando una sola lista è vuota (si perde l'altra).",
+        "Nella copia riusare i nodi originali (return p, oppure Nodo(p.key, p.next)): la copia condivide i nodi con la lista di partenza.",
+        "Nella fusione restituire sempre p anche quando q.key è minore (i nodi di q prima di p si perdono o l'ordine si rompe).",
+        "Nella duplicazione collegare il nodo copia a p.next invece che al resto già duplicato, o richiamare la funzione sul nodo appena creato (ricorsione infinita)."
+      ],
+      "come_generare_varianti": "Variare il compito: copia della lista; copia con le sole chiavi pari (o maggiori di x); copia con ogni chiave raddoppiata; inserimento di x in coda; duplicazione di ogni nodo (1 → 3 diventa 1 → 1 → 3 → 3); concatenazione di due liste senza creare nodi; fusione ricorsiva di due liste ordinate riusando i nodi; lista delle somme di posizioni corrispondenti di due liste della stessa lunghezza. Specificare sempre se si devono creare nodi nuovi o riusare quelli esistenti, e il costruttore Nodo(x, succ). Chiedere la complessità. Verificare la soluzione con uno script, compresa la lista vuota, e controllare che la copia non condivida nodi con l'originale."
+    }
+  ]
+}

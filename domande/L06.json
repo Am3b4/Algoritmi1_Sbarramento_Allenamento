@@ -1,0 +1,1938 @@
+{
+  "lezione": 6,
+  "generato_con": "claude-haiku-5-5",
+  "domande": [
+    {
+      "id": "L06-T01-01",
+      "tipo": "L06-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Ricerca lineare su una lista non ordinata di n elementi. Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il caso ottimo è x in prima posizione, con un solo confronto: O(1)",
+        "Il caso ottimo è x in ultima posizione, che costa O(1)",
+        "Il caso ottimo è una lista con un solo elemento, che costa O(1)",
+        "Il caso ottimo è x al centro della lista, che costa Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Con x in prima posizione basta un confronto. Una lista di un solo elemento non è un caso ottimo, perché il caso ottimo si confronta a parità di n. Con x in ultima posizione servono n confronti; il centro e Θ(log n) appartengono alla ricerca binaria."
+    },
+    {
+      "id": "L06-T01-02",
+      "tipo": "L06-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sulla lista [14, 7, 22, 9, 31, 7, 18, 5, 11, 26] la ricerca lineare cerca x = 7. Quanti confronti lista[i] == x esegue la funzione, contando anche il confronto che trova x?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "2",
+        "10",
+        "6"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "E2"
+      ],
+      "spiegazione": "x compare agli indici 1 e 5 (indici da 0). La funzione si ferma alla prima occorrenza: 1 + 1 = 2 confronti. Contare fino all'ultima occorrenza darebbe 6; restituire l'indice senza il + 1 darebbe 1; 10 è l'intera lista."
+    },
+    {
+      "id": "L06-T01-03",
+      "tipo": "L06-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Lista non ordinata [4, 12, 8, 6, 15, 2, 10, 6, 13], x = 6. Quanti confronti lista[i] == x esegue la ricerca lineare?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "9",
+        "3",
+        "4",
+        "8"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E4",
+        null,
+        "E2"
+      ],
+      "spiegazione": "x compare agli indici 3 e 7 (indici da 0): la funzione si ferma alla prima occorrenza, quindi 3 + 1 = 4 confronti. Fino all'ultima occorrenza sarebbero 8; senza il + 1 si ottiene 3; 9 è n, cioè una scansione completa che qui non avviene."
+    },
+    {
+      "id": "L06-T01-04",
+      "tipo": "L06-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Ricerca lineare su n elementi non ordinati. In quale situazione si ha il caso pessimo, e quanto costa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "x è presente più volte: Θ(n²)",
+        "x è in prima posizione: Θ(n)",
+        "x è al centro della lista: Θ(log n)",
+        "x non è presente nella lista: Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "Nel caso pessimo la lista viene scorsa tutta: x assente (o solo in ultima posizione), con n confronti, Θ(n). Il centro e Θ(log n) appartengono alla ricerca binaria; se x è ripetuto la ricerca si ferma alla prima occorrenza."
+    },
+    {
+      "id": "L06-T01-05",
+      "tipo": "L06-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul costo della ricerca lineare è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n) e Ω(1)",
+        "Θ(log n) nel caso pessimo",
+        "Θ(1) in ogni caso",
+        "Θ(n) in ogni caso"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "E5"
+      ],
+      "spiegazione": "Nel caso ottimo il costo è O(1) e nel caso pessimo Θ(n): ogni esecuzione costa quindi Ω(1) e O(n). Θ(n) non vale in ogni caso, perché con x in prima posizione basta un confronto; Θ(log n) è il caso pessimo della ricerca binaria."
+    },
+    {
+      "id": "L06-T01-06",
+      "tipo": "L06-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Lista non ordinata [30, 4, 19, 8, 27, 11, 2, 16, 27, 5], x = 27. Quanti confronti lista[i] == x esegue la ricerca lineare?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "10",
+        "5",
+        "9",
+        "4"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "27 compare agli indici 4 e 8 (indici da 0): la funzione si ferma alla prima occorrenza, quindi 4 + 1 = 5 confronti. Fino all'ultima occorrenza sarebbero 9; senza il + 1 si ottiene 4; 10 è l'intera lista."
+    },
+    {
+      "id": "L06-T02-01",
+      "tipo": "L06-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista contiene n = 20 elementi e x è presente, con la stessa probabilità in ogni posizione. Quanti confronti esegue in media la ricerca lineare?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "210",
+        "20",
+        "10,5",
+        "10"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Media = (1/20)·(1 + 2 + … + 20) = 210/20 = 10,5. 10 è n/2; 210 è la somma senza il fattore 1/n; 20 è il caso pessimo."
+    },
+    {
+      "id": "L06-T02-02",
+      "tipo": "L06-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Una lista contiene n = 7 elementi e x è presente in ciascuna posizione con uguale probabilità. Qual è il numero medio di confronti della ricerca lineare?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3,5",
+        "7",
+        "28",
+        "4"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E2",
+        null
+      ],
+      "spiegazione": "(1/7)·(1 + 2 + … + 7) = 28/7 = 4 = (n+1)/2. 3,5 è n/2; 28 è la somma senza dividere per n; 7 è il caso pessimo."
+    },
+    {
+      "id": "L06-T02-03",
+      "tipo": "L06-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con x presente in ciascuna delle n posizioni con probabilità 1/n, qual è la formula del numero medio di confronti della ricerca lineare?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "(n+1)/2",
+        "n(n+1)/2",
+        "log₂ n",
+        "n/2"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E1"
+      ],
+      "spiegazione": "Σ i·(1/n) per i da 1 a n vale (n+1)/2. n/2 nasce dal contare le posizioni da 0 o da una media approssimata; n(n+1)/2 dimentica il fattore 1/n; log₂ n è il costo della binaria."
+    },
+    {
+      "id": "L06-T02-04",
+      "tipo": "L06-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nel caso medio, con x presente in posizione uniforme, la ricerca lineare costa:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n), perché in media la ricerca è sublineare",
+        "Θ(n)",
+        "Θ(n²), perché la media è n(n+1)/2",
+        "Θ(log n), come la ricerca binaria"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "La media è (n+1)/2 = Θ(n): la costante 1/2 non cambia la classe, e il caso medio resta lineare. Θ(n²) nasce dal dimenticare il fattore 1/n; Θ(log n) è il costo della binaria."
+    },
+    {
+      "id": "L06-T02-05",
+      "tipo": "L06-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista contiene n = 50 elementi e x è presente con la stessa probabilità in ogni posizione. Quanti confronti esegue in media la ricerca lineare?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "25",
+        "1275",
+        "25,5",
+        "50"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "(1/50)·(1 + … + 50) = 51/2 = 25,5. 25 è n/2; 1275 = n(n+1)/2 senza dividere per n; 50 è il caso pessimo."
+    },
+    {
+      "id": "L06-T02-06",
+      "tipo": "L06-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una lista ha n = 30 elementi. Il valore x è presente una sola volta e si trova in una delle prime 9 posizioni (contate da 1), ciascuna con probabilità 1/9; nelle altre 21 posizioni non può trovarsi. Quanti confronti esegue in media la ricerca lineare?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "9",
+        "4,5",
+        "45",
+        "5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "E2",
+        null
+      ],
+      "spiegazione": "Media = (1/9)·(1 + 2 + … + 9) = 45/9 = 5 = (m+1)/2 con m = 9. 4,5 è m/2; 45 è la somma senza il fattore 1/m; 9 è il caso pessimo entro quelle posizioni."
+    },
+    {
+      "id": "L06-T03-01",
+      "tipo": "L06-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un vettore non ordinato contiene n = 1000 interi e non si sa nulla sui valori. Nel caso peggiore, quanti elementi deve esaminare il miglior algoritmo possibile per decidere se x è presente?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "10, perché si può dimezzare l'intervallo come nella ricerca binaria",
+        "1000, perché ogni elemento non esaminato potrebbe essere x",
+        "1, perché x potrebbe essere il primo elemento",
+        "circa 10 000 (n log₂ n), perché prima bisogna ordinare"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E4",
+        "E2"
+      ],
+      "spiegazione": "Se, con x assente, un algoritmo lascia fuori anche un solo elemento, non può escludere che sia proprio x: nel caso peggiore deve esaminarli tutti e 1000, e la ricerca lineare ci riesce con 1000. Il dimezzamento richiede una lista ordinata; 1 è il caso ottimo, non il caso peggiore; ordinare non serve e costerebbe di più."
+    },
+    {
+      "id": "L06-T03-02",
+      "tipo": "L06-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su dati non ordinati, senza informazioni sui valori, quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Esiste un algoritmo che nel caso peggiore costa O(1), perché x può essere il primo elemento",
+        "Ogni algoritmo costa Ω(n) nel caso peggiore",
+        "Esiste un algoritmo che nel caso peggiore costa O(log n), usando il dimezzamento",
+        "Ogni algoritmo fa esattamente n confronti, nel caso ottimo come nel peggiore"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Ω(n) è il costo minimo nel caso peggiore, non un numero fisso di confronti: nel caso ottimo bastano O(1) confronti. Il dimezzamento richiede dati ordinati; x in prima posizione è un caso ottimo, non il caso peggiore."
+    },
+    {
+      "id": "L06-T03-03",
+      "tipo": "L06-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La ricerca lineare è asintoticamente ottima su dati senza ordine? Quale risposta è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "No: serve prima ordinare, con costo Ω(n log n)",
+        "Sì, perché nel caso ottimo costa Ω(1)",
+        "Sì: il limite inferiore è Ω(n) e la lineare costa O(n)",
+        "No: esiste un algoritmo O(log n) che dimezza l'intervallo"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E4",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Il limite inferiore del problema è Ω(n) e la ricerca lineare lo raggiunge con O(n): è ottima. Il dimezzamento non è possibile senza ordine; ordinare costerebbe di più; Ω(1) è il caso ottimo, non il limite del problema."
+    },
+    {
+      "id": "L06-T03-04",
+      "tipo": "L06-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione spiega perché il limite Ω(n) vale per la ricerca su dati non ordinati?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Un algoritmo può dimezzare la lista a ogni confronto, quindi non tutti gli elementi vanno controllati",
+        "Ogni algoritmo ordina prima la lista, quindi il costo è Ω(n log n)",
+        "Il costo è Ω(1), perché x può essere il primo elemento esaminato",
+        "Ogni elemento non esaminato potrebbe essere x, quindi nel caso peggiore vanno controllati tutti"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E4",
+        null
+      ],
+      "spiegazione": "Senza informazioni sui dati nessun elemento si può escludere a priori. Dimezzare richiede un ordine che non c'è; ordinare non è necessario; Ω(1) è il caso ottimo di un singolo input."
+    },
+    {
+      "id": "L06-T03-05",
+      "tipo": "L06-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una ricerca lineare trova x al primo confronto in un certo input. Questo fatto contraddice il limite Ω(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "No: il limite riguarda il caso peggiore del problema, non un singolo input",
+        "Sì: ogni ricerca fa n confronti, anche se x è il primo elemento",
+        "Sì: il limite è smentito, perché il problema costa Ω(1)",
+        "No: il limite vale solo per le liste ordinate"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Ω(n) è il costo minimo nel caso peggiore del problema; un singolo input può costare O(1). Il limite non dice che ogni ricerca fa n confronti, e riguarda proprio i dati senza struttura: sulle liste ordinate la ricerca binaria scende a O(log n)."
+    },
+    {
+      "id": "L06-T03-06",
+      "tipo": "L06-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un programmatore sostiene di poter cercare x in un vettore non ordinato con costo O(log n) nel caso peggiore, scartando a ogni passo metà degli elementi. Qual è l'errore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il costo reale è Ω(1), perché x può essere il primo elemento",
+        "Senza ordine un elemento non esaminato può essere x: non si può scartare metà",
+        "Il costo reale è Ω(n): ogni ricerca fa esattamente n confronti",
+        "Serve ordinare il vettore, quindi il costo reale è Ω(n log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "Scartare metà degli elementi è lecito solo se la lista è ordinata. Ordinare non serve al limite Ω(n), e il limite non significa che ogni ricerca faccia esattamente n confronti."
+    },
+    {
+      "id": "L06-T04-01",
+      "tipo": "L06-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quali condizioni servono perché la ricerca binaria della dispensa sia corretta ed efficiente?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Solo l'ordinamento: anche su una lista concatenata ordinata il costo resta O(log n)",
+        "Ordinamento, accesso a lista[medio] in tempo costante ed elementi tutti distinti",
+        "Ordinamento e accesso a lista[medio] in tempo costante; gli elementi possono ripetersi",
+        "Solo l'accesso a lista[medio] in tempo costante: su una lista non ordinata x viene trovato lo stesso, con più iterazioni"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E5",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "L'ordinamento permette di scartare metà intervallo (senza, x può non essere trovato); l'accesso diretto rende O(1) ogni lettura di lista[medio], che su una lista concatenata costerebbe Θ(n). Gli elementi possono ripetersi: si trova una occorrenza qualsiasi."
+    },
+    {
+      "id": "L06-T04-02",
+      "tipo": "L06-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue la ricerca binaria iterativa della dispensa su lista = [8, 3, 12, 6, 2, 10, 4] con x = 12. Che cosa restituisce?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Indice 6",
+        "Il ciclo non termina",
+        "Indice 2",
+        "None, anche se 12 è presente"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "medio = 3 (6 < 12): inizio = 4; medio = 5 (10 < 12): inizio = 6; medio = 6 (4 < 12): inizio = 7 > fine, e la funzione restituisce None. Il 12 è all'indice 2, nella metà scartata al primo passo: su una lista non ordinata la binaria può non trovare x anche se è presente."
+    },
+    {
+      "id": "L06-T04-03",
+      "tipo": "L06-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue la ricerca binaria iterativa della dispensa su lista = [1, 2, 3, 4, 5, 7, 7, 7, 9] con x = 7. Quale indice restituisce?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "7",
+        "5",
+        "None"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "medio = 4 (5 < 7): inizio = 5; medio = 6 e lista[6] = 7: restituisce 6. Non è la prima occorrenza (indice 5) né l'ultima (indice 7): con elementi ripetuti si ottiene una occorrenza qualsiasi."
+    },
+    {
+      "id": "L06-T04-04",
+      "tipo": "L06-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La ricerca binaria della dispensa viene applicata a una lista concatenata ordinata, dove lista[medio] richiede di scorrere i nodi. Il costo O(log n) resta valido?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì, il costo resta O(log n): la lista è ordinata",
+        "No: raggiungere lista[medio] costa Θ(n), quindi il costo non è più O(log n)",
+        "Sì, ma solo se n è una potenza di 2",
+        "No: il costo diventa Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Su una lista concatenata raggiungere il centro richiede di scorrere i nodi, cioè Θ(n) per il primo passo: il costo complessivo non è più logaritmico. La potenza di 2 non serve."
+    },
+    {
+      "id": "L06-T04-05",
+      "tipo": "L06-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista ordinata contiene elementi ripetuti e x è presente più volte. La ricerca binaria della dispensa restituisce sempre la prima occorrenza?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì, sempre la prima occorrenza",
+        "Sì, ma solo se n è una potenza di 2",
+        "No: restituisce una occorrenza qualsiasi, non necessariamente la prima",
+        "No: restituisce sempre l'ultima occorrenza"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La funzione si ferma alla prima volta che lista[medio] == x, quindi può restituire una occorrenza qualsiasi. Né la potenza di 2 né la lunghezza cambiano questo."
+    },
+    {
+      "id": "L06-T04-06",
+      "tipo": "L06-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale affermazione sul requisito di ordinamento è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Senza ordinamento la funzione è sempre corretta, solo più lenta",
+        "L'ordinamento serve solo a ridurre il numero di iterazioni, non alla correttezza",
+        "Senza ordinamento la funzione restituisce l'indice del minimo",
+        "Senza ordinamento la funzione può sbagliare: può restituire None anche se x è presente"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Senza ordine il confronto con lista[medio] può scartare la metà che contiene x: la funzione può dare None anche con x presente. L'ordinamento serve alla correttezza, non solo all'efficienza."
+    },
+    {
+      "id": "L06-T05-01",
+      "tipo": "L06-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue la ricerca binaria iterativa della dispensa con lista = [2, 5, 9, 14, 20, 27, 33, 38, 45] e x = 27. Quali valori assume medio, nell'ordine, fino all'uscita dal ciclo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4, 6, 5",
+        "4, 6",
+        "4, 7, 6, 5",
+        "4, 1, 0"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Con x = 27 il primo medio è 4 (20 < 27), poi 6 (33 > 27), poi 5, dove si trova x. Arrotondare per eccesso dà 4, 7, 6, 5; invertire la direzione dà 4, 1, 0; fermarsi quando inizio == fine dà 4, 6 e salta il confronto con 27."
+    },
+    {
+      "id": "L06-T05-02",
+      "tipo": "L06-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue la ricerca binaria iterativa della dispensa con lista = [1, 4, 7, 10, 13, 16, 19, 22] e x = 11 (x non presente). Quali valori assume medio, nell'ordine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3, 5",
+        "3, 5, 4",
+        "4, 2, 3",
+        "3, 1, 0"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Il primo medio è 3 (10 < 11), poi 5 (16 > 11), poi 4 (13 > 11): all'uscita inizio = 4 > fine = 3 e il risultato è None. Arrotondare per eccesso dà 4, 2, 3; invertire la direzione dà 3, 1, 0; fermarsi quando inizio == fine dà 3, 5."
+    },
+    {
+      "id": "L06-T05-03",
+      "tipo": "L06-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con lista = [1, 4, 7, 10, 13, 16, 19, 22] e x = 11 (x non presente), la ricerca binaria iterativa della dispensa termina e restituisce:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "13",
+        "None",
+        "4"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "altro",
+        null,
+        "E6"
+      ],
+      "spiegazione": "All'uscita inizio = 4 > fine = 3: il ciclo finisce senza trovare x e il risultato è None. Restituire il medio dell'ultimo passo (4) è l'errore; 13 è il valore lista[4], non un risultato della funzione."
+    },
+    {
+      "id": "L06-T05-04",
+      "tipo": "L06-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con lista = [1, 4, 7, 10, 13, 16, 19, 22] e x = 22 (presente), quante volte viene eseguito il ciclo while, contando anche il passo che trova x?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "2",
+        "8",
+        "4"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "I medi esaminati sono 3, 5, 6, 7: quattro passi, l'ultimo trova x. Chi ferma il ciclo quando inizio == fine salta l'ultimo passo e conta 3."
+    },
+    {
+      "id": "L06-T05-05",
+      "tipo": "L06-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nel codice seguente la condizione del ciclo è stata cambiata in inizio < fine; il resto è come nella ricerca binaria iterativa della dispensa. Con lista = [1, 4, 7, 10, 13, 16, 19, 22] e x = 22, che cosa restituisce?",
+      "codice": "def ricerca(lista, x):\n    inizio, fine = 0, len(lista) - 1\n    while inizio < fine:\n        medio = (inizio + fine) // 2\n        if lista[medio] == x:\n            return medio\n        elif lista[medio] < x:\n            inizio = medio + 1\n        else:\n            fine = medio - 1\n    return None",
+      "albero": null,
+      "opzioni": [
+        "7",
+        "Il ciclo non termina",
+        "None",
+        "6"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "altro",
+        null,
+        "E6"
+      ],
+      "spiegazione": "medio vale 3, 5, 6 (10, 16, 19 < 22) e inizio arriva a 7 = fine: con inizio < fine il ciclo si ferma senza esaminare lista[7] = 22 e restituisce None. La versione della dispensa, con inizio ≤ fine, farebbe un quarto passo e restituirebbe 7; 6 è il medio dell'ultimo passo, non un risultato della funzione."
+    },
+    {
+      "id": "L06-T05-06",
+      "tipo": "L06-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nel ciclo della ricerca binaria si scrive inizio = medio invece di inizio = medio + 1; il resto del codice è uguale. Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Trova sempre x, perché medio cambia a ogni passo",
+        "Può non terminare: quando inizio == fine e lista[medio] < x, inizio non cambia",
+        "Quando x manca restituisce il medio dell'ultimo passo",
+        "È corretto: termina sempre, perché l'intervallo si accorcia a ogni passo"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E6",
+        "E4"
+      ],
+      "spiegazione": "Con inizio = medio, se lista[medio] < x quando inizio == fine (o quando fine = inizio + 1, perché allora medio = inizio), inizio non cambia e il ciclo gira senza fine. Per esempio con [1, 3, 5] e x = 2: medio 1 (3 > 2) porta fine a 0; poi inizio = fine = 0, lista[0] = 1 < 2 e inizio resta 0 per sempre."
+    },
+    {
+      "id": "L06-T06-01",
+      "tipo": "L06-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista ordinata contiene n = 50 elementi. Nel caso pessimo, quanti elementi lista[medio] esamina al massimo la ricerca binaria iterativa della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "25",
+        "5",
+        "6",
+        "12"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Il massimo è ⌊log₂ 50⌋ + 1 = 6: 2^5 = 32 ≤ 50 < 64 = 2^6. 5 dimentica l'ultima iterazione; 12 conta due confronti per iterazione; 25 è n/2."
+    },
+    {
+      "id": "L06-T06-02",
+      "tipo": "L06-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista ordinata contiene n = 100 elementi. Nel caso pessimo, quante iterazioni del ciclo while esegue al massimo la ricerca binaria iterativa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "50",
+        "100",
+        "6",
+        "7"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E2",
+        "E1",
+        null
+      ],
+      "spiegazione": "2^6 = 64 ≤ 100 < 128 = 2^7: il massimo è ⌊log₂ 100⌋ + 1 = 7. 6 dimentica l'ultima iterazione; 50 è n/2; 100 è n."
+    },
+    {
+      "id": "L06-T06-03",
+      "tipo": "L06-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una ricerca binaria su liste di N elementi esamina al massimo M(N) elementi nel caso pessimo. Se la lunghezza passa da N a 2N, di quanto cresce M?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Di 1",
+        "Resta uguale",
+        "Raddoppia",
+        "Cresce di log₂ N"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Il massimo è ⌊log₂ N⌋ + 1: raddoppiare N aggiunge un solo passo, quindi M cresce di 1. Se si pensa che raddoppino anche i confronti, si sbaglia l'andamento logaritmico."
+    },
+    {
+      "id": "L06-T06-04",
+      "tipo": "L06-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista ordinata contiene n = 5000 elementi. Nel caso pessimo, quante iterazioni del ciclo while esegue al massimo la ricerca binaria iterativa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "12",
+        "13",
+        "2500",
+        "5000"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E2"
+      ],
+      "spiegazione": "2^12 = 4096 ≤ 5000 < 8192 = 2^13: il massimo è ⌊log₂ 5000⌋ + 1 = 13. 12 dimentica l'ultima iterazione; 2500 è n/2; 5000 è n."
+    },
+    {
+      "id": "L06-T06-05",
+      "tipo": "L06-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista ordinata contiene n = 2000 elementi. Nel caso pessimo, quanti elementi lista[medio] vengono esaminati al massimo dalla ricerca binaria iterativa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "10",
+        "1000",
+        "11",
+        "2000"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E2"
+      ],
+      "spiegazione": "2^10 = 1024 ≤ 2000 < 2048 = 2^11: il massimo è 11. 10 dimentica l'ultima iterazione; 1000 è n/2; 2000 è n."
+    },
+    {
+      "id": "L06-T06-06",
+      "tipo": "L06-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una lista ordinata contiene n = 16 elementi. Nel caso pessimo, quanti elementi lista[medio] esamina al massimo la ricerca binaria iterativa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "8",
+        "16",
+        "4",
+        "5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E2",
+        "E1",
+        null
+      ],
+      "spiegazione": "Con n = 2^4 il massimo è k + 1 = 5 passi, perché l'ultimo intervallo di un solo elemento va ancora esaminato. 4 dimentica l'ultima iterazione; 8 è n/2; 16 è n."
+    },
+    {
+      "id": "L06-T07-01",
+      "tipo": "L06-T07",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nella ricerca binaria su una lista ordinata di n elementi, quale situazione dà il caso ottimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "x è nella posizione centrale (n − 1) // 2, con un solo confronto",
+        "x non è presente nella lista",
+        "x è l'ultimo elemento della lista, con un solo confronto",
+        "x è il primo elemento della lista, con un solo confronto"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "E1"
+      ],
+      "spiegazione": "Il primo elemento esaminato è in posizione (n − 1) // 2: se è x basta un confronto, O(1). x primo elemento è il caso ottimo della lineare; x assente è il caso pessimo della binaria; x in ultima posizione non è il caso ottimo."
+    },
+    {
+      "id": "L06-T07-02",
+      "tipo": "L06-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo nel caso pessimo della ricerca binaria iterativa della dispensa, su n elementi ordinati?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(1)",
+        "Θ(n log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Nel caso pessimo l'intervallo si dimezza fino a svuotarsi: Θ(log n). Θ(n) è il caso pessimo della ricerca lineare; Θ(1) è il caso ottimo della binaria."
+    },
+    {
+      "id": "L06-T07-03",
+      "tipo": "L06-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una lista ordinata di n elementi si confrontano la ricerca lineare e la ricerca binaria. Quale affermazione sui due casi estremi è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nel caso ottimo la lineare costa O(1), la binaria Θ(log n); nel caso pessimo Θ(n) e Θ(log n)",
+        "Nel caso ottimo costano entrambe O(1); nel caso pessimo costano entrambe Θ(n)",
+        "Nel caso ottimo costano entrambe O(1); nel caso pessimo la lineare Θ(n), la binaria Θ(log n)",
+        "Il caso ottimo di entrambe è x in prima posizione, O(1); nel caso pessimo Θ(n) e Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "E1"
+      ],
+      "spiegazione": "La lineare trova x al primo confronto se è il primo elemento, la binaria se è in posizione centrale: entrambe O(1) nel caso ottimo. Nel caso pessimo (x assente) la lineare esamina n elementi, Θ(n), la binaria circa log₂ n, Θ(log n). Per la binaria x in prima posizione non è il caso ottimo: servono circa log₂ n passi."
+    },
+    {
+      "id": "L06-T07-04",
+      "tipo": "L06-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale coppia descrive correttamente i casi della ricerca binaria iterativa su una lista ordinata?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ottimo: x assente, Θ(log n); pessimo: x al centro, O(1)",
+        "Ottimo: x primo elemento, O(1); pessimo: x assente, Θ(log n)",
+        "Ottimo: x al centro, O(1); pessimo: x assente, Θ(n)",
+        "Ottimo: x al centro, O(1); pessimo: x assente, Θ(log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E1",
+        "E2",
+        null
+      ],
+      "spiegazione": "x al centro (posizione (n − 1) // 2) costa un solo confronto; x assente è il caso pessimo, con circa log₂ n dimezzamenti: Θ(log n). x primo elemento è il caso ottimo della lineare; Θ(n) è il caso pessimo della lineare; la prima opzione inverte i due casi."
+    },
+    {
+      "id": "L06-T07-05",
+      "tipo": "L06-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una lista ordinata contiene n elementi distinti e x è il primo elemento (indice 0). Quanto costa, al crescere di n, la ricerca binaria iterativa della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n): si va sempre a sinistra, dimezzando l'intervallo fino a un solo elemento",
+        "O(1): x è il primo elemento, quindi basta un confronto",
+        "Θ(n): dal centro bisogna tornare indietro fino all'inizio",
+        "O(1): x è presente, quindi è il caso ottimo"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il primo medio è (n − 1) // 2; poiché x è più piccolo, si va sempre a sinistra e x viene esaminato solo quando l'intervallo si è ridotto a [0, 0], dopo circa log₂ n passi (4 con n = 16, 9 con n = 1000): Θ(log n). x in prima posizione è il caso ottimo della lineare, non della binaria, il cui caso ottimo è x al centro."
+    },
+    {
+      "id": "L06-T07-06",
+      "tipo": "L06-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale affermazione sul costo della ricerca binaria è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n) nel caso pessimo",
+        "O(log n) e Ω(1)",
+        "O(1) nel caso pessimo se x è il primo elemento",
+        "Θ(log n) in ogni caso"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Nel caso ottimo (x al centro) costa O(1), nel caso pessimo (x assente) Θ(log n): ogni esecuzione costa quindi O(log n) e Ω(1). Θ(log n) non vale nel caso ottimo; Θ(n) è il caso pessimo della lineare; con x primo elemento la binaria non costa O(1), ma circa log₂ n passi."
+    },
+    {
+      "id": "L06-T08-01",
+      "tipo": "L06-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'analisi del caso medio della ricerca binaria (n potenza di 2, x in posizione uniforme), quante posizioni sono raggiungibili alla 5ª iterazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5",
+        "n/16",
+        "16",
+        "32"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Alla i-esima iterazione si raggiungono 2^(i−1) posizioni: alla 5ª, 2⁴ = 16. 5 confonde i con n(i); 32 è 2^i; n/16 è la dimensione dell'intervallo, non il numero di posizioni raggiungibili."
+    },
+    {
+      "id": "L06-T08-02",
+      "tipo": "L06-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'analisi del caso medio della ricerca binaria, con n = 64 e x in posizione uniforme, qual è la probabilità che x sia trovato alla 3ª iterazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1/4",
+        "3/64",
+        "1/8",
+        "1/16"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "E1",
+        null
+      ],
+      "spiegazione": "Alla 3ª iterazione si raggiungono 2^(3−1) = 4 posizioni, ciascuna con probabilità 1/64: 4/64 = 1/16. 3/64 usa i al posto di 2^(i−1); 1/8 = 8/64 usa 2^i; 1/4 = 16/64 usa la dimensione dell'intervallo alla 3ª iterazione (64/4 = 16) al posto del numero di posizioni."
+    },
+    {
+      "id": "L06-T08-03",
+      "tipo": "L06-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'analisi del caso medio della ricerca binaria, con n = 16 (potenza di 2) e x in posizione uniforme, quanto vale E secondo la formula della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3 + 1/16",
+        "4",
+        "16",
+        "2"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "E = log₂ n − 1 + 1/n = 4 − 1 + 1/16 = 3 + 1/16. 2 è (log n)/2, che sottostima il valore; 4 è log₂ n; 16 è n."
+    },
+    {
+      "id": "L06-T08-04",
+      "tipo": "L06-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Stesso modello del caso medio della ricerca binaria, con n = 1024 e x in posizione uniforme: quanto vale E secondo la formula della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5",
+        "9 + 1/1024",
+        "512",
+        "10"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "E = log₂ n − 1 + 1/n = 10 − 1 + 1/1024 = 9 + 1/1024. 5 è (log n)/2; 512 è n/2; 10 è log₂ n, non il valore di E."
+    },
+    {
+      "id": "L06-T08-05",
+      "tipo": "L06-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe di complessità del caso medio della ricerca binaria iterativa, secondo l'analisi della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), come la lineare",
+        "Θ(√n)",
+        "Θ(log n), come il caso pessimo",
+        "O(1), come il caso ottimo"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "altro",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Secondo la dispensa E = log n − 1 + 1/n = Θ(log n): la media resta vicina al caso pessimo, perché circa metà delle posizioni si raggiunge solo all'ultima iterazione. Il caso ottimo O(1) non è il caso medio; Θ(n) è la ricerca lineare."
+    },
+    {
+      "id": "L06-T08-06",
+      "tipo": "L06-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Con n = 8 (potenza di 2) e x in posizione uniforme, secondo la formula della dispensa per il caso medio, quanto vale E?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "17",
+        "3",
+        "1,5",
+        "2,125"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "E = log₂ n − 1 + 1/n = 3 − 1 + 1/8 = 2,125 (controllo: Σ i·2^(i−1) = 17, diviso per 8). 1,5 è (log n)/2; 17 è la somma senza dividere per n; 3 è log₂ n."
+    },
+    {
+      "id": "L06-T09-01",
+      "tipo": "L06-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nel caso pessimo, quanto spazio aggiuntivo (oltre alla lista) usa la versione ricorsiva della ricerca binaria che lavora con gli indici inizio e fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(1)",
+        "Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Sono attive insieme circa log₂ n chiamate sullo stack, ciascuna con spazio O(1): Θ(log n). La lista non viene copiata. Θ(1) vale solo per la versione iterativa; Θ(n) sarebbe copiare la lista o chiamarsi n volte."
+    },
+    {
+      "id": "L06-T09-02",
+      "tipo": "L06-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale ricorrenza descrive il tempo della versione ricorsiva con indici, nel caso pessimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n/2) + Θ(n)",
+        "T(n) = T(n/2) + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(1)",
+        "T(n) = T(n−1) + Θ(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E4",
+        "E5"
+      ],
+      "spiegazione": "C'è una sola chiamata su metà intervallo più lavoro O(1): T(n) = T(n/2) + Θ(1) = Θ(log n). 2T(n/2) conta due chiamate, ma ne viene eseguita una sola; T(n − 1) conta un elemento per volta; T(n/2) + Θ(n) è la versione con copie delle sottoliste."
+    },
+    {
+      "id": "L06-T09-03",
+      "tipo": "L06-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Versione ricorsiva che passa sottoliste invece di indici, come nel codice seguente. Qual è il costo nel caso pessimo, in tempo?",
+      "codice": "def ricerca(lista, x):\n    if len(lista) == 0:\n        return None\n    medio = len(lista) // 2\n    if lista[medio] == x:\n        return medio\n    if lista[medio] < x:\n        return ricerca(lista[medio + 1:], x)\n    return ricerca(lista[:medio], x)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n): log n livelli, ciascuno copia Θ(n) elementi",
+        "Θ(log n): lo slicing è gratuito",
+        "Θ(n): le copie costano n/2 + n/4 + … ≤ n",
+        "Θ(n²): n chiamate, ciascuna copia Θ(n) elementi"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E6",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Nel caso pessimo (x assente) parte una sola chiamata per livello, ma lo slicing copia metà dell'intervallo corrente: T(n) = T(n/2) + Θ(n) = Θ(n), perché n/2 + n/4 + … ≤ n. Considerare lo slicing gratuito dà Θ(log n); moltiplicare Θ(n) per log n livelli dà Θ(n log n), ma le copie si dimezzano a ogni livello. Il codice ha anche un altro difetto: restituisce l'indice nella sottolista, non nella lista originale."
+    },
+    {
+      "id": "L06-T09-04",
+      "tipo": "L06-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Versione ricorsiva della dispensa con gli indici inizio e fine (chiamata iniziale con 0 e len(lista) − 1), su lista = [2, 6, 9, 13, 18, 22, 27, 31, 38] e x = 40, che non è presente. Quante chiamate vengono eseguite in tutto, contando la chiamata iniziale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "9",
+        "4",
+        "5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "altro",
+        "E7",
+        null
+      ],
+      "spiegazione": "Gli intervalli sono [0, 8], [5, 8], [7, 8], [8, 8] e infine [9, 8], vuoto: questa quinta chiamata trova inizio > fine e restituisce None. Dimenticarla dà 4; 9 sarebbe una chiamata per elemento, ma la ricorsione dimezza l'intervallo."
+    },
+    {
+      "id": "L06-T09-05",
+      "tipo": "L06-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il codice seguente è la versione ricorsiva della ricerca binaria con gli indici i e f (chiamata iniziale ricerca(lista, x, 0, len(lista) − 1)). Qual è il costo nel caso pessimo, in tempo?",
+      "codice": "def ricerca(lista, x, i, f):\n    if i > f:\n        return None\n    medio = (i + f) // 2\n    if lista[medio] == x:\n        return medio\n    if lista[medio] < x:\n        return ricerca(lista, x, medio + 1, f)\n    return ricerca(lista, x, i, medio - 1)",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(1)",
+        "Θ(n log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "A ogni chiamata ne parte una sola, su metà intervallo, con lavoro O(1): T(n) = T(n/2) + Θ(1) = Θ(log n). Scrivere T(n) = 2T(n/2) + Θ(1) perché ci sono due chiamate darebbe Θ(n), ma una sola viene eseguita."
+    },
+    {
+      "id": "L06-T09-06",
+      "tipo": "L06-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Versione ricorsiva che passa sottoliste invece di indici, come nel codice seguente. Nel caso pessimo, quanto costano il tempo e lo spazio aggiuntivo?",
+      "codice": "def ricerca(lista, x):\n    if len(lista) == 0:\n        return None\n    medio = len(lista) // 2\n    if lista[medio] == x:\n        return medio\n    if lista[medio] < x:\n        return ricerca(lista[medio + 1:], x)\n    return ricerca(lista[:medio], x)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n) in tempo e Θ(n) in spazio",
+        "Θ(n) in tempo e Θ(n) in spazio",
+        "Θ(log n) in tempo e Θ(log n) in spazio",
+        "Θ(n) in tempo e Θ(log n) in spazio"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E6",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Il tempo è Θ(n): le copie costano n/2 + n/4 + … ≤ n (moltiplicare Θ(n) per log n livelli darebbe Θ(n log n), troppo). Lo spazio è Θ(n): ogni chiamata attiva tiene viva la propria sottolista, quindi le copie n/2 + n/4 + … restano insieme sullo stack. Θ(log n) in tempo nasce dal considerare lo slicing gratuito; Θ(log n) in spazio conta solo i record di attivazione e non le copie."
+    },
+    {
+      "id": "L06-T10-01",
+      "tipo": "L06-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una lista non ordinata di n interi bisogna eseguire k = √n ricerche di valori diversi. Quale strategia conviene, e con quale costo totale nel caso pessimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ricerche lineari: Θ(n√n) in totale, perché non serve ordinare",
+        "Ricerca binaria direttamente sulla lista: Θ(√n · log n) in totale",
+        "Ordinare una volta e poi usare la ricerca binaria: Θ(n log n) in totale",
+        "Ordinare una volta e poi usare la ricerca binaria: Θ(√n · log n) in totale"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E2",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Lineare: √n · n = Θ(n√n). Ordinare una volta costa Θ(n log n), più √n ricerche binarie Θ(√n log n): totale Θ(n log n), che cresce meno di n√n. Θ(√n · log n) dimentica il costo dell'ordinamento; la binaria diretta su una lista non ordinata può sbagliare."
+    },
+    {
+      "id": "L06-T10-02",
+      "tipo": "L06-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una lista non ordinata di n elementi si fanno n ricerche di valori diversi. Qual è il costo totale più basso tra le strategie della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ordinare prima di ogni ricerca: Θ(n² log n)",
+        "Ricerche lineari: Θ(n)",
+        "Ricerche lineari: Θ(n²)",
+        "Ordinare una volta, poi n ricerche binarie: Θ(n log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ordinare una volta costa Θ(n log n), poi n ricerche binarie costano Θ(n log n): totale Θ(n log n). Le lineari costano n·n = Θ(n²). Ordinare a ogni ricerca moltiplica il costo dell'ordinamento per n invece di sommarlo una volta sola."
+    },
+    {
+      "id": "L06-T10-03",
+      "tipo": "L06-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quando conviene ordinare una volta e poi cercare con la binaria, invece di cercare linearmente ogni volta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Quando il numero di ricerche k cresce più di log n, per esempio k = Θ(n): lineari Θ(n²), ordinando Θ(n log n)",
+        "Mai, perché ordinare costa più di n",
+        "Solo quando k = 1",
+        "Sempre, perché la ricerca diventa logaritmica"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Con k ricerche: lineare Θ(k·n), ordinando Θ(n log n + k log n). Per k costante conviene la lineare, per k = Θ(log n) le due si equivalgono, per k più grande di log n conviene ordinare (con k = Θ(n): Θ(n²) contro Θ(n log n)). Ordinare non conviene sempre."
+    },
+    {
+      "id": "L06-T10-04",
+      "tipo": "L06-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una lista non ordinata si fanno k = log₂ n ricerche. Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Conviene sempre ordinare, perché ogni ricerca diventa logaritmica",
+        "Le due strategie hanno la stessa classe, Θ(n log n)",
+        "Ordinare e cercare costa Θ(log² n): conviene",
+        "La lineare costa Θ(n) in tutto: conviene"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Lineare: k·n = n log n. Ordinare e cercare: n log n + log² n, cioè Θ(n log n). Ignorare l'ordinamento dà log² n; la lineare non costa Θ(n) in tutto, e ordinare non conviene sempre."
+    },
+    {
+      "id": "L06-T10-05",
+      "tipo": "L06-T10",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Su una lista non ordinata si cerca una sola volta un valore x. Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ordinare costa Θ(log n) con heapsort",
+        "Ordinare e cercare costa Θ(log n): l'ordinamento non conta",
+        "Ordinare e poi cercare costa Θ(n log n), più della lineare Θ(n)",
+        "La ricerca binaria diretta costa Θ(log n) e trova sempre x"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E1",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Il costo dell'ordinamento domina la ricerca: la lineare è più efficiente. La binaria diretta su lista non ordinata può non trovare x; l'ordinamento costa Θ(n log n), non Θ(log n)."
+    },
+    {
+      "id": "L06-T10-06",
+      "tipo": "L06-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Su una lista non ordinata si fanno k = n² ricerche. Ordinando una sola volta e poi usando la ricerca binaria, qual è il costo totale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³ log n), ordinando a ogni ricerca",
+        "Θ(n²), perché la binaria costa O(1)",
+        "Θ(n³), come la lineare",
+        "Θ(n² log n), ordinando una volta sola"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ordinare una volta costa Θ(n log n); le n² ricerche binarie costano n² log n. Il totale è Θ(n² log n), perché il costo dell'ordinamento è sommato, non moltiplicato. La binaria non costa O(1) per ricerca."
+    },
+    {
+      "id": "L06-T11-01",
+      "tipo": "L06-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A è un vettore ordinato di n interi con ripetizioni. Il numero di occorrenze di x si calcola con due ricerche binarie modificate, una per la prima posizione e una per l'ultima. Qual è il costo nel caso pessimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(log n)",
+        "O(1)",
+        "Θ(n log n)",
+        "Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni ricerca binaria modificata costa O(log n): il conteggio, differenza tra le due posizioni, costa O(log n). O(1) è il caso ottimo della ricerca standard (x al centro), non il costo di questo algoritmo: le ricerche modificate non si fermano quando trovano x e fanno sempre circa log₂ n passi."
+    },
+    {
+      "id": "L06-T11-02",
+      "tipo": "L06-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su un vettore ordinato, si trova una occorrenza di x con la ricerca binaria e poi si scorrono i vicini uguali a x. Il costo è O(log n + k), con k occorrenze. Se k = √n, quale classe ha il costo nel caso pessimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(log n)",
+        "Θ(√n)",
+        "Θ(n log n)",
+        "O(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "Il costo è O(log n + k) = O(log n + √n) = Θ(√n). Dire O(log n) ignora le k occorrenze da scorrere; O(1) è il caso ottimo di un solo passo."
+    },
+    {
+      "id": "L06-T11-03",
+      "tipo": "L06-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "A = [1, 3, 3, 5, 5, 5, 5, 8, 9, 9, 12] (indici da 0), x = 5. Per contare le occorrenze si cercano, con due ricerche binarie modificate, p = prima posizione con A[i] ≥ x e q = prima posizione con A[i] > x. Quanto valgono p, q e il numero di occorrenze?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "p = 3, q = 6, occorrenze 3",
+        "p = 5, q = 7, occorrenze 2",
+        "p = 3, q = 7, occorrenze 4",
+        "p = 4, q = 8, occorrenze 4"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Le occorrenze di 5 occupano gli indici da 3 a 6: p = 3, q = 7 e il conteggio è q − p = 4. La ricerca binaria standard si ferma subito a medio = 5 (A[5] = 5): prendere quell'indice come prima occorrenza dà p = 5 e un conteggio sbagliato. p = 3, q = 6 confonde q con l'ultima occorrenza; p = 4, q = 8 conta gli indici da 1."
+    },
+    {
+      "id": "L06-T11-04",
+      "tipo": "L06-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Vettore non ordinato di n interi con ripetizioni, senza tabelle hash. Qual è il costo nel caso pessimo per contare le occorrenze di x, con il metodo migliore della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n), ordinando prima e poi contando con le binarie",
+        "Θ(n²)",
+        "Θ(log n), con la ricerca binaria",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "Su un vettore qualsiasi si deve scorrere tutto: Θ(n), e non si può fare meglio (ordinare costa di più). La binaria richiede un ordine; ordinare prima costa Θ(n log n) e non migliora il conteggio."
+    },
+    {
+      "id": "L06-T11-05",
+      "tipo": "L06-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A è un vettore ordinato di n interi. Per contare gli elementi con a ≤ A[i] ≤ b si trova con una ricerca binaria modificata la prima posizione con A[i] ≥ a, poi si scorre verso destra contando finché A[i] ≤ b. Qual è il costo nel caso pessimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(log n)",
+        "O(1)",
+        "Θ(n log n)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "La ricerca costa O(log n), ma lo scorrimento visita tutti i k elementi dell'intervallo: O(log n + k). Se tutti gli elementi stanno in [a, b], k = n e il costo è Θ(n). Per avere O(log n) serve una seconda ricerca binaria, della prima posizione con A[i] > b, al posto dello scorrimento."
+    },
+    {
+      "id": "L06-T11-06",
+      "tipo": "L06-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su un vettore ordinato con ripetizioni, si cerca la prima occorrenza di x con la ricerca binaria. Quando A[medio] == x, che cosa si fa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si restituisce medio + 1",
+        "Si memorizza medio e si continua a sinistra (fine = medio − 1)",
+        "Si ferma e si restituisce medio",
+        "Si continua a destra (inizio = medio + 1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Per la prima occorrenza bisogna cercare ancora a sinistra, salvando il candidato. Fermarsi e restituire medio è la ricerca standard, che non garantisce la prima occorrenza."
+    },
+    {
+      "id": "L06-T12-01",
+      "tipo": "L06-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "A è un vettore non ordinato di n interi, tutti compresi tra 0 e M, con M = n². Qual è il costo nel caso pessimo della funzione seguente, che decide se A contiene duplicati?",
+      "codice": "def duplicati(A, M):\n    visto = [False] * (M + 1)\n    for v in A:\n        if visto[v]:\n            return True\n        visto[v] = True\n    return False",
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n³)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Creare il vettore visto di M + 1 = n² + 1 posizioni costa Θ(M) = Θ(n²); il ciclo poi costa O(n). Totale Θ(n + M) = Θ(n²). Θ(n) guarda solo il ciclo e non vede il costo nascosto di [False] * (M + 1)."
+    },
+    {
+      "id": "L06-T12-02",
+      "tipo": "L06-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A è un vettore non ordinato di n interi, senza alcuna ipotesi sui valori. Per decidere se A contiene duplicati (senza tabelle hash) si può confrontare ogni coppia, oppure ordinare con mergesort e poi confrontare gli adiacenti. Qual è il costo nel caso pessimo della migliore delle due strategie?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²): confrontare tutte le coppie",
+        "Θ(n): si ordina e si confrontano gli adiacenti",
+        "Θ(log n): con la ricerca binaria",
+        "Θ(n log n): ordinare e confrontare gli adiacenti"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Mergesort costa Θ(n log n), poi i duplicati sono adiacenti e basta una scansione Θ(n): totale Θ(n log n), meglio del Θ(n²) del confronto di tutte le coppie. Θ(n) per 'ordina e scandisci' dimentica il costo dell'ordinamento; la ricerca binaria non serve, perché non c'è un valore da cercare e il vettore non è ordinato."
+    },
+    {
+      "id": "L06-T12-03",
+      "tipo": "L06-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Costo nel caso pessimo della funzione seguente, applicata a un vettore A non ordinato di n interi senza duplicati.",
+      "codice": "def duplicati(A):\n    for i in range(len(A)):\n        if A[i] in A[i + 1:]:\n            return True\n    return False",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo esterno fa n passi; a ogni passo lo slicing A[i + 1:] copia n − i − 1 elementi e l'operatore in li scorre tutti (non ci sono duplicati). In totale Θ(n²). Θ(n) nasce dal leggere il codice come un semplice ciclo, senza vedere il costo nascosto di in e dello slicing."
+    },
+    {
+      "id": "L06-T12-04",
+      "tipo": "L06-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A è un vettore ordinato di n interi. Per decidere se ci sono duplicati, per ogni i si cerca A[i] con la ricerca binaria della dispensa nelle posizioni da i + 1 a n − 1 (usando gli indici, senza copie). Qual è il costo nel caso pessimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Nel caso pessimo (nessun duplicato) si fanno n − 1 ricerche, ciascuna fallisce dopo circa log₂(n − i) passi: in tutto Θ(n log n). Θ(log n) conta una sola ricerca binaria. La strategia è corretta ma spreca: confrontando ogni elemento con il successivo basta Θ(n)."
+    },
+    {
+      "id": "L06-T12-05",
+      "tipo": "L06-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Vettore non ordinato di n interi, senza tabelle hash. Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Confrontare tutte le coppie costa Θ(n), perché ci si ferma alla prima coppia uguale",
+        "Ordinare e scandire costa Θ(n²), peggio di confrontare tutte le coppie",
+        "Ordinare con mergesort e scandire gli adiacenti costa Θ(n log n), meglio di Θ(n²)",
+        "Ordinare costa Θ(n), quindi la strategia costa Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il costo dell'ordinamento è Θ(n log n) e domina la scansione. Dire che ordinare costa Θ(n) dimentica il costo dell'ordinamento; confrontare tutte le coppie costa Θ(n²) nel caso pessimo."
+    },
+    {
+      "id": "L06-T12-06",
+      "tipo": "L06-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Costo nel caso pessimo della funzione seguente, applicata a un vettore ordinato A di n interi.",
+      "codice": "def duplicati_ordinato(A):\n    for i in range(len(A) - 1):\n        if A[i] == A[i + 1]:\n            return True\n    return False",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "O(1)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Un solo ciclo, con un confronto per ogni coppia di adiacenti: Θ(n) nel caso pessimo, cioè quando non ci sono duplicati. O(1) è il caso in cui il duplicato è in testa; Θ(n²) è il costo della strategia a tutte le coppie."
+    },
+    {
+      "id": "L06-T13-01",
+      "tipo": "L06-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su un vettore ordinato di n interi si decide se esistono due elementi distinti con somma x facendo, per ogni i, una ricerca binaria di x − A[i] tra le posizioni successive. Qual è il costo nel caso pessimo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Ci sono n ricerche da O(log n) ciascuna: Θ(n log n). Θ(n) è il costo della scansione a due indici, che non è questa strategia; Θ(n²) è il doppio ciclo su tutte le coppie."
+    },
+    {
+      "id": "L06-T13-02",
+      "tipo": "L06-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A è un vettore ordinato di n = 10 interi. Il codice seguente decide se esistono due elementi distinti con somma x. Al variare di x, quante iterazioni del ciclo while esegue al massimo?",
+      "codice": "def coppia(A, x):\n    i, j = 0, len(A) - 1\n    while i < j:\n        s = A[i] + A[j]\n        if s == x:\n            return True\n        if s < x:\n            i = i + 1\n        else:\n            j = j - 1\n    return False",
+      "albero": null,
+      "opzioni": [
+        "4",
+        "9",
+        "45",
+        "10"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "E4"
+      ],
+      "spiegazione": "A ogni iterazione si sposta un solo indice di una posizione: la distanza j − i parte da 9 e cala di 1, quindi al più n − 1 = 9 iterazioni (per esempio con x più grande di ogni somma). 45 = 10·9/2 è il numero di coppie del doppio ciclo; 4 suppone un dimezzamento che non c'è; 10 è ciò che si otterrebbe con la condizione i ≤ j."
+    },
+    {
+      "id": "L06-T13-03",
+      "tipo": "L06-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Vettore ordinato A = [2, 5, 7, 10, 13, 16, 20] e x = 23. Si usa la scansione a due indici (i = 0, j = n − 1; somma < x: avanza i; somma > x: arretra j; ci si ferma quando trova la coppia o quando i ≥ j). Quante iterazioni del ciclo servono per trovare la coppia?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "6",
+        "4",
+        "7"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E5",
+        null,
+        "altro"
+      ],
+      "spiegazione": "2 + 20 = 22 < 23: avanza i. 5 + 20 = 25 > 23: arretra j. 5 + 16 = 21 < 23: avanza i. 7 + 16 = 23: coppia trovata alla 4ª iterazione. Spostando l'indice sbagliato (arretrare j quando la somma è minore di x) si fanno 6 iterazioni senza trovare la coppia."
+    },
+    {
+      "id": "L06-T13-04",
+      "tipo": "L06-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Vettore ordinato A = [1, 3, 4, 6, 8, 11, 14] e x = 100. Quante iterazioni fa la scansione a due indici con la condizione i < j prima di restituire False?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "7",
+        "5",
+        "14",
+        "6"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ogni iterazione avanza i (la somma resta sotto x), finché i = j = 6: sei iterazioni. Con la condizione i ≤ j si farebbe una settima iterazione, sommando un elemento con se stesso."
+    },
+    {
+      "id": "L06-T13-05",
+      "tipo": "L06-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Vettore ordinato A = [3, 6, 11] e x = 12. Con la scansione a due indici che usa la condizione i < j, quale risultato si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "False",
+        "None",
+        "Errore di indice",
+        "True"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "Le somme provate sono 14 (arretra j) e poi 9 (avanza i): ora i = j = 1 e il ciclo finisce con False. Con i ≤ j si sommerebbe 6 con se stesso (6 + 6 = 12) e si otterrebbe True, che è sbagliato: servono due elementi distinti."
+    },
+    {
+      "id": "L06-T13-06",
+      "tipo": "L06-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Vettore ordinato A = [1, 4, 6, 9, 12] e x = 15. Scansione a due indici (i = 0, j = 4; somma < x: avanza i; somma > x: arretra j). Che cosa cambia al primo passo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La coppia è trovata al primo passo",
+        "i passa da 0 a 1",
+        "j passa da 4 a 3",
+        "i passa da 0 a 1 e j da 4 a 3"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "1 + 12 = 13 < 15: si avanza i. Arretrare j sarebbe l'errore: sposta l'indice sbagliato, e la somma 1 + 9 = 10 si allontana da 15."
+    },
+    {
+      "id": "L06-T14-01",
+      "tipo": "L06-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Costo del miglior algoritmo per trovare il minimo valore maggiore di x, nel caso peggiore: quale coppia è corretta, per (a) un vettore qualsiasi e (b) un vettore ordinato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "(Θ(n), Θ(n))",
+        "(O(log n), O(log n))",
+        "(Θ(n), O(log n))",
+        "(Θ(n log n), O(log n))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E3",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Vettore qualsiasi: una scansione che tiene il minimo tra gli elementi maggiori di x, Θ(n). Vettore ordinato: ricerca binaria modificata, O(log n). Dare O(log n) a un vettore qualsiasi ignora che bisogna guardare tutti gli elementi; ordinare prima costa di più."
+    },
+    {
+      "id": "L06-T14-02",
+      "tipo": "L06-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Lista = [5, 8, 15, 21, 27, 30, 44, 52, 60], x = 35 (x non presente). Si esegue la ricerca binaria iterativa della dispensa. Quanto valgono inizio e fine all'uscita dal ciclo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "inizio = 6, fine = 6",
+        "inizio = 5, fine = 4",
+        "inizio = 5, fine = 5",
+        "inizio = 6, fine = 5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "altro",
+        "E2",
+        null
+      ],
+      "spiegazione": "(0, 8): medio 4, 27 < 35 → inizio = 5. (5, 8): medio 6, 44 > 35 → fine = 5. (5, 5): medio 5, 30 < 35 → inizio = 6. Uscita con inizio = 6 > fine = 5. Fermarsi quando inizio == fine dà inizio = 5 e fine = 5, saltando l'ultimo confronto."
+    },
+    {
+      "id": "L06-T14-03",
+      "tipo": "L06-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Stessa lista [5, 8, 15, 21, 27, 30, 44, 52, 60] e x = 35 (non presente). Qual è il minimo valore della lista maggiore di x, secondo la ricerca binaria della dispensa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "44",
+        "6",
+        "Non esiste",
+        "30"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "E1"
+      ],
+      "spiegazione": "All'uscita inizio = 6 e lista[6] = 44 è il minimo valore maggiore di 35. lista[fine] = 30 è il massimo minore di x: prenderlo è l'errore tipico. 6 è l'indice, non il valore."
+    },
+    {
+      "id": "L06-T14-04",
+      "tipo": "L06-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Stessa lista [5, 8, 15, 21, 27, 30, 44, 52, 60] e x = 70, maggiore di tutti gli elementi. Qual è il risultato della ricerca del minimo valore maggiore di x?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5",
+        "None",
+        "Indice 9, fuori dalla lista",
+        "60"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E5",
+        "E1"
+      ],
+      "spiegazione": "Dopo il ciclo inizio = 9 = n: nessun elemento è maggiore di x, quindi la risposta è None. Chi dimentica questo caso legge lista[inizio] fuori dalla lista, o prende lista[fine] = 60, che è il massimo minore di x."
+    },
+    {
+      "id": "L06-T14-05",
+      "tipo": "L06-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Lista ordinata senza ripetizioni = [5, 8, 15, 21, 27, 30, 44, 52, 60], x = 30, che è presente. Qual è il minimo valore della lista maggiore di x?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "27",
+        "6",
+        "44",
+        "30"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il valore successivo a 30 nella lista è 44. 27 è il predecessore; 6 è l'indice di 44, non il valore; 30 è x stesso, non è maggiore di x."
+    },
+    {
+      "id": "L06-T14-06",
+      "tipo": "L06-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Lista ordinata senza ripetizioni = [5, 8, 15, 21, 27, 30, 44, 52, 60], x = 26 (non presente). Dopo la ricerca binaria della dispensa, qual è il minimo valore della lista maggiore di x?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4",
+        "None",
+        "21",
+        "27"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "E1",
+        null
+      ],
+      "spiegazione": "(0, 8): medio 4, 27 > 26 → fine = 3. (0, 3): medio 1, 8 < 26 → inizio = 2. (2, 3): medio 2, 15 < 26 → inizio = 3. (3, 3): medio 3, 21 < 26 → inizio = 4. Uscita con inizio = 4: lista[4] = 27. lista[fine] = 21 è il massimo minore di x."
+    }
+  ]
+}

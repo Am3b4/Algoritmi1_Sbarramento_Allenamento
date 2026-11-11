@@ -1,0 +1,444 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 5,
+    "titolo": "Come risolvere equazioni di ricorrenza (parte 2): metodo di sostituzione e teorema principale",
+    "file": "PL5.pdf",
+    "contenuti": [
+      "I quattro metodi di risoluzione delle ricorrenze (iterativo, albero, sostituzione, teorema principale); in questa lezione gli ultimi due",
+      "Metodo di sostituzione: ipotesi sulla soluzione, eliminazione della notazione asintotica con costanti (a, b), caso base, ipotesi induttiva, passo induttivo, scelta delle costanti; O e Ω dimostrati separatamente",
+      "Esempio 1: T(n) = T(n − 1) + Θ(n) = Θ(n²), con c = max{a, b} per O e c = min{a/2, b} per Ω",
+      "Esempio 2: T(n) = 2T(n/2) + Θ(1) = Θ(n), con l'ipotesi rafforzata cn − d (d ≥ a, c − d ≥ b per O; d ≤ a, c − d ≤ b per Ω)",
+      "Teorema principale per T(n) = a·T(n/b) + f(n): a ≥ 1 numero di sottoproblemi, b > 1 fattore di divisione, f(n) costo di divisione e ricombinazione; confronto tra f(n) e n^(log_b a)",
+      "I tre casi: f ∈ O(n^(log_b a − ε)) → Θ(n^(log_b a)); f ∈ Θ(n^(log_b a)) → Θ(n^(log_b a) log n); f ∈ Ω(n^(log_b a + ε)) con condizione di regolarità a·f(n/b) ≤ c·f(n), c < 1 → Θ(f(n))",
+      "Limiti del teorema: f dominata ma non fortemente (2T(n/2) + n/log n), f dominante ma non fortemente (2T(n/2) + n log n); in questi casi si usano iterazione o sostituzione",
+      "Esercizi 1–6, 8, 11–13 con soluzioni (la numerazione della dispensa salta 7, 9, 10)"
+    ],
+    "nota": "Due domande delle prove ufficiali vengono da questa lezione: maggio 2026 domanda 4 (significato del parametro a) e luglio 2026 domanda 2 (T(n) = T(n/2) + Θ(log² n): teorema non applicabile). Maggio domanda 3 (T(n) = T(n/2) + Θ(1) → Θ(log n)) si risolve con il caso 2, ma anche con il metodo iterativo della Lezione 4. Il metodo iterativo e quello dell'albero sono nella Lezione 4: qui compaiono solo come opzioni da riconoscere. Errore ricorrente dello studente: confrontare f(n) con n (o con n log n) senza aver calcolato prima n^(log_b a)."
+  },
+  "tipi": [
+    {
+      "id": "L05-T01",
+      "titolo": "Significato dei parametri a, b, f(n)",
+      "argomento": "Teorema principale: enunciato",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 5, 'Teorema principale delle ricorrenze' (a ≥ 1 numero di sottoproblemi, b > 1 fattore di divisione, f(n) costo della divisione/combinazione). Prova di maggio 2026, domanda 4 (il parametro a rappresenta il numero dei sottoproblemi).",
+      "descrizione": "Si chiede che cosa rappresenta uno dei tre elementi della ricorrenza T(n) = a·T(n/b) + f(n), oppure quali vincoli devono rispettare a e b, oppure quali valori hanno a, b, f per un algoritmo noto descritto a parole.",
+      "conoscenze": [
+        "a ≥ 1: numero di sottoproblemi (chiamate ricorsive) generati a ogni livello.",
+        "b > 1: fattore di divisione; ogni sottoproblema ha dimensione n/b.",
+        "f(n): costo del lavoro non ricorsivo, cioè dividere il problema e ricombinare le soluzioni.",
+        "La profondità della ricorsione è log_b n; il numero di foglie è a^(log_b n) = n^(log_b a).",
+        "Esempi: mergesort a = 2, b = 2, f = Θ(n); ricerca binaria a = 1, b = 2, f = Θ(1)."
+      ],
+      "procedimento": [
+        "Associare a al coefficiente davanti a T, b al divisore dentro T, f al termine additivo.",
+        "Se la domanda parla di un algoritmo: a = quante chiamate ricorsive, b = di quanto si riduce l'input, f = lavoro fuori dalle chiamate."
+      ],
+      "trappole": [
+        "Scambiare a e b (dire che a è il fattore di divisione).",
+        "Dire che a è la dimensione dell'input o l'altezza dell'albero (distrattori della prova di maggio).",
+        "Dire che f(n) è il costo delle chiamate ricorsive invece del lavoro fuori da esse.",
+        "Pensare che a possa essere minore di 1 o b uguale a 1."
+      ],
+      "come_generare_varianti": "Chiedere a turno il significato di a, di b o di f(n), oppure i vincoli (a ≥ 1, b > 1), oppure i valori di a, b, f per un algoritmo descritto a parole (mergesort, ricerca binaria, un algoritmo che fa 3 chiamate su metà input con lavoro lineare). Distrattori presi dalla prova di maggio: la dimensione dell'input, il costo della parte iterativa (se la domanda non è su f), l'altezza dell'albero; più lo scambio tra a e b. Una sola opzione deve descrivere il parametro richiesto."
+    },
+    {
+      "id": "L05-T02",
+      "titolo": "Enunciato dei tre casi",
+      "argomento": "Teorema principale: enunciato",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 5, 'Teorema principale delle ricorrenze' e 'Teorema principale — esempi di applicazione' (caso 1 → Θ(n^(log_b a)), caso 2 → Θ(n^(log_b a) log n), caso 3 → Θ(f(n))).",
+      "descrizione": "Si chiede la condizione di uno dei tre casi o la soluzione che il teorema dà in quel caso, in forma generale (senza una ricorrenza numerica).",
+      "conoscenze": [
+        "Caso 1: f(n) ∈ O(n^(log_b a − ε)) per qualche ε > 0 → T(n) = Θ(n^(log_b a)).",
+        "Caso 2: f(n) ∈ Θ(n^(log_b a)) → T(n) = Θ(n^(log_b a) · log n).",
+        "Caso 3: f(n) ∈ Ω(n^(log_b a + ε)) per qualche ε > 0 e a·f(n/b) ≤ c·f(n) per una costante c < 1 e n grande → T(n) = Θ(f(n)).",
+        "Il confronto è sempre tra f(n) e n^(log_b a): vince il più grande; in parità si aggiunge un fattore log n.",
+        "Nei casi 1 e 3 la differenza deve essere polinomiale (un fattore n^ε), non solo logaritmica."
+      ],
+      "procedimento": [
+        "Ricordare che si confronta f(n) con n^(log_b a).",
+        "Associare: f più piccola → domina n^(log_b a); uguali → n^(log_b a) · log n; f più grande (con regolarità) → domina f."
+      ],
+      "trappole": [
+        "Scrivere la condizione del caso 1 come f(n) ∈ O(n^(log_b a)) senza ε (così includerebbe il caso 2 e le differenze logaritmiche).",
+        "Ricordare la soluzione del caso 2 come Θ(n log n) (quella di mergesort) invece di Θ(n^(log_b a) log n).",
+        "Scambiare le soluzioni dei casi 1 e 3.",
+        "Dimenticare la condizione di regolarità nel caso 3."
+      ],
+      "come_generare_varianti": "Chiedere la soluzione di un caso (1, 2 o 3) o la condizione di un caso, oppure 'quale affermazione sul teorema principale è corretta'. Distrattori: la soluzione di un altro caso; Θ(n log n) per il caso 2; la condizione senza ε; il caso 3 senza regolarità; Θ(f(n) · log n), ma solo per i casi 1 e 3: nel caso 2 f(n) = Θ(n^(log_b a)) e Θ(f(n) · log n) è proprio la risposta giusta. Scrivere le opzioni in forma generale con a, b, f(n), in modo che una sola sia esatta."
+    },
+    {
+      "id": "L05-T03",
+      "titolo": "Calcolare n^(log_b a) prima di confrontare",
+      "argomento": "Teorema principale: confronto",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 5, 'Teorema principale delle ricorrenze' (il comportamento dipende dal confronto tra f(n) e n^(log_b a)) ed Esercizi 1, 3, 5 (n^(log₂ 3), n², n⁴). Identità a^(log_b n) = n^(log_b a): Dispensa 1 (logaritmi).",
+      "descrizione": "Data una ricorrenza T(n) = a·T(n/b) + f(n), si chiede la funzione n^(log_b a) con cui confrontare f(n), oppure il valore dell'esponente log_b a, oppure il numero di foglie dell'albero (a^(log_b n)). È il passo da cui parte ogni applicazione del teorema.",
+      "conoscenze": [
+        "log_b a è l'esponente x tale che b^x = a: log₂ 4 = 2, log₂ 8 = 3, log₃ 9 = 2, log₄ 2 = 1/2, log₄ 8 = 3/2, log₂ 16 = 4.",
+        "Se a non è una potenza di b l'esponente non è intero: log₂ 3 ≈ 1,585, log₂ 7 ≈ 2,807, log₃ 2 ≈ 0,63.",
+        "a = 1 dà sempre n^0 = 1, qualunque sia b.",
+        "a^(log_b n) = n^(log_b a): numero di foglie dell'albero della ricorsione.",
+        "a = b dà sempre n^1 = n: solo in questo caso il confronto è con n."
+      ],
+      "procedimento": [
+        "Leggere a (coefficiente di T) e b (divisore dentro T).",
+        "Calcolare log_b a chiedendosi 'a quale potenza devo elevare b per ottenere a?'.",
+        "Scrivere n^(log_b a) e solo dopo confrontarlo con f(n)."
+      ],
+      "trappole": [
+        "Confrontare sempre con n, come se fosse sempre a = b (errore tipico dello studente).",
+        "Calcolare a/b invece di log_b a (8T(n/4) → n² invece di n^(3/2)).",
+        "Scambiare base e argomento: log_a b invece di log_b a (8T(n/4) → n^(2/3)).",
+        "Con a = 1 scrivere n invece di n^0 = 1."
+      ],
+      "come_generare_varianti": "Scegliere a e b con log_b a intero (4 e 2, 9 e 3, 8 e 2, 16 e 4), frazionario esatto (2 e 4 → 1/2, 8 e 4 → 3/2, 27 e 9 → 3/2) o irrazionale (3 e 2, 7 e 2, 5 e 4). Chiedere n^(log_b a), oppure il numero di foglie a^(log_b n). Distrattori obbligati: n (confronto di default), n^(a/b), n^(log_a b). Controllare che i tre distrattori siano diversi dalla risposta (per esempio con a = b = 2 non funzionano: evitare a = b)."
+    },
+    {
+      "id": "L05-T04",
+      "titolo": "A quale caso appartiene la ricorrenza",
+      "argomento": "Teorema principale: confronto",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Dispensa 5, 'Teorema principale — esempi di applicazione' ed Esercizi 1, 3, 4, 5, 11. Stesso formato della prova di luglio 2026, domanda 2 ('A quale caso del Teorema principale appartiene la ricorrenza?', opzioni: primo, secondo, terzo caso, non applicabile).",
+      "descrizione": "Data una ricorrenza della forma a·T(n/b) + f(n) a cui il teorema si applica, si chiede a quale dei tre casi appartiene. Le opzioni sono di solito le quattro della prova di luglio: primo caso, secondo caso, terzo caso, teorema non applicabile.",
+      "conoscenze": [
+        "Si confronta f(n) con n^(log_b a): f polinomialmente più piccola → caso 1; stesso ordine → caso 2; polinomialmente più grande (con regolarità) → caso 3.",
+        "Se f(n) = Θ(n^k): k < log_b a caso 1, k = log_b a caso 2, k > log_b a caso 3 (la regolarità vale automaticamente).",
+        "Con a = 1 si confronta con n^0 = 1: f = Θ(1) è caso 2, f = Θ(n^k) con k > 0 è caso 3."
+      ],
+      "procedimento": [
+        "Calcolare log_b a (vedi L05-T03).",
+        "Scrivere f(n) come n^k (con k anche frazionario) e confrontare k con log_b a.",
+        "Se f non è una potenza pura (contiene log n), controllare se la differenza è solo logaritmica (vedi L05-T09)."
+      ],
+      "trappole": [
+        "Confrontare f con n invece che con n^(log_b a): 2T(n/4) + Θ(n) scambiato per caso 2, 3T(n/2) + Θ(n) scambiato per caso 2.",
+        "Pensare che un f(n) 'grande' come n² sia sempre caso 3 (16T(n/2) + Θ(n²) è caso 1).",
+        "Pensare che f = Θ(1) sia sempre caso 1 (con a = 1 è caso 2).",
+        "Rispondere 'non applicabile' perché log_b a non è intero."
+      ],
+      "come_generare_varianti": "Usare ricorrenze con f(n) = Θ(n^k) o Θ(1) e a, b scelti in modo che il confronto con n sia fuorviante: 2T(n/4) + Θ(n) (caso 3), 3T(n/2) + Θ(n) (caso 1), 16T(n/2) + Θ(n²) (caso 1), 9T(n/3) + Θ(n²) (caso 2), T(n/2) + Θ(1) (caso 2), 4T(n/2) + Θ(√n) (caso 1), 2T(n/2) + Θ(n³) (caso 3). Opzioni fisse: primo, secondo, terzo caso, non applicabile (la risposta qui non deve mai essere 'non applicabile': quello è L05-T09 e L05-T10). Evitare f con fattori logaritmici."
+    },
+    {
+      "id": "L05-T05",
+      "titolo": "Soluzione quando domina n^(log_b a) (caso 1)",
+      "argomento": "Teorema principale: soluzione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 5, 'Teorema principale — esempi di applicazione' (2T(n/2) + Θ(1) → Θ(n)) ed Esercizi 1 (3T(n/2) + Θ(n) → Θ(n^(log₂ 3))), 3 (4T(n/2) + Θ(n) → Θ(n²)), 5 (16T(n/2) + Θ(n²) → Θ(n⁴)).",
+      "descrizione": "Si chiede la soluzione Θ di una ricorrenza in cui f(n) è polinomialmente più piccola di n^(log_b a). La soluzione è Θ(n^(log_b a)) e non dipende da f. È il tipo su cui lo studente sbaglia di più: confronta f con n e risponde Θ(n log n) o Θ(f(n)).",
+      "conoscenze": [
+        "Caso 1: T(n) = Θ(n^(log_b a)); il costo è dominato dalle foglie dell'albero.",
+        "3T(n/2) + Θ(n) = Θ(n^(log₂ 3)) ≈ Θ(n^1,585); 4T(n/2) + Θ(n) = Θ(n²); 16T(n/2) + Θ(n²) = Θ(n⁴); 7T(n/2) + Θ(n²) = Θ(n^(log₂ 7)); 2T(n/2) + Θ(1) = Θ(n).",
+        "n^(log₂ 3) non si semplifica: è strettamente tra n log n e n²."
+      ],
+      "procedimento": [
+        "Calcolare n^(log_b a).",
+        "Verificare che f(n) sia più piccola di un fattore polinomiale n^ε.",
+        "Rispondere Θ(n^(log_b a)), lasciando l'esponente in forma esatta se non è intero."
+      ],
+      "trappole": [
+        "3T(n/2) + Θ(n) scambiato per Θ(n log n): confronto con n invece che con n^(log₂ 3) (errore tipico dello studente).",
+        "Rispondere Θ(f(n)), come se il termine non ricorsivo dominasse sempre.",
+        "Rispondere Θ(n^(log_b a) · log n), applicando il caso 2.",
+        "Calcolare n^(a/b) (3T(n/2) → n^(3/2)) o n^(log_a b)."
+      ],
+      "come_generare_varianti": "Scegliere a, b, f con f = Θ(n^k) e k < log_b a: (3, 2, n), (4, 2, n), (16, 2, n²), (7, 2, n²), (8, 2, n²), (9, 3, n), (2, 2, 1), (4, 2, √n). Preferire combinazioni in cui f(n) = n e a ≠ b, così il confronto sbagliato con n porta al caso 2. Distrattori: Θ(n log n) o Θ(f(n) · log n) (caso 2 sbagliato), Θ(f(n)) (caso 3 sbagliato), Θ(n^(a/b)) o Θ(n^(log_a b)) (esponente sbagliato). Controllare che nessun distrattore coincida con la risposta (per esempio con a/b = log_b a)."
+    },
+    {
+      "id": "L05-T06",
+      "titolo": "Soluzione nel caso 2 (fattore log n)",
+      "argomento": "Teorema principale: soluzione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 5, 'Teorema principale — esempi di applicazione' (2T(n/2) + Θ(n) → Θ(n log n)). Prova di maggio 2026, domanda 3 (T(n) = T(n/2) + Θ(1) → Θ(log n)), risolvibile anche col metodo iterativo (Lezione 4). La domanda di maggio 3 è conteggiata come frequenza alta nel tipo L04-T04 (metodo iterativo), per non contarla due volte.",
+      "descrizione": "Si chiede la soluzione Θ di una ricorrenza in cui f(n) ha lo stesso ordine di n^(log_b a). La soluzione è n^(log_b a) moltiplicato per log n.",
+      "conoscenze": [
+        "Caso 2: T(n) = Θ(n^(log_b a) · log n); tutti i log_b n livelli dell'albero costano circa uguale.",
+        "T(n/2) + Θ(1) = Θ(log n) (ricerca binaria: n^0 = 1, quindi 1 · log n).",
+        "2T(n/2) + Θ(n) = Θ(n log n) (mergesort); 4T(n/2) + Θ(n²) = Θ(n² log n); 9T(n/3) + Θ(n²) = Θ(n² log n); 4T(n/4) + Θ(n) = Θ(n log n); 2T(n/4) + Θ(√n) = Θ(√n log n).",
+        "La base del logaritmo non conta."
+      ],
+      "procedimento": [
+        "Calcolare n^(log_b a) e verificare che f(n) = Θ(n^(log_b a)).",
+        "Moltiplicare n^(log_b a) per log n."
+      ],
+      "trappole": [
+        "Rispondere Θ(f(n)) dimenticando il fattore log n (4T(n/2) + Θ(n²) → Θ(n²)).",
+        "Rispondere sempre Θ(n log n) per ricordo di mergesort.",
+        "Con a = 1 e f = Θ(1) rispondere Θ(1) o Θ(n) invece di Θ(log n).",
+        "Moltiplicare per log_b a o per b invece che per log n.",
+        "Moltiplicare n^(log_b a) per n invece che per log n, ottenendo Θ(n^(log_b a + 1)) (4T(n/2) + Θ(n²) → Θ(n³))."
+      ],
+      "come_generare_varianti": "Scegliere a, b e f = Θ(n^(log_b a)): (1, 2, 1), (1, 3, 1), (2, 2, n), (4, 2, n²), (9, 3, n²), (8, 2, n³), (2, 4, √n), (3, 9, √n). Distrattori: Θ(f(n)) senza log, Θ(n log n) quando la risposta non lo è, Θ(n^(log_b a + 1)), Θ(log² n) per a = 1. Per a = 1 e f = Θ(1) usare anche il formato della prova di maggio (opzioni Θ(n²), Θ(n), Θ(log n), Θ(n log n))."
+    },
+    {
+      "id": "L05-T07",
+      "titolo": "Soluzione quando domina f(n) (caso 3)",
+      "argomento": "Teorema principale: soluzione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 5, 'Teorema principale — esempi di applicazione' (T(n/2) + Θ(n²) → Θ(n²)) ed Esercizi 4 (2T(n/2) + Θ(n³) → Θ(n³)) e 11 (T(n/2) + Θ(n²) → Θ(n²)).",
+      "descrizione": "Si chiede la soluzione Θ di una ricorrenza in cui f(n) è polinomialmente più grande di n^(log_b a) e soddisfa la regolarità. La soluzione è Θ(f(n)): il costo è dominato dalla radice.",
+      "conoscenze": [
+        "Caso 3: T(n) = Θ(f(n)).",
+        "Per f(n) = Θ(n^k) con k > log_b a la regolarità vale sempre: a·(n/b)^k = (a/b^k)·n^k e a/b^k < 1.",
+        "2T(n/2) + Θ(n³) = Θ(n³); T(n/2) + Θ(n²) = Θ(n²); T(n/2) + Θ(n) = Θ(n); 4T(n/2) + Θ(n³) = Θ(n³); 2T(n/4) + Θ(n) = Θ(n)."
+      ],
+      "procedimento": [
+        "Calcolare n^(log_b a) e verificare che f(n) sia più grande di un fattore n^ε.",
+        "Controllare la regolarità (automatica per i polinomi).",
+        "Rispondere Θ(f(n))."
+      ],
+      "trappole": [
+        "Aggiungere un fattore log n (Θ(f(n) · log n)) per analogia con mergesort.",
+        "Rispondere Θ(n^(log_b a)), applicando il caso 1.",
+        "Rispondere Θ(n^(log_b a) · log n), applicando il caso 2.",
+        "Con T(n/2) + Θ(n) rispondere Θ(n log n) o Θ(log n) pensando alla ricerca binaria."
+      ],
+      "come_generare_varianti": "Scegliere a, b, f = Θ(n^k) con k > log_b a: (1, 2, n), (1, 2, n²), (2, 2, n²), (2, 2, n³), (4, 2, n³), (3, 2, n²), (2, 4, n). Distrattori: Θ(f(n) · log n), Θ(n^(log_b a)), Θ(n^(log_b a) · log n), e per a = 1 anche Θ(log n). Evitare f con fattori logaritmici (sono L05-T09 e L05-T11)."
+    },
+    {
+      "id": "L05-T08",
+      "titolo": "Condizione di regolarità del caso 3",
+      "argomento": "Teorema principale: enunciato",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 5, 'Teorema principale delle ricorrenze', caso 3 (∃ c < 1 tale che a·f(n/b) ≤ c·f(n) per n sufficientemente grande) e 'esempi di applicazione', caso 3.",
+      "descrizione": "Si chiede come è fatta la condizione di regolarità, a quale caso appartiene, oppure di verificarla su una f(n) data (trovare una costante c < 1 che funziona).",
+      "conoscenze": [
+        "Regolarità: esiste una costante c < 1 tale che a·f(n/b) ≤ c·f(n) per n sufficientemente grande.",
+        "Serve solo nel caso 3, insieme a f(n) ∈ Ω(n^(log_b a + ε)).",
+        "Significato: il lavoro totale dei sottoproblemi al livello successivo è una frazione costante del lavoro alla radice, quindi i costi per livello decrescono geometricamente e domina la radice.",
+        "Per f(n) = n^k: a·(n/b)^k = (a/b^k)·n^k, quindi c = a/b^k, che è < 1 esattamente quando k > log_b a."
+      ],
+      "procedimento": [
+        "Calcolare a·f(n/b).",
+        "Scriverlo come (costante)·f(n) e controllare che la costante sia < 1."
+      ],
+      "trappole": [
+        "Dimenticare il fattore a (calcolare f(n/b) ≤ c·f(n)).",
+        "Invertire il verso (≥) o richiedere c > 1.",
+        "Accettare c = 1.",
+        "Attribuire la condizione al caso 1 o al caso 2."
+      ],
+      "come_generare_varianti": "Due formati. (1) Definizione: 'nel caso 3, oltre a f ∈ Ω(n^(log_b a + ε)), si richiede che…', con distrattori: verso invertito con c > 1, condizione senza a, condizione con c ≥ 1, una condizione sui soli parametri (a ≤ b). (2) Calcolo: data una ricorrenza del caso 3 con f = n^k (per esempio 2T(n/2) + n², T(n/2) + n², 4T(n/2) + n³, 3T(n/3) + n²), chiedere il valore di a·f(n/b) oppure una costante c valida; distrattori: valore senza a (1/b^k), valore con b invece di b^k (a/b), c = 1."
+    },
+    {
+      "id": "L05-T09",
+      "titolo": "Differenza solo logaritmica: teorema non applicabile",
+      "argomento": "Limiti del teorema principale",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 3,
+      "fonte": "Dispensa 5, 'Limiti del Teorema Principale' (Esempio 1: 2T(n/2) + n/log n, f dominata ma non fortemente; Esempio 2: 2T(n/2) + n log n, f dominante ma non fortemente) ed Esercizi 12 e 13. Prova di luglio 2026, domanda 2 (T(n) = T(n/2) + Θ(log² n): il teorema principale non è applicabile).",
+      "descrizione": "f(n) differisce da n^(log_b a) solo per un fattore logaritmico (log n, log² n, 1/log n). Non esiste ε > 0 che separi le due funzioni, quindi nessuno dei tre casi vale. Si chiede a quale caso appartiene la ricorrenza o se il teorema è applicabile.",
+      "conoscenze": [
+        "I casi 1 e 3 richiedono una differenza polinomiale (un fattore n^ε); il caso 2 richiede lo stesso ordine Θ.",
+        "n/log n ∈ O(n) ma ∉ O(n^(1−ε)) per nessun ε > 0: dominata ma non fortemente.",
+        "n log n ∈ Ω(n) ma ∉ Ω(n^(1+ε)) per nessun ε > 0: dominante ma non fortemente.",
+        "Con a = 1, n^(log_b a) = 1: f = log n o log² n è Ω(1) ma non Ω(n^ε), quindi il caso 3 non vale.",
+        "Ogni potenza di log n cresce meno di qualunque n^ε con ε > 0."
+      ],
+      "procedimento": [
+        "Calcolare n^(log_b a).",
+        "Fare il rapporto f(n)/n^(log_b a).",
+        "Se il rapporto è una potenza di log n (positiva o negativa), il teorema non è applicabile; se è n^ε o n^(−ε), si applica il caso 3 o 1; se è costante, il caso 2."
+      ],
+      "trappole": [
+        "Vedere che f = log² n cresce più di 1 e rispondere 'terzo caso' (distrattore della prova di luglio).",
+        "Vedere che n log n cresce più di n e rispondere 'terzo caso'.",
+        "Rispondere 'secondo caso' perché f e n^(log_b a) 'differiscono di poco'.",
+        "Rispondere 'primo caso' per n/log n perché è O(n), dimenticando ε.",
+        "Opposto: dire 'non applicabile' per n² log n confrontato con n (lì il rapporto è n log n, polinomiale: caso 3 valido)."
+      ],
+      "come_generare_varianti": "Ricorrenze in cui f(n)/n^(log_b a) è una potenza di log n: T(n/2) + Θ(log n), T(n/2) + Θ(log² n), T(n/3) + Θ(log n), 2T(n/2) + Θ(n log n), 2T(n/2) + Θ(n/log n), 4T(n/2) + Θ(n² log n), 4T(n/2) + Θ(n²/log n), 9T(n/3) + Θ(n² log n). Opzioni come nella prova di luglio (primo, secondo, terzo caso, non applicabile), variando l'ordine. In alternativa chiedere 'quale di queste ricorrenze NON si risolve con il teorema principale' mettendo tre ricorrenze dei casi 1, 2, 3. Per chiedere la soluzione usare L05-T11."
+    },
+    {
+      "id": "L05-T10",
+      "titolo": "Forme a cui il teorema non si applica",
+      "argomento": "Limiti del teorema principale",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 5, 'Teorema principale delle ricorrenze' (forma a·T(n/b) + f(n) con a ≥ 1, b > 1) ed Esercizi 2, 6, 8 (T(n − 1) + Θ(2ⁿ), 2T(n − 1) + Θ(n), 9T(n − 3) + Θ(2ⁿ): il teorema non si applica, si usa un altro metodo). Ricorrenza T(n/2) + T(n/4) + Θ(n): Dispensa 4, metodo dell'albero, Esempio 3. Prova di luglio 2026, domanda 3 (2T(n − 1) + Θ(n²), risolta per iterazione: Lezione 4).",
+      "descrizione": "Si chiede se il teorema si applica a una ricorrenza che non ha la forma richiesta: sottoproblemi di dimensione n − c invece di n/b, sottoproblemi di dimensioni diverse, a < 1 o non costante. Oppure si chiede quale, tra quattro ricorrenze, si può risolvere con il teorema.",
+      "conoscenze": [
+        "Il teorema vale solo per T(n) = a·T(n/b) + f(n) con a ≥ 1 e b > 1 costanti: tutti i sottoproblemi hanno la stessa dimensione n/b.",
+        "T(n − 1), T(n − 2), T(n − 3): la dimensione cala di una costante, non di un fattore: il teorema non si applica (si usa iterazione o sostituzione).",
+        "T(n/2) + T(n/4) + f(n): sottoproblemi di dimensioni diverse, non è nella forma (si usa l'albero).",
+        "a·T(n/b) con a non costante (per esempio n·T(n/2)) o a < 1: non è nella forma.",
+        "Soluzioni note degli esercizi sottrattivi: T(n − 1) + Θ(2ⁿ) = Θ(2ⁿ); 2T(n − 1) + Θ(n) = Θ(2ⁿ); 9T(n − 3) + Θ(2ⁿ) = Θ(9^(n/3)); T(n − 1) + Θ(n) = Θ(n²)."
+      ],
+      "procedimento": [
+        "Controllare la forma: un solo termine ricorsivo, argomento n/b con b > 1 costante, coefficiente a ≥ 1 costante.",
+        "Se la forma va bene, controllare il confronto con n^(log_b a) (vedi L05-T09 per i casi non coperti)."
+      ],
+      "trappole": [
+        "Leggere 2T(n − 1) come 2T(n/1) e applicare il teorema con b = 1.",
+        "Leggere T(n − 1) + Θ(n) come il caso 2 e rispondere Θ(n log n).",
+        "Applicare il teorema a T(n/2) + T(n/4) + Θ(n) sommando i coefficienti (a = 2).",
+        "Pensare che un esponente log_b a non intero renda il teorema inapplicabile."
+      ],
+      "come_generare_varianti": "Formato A: 'A quale di queste ricorrenze si può applicare il teorema principale?' con una sola ricorrenza nella forma corretta e con confronto polinomiale (caso 1, 2 o 3), e tre distrattori presi da: T(n − 1) + Θ(n), 2T(n − 1) + Θ(1), 9T(n − 3) + Θ(2ⁿ), T(n/2) + T(n/4) + Θ(n), T(n/3) + T(2n/3) + Θ(n), n·T(n/2) + Θ(1), 2T(n/2) + Θ(n log n). Formato B: data una ricorrenza sottrattiva, opzioni 'primo/secondo/terzo caso/non applicabile' (risposta: non applicabile). Non chiedere qui la soluzione delle ricorrenze sottrattive per iterazione (Lezione 4)."
+    },
+    {
+      "id": "L05-T11",
+      "titolo": "Soluzione dei casi non coperti dal teorema",
+      "argomento": "Limiti del teorema principale",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 5, Esercizi 12 (2T(n/2) + Θ(n/log n) → Θ(n log log n)) e 13 (2T(n/2) + Θ(n log n) → Θ(n log² n)); 'Limiti del Teorema Principale' (si usano iterazione o sostituzione). Ricorrenza della prova di luglio 2026, domanda 2 (T(n/2) + Θ(log² n) → Θ(log³ n)); T(n/2) + Θ(log n): Dispensa 3, esercizi sulla ricorrenza associata.",
+      "descrizione": "Per una ricorrenza in cui f(n) differisce da n^(log_b a) solo per un fattore logaritmico, si chiede la soluzione. Il teorema non la dà: va ricavata sommando i costi dei livelli (o verificata per sostituzione). Ogni livello costa circa n^(log_b a) per una potenza di log della dimensione del sottoproblema.",
+      "conoscenze": [
+        "Se f(n) = Θ(n^(log_b a) · log^k n) con k ≥ 0, allora T(n) = Θ(n^(log_b a) · log^(k+1) n) (ogni livello aggiunge un log).",
+        "2T(n/2) + Θ(n log n) = Θ(n log² n); T(n/2) + Θ(log n) = Θ(log² n); T(n/2) + Θ(log² n) = Θ(log³ n); 4T(n/2) + Θ(n² log n) = Θ(n² log² n).",
+        "2T(n/2) + Θ(n/log n) = Θ(n log log n): il livello i costa n/(log n − i), e la somma è n·(1 + 1/2 + … + 1/log n) = n·H(log n) = Θ(n log log n) (somma armonica, Dispensa 1).",
+        "Queste soluzioni stanno tra i risultati dei casi vicini: n < n log log n < n log n < n log² n."
+      ],
+      "procedimento": [
+        "Calcolare n^(log_b a) e il rapporto r(n) = f(n)/n^(log_b a).",
+        "Se r(n) = log^k n con k ≥ 0, rispondere n^(log_b a) · log^(k+1) n.",
+        "Se r(n) = 1/log n, rispondere n^(log_b a) · log log n."
+      ],
+      "trappole": [
+        "Applicare comunque il caso 3 e rispondere Θ(f(n)) (Θ(n log n) per l'Esercizio 13, Θ(log² n) per la prova di luglio).",
+        "Applicare comunque il caso 1 e rispondere Θ(n^(log_b a)) (Θ(n) per l'Esercizio 12).",
+        "Applicare il caso 2 e rispondere Θ(n^(log_b a) log n) (Θ(n log n) per l'Esercizio 12).",
+        "Rispondere Θ(f(n)·log n) per n/log n, ottenendo Θ(n): coincide con l'errore del caso 1."
+      ],
+      "come_generare_varianti": "Usare le ricorrenze 2T(n/2) + Θ(n log n), 2T(n/2) + Θ(n/log n), T(n/2) + Θ(log n), T(n/2) + Θ(log² n), 4T(n/2) + Θ(n² log n), 3T(n/3) + Θ(n log n). Distrattori: la risposta del caso 3 (Θ(f)), del caso 1 (Θ(n^(log_b a))), del caso 2 (Θ(n^(log_b a) log n)), e per n/log n anche Θ(n/log n). Controllare che i distrattori non coincidano tra loro (per esempio per n/log n: Θ(n), Θ(n log n), Θ(n/log n), Θ(n log log n))."
+    },
+    {
+      "id": "L05-T12",
+      "titolo": "Metodo di sostituzione: idea e struttura",
+      "argomento": "Metodo di sostituzione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 5, 'Metodi di risoluzione' (i quattro metodi), 'Il metodo di sostituzione' (procedura tipica in tre passi), Esempi 1 e 2 (O e Ω dimostrati separatamente; asintotica eliminata con le costanti a e b).",
+      "descrizione": "Si chiede in cosa consiste il metodo di sostituzione, a cosa serve, quali sono i suoi passi, oppure come si dimostra T(n) = Θ(g(n)) con questo metodo. Le opzioni sbagliate descrivono gli altri metodi.",
+      "conoscenze": [
+        "Il metodo di sostituzione serve a dimostrare che una soluzione ipotizzata è corretta; non trova la soluzione da solo.",
+        "Passi: formulare un'ipotesi; sostituirla nella ricorrenza per verificarla (induzione: caso base, ipotesi induttiva su k < n, passo induttivo); determinare le costanti.",
+        "Prima si elimina l'asintotica: Θ(1) diventa una costante b, Θ(n) diventa an.",
+        "Per Θ si dimostrano separatamente O (T(n) ≤ c·g(n)) e Ω (T(n) ≥ c·g(n)), con costanti diverse.",
+        "La costante c deve essere la stessa nell'ipotesi e nella conclusione.",
+        "Metodo iterativo: espandere la ricorrenza fino a un pattern; metodo dell'albero: sommare i costi per livello; teorema principale: confrontare f(n) con n^(log_b a)."
+      ],
+      "procedimento": [
+        "Riconoscere la descrizione: 'ipotizzare e verificare per induzione' è sostituzione.",
+        "Per Θ, ricordare le due dimostrazioni separate."
+      ],
+      "trappole": [
+        "Confondere sostituzione con il metodo iterativo ('sostituisco la ricorrenza in se stessa').",
+        "Pensare che basti dimostrare O per avere Θ.",
+        "Pensare che il metodo funzioni senza un'ipotesi di partenza.",
+        "Dimenticare il caso base."
+      ],
+      "come_generare_varianti": "Chiedere: in cosa consiste il metodo; quale passo manca in una dimostrazione descritta; cosa si deve dimostrare per ottenere Θ; quale metodo si sta usando in una descrizione data. Distrattori: le descrizioni degli altri tre metodi (iterativo, albero, teorema principale), 'basta dimostrare O', 'si dimostra solo il passo induttivo'."
+    },
+    {
+      "id": "L05-T13",
+      "titolo": "Scelta delle costanti nel metodo di sostituzione",
+      "argomento": "Metodo di sostituzione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 5, Esempio 1: T(1) = b, T(n) = T(n − 1) + an; O(n²) con c = max{a, b} (caso base c ≥ b, passo c ≥ a); Ω(n²) con c = min{a/2, b} (caso base c ≤ b, passo c ≤ a/2).",
+      "descrizione": "Si dà una dimostrazione per sostituzione (di solito quella dell'Esempio 1) e si chiede quale scelta della costante c la chiude, quale vincolo impone il caso base o il passo induttivo, oppure il risultato di un passaggio algebrico del passo.",
+      "conoscenze": [
+        "Per O si cerca c abbastanza grande: ogni vincolo è del tipo c ≥ qualcosa, e si prende il massimo.",
+        "Per Ω si cerca c abbastanza piccola: ogni vincolo è del tipo c ≤ qualcosa, e si prende il minimo.",
+        "Esempio 1, O: caso base T(1) = b ≤ c → c ≥ b; passo T(n) ≤ c(n − 1)² + an = cn² − 2cn + c + an ≤ cn² − cn + an ≤ cn² se c ≥ a. Quindi c = max{a, b}.",
+        "Esempio 1, Ω: caso base c ≤ b; passo T(n) ≥ cn² − 2cn + c + an > cn² se c ≤ a/2. Quindi c = min{a/2, b}.",
+        "Il caso base e il passo danno vincoli diversi: vanno rispettati entrambi."
+      ],
+      "procedimento": [
+        "Scrivere il vincolo del caso base (T(1) = b confrontato con c·g(1)).",
+        "Sviluppare il passo induttivo e isolare i termini con c: ricavare il vincolo.",
+        "Combinare: massimo dei limiti inferiori per O, minimo dei limiti superiori per Ω."
+      ],
+      "trappole": [
+        "Usare solo il vincolo del passo (c = a) dimenticando il caso base: se b > a il caso base fallisce.",
+        "Dare la scelta della dimostrazione di Ω (min) per quella di O, o viceversa.",
+        "Pensare che qualunque c > 0 vada bene.",
+        "Errori nello sviluppo: (n − 1)² = n² − 1 invece di n² − 2n + 1."
+      ],
+      "come_generare_varianti": "Partire dall'Esempio 1 e chiedere: la c per O, la c per Ω, il vincolo dato dal caso base, il vincolo dato dal passo, oppure lo sviluppo di c(n − 1)² + an. Si possono usare ricorrenze analoghe con costanti esplicite: T(n) = T(n − 1) + 3n con T(1) = 5 (O: c = max{3, 5} = 5; Ω: c = min{3/2, 5} = 3/2). Distrattori: solo il vincolo del passo, solo quello del caso base, la scelta dell'altra direzione (min al posto di max), 'qualunque c > 0'. Verificare numericamente che la risposta corretta funzioni per ogni n ≥ 1."
+    },
+    {
+      "id": "L05-T14",
+      "titolo": "Ipotesi rafforzata cn − d",
+      "argomento": "Metodo di sostituzione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 5, Esempio 2: T(1) = b, T(n) = 2T(n/2) + a; O(n) dimostrato con T(n) ≤ cn − d (d ≥ a, c − d ≥ b, per esempio d = max{a, b}, c = 2d); Ω(n) con T(n) ≥ cn − d (d ≤ a, c − d ≤ b, per esempio d = min{a, b}, c = 2d).",
+      "descrizione": "Il tentativo diretto T(n) ≤ cn fallisce perché il passo induttivo lascia un termine in più (cn + a). Si chiede perché fallisce, come si rimedia (sottrarre un termine di ordine inferiore), quali vincoli devono rispettare c e d, o che cosa si ottiene nel passo induttivo.",
+      "conoscenze": [
+        "Con T(n) ≤ cn: T(n) ≤ 2·c(n/2) + a = cn + a, che non è ≤ cn per nessuna c: l'ipotesi non si dimostra così.",
+        "Concludere 'cn + a = O(n), quindi T(n) = O(n)' è sbagliato: l'induzione deve ridare la stessa disuguaglianza con la stessa costante c.",
+        "Rimedio: ipotesi più forte T(n) ≤ cn − d. Passo: 2(c·n/2 − d) + a = cn − 2d + a = cn − d − (d − a) ≤ cn − d se d ≥ a. Caso base: b ≤ c − d.",
+        "Scelta della dispensa per O: d = max{a, b}, c = 2d. Per Ω: d ≤ a, c − d ≤ b, per esempio d = min{a, b}, c = 2d.",
+        "cn − d ≤ cn, quindi dimostrare T(n) ≤ cn − d dà anche T(n) = O(n).",
+        "Stessa idea in altre ricorrenze: per 2T(n − 1) + an l'ipotesi c·2ⁿ fallisce (resta + an) e si usa c·2ⁿ − dn."
+      ],
+      "procedimento": [
+        "Sostituire l'ipotesi e vedere se resta un termine positivo in più.",
+        "Se resta, sottrarre all'ipotesi un termine di ordine inferiore (−d, −dn).",
+        "Ricavare dal passo il vincolo su d e dal caso base il vincolo su c − d."
+      ],
+      "trappole": [
+        "Concludere O(n) da T(n) ≤ cn + a (la costante cambia a ogni passo: errore di induzione).",
+        "Pensare che l'ipotesi sia sbagliata e passare a O(n log n).",
+        "Pensare di risolvere scegliendo c più grande (cn + a ≤ cn non vale per nessuna c).",
+        "Invertire il vincolo su d (d ≤ a per O, che è invece quello per Ω).",
+        "Dimenticare il caso base c − d ≥ b."
+      ],
+      "come_generare_varianti": "Partire dall'Esempio 2 (o da analoghi: 4T(n/2) + a con ipotesi cn² − d, dove il passo dà cn² − 4d + a e il vincolo è d ≥ a/3, non d ≥ a; 2T(n/2) + a con costanti esplicite, per esempio a = 3, b = 5 → d ≥ 3, c ≥ d + 5) e chiedere: che cosa dà il passo con l'ipotesi cn; come va modificata l'ipotesi; il risultato di 2(c·n/2 − d) + a; il vincolo su d per O o per Ω; una coppia (c, d) valida. Distrattori: 'si conclude O(n) perché cn + a = O(n)', 'si prova O(n log n)', 'si sceglie c ≥ a', vincolo invertito su d, coppia che rispetta il passo ma non il caso base."
+    },
+    {
+      "id": "L05-T15",
+      "titolo": "Effetto dei parametri a, b, f sulla soluzione",
+      "argomento": "Teorema principale: soluzione",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 5, 'Teorema principale delle ricorrenze' (dipendenza della soluzione dal confronto tra f(n) e n^(log_b a)) ed Esercizi 1, 3, 5 (al crescere di a cresce l'esponente). Costruito sugli stessi principi.",
+      "descrizione": "Ragionamento inverso o comparativo: confrontare le soluzioni di due ricorrenze che differiscono per un parametro (8 o 7 sottoproblemi, f = n o n²), oppure trovare il valore di a (o di b) che porta a una certa soluzione o a un certo caso.",
+      "conoscenze": [
+        "Cambiare a cambia l'esponente log_b a, non solo una costante: 8T(n/2) + Θ(n²) = Θ(n³), 7T(n/2) + Θ(n²) = Θ(n^(log₂ 7)) ≈ Θ(n^2,81).",
+        "Con f(n) = Θ(n^k): caso 2 esattamente quando a = b^k; caso 1 quando a > b^k; caso 3 quando a < b^k.",
+        "Esempio: aT(n/4) + Θ(n) dà Θ(n log n) solo per a = 4; Θ(n) per a < 4; Θ(n^(log₄ a)) per a > 4 (a = 16 → Θ(n²)).",
+        "Nel caso 1 ridurre f(n) non migliora la soluzione: domina n^(log_b a)."
+      ],
+      "procedimento": [
+        "Scrivere n^(log_b a) per ogni ricorrenza o per ogni valore del parametro.",
+        "Applicare il caso giusto a ciascuna e confrontare gli esponenti.",
+        "Per la domanda inversa, imporre la condizione: log_b a = k (caso 2), log_b a < k (caso 3), log_b a > k (caso 1)."
+      ],
+      "trappole": [
+        "Pensare che passare da 8 a 7 sottoproblemi cambi solo una costante.",
+        "Pensare che migliorare f(n) migliori sempre la soluzione (nel caso 1 non cambia nulla).",
+        "Per aT(n/4) + Θ(n) → Θ(n log n) rispondere a = 2 per ricordo di mergesort, o a = 16 confondendo b^k con b²."
+      ],
+      "come_generare_varianti": "Formato A (confronto): due ricorrenze che differiscono per a (8 e 7 con f = n², 4 e 3 con f = n), per f (4T(n/2) + n contro 4T(n/2) + n², dove la prima resta Θ(n²)) o per b; opzioni con affermazioni sulle due soluzioni. Formato B (inverso): 'per quale a la ricorrenza aT(n/b) + Θ(n^k) ha soluzione Θ(n^k log n)' (a = b^k), oppure 'per quali a vale il caso 3' (a < b^k). Distrattori: 'cambia solo una costante', a = 2 per ricordo di mergesort, a = b^(k+1), entrambe le soluzioni uguali per il caso 3."
+    }
+  ]
+}

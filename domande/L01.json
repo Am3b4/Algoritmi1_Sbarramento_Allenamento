@@ -1,0 +1,1961 @@
+{
+  "lezione": 1,
+  "generato_con": "claude-haiku-5-5",
+  "domande": [
+    {
+      "id": "L01-T01-01",
+      "tipo": "L01-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione f(n) = 2·n²·log n + n^(3/2) + 7n appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n^(7/2) · log n)",
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n² log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "E1",
+        null
+      ],
+      "spiegazione": "n² log n cresce più di n^(3/2) e di n, quindi domina, e il fattore log resta. I termini si sommano, non si moltiplicano."
+    },
+    {
+      "id": "L01-T01-02",
+      "tipo": "L01-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione g(n) = 3·2ⁿ·log n + n^10 appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n^10)",
+        "Θ(2ⁿ)",
+        "Θ(2ⁿ · n^10 · log n)",
+        "Θ(2ⁿ · log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "E2",
+        null
+      ],
+      "spiegazione": "L'esponenziale batte qualunque potenza di n. Il fattore log del termine dominante resta nella classe."
+    },
+    {
+      "id": "L01-T01-03",
+      "tipo": "L01-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione h(n) = 4·n·log n + 3·n^(3/2) appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n^(3/2))",
+        "Θ(n²)",
+        "Θ(n^(5/2) · log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "E2"
+      ],
+      "spiegazione": "n^(3/2) cresce più di n·log n: una potenza di n batte qualunque logaritmo. Il termine dominante è n^(3/2)."
+    },
+    {
+      "id": "L01-T01-04",
+      "tipo": "L01-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La funzione k(n) = 100·n⁴ + 2^(n/2) appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n⁴ · 2^(n/2))",
+        "Θ(2ⁿ)",
+        "Θ(2^(n/2))",
+        "Θ(n⁴)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "2^(n/2) = (√2)ⁿ è un esponenziale e supera ogni potenza di n. La base è √2, quindi la classe non è Θ(2ⁿ)."
+    },
+    {
+      "id": "L01-T01-05",
+      "tipo": "L01-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione p(n) = 2·n³·log n + 1000·n² appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(n²)",
+        "Θ(n⁵ · log n)",
+        "Θ(n³ · log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E2",
+        null
+      ],
+      "spiegazione": "Il log n cresce senza limite, quindi n³ log n batte n² anche con il coefficiente 1000: il coefficiente non decide la classe."
+    },
+    {
+      "id": "L01-T01-06",
+      "tipo": "L01-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione q(n) = 5·n² + n^(5/2)·log n appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n^(5/2))",
+        "Θ(n^(9/2) · log n)",
+        "Θ(n^(5/2) · log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "E2",
+        null
+      ],
+      "spiegazione": "n^(5/2)·log n supera n² perché l'esponente 5/2 batte 2 anche con il log. Il coefficiente 5 non cambia la classe."
+    },
+    {
+      "id": "L01-T01-07",
+      "tipo": "L01-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La funzione r(n) = n⁶·log n + 3ⁿ appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n⁶)",
+        "Θ(n⁶ · log n)",
+        "Θ(3ⁿ)",
+        "Θ(3ⁿ · n⁶ · log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E3",
+        null,
+        "E2"
+      ],
+      "spiegazione": "3ⁿ domina ogni polinomio moltiplicato per un logaritmo: la classe è quella dell'esponenziale."
+    },
+    {
+      "id": "L01-T01-08",
+      "tipo": "L01-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione s(n) = 3·n³ + 40·n²·log n appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(n² · log n)",
+        "Θ(n⁵ · log n)",
+        "Θ(n³ · log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il termine n³ domina n² log n, qualunque sia il coefficiente 40."
+    },
+    {
+      "id": "L01-T02-01",
+      "tipo": "L01-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra queste affermazioni è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n² = Ω(n³)",
+        "n^(1/3) = O(n^(1/2))",
+        "n^(1/2) = O(n^(1/3))",
+        "2ⁿ = Θ(3ⁿ)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E4",
+        "E2"
+      ],
+      "spiegazione": "n^(1/3) cresce meno di n^(1/2), quindi vale O. n² = Ω(n³) è falsa; 2ⁿ e 3ⁿ non stanno nella stessa classe; n^(1/2) cresce più di n^(1/3)."
+    },
+    {
+      "id": "L01-T02-02",
+      "tipo": "L01-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra queste affermazioni è falsa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3ⁿ = O(2ⁿ)",
+        "n = Ω(log n)",
+        "n^(1/3) = O(n^(1/2))",
+        "log₂ n = Θ(log₁₀ n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E4",
+        "E3"
+      ],
+      "spiegazione": "3ⁿ/2ⁿ = (3/2)ⁿ tende a infinito, quindi 3ⁿ non è O(2ⁿ). Le altre tre sono vere: le basi dei logaritmi cambiano solo una costante, n cresce più di log n, e n^(1/3) è O(n^(1/2))."
+    },
+    {
+      "id": "L01-T02-03",
+      "tipo": "L01-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra queste affermazioni è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n log n = Ω(n)",
+        "n^(3/2) = Θ(n²)",
+        "2ⁿ = Θ(4ⁿ)",
+        "n log n = Ω(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E2",
+        "E1"
+      ],
+      "spiegazione": "n log n ≥ c·n per n grande, quindi n log n = Ω(n). Le altre sono false: n log n cresce meno di n², 2ⁿ e 4ⁿ non sono nella stessa classe, e n^(3/2) cresce meno di n²."
+    },
+    {
+      "id": "L01-T02-04",
+      "tipo": "L01-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale tra queste affermazioni è falsa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "log₂ n = Θ(log₁₀ n)",
+        "log² n = Ω(√n)",
+        "n^(2/3) = O(n^(3/4))",
+        "n = O(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "E1"
+      ],
+      "spiegazione": "log² n cresce meno di √n, quindi log² n non è Ω(√n). Le altre sono vere: n = O(n²), n^(2/3) = O(n^(3/4)), e le basi dei logaritmi non cambiano la classe."
+    },
+    {
+      "id": "L01-T02-05",
+      "tipo": "L01-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra queste affermazioni è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n^10 = Ω(2ⁿ)",
+        "log n = Θ(n)",
+        "n^10 = O(2ⁿ)",
+        "n^(1/2) = Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Per n abbastanza grande (da n = 59 in poi) n^10 sta sotto 2ⁿ, quindi n^10 = O(2ⁿ): l'esponenziale supera ogni polinomio. Scrivere n^10 = Ω(2ⁿ) inverte la direzione; n^(1/2) = Θ(n) è falsa perché n cresce molto più in fretta."
+    },
+    {
+      "id": "L01-T02-06",
+      "tipo": "L01-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra queste affermazioni è falsa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2^(n+1) = Θ(2ⁿ)",
+        "√n = O(n^(2/3))",
+        "n log n = O(n²)",
+        "n² log n = Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E4",
+        "E1",
+        null
+      ],
+      "spiegazione": "Il fattore log n non è costante: n² log n supera n², quindi non è Θ(n²). Le altre tre sono vere: n log n = O(n²), 2^(n+1) = 2·2ⁿ è Θ(2ⁿ), e √n = O(n^(2/3))."
+    },
+    {
+      "id": "L01-T02-07",
+      "tipo": "L01-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra queste affermazioni è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2ⁿ = Ω(5ⁿ)",
+        "2ⁿ = O(5ⁿ)",
+        "2ⁿ = Θ(5ⁿ)",
+        "5ⁿ = O(2ⁿ)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "5ⁿ/2ⁿ = (5/2)ⁿ tende a infinito: 2ⁿ è O(5ⁿ) ma non Θ(5ⁿ). 2ⁿ = Ω(5ⁿ) richiederebbe 2ⁿ ≥ c·5ⁿ da un certo n in poi, impossibile per ogni c > 0."
+    },
+    {
+      "id": "L01-T02-08",
+      "tipo": "L01-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale tra queste affermazioni è falsa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n^(1/2) = O(n^(3/4))",
+        "n = Ω(log n)",
+        "2^(n+5) = Θ(2ⁿ)",
+        "2^(2n) = O(2ⁿ)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "2^(2n) = 4ⁿ cresce più di 2ⁿ, quindi non è O(2ⁿ). 2^(n+5) = 32·2ⁿ è Θ(2ⁿ): una costante nell'esponente si assorbe. n^(1/2) = O(n^(3/4)) è vera."
+    },
+    {
+      "id": "L01-T03-01",
+      "tipo": "L01-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale ordinamento, dalla funzione che cresce più lentamente alla più veloce, è corretto? Funzioni: log² n, √n, n^100, 2ⁿ.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "log² n, √n, n^100, 2ⁿ",
+        "√n, log² n, 2ⁿ, n^100",
+        "√n, log² n, n^100, 2ⁿ",
+        "log² n, √n, 2ⁿ, n^100"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Ogni potenza di log sta sotto ogni n^ε; n^100 sta sotto 2ⁿ perché l'esponenziale supera ogni polinomio."
+    },
+    {
+      "id": "L01-T03-02",
+      "tipo": "L01-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale ordinamento, dal più lento al più veloce, è corretto? Funzioni: n², 2ⁿ, n!, nⁿ.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n², n!, 2ⁿ, nⁿ",
+        "n², 2ⁿ, n!, nⁿ",
+        "2ⁿ, n², n!, nⁿ",
+        "n², 2ⁿ, nⁿ, n!"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "2ⁿ cresce più di ogni polinomio; n! cresce più di 2ⁿ; nⁿ cresce più di n!."
+    },
+    {
+      "id": "L01-T03-03",
+      "tipo": "L01-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale funzione cresce più velocemente per n → ∞ tra 2^(log₂ n), n², n^100 e 2ⁿ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n^100",
+        "2ⁿ",
+        "2^(log₂ n)",
+        "n²"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "2^(log₂ n) = n, quindi è un polinomio. L'esponenziale 2ⁿ supera ogni polinomio, compreso n^100."
+    },
+    {
+      "id": "L01-T03-04",
+      "tipo": "L01-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale ordinamento, dal più lento al più veloce, è corretto? Funzioni: log n, 2^(log₂ n), n², n^100.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "log n, 2^(log₂ n), n², n^100",
+        "2^(log₂ n), log n, n², n^100",
+        "log n, n², n^100, 2^(log₂ n)",
+        "log n, n², 2^(log₂ n), n^100"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E4",
+        "E4"
+      ],
+      "spiegazione": "2^(log₂ n) = n, quindi sta tra log n e n². Non è un esponenziale: la variabile n compare solo dentro il logaritmo dell'esponente."
+    },
+    {
+      "id": "L01-T03-05",
+      "tipo": "L01-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale ordinamento, dal più lento al più veloce, è corretto? Funzioni: log² n, √n, 2^(log₂ n), n^(3/2).",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "√n, log² n, 2^(log₂ n), n^(3/2)",
+        "log² n, √n, 2^(log₂ n), n^(3/2)",
+        "log² n, 2^(log₂ n), √n, n^(3/2)",
+        "log² n, √n, n^(3/2), 2^(log₂ n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "Ogni potenza di log sta sotto ogni n^ε, quindi log² n viene prima di √n. 2^(log₂ n) = n, che sta tra √n e n^(3/2): non è un esponenziale."
+    },
+    {
+      "id": "L01-T03-06",
+      "tipo": "L01-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale funzione cresce più velocemente per n → ∞ tra n!, 2ⁿ, n^100 e n log n?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2ⁿ",
+        "n!",
+        "n log n",
+        "n^100"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "E2"
+      ],
+      "spiegazione": "n! supera ogni esponenziale fissato: n!/2ⁿ tende a infinito."
+    },
+    {
+      "id": "L01-T04-01",
+      "tipo": "L01-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti funzioni è nella stessa classe Θ di 2^(n+1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2ⁿ",
+        "3ⁿ",
+        "2^(log₂ n)",
+        "4ⁿ"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "2^(n+1) = 2·2ⁿ. 4ⁿ = 2^(2n) cresce molto più in fretta. 2^(log₂ n) = n è polinomiale."
+    },
+    {
+      "id": "L01-T04-02",
+      "tipo": "L01-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti funzioni è nella stessa classe Θ di n²?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4^(log₂ n)",
+        "4ⁿ",
+        "n² · log n",
+        "2^(log₂ n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "4^(log₂ n) = (2^(log₂ n))² = n². Il termine 2^(log₂ n) vale n, non n²."
+    },
+    {
+      "id": "L01-T04-03",
+      "tipo": "L01-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale delle seguenti funzioni è nella stessa classe Θ di log₂(n!)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n!",
+        "n²",
+        "log₂(nⁿ)",
+        "log₂ n"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "E4"
+      ],
+      "spiegazione": "log₂(nⁿ) = n·log₂ n, e log₂(n!) = Θ(n log n) per la somma dei logaritmi. n! e log n stanno in classi diverse."
+    },
+    {
+      "id": "L01-T04-04",
+      "tipo": "L01-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti funzioni NON è nella classe Θ(2ⁿ)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4ⁿ",
+        "2^(n+1)",
+        "2^(n−3)",
+        "2^(log₂ n) + 2ⁿ"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "4ⁿ = 2^(2n) è un'altra classe. 2^(n+1), 2^(n−3) e 2ⁿ + n sono tutte Θ(2ⁿ): una costante moltiplicativa non cambia la classe."
+    },
+    {
+      "id": "L01-T04-05",
+      "tipo": "L01-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti funzioni è nella stessa classe Θ di 2^(2n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2ⁿ",
+        "4^(log₂ n)",
+        "4ⁿ",
+        "2^(n+2)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "2^(2n) = (2²)ⁿ = 4ⁿ. 2ⁿ è un'altra classe: il rapporto 2^(2n)/2ⁿ = 2ⁿ non è costante. 2^(n+2) = 4·2ⁿ è Θ(2ⁿ), e 4^(log₂ n) = n² è un polinomio."
+    },
+    {
+      "id": "L01-T04-06",
+      "tipo": "L01-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti funzioni è nella stessa classe Θ di 3ⁿ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "9ⁿ",
+        "n · 3ⁿ",
+        "3^(n+2)",
+        "3^(log₂ n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "3^(n+2) = 9·3ⁿ. 9ⁿ = 3^(2n) cresce più in fretta; 3^(log₂ n) è un polinomio di grado log₂ 3."
+    },
+    {
+      "id": "L01-T05-01",
+      "tipo": "L01-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione f(n) = log₂(n²) è in quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(log² n)",
+        "Θ(log³ n)",
+        "Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "log(n²) = 2·log n: l'esponente esce dal logaritmo. (log n)² è un'altra funzione."
+    },
+    {
+      "id": "L01-T05-02",
+      "tipo": "L01-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione g(n) = 9^(log₃ n) è in quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(9ⁿ)",
+        "Θ(n²)",
+        "Θ(3ⁿ)",
+        "Θ(n³)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "9 = 3², quindi 9^(log₃ n) = (3^(log₃ n))² = n². Non è un esponenziale: la variabile n compare solo dentro il logaritmo dell'esponente."
+    },
+    {
+      "id": "L01-T05-03",
+      "tipo": "L01-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione è falsa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2^(n+3) = Θ(2ⁿ)",
+        "log₂ n = Θ(log₁₀ n)",
+        "2ⁿ = Θ(3ⁿ)",
+        "log₄ n = Θ(log₂ n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E3",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Basi diverse per l'esponenziale danno classi diverse: (3/2)ⁿ tende a infinito. Le basi dei logaritmi cambiano solo una costante, e 2^(n+3) = 8·2ⁿ."
+    },
+    {
+      "id": "L01-T05-04",
+      "tipo": "L01-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione h(n) = 2^(2·log₂ n) è in quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(2n)",
+        "Θ(4ⁿ)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E4",
+        "E2",
+        null
+      ],
+      "spiegazione": "2^(2·log₂ n) = (2^(log₂ n))² = n². Non è 2n, e non è un esponenziale in n."
+    },
+    {
+      "id": "L01-T05-05",
+      "tipo": "L01-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione k(n) = log₂(n³) è in quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ((log n)³)",
+        "Θ((log n)²)",
+        "Θ(log n)",
+        "Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "log₂(n³) = 3·log₂ n: l'esponente esce dal logaritmo e il fattore 3 non conta."
+    },
+    {
+      "id": "L01-T05-06",
+      "tipo": "L01-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "La funzione m(n) = 8^(log₂ n) è in quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(3ⁿ)",
+        "Θ(8ⁿ)",
+        "Θ(n⁸)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "8 = 2³, quindi 8^(log₂ n) = 2^(3·log₂ n) = n³. Non è un esponenziale in n: n compare solo dentro il logaritmo."
+    },
+    {
+      "id": "L01-T06-01",
+      "tipo": "L01-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione è falsa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2ⁿ = O(5ⁿ)",
+        "log₃ n = Θ(log₂ n)",
+        "3^(n+1) = Θ(3ⁿ)",
+        "5ⁿ = O(2ⁿ)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "5ⁿ/2ⁿ = (5/2)ⁿ tende a infinito, quindi 5ⁿ non è O(2ⁿ). Le altre tre sono vere: 2ⁿ è O(5ⁿ); log₃ e log₂ differiscono per una costante; 3^(n+1) = 3·3ⁿ."
+    },
+    {
+      "id": "L01-T06-02",
+      "tipo": "L01-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sugli insiemi di funzioni è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(2ⁿ) ⊆ O(5ⁿ)",
+        "O(5ⁿ) ⊆ O(2ⁿ)",
+        "Θ(2ⁿ) = Θ(5ⁿ)",
+        "Ω(2ⁿ) ⊆ Ω(5ⁿ)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Ogni funzione O(2ⁿ) è anche O(5ⁿ), quindi O(2ⁿ) ⊆ O(5ⁿ). Il contrario non vale, e le classi Θ di 2ⁿ e 5ⁿ sono disgiunte."
+    },
+    {
+      "id": "L01-T06-03",
+      "tipo": "L01-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra queste funzioni è nella classe Θ(2ⁿ)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2^(n²)",
+        "3ⁿ",
+        "2^(2n)",
+        "2^(n+5)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E2",
+        "E4",
+        null
+      ],
+      "spiegazione": "2^(n+5) = 32·2ⁿ. 2^(2n) = 4ⁿ cresce molto più in fretta; 3ⁿ ha base diversa; 2^(n²) cresce ancora più in fretta."
+    },
+    {
+      "id": "L01-T06-04",
+      "tipo": "L01-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale di queste funzioni NON è nella classe Θ(log₂ n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "√n",
+        "3 · log₂ n",
+        "log₁₀ n",
+        "ln n"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E1",
+        "E1"
+      ],
+      "spiegazione": "ln n, log₁₀ n e 3·log₂ n stanno in Θ(log n): basi e costanti non cambiano la classe. √n cresce molto più in fretta."
+    },
+    {
+      "id": "L01-T06-05",
+      "tipo": "L01-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra queste funzioni è nella classe Θ(3ⁿ)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "9ⁿ",
+        "3^(n+1)",
+        "2ⁿ",
+        "3^(n/2)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "3^(n+1) = 3·3ⁿ. 9ⁿ = 3^(2n) cresce più in fretta; 2ⁿ ha base diversa; 3^(n/2) = (√3)ⁿ cresce più piano."
+    },
+    {
+      "id": "L01-T06-06",
+      "tipo": "L01-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2^(n+1) = Θ(2ⁿ)",
+        "log₂ n = Θ(n)",
+        "2ⁿ = Θ(3ⁿ)",
+        "2^(n+1) = Θ(4ⁿ)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "2^(n+1) = 2·2ⁿ: una costante moltiplicativa non cambia la classe. 2^(n+1) non è 4ⁿ, e 2ⁿ e 3ⁿ non stanno nella stessa classe."
+    },
+    {
+      "id": "L01-T07-01",
+      "tipo": "L01-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si sa che lim (n→∞) f(n)/g(n) = 1/2. Cosa si può concludere?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) = Θ(g(n)) solo se il limite vale 1",
+        "f(n) = Ω(g(n)) ma non O(g(n))",
+        "f(n) = Θ(g(n))",
+        "f(n) = O(g(n)) ma non Ω(g(n))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Un limite finito e positivo dà Θ: f e g crescono allo stesso modo, e la costante 1/2 non conta."
+    },
+    {
+      "id": "L01-T07-02",
+      "tipo": "L01-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si sa che lim (n→∞) f(n)/g(n) = +∞. Cosa si può concludere?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) = O(g(n)) ma non Ω(g(n))",
+        "f(n) = Ω(g(n)) ma non Θ(g(n))",
+        "f(n) = Θ(g(n)) solo se il limite vale 1",
+        "f(n) = Θ(g(n))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Limite infinito: f cresce strettamente più di g. Quindi f = Ω(g) ma non O(g), e perciò non Θ(g)."
+    },
+    {
+      "id": "L01-T07-03",
+      "tipo": "L01-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanto vale lim (n→∞) (n · log n) / n^(3/2)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "+∞",
+        "0",
+        "1/2"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E4",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Il denominatore cresce più in fretta: √n batte log n, quindi il rapporto tende a 0."
+    },
+    {
+      "id": "L01-T07-04",
+      "tipo": "L01-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Siano f(n) = n² e g(n) = 3n² + 1. Si sa che lim (n→∞) f(n)/g(n) = 1/3. Cosa si può concludere?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) = O(g(n)) ma non Ω(g(n))",
+        "f(n) = Θ(g(n)) solo se il limite vale 1",
+        "f(n) = O(g(n)) ma non Θ(g(n)), perché il limite è 0",
+        "f(n) = Θ(g(n))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "Il limite è finito e positivo: f = Θ(g). Il coefficiente 3 e il termine +1 non cambiano la classe."
+    },
+    {
+      "id": "L01-T07-05",
+      "tipo": "L01-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si sa che lim (n→∞) n²/2ⁿ = 0. Cosa si può concludere?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n² = O(2ⁿ)",
+        "n² = Ω(2ⁿ)",
+        "n² = Θ(2ⁿ) solo se il limite vale 1",
+        "n² = Θ(2ⁿ)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Limite 0: n² cresce strettamente meno di 2ⁿ. Quindi n² = O(2ⁿ) ma non Ω(2ⁿ), e non Θ(2ⁿ)."
+    },
+    {
+      "id": "L01-T07-06",
+      "tipo": "L01-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per f(n) = 5n + ln n e g(n) = n, si ha lim (n→∞) f(n)/g(n) = 5. Cosa si può concludere?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) = Θ(g(n))",
+        "f(n) = Ω(g(n)) ma non O(g(n))",
+        "f(n) = O(g(n)) ma non Ω(g(n))",
+        "f(n) = Θ(g(n)) solo se il limite vale 1"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Limite finito e positivo: f = Θ(g). Il termine ln n è dominato da 5n e non cambia la classe."
+    },
+    {
+      "id": "L01-T08-01",
+      "tipo": "L01-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale formula definisce f(n) = Ω(g(n))?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "∃c > 0, ∃n0, ∀n ≥ 1: f(n) ≥ c·g(n)",
+        "∀c > 0, ∃n0, ∀n ≥ n0: f(n) ≥ c·g(n)",
+        "∃c > 0, ∃n0, ∀n ≥ n0: f(n) ≤ c·g(n)",
+        "∃c > 0, ∃n0, ∀n ≥ n0: f(n) ≥ c·g(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "E3",
+        null
+      ],
+      "spiegazione": "Ω chiede f(n) ≥ c·g(n) per una costante c > 0 da un certo n0 in poi: esiste c, la disuguaglianza va verso ≥ e vale da n0."
+    },
+    {
+      "id": "L01-T08-02",
+      "tipo": "L01-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale formula definisce f(n) = O(g(n))?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "∃c > 0, ∀n ≥ 1: f(n) ≤ c·g(n)",
+        "∀c > 0, ∃n0, ∀n ≥ n0: f(n) ≤ c·g(n)",
+        "∃c > 0, ∃n0, ∀n ≥ n0: f(n) ≤ c·g(n)",
+        "∃c > 0, ∃n0, ∀n ≥ n0: f(n) ≥ c·g(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "E3"
+      ],
+      "spiegazione": "O chiede f(n) ≤ c·g(n) per una costante c > 0 da un certo n0 in poi: esiste c, la disuguaglianza va verso ≤ e vale da n0."
+    },
+    {
+      "id": "L01-T08-03",
+      "tipo": "L01-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per f(n) = 2n + 3 e g(n) = n, quale coppia (c, n0) dimostra f(n) = O(g(n)), cioè f(n) ≤ c·g(n) per ogni n ≥ n0?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "c = 1, n0 = 3",
+        "c = 3, n0 = 1",
+        "c = 2, n0 = 10",
+        "c = 3, n0 = 3"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E2",
+        "E4",
+        null
+      ],
+      "spiegazione": "2n + 3 ≤ 3n equivale a n ≥ 3. Con n0 = 1 la disuguaglianza fallisce per n = 1 (5 > 3); con c troppo piccolo non vale per n grandi."
+    },
+    {
+      "id": "L01-T08-04",
+      "tipo": "L01-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale formula definisce f(n) = Θ(g(n))?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "∃c1, c2 > 0, ∀n ≥ 1: c1·g(n) ≤ f(n) ≤ c2·g(n)",
+        "∃c1, c2 > 0, ∃n0, ∀n ≥ n0: c1·g(n) ≤ f(n) ≤ c2·g(n)",
+        "∀c1, c2 > 0, ∃n0, ∀n ≥ n0: c1·g(n) ≤ f(n) ≤ c2·g(n)",
+        "∃c > 0, ∃n0, ∀n ≥ n0: f(n) ≤ c·g(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Θ chiede due disuguaglianze da n0 in poi, una per O e una per Ω. La formula con una sola disuguaglianza definisce solo O o Ω."
+    },
+    {
+      "id": "L01-T08-05",
+      "tipo": "L01-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nella definizione di O(g), la disuguaglianza f(n) ≤ c·g(n) deve valere:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "per ogni valore di c > 0, con n0 fissato",
+        "solo per n = n0",
+        "da un certo n0 in poi",
+        "per ogni n ≥ 1"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Si chiede che valga per tutti gli n ≥ n0: i valori piccoli di n sono esclusi, e basta una sola costante c."
+    },
+    {
+      "id": "L01-T08-06",
+      "tipo": "L01-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per dimostrare f(n) = Ω(g(n)) bisogna:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "trovare c tale che f(n) ≤ c·g(n) per ogni n ≥ n0",
+        "mostrare che per ogni c > 0 esiste n0 tale che f(n) ≥ c·g(n) per ogni n ≥ n0",
+        "trovare c > 0 e n0 tali che f(n) ≥ c·g(n) per ogni n ≥ n0",
+        "trovare c > 0 che valga per ogni n ≥ 1"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Serve una costante c > 0 e un n0 tali che f(n) ≥ c·g(n) per ogni n ≥ n0. Non serve che valga per ogni c, né per n ≥ 1."
+    },
+    {
+      "id": "L01-T09-01",
+      "tipo": "L01-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia f(n) = O(g(n)). Quale affermazione è sempre vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) = Ω(g(n))",
+        "g(n) = Ω(f(n))",
+        "f(n) = Θ(g(n)) e g(n) = Θ(f(n))",
+        "g(n) = O(f(n))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E1",
+        "E1"
+      ],
+      "spiegazione": "f = O(g) equivale a g = Ω(f): se f cresce al più come g, allora g cresce almeno come f. Il contrario non segue."
+    },
+    {
+      "id": "L01-T09-02",
+      "tipo": "L01-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Siano f(n) = Θ(g(n)) e h(n) = O(g(n)). Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) + h(n) = Θ(g(n) + h(n)²)",
+        "h(n) = Θ(g(n))",
+        "f(n) + h(n) = Θ(h(n))",
+        "f(n) + h(n) = Θ(g(n))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "La somma di f = Θ(g) con h = O(g) è Θ(g), perché h non può superare g. Chi pensa che h domini applica male la regola della somma."
+    },
+    {
+      "id": "L01-T09-03",
+      "tipo": "L01-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Siano f(n) = O(g(n)) e g(n) = Ω(h(n)). Quale affermazione è sempre vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "g(n) = O(f(n))",
+        "f(n) = Ω(h(n))",
+        "f(n) = O(h(n))",
+        "h(n) = O(g(n))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E2",
+        null
+      ],
+      "spiegazione": "g = Ω(h) equivale a h = O(g). Da f = O(g) non si ricava nessun legame diretto tra f e h."
+    },
+    {
+      "id": "L01-T09-04",
+      "tipo": "L01-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale regola è vera per le notazioni asintotiche?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) = O(g(n)) se e solo se g(n) = O(f(n))",
+        "f(n) = O(g(n)) se e solo se f(n) = Ω(g(n))",
+        "Due funzioni in O(f(n)) hanno sempre differenza nulla",
+        "f(n) = Θ(g(n)) se e solo se g(n) = Θ(f(n))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "E4",
+        null
+      ],
+      "spiegazione": "Θ è simmetrica: f = Θ(g) se e solo se g = Θ(f). O e Ω non sono simmetriche tra loro, e una differenza di funzioni in O(f) non è necessariamente nulla."
+    },
+    {
+      "id": "L01-T09-05",
+      "tipo": "L01-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Siano f(n) = O(g(n)) e h(n) = O(g(n)). Quale affermazione è sempre vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) = Θ(h(n))",
+        "f(n) + h(n) = O(g(n))",
+        "f(n) + h(n) = Θ(g(n))",
+        "g(n) = O(f(n))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E3",
+        "E1"
+      ],
+      "spiegazione": "La somma di due funzioni O(g) è O(g). Non segue né l'uguaglianza Θ né che f e h abbiano la stessa classe."
+    },
+    {
+      "id": "L01-T09-06",
+      "tipo": "L01-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Siano f(n) = Θ(g(n)) e h(n) = Θ(k(n)). Quale affermazione è sempre vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) · h(n) = O(g(n))",
+        "f(n) · h(n) = Θ(g(n) + k(n))",
+        "f(n) + h(n) = Θ(g(n) · k(n))",
+        "f(n) · h(n) = Θ(g(n) · k(n))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il prodotto di due Θ è Θ del prodotto. Θ(g + k) non è in generale il prodotto, e il prodotto non è O(g) perché anche h può crescere."
+    },
+    {
+      "id": "L01-T10-01",
+      "tipo": "L01-T10",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "La funzione f(n) = 1000·n + n^(3/2) appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n^(3/2))",
+        "Θ(n)",
+        "Θ(n^(5/2))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Il coefficiente 1000 non cambia la classe: per n grande n^(3/2) supera 1000·n."
+    },
+    {
+      "id": "L01-T10-02",
+      "tipo": "L01-T10",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione è vera per la funzione f(n) = 10n³ + 2n²?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "f(n) = Ω(n⁴)",
+        "n⁴ = O(f(n))",
+        "f(n) = O(n⁴)",
+        "f(n) = Θ(n⁴)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il grado di f è 3 < 4: f è O(n⁴) ma non Ω(n⁴), quindi non è Θ(n⁴)."
+    },
+    {
+      "id": "L01-T10-03",
+      "tipo": "L01-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione f(n) = 5n⁴ − 1000n³ + 3n² appartiene a quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n⁵)",
+        "Θ(n³)",
+        "Θ(n⁴)",
+        "Θ(1000·n³)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E2",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Il grado è 4 e il coefficiente direttore 5 è positivo: i termini di grado inferiore e il coefficiente −1000 non cambiano la classe."
+    },
+    {
+      "id": "L01-T11-01",
+      "tipo": "L01-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n⁴)",
+        "Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E3",
+        "E1"
+      ],
+      "spiegazione": "Σ i = n(n+1)/2 = Θ(n²). Contare i termini darebbe n, ma bisogna sommarli."
+    },
+    {
+      "id": "L01-T11-02",
+      "tipo": "L01-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) i³?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n⁴)",
+        "Θ(n⁶)",
+        "Θ(n³)",
+        "Θ(n³ log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Σ i^c = Θ(n^(c+1)): con c = 3 si ottiene n⁴. Non si alza l'esponente di due, né si confonde la somma con una potenza della somma."
+    },
+    {
+      "id": "L01-T11-03",
+      "tipo": "L01-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) √i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n)",
+        "Θ(n)",
+        "Θ(n^(3/2) · log n)",
+        "Θ(n^(3/2))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Σ i^(1/2) = Θ(n^(3/2)): l'esponente 1/2 sale di uno. Θ(n) sarebbe il risultato del solo conteggio dei termini."
+    },
+    {
+      "id": "L01-T11-04",
+      "tipo": "L01-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe Θ della somma Σ(i=n/2..n) i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n⁴)",
+        "Θ(n)",
+        "Θ(n³)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ci sono circa n/2 termini, ciascuno tra n/2 e n: la somma è Θ(n²). Contare i termini darebbe solo Θ(n)."
+    },
+    {
+      "id": "L01-T11-05",
+      "tipo": "L01-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) (3i + 2)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n⁴)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E1",
+        null,
+        "E3"
+      ],
+      "spiegazione": "La somma vale 3·n(n+1)/2 + 2n, quindi è Θ(n²)."
+    },
+    {
+      "id": "L01-T11-06",
+      "tipo": "L01-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) i⁴?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n⁵)",
+        "Θ(n⁴)",
+        "Θ(n^10)",
+        "Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E1"
+      ],
+      "spiegazione": "Σ i⁴ = Θ(n⁵): l'esponente sale di uno. Il conteggio dei termini dà n, e (Σ i)^5 dà n^10: sono errori diversi."
+    },
+    {
+      "id": "L01-T12-01",
+      "tipo": "L01-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La somma 1 + 2 + 4 + … + 2^k è in quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(2^k)",
+        "Θ(k)",
+        "Θ(k · 2^k)",
+        "Θ(k² · 2^k)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E3",
+        "E3"
+      ],
+      "spiegazione": "La somma geometrica vale 2^(k+1) − 1: domina l'ultimo termine. Moltiplicare k per 2^k sovrastima."
+    },
+    {
+      "id": "L01-T12-02",
+      "tipo": "L01-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La somma n + n/3 + n/9 + … + 1 (con log₃ n + 1 termini) è in quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n · log² n)",
+        "Θ(n · log n)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "È una somma geometrica di ragione 1/3: è minore di (3/2)·n. Moltiplicare n per il numero di termini sovrastima."
+    },
+    {
+      "id": "L01-T12-03",
+      "tipo": "L01-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale classe Θ ha la somma Σ(i=0..k) 3^i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(3^k)",
+        "Θ(k)",
+        "Θ(k · 3^k)",
+        "Θ(k² · 3^k)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E3",
+        "E3"
+      ],
+      "spiegazione": "Con ragione 3 > 1 domina l'ultimo termine: la somma è Θ(3^k)."
+    },
+    {
+      "id": "L01-T12-04",
+      "tipo": "L01-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La somma Σ(i=0..k) (1/3)^i è in quale classe Θ?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(3^k)",
+        "Θ(1)",
+        "Θ(k)",
+        "Θ(log k)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E2",
+        "E2"
+      ],
+      "spiegazione": "Con ragione 1/3 < 1 la somma resta sotto 3/2 per ogni k: domina il primo termine, quindi è Θ(1)."
+    },
+    {
+      "id": "L01-T12-05",
+      "tipo": "L01-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale classe Θ ha la somma Σ(i=0..log₂ n) 2^i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n · log² n)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n · log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "E1"
+      ],
+      "spiegazione": "La somma vale 2·n − 1: è Θ(n). Moltiplicare il numero di termini per il massimo dà n log n, che è sbagliato."
+    },
+    {
+      "id": "L01-T12-06",
+      "tipo": "L01-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale classe Θ ha la somma Σ(i=0..n−1) 2^i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(4ⁿ)",
+        "Θ(n · 2ⁿ)",
+        "Θ(2ⁿ)",
+        "Θ(n² · 2ⁿ)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E3",
+        null,
+        "E3"
+      ],
+      "spiegazione": "La somma vale 2ⁿ − 1: il termine finale domina. Θ(n · 2ⁿ) è l'errore di chi moltiplica il numero di termini per il massimo."
+    },
+    {
+      "id": "L01-T13-01",
+      "tipo": "L01-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) log₂ i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log² n)",
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "È la somma dei logaritmi: log(n!) = Θ(n log n). Ogni termine contribuisce, non un solo logaritmo."
+    },
+    {
+      "id": "L01-T13-02",
+      "tipo": "L01-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe Θ di log₂(n!)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n!)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "log(n!) = Σ log i = Θ(n log n). Il logaritmo di n! è molto più piccolo di n!."
+    },
+    {
+      "id": "L01-T13-03",
+      "tipo": "L01-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) 3/i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(√n)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "È 3 volte la somma armonica, che cresce come l'integrale di 1/x: Θ(log n). Non è limitata e non cresce linearmente."
+    },
+    {
+      "id": "L01-T13-04",
+      "tipo": "L01-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) i · log i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n² log² n)",
+        "Θ(n log n)",
+        "Θ(n² log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E1",
+        "E1",
+        null
+      ],
+      "spiegazione": "Stima superiore n · n · log n; inferiore sulla metà alta: (n/2) · (n/2) · log(n/2). Entrambe danno Θ(n² log n)."
+    },
+    {
+      "id": "L01-T13-05",
+      "tipo": "L01-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) log₂(i²)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n!)",
+        "Θ(n log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E1",
+        "E2",
+        null
+      ],
+      "spiegazione": "log(i²) = 2·log i: la somma è il doppio di Σ log i, quindi Θ(n log n)."
+    },
+    {
+      "id": "L01-T13-06",
+      "tipo": "L01-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe Θ della somma Σ(i=1..n) n/i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(1)",
+        "Θ(n log n)",
+        "Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E3",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il fattore n esce dalla somma: n · Σ 1/i = n · Θ(log n) = Θ(n log n)."
+    },
+    {
+      "id": "L01-T14-01",
+      "tipo": "L01-T14",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Per stimare Σ f(i) con i limiti asintotici e ottenere Θ(g(n)), bisogna:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "trovare una formula chiusa della somma",
+        "trovare una stima superiore e una inferiore dello stesso ordine g(n)",
+        "trovare solo una stima inferiore Ω(g(n))",
+        "trovare solo una stima superiore O(g(n))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E2",
+        "E2"
+      ],
+      "spiegazione": "La stima superiore dà O, l'inferiore dà Ω. Insieme danno Θ. Una sola delle due dà solo una delle due notazioni."
+    },
+    {
+      "id": "L01-T14-02",
+      "tipo": "L01-T14",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il metodo dell'integrale per una somma Σ f(i) richiede che f sia:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "a valori interi",
+        "polinomiale",
+        "monotona",
+        "qualsiasi funzione"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E1",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Serve la monotonia per confrontare la somma con l'integrale di f: senza di essa le stime tra somma e integrale non valgono."
+    },
+    {
+      "id": "L01-T14-03",
+      "tipo": "L01-T14",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Cosa si ottiene da una sola stima superiore O(g(n)) di una somma?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(g(n)) direttamente",
+        "Θ(g(n)) se g è crescente",
+        "Solo O(g(n)): per avere Θ serve anche Ω",
+        "Ω(g(n))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Una stima superiore dà solo O. Per avere Θ serve anche una stima inferiore dello stesso ordine."
+    },
+    {
+      "id": "L01-T15-01",
+      "tipo": "L01-T15",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un algoritmo esegue circa log₂ n passi. Con n = 2²⁰ quanti passi servono?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "20",
+        "2¹⁹",
+        "10",
+        "1 048 576"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "log₂ 2²⁰ = 20: il logaritmo riporta l'esponente. Dividere n per 2 o confondere log₂ con altre grandezze dà risultati sbagliati."
+    },
+    {
+      "id": "L01-T15-02",
+      "tipo": "L01-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un algoritmo A fa 1000·n passi, un algoritmo B fa n² passi. Con n = 10⁶, quale fa meno passi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "A (1000·n)",
+        "Sono uguali",
+        "B (n²)",
+        "A solo per n < 1000"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E1",
+        "E1"
+      ],
+      "spiegazione": "A fa 10⁹ passi, B fa 10¹²: per n grande conta la classe, non il coefficiente 1000. A conviene da n > 1000 in poi."
+    },
+    {
+      "id": "L01-T15-03",
+      "tipo": "L01-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale è la soglia di n da cui 50·n passi sono meno di n² passi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n > 25",
+        "n > 5",
+        "n > 2500",
+        "n > 50"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "E1",
+        null
+      ],
+      "spiegazione": "50·n < n² equivale a n > 50. Il costo quadratico supera quello lineare con costante 50 da n = 51 in poi."
+    }
+  ]
+}

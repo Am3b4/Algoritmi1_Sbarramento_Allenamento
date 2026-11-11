@@ -1,0 +1,405 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 2,
+    "titolo": "Complessità temporale di algoritmi iterativi",
+    "file": "PL2.pdf",
+    "contenuti": [
+      "Costo computazionale come funzione della dimensione dell'input n; uso delle notazioni O, Ω, Θ",
+      "Modello a costo unitario: istruzioni elementari O(1), if = test + ramo più costoso, ciclo = somma dei costi delle iterazioni, algoritmo = somma dei costi",
+      "Caso migliore, peggiore e medio",
+      "Operazioni Python a costo non costante: in su liste, set e dizionari; inserimento e cancellazione; concatenazione; slicing; modifica di stringhe",
+      "Dieci esempi di analisi: ciclo limitato da una costante, uscita anticipata, ciclo fino a √n, divisione per 3, valore esponenziale di una variabile, quadrato ripetuto (log log n), somma triangolare, due cicli in sequenza (log n e n/log n), variabile calcolata da un ciclo e usata da un altro, ciclo esterno con numero costante di iterazioni",
+      "Esercizi: calcolare il costo, capire cosa calcola il codice, proporre un algoritmo più efficiente"
+    ],
+    "nota": "Le due prove ufficiali di sbarramento non hanno domande prese direttamente da questa lezione, ma la valutazione del costo serve in quasi tutte le altre (ricorsione, ordinamento, strutture dati) e nella seconda parte dei due esercizi dello scritto. Le domande di questo tipo sono comparse in tutte le simulazioni fatte finora."
+  },
+  "tipi": [
+    {
+      "id": "L02-T01",
+      "titolo": "Regole del modello a costo unitario",
+      "argomento": "Regole di analisi",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 2, 'Regole generali per valutare la complessità computazionale'.",
+      "descrizione": "Domanda sulle regole base: costo di un'istruzione elementare, di un if-else, di un ciclo, di blocchi in sequenza. Spesso con costi dei blocchi già dati, da combinare.",
+      "conoscenze": [
+        "Assegnamenti, letture, operazioni aritmetiche e logiche su un numero costante di operandi costano O(1).",
+        "if-else: costo del test più il massimo tra i costi dei due rami (se ne esegue uno solo).",
+        "Ciclo: somma dei costi di tutte le iterazioni (se il corpo costa sempre uguale: numero di iterazioni × costo del corpo).",
+        "Blocchi in sequenza: si sommano; la classe è quella del blocco più costoso."
+      ],
+      "procedimento": [
+        "Assegnare un costo a ogni blocco.",
+        "Combinare: massimo per i rami di un if, somma per la sequenza, somma sulle iterazioni per i cicli."
+      ],
+      "trappole": [
+        "Sommare i due rami dell'if invece di prendere il massimo.",
+        "Moltiplicare i costi di due blocchi in sequenza invece di sommarli.",
+        "Dimenticare il costo del test quando il test stesso non è O(1) (per esempio if x in lista)."
+      ],
+      "come_generare_varianti": "Descrivere un frammento con costi già dati (test O(1) o O(n), ramo Θ(n), ramo Θ(log n), ciclo di n iterazioni con corpo Θ(log n)) e chiedere il costo totale nel caso peggiore. Distrattori: somma dei rami, prodotto dei blocchi in sequenza, costo del ramo meno costoso."
+    },
+    {
+      "id": "L02-T02",
+      "titolo": "Ciclo singolo: incremento, moltiplicazione o divisione",
+      "argomento": "Conteggio delle iterazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 2, Esempio 4 (n = n // 3 → O(log n)) ed Esercizi (i *= 2 fino a n).",
+      "descrizione": "Un solo ciclo while o for in cui la variabile di controllo cresce o cala di una costante, oppure viene moltiplicata o divisa per una costante. Si chiede il costo.",
+      "conoscenze": [
+        "i += c fino a n: n/c iterazioni, Θ(n).",
+        "i *= c (c > 1) fino a n, oppure n //= c fino a 1: log_c n iterazioni, Θ(log n).",
+        "La base (2, 3, 10) cambia solo una costante."
+      ],
+      "procedimento": [
+        "Scrivere il valore della variabile dopo k iterazioni (k·c, c^k, n/c^k).",
+        "Imporre la condizione di uscita e ricavare k."
+      ],
+      "trappole": [
+        "Confondere i += 2 (lineare) con i *= 2 (logaritmico).",
+        "Pensare che dividere per 3 invece che per 2 cambi la classe.",
+        "Dimenticare che il costo del corpo va moltiplicato se non è costante."
+      ],
+      "come_generare_varianti": "Variare l'aggiornamento (+=1, +=5, -=3, *=2, *=3, //=2, //=10), il valore iniziale e la condizione di uscita. Distrattori: Θ(n), Θ(log n), Θ(√n), Θ(n log n)."
+    },
+    {
+      "id": "L02-T03",
+      "titolo": "Ciclo con condizione su una potenza della variabile",
+      "argomento": "Conteggio delle iterazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 2, Esempio 3 (while x*x < n: x += 1 → O(√n)) ed Esempio 9 (while i*i*i < n → O(n^(1/3))).",
+      "descrizione": "La variabile cresce di uno a ogni passo, ma la condizione confronta con n una sua potenza (x², x³) o un prodotto. Si chiede il costo.",
+      "conoscenze": [
+        "Condizione x² < n con x += 1: circa √n iterazioni.",
+        "Condizione x³ < n: circa n^(1/3) iterazioni.",
+        "Condizione 2^x < n con x += 1: circa log n iterazioni.",
+        "Condizione k² ≤ n con k *= 2: circa log √n = (1/2)·log n iterazioni, quindi Θ(log n)."
+      ],
+      "procedimento": [
+        "Scrivere il valore della variabile dopo k iterazioni.",
+        "Sostituirlo nella condizione e risolvere per k (radice, logaritmo)."
+      ],
+      "trappole": [
+        "Rispondere Θ(n) senza guardare la condizione.",
+        "Rispondere Θ(n²) leggendo x*x come un ciclo doppio.",
+        "Con k *= 2 e k² ≤ n rispondere Θ(√n) invece di Θ(log n)."
+      ],
+      "come_generare_varianti": "Combinare aggiornamento (+1, ×2) e condizione (x² < n, x³ ≤ n, x·x·x·x < n, 2^x < n, x² ≤ n con raddoppio). Distrattori: Θ(n), Θ(√n), Θ(log n), Θ(n²), scegliendo i tre più vicini all'errore tipico."
+    },
+    {
+      "id": "L02-T04",
+      "titolo": "Elevamento a potenza ripetuto (log log n)",
+      "argomento": "Conteggio delle iterazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 2, Esempio 6 (p = 2; while n >= p: p = p * p → O(log log n)).",
+      "descrizione": "La variabile viene elevata al quadrato (o al cubo) a ogni iterazione, oppure se ne prende la radice: il numero di iterazioni è log log n.",
+      "conoscenze": [
+        "Partendo da 2, dopo k quadrati p = 2^(2^k); serve 2^(2^k) > n, cioè k > log₂ log₂ n.",
+        "Con il cubo p = 2^(3^k): ancora Θ(log log n).",
+        "Prendere la radice quadrata di n ripetutamente finché supera 2 richiede ugualmente Θ(log log n) passi."
+      ],
+      "procedimento": [
+        "Scrivere p dopo k iterazioni come potenza di potenza.",
+        "Prendere due volte il logaritmo per ricavare k."
+      ],
+      "trappole": [
+        "Confondere il quadrato con il raddoppio e rispondere Θ(log n).",
+        "Rispondere Θ(√n) per analogia con la condizione x² < n."
+      ],
+      "come_generare_varianti": "Variare l'operazione (p = p*p, p = p*p*p, p = p**4, n = int(sqrt(n))), il valore iniziale (2, 3, 4) e il ciclo (while p < n, while n > 2). Distrattori: Θ(log n), Θ(√n), Θ(n), Θ(log² n)."
+    },
+    {
+      "id": "L02-T05",
+      "titolo": "Cicli annidati indipendenti",
+      "argomento": "Cicli annidati",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 2, Esercizi (tre for annidati fino a n) ed Esempio 10 (ciclo esterno costante, interno logaritmico).",
+      "descrizione": "Due o tre cicli annidati in cui il numero di iterazioni del ciclo interno non dipende dalla variabile del ciclo esterno. Il costo è il prodotto.",
+      "conoscenze": [
+        "Se il ciclo interno ha sempre lo stesso numero di iterazioni, il totale è (iterazioni esterne) × (iterazioni interne) × (corpo).",
+        "Tre for fino a n: Θ(n³).",
+        "for fino a n con dentro un ciclo che dimezza n (partendo ogni volta da n): Θ(n log n)."
+      ],
+      "procedimento": [
+        "Controllare che il ciclo interno riparta ogni volta dallo stesso valore.",
+        "Moltiplicare i conteggi dei cicli."
+      ],
+      "trappole": [
+        "Sommare invece di moltiplicare.",
+        "Non accorgersi che il ciclo interno riparte da n a ogni iterazione esterna (rispondere Θ(n + log n)).",
+        "Applicare la regola del prodotto a cicli dipendenti (vedi L02-T06 e L02-T07)."
+      ],
+      "come_generare_varianti": "Combinare due o tre cicli presi da {n, √n, log n, costante} con il ciclo interno che si reinizializza (j = n, j = 1). Distrattori: la somma dei costi, il prodotto sbagliato, il costo del solo ciclo esterno."
+    },
+    {
+      "id": "L02-T06",
+      "titolo": "Cicli annidati dipendenti con somma aritmetica",
+      "argomento": "Cicli annidati",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 2, Esempio 7 (ciclo interno di t iterazioni con t che cresce di 1 → 1 + 2 + … + n = O(n²)) ed Esercizi (for j in range(i, n), for j in range(i+1, n)).",
+      "descrizione": "Il ciclo interno dipende linearmente dalla variabile esterna (j da 0 a i, da i a n, t che cresce di uno). Il totale è una somma aritmetica.",
+      "conoscenze": [
+        "Σ_{i=1..n} i = n(n+1)/2 = Θ(n²).",
+        "Partire da i (invece che da 0) dimezza il lavoro ma lascia Θ(n²).",
+        "Con un terzo ciclo dipendente si ottiene Θ(n³)."
+      ],
+      "procedimento": [
+        "Scrivere il numero di iterazioni interne in funzione di i.",
+        "Sommare su tutte le iterazioni esterne e usare la formula di Gauss."
+      ],
+      "trappole": [
+        "Pensare che il ciclo triangolare costi Θ(n log n) o Θ(n) perché 'fa metà del lavoro'.",
+        "Fermarsi al numero di iterazioni del ciclo esterno."
+      ],
+      "come_generare_varianti": "Variare gli estremi (range(i), range(i, n), range(i + 1, n), range(n − i)), aggiungere un if nel corpo (non cambia il conteggio) e talvolta un terzo ciclo dipendente. Distrattori: Θ(n), Θ(n log n), Θ(n³)."
+    },
+    {
+      "id": "L02-T07",
+      "titolo": "Cicli annidati dipendenti con somma geometrica o di logaritmi",
+      "argomento": "Cicli annidati",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 2, Esercizi (ciclo interno fino a m con m *= 3; ciclo interno while t > 0: t //= 2 con t = i). Costruito sugli stessi principi della somma geometrica (Dispensa 1).",
+      "descrizione": "Il ciclo interno dipende da una variabile che raddoppia o si dimezza (il lavoro è una somma geometrica), oppure il ciclo interno costa log i (il lavoro è una somma di logaritmi). Moltiplicare i conteggi dà un risultato sbagliato.",
+      "conoscenze": [
+        "Ciclo interno di k iterazioni con k = 1, 2, 4, … < n: totale < 2n = Θ(n).",
+        "Ciclo interno di i iterazioni con i = n, n/2, n/4, …: totale < 2n = Θ(n).",
+        "Ciclo interno di log i iterazioni per i da 1 a n: Σ log i = Θ(n log n).",
+        "Ciclo interno di 3^i iterazioni per i fino a n: Σ 3^i = Θ(3ⁿ)."
+      ],
+      "procedimento": [
+        "Scrivere il costo del ciclo interno in funzione della variabile esterna.",
+        "Sommare: riconoscere una somma geometrica (domina l'ultimo o il primo termine) o una somma di logaritmi."
+      ],
+      "trappole": [
+        "Moltiplicare (numero di iterazioni esterne) × (massimo delle interne): n·log n invece di n.",
+        "Pensare che un ciclo esterno logaritmico implichi un costo totale logaritmico."
+      ],
+      "come_generare_varianti": "Variare la variabile esterna (raddoppio, dimezzamento, i da 1 a n), la dipendenza del ciclo interno (range(k), range(i), while j < i: j *= 2) e la base. Includere sempre il distrattore ottenuto moltiplicando i massimi."
+    },
+    {
+      "id": "L02-T08",
+      "titolo": "Cicli in sequenza e variabili calcolate da un ciclo precedente",
+      "argomento": "Cicli in sequenza",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 2, Esempio 8 (primo ciclo log₄ n che calcola p; secondo ciclo n − p a ogni passo → O(n/log n)) ed Esempio 9 (p = O(log² n) usato come numero di iterazioni di un for annidato in un ciclo n^(1/3) → O(n^(1/3)·log² n)).",
+      "descrizione": "Due cicli uno dopo l'altro, dove il primo calcola un valore (p, s) che determina quante volte gira il secondo. Bisogna ricavare il valore e poi sommare i costi.",
+      "conoscenze": [
+        "Cicli in sequenza: si sommano i costi e domina il maggiore.",
+        "Un contatore incrementato in un ciclo di log n iterazioni vale Θ(log n) all'uscita; al quadrato vale Θ(log² n).",
+        "Un ciclo che sottrae p a n ogni volta fa n/p iterazioni."
+      ],
+      "procedimento": [
+        "Analizzare il primo ciclo: costo e valore finale delle variabili usate dopo.",
+        "Analizzare il secondo ciclo usando quel valore.",
+        "Sommare e tenere il termine dominante."
+      ],
+      "trappole": [
+        "Moltiplicare i costi dei due cicli in sequenza.",
+        "Trattare p come una costante e rispondere Θ(n) per il secondo ciclo.",
+        "Fermarsi al costo del primo ciclo."
+      ],
+      "come_generare_varianti": "Primo ciclo che produce un valore v ∈ {log n, log² n, √n, una costante}; secondo ciclo che usa v come passo (n −= v), come limite (for j in range(v)) o come numero di ripetizioni. Distrattori: il prodotto dei costi, il costo del primo ciclo, il costo del secondo con v trattato come costante."
+    },
+    {
+      "id": "L02-T09",
+      "titolo": "Cicli con numero di iterazioni limitato da una costante",
+      "argomento": "Conteggio delle iterazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 2, Esempio 1 (if n > 100: return; altrimenti al più 100 iterazioni → O(1)) ed Esempio 10 (ciclo esterno da 512 a 2 dimezzando: 9 iterazioni, costante).",
+      "descrizione": "Un ciclo il cui numero di iterazioni non cresce con n, perché è fissato da una costante o perché per n grande si esce subito. Il ciclo contribuisce O(1) (o moltiplica per una costante).",
+      "conoscenze": [
+        "Un ciclo che gira al più 100 volte, o 9 volte (512 → 2 dimezzando), costa O(1) per conto suo.",
+        "Il costo asintotico conta solo per n grande: se per n > 100 l'algoritmo restituisce subito, il costo è O(1).",
+        "Costante × Θ(f(n)) = Θ(f(n))."
+      ],
+      "procedimento": [
+        "Controllare da cosa dipende il numero di iterazioni: da n o da una costante del codice?",
+        "Controllare i return anticipati che scattano per n grande."
+      ],
+      "trappole": [
+        "Vedere un for i in range(n) e rispondere Θ(n) senza notare che per n > 100 la funzione esce prima.",
+        "Contare il ciclo da 512 come Θ(log n)."
+      ],
+      "come_generare_varianti": "Variare la costante (100, 512, 1000), il tipo di ciclo costante (range(50), j da 1024 dimezzando) e cosa c'è dentro (corpo O(1), ciclo interno log n). Distrattori: Θ(n), Θ(log n), Θ(n log n)."
+    },
+    {
+      "id": "L02-T10",
+      "titolo": "Caso migliore e caso peggiore",
+      "argomento": "Casi migliore, peggiore, medio",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 2, 'Analisi dei casi: migliore, peggiore e medio' (ricerca in lista) ed Esempio 2 (uscita immediata se n è dispari, n/2 iterazioni se pari).",
+      "descrizione": "Si chiede il costo nel caso migliore e nel peggiore di un codice con uscita anticipata, o quale affermazione O, Ω, Θ è corretta quando i due casi differiscono.",
+      "conoscenze": [
+        "Caso migliore: l'input che fa terminare prima; caso peggiore: quello che fa più lavoro.",
+        "Se migliore e peggiore differiscono, il costo complessivo si scrive O(peggiore) e Ω(migliore); Θ vale solo per un caso specificato.",
+        "Il caso medio richiede un'ipotesi sulla distribuzione degli input."
+      ],
+      "procedimento": [
+        "Individuare le condizioni di uscita anticipata.",
+        "Costruire l'input che le attiva subito (migliore) e quello che le evita (peggiore).",
+        "Contare le iterazioni in ciascun caso."
+      ],
+      "trappole": [
+        "Dare il caso migliore come costo dell'algoritmo.",
+        "Scrivere Θ(n) per un algoritmo che a volte termina in O(1).",
+        "Pensare che il caso migliore sia 'n piccolo': il caso migliore si definisce a parità di n."
+      ],
+      "come_generare_varianti": "Codici con return dentro un ciclo che scatta per una proprietà dell'input (parità, primo elemento uguale a x, array già ordinato). Opzioni con coppie (migliore, peggiore) o affermazioni O/Ω/Θ."
+    },
+    {
+      "id": "L02-T11",
+      "titolo": "Costo delle operazioni Python",
+      "argomento": "Operazioni Python",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 2, 'Operazioni Python a complessità non costante I, II, III'. Ripreso nelle Lezioni 10 e 11 (list come array dinamico, pop(0), deque).",
+      "descrizione": "Si chiede il costo di una singola operazione su list, set, dict o stringhe, oppure quale tra quattro operazioni costa O(1) (o O(n)).",
+      "conoscenze": [
+        "x in lista: O(n). x in set o dict: O(1) in media, O(n) nel caso peggiore.",
+        "lista.append(x), lista.pop(), lista[i], len(lista): O(1).",
+        "lista.insert(0, x), lista.pop(0), inserimento o cancellazione a metà: O(n).",
+        "A + B (concatenazione): O(n + m). A[a:b] (slicing): O(b − a), copia gli elementi.",
+        "s = s + 'a' su una stringa: O(len(s)), perché le stringhe sono immutabili; meglio lista di caratteri e ''.join.",
+        "max, min, sum su una lista: O(n)."
+      ],
+      "procedimento": [
+        "Chiedersi se l'operazione deve spostare, copiare o scorrere elementi: se sì, costa O(n)."
+      ],
+      "trappole": [
+        "Pensare che una list di Python sia una lista concatenata (insert(0) in O(1)).",
+        "Pensare che lo slicing sia gratuito.",
+        "Pensare che in sia O(1) anche sulle liste.",
+        "Dire che il costo medio O(1) dei set vale anche nel caso peggiore.",
+        "Confondere A + B (nuova list, Θ(n + m)) con A.extend(B) (modifica A e copia solo B, Θ(m))."
+      ],
+      "come_generare_varianti": "Chiedere quale operazione costa O(1) (o O(n)) tra quattro, oppure il costo di un'operazione singola. Usare list, set, dict, str e deque, con le operazioni sopra."
+    },
+    {
+      "id": "L02-T12",
+      "titolo": "Costo nascosto di un'operazione Python dentro un ciclo",
+      "argomento": "Operazioni Python",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 2, operazioni a costo non costante; Esercizi (set ricostruito a ogni iterazione; concatenazione). Lo stesso principio torna nella Lezione 3 (slicing nelle ricorsioni) e 12 (visita per livelli con pop(0)).",
+      "descrizione": "Un ciclo che sembra lineare contiene un'operazione O(n) (in su lista, concatenazione, slicing, pop(0), insert(0, x), s = s + c, max su lista). Il costo vero è più alto di quello apparente.",
+      "conoscenze": [
+        "for su n elementi con x in lista dentro: O(n²).",
+        "n volte s = s + c o B = B + [x]: 1 + 2 + … + n = Θ(n²).",
+        "n volte lista.pop(0) o lista.insert(0, x): Θ(n²).",
+        "Lo stesso ciclo con set, append o deque torna Θ(n)."
+      ],
+      "procedimento": [
+        "Contare le iterazioni del ciclo.",
+        "Per ogni istruzione del corpo chiedersi se costa davvero O(1).",
+        "Moltiplicare o sommare (se il costo dell'operazione cresce a ogni iterazione, è una somma aritmetica)."
+      ],
+      "trappole": [
+        "Rispondere Θ(n) guardando solo il ciclo.",
+        "Pensare che B = B + [x] e B.append(x) costino uguale.",
+        "Attribuire all'operazione nascosta un costo logaritmico (come in un albero o nella ricerca binaria) e rispondere Θ(n log n)."
+      ],
+      "come_generare_varianti": "Partire da un ciclo semplice su n elementi e inserire una delle operazioni costose; nelle opzioni includere sempre il costo apparente (Θ(n)) come distrattore principale, poi Θ(n log n) e Θ(n³)."
+    },
+    {
+      "id": "L02-T13",
+      "titolo": "Ciclo che dipende dal valore di una variabile cresciuta in modo esponenziale",
+      "argomento": "Cicli in sequenza",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 2, Esempio 5 (t = 3*t per n volte, poi while t > x: x += 2, t −= 2 → O(3ⁿ)).",
+      "descrizione": "Un primo ciclo di n iterazioni fa crescere una variabile in modo esponenziale (t = 3^n); un secondo ciclo gira un numero di volte proporzionale a quel valore. Il costo è esponenziale anche se ogni ciclo 'sembra' semplice.",
+      "conoscenze": [
+        "Dopo n moltiplicazioni per 3 la variabile vale 3^n.",
+        "Un ciclo che riduce di una costante la distanza tra due variabili gira (distanza iniziale)/costante volte.",
+        "Il costo dipende dal valore delle variabili, non solo da quante righe ha il codice."
+      ],
+      "procedimento": [
+        "Calcolare il valore delle variabili alla fine del primo ciclo.",
+        "Contare le iterazioni del secondo ciclo usando quel valore.",
+        "Sommare i costi: domina quello esponenziale."
+      ],
+      "trappole": [
+        "Rispondere Θ(n) perché il ciclo esterno fa n iterazioni.",
+        "Rispondere Θ(n²) leggendo due cicli.",
+        "Rispondere con un costo esponenziale anche quando la variabile cresce di un passo costante (t = t + 2 invece di t = 2·t)."
+      ],
+      "come_generare_varianti": "Variare la crescita (t *= 2, t *= 3, t = t*t), la posizione del secondo ciclo (dentro o dopo il primo) e il passo con cui si chiude la distanza. Distrattori: Θ(n), Θ(n²), Θ(n·3ⁿ)."
+    },
+    {
+      "id": "L02-T14",
+      "titolo": "Cosa calcola il codice e alternativa più efficiente",
+      "argomento": "Progettazione e miglioramento",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 2, ultimi Esercizi ('Calcolane la complessità. Determina cosa fa. Proponi un algoritmo alternativo che abbia complessità inferiore': prefissi con numero di distinti, coppie di elementi diversi, coppia con somma x, sequenza crescente più lunga).",
+      "descrizione": "Si mostra un codice inefficiente (di solito O(n²) o O(n³)); si chiede cosa restituisce, oppure il costo minimo ottenibile con un algoritmo migliore.",
+      "conoscenze": [
+        "Coppia con somma x: doppio ciclo O(n²); con ordinamento + due puntatori O(n log n); con un set O(n) in media.",
+        "Numero di distinti in ogni prefisso: ricostruire il set da capo a ogni i costa O(n²); aggiornarlo incrementalmente costa O(n).",
+        "Sequenza crescente contigua più lunga: un'unica scansione O(n) basta.",
+        "Contare le coppie (i, j) con valori diversi: totale coppie meno coppie uguali, con un dizionario di frequenze in O(n)."
+      ],
+      "procedimento": [
+        "Simulare il codice su un input piccolo per capire cosa calcola.",
+        "Individuare il lavoro ripetuto (ricostruzioni, confronti tutti contro tutti).",
+        "Pensare a ordinamento, set o dizionari, o a un aggiornamento incrementale."
+      ],
+      "trappole": [
+        "Proporre un miglioramento che non rispetta il problema (per esempio ordinare quando l'ordine originale conta).",
+        "Dire O(n) per la coppia con somma x senza strutture ausiliarie.",
+        "Pensare che non si possa fare meglio del costo del codice dato.",
+        "Confondere la soluzione con un set (O(n) in media) con quella che ordina (O(n log n))."
+      ],
+      "come_generare_varianti": "Usare i quattro codici della dispensa (o analoghi) e chiedere: (a) cosa restituisce su un input dato; (b) il costo attuale; (c) il costo migliore ottenibile, con opzioni O(n), O(n log n), O(n²), O(log n)."
+    },
+    {
+      "id": "L02-T15",
+      "titolo": "Due variabili che si avvicinano",
+      "argomento": "Conteggio delle iterazioni",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 2,
+      "fonte": "Dispensa 2, Esempio 5 (secondo ciclo: x += 2 e t −= 2, la differenza cala di 4). Schema usato anche nelle soluzioni a due puntatori degli esercizi d'esame.",
+      "descrizione": "Un while con due variabili che si muovono l'una verso l'altra (i cresce, j cala) finché si incontrano. Il numero di iterazioni è la distanza iniziale divisa per quanto si riduce a ogni passo.",
+      "conoscenze": [
+        "Se la distanza iniziale è D e cala di c a ogni iterazione, le iterazioni sono circa D/c.",
+        "Con i = 0 e j = n che si avvicinano di una quantità costante: Θ(n).",
+        "Se a ogni passo si muove una sola delle due variabili, la distanza cala comunque di almeno 1: al più n iterazioni."
+      ],
+      "procedimento": [
+        "Calcolare la distanza iniziale.",
+        "Calcolare di quanto si riduce a ogni iterazione (nel caso peggiore, la riduzione minima).",
+        "Dividere."
+      ],
+      "trappole": [
+        "Contare due cicli e rispondere Θ(n²).",
+        "Rispondere Θ(log n) pensando a un dimezzamento."
+      ],
+      "come_generare_varianti": "Variare valori iniziali (0 e n, 1 e n²), passi (+1/−1, +2/−3, uno solo dei due per iterazione) e condizione (i < j, t > x). Distrattori: Θ(n²), Θ(log n), Θ(n/5) scritto come classe diversa."
+    }
+  ]
+}

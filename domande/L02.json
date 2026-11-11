@@ -1,0 +1,1869 @@
+{
+  "lezione": 2,
+  "generato_con": "claude-haiku-5-5",
+  "domande": [
+    {
+      "id": "L02-T01-01",
+      "tipo": "L02-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un frammento è formato da tre blocchi eseguiti uno dopo l'altro, di costo Θ(n), Θ(√n) e Θ(log n). Qual è il costo del frammento nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n · √n)",
+        "Θ(n)",
+        "Θ(√n · log n)",
+        "Θ(n · log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E2",
+        "E2"
+      ],
+      "spiegazione": "Blocchi in sequenza si sommano e domina il più costoso: Θ(n). Le opzioni con il prodotto dei costi nascono dall'errore di moltiplicare invece di sommare."
+    },
+    {
+      "id": "L02-T01-02",
+      "tipo": "L02-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un frammento è formato da tre blocchi eseguiti in sequenza, di costo Θ(n²), Θ(n log n) e Θ(log² n). Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³ log n)",
+        "Θ(n log³ n)",
+        "Θ(n²)",
+        "Θ(n² log² n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E2",
+        null,
+        "E2"
+      ],
+      "spiegazione": "In sequenza si sommano: domina Θ(n²). Ogni opzione sbagliata è un prodotto di due o tre dei costi, cioè l'errore di moltiplicare i blocchi in sequenza."
+    },
+    {
+      "id": "L02-T01-03",
+      "tipo": "L02-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un frammento è formato da tre blocchi eseguiti in sequenza, di costo Θ(n log n), Θ(√n) e Θ(log n). Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n^(3/2) · log n)",
+        "Θ(n · log² n)",
+        "Θ(√n · log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E2",
+        "E2"
+      ],
+      "spiegazione": "Si sommano i costi e domina Θ(n log n). Θ(n^(3/2) · log n) e Θ(n · log² n) sono prodotti di due blocchi, come Θ(√n · log n)."
+    },
+    {
+      "id": "L02-T01-04",
+      "tipo": "L02-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il frammento è un if il cui test è x in L, con L lista di n elementi (test Θ(n)). Il ramo then costa Θ(√n) e il ramo else costa Θ(log n). Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n)",
+        "Θ(n^(3/2))",
+        "Θ(n · log n)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E2",
+        "E2",
+        null
+      ],
+      "spiegazione": "Costo dell'if = test più il ramo più costoso: Θ(n) + Θ(√n) = Θ(n). Θ(√n) è il costo dimenticando il test; i prodotti test × ramo sono l'errore di moltiplicare."
+    },
+    {
+      "id": "L02-T01-05",
+      "tipo": "L02-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il frammento è un if con test sum(L) == x, dove L è una lista di n numeri (test Θ(n)). Il ramo then costa Θ(log n) e il ramo else costa Θ(log² n). Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log² n)",
+        "Θ(n)",
+        "Θ(n · log n)",
+        "Θ(n · log² n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E2",
+        "E2"
+      ],
+      "spiegazione": "Il test costa Θ(n) e domina il ramo più costoso (Θ(log² n)): totale Θ(n). Θ(log² n) è il costo senza il test; gli altri due moltiplicano il test per un ramo."
+    },
+    {
+      "id": "L02-T01-06",
+      "tipo": "L02-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il frammento è formato da due blocchi in sequenza. Il primo è un ciclo di log n iterazioni con corpo Θ(1). Il secondo è un if con test x in L, dove L è una lista di n elementi (test Θ(n)), ramo then Θ(√n) e ramo else Θ(1). Qual è il costo nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n · log n)",
+        "Θ(√n)",
+        "Θ(n^(3/2))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "Θ(log n) + [Θ(n) + Θ(√n)] = Θ(n). Dimenticare il test dà Θ(√n); moltiplicare i due blocchi o il test per il ramo dà Θ(n log n) e Θ(n^(3/2))."
+    },
+    {
+      "id": "L02-T02-01",
+      "tipo": "L02-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "i = 1\nwhile i < n:\n    i *= 2\n    for j in range(n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "i raddoppia, quindi il ciclo esterno fa log n iterazioni, ciascuna con un ciclo interno Θ(n): totale Θ(n log n). Θ(n²) nasce dal leggere i *= 2 come i += 2; Θ(log n) dal dimenticare il corpo."
+    },
+    {
+      "id": "L02-T02-02",
+      "tipo": "L02-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con n = 64, quante volte viene eseguito il corpo del ciclo?",
+      "codice": "k = n\nwhile k > 1:\n    k //= 2",
+      "albero": null,
+      "opzioni": [
+        "4",
+        "32",
+        "6",
+        "63"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "E1"
+      ],
+      "spiegazione": "64, 32, 16, 8, 4, 2, 1: sei divisioni. Con k //= 3 il ciclo farebbe solo 4 passi (64, 21, 7, 2); leggere // come sottrazione dà 32 o 63."
+    },
+    {
+      "id": "L02-T02-03",
+      "tipo": "L02-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Con n = 100, quante volte viene eseguito il corpo del ciclo?",
+      "codice": "i = n\nwhile i > 1:\n    i //= 3",
+      "albero": null,
+      "opzioni": [
+        "99",
+        "4",
+        "50",
+        "6"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "I valori di i sono 100, 33, 11, 3: quattro passi. Con i //= 2 i passi sarebbero 6; leggere la divisione come sottrazione dà 99 (i -= 1) o 50 (i -= 2)."
+    },
+    {
+      "id": "L02-T02-04",
+      "tipo": "L02-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "i = 0\nwhile i < n:\n    i += 5\n    for j in range(n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Il ciclo esterno fa circa n/5 iterazioni, ciascuna con un ciclo interno Θ(n): totale Θ(n²). Θ(n) dimentica il corpo; Θ(n log n) e Θ(log n) confondono += con *=."
+    },
+    {
+      "id": "L02-T02-05",
+      "tipo": "L02-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Con n = 50, quante volte viene eseguito il corpo del ciclo?",
+      "codice": "i = 1\nwhile i < n:\n    i *= 3",
+      "albero": null,
+      "opzioni": [
+        "49",
+        "4",
+        "17",
+        "25"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E1",
+        "E1"
+      ],
+      "spiegazione": "I valori di i sono 1, 3, 9, 27: quattro passi, perché 81 esce dal ciclo. Leggere *= 3 come += 1, += 2 o += 3 dà rispettivamente 49, 25 o 17."
+    },
+    {
+      "id": "L02-T02-06",
+      "tipo": "L02-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "j = n\nwhile j > 0:\n    j //= 2\n    for i in range(j):\n        s += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo interno costa j, che vale n, n/2, n/4, …: somma < 2n, quindi Θ(n). Θ(log n) ignora il corpo; Θ(n log n) tratta il corpo come se costasse sempre n."
+    },
+    {
+      "id": "L02-T03-01",
+      "tipo": "L02-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "x = r = 0\nwhile x * x < n:\n    x += 1\n    r += 3",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(√n)",
+        "Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Dopo k iterazioni x = k, e il ciclo si ferma quando k² ≥ n, cioè k ≈ √n. Θ(n²) legge x * x come un ciclo doppio."
+    },
+    {
+      "id": "L02-T03-02",
+      "tipo": "L02-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "k = 1\nwhile k * k <= n:\n    k *= 2",
+      "albero": null,
+      "opzioni": [
+        "Θ(√n)",
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "E2"
+      ],
+      "spiegazione": "k raddoppia a ogni passo e il ciclo si ferma quando k² > n, cioè k ≈ √n: log₂ √n = ½ log₂ n iterazioni, quindi Θ(log n). Θ(√n) è la risposta di chi non nota il raddoppio."
+    },
+    {
+      "id": "L02-T03-03",
+      "tipo": "L02-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "x = 0\nwhile x * x * x < n:\n    x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n³)",
+        "Θ(n^(1/3))",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il ciclo si ferma quando x³ ≥ n, cioè x ≈ n^(1/3). Θ(n³) è la lettura di x * x * x come tre cicli annidati; Θ(log n) è la risposta da raddoppio."
+    },
+    {
+      "id": "L02-T03-04",
+      "tipo": "L02-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "x = 0\nwhile x * x < n:\n    x += 2",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(√n)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "x cresce di 2 a ogni passo e il ciclo si ferma quando x² ≥ n: circa √n/2 iterazioni, quindi Θ(√n). Il passo costante non cambia la classe."
+    },
+    {
+      "id": "L02-T03-05",
+      "tipo": "L02-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "x = 1\nwhile 2 ** x < n:\n    x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(√n)",
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "E2"
+      ],
+      "spiegazione": "x cresce di 1 e la condizione è 2^x < n: il ciclo termina quando x supera log₂ n, quindi Θ(log n) iterazioni."
+    },
+    {
+      "id": "L02-T03-06",
+      "tipo": "L02-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "k = 1\nwhile 2 * k * k <= n:\n    k *= 2",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(√n)",
+        "Θ(log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "k raddoppia e il ciclo si ferma quando k² supera n/2, cioè k ≈ √n: circa ½ log₂ n iterazioni, quindi Θ(log n). Θ(√n) dimentica il raddoppio."
+    },
+    {
+      "id": "L02-T04-01",
+      "tipo": "L02-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "p = 3\nwhile p < n:\n    p = p * p",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(√n)",
+        "Θ(log² n)",
+        "Θ(log log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Dopo k iterazioni p = 3^(2^k); il ciclo finisce quando 2^k supera log₃ n, quindi k ≈ log log n. Elevare al quadrato non è un raddoppio."
+    },
+    {
+      "id": "L02-T04-02",
+      "tipo": "L02-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "p = 2\nwhile p < n:\n    p = p * p * p",
+      "albero": null,
+      "opzioni": [
+        "Θ(√n)",
+        "Θ(log log n)",
+        "Θ(log n)",
+        "Θ(log² n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il cubo ripetuto porta p a 2^(3^k): servono k ≈ log log n passi. Θ(log n) confonde l'elevamento a potenza con il raddoppio."
+    },
+    {
+      "id": "L02-T04-03",
+      "tipo": "L02-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "p = 2\nwhile p * p < n:\n    p = p * p",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(log log n)",
+        "Θ(√n)",
+        "Θ(log² n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "p diventa 2^(2^k); la condizione p² < n equivale a p < √n, e i passi restano k ≈ log log n. Θ(√n) è l'analogia con la condizione x² < n."
+    },
+    {
+      "id": "L02-T04-04",
+      "tipo": "L02-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "while n > 2:\n    n = int(n ** 0.5)",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(√n)",
+        "Θ(log log n)",
+        "Θ(log² n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Ogni passo prende la radice quadrata: dopo k passi n vale circa n^(1/2^k), che scende a 2 quando k ≈ log log n."
+    },
+    {
+      "id": "L02-T04-05",
+      "tipo": "L02-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "p = 1\nwhile p < n:\n    p = 2 * p * p",
+      "albero": null,
+      "opzioni": [
+        "Θ(log log n)",
+        "Θ(log n)",
+        "Θ(√n)",
+        "Θ(log² n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "p si eleva al quadrato a ogni passo, quindi cresce doppiamente esponenziale: circa log log n iterazioni. Il fattore 2 non cambia la classe."
+    },
+    {
+      "id": "L02-T04-06",
+      "tipo": "L02-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "p = 2\nwhile p <= n:\n    p = p ** 3",
+      "albero": null,
+      "opzioni": [
+        "Θ(√n)",
+        "Θ(log n)",
+        "Θ(log log n)",
+        "Θ(log² n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il cubo ripetuto fa crescere p come 2^(3^k): servono circa log log n passi. Θ(log n) è il risultato di un raddoppio."
+    },
+    {
+      "id": "L02-T05-01",
+      "tipo": "L02-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(n):\n    j = n\n    while j > 1:\n        j //= 2",
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n + log n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Il ciclo interno riparte ogni volta da n e fa log n iterazioni: i cicli sono indipendenti, quindi si moltiplicano. Sommare dà Θ(n + log n) = Θ(n)."
+    },
+    {
+      "id": "L02-T05-02",
+      "tipo": "L02-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(√n):\n    for j in range(n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n^(3/2))",
+        "Θ(√n)",
+        "Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Il ciclo esterno fa √n iterazioni e quello interno n: il prodotto è n · √n = n^(3/2). Θ(√n) ignora il ciclo interno; Θ(n) somma invece di moltiplicare."
+    },
+    {
+      "id": "L02-T05-03",
+      "tipo": "L02-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(n):\n    j = 1\n    while j < n:\n        j *= 2\n    for k in range(n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n² log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "E3",
+        null
+      ],
+      "spiegazione": "Ogni iterazione esterna costa Θ(log n) + Θ(n) = Θ(n); le n iterazioni esterne danno Θ(n²). Θ(n) somma i cicli invece di moltiplicarli."
+    },
+    {
+      "id": "L02-T05-04",
+      "tipo": "L02-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(log₂ n):\n    for j in range(n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Il ciclo esterno fa log n iterazioni e quello interno n: il prodotto è n · log n. Θ(log n) ignora il ciclo interno; Θ(n) somma i due cicli."
+    },
+    {
+      "id": "L02-T05-05",
+      "tipo": "L02-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(n):\n    for j in range(n // 2):\n        for k in range(n // 4):\n            x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(n)",
+        "Θ(n² log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Tre cicli indipendenti di Θ(n), Θ(n) e Θ(n) iterazioni si moltiplicano: Θ(n³). Θ(n) e Θ(n²) sommano o dimenticano cicli."
+    },
+    {
+      "id": "L02-T05-06",
+      "tipo": "L02-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(log₂ n):\n    for j in range(log₂ n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log² n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Due cicli indipendenti di log n iterazioni: il prodotto è log² n. Θ(log n) somma i cicli; Θ(n log n) moltiplica per n un ciclo che è già logaritmico."
+    },
+    {
+      "id": "L02-T06-01",
+      "tipo": "L02-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(n):\n    for j in range(i, n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n³)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo interno fa n − i iterazioni: n + (n−1) + … + 1 = n(n+1)/2 = Θ(n²). Θ(n) si ferma al ciclo esterno."
+    },
+    {
+      "id": "L02-T06-02",
+      "tipo": "L02-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(n):\n    for j in range(i + 1, n):\n        if A[j] < A[i]:\n            c += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n³)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Per ogni i il ciclo interno fa n − i − 1 iterazioni: la somma è Θ(n²). Il confronto A[j] < A[i] è O(1), quindi non cambia la classe."
+    },
+    {
+      "id": "L02-T06-03",
+      "tipo": "L02-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "t = 0\nfor i in range(n):\n    for j in range(i):\n        t += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n³)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo interno fa i iterazioni: 0 + 1 + … + (n−1) = n(n−1)/2 = Θ(n²). Θ(n) si ferma al ciclo esterno."
+    },
+    {
+      "id": "L02-T06-04",
+      "tipo": "L02-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(n):\n    for j in range(n - i):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n³)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il ciclo interno fa n − i iterazioni: la somma n + (n−1) + … + 1 è Θ(n²). Il fattore ½ della formula di Gauss non cambia la classe."
+    },
+    {
+      "id": "L02-T06-05",
+      "tipo": "L02-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(n):\n    for j in range(i):\n        for k in range(j):\n            x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(n² log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il ciclo più interno fa j iterazioni, e Σ_j j = Θ(i²): sommando su i si ottiene Θ(n³). Θ(n²) si ferma al secondo livello."
+    },
+    {
+      "id": "L02-T06-06",
+      "tipo": "L02-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "s = 0\nfor i in range(n):\n    for j in range(i + 1):\n        s += A[j]",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n^(3/2))",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il ciclo interno fa i + 1 iterazioni: la somma su i da 0 a n − 1 è Θ(n²). L'accesso A[j] è O(1)."
+    },
+    {
+      "id": "L02-T07-01",
+      "tipo": "L02-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "i = n\nwhile i > 0:\n    for j in range(i):\n        x += 1\n    i = i // 3",
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n²)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il ciclo interno costa i, che vale n, n/3, n/9, …: la somma è minore di 3n/2, quindi Θ(n). Moltiplicare le log₃ n iterazioni esterne per il massimo n dà Θ(n log n); Θ(log n) conta solo le iterazioni esterne."
+    },
+    {
+      "id": "L02-T07-02",
+      "tipo": "L02-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "i = 1\nwhile i < n:\n    for j in range(i):\n        x += 1\n    i *= 2",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo interno costa i = 1, 2, 4, …: la somma è minore di 2n, quindi Θ(n). Il costo non è logaritmico solo perché il ciclo esterno lo è."
+    },
+    {
+      "id": "L02-T07-03",
+      "tipo": "L02-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(1, n):\n    for j in range(n // i):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il ciclo interno fa n/i iterazioni: Σ n/i = n·H(n) = Θ(n log n). Moltiplicare il numero di iterazioni esterne per il massimo interno dà Θ(n²)."
+    },
+    {
+      "id": "L02-T07-04",
+      "tipo": "L02-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "i = 1\nwhile i <= n:\n    for j in range(n // i):\n        x += 1\n    i *= 2",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il ciclo interno fa n/i iterazioni con i = 1, 2, 4, …: la somma è minore di 2n, quindi Θ(n). Θ(n log n) moltiplica il numero di iterazioni esterne per il massimo interno."
+    },
+    {
+      "id": "L02-T07-05",
+      "tipo": "L02-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "i = n\nwhile i >= 1:\n    for j in range(i):\n        x += 1\n    i = i // 4",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo interno costa n, n/4, n/16, …: la somma è minore di 4n/3, quindi Θ(n). Θ(log n) ignora il lavoro del ciclo interno."
+    },
+    {
+      "id": "L02-T07-06",
+      "tipo": "L02-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(1, n):\n    for j in range(i, n, i):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Il ciclo interno fa circa n/i iterazioni: la somma è Θ(n log n), come per la serie armonica. Moltiplicare per il massimo interno dà Θ(n²)."
+    },
+    {
+      "id": "L02-T08-01",
+      "tipo": "L02-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "s = t = n\np = 0\nwhile s >= 1:\n    s = s // 3\n    p += 1\nfor j in range(p):\n    for k in range(n):\n        t += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n log² n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E2",
+        "E1"
+      ],
+      "spiegazione": "Il primo ciclo fa log n iterazioni e lascia p ≈ log₃ n. Il secondo fa p · n = Θ(n log n) passi. Θ(log n) si ferma al primo ciclo; Θ(n) tratta p come costante."
+    },
+    {
+      "id": "L02-T08-02",
+      "tipo": "L02-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "s = n\nq = 0\nwhile s > 1:\n    s = s // 2\n    q += 1\nwhile n - q > 0:\n    n -= q\n    t += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n · log n)",
+        "Θ(n/log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il primo ciclo lascia q ≈ log₂ n. Il secondo toglie q da n a ogni passo: circa n/log n iterazioni, che dominano il Θ(log n) del primo ciclo. Θ(n) tratta q come una costante; Θ(log n) si ferma al primo ciclo."
+    },
+    {
+      "id": "L02-T08-03",
+      "tipo": "L02-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "p = 0\nwhile p * p < n:\n    p += 1\nfor j in range(n):\n    for k in range(p):\n        c += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n^(3/2))",
+        "Θ(√n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E2",
+        "E1"
+      ],
+      "spiegazione": "Il primo ciclo fa √n iterazioni e lascia p ≈ √n. Il secondo fa n · √n = Θ(n^(3/2)) passi. Θ(√n) si ferma al primo ciclo; Θ(n) tratta p come una costante; Θ(n²) moltiplica i costi dei due cicli (√n · n^(3/2))."
+    },
+    {
+      "id": "L02-T08-04",
+      "tipo": "L02-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "k = 1\nwhile k < n:\n    k *= 2\nfor i in range(k):\n    x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Il primo ciclo fa log n iterazioni e lascia k tra n e 2n. Il secondo costa Θ(n): il totale è Θ(n), non Θ(log n) né Θ(n log n)."
+    },
+    {
+      "id": "L02-T08-05",
+      "tipo": "L02-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "s = n\np = 0\nwhile s > 0:\n    s = s // 4\n    p += 1\nfor i in range(p):\n    for j in range(n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log² n)",
+        "Θ(n log n)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il primo ciclo fa log₄ n iterazioni e lascia p ≈ log₄ n. Il secondo fa p · n = Θ(n log n) passi. Θ(n) tratta p come costante; Θ(log n) si ferma al primo ciclo."
+    },
+    {
+      "id": "L02-T08-06",
+      "tipo": "L02-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "t = n\nq = 0\nwhile t > 1:\n    t = t // 2\n    q += 1\nfor i in range(n):\n    for j in range(q):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n log² n)",
+        "Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Il primo ciclo fa log₂ n iterazioni e lascia q ≈ log₂ n. Il secondo fa n · q = Θ(n log n) passi. Θ(n log² n) moltiplica il costo dei due cicli."
+    },
+    {
+      "id": "L02-T09-01",
+      "tipo": "L02-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "j = 512\nwhile j > 1:\n    j //= 2\n    x += 1\nfor i in range(n):\n    x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il primo ciclo fa 9 iterazioni fisse, quindi Θ(1). Il secondo costa Θ(n): il totale è Θ(n). Il ciclo da 512 non è logaritmico in n."
+    },
+    {
+      "id": "L02-T09-02",
+      "tipo": "L02-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "n = abs(n)\nif n > 100:\n    return 1\nfor i in range(n):\n    for j in range(n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "O(1)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Per n > 100 la funzione esce subito; per n ≤ 100 i cicli fanno al più 10 000 passi. Il costo è O(1). Θ(n²) dimentica l'uscita anticipata."
+    },
+    {
+      "id": "L02-T09-03",
+      "tipo": "L02-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "if n > 50:\n    return 0\nt = 0\nfor i in range(n):\n    t += i",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(log n)",
+        "O(n) nel caso peggiore, O(1) solo se n > 50",
+        "O(1)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "E1",
+        null
+      ],
+      "spiegazione": "Per n > 50 la funzione esce subito; per n ≤ 50 il ciclo fa al più 50 iterazioni. Il costo è limitato da una costante per ogni n: O(1). Θ(n) vede il ciclo senza notare l'uscita anticipata."
+    },
+    {
+      "id": "L02-T09-04",
+      "tipo": "L02-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "for i in range(100):\n    for j in range(n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il ciclo esterno fa 100 iterazioni fisse: il costo è 100 · n, cioè Θ(n). Una costante moltiplicata per Θ(n) resta Θ(n)."
+    },
+    {
+      "id": "L02-T09-05",
+      "tipo": "L02-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "j = 1024\nwhile j > 1:\n    j //= 2\n    for i in range(n):\n        x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E2",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Il ciclo su j fa 10 iterazioni fisse, ciascuna con un ciclo Θ(n): il totale è Θ(n). Contare il ciclo da 1024 come logaritmico dà Θ(n log n)."
+    },
+    {
+      "id": "L02-T09-06",
+      "tipo": "L02-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "if n > 1000:\n    return 0\nfor i in range(n):\n    if i > 10:\n        break\n    x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "O(n), perché il ciclo arriva fino a n",
+        "O(1)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "E1",
+        null
+      ],
+      "spiegazione": "Per n > 1000 esce subito; altrimenti il ciclo si interrompe al più dopo 12 iterazioni. Il costo è O(1) in ogni caso."
+    },
+    {
+      "id": "L02-T10-01",
+      "tipo": "L02-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per questo codice, quali sono i costi nel caso migliore e nel caso peggiore?",
+      "codice": "for x in A:\n    if x == key:\n        return True\nreturn False",
+      "albero": null,
+      "opzioni": [
+        "Migliore O(1), peggiore Θ(n)",
+        "O(1) in entrambi i casi",
+        "Θ(n) in entrambi i casi",
+        "Migliore Θ(log n), peggiore Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Se key è il primo elemento il ciclo termina subito: O(1). Se key non c'è il ciclo scorre tutta A: Θ(n)."
+    },
+    {
+      "id": "L02-T10-02",
+      "tipo": "L02-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per questo codice, quali sono i costi nel caso migliore e nel caso peggiore?",
+      "codice": "i = 0\nwhile i < n:\n    if A[i] < 0:\n        return i\n    i += 1\nreturn -1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n) in entrambi i casi",
+        "O(1) in entrambi i casi",
+        "Migliore O(1), peggiore Θ(n)",
+        "Migliore Θ(log n), peggiore Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Se il primo elemento è negativo si esce subito: O(1). Se nessun elemento è negativo si scorre tutto l'array: Θ(n)."
+    },
+    {
+      "id": "L02-T10-03",
+      "tipo": "L02-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A è una list di n interi. Per questo codice, quali sono i costi nel caso migliore e nel caso peggiore?",
+      "codice": "j = n\nwhile j > 1:\n    if A[0] % 3 == 0:\n        return 0\n    j //= 2\nreturn 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n) in entrambi i casi",
+        "Migliore O(1), peggiore Θ(log n)",
+        "O(1) in entrambi i casi",
+        "Migliore O(1) solo per n piccolo, peggiore Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "A parità di n, se A[0] è multiplo di 3 il codice esce alla prima iterazione: O(1). Altrimenti j si dimezza fino a 1: Θ(log n). Il caso migliore dipende da com'è fatto l'input, non da n piccolo."
+    },
+    {
+      "id": "L02-T10-04",
+      "tipo": "L02-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "A è una list di n numeri interi. Per questo codice, quali sono i costi nel caso migliore e nel caso peggiore?",
+      "codice": "for i in range(n):\n    if A[i] % 2 == 1:\n        return i\nreturn -1",
+      "albero": null,
+      "opzioni": [
+        "O(1) in entrambi i casi",
+        "Migliore O(1), peggiore Θ(n)",
+        "Θ(n) in entrambi i casi",
+        "Migliore Θ(log n), peggiore Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Se il primo elemento di A è dispari il codice esce alla prima iterazione: O(1). Se tutti gli elementi sono pari il ciclo scorre tutta A: Θ(n)."
+    },
+    {
+      "id": "L02-T10-05",
+      "tipo": "L02-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A è una list di n elementi. Per questo codice, quali sono i costi nel caso migliore e nel caso peggiore?",
+      "codice": "i = 1\nwhile i < n:\n    if A[i] == A[0]:\n        return i\n    i *= 2\nreturn -1",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n) in entrambi i casi",
+        "O(1) in entrambi i casi",
+        "Migliore O(1) per n ≤ 2, peggiore Θ(log n)",
+        "Migliore O(1), peggiore Θ(log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "E3",
+        null
+      ],
+      "spiegazione": "Se A[1] è uguale ad A[0] il codice esce alla prima iterazione: O(1), per qualsiasi n. Se nessun A[i] con i potenza di 2 è uguale ad A[0], i raddoppia fino a n: Θ(log n) iterazioni."
+    },
+    {
+      "id": "L02-T10-06",
+      "tipo": "L02-T10",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un algoritmo ha costo Θ(1) nel caso migliore e Θ(n) nel caso peggiore. Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il costo è Θ(1) in ogni caso",
+        "Il costo è Θ(n) in ogni caso",
+        "Il costo è O(n) e Ω(1)",
+        "Il costo è Θ(1) per n piccolo e Θ(n) per n grande"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il costo dipende dall'input: si può dire che è O(n) (caso peggiore) e Ω(1) (caso migliore), ma non Θ di una sola funzione. I due casi si confrontano a parità di n, non tra n piccoli e n grandi."
+    },
+    {
+      "id": "L02-T11-01",
+      "tipo": "L02-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Su una list Python di n elementi, quale operazione costa O(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "lista[i]",
+        "x in lista",
+        "lista.insert(0, x)",
+        "lista[1:]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Leggere un elemento per indice è O(1). x in lista scorre la lista; insert(0, x) sposta tutti gli elementi; lista[1:] copia n − 1 riferimenti."
+    },
+    {
+      "id": "L02-T11-02",
+      "tipo": "L02-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Su un set Python di n elementi, quanto costa x in s?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1) in media, Θ(n) nel caso peggiore",
+        "O(1) in ogni caso",
+        "Θ(n) in ogni caso",
+        "Θ(n) in media, O(1) nel caso peggiore"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La ricerca in set è O(1) in media, ma nel caso peggiore (collisioni) può costare Θ(n). Dire O(1) in ogni caso ignora il caso peggiore dovuto alle collisioni."
+    },
+    {
+      "id": "L02-T11-03",
+      "tipo": "L02-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quanto costa lista.insert(0, x) su una list Python di n elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), perché sposta gli elementi",
+        "O(1), come in una lista concatenata",
+        "O(log n), come in un albero bilanciato",
+        "O(1), perché aggiunge in testa"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E1"
+      ],
+      "spiegazione": "Una list è un array dinamico: inserire in testa sposta tutti gli elementi, quindi costa Θ(n). Non è una lista concatenata."
+    },
+    {
+      "id": "L02-T11-04",
+      "tipo": "L02-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quanto costa B = A[2:n] su una list Python A di n elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1), lo slicing è una vista",
+        "Θ(n), lo slicing copia gli elementi",
+        "Θ(n log n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Lo slicing crea una nuova list copiando i riferimenti: Θ(n). Non è gratuito come una vista."
+    },
+    {
+      "id": "L02-T11-05",
+      "tipo": "L02-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione sulle list Python è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sono una lista concatenata",
+        "x in lista costa O(1)",
+        "append(x) aggiunge in fondo in O(1) ammortizzato",
+        "pop(0) costa O(1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Una list è un array dinamico: append in fondo è O(1) ammortizzato. x in lista scorre gli elementi; pop(0) sposta tutti gli elementi."
+    },
+    {
+      "id": "L02-T11-06",
+      "tipo": "L02-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Due list Python A e B hanno n e m elementi. Quanto costa C = A + B?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1), come in una lista concatenata",
+        "Θ(n · m)",
+        "Θ(n + m)",
+        "Θ(m), come A.extend(B)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "E5"
+      ],
+      "spiegazione": "La concatenazione crea una nuova list copiando tutti gli elementi di A e di B: Θ(n + m). A.extend(B) invece modifica A e copia solo B, Θ(m). Pensarla O(1) è scambiare la list per una lista concatenata."
+    },
+    {
+      "id": "L02-T12-01",
+      "tipo": "L02-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A e B sono due liste Python di n elementi. Qual è il costo nel caso peggiore?",
+      "codice": "c = 0\nfor x in A:\n    B.insert(0, x)\n    c += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n³)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Ogni insert(0, x) costa O(n) e viene ripetuto n volte: Θ(n²). Guardando solo il ciclo si scrive Θ(n)."
+    },
+    {
+      "id": "L02-T12-02",
+      "tipo": "L02-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo nel caso peggiore di questo codice, con n iterazioni?",
+      "codice": "s = ''\nfor i in range(n):\n    s = s + 'a'",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Le stringhe sono immutabili: la k-esima concatenazione costa Θ(k), e la somma 1 + 2 + … + n è Θ(n²). Con append su una lista il costo tornerebbe Θ(n)."
+    },
+    {
+      "id": "L02-T12-03",
+      "tipo": "L02-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "A e B sono due liste Python di n elementi. Qual è il costo nel caso peggiore?",
+      "codice": "c = 0\nfor x in A:\n    if x in B:\n        c += 1",
+      "albero": null,
+      "opzioni": [
+        "O(n)",
+        "O(n log n)",
+        "O(1)",
+        "O(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "x in B su una lista è una ricerca lineare, eseguita per ogni x in A: O(n²). Con B come set il totale sarebbe O(n) in media."
+    },
+    {
+      "id": "L02-T12-04",
+      "tipo": "L02-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo nel caso peggiore di questo codice, su una list L di n elementi?",
+      "codice": "M = []\nfor i in range(n):\n    L.append(i)\n    M = M + [i]",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo fa n iterazioni. M = M + [i] copia M a ogni passo: 1 + 2 + … + n = Θ(n²). L'append resta O(1) ammortizzato."
+    },
+    {
+      "id": "L02-T12-05",
+      "tipo": "L02-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo nel caso peggiore di questo codice, su una list L di n elementi?",
+      "codice": "for i in range(n):\n    L.pop(0)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "pop(0) sposta gli elementi rimanenti: il costo k-esimo è Θ(n − k), e la somma è Θ(n²). Ripetere la cancellazione in fondo costerebbe Θ(n)."
+    },
+    {
+      "id": "L02-T12-06",
+      "tipo": "L02-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo nel caso peggiore di questo codice, con n iterazioni?",
+      "codice": "B = []\nfor i in range(n):\n    B = B + [i]",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Ogni B + [i] crea una nuova list copiando tutti gli elementi: 1 + 2 + … + n = Θ(n²). Lo stesso ciclo con B.append(i) costa Θ(n)."
+    },
+    {
+      "id": "L02-T13-01",
+      "tipo": "L02-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "t = x = 1\nfor i in range(n):\n    t = 3 * t\nwhile t > x:\n    x += 1\n    t -= 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(3ⁿ)",
+        "Θ(n)",
+        "Θ(n · 3ⁿ)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il for costa Θ(n) e lascia t = 3ⁿ. Nel while la distanza t − x cala di 2 a ogni passo: circa 3ⁿ/2 iterazioni. Il totale è Θ(3ⁿ)."
+    },
+    {
+      "id": "L02-T13-02",
+      "tipo": "L02-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "t = x = 1\nfor i in range(n):\n    t = 2 * t\nwhile t > x:\n    x += 2\n    t -= 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(2ⁿ)",
+        "Θ(n · 2ⁿ)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Dopo il for t = 2ⁿ. Nel while la distanza t − x cala di 3 a ogni passo: circa 2ⁿ/3 iterazioni, quindi Θ(2ⁿ). Il costo non è Θ(n) perché il secondo ciclo domina."
+    },
+    {
+      "id": "L02-T13-03",
+      "tipo": "L02-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "t = x = 1\nfor i in range(n):\n    t = t + 2\nwhile t > x:\n    x += 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(2ⁿ)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Il for lascia t = 2n + 1 con costo Θ(n). Il while fa circa 2n iterazioni: il totale è Θ(n). Con un passo costante la crescita non è esponenziale."
+    },
+    {
+      "id": "L02-T14-01",
+      "tipo": "L02-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Questo codice ha costo Θ(n²):\n\nfor i in range(len(L) - 1):\n    for j in range(i + 1, len(L)):\n        if L[i] + L[j] == x:\n            return True\nreturn False\n\nCon ordinamento e due puntatori agli estremi, lo stesso problema si risolve in:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n)",
+        "O(n log n)",
+        "O(log n)",
+        "O(n²), non si può fare meglio"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Ordinare costa O(n log n); poi i due puntatori scorrono la lista in O(n). Il totale è O(n log n). Dire O(n) senza ordinare o strutture ausiliarie è l'errore."
+    },
+    {
+      "id": "L02-T14-02",
+      "tipo": "L02-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Questo codice ha costo Θ(n²):\n\nfor i in range(len(L)):\n    if L[i] in L[:i]:\n        return True\nreturn False\n\nCon un set che memorizza i valori già visti, il costo diventa:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n) in media",
+        "O(n log n)",
+        "O(log n)",
+        "O(n²), non si può fare meglio"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Con un set ogni controllo è O(1) in media, quindi il totale è O(n) in media. O(n log n) corrisponde a ordinare, non a usare un set: è più lento di O(n) in media."
+    },
+    {
+      "id": "L02-T14-03",
+      "tipo": "L02-T14",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Questo codice ha costo Θ(n²):\n\nfor i in range(len(L)):\n    S = set(L[:i + 1])\n    d.append(len(S))\n\nCon un aggiornamento incrementale del set (un solo inserimento per passo), il costo diventa:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n) in media",
+        "O(n log n)",
+        "O(n²), non si può fare meglio",
+        "O(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Ricostruire il set da capo a ogni i costa O(i): totale O(n²). Aggiungere un solo elemento per passo costa O(1) in media, quindi il totale è O(n)."
+    },
+    {
+      "id": "L02-T15-01",
+      "tipo": "L02-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "i = 0\nj = n\nwhile i < j:\n    i += 2\n    j -= 3",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La distanza j − i parte da n e cala di 5 a ogni iterazione: circa n/5 iterazioni, cioè Θ(n). Due cicli annidati non ci sono."
+    },
+    {
+      "id": "L02-T15-02",
+      "tipo": "L02-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "a = 1\nb = n\nwhile a < b:\n    a += 1\n    b -= 1",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(√n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La distanza b − a cala di 2 a ogni iterazione: circa n/2 iterazioni, quindi Θ(n). Il dimezzamento porterebbe a Θ(log n), che qui non c'entra."
+    },
+    {
+      "id": "L02-T15-03",
+      "tipo": "L02-T15",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questo codice nel caso peggiore?",
+      "codice": "i = 0\nj = n * n\nwhile i < j:\n    i += 1\n    j -= 3",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "La distanza parte da n² e cala di 4 a ogni iterazione: circa n²/4 iterazioni, cioè Θ(n²). Il cubo non compare perché il ciclo è uno solo."
+    }
+  ]
+}

@@ -1,0 +1,1716 @@
+{
+  "lezione": 15,
+  "generato_con": "claude-sonnet-5-5",
+  "domande": [
+    {
+      "id": "L15-T01-01",
+      "tipo": "L15-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti affermazioni sugli alberi AVL è FALSA?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Un AVL può avere due foglie a profondità che differiscono di 2",
+        "Un AVL può non essere un albero completo o quasi completo",
+        "In un AVL ogni nodo che non è una foglia ha esattamente due figli",
+        "Un albero binario con |bf| ≤ 1 in ogni nodo può non essere un AVL"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Un AVL può avere nodi con un solo figlio, purché quel figlio sia una foglia: per esempio 20(10, -) è un AVL, con bf(20) = +1. Le altre tre affermazioni sono vere: l'AVL minimo di altezza 4 ha foglie a profondità 2 e 4; un AVL non deve essere quasi completo; un albero con |bf| ≤ 1 in ogni nodo che non sia un albero binario di ricerca non è un AVL."
+    },
+    {
+      "id": "L15-T01-02",
+      "tipo": "L15-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un albero binario con n nodi si dice bilanciato se e solo se:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "è completo o quasi completo",
+        "la sua altezza è h = O(√n)",
+        "la sua altezza è h = O(n)",
+        "la sua altezza è h = O(log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Per definizione un albero è bilanciato quando h = O(log n), così ricerca, inserimento e cancellazione in un ABR (costo O(h)) costano O(log n). Gli alberi completi o quasi completi sono bilanciati, ma non sono gli unici: lo sono anche gli AVL. Ogni albero binario ha h = O(n), quindi questa condizione non distingue nulla."
+    },
+    {
+      "id": "L15-T01-03",
+      "tipo": "L15-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti affermazioni sugli alberi AVL è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "In un AVL le profondità delle foglie possono differire di più di 1",
+        "In un AVL tutte le foglie si trovano allo stesso livello",
+        "Ogni AVL è un albero completo o quasi completo",
+        "Un albero binario con |bf| ≤ 1 in ogni nodo è un AVL anche se le chiavi non rispettano l'ordine di un ABR"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E1",
+        "E4"
+      ],
+      "spiegazione": "La definizione richiede |bf| ≤ 1 in ogni nodo, non foglie tutte allo stesso livello. Per esempio l'AVL minimo di altezza 4 (12 nodi) ha foglie a profondità 2 e a profondità 4, quindi non è quasi completo. Inoltre un AVL è prima di tutto un albero binario di ricerca."
+    },
+    {
+      "id": "L15-T01-04",
+      "tipo": "L15-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti è una differenza vera tra un albero AVL e un heap binario?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Un AVL è sempre un albero quasi completo, un heap non lo è",
+        "In un AVL tutte le foglie stanno allo stesso livello, in un heap no",
+        "In un AVL il sottoalbero sinistro di un nodo contiene solo chiavi minori di quella del nodo; in un heap non è richiesto",
+        "In un AVL la chiave minima sta nella radice, in un heap no"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Un AVL è un ABR: ordine delle chiavi tra sottoalbero sinistro, nodo e sottoalbero destro, più |bf| ≤ 1. Un heap è un albero quasi completo con la chiave minima (min-heap) o massima (max-heap) nella radice, ma senza ordine tra i due figli. Un AVL non è in generale quasi completo e le sue foglie possono stare a livelli diversi."
+    },
+    {
+      "id": "L15-T01-05",
+      "tipo": "L15-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un albero binario di ricerca la radice ha fattore di bilanciamento 0. Si può concludere che è un albero AVL?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì: se la radice ha bf = 0 lo stesso vale in tutti i nodi",
+        "No: la condizione |bf| ≤ 1 va verificata in ogni nodo, non solo nella radice",
+        "Sì: due sottoalberi della stessa altezza implicano che l'albero sia completo",
+        "No: in un AVL la radice deve avere bf = +1 oppure −1"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Con bf(radice) = 0 i due sottoalberi hanno la stessa altezza, ma ciascuno può contenere nodi con |bf| ≥ 2 (per esempio una catena di tre nodi). La condizione deve valere in ogni nodo. L'altezza uguale non implica che l'albero sia completo, e in un AVL la radice può avere bf 0."
+    },
+    {
+      "id": "L15-T01-06",
+      "tipo": "L15-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario ha |bf| ≤ 1 in ogni nodo, ma la sua visita in-order produce la sequenza 4, 7, 5, 9, 12. È un albero AVL?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì, perché la definizione richiede solo |bf| ≤ 1 in ogni nodo",
+        "No, perché non è completo o quasi completo",
+        "No, perché le sue foglie non stanno tutte allo stesso livello",
+        "No, perché non è un albero binario di ricerca"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E1",
+        "E3",
+        null
+      ],
+      "spiegazione": "In un ABR la visita in-order è crescente; qui 7 viene prima di 5, quindi non è un ABR e non può essere un AVL, qualunque siano i bf. Completezza e livelli delle foglie non fanno parte della definizione di AVL."
+    },
+    {
+      "id": "L15-T02-01",
+      "tipo": "L15-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero 47(28(15(9, 21), -), 70(61, 84(-, 92))) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto), qual è il fattore di bilanciamento del nodo 28? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "+1",
+        "+2",
+        "−2",
+        "+3"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il sottoalbero sinistro di 28 è 15(9, 21), di altezza 1; il destro è vuoto, di altezza −1. bf(28) = 1 − (−1) = +2. +1 si ottiene contando il vuoto come altezza 0, −2 invertendo il segno, +3 contando i nodi del sottoalbero sinistro (3) invece della sua altezza."
+    },
+    {
+      "id": "L15-T02-02",
+      "tipo": "L15-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nell'albero 55(30(20, 45(40, 50)), 80) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto), qual è il fattore di bilanciamento del nodo 30? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "−1",
+        "0",
+        "+1",
+        "−2"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il figlio sinistro di 30 è la foglia 20 (altezza 0); il destro è 45(40, 50) (altezza 1). bf(30) = 0 − 1 = −1: il nodo pesa a destra. +1 inverte il segno, −2 conta i nodi (1 − 3), 0 si ottiene guardando solo che 30 ha entrambi i figli."
+    },
+    {
+      "id": "L15-T02-03",
+      "tipo": "L15-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nell'albero 59(34(13(-, 33), 44(43, 56)), 67(-, 95(74, -))) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto), quale nodo ha il fattore di bilanciamento con il valore assoluto più grande? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "59",
+        "95",
+        "13",
+        "67"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "bf(67) = −1 − 1 = −2, perché il figlio sinistro è vuoto e il destro 95(74, -) ha altezza 1. Tutti gli altri nodi hanno |bf| ≤ 1; la radice 59 ha addirittura bf 0 (i due sottoalberi hanno altezza 2), anche se il suo sottoalbero sinistro ha 6 nodi e il destro 3. Il bf misura le altezze, non il numero di nodi."
+    },
+    {
+      "id": "L15-T02-04",
+      "tipo": "L15-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero 51(36(-, 50), 82(54(52, 71(62, 74)), 89)) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto), quale nodo ha fattore di bilanciamento −2? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "82",
+        "51",
+        "54",
+        "36"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Per 51 il sottoalbero sinistro 36(-, 50) ha altezza 1 e il destro ha altezza 3: bf = 1 − 3 = −2. Il nodo 82 ha bf +2 (altezze 2 e 0): sceglierlo significa invertire il segno. Il nodo 54 ha bf −1 (altezze 0 e 1), ma i suoi sottoalberi hanno 1 e 3 nodi (differenza −2): è l'errore di contare i nodi."
+    },
+    {
+      "id": "L15-T02-05",
+      "tipo": "L15-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nell'albero 57(41(23(11, -), -), 70(58, 79(-, 83))) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto), quanti nodi hanno fattore di bilanciamento diverso da 0? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2",
+        "5",
+        "4",
+        "3"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Hanno bf ≠ 0 i nodi 41 (+2), 23 (+1), 70 (−1) e 79 (−1): sono 4. Gli altri (57, 11, 58, 83) hanno bf 0. Contando l'albero vuoto come altezza 0 se ne trovano solo 2; contando i nodi invece delle altezze 5; contando i nodi con un solo figlio (41, 23, 79) 3, ma 70 ha due figli e bf −1."
+    },
+    {
+      "id": "L15-T02-06",
+      "tipo": "L15-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero 62(30(12, 47(39(33, -), 55)), 81(-, 90)) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto), qual è il fattore di bilanciamento del nodo 30? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "0",
+        "+2",
+        "−3",
+        "−2"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Il figlio sinistro di 30 è la foglia 12 (altezza 0); il destro 47(39(33, -), 55) ha altezza 2 (cammino 47, 39, 33). bf(30) = 0 − 2 = −2. +2 inverte il segno, −3 conta i nodi (1 − 4), 0 si ottiene guardando solo che 30 ha entrambi i figli."
+    },
+    {
+      "id": "L15-T03-01",
+      "tipo": "L15-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale dei seguenti alberi è un albero AVL? (Notazione chiave(sinistro, destro), '-' = sottoalbero vuoto.)",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "55(25(-, 40(30, -)), 70(60, 85))",
+        "60(35(20, 45(40, -)), 80(70, 95(-, 99)))",
+        "50(30(20(10, 25), 40), 70)",
+        "40(20(10, 30), 60(50(35, 55), 70))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "60(35(20, 45(40, -)), 80(70, 95(-, 99))) è un AVL: l'in-order è crescente e i nodi con bf non nullo sono 35 (−1), 45 (+1), 80 (−1), 95 (−1), tutti con |bf| = 1. In 55(25(-, 40(30, -)), 70(60, 85)) la radice ha bf +1, ma il nodo 25 ha bf −2: basta un nodo per escluderlo. In 50(30(20(10, 25), 40), 70) ogni nodo ha 0 o 2 figli, ma la radice ha bf +2. 40(20(10, 30), 60(50(35, 55), 70)) ha tutti i bf in [−1, +1], ma l'in-order 10, 20, 30, 40, 35, 50, 55, 60, 70 non è crescente: non è un ABR."
+    },
+    {
+      "id": "L15-T03-02",
+      "tipo": "L15-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Solo uno dei seguenti alberi binari è un albero AVL. Quale? (Notazione chiave(sinistro, destro), '-' = sottoalbero vuoto.)",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "60(35(-, 45(40, -)), 85(75, 95))",
+        "40(20(10, 30), 60(50, 70(45, 80)))",
+        "70(40(20(10, 30), 55(50, 60)), 90)",
+        "30(15(10, -), 50(40, 60(55, -)))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E2",
+        null
+      ],
+      "spiegazione": "30(15(10, -), 50(40, 60(55, -))) è un AVL: l'in-order è crescente e i nodi con bf non nullo sono 30 (−1), 15 (+1), 50 (−1), 60 (+1), tutti con |bf| = 1. In 60(35(-, 45(40, -)), 85(75, 95)) la radice ha bf +1, ma il nodo 35 ha bf −2: basta un nodo per escluderlo. 40(20(10, 30), 60(50, 70(45, 80))) ha tutti i bf in [−1, +1], ma l'in-order 10, 20, 30, 40, 50, 60, 45, 70, 80 non è crescente: non è un ABR. In 70(40(20(10, 30), 55(50, 60)), 90) ogni nodo ha 0 o 2 figli, ma la radice ha bf 2 − 0 = +2."
+    },
+    {
+      "id": "L15-T03-03",
+      "tipo": "L15-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale dei seguenti alberi è un albero AVL? (Notazione chiave(sinistro, destro), '-' = sottoalbero vuoto.)",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "55(30(20, 45(35, -)), 75(65, 90))",
+        "30(20, 60(45(35, 50), 80))",
+        "50(30(20, 40), 70(75, 80))",
+        "40(20(10, 30), 70(50(-, 60), -))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E1"
+      ],
+      "spiegazione": "55(30(20, 45(35, -)), 75(65, 90)) è un AVL: l'in-order è crescente e i nodi con bf non nullo sono 55 (+1), 30 (−1), 45 (+1), tutti con |bf| = 1. In 30(20, 60(45(35, 50), 80)) ogni nodo ha 0 o 2 figli, ma la radice ha bf −2. 50(30(20, 40), 70(75, 80)) ha tutti i bf in [−1, +1], ma l'in-order 20, 30, 40, 50, 75, 70, 80 non è crescente: non è un ABR. In 40(20(10, 30), 70(50(-, 60), -)) la radice ha bf −1, ma il nodo 70 ha bf +2: basta un nodo per escluderlo."
+    },
+    {
+      "id": "L15-T03-04",
+      "tipo": "L15-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Solo uno dei seguenti alberi binari è un albero AVL. Quale? (Notazione chiave(sinistro, destro), '-' = sottoalbero vuoto.)",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "50(30(20(10, -), -), 70(60, 80))",
+        "35(20, 60(45(40, 50), 80(70, 90)))",
+        "40(20(10, -), 60(50, 75(65, 90)))",
+        "45(25(15, 50), 65(55, 80(70, 90)))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "40(20(10, -), 60(50, 75(65, 90))) è un AVL: l'in-order è crescente e i nodi con bf non nullo sono 40 (−1), 20 (+1), 60 (−1), tutti con |bf| = 1. In 50(30(20(10, -), -), 70(60, 80)) la radice ha bf +1, ma il nodo 30 ha bf +2: basta un nodo per escluderlo. In 35(20, 60(45(40, 50), 80(70, 90))) ogni nodo ha 0 o 2 figli, ma la radice ha bf −2. 45(25(15, 50), 65(55, 80(70, 90))) ha tutti i bf in [−1, +1], ma 50 sta nel sottoalbero sinistro di 45: l'in-order 15, 25, 50, 45, 55, … non è crescente, quindi non è un ABR."
+    },
+    {
+      "id": "L15-T03-05",
+      "tipo": "L15-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "L'albero 60(30(20, 45(40, 50)), 80(-, 95(90, -))) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) è un albero AVL? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro. Scegliere la risposta corretta.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì: la radice ha fattore di bilanciamento 0, quindi tutto l'albero è bilanciato",
+        "No: il nodo 30 ha fattore di bilanciamento −1, quindi viola la condizione",
+        "No: il nodo 80 ha fattore di bilanciamento −2",
+        "No: la radice ha fattore di bilanciamento 0, mentre in un AVL deve essere +1 o −1"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il nodo 80 ha sottoalbero sinistro vuoto (altezza −1) e destro 95(90, -) di altezza 1: bf = −1 − 1 = −2, quindi l'albero non è AVL. La radice ha bf 0 (i due sottoalberi hanno altezza 2), ma la condizione vale per ogni nodo. bf = −1 è ammesso in un AVL, e anche bf = 0 nella radice."
+    },
+    {
+      "id": "L15-T03-06",
+      "tipo": "L15-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale dei seguenti alberi è un albero AVL? (Notazione chiave(sinistro, destro), '-' = sottoalbero vuoto.)",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "55(30(20, 45), 80(65, 95(40, 99)))",
+        "45(25(15, 35), 70(60(-, 65), -))",
+        "60(30(15(5, 20), 40), 85)",
+        "35(15(5, 25), 70(50(40, -), 90(-, 95)))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "E2",
+        null
+      ],
+      "spiegazione": "35(15(5, 25), 70(50(40, -), 90(-, 95))) è un AVL: l'in-order è crescente e i nodi con bf non nullo sono 35 (−1), 50 (+1), 90 (−1), tutti con |bf| = 1. 55(30(20, 45), 80(65, 95(40, 99))) ha tutti i bf in [−1, +1], ma l'in-order 20, 30, 45, 55, 65, 80, 40, 95, 99 non è crescente: non è un ABR. In 45(25(15, 35), 70(60(-, 65), -)) la radice ha bf −1, ma il nodo 70 ha bf +2: basta un nodo per escluderlo. In 60(30(15(5, 20), 40), 85) ogni nodo ha 0 o 2 figli, ma la radice ha bf +2."
+    },
+    {
+      "id": "L15-T04-01",
+      "tipo": "L15-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il numero minimo di nodi di un albero AVL di altezza 3?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5",
+        "15",
+        "7",
+        "12"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "N(0) = 1, N(1) = 2, N(2) = 1 + 2 + 1 = 4, N(3) = 1 + 4 + 2 = 7. 5 si ottiene dimenticando il +1 della radice (2 + 3); 15 = 2⁴ − 1 è il massimo numero di nodi di un albero binario di altezza 3; 12 è N(4)."
+    },
+    {
+      "id": "L15-T04-02",
+      "tipo": "L15-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero AVL ha altezza 4. Qual è il minimo numero di nodi che può avere?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "12",
+        "8",
+        "31",
+        "5"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "N(4) = 1 + N(3) + N(2) = 1 + 7 + 4 = 12. 8 si ottiene senza il +1 della radice (sequenza 1, 2, 3, 5, 8); 31 = 2⁵ − 1 è il massimo per un albero binario di altezza 4; 5 è h + 1, il numero di nodi di una catena, che per h ≥ 2 non è un AVL."
+    },
+    {
+      "id": "L15-T04-03",
+      "tipo": "L15-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Sia N(h) il numero minimo di nodi di un albero AVL di altezza h. Quale ricorrenza (per h ≥ 2) lo descrive, con N(0) = 1 e N(1) = 2?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "N(h) = N(h−1) + N(h−2)",
+        "N(h) = 1 + N(h−1) + N(h−2)",
+        "N(h) = 1 + 2·N(h−1)",
+        "N(h) = 1 + N(h−1) + N(h−2) + N(h−3)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "L'AVL minimo di altezza h ha la radice, un sottoalbero minimo di altezza h−1 e uno minimo di altezza h−2 (il più basso consentito): N(h) = 1 + N(h−1) + N(h−2). Senza il +1 si avrebbe la sequenza di Fibonacci, che parte con 1, 2, 3, 5, …; con due sottoalberi di altezza h−1 si descriverebbe un albero più grande del necessario."
+    },
+    {
+      "id": "L15-T04-04",
+      "tipo": "L15-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il numero minimo di nodi di un albero AVL di altezza 6?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "21",
+        "127",
+        "7",
+        "33"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E4",
+        null
+      ],
+      "spiegazione": "Da N(4) = 12 e N(5) = 20 si ha N(6) = 1 + 20 + 12 = 33. 21 si ottiene senza il +1 della radice (13 + 8); 127 = 2⁷ − 1 è il massimo; 7 è h + 1."
+    },
+    {
+      "id": "L15-T04-05",
+      "tipo": "L15-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero AVL ha altezza 7. Quanti nodi ha almeno?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "34",
+        "54",
+        "88",
+        "255"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "N(5) = 20, N(6) = 33, quindi N(7) = 1 + 33 + 20 = 54. 34 è il valore senza il +1; 88 è N(8), cioè l'indice sbagliato di una posizione; 255 = 2⁸ − 1 è il massimo."
+    },
+    {
+      "id": "L15-T04-06",
+      "tipo": "L15-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In un albero AVL con il minimo numero di nodi per la sua altezza h ≥ 2, quali altezze hanno i due sottoalberi della radice?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "h − 1 e h − 2",
+        "h − 1 e h − 1",
+        "h − 2 e h − 2",
+        "h − 1 e −1 (un sottoalbero vuoto)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Per avere altezza h serve almeno un sottoalbero di altezza h − 1. L'altro deve rendere minimo il numero di nodi: può essere più basso del primo al più di 1, quindi h − 2. Con h − 1 e h − 1 i nodi non sarebbero minimi; con un sottoalbero vuoto la radice avrebbe |bf| ≥ 2 per h ≥ 2."
+    },
+    {
+      "id": "L15-T05-01",
+      "tipo": "L15-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è l'altezza massima che può avere un albero AVL con 22 nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4",
+        "5",
+        "8",
+        "6"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "Il minimo numero di nodi è N(5) = 20 ≤ 22 e N(6) = 33 > 22, quindi l'altezza massima è 5. 4 = ⌊log₂ 22⌋ è l'altezza minima; 8 = ⌊2 log₂ 22⌋ è solo un limite superiore; 6 è il primo h con N(h) ≥ 22, che però richiede almeno 33 nodi."
+    },
+    {
+      "id": "L15-T05-02",
+      "tipo": "L15-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è l'altezza massima che può avere un albero AVL con 40 nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5",
+        "10",
+        "39",
+        "6"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "N(6) = 33 ≤ 40 e N(7) = 54 > 40: l'altezza massima è 6. 5 = ⌊log₂ 40⌋ è l'altezza minima; 10 = ⌊2 log₂ 40⌋ è un limite superiore, non l'altezza esatta; 39 sarebbe l'altezza di un ABR degenere, che non è un AVL."
+    },
+    {
+      "id": "L15-T05-03",
+      "tipo": "L15-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un albero AVL ha 14 nodi. Può avere altezza 5?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sì: l'altezza di un AVL con 14 nodi può arrivare fino a ⌊2 log₂ 14⌋ = 7",
+        "Sì: con 14 nodi si può costruire un albero di altezza fino a 13",
+        "No: un AVL di altezza 5 ha almeno N(5) = 20 nodi",
+        "No: ogni AVL con 14 nodi ha altezza esattamente ⌊log₂ 14⌋ = 3"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E1"
+      ],
+      "spiegazione": "N(5) = 20 > 14, quindi servono almeno 20 nodi per un AVL di altezza 5: con 14 nodi l'altezza può essere 3 oppure 4 (N(4) = 12 ≤ 14). La disuguaglianza h ≤ 2 log₂ n è solo un limite superiore. L'altezza 13 è quella di un ABR degenere, che non è un AVL; ⌊log₂ 14⌋ = 3 è l'altezza minima, ma non l'unica possibile."
+    },
+    {
+      "id": "L15-T05-04",
+      "tipo": "L15-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti affermazioni sull'altezza h di un albero AVL con n nodi è sempre vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "h ≤ 2 log₂ n",
+        "h ≤ log₂ n",
+        "h ≤ √n",
+        "h può arrivare a n − 1"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Dalla ricorrenza si ricava N(h) ≥ 2^(h/2), quindi n ≥ 2^(h/2) e h ≤ 2 log₂ n. Il limite h ≤ log₂ n è falso già per n = 7: esiste un AVL di altezza 3 e 3 > log₂ 7 ≈ 2,8. Anche h ≤ √n è falso per n = 7 (3 > 2,65). Un'altezza n − 1 è quella di un ABR degenere, che per n ≥ 3 non è un AVL."
+    },
+    {
+      "id": "L15-T05-05",
+      "tipo": "L15-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è l'altezza massima che può avere un albero AVL con 54 nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "5",
+        "7",
+        "11"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "E1",
+        null,
+        "E2"
+      ],
+      "spiegazione": "N(7) = 54: con 54 nodi si può costruire un AVL di altezza 7 (l'AVL minimo di quell'altezza), e N(8) = 88 > 54, quindi 7 è il massimo. 6 si ottiene scartando il caso di uguaglianza N(h) = n; 5 = ⌊log₂ 54⌋ è l'altezza minima; 11 = ⌊2 log₂ 54⌋ è solo un limite superiore."
+    },
+    {
+      "id": "L15-T05-06",
+      "tipo": "L15-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un albero AVL ha 13 nodi. Quali valori può assumere la sua altezza?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Solo 3",
+        "3 oppure 4",
+        "Da 3 a 7",
+        "Da 3 a 12"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "L'altezza minima è ⌊log₂ 13⌋ = 3. L'altezza massima è 4, perché N(4) = 12 ≤ 13 < 20 = N(5). Esistono AVL con 13 nodi di entrambe le altezze. 7 = ⌊2 log₂ 13⌋ è solo un limite superiore, e 12 è l'altezza di un ABR degenere, che non è un AVL."
+    },
+    {
+      "id": "L15-T06-01",
+      "tipo": "L15-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue una rotazione destra sul nodo 30 dell'albero 70(30(15(10, 25(20, -)), 45), 85) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto). Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "70(45(30(15(10, 25(20, -)), -), -), 85)",
+        "70(15(10, 25(20, 30(-, 45))), 85)",
+        "70(25(15(10, 20), 30(-, 45)), 85)",
+        "70(15(10, 30(25(20, -), 45)), 85)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Nella rotazione destra su a = 30 sale b = 15, 30 diventa figlio destro di 15 e il sottoalbero T2 = 25(20, -), prima figlio destro di 15, diventa figlio sinistro di 30. Le altre opzioni sono ABR con le stesse chiavi: la rotazione sinistra su 30, il caso in cui T2 resta sotto 15 con 30 appeso sotto 25, e la rotazione doppia che fa salire il nipote 25. L'in-order, uguale per tutti, non basta a distinguerli."
+    },
+    {
+      "id": "L15-T06-02",
+      "tipo": "L15-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue una rotazione sinistra sulla radice dell'albero 40(25, 70(55(-, 60), 85)) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto). Qual è la visita in pre-order dell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "70, 40, 25, 55, 60, 85",
+        "25, 40, 70, 55, 60, 85",
+        "70, 55, 40, 25, 60, 85",
+        "55, 40, 25, 70, 60, 85"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Sale b = 70 e 40 diventa suo figlio sinistro; il sottoalbero T2 = 55(-, 60), prima figlio sinistro di 70, diventa figlio destro di 40. Si ottiene 70(40(25, 55(-, 60)), 85), con pre-order 70, 40, 25, 55, 60, 85. Le altre sequenze vengono dalla rotazione nel verso opposto, dalla rotazione doppia e da 40 appeso sotto 55 con 55 lasciato sotto 70."
+    },
+    {
+      "id": "L15-T06-03",
+      "tipo": "L15-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue una rotazione sinistra sul nodo 70 dell'albero 50(20, 70(60(55, -), 90(80, 95))) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto). Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "50(20, 60(55, 70(-, 90(80, 95))))",
+        "50(20, 90(80(70(60(55, -), -), -), 95))",
+        "50(20, 90(70(60(55, -), 80), 95))",
+        "50(20, 80(70(60(55, -), -), 90(-, 95)))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Sale b = 90, 70 diventa suo figlio sinistro con il sottoalbero 60(55, -) a sinistra e T2 = 80 (prima figlio sinistro di 90) a destra; la radice 50 resta invariata. Risultato: 50(20, 90(70(60(55, -), 80), 95)). Le alternative sono la rotazione destra su 70, la rotazione doppia (sale 80) e 70 appeso sotto 80 lasciando 80 sotto 90."
+    },
+    {
+      "id": "L15-T06-04",
+      "tipo": "L15-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti affermazioni su una rotazione di un albero binario di ricerca è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Costa Θ(h), perché va ripetuta lungo il cammino dalla radice al nodo",
+        "Modifica un numero costante di puntatori e lascia invariata la visita in-order",
+        "La rotazione destra su a fa salire il figlio destro di a",
+        "Lascia invariata la visita in pre-order"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Una rotazione cambia solo i puntatori di a, b e di un sottoalbero (T2): costo O(1), e l'ordine delle chiavi resta quello di un ABR, quindi l'in-order è invariato. La rotazione destra su a fa salire il figlio sinistro. La visita in pre-order in generale cambia: la radice del sottoalbero ruotato non è più la stessa."
+    },
+    {
+      "id": "L15-T06-05",
+      "tipo": "L15-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue una rotazione destra sulla radice dell'albero 55(35(20, 45(40, -)), 75) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto). Qual è la visita in pre-order dell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "75, 55, 35, 20, 45, 40",
+        "35, 20, 45, 40, 55, 75",
+        "45, 35, 20, 40, 55, 75",
+        "35, 20, 55, 45, 40, 75"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Sale b = 35; 55 diventa il suo figlio destro e il sottoalbero T2 = 45(40, -) passa da figlio destro di 35 a figlio sinistro di 55. Si ottiene 35(20, 55(45(40, -), 75)). Le altre sequenze corrispondono alla rotazione sinistra, a 55 appeso sotto 45 (con 45 lasciato sotto 35) e alla rotazione doppia."
+    },
+    {
+      "id": "L15-T06-06",
+      "tipo": "L15-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue una rotazione sinistra sul nodo 30 (la radice) dell'albero 30(10(5, -), 60(45(-, 50), 80(70, -))) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto). Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "10(5, 30(-, 60(45(-, 50), 80(70, -))))",
+        "60(30(10(5, -), 45(-, 50)), 80(70, -))",
+        "60(45(30(10(5, -), -), 50), 80(70, -))",
+        "45(30(10(5, -), -), 60(50, 80(70, -)))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Sale b = 60; 30 diventa il suo figlio sinistro e mantiene 10(5, -) come sinistro; T2 = 45(-, 50), prima figlio sinistro di 60, diventa figlio destro di 30. Risultato: 60(30(10(5, -), 45(-, 50)), 80(70, -)). Le altre opzioni hanno ancora lo stesso in-order, ma vengono dalla rotazione destra, dalla rotazione doppia e da 30 appeso sotto T2."
+    },
+    {
+      "id": "L15-T07-01",
+      "tipo": "L15-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nel codice seguente l'aggiornamento di b.altezza precede quello di a.altezza. Quale affermazione è corretta?",
+      "codice": "def altezza(x):\n    return -1 if x is None else x.altezza\n\ndef rotazione_destra(a):\n    b = a.left\n    a.left = b.right\n    if b.right is not None:\n        b.right.parent = a\n    b.right = a\n    b.parent = a.parent\n    a.parent = b\n    b.altezza = 1 + max(altezza(b.left), altezza(b.right))\n    a.altezza = 1 + max(altezza(a.left), altezza(a.right))\n    return b",
+      "albero": null,
+      "opzioni": [
+        "b.altezza può risultare sbagliata, perché usa il valore di a.altezza non ancora aggiornato",
+        "Non cambia nulla: le due altezze sono indipendenti, quindi l'ordine è indifferente",
+        "a.altezza può risultare sbagliata, perché usa il valore di b.altezza non ancora aggiornato",
+        "L'albero non è più un albero binario di ricerca, perché cambia l'ordine delle chiavi"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Dopo la rotazione a è figlio destro di b, quindi b.altezza dipende da a.altezza e va calcolata dopo. a invece ha come figli T2 e T3, le cui altezze non sono cambiate, quindi a.altezza è corretta in qualunque ordine. Le chiavi non vengono toccate: l'in-order resta lo stesso."
+    },
+    {
+      "id": "L15-T07-02",
+      "tipo": "L15-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nel codice di rotazione_destra manca l'istruzione che aggiorna il parent del sottoalbero T2 (il vecchio b.right, se non è None). Quale conseguenza ha?",
+      "codice": "def altezza(x):\n    return -1 if x is None else x.altezza\n\ndef rotazione_destra(a):\n    b = a.left\n    a.left = b.right\n    b.right = a\n    b.parent = a.parent\n    a.parent = b\n    a.altezza = 1 + max(altezza(a.left), altezza(a.right))\n    b.altezza = 1 + max(altezza(b.left), altezza(b.right))\n    return b",
+      "albero": null,
+      "opzioni": [
+        "Nessuna conseguenza: il campo parent di T2 non viene più usato dopo la rotazione",
+        "La visita in-order non produce più le chiavi in ordine crescente",
+        "Il sottoalbero T2 non è più raggiungibile a partire dalla radice",
+        "T2 conserva come parent il nodo b invece di a: una risalita partita da un suo nodo salta a e non ne aggiorna l'altezza"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Dopo la rotazione T2 è figlio sinistro di a, ma il suo campo parent punta ancora a b. Le risalite dopo un inserimento o una cancellazione usano parent: da T2 si salirebbe a b, saltando a, e le altezze e i bf di a non verrebbero aggiornati. I puntatori left e right sono invece corretti, quindi T2 resta raggiungibile e l'in-order non cambia."
+    },
+    {
+      "id": "L15-T07-03",
+      "tipo": "L15-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per ogni nodo di un AVL si vuole calcolare il fattore di bilanciamento in tempo O(1). Quale scelta lo permette?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Memorizzare il campo altezza (una foglia ha altezza 0) ma considerare 0 l'altezza di un figlio None",
+        "Non memorizzare nulla: bf si calcola comunque in O(1) guardando solo i due figli del nodo",
+        "Memorizzare in ogni nodo il campo altezza (una foglia ha altezza 0) e considerare −1 l'altezza di un figlio None: bf = altezza(left) − altezza(right)",
+        "Memorizzare in ogni nodo il numero di nodi del suo sottoalbero e farne la differenza tra sinistro e destro"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E5",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Con il campo altezza aggiornato bf è una differenza di due valori già memorizzati, in O(1); l'altezza del figlio None deve essere −1, altrimenti una foglia e un figlio vuoto sarebbero indistinguibili e il bf di un nodo con un solo figlio sarebbe sbagliato di 1. Senza il campo altezza bisogna visitare i sottoalberi, fino a Θ(n). Il numero di nodi non è l'altezza."
+    },
+    {
+      "id": "L15-T08-01",
+      "tipo": "L15-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dopo un inserimento in un AVL, il primo nodo sbilanciato è 64, con bf(64) = +2. Il suo figlio sinistro è 31, con bf(31) = −1, e il figlio destro di 31 è 47. Quale sequenza di rotazioni ripristina il bilanciamento? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Rotazione destra su 31, poi rotazione sinistra su 64",
+        "Una sola rotazione destra su 64",
+        "Rotazione sinistra su 31, poi rotazione destra su 64",
+        "Rotazione destra su 64, poi rotazione sinistra su 31"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "bf(64) = +2 e bf(31) = −1 hanno segno opposto: caso LR, doppia rotazione. Prima una rotazione sinistra su 31, che fa salire il nipote 47, poi una rotazione destra su 64. Destra su 31 e poi sinistra su 64 è la correzione del caso speculare RL; con la sola rotazione destra su 64 salirebbe 31, con bf −2; eseguire le due rotazioni in ordine inverso non risolve lo sbilanciamento."
+    },
+    {
+      "id": "L15-T08-02",
+      "tipo": "L15-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Dopo un inserimento in un AVL, il primo nodo sbilanciato a è tale che la chiave è stata inserita nel sottoalbero sinistro del figlio sinistro di a. Di quale caso si tratta e come si corregge?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Caso LL: una rotazione destra su a",
+        "Caso LL: una rotazione sinistra su a",
+        "Caso LR: rotazione sinistra sul figlio sinistro di a, poi rotazione destra su a",
+        "Caso RR: una rotazione sinistra su a"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Sinistro del sinistro: caso LL, con bf(a) = +2 e bf(b) = +1. I segni sono uguali, quindi basta una rotazione singola; poiché a pesa a sinistra, si ruota a destra su a, così il figlio sinistro b sale al suo posto. Una rotazione sinistra su a non lo correggerebbe."
+    },
+    {
+      "id": "L15-T08-03",
+      "tipo": "L15-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Dopo un inserimento in un AVL, il primo nodo sbilanciato a è tale che la chiave è stata inserita nel sottoalbero sinistro del figlio destro di a. Di quale caso si tratta e come si corregge?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Caso LR: rotazione sinistra sul figlio sinistro di a, poi rotazione destra su a",
+        "Caso RL: una sola rotazione sinistra su a",
+        "Caso RL: rotazione sinistra su a, poi rotazione destra sul figlio destro di a",
+        "Caso RL: rotazione destra sul figlio destro di a, poi rotazione sinistra su a"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E5",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "Il nome indica il cammino da a al nodo inserito: prima il figlio destro (R), poi il suo sottoalbero sinistro (L): caso RL, con bf(a) = −2 e bf(b) = +1. Segni opposti: doppia rotazione, prima destra sul figlio destro b, poi sinistra su a. Chiamarlo LR significa leggere il nome al contrario: la correzione di LR (sinistra su b, poi destra su a) è quella speculare e non risolve questo caso."
+    },
+    {
+      "id": "L15-T08-04",
+      "tipo": "L15-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dopo un inserimento in un AVL, il primo nodo sbilanciato a ha bf(a) = −2 e il suo figlio destro b ha bf(b) = −1. Di quale caso si tratta e come si corregge? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Caso RR: una rotazione destra su a",
+        "Caso RR: una rotazione sinistra su a",
+        "Caso RL: rotazione destra su b, poi rotazione sinistra su a",
+        "Caso LL: una rotazione sinistra su a"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "bf(a) = −2 e bf(b) = −1: entrambi pesano a destra, caso RR. Segni uguali: rotazione singola, e poiché a pesa a destra si ruota a sinistra su a, facendo salire b. Una rotazione destra su a non correggerebbe lo squilibrio; la doppia rotazione serve solo quando i segni sono opposti."
+    },
+    {
+      "id": "L15-T08-05",
+      "tipo": "L15-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un AVL il nodo 50 è sbilanciato con bf(50) = −2. Il suo figlio destro è 70 con bf(70) = +1, e il figlio sinistro di 70 è 60. Quale sequenza di rotazioni ripristina il bilanciamento? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Rotazione sinistra su 70, poi rotazione destra su 50",
+        "Rotazione destra su 70, poi rotazione sinistra su 50",
+        "Rotazione destra su 70, poi rotazione destra su 50",
+        "Una sola rotazione sinistra su 50"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "bf(50) = −2 e bf(70) = +1 hanno segno opposto: caso RL, doppia rotazione. Si ruota prima a destra su 70, così sale il nipote 60, e poi a sinistra su 50, che pesa a destra. Con una sola rotazione sinistra su 50 il nuovo nodo in cima, 70, avrebbe bf +2 e l'albero resterebbe sbilanciato; una rotazione destra su 50 non corregge lo squilibrio."
+    },
+    {
+      "id": "L15-T08-06",
+      "tipo": "L15-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il primo nodo sbilanciato a ha bf(a) = +2 e il suo figlio sinistro b ha bf(b) = −1. Quale coppia (caso, ultima rotazione eseguita) è corretta? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Caso RL; l'ultima rotazione è una rotazione sinistra su a",
+        "Caso LR; l'ultima rotazione è una rotazione sinistra su a",
+        "Caso LR; l'ultima rotazione è una rotazione destra su a",
+        "Caso LL; l'ultima rotazione è una rotazione destra su a"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E5",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "bf(a) = +2 indica che il lato alto è il sinistro (L), bf(b) = −1 che b pesa a destra (R): caso LR. Nella doppia rotazione l'ultima è sempre su a e verso il lato basso: con bf(a) = +2 è una rotazione destra su a, preceduta dalla sinistra su b. Leggere il nome al contrario porta a RL, il caso speculare, che finisce con una rotazione sinistra su a."
+    },
+    {
+      "id": "L15-T09-01",
+      "tipo": "L15-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nell'AVL 60(30(15(10, 20), 40), 80(70, 90)) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) si inserisce la chiave 18. Si inserisce come in un ABR e si ribilancia con l'algoritmo degli AVL (si corregge il primo nodo sbilanciato incontrato risalendo dal nuovo nodo). Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "60(30(15(10, 20(18, -)), 40), 80(70, 90))",
+        "60(20(15(10, 18), 30(-, 40)), 80(70, 90))",
+        "60(15(10, 30(20(18, -), 40)), 80(70, 90))",
+        "30(15(10, 20(18, -)), 60(40, 80(70, 90)))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "18 diventa figlio sinistro di 20. Risalendo: bf(20) = +1, bf(15) = −1, bf(30) = +2: il primo nodo sbilanciato è 30, con figlio sinistro 15 a bf −1, caso LR. Rotazione sinistra su 15 e poi destra su 30 danno 20(15(10, 18), 30(-, 40)); il sottoalbero torna alto 2 come prima e la radice resta a posto. Le altre opzioni: nessuna rotazione (30 e 60 restano sbilanciati), la sola rotazione destra su 30 (15 resta con bf −2) e la rotazione destra della radice invece di 30, che dà anch'essa un AVL ma non è ciò che fa l'algoritmo."
+    },
+    {
+      "id": "L15-T09-02",
+      "tipo": "L15-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'AVL 55(35(25, -), 75(65, 85)) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) si inserisce la chiave 20. Si inserisce come in un ABR e si ribilancia con l'algoritmo degli AVL (si corregge il primo nodo sbilanciato incontrato risalendo dal nuovo nodo). Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "55(35(25(20, -), -), 75(65, 85))",
+        "35(25(20, -), 55(-, 75(65, 85)))",
+        "55(35(20(-, 25), -), 75(65, 85))",
+        "55(25(20, 35), 75(65, 85))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "20 diventa figlio sinistro di 25. Il padre 25 ha bf +1, ma risalendo 35 ha sottoalbero sinistro di altezza 1 e destro vuoto: bf(35) = +2, con figlio 25 a bf +1, caso LL. Basta una rotazione destra su 35: 25 sale e ha 20 e 35 come figli, e si ottiene 55(25(20, 35), 75(65, 85)). Fermarsi al padre del nuovo nodo, ruotare la radice 55 o ruotare il padre 25 lascia l'albero sbilanciato."
+    },
+    {
+      "id": "L15-T09-03",
+      "tipo": "L15-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nell'AVL 59(18(11, 30), 76(-, 95)) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) si inserisce la chiave 90. Si inserisce come in un ABR e si ribilancia con l'algoritmo degli AVL (si corregge il primo nodo sbilanciato incontrato risalendo dal nuovo nodo). Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "59(18(11, 30), 90(76, 95))",
+        "59(18(11, 30), 76(-, 95(90, -)))",
+        "59(18(11, 30), 95(76(-, 90), -))",
+        "76(59(18(11, 30), -), 95(90, -))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "90 diventa figlio sinistro di 95. Risalendo: bf(95) = +1, bf(76) = −1 − 1 = −2, con figlio destro 95 a bf +1: caso RL. Rotazione destra su 95 e poi sinistra su 76: sale il nipote 90 e si ottiene 59(18(11, 30), 90(76, 95)); il sottoalbero destro torna alto 1, come prima dell'inserimento. Le altre opzioni: nessuna rotazione (76 resta con bf −2), la sola rotazione sinistra su 76 (95 avrebbe bf +2) e la rotazione della radice invece di 76."
+    },
+    {
+      "id": "L15-T09-04",
+      "tipo": "L15-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nell'AVL 70(11(-, 43), 87(80, -)) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) si inserisce la chiave 40 come in un ABR. Quale affermazione è corretta? Il fattore di bilanciamento di un nodo è bf = altezza del sottoalbero sinistro − altezza del sottoalbero destro.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Non serve nessuna rotazione: il padre 43 del nuovo nodo ha bf +1, quindi l'albero resta un AVL",
+        "Il nodo 11 ha bf −2: è un caso RL e basta una rotazione sinistra su 11",
+        "Il nodo 11 ha bf −2: è un caso RL, da correggere con una rotazione destra su 43 e poi una sinistra su 11",
+        "Il nodo da correggere è la radice 70, con una rotazione destra su 70"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Dopo l'inserimento 43 ha bf +1, ma 11 ha sottoalbero sinistro vuoto (−1) e destro 43(40, -) di altezza 1: bf(11) = −2, mentre la radice ha bf +1 e non è sbilanciata. Il figlio destro 43 pesa a sinistra (+1), quindi caso RL: destra su 43 (sale il nipote 40) e poi sinistra su 11, che dà 70(40(11, 43), 87(80, -)). Una sola rotazione sinistra su 11 darebbe 43(11(-, 40), -), in cui 43 ha bf +2."
+    },
+    {
+      "id": "L15-T09-05",
+      "tipo": "L15-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nell'AVL 29(14(10, -), 62(35, 75(71, 89))) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) si inserisce la chiave 70. Si inserisce come in un ABR e si ribilancia con l'algoritmo degli AVL (si corregge il primo nodo sbilanciato incontrato risalendo dal nuovo nodo). Qual è la visita in pre-order dell'albero ottenuto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "29, 14, 10, 71, 62, 35, 70, 75, 89",
+        "29, 14, 10, 62, 35, 75, 71, 70, 89",
+        "29, 14, 10, 75, 62, 35, 71, 70, 89",
+        "62, 29, 14, 10, 35, 75, 71, 70, 89"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "70 diventa figlio sinistro di 71. Risalendo: bf(71) = +1, bf(75) = +1, bf(62) = −2: il primo nodo sbilanciato è 62, con figlio destro 75 a bf +1, caso RL. Rotazione destra su 75 e sinistra su 62: sale il nipote 71 (non il nuovo nodo 70) e si ottiene 29(14(10, -), 71(62(35, 70), 75(-, 89))). Le altre sequenze: nessuna rotazione, la sola rotazione sinistra su 62 (resta un albero non AVL) e la rotazione sinistra della radice 29 invece di quella su 62, che dà anch'essa un AVL ma non è ciò che fa l'algoritmo (si corregge il primo nodo sbilanciato dal basso)."
+    },
+    {
+      "id": "L15-T09-06",
+      "tipo": "L15-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'AVL 79(57(26, 70), 85(-, 87)) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) si inserisce la chiave 96. Si inserisce come in un ABR e si ribilancia con l'algoritmo degli AVL (si corregge il primo nodo sbilanciato incontrato risalendo dal nuovo nodo). Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "79(57(26, 70), 85(-, 87(-, 96)))",
+        "79(57(26, 70), 87(85, 96))",
+        "85(79(57(26, 70), -), 87(-, 96))",
+        "79(57(26, 70), 85(-, 96(87, -)))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "96 diventa figlio destro di 87. Il padre 87 ha bf −1, ma 85 ha sottoalbero sinistro vuoto e destro 87(-, 96) di altezza 1: bf(85) = −2, con figlio destro 87 a bf −1, caso RR. Una rotazione sinistra su 85 fa salire 87 e dà 79(57(26, 70), 87(85, 96)). Le altre opzioni non correggono il nodo giusto: nessuna rotazione, rotazione della radice, rotazione del padre del nuovo nodo."
+    },
+    {
+      "id": "L15-T10-01",
+      "tipo": "L15-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un albero AVL inizialmente vuoto si inseriscono, in quest'ordine, le chiavi 30, 40, 50, 20, 10, 5, 25. Quale chiave è la radice dell'albero finale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "30",
+        "40",
+        "25",
+        "20"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E5",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Gli inserimenti 30, 40, 50 formano una catena a destra: RR su 30 e sale 40. Con 20 e poi 10 la catena 30, 20, 10 richiede LL su 30 e si ha 40(20(10, 30), 50). L'inserimento di 5 sbilancia 40 (bf +2, figlio 20 a bf +1): LL su 40 e sale 20; 25 non richiede rotazioni. Albero finale 20(10(5, -), 40(30(25, -), 50)). 30 è la prima chiave inserita, 40 è la radice dopo la prima rotazione e 25 è la mediana delle chiavi."
+    },
+    {
+      "id": "L15-T10-02",
+      "tipo": "L15-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In un albero AVL inizialmente vuoto si inseriscono, in quest'ordine, le chiavi 32, 5, 36, 39, 48, 34. Qual è la visita in pre-order dell'albero finale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "32, 5, 36, 34, 39, 48",
+        "36, 32, 5, 34, 39, 48",
+        "32, 5, 39, 36, 34, 48",
+        "39, 32, 5, 36, 34, 48"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E7",
+        null,
+        "E1",
+        "E6"
+      ],
+      "spiegazione": "Dopo 32, 5, 36, 39 non serve nessuna rotazione. L'inserimento di 48 forma la catena 36, 39, 48: RR su 36 e si ha 32(5, 39(36, 48)). L'inserimento di 34 (figlio sinistro di 36) sbilancia 32 (bf −2, figlio destro 39 a bf +1): caso RL, destra su 39 e sinistra su 32. Albero finale 36(32(5, 34), 39(-, 48)). 32, 5, 36, 34, 39, 48 è l'ABR senza nessuna rotazione; chi ruota solo la catena rettilinea e non lo zig-zag 32, 39, 36 ottiene 32(5, 39(36(34, -), 48)); chi corregge lo zig-zag con la sola rotazione sinistra su 32 ottiene 39(32(5, 36(34, -)), 48)."
+    },
+    {
+      "id": "L15-T10-03",
+      "tipo": "L15-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale delle seguenti sequenze di inserimenti in un AVL inizialmente vuoto NON provoca alcuna rotazione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "40, 20, 60, 50, 10, 30",
+        "30, 20, 10, 40, 50",
+        "20, 40, 30, 10, 50",
+        "40, 20, 60, 10, 5, 70"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E1",
+        "E1"
+      ],
+      "spiegazione": "Con 40, 20, 60, 50, 10, 30 ogni chiave si aggiunge senza creare catene di tre nodi e si ottiene 40(20(10, 30), 60(50, -)) con tutti i bf in [−1, +1]. Nelle altre: 30, 20, 10 è una catena a sinistra (LL su 30); in 20, 40, 30 la catena a zig-zag richiede RL su 20; in 40, 20, 60, 10, 5, 70 la chiave 5 forma la catena 20, 10, 5 e serve LL su 20 (nascosta in fondo alla sequenza)."
+    },
+    {
+      "id": "L15-T10-04",
+      "tipo": "L15-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In un albero AVL inizialmente vuoto si inseriscono, in quest'ordine, le chiavi 43, 19, 3, 27, 16, 11, 26. Quante correzioni avvengono in totale, contando come una sola correzione sia una rotazione singola sia una doppia?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2",
+        "4",
+        "3",
+        "1"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Le correzioni sono tre: LL su 43 all'inserimento di 3, RL su 3 all'inserimento di 11 (la doppia conta come una; la catena 3, 16, 11 è a zig-zag) e LL su 43 all'inserimento di 26. Si arriva a 19(11(3, 16), 27(26, 43)). Chi non vede lo zig-zag ne conta 2; contando le rotazioni elementari la doppia vale 2 e il totale sarebbe 4."
+    },
+    {
+      "id": "L15-T10-05",
+      "tipo": "L15-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si inseriscono in ordine le chiavi 40, 20, 60, 30, 50, 55, 10, 5, 3 in un albero AVL inizialmente vuoto. A quale inserimento avviene la prima rotazione (singola o doppia)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "55",
+        "5",
+        "50"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Dopo 40, 20, 60, 30, 50 l'albero è 40(20(-, 30), 60(50, -)) e tutti i bf sono in [−1, +1]. Con 55, figlio destro di 50, la catena 60, 50, 55 è a zig-zag: 60 ha bf +2 e il figlio 50 ha bf −1, caso LR, quindi si ruota già qui e si ottiene 40(20(-, 30), 55(50, 60)). 10 e 5 non sbilanciano nessun nodo; 3 forma la catena 10, 5, 3 e richiede una seconda correzione (LL su 10). Chi non vede lo zig-zag con 55 indica 3."
+    },
+    {
+      "id": "L15-T10-06",
+      "tipo": "L15-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In un albero AVL inizialmente vuoto si inseriscono, in quest'ordine, le chiavi 8, 41, 26, 59, 49, 56, 14, 45. Quale albero si ottiene? (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto)",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "49(26(8(-, 14), 41(-, 45)), 59(56, -))",
+        "8(-, 41(26(14, -), 59(49(45, 56), -)))",
+        "41(26(8(-, 14), -), 49(45, 59(56, -)))",
+        "41(8(-, 26(14, -)), 49(45, 59(56, -)))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E7",
+        "E6",
+        "E1"
+      ],
+      "spiegazione": "L'inserimento di 26 forma lo zig-zag 8, 41, 26: RL su 8 e si ha 26(8, 41). Dopo 59 e 49, la catena 41, 59, 49 richiede RL su 41 e si ha 26(8, 49(41, 59)). L'inserimento di 56 sbilancia 26 (bf −2, figlio destro 49 a bf −1): RR su 26 e si ottiene 49(26(8, 41), 59(56, -)). 14 e 45 non causano rotazioni. L'albero con radice 8 è l'ABR senza nessuna rotazione; 41(26(8(-, 14), -), …) si ottiene correggendo gli zig-zag con una sola rotazione singola; 41(8(-, 26(14, -)), …) si ottiene senza ruotare gli zig-zag."
+    },
+    {
+      "id": "L15-T11-01",
+      "tipo": "L15-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dopo la cancellazione di una chiave da un AVL, si risale dal punto della cancellazione e si corregge il primo nodo sbilanciato. Quale affermazione sul resto del procedimento è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La risalita prosegue fino alla radice: dopo una correzione il sottoalbero può essere più basso di prima, quindi possono servire altre rotazioni",
+        "Basta sempre una sola rotazione (singola o doppia), come dopo un inserimento",
+        "Si corregge soltanto il nodo sbilanciato più vicino alla radice",
+        "Bisogna ricalcolare il fattore di bilanciamento di tutti i nodi dell'albero, con costo O(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Dopo una cancellazione un sottoalbero si abbassa e la correzione può lasciare il sottoalbero più basso di prima di 1: gli antenati possono allora sbilanciarsi a loro volta e la risalita continua fino alla radice, con al più una correzione (singola o doppia) per livello e costo totale O(log n). Dopo un inserimento invece la correzione ripristina l'altezza e basta una sola correzione. I bf da rivedere sono solo quelli sul cammino fino alla radice."
+    },
+    {
+      "id": "L15-T11-02",
+      "tipo": "L15-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dopo l'inserimento di una chiave in un AVL (con ribilanciamento), qual è il numero massimo di correzioni (singole o doppie) necessarie?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Una per ogni antenato del nodo inserito, quindi Θ(log n) nel caso peggiore",
+        "Due: una singola e una doppia",
+        "Una sola",
+        "Una per ogni nodo con bf diverso da 0, quindi Θ(n) nel caso peggiore"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il primo nodo sbilanciato che si incontra risalendo viene corretto con una rotazione singola o doppia e il suo sottoalbero torna all'altezza che aveva prima dell'inserimento: gli antenati non cambiano altezza e non si sbilanciano. Le rotazioni a cascata possono servire invece dopo una cancellazione."
+    },
+    {
+      "id": "L15-T11-03",
+      "tipo": "L15-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Dopo un inserimento in un AVL si corregge un caso LR con una doppia rotazione sul primo nodo sbilanciato a. Come è l'altezza del sottoalbero ottenuto rispetto a quella del sottoalbero radicato in a prima dell'inserimento?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Maggiore di 1: il sottoalbero è cresciuto e gli antenati devono aggiornare altezza e bf",
+        "Uguale: la correzione ripristina l'altezza di prima, quindi gli antenati di a non cambiano",
+        "Uguale, ma gli antenati di a possono comunque richiedere altre rotazioni",
+        "Minore di 1: dopo la doppia rotazione il sottoalbero è più basso di prima"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Con l'inserimento il sottoalbero radicato in a diventa più alto di 1 (altezza h + 3, dove h + 2 era l'altezza di prima). La doppia rotazione porta in cima il nipote x con b e a come figli, entrambi alti h + 1: il risultato ha di nuovo altezza h + 2. Gli antenati vedono la stessa altezza di prima e non servono altre rotazioni."
+    },
+    {
+      "id": "L15-T11-04",
+      "tipo": "L15-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dopo l'inserimento di una chiave in un AVL (prima di ribilanciare), quali nodi possono aver cambiato altezza?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tutti i nodi dell'albero, quindi bisogna ricalcolare ogni fattore di bilanciamento, con costo O(n)",
+        "Solo il padre del nuovo nodo",
+        "Tutti i nodi del sottoalbero radicato nel primo nodo sbilanciato",
+        "Solo i nodi lungo il cammino dalla radice al nuovo nodo"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Cambia l'altezza solo chi ha il nuovo nodo nel proprio sottoalbero, cioè gli antenati (il nuovo nodo compreso). Risalendo con il puntatore parent si aggiornano altezza e bf di questi nodi, al più O(log n) in un AVL; gli altri nodi non cambiano. Il padre non basta: anche i suoi antenati possono cambiare altezza."
+    },
+    {
+      "id": "L15-T11-05",
+      "tipo": "L15-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dopo un inserimento in un AVL, risalendo dal nuovo nodo verso la radice si trovano nodi con |bf| = 2. Quale nodo si corregge?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il nodo con |bf| = 2 più vicino alla radice, perché da lì dipende il resto dell'albero",
+        "Il primo nodo con |bf| = 2 incontrato risalendo: dopo la sua correzione anche i nodi sopra tornano bilanciati",
+        "Tutti i nodi sbilanciati del cammino, uno dopo l'altro fino alla radice",
+        "Il padre del nuovo nodo, che è sempre il nodo sbilanciato"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Si corregge il primo nodo sbilanciato incontrato risalendo: la sua rotazione riporta il sottoalbero all'altezza di prima, quindi i nodi sopra (che nell'albero non ancora corretto potrebbero mostrare |bf| = 2 solo per l'altezza in eccesso) tornano a posto. Il padre del nuovo nodo non è mai sbilanciato: prima era una foglia o aveva come unico figlio una foglia, quindi dopo ha bf 0 oppure ±1."
+    },
+    {
+      "id": "L15-T11-06",
+      "tipo": "L15-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale coppia indica correttamente il numero massimo di correzioni (singole o doppie) necessarie dopo un inserimento e dopo una cancellazione in un AVL con n nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Inserimento: Θ(log n) nel caso peggiore; cancellazione: Θ(log n) nel caso peggiore",
+        "Inserimento: al più una; cancellazione: al più una",
+        "Inserimento: Θ(log n) nel caso peggiore; cancellazione: al più una",
+        "Inserimento: al più una; cancellazione: Θ(log n) nel caso peggiore"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Dopo un inserimento la prima correzione ripristina l'altezza di prima, quindi ne basta una. Dopo una cancellazione l'altezza del sottoalbero può diminuire anche dopo la correzione e la risalita può richiedere una correzione per livello: nel caso peggiore Θ(log n). Ciascuna costa O(1), per un totale O(log n)."
+    },
+    {
+      "id": "L15-T12-01",
+      "tipo": "L15-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Dall'AVL 65(46(39, 50(-, 57)), 87(79, 91)) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) si cancella la chiave 39 e si ribilancia risalendo. Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "65(46(-, 50(-, 57)), 87(79, 91))",
+        "65(50(46, 57), 87(79, 91))",
+        "87(65(46(-, 50(-, 57)), 79), 91)",
+        "46(-, 65(50(-, 57), 87(79, 91)))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E3"
+      ],
+      "spiegazione": "39 è una foglia e viene tolta. Il nodo 46 ha sottoalbero sinistro vuoto (altezza −1) e destro 50(-, 57) di altezza 1: bf(46) = −2, con figlio destro 50 a bf −1, caso RR. Una rotazione sinistra su 46 dà 50(46, 57); ora il sottoalbero è alto 1 e la radice 65 ha bf 0. Risultato: 65(50(46, 57), 87(79, 91)). Senza ribilanciamento 46 resterebbe con bf −2; ruotare la radice, a sinistra o a destra, non corregge il nodo sbilanciato 46."
+    },
+    {
+      "id": "L15-T12-02",
+      "tipo": "L15-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Dall'AVL 71(32(-, 38), 93(89, 96(94, -))) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) si cancella la radice 71 sostituendola con il successore e si ribilancia risalendo. Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "93(38(32, 89), 96(94, -))",
+        "89(32(-, 38), 93(-, 96(94, -)))",
+        "93(89(32(-, 38), -), 96(94, -))",
+        "89(32(-, 38), 94(93, 96))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "E3",
+        null
+      ],
+      "spiegazione": "La chiave 71 è sostituita dal successore 89 (minimo del sottoalbero destro), e il nodo 89 viene tolto. Il nodo 93 ha ora sottoalbero sinistro vuoto e destro 96(94, -) di altezza 1: bf(93) = −2, con figlio destro 96 a bf +1, caso RL: destra su 96 e sinistra su 93 danno 94(93, 96). La radice 89 ha bf 0. Risultato: 89(32(-, 38), 94(93, 96)). Con il predecessore 38 e il suo ribilanciamento si avrebbe un albero diverso; senza ribilanciamento 93 resta con bf −2."
+    },
+    {
+      "id": "L15-T12-03",
+      "tipo": "L15-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Dall'AVL 48(21(13, 25(-, 41)), 85(65(55(-, 56), 74), 87(-, 91))) (notazione chiave(sinistro, destro), '-' = sottoalbero vuoto) si cancella la chiave 13 e si ribilancia risalendo fino alla radice. Quale albero si ottiene?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "65(48(25(21, 41), 55(-, 56)), 85(74, 87(-, 91)))",
+        "48(25(21, 41), 85(65(55(-, 56), 74), 87(-, 91)))",
+        "48(21(-, 25(-, 41)), 85(65(55(-, 56), 74), 87(-, 91)))",
+        "85(48(21(-, 25(-, 41)), 65(55(-, 56), 74)), 87(-, 91))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "13 è una foglia. Il nodo 21 ha sottoalbero sinistro vuoto e destro 25(-, 41): bf(21) = −2, figlio destro 25 a bf −1, caso RR: rotazione sinistra su 21, che dà 25(21, 41), alto 1 invece di 2. Risalendo, la radice 48 ha sottoalbero sinistro alto 1 e destro alto 3: bf(48) = −2, con figlio destro 85 a bf +1, caso RL: destra su 85 e sinistra su 48. Risultato: 65(48(25(21, 41), 55(-, 56)), 85(74, 87(-, 91))). Fermarsi dopo la prima rotazione lascia la radice con bf −2."
+    },
+    {
+      "id": "L15-T13-01",
+      "tipo": "L15-T13",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo, nel caso peggiore e con la stima più stretta, della ricerca di una chiave in un albero AVL con n nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La ricerca percorre al più un cammino dalla radice a una foglia, lungo h = O(log n) nodi, e nel caso peggiore arriva fino in fondo: Θ(log n). Θ(n) sarebbe il costo in un ABR degenere, che però non è un AVL."
+    },
+    {
+      "id": "L15-T13-02",
+      "tipo": "L15-T13",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo di una rotazione (singola o doppia) in un AVL con n nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "Una rotazione cambia un numero costante di puntatori e aggiorna le altezze di due nodi: costo Θ(1), qualunque sia n. Il costo O(log n) dell'inserimento viene dalla ricerca del punto e dalla risalita, non dalla rotazione: Θ(log n) e Θ(n) nascono dall'idea che una rotazione aggiorni tutti gli antenati o sposti un intero sottoalbero."
+    },
+    {
+      "id": "L15-T13-03",
+      "tipo": "L15-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la stima più stretta del costo, nel caso peggiore, di n inserimenti consecutivi in un albero AVL inizialmente vuoto (ribilanciamento compreso)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Ogni inserimento costa O(log n), perché l'altezza è O(log n), quindi n inserimenti costano O(n log n). Inserendo chiavi crescenti, l'i-esimo inserimento scende fino in fondo a un albero di altezza Θ(log i), e la somma è Θ(n log n). Θ(log n) è il costo di un singolo inserimento; Θ(n) e Θ(n²) non descrivono la somma."
+    },
+    {
+      "id": "L15-T13-04",
+      "tipo": "L15-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sul costo dell'inserimento di una chiave nel caso peggiore, con la stima più stretta, è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n) sia in un ABR qualunque sia in un AVL, perché l'AVL esegue anche le rotazioni",
+        "Θ(log n) sia in un ABR qualunque sia in un AVL, perché entrambi sono alberi di ricerca",
+        "Θ(log n) in un ABR qualunque e Θ(n) in un AVL, perché l'AVL esegue anche le rotazioni",
+        "Θ(n) in un ABR qualunque con n nodi, Θ(log n) in un AVL con n nodi"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "In un ABR qualunque il costo è O(h), che nel caso peggiore (albero degenere) vale Θ(n). In un AVL h = O(log n); la risalita costa O(log n) e la correzione O(1), quindi il costo resta Θ(log n). Le rotazioni non peggiorano la complessità."
+    },
+    {
+      "id": "L15-T13-05",
+      "tipo": "L15-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Dopo l'inserimento di una chiave in un AVL con n nodi si risale dal nuovo nodo fino al primo nodo sbilanciato (o fino alla radice) e si esegue al più una correzione. Qual è la stima più stretta del costo di questa fase nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(1)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(log² n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "La correzione costa Θ(1), ma la risalita può attraversare tutti gli antenati del nuovo nodo, fino a Θ(log n) nodi, ognuno con lavoro costante: Θ(log n). Rispondere Θ(1) dimentica la risalita; Θ(n) vale solo per alberi non bilanciati."
+    },
+    {
+      "id": "L15-T13-06",
+      "tipo": "L15-T13",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In un AVL con n nodi, quale coppia indica correttamente quante rotazioni può richiedere una cancellazione nel caso peggiore e quanto costa la cancellazione nel caso peggiore (ricerca, rimozione e ribilanciamento compresi), con le stime più strette?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n) rotazioni; costo Θ(log² n)",
+        "Θ(n) rotazioni; costo Θ(n)",
+        "Θ(1) rotazioni; costo Θ(log n)",
+        "Θ(log n) rotazioni; costo Θ(log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Risalendo dopo una cancellazione può servire una correzione a ogni livello: nel caso peggiore Θ(log n) rotazioni. Ognuna costa Θ(1) e la risalita attraversa Θ(log n) nodi, quindi il costo totale resta Θ(log n). Θ(log² n) tratta ogni rotazione come se costasse Θ(log n); Θ(n) vale per un ABR degenere, non per un AVL; Θ(1) rotazioni è il caso dell'inserimento, non della cancellazione."
+    },
+    {
+      "id": "L15-T14-01",
+      "tipo": "L15-T14",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, dato il puntatore r alla radice di un albero binario di ricerca (campi key, left, right), restituisca l'altezza dell'albero se è un albero AVL e −2 altrimenti, in tempo O(n). L'altezza dell'albero vuoto è −1.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def altezza_avl(r):\n    if r is None:\n        return -1\n    h_s = altezza_avl(r.left)\n    if h_s == -2:\n        return -2\n    h_d = altezza_avl(r.right)\n    if h_d == -2:\n        return -2\n    if abs(h_s - h_d) > 1:\n        return -2\n    return 1 + max(h_s, h_d)",
+      "controlli": [
+        "Caso base: r is None restituisce −1 (non 0 e non −2), senza accedere ai campi di r",
+        "Se un sottoalbero restituisce −2 si propaga subito −2, senza usare −2 come se fosse un'altezza",
+        "Si confronta abs(h_s − h_d) con 1 e si restituisce −2 se supera 1",
+        "Altrimenti si restituisce 1 + max(h_s, h_d)",
+        "Una sola visita: nessuna funzione altezza separata chiamata in ogni nodo, nessuna variabile globale"
+      ],
+      "spiegazione": "Ogni chiamata restituisce l'altezza del proprio sottoalbero oppure −2 se in esso c'è un nodo con |bf| > 1; −2 non può essere un'altezza valida, quindi funge da segnale. Ogni nodo è visitato una sola volta con lavoro costante: Θ(n). Il valore −2 va propagato prima di confrontare le altezze, altrimenti il confronto userebbe −2 come se fosse un'altezza."
+    },
+    {
+      "id": "L15-T14-02",
+      "tipo": "L15-T14",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice r di un albero binario (campi key, left, right), restituisca il numero di nodi con fattore di bilanciamento in valore assoluto maggiore di 1, in tempo O(n). L'altezza dell'albero vuoto è −1. Suggerimento: usare una funzione ausiliaria che restituisca la coppia (altezza, numero di nodi sbilanciati).",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def conta_sbilanciati(r):\n    h, c = conta_rec(r)\n    return c\n\ndef conta_rec(r):\n    if r is None:\n        return -1, 0\n    h_s, c_s = conta_rec(r.left)\n    h_d, c_d = conta_rec(r.right)\n    c = c_s + c_d\n    if abs(h_s - h_d) > 1:\n        c = c + 1\n    return 1 + max(h_s, h_d), c",
+      "controlli": [
+        "Caso base: r is None restituisce la coppia (−1, 0)",
+        "Chiamate ricorsive su r.left e r.right, che restituiscono altezza e conteggio dei sottoalberi",
+        "Il nodo si conta (+1) solo se abs(h_s − h_d) > 1, e i conteggi dei due sottoalberi si sommano",
+        "L'altezza restituita è 1 + max(h_s, h_d)",
+        "Nessuna funzione altezza chiamata in ogni nodo (costerebbe Θ(n²) nel caso peggiore) e nessuna variabile globale"
+      ],
+      "spiegazione": "La funzione ausiliaria restituisce, per ogni sottoalbero, la sua altezza e quanti nodi sbilanciati contiene. Il nodo corrente aggiunge 1 se il suo bf, calcolato con le altezze restituite dai figli, ha valore assoluto maggiore di 1. Ogni nodo è visitato una volta con lavoro costante: Θ(n)."
+    },
+    {
+      "id": "L15-T14-03",
+      "tipo": "L15-T14",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, dato il puntatore r alla radice di un albero binario con chiavi distinte (campi chiave, fsin, fdes), restituisca True se l'albero è un albero AVL (cioè è un albero binario di ricerca e ha |bf| ≤ 1 in ogni nodo) e False altrimenti, in tempo O(n). L'altezza dell'albero vuoto è −1. L'albero potrebbe non essere di ricerca.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def is_avl(r):\n    ok, h = verifica(r, None, None)\n    return ok\n\ndef verifica(r, lo, hi):\n    if r is None:\n        return True, -1\n    if (lo is not None and r.chiave <= lo) or (hi is not None and r.chiave >= hi):\n        return False, 0\n    ok_s, h_s = verifica(r.fsin, lo, r.chiave)\n    if not ok_s:\n        return False, 0\n    ok_d, h_d = verifica(r.fdes, r.chiave, hi)\n    if not ok_d:\n        return False, 0\n    return abs(h_s - h_d) <= 1, 1 + max(h_s, h_d)",
+      "controlli": [
+        "Caso base: r is None restituisce (True, −1)",
+        "Si verifica la proprietà di ABR con gli estremi (lo, hi) passati nelle chiamate ricorsive, non solo confrontando ogni nodo con i suoi figli",
+        "Le chiamate su fsin e fdes restituiscono (bilanciato, altezza) e se un sottoalbero non va bene si restituisce False",
+        "Il nodo è bilanciato se abs(h_s − h_d) <= 1, e la sua altezza è 1 + max(h_s, h_d)",
+        "Funzione principale che restituisce solo il booleano; nessuna variabile globale"
+      ],
+      "spiegazione": "Il controllo dell'ordine delle chiavi richiede di propagare gli estremi: ogni chiave deve cadere in un intervallo (lo, hi) che si restringe scendendo, perché confrontare un nodo solo con i figli non vede una chiave fuori posto più in basso. In parallelo si calcolano altezze e bilanciamento. Ogni nodo è visitato una sola volta con lavoro costante: Θ(n)."
+    }
+  ]
+}

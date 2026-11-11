@@ -1,0 +1,2551 @@
+{
+  "lezione": 12,
+  "generato_con": "claude-sonnet-5-5",
+  "domande": [
+    {
+      "id": "L12-T01-01",
+      "tipo": "L12-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero binario in figura quanti sono i nodi interni, quante le foglie e quanti gli archi?",
+      "codice": null,
+      "albero": "5(2(7, -), 9(3(1, -), 6(8, 4)))",
+      "opzioni": [
+        "4 nodi interni, 4 foglie, 8 archi",
+        "3 nodi interni, 6 foglie, 8 archi",
+        "5 nodi interni, 4 foglie, 8 archi",
+        "5 nodi interni, 4 foglie, 9 archi"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Nodi interni: 5, 2, 9, 3, 6 (la radice ha figli, quindi è interna; 2 e 3 hanno un solo figlio ma restano interni). Foglie: 7, 1, 8, 4. Gli archi sono n − 1 = 8, perché ogni nodo tranne la radice ha un solo arco verso il padre. Chi conta 2 e 3 tra le foglie trova 6 foglie e 3 nodi interni; 9 è il numero dei nodi, non degli archi."
+    },
+    {
+      "id": "L12-T01-02",
+      "tipo": "L12-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un albero con 11 nodi, di cui 4 foglie e 7 nodi interni, ha un certo numero di archi. Quanti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "10",
+        "11",
+        "7",
+        "12"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "In un albero ogni nodo tranne la radice ha esattamente un genitore, cioè è l'estremo inferiore di un arco: gli archi sono 11 − 1 = 10, indipendentemente da quante siano le foglie."
+    },
+    {
+      "id": "L12-T01-03",
+      "tipo": "L12-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nell'albero in figura (radice a livello 0) qual è il livello del nodo f e qual è l'altezza dell'albero?",
+      "codice": null,
+      "albero": "a(b(d, e(h, g)), c(-, f))",
+      "opzioni": [
+        "Livello 3, altezza 3",
+        "Livello 2, altezza 4",
+        "Livello 2, altezza 2",
+        "Livello 2, altezza 3"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il nodo f si raggiunge con a → c → f: 2 archi, livello 2. Il cammino più lungo è a → b → e → h (o g): 3 archi, altezza 3. Livello e altezza si misurano in archi, non in nodi."
+    },
+    {
+      "id": "L12-T01-04",
+      "tipo": "L12-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero in figura quali sono gli antenati propri del nodo e (cioè gli antenati diversi da e stesso)?",
+      "codice": null,
+      "albero": "a(b(d, e(h, g)), c(-, f))",
+      "opzioni": [
+        "a, b, e",
+        "a, b",
+        "h, g",
+        "b"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "Gli antenati propri di e sono i nodi sul cammino dalla radice a e, escluso e stesso: a → b → e, quindi a e b. h e g sono invece discendenti di e; includere e stesso non rispetta la richiesta di antenati propri; b da solo è il padre, non l'insieme degli antenati."
+    },
+    {
+      "id": "L12-T01-05",
+      "tipo": "L12-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale delle seguenti affermazioni su un albero binario è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Un albero formato da un solo nodo ha altezza 0",
+        "Un albero con n nodi ha n archi",
+        "Un nodo con un solo figlio è una foglia",
+        "L'altezza di un albero è il numero di nodi del suo cammino più lungo dalla radice a una foglia"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Con la convenzione della dispensa l'altezza conta gli archi del cammino più lungo dalla radice a una foglia: un solo nodo non ha archi, altezza 0. Un albero con n nodi ha n − 1 archi, e un nodo con un solo figlio ha un figlio quindi è interno, non una foglia."
+    },
+    {
+      "id": "L12-T01-06",
+      "tipo": "L12-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero in figura quanti sono i discendenti propri del nodo b (cioè i discendenti diversi da b stesso)?",
+      "codice": null,
+      "albero": "a(b(d, e(h, g)), c(-, f))",
+      "opzioni": [
+        "5",
+        "4",
+        "1",
+        "2"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "I discendenti di b sono i nodi raggiungibili scendendo da b: d, e, h, g, cioè 4. Il valore 5 conta anche b; il valore 1 è il numero di antenati di b (la radice a), cioè la domanda opposta; il valore 2 conta solo i figli."
+    },
+    {
+      "id": "L12-T02-01",
+      "tipo": "L12-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un albero binario, con la radice a livello 0, il numero massimo di nodi al livello i è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2^(i+1) − 1",
+        "2^i",
+        "2i",
+        "2^(i−1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il livello 0 ha 1 nodo e ogni livello ha al più il doppio dei nodi del precedente: 1, 2, 4, …, 2^i. 2^(i+1) − 1 è il totale dei livelli da 0 a i; 2i è una crescita lineare; 2^(i−1) sarebbe giusto solo contando i livelli da 1."
+    },
+    {
+      "id": "L12-T02-02",
+      "tipo": "L12-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un albero binario con molti nodi, con la radice a livello 0, quanti nodi al massimo può avere il livello 7?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "255",
+        "14",
+        "64",
+        "128"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Al livello i ci sono al più 2^i nodi: al livello 7, 2⁷ = 128. 255 = 2⁸ − 1 è il totale dei livelli da 0 a 7; 14 = 2 · 7 è una crescita lineare; 64 = 2⁶ sfasa il livello di uno."
+    },
+    {
+      "id": "L12-T02-03",
+      "tipo": "L12-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un albero binario la radice è al livello 1 (e non al livello 0). Qual è il numero massimo di nodi al livello i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2^(i−1)",
+        "2^i",
+        "2^i − 1",
+        "2i"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Con la radice a livello 1 i livelli successivi hanno al più 2, 4, 8, … nodi: il livello i ha al più 2^(i−1) nodi (per i = 1 si ha 1, la sola radice). 2^i vale con la radice a livello 0; 2^i − 1 è il totale dei livelli da 1 a i; 2i è lineare."
+    },
+    {
+      "id": "L12-T02-04",
+      "tipo": "L12-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un albero binario, con la radice a livello 0, il numero massimo di nodi al livello 10 è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2047",
+        "20",
+        "1024",
+        "512"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il massimo raddoppia a ogni livello partendo da 1 al livello 0: al livello 10 è 2¹⁰ = 1024. 2047 = 2¹¹ − 1 è il totale dei livelli da 0 a 10; 20 = 2 · 10 è lineare; 512 = 2⁹ sfasa il livello."
+    },
+    {
+      "id": "L12-T02-05",
+      "tipo": "L12-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il numero massimo di nodi al livello i, con la radice a livello 0, è una delle seguenti espressioni. Quale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2^i",
+        "2^(i/2)",
+        "2^i + 1",
+        "2^(2i)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "altro",
+        "E2"
+      ],
+      "spiegazione": "Ogni nodo ha al più due figli, quindi il livello i + 1 ha al più il doppio dei nodi del livello i. Partendo da 1 nodo al livello 0 si ottiene 2^i. 2^(2i) = 4^i quadruplica a ogni livello; 2^(i/2) e 2^i + 1 non rispettano il raddoppio."
+    },
+    {
+      "id": "L12-T02-06",
+      "tipo": "L12-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario completo ha altezza 5 (tutti i livelli da 0 a 5 sono pieni). Quante sono le sue foglie, cioè i nodi dell'ultimo livello?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "63",
+        "32",
+        "16",
+        "10"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "Le foglie di un albero completo di altezza 5 sono tutte al livello 5, dove ci sono 2⁵ = 32 nodi. 63 = 2⁶ − 1 è il numero di tutti i nodi; 16 = 2⁴ è il livello precedente; 10 = 2 · 5 è lineare."
+    },
+    {
+      "id": "L12-T02-07",
+      "tipo": "L12-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione sul numero massimo di nodi al livello i di un albero binario (radice a livello 0) vale per ogni i ≥ 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il massimo è 2i",
+        "Il massimo è 2^(i+1) − 1",
+        "Il massimo è il doppio del massimo del livello i − 1",
+        "Il massimo è 2^(i−1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Ogni nodo del livello i − 1 ha al più due figli, tutti nel livello i: il massimo raddoppia da un livello al successivo e, partendo da 1 nodo al livello 0, vale 2^i. 2^(i+1) − 1 è il totale dei livelli da 0 a i; 2i coincide con 2^i solo per i = 1 e i = 2 e poi cresce in modo lineare; 2^(i−1) sfasa l'esponente."
+    },
+    {
+      "id": "L12-T02-08",
+      "tipo": "L12-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un albero binario la radice ha livello 0. Per i = 12 quanti nodi può avere al massimo il livello i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4096",
+        "8191",
+        "2048",
+        "24"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "Al livello 12 ci sono al più 2¹² = 4096 nodi. 8191 = 2¹³ − 1 è il totale dei livelli da 0 a 12; 2048 = 2¹¹ nasce dal contare i livelli da 1; 24 = 2 · 12 è una crescita lineare."
+    },
+    {
+      "id": "L12-T03-01",
+      "tipo": "L12-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario ha altezza 5 (radice a livello 0). Quanti nodi può avere?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Almeno 6 e al massimo 63",
+        "Almeno 6 e al massimo 32",
+        "Almeno 5 e al massimo 63",
+        "Almeno 6 e al massimo 64"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E2"
+      ],
+      "spiegazione": "Il minimo è una catena: h + 1 = 6 nodi su un cammino di 5 archi. Il massimo si ha con tutti i livelli da 0 a 5 pieni: 1 + 2 + 4 + 8 + 16 + 32 = 2⁶ − 1 = 63. 32 è il solo ultimo livello, 64 = 2⁶ dimentica il −1, 5 confonde gli archi della catena con i suoi nodi."
+    },
+    {
+      "id": "L12-T03-02",
+      "tipo": "L12-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Partendo dalla radice (o dal primo nodo di una lista concatenata) si fanno al più 4 passi lungo i puntatori. Quanti nodi si raggiungono al massimo, compreso il nodo di partenza, in un albero binario e in una lista?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "31 nell'albero binario, 4 nella lista",
+        "16 nell'albero binario, 5 nella lista",
+        "31 nell'albero binario, 5 nella lista",
+        "32 nell'albero binario, 5 nella lista"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "E2"
+      ],
+      "spiegazione": "In una lista con t = 4 passi si toccano t + 1 = 5 nodi (si conta anche il nodo di partenza). In un albero binario si possono raggiungere i nodi dei livelli da 0 a 4: 1 + 2 + 4 + 8 + 16 = 2⁵ − 1 = 31. 16 è il solo livello 4; 32 dimentica il −1."
+    },
+    {
+      "id": "L12-T03-03",
+      "tipo": "L12-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario ha 12 nodi. Qual è la sua altezza massima possibile?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "11",
+        "12",
+        "5"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il caso peggiore è una catena in cui ogni nodo ha un solo figlio: 12 nodi stanno su un cammino di 11 archi, altezza 11 = n − 1. 3 = ⌊log₂ 12⌋ è l'altezza minima possibile, non quella massima; 12 conta i nodi invece degli archi."
+    },
+    {
+      "id": "L12-T03-04",
+      "tipo": "L12-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un albero binario ha n = 100 nodi e altezza h. Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "h = 6, qualunque sia la forma dell'albero",
+        "7 ≤ h ≤ 99",
+        "6 ≤ h ≤ 100",
+        "6 ≤ h ≤ 99"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Con altezza h si hanno al più 2^(h+1) − 1 nodi, quindi 2^(h+1) − 1 ≥ 100 impone h ≥ 6 (con h = 5 al massimo 63 nodi). Con una catena h = 99 = n − 1. L'altezza log₂ n vale solo per alberi bilanciati: nel caso peggiore è n − 1."
+    },
+    {
+      "id": "L12-T03-05",
+      "tipo": "L12-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è l'altezza minima possibile di un albero binario con 16 nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3",
+        "4",
+        "5",
+        "15"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Con altezza 3 i nodi sono al massimo 2⁴ − 1 = 15, troppo pochi; con altezza 4 il massimo è 2⁵ − 1 = 31 ≥ 16. L'altezza minima è quindi 4 = ⌊log₂ 16⌋. 3 e 5 nascono da formule sbagliate di uno (2^(h+1) ≥ n o 2^h − 1 ≥ n); 15 è l'altezza massima."
+    },
+    {
+      "id": "L12-T03-06",
+      "tipo": "L12-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quanti nodi può avere al massimo un albero binario di altezza 7?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "128",
+        "127",
+        "255",
+        "256"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E2"
+      ],
+      "spiegazione": "I livelli da 0 a 7 sono otto e contengono al più 1 + 2 + … + 128 = 2⁸ − 1 = 255 nodi. 128 è il solo ultimo livello, 127 = 2⁷ − 1 e 256 = 2⁸ sbagliano di uno l'esponente o la sottrazione."
+    },
+    {
+      "id": "L12-T04-01",
+      "tipo": "L12-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la visita in-order dell'albero binario in figura? (2 è figlio destro di 5; 4 è figlio sinistro di 9)",
+      "codice": null,
+      "albero": "6(3(8, 5(-, 2)), 9(4, -))",
+      "opzioni": [
+        "8 3 2 5 6 9 4",
+        "8 3 5 2 6 4 9",
+        "2 3 4 5 6 8 9",
+        "6 3 9 8 5 4 2"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "In-order del sottoalbero di 3: 8, poi 3, poi il sottoalbero di 5 (5 e poi il suo figlio destro 2); poi la radice 6; poi il sottoalbero di 9: prima il figlio sinistro 4, poi 9. Risultato 8 3 5 2 6 4 9. La sequenza 8 3 2 5 6 9 4 sposta i figli unici dall'altra parte, 2 3 4 5 6 8 9 è l'ordine crescente (l'albero non è un ABR), 6 3 9 8 5 4 2 è la visita per livelli."
+    },
+    {
+      "id": "L12-T04-02",
+      "tipo": "L12-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è la visita pre-order dell'albero binario in figura?",
+      "codice": null,
+      "albero": "m(c(p, -), t(k(-, s), r))",
+      "opzioni": [
+        "m c p t k s r",
+        "p c s k r t m",
+        "p c m k s t r",
+        "m c t p k r s"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "Pre-order: prima il nodo, poi il sottoalbero sinistro, poi il destro. Radice m; sottoalbero di c: c, p; sottoalbero di t: t, poi k con il suo figlio destro s, poi r. Risultato m c p t k s r. La sequenza p c s k r t m è il post-order, p c m k s t r l'in-order, m c t p k r s la visita per livelli."
+    },
+    {
+      "id": "L12-T04-03",
+      "tipo": "L12-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la visita post-order dell'albero binario in figura? (5 è figlio destro di 1; 3 è figlio sinistro di 8)",
+      "codice": null,
+      "albero": "7(4(9, 1(-, 5)), 2(8(3, -), 6))",
+      "opzioni": [
+        "7 4 9 1 5 2 8 3 6",
+        "6 3 8 2 5 1 9 4 7",
+        "7 4 2 9 1 8 6 5 3",
+        "9 5 1 4 3 8 6 2 7"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "Post-order: sottoalbero sinistro, sottoalbero destro, poi il nodo. Sotto 4: 9, poi 1 con il suo figlio 5 (5 1), poi 4. Sotto 2: 8 con il suo figlio sinistro 3 (3 8), poi 6, poi 2. Infine la radice 7: 9 5 1 4 3 8 6 2 7. La sequenza 7 4 9 1 5 2 8 3 6 è il pre-order; 6 3 8 2 5 1 9 4 7 è il pre-order letto al contrario, che non coincide con il post-order."
+    },
+    {
+      "id": "L12-T04-04",
+      "tipo": "L12-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Visitando l'albero binario in figura si ottiene la sequenza 7 4 2 3 1 9 5. Di quale visita si tratta?",
+      "codice": null,
+      "albero": "5(2(7, 4), 9(-, 1(3, -)))",
+      "opzioni": [
+        "Pre-order",
+        "In-order",
+        "Post-order",
+        "Per livelli"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La radice 5 compare per ultima: nel post-order il nodo viene dopo i due sottoalberi. Il sottoalbero sinistro (7 4 2) precede quello destro (3 1 9). Il pre-order sarebbe 5 2 7 4 9 1 3, l'in-order 7 2 4 5 9 3 1, la visita per livelli 5 2 9 7 4 1 3."
+    },
+    {
+      "id": "L12-T04-05",
+      "tipo": "L12-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sulla visita in-order di un albero binario qualsiasi (non necessariamente un ABR) è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La radice compare dopo tutti i nodi del suo sottoalbero sinistro e prima di tutti quelli del destro",
+        "Le chiavi compaiono in ordine crescente",
+        "La radice compare per prima",
+        "I nodi dello stesso livello compaiono consecutivi"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "E4"
+      ],
+      "spiegazione": "L'in-order visita il sottoalbero sinistro, poi il nodo, poi il destro: la radice sta in mezzo. L'ordine crescente delle chiavi vale solo se l'albero è un ABR; la radice per prima è il pre-order; i livelli consecutivi sono la visita per livelli."
+    },
+    {
+      "id": "L12-T04-06",
+      "tipo": "L12-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è l'ultimo nodo visitato dalla visita in-order dell'albero binario in figura? (8 ha solo il figlio destro 9; 7 è il figlio sinistro di 9)",
+      "codice": null,
+      "albero": "5(3, 8(-, 9(7, -)))",
+      "opzioni": [
+        "9",
+        "7",
+        "5",
+        "8"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "L'in-order è 3 5 8 7 9: 9 è l'ultimo perché il suo unico figlio 7 sta a sinistra e viene visitato prima di 9. Chi legge 7 come figlio destro di 9 ottiene 3 5 8 9 7 e risponde 7; la radice 5 è l'ultima nel post-order."
+    },
+    {
+      "id": "L12-T05-01",
+      "tipo": "L12-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la sequenza della visita per livelli dell'albero binario in figura?",
+      "codice": null,
+      "albero": "9(4(1, 7(6, -)), 5(-, 2(8, 3)))",
+      "opzioni": [
+        "9 4 5 1 7 2 6 8 3",
+        "9 4 1 7 6 5 2 8 3",
+        "9 5 2 3 8 4 7 6 1",
+        "9 5 4 2 7 1 3 8 6"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Livello 0: 9; livello 1: 4 5; livello 2: 1 7 2; livello 3: 6 8 3. Concatenando: 9 4 5 1 7 2 6 8 3. La sequenza 9 4 1 7 6 5 2 8 3 è il pre-order, 9 5 2 3 8 4 7 6 1 si ottiene con una pila al posto della coda, 9 5 4 2 7 1 3 8 6 visita ogni livello da destra a sinistra."
+    },
+    {
+      "id": "L12-T05-02",
+      "tipo": "L12-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una visita per livelli dell'albero in figura usa una coda: si estrae un nodo, lo si visita e si accodano prima il figlio sinistro e poi il destro. Dopo 4 estrazioni, che cosa contiene la coda (dal primo all'ultimo nodo in coda)?",
+      "codice": null,
+      "albero": "7(3(9, 2), 6(1(-, 5), 8))",
+      "opzioni": [
+        "1 2 9",
+        "3 5",
+        "2 1 8",
+        "9 2 1 8"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Coda iniziale: 7. Estraggo 7 → 3 6. Estraggo 3 → 6 9 2. Estraggo 6 → 9 2 1 8. Estraggo 9 (foglia, niente da accodare) → 2 1 8. Se si accoda prima il destro si ottiene 1 2 9; con una pila (letta dal fondo alla cima) si avrebbe 3 5; dopo 3 sole estrazioni la coda sarebbe 9 2 1 8."
+    },
+    {
+      "id": "L12-T05-03",
+      "tipo": "L12-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nell'albero in figura si inserisce un nuovo nodo x nel primo livello non pieno, nella posizione libera più a sinistra (cioè accanto al primo nodo, nell'ordine di visita per livelli, che ha un posto libero). Dove viene inserito x?",
+      "codice": null,
+      "albero": "3(1(2, 4), 8(5, 7(6, 9)))",
+      "opzioni": [
+        "Come figlio sinistro del nodo 6",
+        "Come figlio sinistro del nodo 2",
+        "Come figlio destro del nodo 2",
+        "Come figlio sinistro del nodo 5"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "In ordine per livelli i nodi sono 3, 1, 8, 2, 4, 5, 7, 6, 9. I livelli 0, 1 e 2 sono pieni (1, 2 e 4 nodi); il primo livello non pieno è il 3, che contiene solo 6 e 9. Il primo nodo, in ordine per livelli, con un posto libero è la foglia 2: x diventa il suo figlio sinistro, cioè la posizione più a sinistra del livello 3. Il posto a sinistra di 6 sta invece al livello 4."
+    },
+    {
+      "id": "L12-T05-04",
+      "tipo": "L12-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la visita per livelli (da sinistra a destra) dell'albero binario in figura?",
+      "codice": null,
+      "albero": "f(b(a, d(c, -)), g(-, i(h, -)))",
+      "opzioni": [
+        "f g i h b d c a",
+        "f b a d c g i h",
+        "f g b i d a h c",
+        "f b g a d i c h"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "E3",
+        null
+      ],
+      "spiegazione": "Livello 0: f; livello 1: b g; livello 2: a d i; livello 3: c h. Concatenando: f b g a d i c h. La sequenza f b a d c g i h è il pre-order, f g i h b d c a nasce da una pila, f g b i d a h c legge ogni livello da destra a sinistra."
+    },
+    {
+      "id": "L12-T05-05",
+      "tipo": "L12-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è l'ultimo nodo visitato dalla visita per livelli (da sinistra a destra) dell'albero in figura?",
+      "codice": null,
+      "albero": "8(3(1, 6(5, 7)), 10(-, 14))",
+      "opzioni": [
+        "7",
+        "14",
+        "5",
+        "8"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "I livelli sono: 8; 3 10; 1 6 14; 5 7. L'ultimo nodo del livello più profondo, da sinistra a destra, è 7. Il pre-order finisce con 14, la visita con i livelli da destra a sinistra finisce con 5, la radice 8 è l'ultima nel post-order."
+    },
+    {
+      "id": "L12-T05-06",
+      "tipo": "L12-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero in figura si inserisce un nuovo nodo x nel primo livello non pieno, nella posizione libera più a sinistra (cioè accanto al primo nodo, nell'ordine di visita per livelli, che ha un posto libero). Dove viene inserito x?",
+      "codice": null,
+      "albero": "6(2(5, 1), 7(4, -))",
+      "opzioni": [
+        "Come figlio sinistro del nodo 5",
+        "Come figlio destro del nodo 4",
+        "Come figlio sinistro del nodo 1",
+        "Come figlio destro del nodo 7"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "In ordine per livelli i nodi sono 6, 2, 7, 5, 1, 4. 6 e 2 hanno due figli; 7 ha un solo figlio, quindi ha ancora libero il posto destro, e viene prima di tutte le foglie. Chi controlla solo le foglie inserirebbe x sotto 5."
+    },
+    {
+      "id": "L12-T06-01",
+      "tipo": "L12-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo della funzione somma su un albero binario con n nodi, memorizzato con record e puntatori?",
+      "codice": "def somma(p):\n    if p is None:\n        return 0\n    return p.key + somma(p.left) + somma(p.right)",
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e fa lavoro O(1); le chiamate su None sono n + 1. Il costo è Θ(n), qualunque sia la forma dell'albero. Θ(log n) o Θ(h) sarebbero il costo di una discesa lungo un solo cammino; Θ(n log n) e Θ(n²) richiederebbero lavoro non costante per nodo."
+    },
+    {
+      "id": "L12-T06-02",
+      "tipo": "L12-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo della funzione massimo su un albero binario con n nodi e altezza h, memorizzato con record e puntatori?",
+      "codice": "def massimo(p):\n    if p is None:\n        return float('-inf')\n    return max(p.key, massimo(p.left), massimo(p.right))",
+      "albero": null,
+      "opzioni": [
+        "Θ(h)",
+        "Θ(n²)",
+        "Nessuno dei precedenti",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e fa lavoro O(1); le chiamate su None sono n + 1. Il costo è Θ(n), qualunque sia la forma dell'albero. Θ(h) è il costo di chi scende lungo un solo cammino, ma qui si visitano entrambi i figli di ogni nodo; 'Nessuno dei precedenti' è sbagliato: il costo è lo stesso per ogni forma dell'albero."
+    },
+    {
+      "id": "L12-T06-03",
+      "tipo": "L12-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una visita in-order ricorsiva (con print della chiave tra le due chiamate) viene eseguita su un albero degenere di n nodi, in cui ogni nodo ha solo il figlio sinistro. Qual è il suo costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e fa lavoro O(1); le chiamate su None sono n + 1. Il costo è Θ(n), qualunque sia la forma dell'albero. Anche su una catena ci sono n nodi, ciascuno con lavoro O(1), e n + 1 chiamate su None: la profondità della ricorsione è n ma il numero totale di chiamate è 2n + 1."
+    },
+    {
+      "id": "L12-T06-04",
+      "tipo": "L12-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è il costo della funzione conta_pari su un albero binario con n nodi, memorizzato con record e puntatori?",
+      "codice": "def conta_pari(p):\n    if p is None:\n        return 0\n    c = 1 if p.key % 2 == 0 else 0\n    return c + conta_pari(p.left) + conta_pari(p.right)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(h)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "E3"
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e fa lavoro O(1); le chiamate su None sono n + 1. Il costo è Θ(n), qualunque sia la forma dell'albero. Il test sulla chiave è un'operazione costante: non c'è nessun fattore logaritmico né quadratico."
+    },
+    {
+      "id": "L12-T06-05",
+      "tipo": "L12-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo di questa visita per livelli su un albero binario con n nodi, memorizzato con record e puntatori?",
+      "codice": "from collections import deque\n\ndef livelli(p):\n    coda = deque([p])\n    while coda:\n        x = coda.popleft()\n        if x is not None:\n            print(x.key)\n            coda.append(x.left)\n            coda.append(x.right)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(log n)",
+        "Nessuno dei precedenti"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E1",
+        "E4"
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e fa lavoro O(1); le chiamate su None sono n + 1. Il costo è Θ(n), qualunque sia la forma dell'albero. Qui popleft() e append() su una deque costano O(1) e nella coda entrano 2n + 1 elementi (n nodi e n + 1 None): Θ(n)."
+    },
+    {
+      "id": "L12-T06-06",
+      "tipo": "L12-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Una visita post-order ricorsiva (che stampa la chiave dopo le due chiamate) viene eseguita su un albero binario completo con n nodi. Qual è il suo costo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e fa lavoro O(1); le chiamate su None sono n + 1. Il costo è Θ(n), qualunque sia la forma dell'albero. Il fatto che l'albero sia completo (altezza circa log₂ n) non lo rende più rapido da visitare: ogni nodo va comunque visitato."
+    },
+    {
+      "id": "L12-T06-07",
+      "tipo": "L12-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo della funzione altezza su un albero binario con n nodi e altezza h, memorizzato con record e puntatori?",
+      "codice": "def altezza(p):\n    if p is None:\n        return -1\n    return 1 + max(altezza(p.left), altezza(p.right))",
+      "albero": null,
+      "opzioni": [
+        "Θ(h)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Nessuno dei precedenti"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e fa lavoro O(1); le chiamate su None sono n + 1. Il costo è Θ(n), qualunque sia la forma dell'albero. Anche se il risultato è l'altezza, la funzione deve esaminare tutti i sottoalberi per sapere qual è il più alto."
+    },
+    {
+      "id": "L12-T06-08",
+      "tipo": "L12-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è il costo della funzione stampa_foglie su un albero binario con n nodi, memorizzato con record e puntatori?",
+      "codice": "def stampa_foglie(p):\n    if p is None:\n        return\n    if p.left is None and p.right is None:\n        print(p.key)\n    stampa_foglie(p.left)\n    stampa_foglie(p.right)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(log n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e fa lavoro O(1); le chiamate su None sono n + 1. Il costo è Θ(n), qualunque sia la forma dell'albero. Il controllo sulla foglia è costante: il numero di foglie stampate non cambia il fatto che si debbano esaminare tutti i nodi."
+    },
+    {
+      "id": "L12-T07-01",
+      "tipo": "L12-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una visita in-order ricorsiva viene eseguita su un albero binario con n nodi il cui sottoalbero destro ha k nodi. Quale ricorrenza descrive il suo costo T(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(n − 1 − k) + T(k) + Θ(1)",
+        "T(n) = T(n − k) + T(k) + Θ(1)",
+        "T(n) = (T(n − 1 − k) + T(k))/2 + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(1)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "La radice non appartiene a nessuno dei due sottoalberi, quindi il sinistro ha n − 1 − k nodi e il destro k. Le due chiamate si sommano (non se ne fa la media) e sulla radice si fa lavoro costante. 2T(n/2) vale solo per un albero completo."
+    },
+    {
+      "id": "L12-T07-02",
+      "tipo": "L12-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione conta_foglie viene eseguita su un albero con n nodi il cui sottoalbero sinistro ha k nodi. Quale ricorrenza descrive il costo T(n) (per n > 1, albero qualunque)?",
+      "codice": "def conta_foglie(p):\n    if p is None:\n        return 0\n    if p.left is None and p.right is None:\n        return 1\n    return conta_foglie(p.left) + conta_foglie(p.right)",
+      "albero": null,
+      "opzioni": [
+        "T(n) = T(k) + T(n − k) + Θ(1)",
+        "T(n) = 2T(n/2) + Θ(1)",
+        "T(n) = T(k) + T(n − k − 1) + Θ(1)",
+        "T(n) = T(n − 1) + Θ(1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il sottoalbero sinistro ha k nodi, il destro n − k − 1 (la radice non sta in nessuno dei due) e sulla radice il lavoro è costante. T(n) = T(n − 1) + Θ(1) descrive solo il caso k = 0 (o k = n − 1); 2T(n/2) solo l'albero completo."
+    },
+    {
+      "id": "L12-T07-03",
+      "tipo": "L12-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Per dimostrare per sostituzione che T(n) = T(k) + T(n − 1 − k) + d è O(n) (k è il numero di nodi del sottoalbero sinistro, d > 0 una costante) si assume T(m) ≤ cm per ogni m < n. Quale disuguaglianza si ottiene sostituendo l'ipotesi nei due termini?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) ≤ cn + d",
+        "T(n) ≤ cn − c + d",
+        "T(n) ≤ (cn − c)/2 + d",
+        "T(n) ≤ 2cn − c + d"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Si ottiene T(n) ≤ ck + c(n − 1 − k) + d = c(n − 1) + d = cn − c + d, che è ≤ cn se c ≥ d. cn + d si avrebbe usando T(n − k) al posto di T(n − 1 − k), cioè dimenticando che la radice non sta nei sottoalberi; (cn − c)/2 + d nascerebbe dalla media dei due termini."
+    },
+    {
+      "id": "L12-T07-04",
+      "tipo": "L12-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una visita ricorsiva di un albero binario con n nodi è eseguita su un albero degenere in cui ogni nodo ha solo il figlio destro (il sottoalbero sinistro ha k = 0 nodi). Quale coppia ricorrenza-soluzione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = 2T(n/2) + Θ(1), quindi Θ(n log n)",
+        "T(n) = 2T(n/2) + Θ(1), quindi Θ(n)",
+        "T(n) = T(n − 1) + Θ(1), quindi Θ(log n)",
+        "T(n) = T(n − 1) + Θ(1), quindi Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Con k = 0 il sottoalbero sinistro è vuoto e il destro ha n − 1 nodi: T(n) = T(0) + T(n − 1) + Θ(1) = T(n − 1) + Θ(1), che dà Θ(n). 2T(n/2) + Θ(1) vale solo per un albero completo, non per uno degenere (e la sua soluzione è comunque Θ(n), non Θ(n log n))."
+    },
+    {
+      "id": "L12-T07-05",
+      "tipo": "L12-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una visita pre-order ricorsiva è eseguita su un albero binario completo con n nodi (approssimando i due sottoalberi con n/2 nodi). Quale coppia ricorrenza-soluzione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = 2T(n/2) + Θ(1), quindi Θ(n)",
+        "T(n) = 2T(n/2) + Θ(1), quindi Θ(n log n)",
+        "T(n) = T(n/2) + Θ(1), quindi Θ(log n)",
+        "T(n) = 2T(n/2) + Θ(n), quindi Θ(n log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "In un albero completo i due sottoalberi hanno circa n/2 nodi ciascuno e il lavoro sulla radice è costante: T(n) = 2T(n/2) + Θ(1) = Θ(n) (come atteso, perché ogni nodo è visitato una volta). Θ(n log n) è la soluzione di 2T(n/2) + Θ(n), la ricorrenza del mergesort, dove il lavoro per chiamata è lineare."
+    },
+    {
+      "id": "L12-T07-06",
+      "tipo": "L12-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Per dimostrare T(n) ≤ cn si sostituisce l'ipotesi T(m) ≤ cm nella ricorrenza di una visita e, per un errore (si è dimenticato che la radice non appartiene a nessun sottoalbero), si ottiene T(n) ≤ cn + d con d > 0. Quale conclusione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si dimostra O(n), perché cn + d è una funzione lineare di n",
+        "Si dimostra T(n) ≤ cn scegliendo c ≥ d",
+        "Il passaggio non dimostra T(n) ≤ cn: cn + d ≤ cn è falsa per ogni c",
+        "Si dimostra Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "L'induzione richiede di riottenere esattamente l'ipotesi T(n) ≤ cn. Con cn + d ciò non succede per nessuna scelta di c, perché d > 0. Il fatto che cn + d sia lineare non basta per concludere. Con il conteggio corretto si ottiene cn − c + d ≤ cn per c ≥ d."
+    },
+    {
+      "id": "L12-T08-01",
+      "tipo": "L12-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione costruisce un albero binario casuale con n ≥ 1 nodi. La list disponibili contiene i nodi che hanno ancora un posto libero per un figlio; random.choice costa O(1). Qual è il costo della funzione nel caso peggiore?",
+      "codice": "import random\n\ndef albero_casuale(n):\n    radice = NodoA(0)\n    disponibili = [radice]\n    for i in range(1, n):\n        padre = random.choice(disponibili)\n        nuovo = NodoA(i)\n        if padre.left is None:\n            padre.left = nuovo\n        else:\n            padre.right = nuovo\n            disponibili.remove(padre)\n        disponibili.append(nuovo)\n    return radice",
+      "albero": null,
+      "opzioni": [
+        "Θ(n), perché ogni nodo entra in disponibili e ne esce al più una volta",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E5",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "disponibili.remove(padre) cerca padre nella list e sposta gli elementi successivi: costa Θ(lunghezza di disponibili). I nodi con meno di due figli sono sempre più della metà dei nodi creati, quindi la list è lunga Θ(i) al passo i. Se per esempio padre è sempre il primo della list, circa n/2 rimozioni costano Θ(n) ciascuna: Θ(n²). Copiando l'ultimo elemento al posto di padre e usando pop() ogni rimozione costerebbe O(1) e la funzione Θ(n)."
+    },
+    {
+      "id": "L12-T08-02",
+      "tipo": "L12-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La funzione livelli usa una list e pop(0). Qual è il suo costo su un albero degenere di n nodi, in cui ogni nodo ha un solo figlio?",
+      "codice": "def livelli(p):\n    ris = []\n    coda = [p]\n    while coda:\n        x = coda.pop(0)\n        if x is not None:\n            ris.append(x.key)\n            coda.append(x.left)\n            coda.append(x.right)\n    return ris",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "In una catena la coda contiene sempre pochissimi elementi (al più 3, contando i None): ogni pop(0) sposta un numero costante di elementi e costa O(1). Il totale è Θ(n). Il Θ(n²) è il caso peggiore su altri alberi (per esempio completi), non il costo su ogni albero."
+    },
+    {
+      "id": "L12-T08-03",
+      "tipo": "L12-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La visita per livelli di questo codice con list e pop(0) ha costo Θ(n²) nel caso peggiore. Quale modifica la rende lineare mantenendo l'ordine per livelli?",
+      "codice": "def livelli(p):\n    ris = []\n    coda = [p]\n    while coda:\n        x = coda.pop(0)\n        if x is not None:\n            ris.append(x.key)\n            coda.append(x.left)\n            coda.append(x.right)\n    return ris",
+      "albero": null,
+      "opzioni": [
+        "Usare una collections.deque come coda e estrarre con popleft()",
+        "Sostituire pop(0) con pop()",
+        "Accodare con insert(0, x) ed estrarre con pop()",
+        "Usare un set al posto della list"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Con popleft() l'estrazione da una deque costa O(1), quindi il totale è Θ(n). pop() senza argomenti estrae l'ultimo inserito (pila) e dà una visita in profondità, non per livelli; insert(0, x) su una list sposta tutti gli elementi, quindi costa O(n) come pop(0); un set non conserva l'ordine."
+    },
+    {
+      "id": "L12-T08-04",
+      "tipo": "L12-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Questa visita per livelli accoda in testa alla list con insert(0, ...) ed estrae in coda con pop(). Qual è il suo costo nel caso peggiore su un albero con n nodi?",
+      "codice": "def livelli(p):\n    coda = [p]\n    while coda:\n        x = coda.pop()\n        print(x.key)\n        if x.left:\n            coda.insert(0, x.left)\n        if x.right:\n            coda.insert(0, x.right)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n), perché ogni nodo entra ed esce dalla coda una sola volta",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "pop() sull'ultimo elemento costa O(1), ma insert(0, x) sposta tutti gli elementi della list: costa O(lunghezza della coda). Su un albero completo la coda contiene Θ(n) nodi, quindi n inserimenti da Θ(n) danno Θ(n²)."
+    },
+    {
+      "id": "L12-T08-05",
+      "tipo": "L12-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una visita per livelli è scritta con coda = [p] e coda.pop(0), accodando i figli con append. Quale affermazione sul suo costo è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Costa Θ(n²) su qualunque albero con n nodi",
+        "Costa Θ(n²) nel caso peggiore, ma Θ(n) su un albero degenere",
+        "Costa Θ(n) su qualunque albero, perché ogni nodo entra ed esce dalla coda una sola volta",
+        "Costa Θ(n) su qualunque albero, perché pop(0) su una list costa O(1) come popleft() su una deque"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E1",
+        "E2"
+      ],
+      "spiegazione": "pop(0) costa O(lunghezza della coda): su un albero completo la coda è lunga Θ(n) e il totale è Θ(n²), ma su una catena la coda è sempre cortissima e il totale è Θ(n). Una list non è una coda efficiente, a differenza di una deque."
+    },
+    {
+      "id": "L12-T08-06",
+      "tipo": "L12-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La funzione livelli usa una deque. Si sostituisce la deque con una list (coda = [p]) e popleft() con pop(0). Come cambia il costo nel caso peggiore su un albero di n nodi?",
+      "codice": "from collections import deque\n\ndef livelli(p):\n    coda = deque([p])\n    while coda:\n        x = coda.popleft()\n        if x is not None:\n            print(x.key)\n            coda.append(x.left)\n            coda.append(x.right)",
+      "albero": null,
+      "opzioni": [
+        "Passa da Θ(n) a Θ(n²)",
+        "Resta Θ(n): pop(0) su una list costa O(1) come popleft()",
+        "Passa da Θ(n) a Θ(n²) su qualunque albero, anche su una catena",
+        "Passa da Θ(n) a Θ(n log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Su un albero completo la coda contiene Θ(n) elementi e ogni pop(0) li sposta tutti: il costo passa a Θ(n²). Non è però vero che il costo quadratico si abbia su ogni albero: su una catena la coda è sempre corta e resta Θ(n)."
+    },
+    {
+      "id": "L12-T09-01",
+      "tipo": "L12-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo nel caso peggiore di somma_altezze su un albero binario con n nodi? (altezza è la funzione della dispensa, che costa Θ(m) su un sottoalbero di m nodi)",
+      "codice": "def somma_altezze(p):\n    if p is None:\n        return 0\n    return altezza(p) + somma_altezze(p.left) + somma_altezze(p.right)\n\ndef altezza(p):\n    if p is None:\n        return -1\n    return 1 + max(altezza(p.left), altezza(p.right))",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(h)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "In ogni nodo altezza(p) visita tutto il sottoalbero di p. Su un albero degenere i sottoalberi hanno n, n − 1, …, 1 nodi: la somma è Θ(n²). Θ(n log n) è il costo su un albero completo, non il caso peggiore; Θ(n) ignora il lavoro nascosto in altezza."
+    },
+    {
+      "id": "L12-T09-02",
+      "tipo": "L12-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è il costo nel caso peggiore della funzione chiavi su un albero binario con n nodi? (la concatenazione di due liste di lunghezza a e b costa Θ(a + b))",
+      "codice": "def chiavi(p):\n    if p is None:\n        return []\n    return chiavi(p.left) + [p.key] + chiavi(p.right)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(h)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "A ogni nodo la concatenazione copia tutte le chiavi del suo sottoalbero. Su un albero degenere le liste hanno lunghezza 1, 2, …, n: la somma è Θ(n²). Su un albero completo sarebbe Θ(n log n), ma il caso peggiore è quello degenere."
+    },
+    {
+      "id": "L12-T09-03",
+      "tipo": "L12-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La funzione vicini viene chiamata con k = 3 (una costante) sulla radice di un albero binario con n nodi. Qual è il suo costo nel caso peggiore?",
+      "codice": "def vicini(p, k):\n    if p is None or k == 0:\n        return 0\n    return 1 + vicini(p.left, k - 1) + vicini(p.right, k - 1)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "O(1)",
+        "Θ(log n)",
+        "Θ(h)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La ricorsione si ferma a profondità 3: si visitano al più i nodi dei livelli 0, 1, 2 (1 + 2 + 4 = 7 nodi), indipendentemente da n. Anche se ci sono due chiamate ricorsive per nodo, il numero totale di chiamate è limitato da una costante."
+    },
+    {
+      "id": "L12-T10-01",
+      "tipo": "L12-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Che cosa restituisce somma(r, 2), dove r è la radice dell'albero in figura?",
+      "codice": "def somma(p, k):\n    if p is None:\n        return 0\n    if k == 0:\n        return p.key\n    return p.key + somma(p.left, k - 1) + somma(p.right, k - 1)",
+      "albero": "4(6(2, 9), 3(-, 7(5, 1)))",
+      "opzioni": [
+        "13",
+        "31",
+        "18",
+        "37"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E1"
+      ],
+      "spiegazione": "La funzione somma le chiavi dei nodi di livello al più k (a k = 0 si ferma restituendo la chiave). Livello 0: 4; livello 1: 6 + 3; livello 2: 2 + 9 + 7. Totale 4 + 9 + 18 = 31. 13 si ferma al livello 1, 18 è il solo livello 2, 37 arriva al livello 3 (include 5 e 1)."
+    },
+    {
+      "id": "L12-T10-02",
+      "tipo": "L12-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Che valore restituisce g(r), dove r è la radice dell'albero in figura?",
+      "codice": "def g(p):\n    if p is None:\n        return 0\n    return 1 + max(g(p.left), g(p.right))",
+      "albero": "2(5(-, 1(8, -)), 4)",
+      "opzioni": [
+        "3",
+        "5",
+        "2",
+        "4"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "g è come la funzione altezza, ma sull'albero vuoto restituisce 0 invece di −1: conta quindi i nodi del cammino più lungo (2 → 5 → 1 → 8), cioè 4, non i suoi archi. Il valore 3 è l'altezza con la convenzione della dispensa (−1 sul vuoto); 5 è il numero di nodi."
+    },
+    {
+      "id": "L12-T10-03",
+      "tipo": "L12-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Che cosa restituisce f(r), dove r è la radice dell'albero in figura?",
+      "codice": "def f(p):\n    if p is None:\n        return []\n    ris = f(p.left) + f(p.right)\n    if (p.left is None) != (p.right is None):\n        ris = [p.key] + ris\n    return ris",
+      "albero": "8(3(-, 5), 6(2(7, -), 9))",
+      "opzioni": [
+        "3, 2",
+        "5, 7",
+        "5, 7, 9",
+        "2, 3"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "f restituisce, in ordine di visita pre-order, le chiavi dei nodi con un solo figlio (nodi semplici): 3 (ha solo il figlio destro 5) e 2 (ha solo il figlio sinistro 7). Le chiavi 5 e 7 sono invece i figli unici, cioè i figli dei nodi semplici; 5, 7, 9 sono le foglie; 2, 3 inverte l'ordine."
+    },
+    {
+      "id": "L12-T10-04",
+      "tipo": "L12-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Che cosa restituisce g(r, 2), dove r è la radice dell'albero in figura?",
+      "codice": "def g(p, k):\n    if p is None:\n        return 0\n    if k == 0:\n        return p.key\n    return g(p.left, k - 1) + g(p.right, k - 1)",
+      "albero": "5(8(1, -), 2(7, 6(3, -)))",
+      "opzioni": [
+        "10",
+        "3",
+        "14",
+        "29"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "g restituisce la somma delle chiavi dei nodi che si trovano esattamente al livello k. Il livello 2 contiene 1, 7 e 6: totale 14. 10 è il livello 1, 3 il livello 3 (sbagliare di un livello); 29 è la somma dei livelli da 0 a 2."
+    },
+    {
+      "id": "L12-T10-05",
+      "tipo": "L12-T10",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Che valore restituisce altezza(r), dove r è la radice dell'albero in figura?",
+      "codice": "def altezza(p):\n    if p is None:\n        return -1\n    return 1 + max(altezza(p.left), altezza(p.right))",
+      "albero": "5(-, 8(3, 6(2, -)))",
+      "opzioni": [
+        "3",
+        "4",
+        "2",
+        "5"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Sull'albero vuoto altezza restituisce −1, quindi una foglia ha altezza 0. Il cammino più lungo è 5 → 8 → 6 → 2: 3 archi, altezza 3. Il valore 4 è il numero di nodi del cammino (si ottiene con 0 sul vuoto); 5 è il numero di nodi dell'albero."
+    },
+    {
+      "id": "L12-T10-06",
+      "tipo": "L12-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Che cosa restituisce g(r), dove r è la radice dell'albero in figura?",
+      "codice": "def g(p):\n    if p is None:\n        return []\n    ris = g(p.left) + g(p.right)\n    if p.left is not None and p.right is None:\n        ris = [p.left.key] + ris\n    if p.left is None and p.right is not None:\n        ris = [p.right.key] + ris\n    return ris",
+      "albero": "4(7(-, 1), 9(5(3, -), 2))",
+      "opzioni": [
+        "7, 5",
+        "1, 3, 2",
+        "3, 1",
+        "1, 3"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "g raccoglie le chiavi dei figli unici, cioè dei nodi il cui genitore ha un solo figlio: 1 (figlio destro unico di 7) e 3 (figlio sinistro unico di 5), in ordine di visita. 7 e 5 sono i genitori (nodi semplici); 1, 3, 2 sono tutte le foglie, ma 2 è figlio di 9 che ha due figli."
+    },
+    {
+      "id": "L12-T11-01",
+      "tipo": "L12-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La funzione cresce dovrebbe dire se in un albero non vuoto esiste un cammino dalla radice a una foglia con chiavi strettamente crescenti. Che cosa succede chiamandola sulla radice dell'albero in figura?",
+      "codice": "def cresce(p):\n    if p.left is None and p.right is None:\n        return True\n    if p.left.key > p.key and cresce(p.left):\n        return True\n    if p.right.key > p.key and cresce(p.right):\n        return True\n    return False",
+      "albero": "3(5(-, 9), 1(4, 2))",
+      "opzioni": [
+        "Restituisce True, ed è giusto: il cammino 3-5-9 è crescente",
+        "Solleva un errore: nel nodo 5 legge la chiave del figlio sinistro, che non esiste",
+        "Solleva un errore: nella foglia 9 legge la chiave di un figlio che non esiste",
+        "Restituisce False: nessun cammino radice-foglia è crescente"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Nel nodo 3 esistono entrambi i figli e 5 > 3, quindi si chiama cresce sul nodo 5. Il nodo 5 non è una foglia (ha il figlio destro 9) ma il suo figlio sinistro è None: p.left.key solleva un errore prima di arrivare al ramo destro. Sulla foglia 9 non succede, perché il test sulla foglia viene prima. Il cammino 3-5-9 esiste davvero, ma la funzione non ci arriva: prima di leggere p.left.key bisogna controllare che p.left esista."
+    },
+    {
+      "id": "L12-T11-02",
+      "tipo": "L12-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La funzione pari del codice dovrebbe dire se esiste un cammino dalla radice a una foglia con tutte le chiavi pari. Sull'albero in figura restituisce True, che è la risposta giusta. Si può concludere che la funzione è corretta?",
+      "codice": "def pari(p):\n    if p is None:\n        return True\n    if p.key % 2 != 0:\n        return False\n    return pari(p.left) or pari(p.right)",
+      "albero": "4(6, 2(8, 10))",
+      "opzioni": [
+        "Sì: restituisce il risultato giusto",
+        "No: solleva un errore quando arriva su una foglia",
+        "No: su un nodo con un solo figlio può restituire True anche se nessun cammino radice-foglia ha tutte le chiavi pari",
+        "No: dovrebbe usare and invece di or"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "In un albero non vuoto in cui ogni nodo ha 0 o 2 figli, una chiamata su None avviene solo sotto una foglia e il risultato coincide con quello giusto, quindi un solo esempio non prova nulla. Con un nodo con un solo figlio, per esempio 2(8(-, 7), 6(5, -)), il lato vuoto restituisce True e la funzione risponde True anche se ogni cammino radice-foglia contiene una chiave dispari. Una chiamata su None non solleva errori, perché pari controlla None prima di leggere p.key."
+    },
+    {
+      "id": "L12-T11-03",
+      "tipo": "L12-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Questa funzione dovrebbe dire se esiste un cammino dalla radice a una foglia la cui somma delle chiavi è x. Che cosa restituisce somma(r, 9) sull'albero in figura (r è la radice), ed è la risposta giusta?",
+      "codice": "def somma(p, x):\n    if p is None:\n        return x == 0\n    return somma(p.left, x - p.key) or somma(p.right, x - p.key)",
+      "albero": "7(2(4, -), 9(1, 5))",
+      "opzioni": [
+        "True, ma è sbagliato: nessun cammino radice-foglia ha somma 9",
+        "True, ed è giusto: il cammino 7-2 ha somma 9",
+        "False, ed è giusto",
+        "Solleva un errore, perché accede alla chiave di un figlio None"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Il nodo 2 ha solo il figlio sinistro 4: la chiamata sul figlio destro vuoto riceve il residuo 9 − 7 − 2 = 0 e restituisce True. Ma 7-2 non finisce in una foglia: i cammini radice-foglia sono 7-2-4 (somma 13), 7-9-1 (17) e 7-9-5 (21), nessuno con somma 9. Il controllo del residuo va fatto sulla foglia, non su None."
+    },
+    {
+      "id": "L12-T11-04",
+      "tipo": "L12-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale di queste quattro versioni di pari restituisce True se e solo se esiste un cammino dalla radice a una foglia con tutte le chiavi pari, su ogni albero binario (anche vuoto)?",
+      "codice": "# Versione A\ndef pari(p):\n    if p is None:\n        return True\n    if p.key % 2 != 0:\n        return False\n    return pari(p.left) or pari(p.right)\n\n# Versione B\ndef pari(p):\n    if p.key % 2 != 0:\n        return False\n    if p.left is None and p.right is None:\n        return True\n    return pari(p.left) or pari(p.right)\n\n# Versione C\ndef pari(p):\n    if p is None:\n        return False\n    if p.key % 2 != 0:\n        return False\n    if p.left is None and p.right is None:\n        return True\n    return pari(p.left) or pari(p.right)\n\n# Versione D\ndef pari(p):\n    if p is None:\n        return False\n    if p.key % 2 != 0:\n        return False\n    return pari(p.left) or pari(p.right)",
+      "albero": null,
+      "opzioni": [
+        "La versione A",
+        "La versione B",
+        "La versione C",
+        "La versione D"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La versione corretta restituisce False sull'albero vuoto, controlla la condizione su ogni nodo, restituisce True su una foglia (nodo senza figli) e fa l'or sui figli. Quella con None → True dà True anche quando un nodo con un solo figlio fa terminare il cammino nel lato vuoto. Quella senza il caso base su None può sollevare un errore quando un nodo ha un solo figlio, e lo solleva sull'albero vuoto. Quella senza il test sulla foglia non può mai restituire True: il caso None dà False."
+    },
+    {
+      "id": "L12-T11-05",
+      "tipo": "L12-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale di queste quattro versioni di somma(p, x) restituisce True se e solo se esiste un cammino dalla radice a una foglia la cui somma delle chiavi è x, su ogni albero binario (anche vuoto)?",
+      "codice": "# Versione A\ndef somma(p, x):\n    if p is None:\n        return False\n    if p.left is None and p.right is None:\n        return p.key == x\n    return somma(p.left, x - p.key) or somma(p.right, x - p.key)\n\n# Versione B\ndef somma(p, x):\n    if p is None:\n        return x == 0\n    return somma(p.left, x - p.key) or somma(p.right, x - p.key)\n\n# Versione C\ndef somma(p, x):\n    if p.left is None and p.right is None:\n        return p.key == x\n    return somma(p.left, x - p.key) or somma(p.right, x - p.key)\n\n# Versione D\ndef somma(p, x):\n    if p is None:\n        return False\n    if p.left is None and p.right is None:\n        return p.key == x\n    return somma(p.left, x - p.key) and somma(p.right, x - p.key)",
+      "albero": null,
+      "opzioni": [
+        "La versione A",
+        "La versione B",
+        "La versione C",
+        "La versione D"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "La versione corretta verifica la somma sulla foglia (x == p.key) e fa l'or sui figli, con None → False. Quella con None → x == 0 accetta anche un cammino che si ferma in un nodo con un solo figlio. Quella che legge p.key senza il caso base su None può sollevare un errore quando un nodo ha un solo figlio. Quella con and richiede che entrambi i figli diano True, quindi risponde False su ogni albero con un nodo con un solo figlio."
+    },
+    {
+      "id": "L12-T11-06",
+      "tipo": "L12-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Questa funzione dovrebbe restituire la somma massima tra quelle dei cammini dalla radice a una foglia (albero non vuoto). Quale affermazione è vera?",
+      "codice": "def best(p):\n    if p is None:\n        return 0\n    return p.key + max(best(p.left), best(p.right))",
+      "albero": null,
+      "opzioni": [
+        "È corretta qualunque siano le chiavi: il lato vuoto contribuisce 0",
+        "È corretta se tutte le chiavi sono maggiori o uguali a 0, ma può sbagliare con chiavi negative",
+        "Non è mai corretta: ogni nodo con un solo figlio fa terminare il cammino nel lato vuoto",
+        "Solleva un errore su ogni foglia, perché i figli sono None"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Con chiavi ≥ 0 il valore di un figlio esistente non è mai minore di 0, quindi max(figlio, 0) sceglie il figlio e il lato vuoto non conta. Con chiavi negative, in un nodo con un solo figlio il lato vuoto (0) può battere un figlio con somma negativa: la funzione restituirebbe un valore che non è la somma di un cammino radice-foglia. Il caso None è gestito, quindi nessun errore."
+    },
+    {
+      "id": "L12-T12-01",
+      "tipo": "L12-T12",
+      "formato": "aperta",
+      "difficolta": 1,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, dato il puntatore r alla radice di un albero binario (campi chiave, fsin, fdes), stampi le chiavi dei nodi in pre-order.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def preorder(r):\n    if r is None:\n        return\n    print(r.chiave)\n    preorder(r.fsin)\n    preorder(r.fdes)",
+      "controlli": [
+        "Caso base: r is None, senza accedere ai campi di r",
+        "Prima si stampa la chiave del nodo, poi si visita il sottoalbero sinistro e infine il destro",
+        "Nessuna variabile globale",
+        "Le due chiamate ricorsive sono su fsin e su fdes (non due volte sullo stesso figlio)"
+      ],
+      "spiegazione": "Nel pre-order il nodo viene elaborato prima dei due sottoalberi. Ogni nodo è visitato una volta con lavoro O(1): costo Θ(n). È accettabile anche la forma 'if r != None: …' al posto del return sul caso base. Spostare la stampa tra le due chiamate o dopo di esse darebbe l'in-order o il post-order."
+    },
+    {
+      "id": "L12-T12-02",
+      "tipo": "L12-T12",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva inorder(p, L) che, dati il puntatore p alla radice di un albero binario (campi key, left, right) e una lista L, aggiunge in fondo a L le chiavi dei nodi in in-order, in tempo O(n) e senza variabili globali. La funzione non restituisce nulla: chi la usa scrive L = [] e poi inorder(r, L).",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def inorder(p, L):\n    if p is None:\n        return\n    inorder(p.left, L)\n    L.append(p.key)\n    inorder(p.right, L)",
+      "controlli": [
+        "Caso base: p is None, senza accedere ai campi di p",
+        "In-order: prima la chiamata su p.left, poi L.append(p.key), poi la chiamata su p.right",
+        "La lista ricevuta si modifica con append: L = L + [p.key] crea una lista nuova, locale alla chiamata, e la lista del chiamante resta vuota",
+        "La stessa L viene passata a entrambe le chiamate ricorsive; nessuna variabile globale"
+      ],
+      "spiegazione": "Tutte le chiamate ricevono la stessa lista e la riempiono con append, che costa O(1): ogni nodo è visitato una volta e il costo è Θ(n). L'ordine sinistro, nodo, destro dà l'in-order. Con L = L + [p.key] il nome L indicherebbe una lista nuova e le chiavi non arriverebbero al chiamante. Restituire inorder(p.left) + [p.key] + inorder(p.right) darebbe l'ordine giusto ma costerebbe Θ(n²) su un albero degenere."
+    },
+    {
+      "id": "L12-T12-03",
+      "tipo": "L12-T12",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, dato il puntatore p alla radice di un albero binario di interi (campi key, left, right), stampi in post-order solo le chiavi dispari.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def post_dispari(p):\n    if p is None:\n        return\n    post_dispari(p.left)\n    post_dispari(p.right)\n    if p.key % 2 != 0:\n        print(p.key)",
+      "controlli": [
+        "Caso base: p is None, senza accedere ai campi di p",
+        "Prima le due chiamate ricorsive (sinistro, poi destro), poi il controllo sul nodo",
+        "La stampa è condizionata a p.key % 2 != 0",
+        "Nessuna variabile globale"
+      ],
+      "spiegazione": "Il post-order elabora il nodo dopo i due sottoalberi; qui l'elaborazione è 'stampa se la chiave è dispari'. Il controllo sulla parità non cambia l'ordine delle chiamate. Costo Θ(n): ogni nodo è visitato una volta con lavoro O(1)."
+    },
+    {
+      "id": "L12-T12-04",
+      "tipo": "L12-T12",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva stampa(p, liv) che, dato il puntatore p alla radice di un albero binario (campi key, left, right) e liv = 0 alla prima chiamata, visiti l'albero in pre-order stampando per ogni nodo il suo livello (radice a livello 0) seguito dalla sua chiave.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def stampa(p, liv):\n    if p is None:\n        return\n    print(liv, p.key)\n    stampa(p.left, liv + 1)\n    stampa(p.right, liv + 1)",
+      "controlli": [
+        "Caso base: p is None",
+        "Pre-order: si stampa (liv, chiave) prima delle due chiamate ricorsive",
+        "Le chiamate sui figli passano liv + 1",
+        "Nessuna variabile globale per il livello"
+      ],
+      "spiegazione": "Il livello di un figlio è quello del padre più uno, quindi basta passarlo come parametro: la chiamata iniziale è stampa(r, 0). Il resto è la visita pre-order. Costo Θ(n). Usare una variabile globale incrementata e decrementata funziona ma è vietato negli esercizi della dispensa."
+    },
+    {
+      "id": "L12-T13-01",
+      "tipo": "L12-T13",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice p di un albero binario (campi key, left, right), restituisce il numero di nodi semplici, cioè dei nodi con esattamente un figlio. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def conta_semplici(p):\n    if p is None:\n        return 0\n    if (p.left is None and p.right is not None) or (p.left is not None and p.right is None):\n        c = 1\n    else:\n        c = 0\n    return c + conta_semplici(p.left) + conta_semplici(p.right)",
+      "controlli": [
+        "Caso base: p is None restituisce 0 (non 1)",
+        "Un nodo è semplice se esattamente uno dei due figli è None (non si ferma la ricorsione: i sottoalberi vanno comunque esplorati)",
+        "Si restituisce il contributo del nodo più i risultati su sinistro e destro",
+        "Nessun contatore globale; costo Θ(n)"
+      ],
+      "spiegazione": "Il nodo corrente contribuisce 1 se ha esattamente un figlio, 0 altrimenti; poi si sommano i risultati dei due sottoalberi, anche quando uno dei due è vuoto (la chiamata su None restituisce 0). Un errore tipico è restituire 1 su None, che conta i puntatori vuoti. Ogni nodo è visitato una volta con lavoro O(1): costo Θ(n)."
+    },
+    {
+      "id": "L12-T13-02",
+      "tipo": "L12-T13",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, dati la radice p di un albero binario di interi (campi chiave, fsin, fdes) e un intero k ≥ 0, restituisce la somma delle chiavi dei nodi che si trovano nei livelli da 0 a k (la radice è al livello 0). Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def somma_livelli(p, k):\n    if p is None or k < 0:\n        return 0\n    return p.chiave + somma_livelli(p.fsin, k - 1) + somma_livelli(p.fdes, k - 1)",
+      "controlli": [
+        "Caso base: p is None restituisce 0; si restituisce 0 anche quando k < 0",
+        "Il parametro cala di uno a ogni discesa (k − 1), così misura il livello residuo",
+        "Si somma la chiave del nodo ai risultati dei due sottoalberi",
+        "Nessuna variabile globale; costo O(n)"
+      ],
+      "spiegazione": "Con k − 1 a ogni discesa, il test k < 0 ferma la ricorsione dopo il livello k: i nodi dei livelli 0, …, k sono contati una volta ciascuno. Un errore frequente è fermarsi a k == 0 senza sommare il livello k, o sommare solo il livello k. Si visitano al più tutti i nodi con lavoro O(1): costo O(n)."
+    },
+    {
+      "id": "L12-T13-03",
+      "tipo": "L12-T13",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice p di un albero binario di interi (campi key, left, right) e un intero x, restituisce il numero di foglie la cui chiave è maggiore di x. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def foglie_maggiori(p, x):\n    if p is None:\n        return 0\n    if p.left is None and p.right is None:\n        if p.key > x:\n            return 1\n        return 0\n    return foglie_maggiori(p.left, x) + foglie_maggiori(p.right, x)",
+      "controlli": [
+        "Caso base: p is None restituisce 0 e viene controllato prima di leggere p.left o p.key",
+        "Una foglia è un nodo con entrambi i figli None; solo per le foglie si confronta la chiave con x",
+        "Per i nodi con almeno un figlio si sommano i risultati sui due figli (anche se uno è None)",
+        "Nessun contatore globale; costo Θ(n)"
+      ],
+      "spiegazione": "Il confronto con x vale solo per le foglie: un nodo interno con chiave maggiore di x non va contato. Per un nodo con un solo figlio la ricorsione continua sul figlio esistente, mentre la chiamata sul figlio vuoto restituisce 0 grazie al caso base. Ogni nodo è visitato una volta: Θ(n)."
+    },
+    {
+      "id": "L12-T14-01",
+      "tipo": "L12-T14",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice p di un albero binario non vuoto di interi (campi key, left, right), restituisce la coppia (massimo, minimo) delle chiavi, con una sola visita. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def max_min(p):\n    mx = p.key\n    mn = p.key\n    if p.left is not None:\n        a, b = max_min(p.left)\n        mx = max(mx, a)\n        mn = min(mn, b)\n    if p.right is not None:\n        a, b = max_min(p.right)\n        mx = max(mx, a)\n        mn = min(mn, b)\n    return mx, mn",
+      "controlli": [
+        "Si parte dalla chiave del nodo come massimo e minimo provvisori",
+        "Si chiama la ricorsione solo sui figli che esistono (l'albero è non vuoto, quindi non serve il caso None)",
+        "Si combinano i risultati con max e min, non con valori neutri come 0 (sbagliati con chiavi negative)",
+        "Una sola visita: costo Θ(n); nessuna variabile globale"
+      ],
+      "spiegazione": "Il massimo e il minimo del nodo sono la sua chiave, aggiornati con quelli dei sottoalberi non vuoti. Restituire la coppia evita di visitare l'albero due volte (e di chiamare due funzioni separate in ogni nodo). Usare 0 come valore neutro sbaglierebbe con chiavi tutte negative (massimo) o tutte positive (minimo). Costo Θ(n)."
+    },
+    {
+      "id": "L12-T14-02",
+      "tipo": "L12-T14",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice p di un albero binario non vuoto (campi key, left, right), restituisce il livello della foglia meno profonda (la radice è al livello 0). Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def prof_min(p):\n    if p.left is None and p.right is None:\n        return 0\n    if p.left is None:\n        return 1 + prof_min(p.right)\n    if p.right is None:\n        return 1 + prof_min(p.left)\n    return 1 + min(prof_min(p.left), prof_min(p.right))",
+      "controlli": [
+        "Una foglia (nessun figlio) restituisce 0",
+        "Un nodo con un solo figlio non è una foglia: si prosegue solo sul figlio esistente, senza fare il min con il lato vuoto",
+        "Con due figli: 1 + min dei due risultati",
+        "Nessuna variabile globale; costo Θ(n) nel caso peggiore"
+      ],
+      "spiegazione": "Se un nodo ha un solo figlio, il lato vuoto non termina in una foglia: usare un valore per None (per esempio 0 o −1) e fare il min darebbe un livello troppo piccolo. Per questo i nodi con un solo figlio si trattano a parte. Nel caso peggiore si visitano tutti i nodi con lavoro O(1): Θ(n)."
+    },
+    {
+      "id": "L12-T14-03",
+      "tipo": "L12-T14",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice p di un albero binario di interi qualunque (campi key, left, right, chiavi anche negative), restituisce la chiave minima, oppure +∞ se l'albero è vuoto. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def minimo(p):\n    if p is None:\n        return float('inf')\n    return min(p.key, minimo(p.left), minimo(p.right))",
+      "controlli": [
+        "Caso base: p is None restituisce +∞ (float('inf')), il valore neutro per il min",
+        "Si combina con min la chiave del nodo e i risultati dei due sottoalberi",
+        "Non si usa 0 come valore sul vuoto (sbaglia se tutte le chiavi sono positive)",
+        "Nessuna variabile globale; costo Θ(n)"
+      ],
+      "spiegazione": "+∞ non altera mai un min, quindi i sottoalberi vuoti non influenzano il risultato. Con 0 sul vuoto la funzione restituirebbe 0 su ogni albero di chiavi positive. L'albero non è ordinato, quindi tutte le chiavi vanno esaminate: costo Θ(n)."
+    },
+    {
+      "id": "L12-T15-01",
+      "tipo": "L12-T15",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice p di un albero binario di interi (campi key, left, right) e un intero x, restituisce True se esiste un cammino dalla radice a una foglia la cui somma delle chiavi è x, False altrimenti. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def cammino_somma(p, x):\n    if p is None:\n        return False\n    if p.left is None and p.right is None:\n        return p.key == x\n    return cammino_somma(p.left, x - p.key) or cammino_somma(p.right, x - p.key)",
+      "controlli": [
+        "Caso base: p is None restituisce False (nessun cammino)",
+        "Il controllo sulla somma si fa sulla foglia (key == residuo), non su None",
+        "Si passa ai figli il residuo x − p.key",
+        "I due risultati si combinano con or, non con and",
+        "Costo O(n); nessuna variabile globale"
+      ],
+      "spiegazione": "Il residuo x − p.key viene propagato verso il basso e confrontato con la chiave della foglia. Il controllo non va fatto su None: su un nodo con un solo figlio la chiamata sul lato vuoto con residuo 0 darebbe True per un cammino che non finisce in una foglia (per esempio su 7(2(4, -), 9(1, 5)) con x = 9). L'or può fermarsi alla prima soluzione; nel caso peggiore si visitano tutti i nodi: O(n)."
+    },
+    {
+      "id": "L12-T15-02",
+      "tipo": "L12-T15",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice p di un albero binario non vuoto di interi (campi key, left, right, chiavi anche negative), restituisce il massimo, tra tutti i cammini dalla radice a una foglia, della somma delle chiavi lungo il cammino. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def max_cammino(p):\n    if p.left is None and p.right is None:\n        return p.key\n    if p.left is None:\n        return p.key + max_cammino(p.right)\n    if p.right is None:\n        return p.key + max_cammino(p.left)\n    return p.key + max(max_cammino(p.left), max_cammino(p.right))",
+      "controlli": [
+        "Una foglia restituisce la propria chiave",
+        "Un nodo con un solo figlio scende solo sul figlio esistente (non si fa il max con il lato vuoto)",
+        "Con due figli: p.key + max dei due risultati",
+        "Funziona anche con chiavi negative; nessuna variabile globale; costo Θ(n)"
+      ],
+      "spiegazione": "Il valore migliore per un nodo è la sua chiave più il valore migliore tra i cammini che proseguono dai figli esistenti. Se si usasse 0 come valore di None e si facesse il max con il lato vuoto, un nodo con un solo figlio e somma negativa sotto di sé 'terminerebbe' il cammino in un nodo che non è una foglia. Ogni nodo è visitato una volta: Θ(n)."
+    },
+    {
+      "id": "L12-T15-03",
+      "tipo": "L12-T15",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva crescente(p, prec) che, data la radice p di un albero binario di interi (campi key, left, right) e un valore prec minore di tutte le chiavi (alla prima chiamata, −∞), restituisce True se esiste un cammino dalla radice a una foglia con chiavi strettamente crescenti, False altrimenti. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def crescente(p, prec):\n    if p is None:\n        return False\n    if p.key <= prec:\n        return False\n    if p.left is None and p.right is None:\n        return True\n    return crescente(p.left, p.key) or crescente(p.right, p.key)",
+      "controlli": [
+        "Caso base: p is None restituisce False",
+        "Se p.key <= prec il cammino non è strettamente crescente: False",
+        "Se il nodo è una foglia (e la chiave è maggiore di prec) restituisce True",
+        "Ai figli si passa p.key come nuovo prec; si combina con or",
+        "Costo O(n); nessuna variabile globale"
+      ],
+      "spiegazione": "Il valore del nodo precedente viene passato verso il basso e confrontato con la chiave corrente. Con None → True un nodo con un solo figlio farebbe terminare il cammino nel lato vuoto: su 5(7(-, 2), 4) restituirebbe True, ma i cammini radice-foglia sono 5-7-2 e 5-4 e nessuno è strettamente crescente. Ogni nodo è visitato al più una volta: O(n)."
+    },
+    {
+      "id": "L12-T16-01",
+      "tipo": "L12-T16",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione che, data la radice p di un albero binario (campi key, left, right), restituisce True se l'albero è completo (tutti i livelli sono pieni), False altrimenti, in tempo O(n), confrontando il numero di nodi con l'altezza.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def completo(p):\n    return conta(p) == 2 ** (altezza(p) + 1) - 1\n\ndef altezza(p):\n    if p is None:\n        return -1\n    return 1 + max(altezza(p.left), altezza(p.right))\n\ndef conta(p):\n    if p is None:\n        return 0\n    return 1 + conta(p.left) + conta(p.right)",
+      "controlli": [
+        "Altezza ricorsiva con albero vuoto = −1",
+        "Numero di nodi calcolato con una visita (conta), non con l'altezza",
+        "Confronto n == 2^(h+1) − 1 (il massimo numero di nodi di un albero di altezza h)",
+        "Altezza e conteggio sono chiamati una sola volta, sulla radice (non in ogni nodo: sarebbe Θ(n²))"
+      ],
+      "spiegazione": "Un albero di altezza h ha al più 2^(h+1) − 1 nodi e li ha tutti se e solo se tutti i livelli sono pieni, cioè se è completo. Due visite separate costano Θ(n) in totale. Il controllo 'ogni nodo ha 0 o 2 figli' non basta: 1(2(4, 5), 3) lo soddisfa ma non è completo (5 nodi invece di 7 con h = 2). L'albero vuoto (n = 0, h = −1) risulta completo."
+    },
+    {
+      "id": "L12-T16-02",
+      "tipo": "L12-T16",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione che, data la radice p di un albero binario (campi key, left, right), restituisce True se l'albero è completo o quasi completo (tutti i livelli pieni tranne al più l'ultimo, riempito da sinistra), False altrimenti, in tempo O(n) e senza variabili globali.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def quasi_completo(p):\n    return controlla(p, 0, conta(p))\n\ndef controlla(p, i, n):\n    if p is None:\n        return True\n    if i >= n:\n        return False\n    return controlla(p.left, 2 * i + 1, n) and controlla(p.right, 2 * i + 2, n)\n\ndef conta(p):\n    if p is None:\n        return 0\n    return 1 + conta(p.left) + conta(p.right)",
+      "controlli": [
+        "Si conta prima il numero n di nodi con una visita",
+        "Si assegna a ogni nodo la posizione che avrebbe in un array (radice 0, figli 2i + 1 e 2i + 2)",
+        "Se una posizione è ≥ n l'albero ha un buco a sinistra: False",
+        "Caso base: p is None restituisce True",
+        "Costo Θ(n)"
+      ],
+      "spiegazione": "Un albero è completo o quasi completo se e solo se le posizioni occupate nella rappresentazione con array sono esattamente 0, …, n − 1. Se qualche nodo ha posizione ≥ n, c'è un buco (per esempio un nodo a destra con il fratello sinistro mancante), e la funzione restituisce False. Due visite: Θ(n)."
+    },
+    {
+      "id": "L12-T16-03",
+      "tipo": "L12-T16",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione che, data la radice p di un albero binario (campi key, left, right), restituisce True se tutte le foglie si trovano allo stesso livello, False altrimenti, in tempo O(n) e con una sola visita dell'albero.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def foglie_stesso_livello(p):\n    ok, d = aux(p)\n    return ok\n\ndef aux(p):\n    if p is None:\n        return True, None\n    if p.left is None and p.right is None:\n        return True, 0\n    ok_s, d_s = aux(p.left)\n    ok_d, d_d = aux(p.right)\n    if not (ok_s and ok_d):\n        return False, None\n    if d_s is not None and d_d is not None and d_s != d_d:\n        return False, None\n    if d_s is not None:\n        return True, 1 + d_s\n    return True, 1 + d_d",
+      "controlli": [
+        "La funzione ausiliaria restituisce una coppia (esito, livello delle foglie del sottoalbero)",
+        "Sul vuoto: esito True e nessun livello (None); su una foglia: True e livello 0",
+        "Se i due sottoalberi hanno entrambi foglie, i livelli devono coincidere; se uno è vuoto si usa il livello dell'altro",
+        "Al livello restituito si somma 1 risalendo; una sola visita (Θ(n))"
+      ],
+      "spiegazione": "Ogni sottoalbero riporta se le sue foglie stanno tutte alla stessa profondità e, in caso positivo, qual è. Un nodo con un solo figlio eredita il livello del figlio (più 1), senza confrontarlo con il lato vuoto. Esempio: 1(2(4, -), 3) non soddisfa la proprietà: la foglia 4 è a livello 2 e la foglia 3 a livello 1. Ogni nodo è visitato una volta: Θ(n)."
+    },
+    {
+      "id": "L12-T17-01",
+      "tipo": "L12-T17",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice p di un albero binario di interi (campi key, left, right), cancella tutte le foglie con chiave pari e restituisce la radice eventualmente modificata. I nodi che diventano foglie dopo le cancellazioni non vanno cancellati.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def cancella_foglie_pari(p):\n    if p is None:\n        return None\n    if p.left is None and p.right is None:\n        if p.key % 2 == 0:\n            return None\n        return p\n    p.left = cancella_foglie_pari(p.left)\n    p.right = cancella_foglie_pari(p.right)\n    return p",
+      "controlli": [
+        "Caso base: p is None restituisce None",
+        "Il test sulla foglia si fa prima delle chiamate ricorsive: una foglia pari restituisce None, una foglia dispari restituisce p",
+        "Per gli altri nodi si riassegnano p.left e p.right con il valore restituito dalle chiamate",
+        "Si restituisce la radice del sottoalbero (p, oppure None se è stata cancellata)"
+      ],
+      "spiegazione": "La funzione restituisce la radice del sottoalbero già sistemato e il padre aggiorna i propri puntatori con p.left = … e p.right = …. Se il test sulla foglia fosse fatto dopo le chiamate, un nodo i cui figli sono stati cancellati diventerebbe foglia e verrebbe cancellato a sua volta. Se la radice è l'unico nodo e ha chiave pari, il risultato è None: per questo la funzione deve restituire la radice. Su 8(4(2, 6), 10(9(-, 7), -)) si ottiene 8(4, 10(9(-, 7), -)). Costo Θ(n)."
+    },
+    {
+      "id": "L12-T17-02",
+      "tipo": "L12-T17",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice p di un albero binario (campi key, left, right), cancella tutti i nodi semplici (nodi con esattamente un figlio), collegando il loro unico figlio al loro padre, e restituisce la radice eventualmente modificata.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def cancella_semplici(p):\n    if p is None:\n        return None\n    p.left = cancella_semplici(p.left)\n    p.right = cancella_semplici(p.right)\n    if p.left is None and p.right is not None:\n        return p.right\n    if p.left is not None and p.right is None:\n        return p.left\n    return p",
+      "controlli": [
+        "Caso base: p is None restituisce None",
+        "Si sistemano prima i due sottoalberi (p.left = …, p.right = …) e solo dopo si guarda il nodo",
+        "Se p ha un solo figlio si restituisce quel figlio (già sistemato) al posto di p",
+        "Altrimenti si restituisce p; la funzione restituisce la nuova radice, che può cambiare"
+      ],
+      "spiegazione": "Il padre deve collegarsi al figlio già sistemato: se si restituisse il figlio prima di sistemarlo, nel sottoalbero resterebbero nodi semplici. Se la radice è semplice, la nuova radice è il suo unico figlio (sistemato): per questo si restituisce la radice. Su 8(4(2, 6), 10(9(-, 7), -)) si ottiene 8(4(2, 6), 7): 9 e 10 sono semplici e spariscono. Costo Θ(n)."
+    },
+    {
+      "id": "L12-T18-01",
+      "tipo": "L12-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario è memorizzato in un array con la radice in posizione 0 e i figli del nodo in posizione i nelle posizioni 2i + 1 e 2i + 2. Per quale di questi alberi (notazione k(S, D)) la dimensione minima dell'array è uguale al numero di nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5(3(1, 4), 8(6, -))",
+        "5(3(-, 4), 8(6, -))",
+        "5(-, 8(-, 9))",
+        "5(3, 8(-, 6))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Con dimensione uguale al numero di nodi le posizioni occupate devono essere esattamente 0, …, n − 1, cioè l'albero deve essere completo o quasi completo: succede per 5(3(1, 4), 8(6, -)) (6 nodi in 6 celle). 5(3(-, 4), 8(6, -)) ha tutte le foglie al livello 2 ma 4 sta in posizione 4 e 6 in posizione 5 con la posizione 3 vuota: servono 6 celle per 5 nodi. 5(-, 8(-, 9)) è una catena: 9 sta in posizione 6 (7 celle per 3 nodi). In 5(3, 8(-, 6)) il nodo 6 sta in posizione 6 (7 celle per 4 nodi)."
+    },
+    {
+      "id": "L12-T18-02",
+      "tipo": "L12-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero binario di n nodi in cui ogni nodo ha solo il figlio destro (una catena) è memorizzato in un array con i figli del nodo in posizione i nelle posizioni 2i + 1 e 2i + 2. Quanto spazio richiede l'array?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(2ⁿ)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il k-esimo nodo (k = 0, 1, …) sta in posizione 2^(k+1) − 2: 0, 2, 6, 14, 30, … L'ultimo nodo sta in posizione 2ⁿ − 2 e servono 2ⁿ − 1 celle, anche se i nodi sono solo n."
+    },
+    {
+      "id": "L12-T18-03",
+      "tipo": "L12-T18",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione sulla rappresentazione di un albero binario con un array (figli di i in 2i + 1 e 2i + 2) è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Lo spazio occupato è sempre Θ(n), perché ci sono n nodi",
+        "Occupa sempre esattamente n celle, come il vettore dei padri",
+        "Padre e figli di un nodo si calcolano con formule aritmetiche, senza puntatori",
+        "Non può rappresentare alberi in cui qualche nodo ha un solo figlio"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Con la radice in posizione 0, i figli di i stanno in 2i + 1 e 2i + 2 e il padre in (i − 1) // 2, quindi non servono puntatori. Lo spazio, però, dipende dalla forma: n celle bastano solo se le posizioni occupate sono 0, …, n − 1 (alberi completi o quasi completi); il vettore dei padri, invece, usa sempre n celle. I nodi con un solo figlio sono rappresentabili lasciando una cella vuota."
+    },
+    {
+      "id": "L12-T18-04",
+      "tipo": "L12-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra questi alberi binari (con n nodi) richiede, nella rappresentazione con array in cui i figli di i stanno in 2i + 1 e 2i + 2, uno spazio esponenziale in n?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Un albero completo",
+        "Una catena in cui ogni nodo ha solo il figlio destro",
+        "Un albero quasi completo",
+        "Nessuno: l'array occupa sempre n celle, una per nodo"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Nella catena con soli figli destri il k-esimo nodo sta in posizione 2^(k+1) − 2, quindi servono 2ⁿ − 1 celle. In un albero completo o quasi completo le posizioni occupate sono 0, …, n − 1 e non c'è spreco. Lo spazio dell'array non è sempre Θ(n): dipende dalla forma."
+    },
+    {
+      "id": "L12-T18-05",
+      "tipo": "L12-T18",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Per quali alberi binari la rappresentazione con array (figli di i in 2i + 1 e 2i + 2) è adatta, cioè non spreca spazio?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Alberi completi o quasi completi",
+        "Alberi in cui tutte le foglie sono allo stesso livello, qualunque sia la forma",
+        "Alberi degeneri, perché ogni nodo ha un solo figlio",
+        "Qualunque albero binario di ricerca"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "In un albero completo o quasi completo le posizioni occupate sono esattamente 0, …, n − 1 (è la rappresentazione usata dagli heap). Una catena ha tutte le foglie (l'unica) allo stesso livello, ma con soli figli destri richiede 2ⁿ − 1 celle; un albero degenere, o un ABR molto sbilanciato, può sprecare quasi tutte le celle."
+    },
+    {
+      "id": "L12-T18-06",
+      "tipo": "L12-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una catena di 6 nodi in cui ogni nodo ha solo il figlio destro è memorizzata in un array con la radice in posizione 0 e i figli di i in 2i + 1 e 2i + 2. Qual è la dimensione minima dell'array?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "62",
+        "63",
+        "64"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "I nodi occupano le posizioni 0, 2, 6, 14, 30, 62. L'ultima è la 62 e la dimensione minima è 62 + 1 = 63 = 2⁶ − 1. Il valore 6 conta solo i nodi; 62 è l'ultimo indice, non la dimensione."
+    },
+    {
+      "id": "L12-T18-07",
+      "tipo": "L12-T18",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale affermazione sul confronto tra la rappresentazione con array (figli in 2i + 1 e 2i + 2) e il vettore dei padri è vera, per un albero binario con n nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Entrambe occupano sempre esattamente n celle",
+        "Il vettore dei padri occupa sempre n celle; l'array dipende dalla forma e per una catena richiede 2ⁿ − 1 celle",
+        "L'array occupa sempre Θ(n) celle, perché ci sono n nodi; il vettore dei padri occupa n celle",
+        "Il vettore dei padri distingue il figlio sinistro dal destro, l'array no"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Il vettore dei padri ha una cella per nodo (n celle), qualunque sia la forma. L'array ha una cella per ogni posizione fino a quella del nodo più lontano: per un albero completo sono n, per una catena di soli figli destri 2ⁿ − 1. L'array distingue il figlio sinistro dal destro (posizioni 2i + 1 e 2i + 2); il vettore dei padri no."
+    },
+    {
+      "id": "L12-T18-08",
+      "tipo": "L12-T18",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quando conviene rappresentare un albero binario con un array (figli di i in 2i + 1 e 2i + 2) e quanto spazio richiede nel caso peggiore, per n nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Conviene sempre; richiede sempre Θ(n) celle",
+        "Conviene per alberi degeneri; richiede Θ(n) celle",
+        "Conviene se le foglie sono tutte allo stesso livello; richiede Θ(n) celle",
+        "Conviene per alberi completi o quasi completi; nel caso peggiore richiede Θ(2ⁿ) celle"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E2",
+        "E1",
+        null
+      ],
+      "spiegazione": "L'array non spreca spazio quando le posizioni occupate sono 0, …, n − 1 (alberi completi o quasi completi, come gli heap). Per alberi sbilanciati i nodi possono stare in posizioni lontane: una catena di soli figli destri richiede 2ⁿ − 1 celle, cioè spazio Θ(2ⁿ)."
+    },
+    {
+      "id": "L12-T19-01",
+      "tipo": "L12-T19",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "L'albero in figura è memorizzato in un array con la radice in posizione 0 e i figli del nodo in posizione i nelle posizioni 2i + 1 e 2i + 2 (le celle vuote contengono None). In quale posizione si trova il nodo 4 e qual è la dimensione minima dell'array?",
+      "codice": null,
+      "albero": "5(3(-, 8(4, -)), 9(6, 7))",
+      "opzioni": [
+        "Posizione 7, dimensione 8",
+        "Posizione 6, dimensione 7",
+        "Posizione 10, dimensione 11",
+        "Posizione 9, dimensione 10"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "E1",
+        null
+      ],
+      "spiegazione": "5 → 0; 3 → 1, 9 → 2; 8 è figlio destro di 3 → 2·1 + 2 = 4; 4 è figlio sinistro di 8 → 2·4 + 1 = 9. Servono 10 celle, di cui 3 vuote. Chi mette 8 in 2i + 1 (figlio unico a sinistra) trova posizione 7 e dimensione 8; chi compatta i nodi in ordine per livelli (5, 3, 9, 8, 6, 7, 4) mette 4 in posizione 6 e usa 7 celle; con le formule per indici da 1 (radice in 1) 4 finisce in posizione 10."
+    },
+    {
+      "id": "L12-T19-02",
+      "tipo": "L12-T19",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In un array che rappresenta un albero binario con la radice in posizione 0, in quali posizioni si trovano i due figli del nodo in posizione 4?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nelle posizioni 9 e 10",
+        "Nelle posizioni 8 e 9",
+        "Nelle posizioni 5 e 6",
+        "Nelle posizioni 7 e 8"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con indici da 0 il figlio sinistro di i sta in 2i + 1 e il destro in 2i + 2: per i = 4 sono 9 e 10. Le posizioni 8 e 9 si ottengono con le formule per indici da 1 (2i e 2i + 1)."
+    },
+    {
+      "id": "L12-T19-03",
+      "tipo": "L12-T19",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In un array che rappresenta un albero binario con la radice in posizione 0, in quale posizione si trova il padre del nodo in posizione 12?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "4",
+        "5",
+        "11"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il padre di i > 0 sta in (i − 1) // 2: per i = 12 è 11 // 2 = 5 (infatti i figli di 5 sono 11 e 12). Con i // 2 si otterrebbe 6, formula valida per indici da 1."
+    },
+    {
+      "id": "L12-T19-04",
+      "tipo": "L12-T19",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un array con la radice in posizione 0 e i figli di i in 2i + 1 e 2i + 2 contiene A = [8, 4, None, 2, 6, None, None, None, 5], dove None indica una cella vuota. Quale albero (notazione k(S, D)) rappresenta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "8(4(6, 5), 2)",
+        "8(4(2(-, 5), 6), -)",
+        "8(4(2(5, -), 6), -)",
+        "8(-, 4(6, 2(5, -)))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "8 è la radice; 4 (posizione 1) è il suo figlio sinistro, il destro (posizione 2) è vuoto. I figli di 4 sono in 3 e 4: 2 e 6. I figli di 2 (posizione 3) sono in 7 e 8: vuoto e 5, quindi 5 è figlio destro di 2. L'albero è 8(4(2(-, 5), 6), -). Chi ignora le celle vuote e legge i nodi per livelli ottiene 8(4(6, 5), 2); chi mette 5 come figlio sinistro di 2 ottiene 8(4(2(5, -), 6), -)."
+    },
+    {
+      "id": "L12-T19-05",
+      "tipo": "L12-T19",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La catena in figura (ogni nodo ha solo il figlio sinistro) è memorizzata in un array con la radice in posizione 0 e i figli di i in 2i + 1 e 2i + 2. In quale posizione si trova il nodo e e qual è la dimensione minima dell'array?",
+      "codice": null,
+      "albero": "a(b(c(d(e, -), -), -), -)",
+      "opzioni": [
+        "Posizione 16, dimensione 17",
+        "Posizione 15, dimensione 16",
+        "Posizione 4, dimensione 5",
+        "Posizione 30, dimensione 31"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "I figli sinistri stanno in 2i + 1: a → 0, b → 1, c → 3, d → 7, e → 15 (le posizioni sono 2^k − 1). Servono 16 celle per 5 nodi. Con le formule per indici da 1 (radice in 1, figlio sinistro in 2i) e finisce in 16; chi compatta i nodi senza buchi risponde posizione 4 e dimensione 5; 30 sarebbe la posizione dell'ultimo nodo di una catena di 5 soli figli destri (2⁵ − 2)."
+    },
+    {
+      "id": "L12-T19-06",
+      "tipo": "L12-T19",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un array con la radice in posizione 0 e i figli di i in 2i + 1 e 2i + 2 contiene A = [7, 3, 9, None, 5, None, 2, None, None, None, 8] (None = cella vuota). Quanti nodi ha l'albero rappresentato e qual è la sua altezza?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6 nodi, altezza 3",
+        "6 nodi, altezza 2",
+        "11 nodi, altezza 3",
+        "6 nodi, altezza 4"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "I nodi sono le celle non vuote: 7, 3, 9, 5, 2, 8, cioè 6. 7 (posizione 0) ha figli 3 (1) e 9 (2); 3 ha solo il figlio destro 5 (posizione 4); 5 ha solo il figlio destro 8 (posizione 10). Il cammino 7 → 3 → 5 → 8 ha 3 archi. Chi compatta i nodi senza lasciare buchi ottiene un albero quasi completo di 6 nodi e altezza 2; 11 è la lunghezza dell'array, non il numero di nodi."
+    },
+    {
+      "id": "L12-T20-01",
+      "tipo": "L12-T20",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero con n nodi e altezza h è rappresentato con il vettore dei padri P (P[i] è il padre di i, −1 per la radice), senza altre informazioni. Qual è la stima più precisa del tempo necessario per calcolare il livello di un nodo x?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(h)",
+        "O(1)",
+        "O(n)",
+        "O(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il livello di x è il numero di passi x → P[x] → P[P[x]] → … fino alla radice (valore −1): al più h passi, quindi O(h). O(1) sarebbe il costo di leggere il padre; O(n) è un limite superiore corretto ma meno preciso; O(log n) vale solo se l'albero è bilanciato."
+    },
+    {
+      "id": "L12-T20-02",
+      "tipo": "L12-T20",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un albero con n nodi e altezza h è rappresentato con il vettore dei padri P (P[i] è il padre di i, −1 per la radice), senza altre informazioni. Qual è la stima più precisa del tempo necessario per trovare il padre di un nodo x?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(h)",
+        "O(n)",
+        "O(1)",
+        "O(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E5",
+        "E5",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il padre di x è P[x]: un solo accesso al vettore, O(1), qualunque sia la forma dell'albero. O(h) e O(n) sono limiti superiori veri ma molto meno precisi: non serve né risalire né scandire il vettore."
+    },
+    {
+      "id": "L12-T20-03",
+      "tipo": "L12-T20",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero con n nodi e altezza h è rappresentato con il vettore dei padri P (P[i] è il padre di i, −1 per la radice), senza altre informazioni. Quanto tempo serve, nel caso peggiore, per trovare tutti i fratelli di un nodo x (i nodi con lo stesso padre, escluso x)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1)",
+        "O(n)",
+        "O(h)",
+        "O(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Si legge p = P[x] e poi si scandisce tutto il vettore cercando gli indici i ≠ x con P[i] = p: n controlli, O(n). Il vettore non memorizza i figli di un nodo, solo il padre."
+    },
+    {
+      "id": "L12-T20-04",
+      "tipo": "L12-T20",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero con n nodi e altezza h è rappresentato con il vettore dei padri P (P[i] è il padre di i, −1 per la radice), senza altre informazioni. Qual è la stima più precisa del tempo necessario per elencare tutti gli antenati di un nodo x?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n)",
+        "O(1)",
+        "O(log n)",
+        "O(h)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "E3",
+        null
+      ],
+      "spiegazione": "Si risale x → P[x] → … fino alla radice, al più h passi. O(n) sarebbe un limite superiore troppo largo; O(log n) vale solo per alberi bilanciati."
+    },
+    {
+      "id": "L12-T20-05",
+      "tipo": "L12-T20",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero con n nodi e altezza h è rappresentato con il vettore dei padri P (P[i] è il padre di i, −1 per la radice), senza altre informazioni. Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il figlio sinistro di x è il figlio con l'indice più piccolo",
+        "Due alberi che differiscono solo per lo scambio dei figli sinistro e destro di un nodo hanno lo stesso vettore dei padri",
+        "I figli di un nodo x si trovano in tempo O(1)",
+        "Il vettore ha sempre n·h celle"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "P memorizza solo il padre di ogni nodo: non c'è informazione su quale figlio sia sinistro e quale destro, e l'indice di un nodo non ha alcun legame con la sua posizione tra i fratelli. Per trovare i figli di x bisogna scandire tutto il vettore (O(n)); il vettore ha sempre n celle."
+    },
+    {
+      "id": "L12-T20-06",
+      "tipo": "L12-T20",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero con n nodi e altezza h è rappresentato con il vettore dei padri P (P[i] è il padre di i, −1 per la radice), senza altre informazioni. Quanto tempo serve, nel caso peggiore, per stabilire se un nodo x è una foglia?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1)",
+        "O(h)",
+        "O(log n)",
+        "O(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "x è una foglia se nessun nodo ha x come padre: bisogna scandire tutto il vettore cercando un indice i con P[i] = x, e nel caso peggiore (x è una foglia) si controllano tutte le n celle. Il solo P[x] non dà informazioni sui figli di x."
+    },
+    {
+      "id": "L12-T20-07",
+      "tipo": "L12-T20",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un albero con n nodi e altezza h è rappresentato con il vettore dei padri P (P[i] è il padre di i, −1 per la radice), senza altre informazioni. Qual è la stima più precisa del tempo necessario per trovare il primo antenato comune di due nodi x e y (il nodo più profondo che è antenato di entrambi)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(n)",
+        "O(1)",
+        "O(h)",
+        "O(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Si calcolano i livelli di x e di y risalendo verso la radice (al più h passi ciascuno), si fa risalire il nodo più profondo fino al livello dell'altro e poi si risale con entrambi un passo alla volta finché non si incontrano: O(h). O(n) è un limite superiore vero ma meno preciso; O(log n) vale solo se l'albero è bilanciato."
+    },
+    {
+      "id": "L12-T20-08",
+      "tipo": "L12-T20",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero con n nodi e altezza h è rappresentato con il vettore dei padri P (P[i] è il padre di i, −1 per la radice), senza altre informazioni. Qual è la stima più precisa del tempo necessario per trovare il nonno di un nodo x (il padre del padre), supponendo che esista?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(h)",
+        "O(1)",
+        "O(n)",
+        "O(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "Il nonno è P[P[x]]: due accessi al vettore, O(1), indipendentemente da n e h. O(h) e O(n) sono limiti superiori veri ma meno precisi: non bisogna risalire fino alla radice."
+    },
+    {
+      "id": "L12-T21-01",
+      "tipo": "L12-T21",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero è rappresentato dal vettore dei padri P = [2, 2, 5, 0, 3, -1, 5, 3]. Qual è l'altezza dell'albero e quali sono le sue foglie?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Altezza 5; foglie 1, 4, 6, 7",
+        "Altezza 4; foglie 0, 2, 3, 5",
+        "Altezza 4; foglie 1, 4, 6, 7",
+        "Altezza 4; foglie 1, 4, 5, 6, 7"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E3",
+        null,
+        "E2"
+      ],
+      "spiegazione": "La radice è 5 (P[5] = −1); figli di 5: 2 e 6; figli di 2: 0 e 1; figlio di 0: 3; figli di 3: 4 e 7. Le foglie sono gli indici che non compaiono in P: 1, 4, 6, 7. Il cammino più lungo è 5 → 2 → 0 → 3 → 4: 4 archi. L'altezza 5 conta i nodi del cammino; l'elenco 0, 2, 3, 5 contiene i nodi che compaiono in P (nodi interni); 1, 4, 5, 6, 7 aggiunge la radice."
+    },
+    {
+      "id": "L12-T21-02",
+      "tipo": "L12-T21",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Un albero è rappresentato dal vettore dei padri P = [1, 4, 1, 2, -1, 4, 3]. Qual è la radice e quali sono i figli del nodo 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Radice 4; figli di 1: 4",
+        "Radice 4; figli di 1: 0 e 2",
+        "Radice −1; figli di 1: 0 e 2",
+        "Radice 4; figli di 1: 2"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La radice è l'indice con P[i] = −1, cioè 4 (non il valore −1). I figli di 1 sono gli indici i con P[i] = 1: P[0] = 1 e P[2] = 1, quindi 0 e 2. Il valore P[1] = 4 è invece il padre di 1: leggerlo come figlio inverte il significato di P."
+    },
+    {
+      "id": "L12-T21-03",
+      "tipo": "L12-T21",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero è rappresentato dal vettore dei padri P = [-1, 0, 0, 1, 3, 2, 5, 6]. Qual è il livello del nodo 7 (radice a livello 0) e quante foglie ha l'albero?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Livello 5; 2 foglie",
+        "Livello 4; 6 foglie",
+        "Livello 4; 3 foglie",
+        "Livello 4; 2 foglie"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "E3",
+        "E2",
+        null
+      ],
+      "spiegazione": "La radice è 0. Risalendo da 7: 7 → 6 → 5 → 2 → 0, cioè 4 passi, livello 4. Le foglie sono gli indici che non compaiono in P: 4 e 7. Il livello 5 conta i nodi del cammino; 6 è il numero di nodi interni (compaiono in P); 3 si ottiene contando anche la radice."
+    },
+    {
+      "id": "L12-T21-04",
+      "tipo": "L12-T21",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero è rappresentato dal vettore dei padri P = [3, 3, 7, 7, 6, 4, -1, 6]. Quali nodi si trovano al livello 2 (radice a livello 0)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2, 3, 5",
+        "4, 7",
+        "0, 1",
+        "2, 3, 4, 5, 7"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La radice è 6; i figli di 6 sono 4 e 7 (livello 1); i figli di 4 sono 5 e quelli di 7 sono 2 e 3: livello 2 = 2, 3, 5. I nodi 4 e 7 sono al livello 1 (sarebbero il 'livello 2' contando i livelli in nodi, con la radice al livello 1); 0 e 1 (figli di 3) sono al livello 3."
+    },
+    {
+      "id": "L12-T21-05",
+      "tipo": "L12-T21",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un albero è rappresentato dal vettore dei padri P = [5, 5, 1, 1, 2, -1, 4]. Quali sono le sue foglie?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1, 2, 4, 5",
+        "0, 3, 5, 6",
+        "0, 3",
+        "0, 3, 6"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "Le foglie sono gli indici che non compaiono come valore in P (nessun nodo li ha come padre): 0, 3, 6. I valori che compaiono sono 5, 1, 2, 4, cioè i nodi interni; 5 è la radice (P[5] = −1) ma ha figli, quindi non è una foglia."
+    },
+    {
+      "id": "L12-T21-06",
+      "tipo": "L12-T21",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un albero è rappresentato dal vettore dei padri P = [1, 3, 1, -1, 5, 3, 4] (i nodi sono gli indici 0, …, 6). Quale di questi disegni (notazione k(S, D)) è compatibile con P?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3(1(0, -), 5(2, 4(6, -)))",
+        "1(0, 3(2, 5(4(6, -), -)))",
+        "3(5(-, 4(6, -)), 1(2, 0))",
+        "Nessuno di questi disegni è compatibile con P"
+      ],
+      "corretta": 2,
+      "errori": [
+        "altro",
+        "altro",
+        null,
+        "E5"
+      ],
+      "spiegazione": "La radice è 3 (P[3] = −1); i suoi figli sono 1 e 5; i figli di 1 sono 0 e 2; il figlio di 5 è 4; il figlio di 4 è 6. P non dice quale figlio sia sinistro e quale destro, quindi 3(5(-, 4(6, -)), 1(2, 0)), che ha i figli disposti in ordine diverso dal 'naturale', è compatibile. Negli altri disegni 2 ha padre 5 (non 1) oppure la radice è 1 (invece di 3)."
+    },
+    {
+      "id": "L12-T22-01",
+      "tipo": "L12-T22",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva uguali(r1, r2) che, date le radici di due alberi binari (campi key, left, right), restituisce True se i due alberi hanno la stessa forma e le stesse chiavi negli stessi nodi, False altrimenti. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def uguali(r1, r2):\n    if r1 is None and r2 is None:\n        return True\n    if r1 is None or r2 is None:\n        return False\n    return r1.key == r2.key and uguali(r1.left, r2.left) and uguali(r1.right, r2.right)",
+      "controlli": [
+        "Entrambi None → True; uno solo None → False, prima di leggere r1.key o r2.key",
+        "Si confrontano le chiavi delle radici",
+        "Sinistro con sinistro e destro con destro, combinati con and",
+        "Costo O(n); nessuna variabile globale"
+      ],
+      "spiegazione": "Se uno solo dei due alberi è vuoto le forme sono diverse e si risponde False; leggere r1.key senza questo controllo darebbe un errore. Con l'and la funzione si ferma alla prima differenza. Ogni coppia di nodi è esaminata al più una volta: costo O(n)."
+    },
+    {
+      "id": "L12-T22-02",
+      "tipo": "L12-T22",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice r di un albero binario (campi key, left, right), restituisce True se l'albero è simmetrico, cioè se il sottoalbero sinistro è lo speculare del destro (stesse chiavi, con sinistra e destra scambiate a ogni livello), False altrimenti. Si può usare una funzione ausiliaria su due sottoalberi. Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def simmetrico(r):\n    if r is None:\n        return True\n    return speculari(r.left, r.right)\n\ndef speculari(a, b):\n    if a is None and b is None:\n        return True\n    if a is None or b is None:\n        return False\n    return a.key == b.key and speculari(a.left, b.right) and speculari(a.right, b.left)",
+      "controlli": [
+        "L'albero vuoto è simmetrico",
+        "La funzione ausiliaria su due alberi: entrambi None → True; uno solo None → False",
+        "Chiavi uguali e confronto incrociato: a.left con b.right e a.right con b.left",
+        "Combinazione con and; costo O(n)"
+      ],
+      "spiegazione": "Un albero è simmetrico se la radice ha due sottoalberi l'uno speculare dell'altro. L'ausiliaria confronta la chiave e poi incrocia i figli: il sinistro del primo con il destro del secondo e viceversa. Confrontare sinistro con sinistro darebbe invece l'uguaglianza dei due sottoalberi. Su 1(2(3, 4), 2(4, 3)) il risultato è True; su 1(2(3, 4), 2(3, 4)) è False. Ogni nodo è esaminato al più una volta: O(n)."
+    },
+    {
+      "id": "L12-T22-03",
+      "tipo": "L12-T22",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva che, data la radice r di un albero binario (campi key, left, right), costruisce e restituisce la radice di un nuovo albero, speculare del primo (sinistra e destra scambiate a ogni livello), senza modificare l'albero di partenza. Per creare un nodo si usa NodoA(chiave). Indicarne il costo.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def speculare(r):\n    if r is None:\n        return None\n    nodo = NodoA(r.key)\n    nodo.left = speculare(r.right)\n    nodo.right = speculare(r.left)\n    return nodo",
+      "controlli": [
+        "Caso base: r is None restituisce None",
+        "Si crea un nuovo nodo NodoA(r.key) (non si riusano i nodi dell'albero originale)",
+        "Il figlio sinistro del nuovo nodo è lo speculare di r.right e il destro lo speculare di r.left",
+        "Si restituisce il nuovo nodo; costo Θ(n), nessuna variabile globale"
+      ],
+      "spiegazione": "Ogni nodo dell'originale produce un nuovo nodo con la stessa chiave i cui figli sono gli speculari dei figli scambiati. L'albero di partenza resta invariato. Si crea un nodo per ogni nodo, con lavoro O(1) a nodo: costo Θ(n). Scambiare i puntatori sul posto sarebbe un'altra funzione (modifica l'albero originale)."
+    }
+  ]
+}

@@ -1,0 +1,432 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 3,
+    "titolo": "Funzioni ricorsive",
+    "file": "PL3.pdf",
+    "contenuti": [
+      "Definizione di funzione ricorsiva: caso base e passo ricorsivo (fattorialeR)",
+      "Equazioni di ricorrenza: il tempo di una funzione ricorsiva espresso tramite il tempo sui sottoproblemi",
+      "Ricorsione e iterazione: caso base obbligatorio, stack overflow, stack di sistema e frame, vantaggi e svantaggi (fattorialeR contro fattorialeI)",
+      "Complessità spaziale come profondità massima dello stack",
+      "Esempi: somma di una lista con slicing (Θ(n²)) e con indice (Θ(n)); potenza xⁿ semplice Θ(n) e veloce Θ(log n); palindromi Θ(n); permutazioni Θ(n·n!); Fibonacci ricorsivo Θ(2ⁿ), iterativo Θ(n) con spazio Θ(n) o Θ(1), formula di Binet",
+      "Esercizi: procedure ricorsive con ricorrenza imposta T(n − 1) + Θ(1), T(n/2) + Θ(log n), T(n − 1) + Θ(n), 2T(n − 1) + O(1)"
+    ],
+    "nota": "Nelle prove ufficiali: maggio 2026 domanda 2 (cosa descrive un'equazione di ricorrenza) e luglio 2026 domanda 8 (aperta: funzione ricorsiva che restituisce 3ⁿ). La risoluzione formale delle ricorrenze è nelle Lezioni 4 e 5: qui si usano solo i risultati che la dispensa dà direttamente (T(n − 1) + Θ(1) ⇒ Θ(n), T(n − 1) + Θ(n) ⇒ Θ(n²), T(n/2) + Θ(1) ⇒ Θ(log n), T(n − 2) + Θ(1) ⇒ Θ(n), Fibonacci Θ(2ⁿ), permutazioni Θ(n·n!))."
+  },
+  "tipi": [
+    {
+      "id": "L03-T01",
+      "titolo": "Cosa descrive un'equazione di ricorrenza",
+      "argomento": "Equazioni di ricorrenza",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 3, 'Equazioni di Ricorrenza'. Prova di maggio 2026, domanda 2 ('Un'equazione di ricorrenza descrive: … Soluzione: il tempo di esecuzione di un algoritmo ricorsivo').",
+      "descrizione": "Domanda di definizione: a cosa serve un'equazione di ricorrenza, cosa rappresentano il caso base e il passo ricorsivo dell'equazione, oppure cosa rappresentano i termini T(n − 1) e Θ(1) in una ricorrenza data.",
+      "conoscenze": [
+        "Un'equazione di ricorrenza esprime il tempo di esecuzione T(n) di un algoritmo ricorsivo in funzione del tempo sui sottoproblemi più piccoli (talvolta descrive anche lo spazio).",
+        "Ha due parti: il caso base (per esempio T(0) = Θ(1)) e il passo ricorsivo (per esempio T(n) = T(n − 1) + Θ(1)).",
+        "Nel passo ricorsivo i termini T(·) rappresentano le chiamate ricorsive (quante e su quale dimensione); il termine aggiuntivo (Θ(1), Θ(n), …) è il lavoro fatto nella chiamata fuori dalle chiamate ricorsive.",
+        "Per il fattoriale ricorsivo: T(n) = Θ(1) se n = 0, T(n) = T(n − 1) + Θ(1) se n > 0.",
+        "La ricorrenza descrive il costo, non il valore calcolato: n! = n·(n − 1)! è la definizione ricorsiva del valore, T(n) = T(n − 1) + Θ(1) è il suo tempo."
+      ],
+      "procedimento": [
+        "Ricordare la definizione: ricorrenza = tempo (o spazio) di un algoritmo ricorsivo espresso tramite i sottoproblemi.",
+        "Scartare le opzioni che parlano di algoritmi iterativi, funzioni hash, valori restituiti o strutture dati."
+      ],
+      "trappole": [
+        "Scegliere 'un algoritmo iterativo' perché la ricorrenza 'ripete' qualcosa.",
+        "Confondere la ricorrenza sul tempo con la definizione ricorsiva del valore calcolato (n! = n·(n − 1)!, F(n) = F(n − 1) + F(n − 2)).",
+        "Scegliere 'Nessuna di queste' per insicurezza.",
+        "Pensare che il termine Θ(1) del passo ricorsivo sia il caso base invece del lavoro non ricorsivo della chiamata."
+      ],
+      "come_generare_varianti": "Tre forme. (1) 'Un'equazione di ricorrenza descrive:' con quattro opzioni scelte tra: il tempo di esecuzione di un algoritmo ricorsivo (corretta); un algoritmo iterativo; una funzione hash o una struttura dati; il valore restituito da una funzione; nessuna di queste. (2) Data T(n) = T(n − 1) + Θ(1), chiedere cosa rappresenta T(n − 1) (il tempo della chiamata ricorsiva su un input di dimensione n − 1) o cosa rappresenta Θ(1) (il lavoro della singola chiamata, escluse le chiamate ricorsive); distrattori: il caso base, il valore restituito, il numero di iterazioni. (3) Chiedere quale tra quattro formule è l'equazione di ricorrenza del fattoriale ricorsivo; distrattori: n! = n·(n − 1)!, T(n) = n·T(n − 1), T(n) = Θ(n) senza passo ricorsivo. Una sola opzione deve parlare del tempo (o costo) di un algoritmo ricorsivo."
+    },
+    {
+      "id": "L03-T02",
+      "titolo": "Caso base, passo ricorsivo e terminazione",
+      "argomento": "Struttura di una funzione ricorsiva",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 3, 'Definizione di Funzioni Ricorsive' (fattorialeR), 'Ricorsione vs Iterazione I' (attenzione al caso base, stack overflow) e 'Stack di Sistema nelle Funzioni Ricorsive'.",
+      "descrizione": "Si mostra una breve funzione ricorsiva e si chiede quale riga è il caso base, cosa restituisce su un input piccolo, oppure cosa succede quando il caso base non viene mai raggiunto (catena infinita di chiamate, stack overflow).",
+      "conoscenze": [
+        "Caso base: condizione di arresto che restituisce un valore senza altre chiamate.",
+        "Passo ricorsivo: la funzione si richiama su un sottoproblema di dimensione minore, che deve portare prima o poi al caso base.",
+        "Ogni funzione ricorsiva deve avere almeno un caso base; se non viene mai raggiunto, la catena di chiamate è infinita e l'esecuzione termina con errore di stack overflow (in Python RecursionError).",
+        "Il caso base deve essere raggiungibile da ogni input ammesso: con passo n − 2 e caso base n == 0 un n dispari salta lo 0; con passo n − 1 e caso base n == 0 un n negativo non lo raggiunge mai.",
+        "Quando si raggiunge il caso base, i frame vengono rimossi dallo stack in ordine inverso e i valori risalgono verso la chiamata iniziale."
+      ],
+      "procedimento": [
+        "Individuare il caso base e controllare quali valori del parametro lo soddisfano.",
+        "Seguire come cambia il parametro a ogni chiamata (n − 1, n − 2, n // 2) e verificare se dall'input dato si arriva esattamente al caso base.",
+        "Se sì, calcolare il valore risalendo dalle chiamate; se no, la risposta è la ricorsione infinita (stack overflow)."
+      ],
+      "trappole": [
+        "Assumere che la funzione 'si fermi da sola' a 1 o sotto lo 0 e calcolare un valore (per esempio 7 + 5 + 3 + 1 = 16).",
+        "Pensare che restituisca il valore del caso base (0) perché 'prima o poi ci arriva'.",
+        "Leggere n − 2 come n − 1 e sommare tutti i numeri da n a 1.",
+        "Credere che basti che il parametro decresca per garantire la terminazione."
+      ],
+      "come_generare_varianti": "Variare il passo (n − 1, n − 2, n − 3, n // 2), la condizione del caso base (n == 0, n == 1, n <= 0, n < 2) e l'input (pari, dispari, negativo, 0). La risposta deve essere univoca: o un valore preciso (calcolato eseguendo il codice) o lo stack overflow. Distrattori: il valore che si otterrebbe se la ricorsione si fermasse al numero più vicino al caso base; il valore del caso base; il valore ottenuto leggendo il passo come n − 1. In alternativa chiedere quale modifica rende corretta la funzione (per esempio n <= 0 al posto di n == 0), con opzioni che cambiano il passo o il valore restituito."
+    },
+    {
+      "id": "L03-T03",
+      "titolo": "Scrivere la ricorrenza dal codice: numero e dimensione delle chiamate",
+      "argomento": "Equazioni di ricorrenza",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 3, 'Equazioni di Ricorrenza' (fattorialeR: T(n − 1) + Θ(1)) e ricorrenze degli Esempi 1–5 (T(n − 1), T(n − 2), T(n/2), T(n − 1) + T(n − 2)). Richiamo: la soluzione formale delle ricorrenze è nelle Lezioni 4 e 5.",
+      "descrizione": "Si mostra una funzione ricorsiva il cui lavoro non ricorsivo è costante e si chiede l'equazione di ricorrenza che ne descrive il tempo: quante chiamate ricorsive fa ogni invocazione e su quale dimensione dell'input.",
+      "conoscenze": [
+        "Ogni chiamata ricorsiva eseguita diventa un termine T(dimensione) nel passo ricorsivo: due chiamate su metà danno 2T(n/2), una chiamata su n − 1 dà T(n − 1), due chiamate su n − 1 e n − 2 danno T(n − 1) + T(n − 2).",
+        "I termini si sommano: i costi delle chiamate non si mediano.",
+        "La dimensione è quella dell'input del sottoproblema: con due indici che si avvicinano di uno ciascuno (inizio + 1, fine − 1) è n − 2; con n // 2 è n/2; con un indice che avanza di uno è n − 1, dove n è il numero di elementi rimasti.",
+        "Una chiamata il cui risultato è salvato in una variabile e riusato (a = power(x, n // 2); return a * a) conta una volta sola.",
+        "Il lavoro non ricorsivo (confronti, somme, assegnamenti) è il termine aggiuntivo Θ(1)."
+      ],
+      "procedimento": [
+        "Contare le chiamate ricorsive eseguite nel caso peggiore in una singola invocazione (con un if conta il ramo più costoso).",
+        "Per ciascuna, scrivere la dimensione del sottoproblema in funzione di n.",
+        "Sommare i termini e aggiungere il costo del lavoro non ricorsivo."
+      ],
+      "trappole": [
+        "Fare la media delle chiamate invece della somma: due chiamate su n/2 scritte come T(n/2).",
+        "Contare una sola chiamata quando ce ne sono due, o contare due volte una chiamata il cui risultato viene riusato.",
+        "Scrivere T(n − 1) quando la dimensione cala di 2 o si dimezza.",
+        "Mettere Θ(n) come lavoro non ricorsivo 'perché la funzione lavora su una lista di n elementi' anche se la chiamata fa solo operazioni O(1)."
+      ],
+      "come_generare_varianti": "Scrivere funzioni brevi (3–6 righe) su interi o su liste con indici, senza slicing né concatenazioni (quelle sono in L03-T04), con: una chiamata su n − 1, n − 2 o n // 2; due chiamate su n − 1 e n − 2; due chiamate su due metà (indici i..m e m + 1..j); tre chiamate su n/3. Distrattori fissi: la versione con le chiamate mediate (T(n/2) al posto di 2T(n/2)); la versione con una chiamata in meno o in più; la versione con dimensione sbagliata (n − 1 al posto di n/2); la versione con Θ(n) al posto di Θ(1). Chiedere solo la ricorrenza, non la soluzione, salvo i casi risolti dalla dispensa (T(n − 1) + Θ(1), T(n − 2) + Θ(1), T(n/2) + Θ(1))."
+    },
+    {
+      "id": "L03-T04",
+      "titolo": "Costo nascosto di slicing e concatenazione nella ricorsione",
+      "argomento": "Costi nascosti nella ricorsione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 3, Esempio 1 'Somma Ricorsiva di una Lista' (con slicing A[1:]: T(n) = T(n − 1) + Θ(n) ⇒ Θ(n²); con indice: Θ(n); nota 'evitare lo slicing A[1:] in funzioni ricorsive'). Esercizi: conversione in binario con T(n) = T(n/2) + Θ(log n). Richiamo al costo dello slicing della Lezione 2.",
+      "descrizione": "Una funzione ricorsiva che sembra fare lavoro costante a ogni chiamata passa al sottoproblema una copia (A[1:], A[:-1], A[1:-1]) o costruisce il risultato con una concatenazione (stringa + carattere, lista + lista). Si chiede il costo o la ricorrenza.",
+      "conoscenze": [
+        "A[a:b] crea una copia e costa O(b − a): A[1:] su n elementi costa Θ(n).",
+        "SommaLista con slicing: T(n) = T(n − 1) + Θ(n) ⇒ T(n) = Θ(n²) (n + (n − 1) + … + 1).",
+        "La stessa funzione con un indice i al posto dello slicing: T(n) = T(n − 1) + Θ(1) ⇒ Θ(n).",
+        "A[1:-1] (palindroma con slicing) costa Θ(n): T(n) = T(n − 2) + Θ(n) ⇒ Θ(n²).",
+        "Concatenare stringhe o liste costa quanto la lunghezza del risultato: in binario(n // 2) + str(n % 2) la stringa ha Θ(log n) caratteri, quindi T(n) = T(n/2) + Θ(log n).",
+        "Le operazioni O(1) restano O(1): A[0], A[i], len(A), confronti."
+      ],
+      "procedimento": [
+        "Per ogni istruzione della singola chiamata chiedersi se copia, scorre o concatena: se sì, il suo costo dipende dalla dimensione.",
+        "Scrivere il termine non ricorsivo con quel costo (Θ(n) per uno slicing di quasi tutta la lista, Θ(log n) per una stringa di log n caratteri).",
+        "Scrivere la ricorrenza; se è T(n − 1) + Θ(n) o T(n − 2) + Θ(n) concludere Θ(n²) come nella dispensa."
+      ],
+      "trappole": [
+        "Considerare lo slicing gratuito e rispondere Θ(n) (il costo 'ottimista').",
+        "Rispondere Θ(n log n) mescolando 'n chiamate' con un termine logaritmico.",
+        "Pensare che lo slicing aggiunga solo una costante (Θ(2n)).",
+        "Ignorare il costo della concatenazione di stringhe e scrivere T(n/2) + Θ(1)."
+      ],
+      "come_generare_varianti": "Partire da una funzione ricorsiva lineare della dispensa o degli esercizi (somma, conteggio di occorrenze, massimo, somma dei pari, palindroma, stampa inversa, conversione in binario) e passare il sottoproblema con A[1:], A[:-1] o A[1:-1], oppure costruire il risultato con +. Chiedere il costo (Θ(n²) per gli slicing che tolgono una o due posizioni) oppure la ricorrenza (per i casi con dimezzamento, come T(n/2) + Θ(log n) o T(n/2) + Θ(n), chiedere solo la ricorrenza, non la soluzione). Distrattori: il costo senza slicing (Θ(n)), Θ(n log n), Θ(2ⁿ) o Θ(n³); per le ricorrenze, la versione con Θ(1) al posto del costo nascosto. Variante utile: mostrare le due versioni di SommaLista e chiedere quale affermazione è vera."
+    },
+    {
+      "id": "L03-T05",
+      "titolo": "Complessità spaziale: profondità massima dello stack",
+      "argomento": "Complessità spaziale",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 3, 'Complessità di Spazio nelle Funzioni Ricorsive' (fattoriale: profondità n, spazio O(n)), 'Stack di Sistema nelle Funzioni Ricorsive' ed Esempio 5 (spazio delle versioni di Fibonacci).",
+      "descrizione": "Si chiede lo spazio usato da una funzione ricorsiva (fattoriale, somma con indice, potenza semplice o veloce, palindroma, Fibonacci ricorsivo), oppure quanti frame sono attivi al massimo contemporaneamente durante una chiamata concreta.",
+      "conoscenze": [
+        "Ogni chiamata attiva occupa un frame sullo stack (parametri, variabili locali, posizione della chiamata); il frame viene rimosso quando la chiamata termina.",
+        "La complessità di spazio di una funzione ricorsiva è determinata dalla profondità massima dello stack, cioè dal massimo numero di frame attivi contemporaneamente, non dal numero totale di chiamate.",
+        "fattorialeR(n): profondità n, spazio Θ(n). Per 5! sono attivi insieme 6 frame, da fattoriale(5) a fattoriale(0).",
+        "Somma con indice e power semplice: Θ(n). Palindroma: circa n/2 frame, Θ(n). Power veloce: Θ(log n).",
+        "FibonacciR(n): Θ(2ⁿ) chiamate in totale, ma la catena più lunga è F(n) → F(n − 1) → … → F(1): spazio Θ(n). La chiamata F(n − 2) parte solo dopo che il ramo di F(n − 1) ha liberato i suoi frame.",
+        "Le versioni iterative senza strutture ausiliarie usano spazio Θ(1)."
+      ],
+      "procedimento": [
+        "Individuare la catena di chiamate più lunga dalla chiamata iniziale a un caso base.",
+        "Contarne la lunghezza in funzione di n (n, n/2, log n).",
+        "Moltiplicare per lo spazio di un frame (di solito costante)."
+      ],
+      "trappole": [
+        "Confondere lo spazio con il numero totale di chiamate (per Fibonacci rispondere Θ(2ⁿ)).",
+        "Rispondere Θ(1) perché la funzione non crea liste, dimenticando lo stack.",
+        "Per la potenza veloce rispondere Θ(n) come per quella semplice.",
+        "Nel conteggio esatto dei frame dimenticare la chiamata del caso base (5 invece di 6 per fattoriale(5))."
+      ],
+      "come_generare_varianti": "Variare la funzione (fattorialeR, SommaLista con indice, power semplice, power veloce, palindroma, FibonacciR, una ricorsione che dimezza n) e chiedere lo spazio, con opzioni tra Θ(1), Θ(log n), Θ(n), Θ(2ⁿ), Θ(n²). Per le domande sul numero esatto di frame, scrivere nel testo 'contando la chiamata iniziale e quella del caso base' e verificare con una simulazione. Non chiedere lo spazio di versioni con slicing: le copie create da A[1:] restano in memoria nei frame attivi e il totale non coincide con la sola profondità, quindi la risposta sarebbe ambigua rispetto alla dispensa."
+    },
+    {
+      "id": "L03-T06",
+      "titolo": "Ricorsione contro iterazione e stack di sistema",
+      "argomento": "Struttura di una funzione ricorsiva",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 3, 'Ricorsione vs Iterazione I: Aspetti tecnici', 'Stack di Sistema nelle Funzioni Ricorsive', 'Ricorsione vs Iterazione: Vantaggi e Svantaggi' (fattorialeR e fattorialeI).",
+      "descrizione": "Domanda teorica sul confronto tra ricorsione e iterazione (vantaggi, svantaggi, quando preferire l'una o l'altra) o sul funzionamento dello stack di sistema (cosa contiene un frame, ordine di rimozione).",
+      "conoscenze": [
+        "Ricorsione: la funzione chiama sé stessa su versioni più semplici del problema. Iterazione: strutture di controllo come for e while.",
+        "Ogni funzione, ricorsiva o no, usa memoria per codice, parametri e variabili locali; le funzioni ricorsive hanno più chiamate attive contemporaneamente e quindi usano più memoria.",
+        "Ogni chiamata aggiunge allo stack un frame con i valori dei parametri e la posizione nel codice della chiamata; raggiunto il caso base, i frame vengono rimossi in ordine inverso (l'ultimo aggiunto è il primo rimosso).",
+        "Vantaggi della ricorsione: codice più compatto e leggibile, adatto a problemi con struttura naturalmente ricorsiva. Svantaggi: maggiore uso di memoria.",
+        "Conviene evitarla quando esiste una versione iterativa altrettanto semplice o quando serve la massima efficienza in memoria e prestazioni (fattorialeI: tempo Θ(n), spazio Θ(1)).",
+        "La ricorsione non cambia di per sé la classe del tempo: fattorialeR e fattorialeI sono entrambi Θ(n); la differenza è nello spazio (Θ(n) contro Θ(1))."
+      ],
+      "procedimento": [
+        "Ricondurre ogni opzione a una delle affermazioni della dispensa.",
+        "Scartare le affermazioni assolute ('sempre più veloce', 'non usa memoria', 'può non avere caso base')."
+      ],
+      "trappole": [
+        "Pensare che la ricorsione sia sempre più veloce (o sempre più lenta) in senso asintotico.",
+        "Credere che i frame vengano rimossi nell'ordine in cui sono stati creati.",
+        "Pensare che una funzione ricorsiva usi meno memoria perché ha meno variabili.",
+        "Pensare che il caso base sia facoltativo se il parametro diminuisce."
+      ],
+      "come_generare_varianti": "Chiedere quale affermazione è vera (o falsa) tra quattro, prese da: contenuto di un frame (parametri, posizione della chiamata); ordine di rimozione dei frame (inverso); vantaggi (compattezza, leggibilità) e svantaggi (memoria) della ricorsione; quando preferire l'iterazione; tempo e spazio di fattorialeR contro fattorialeI (Θ(n) e Θ(n) contro Θ(n) e Θ(1)). Le opzioni sbagliate devono essere affermazioni assolute o invertite rispetto alla dispensa, mai ambigue."
+    },
+    {
+      "id": "L03-T07",
+      "titolo": "Potenza xⁿ: versione semplice Θ(n) e versione veloce Θ(log n)",
+      "argomento": "Esempi della dispensa",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 3, Esempio 2 'Calcolo Ricorsivo di xⁿ' (1/2: T(n) = T(n − 1) + Θ(1) ⇒ Θ(n); 2/2: casi pari e dispari, T(n) = T(n/2) + Θ(1) ⇒ Θ(log n)). Collegato alla prova di luglio 2026, domanda 8 (vedi L03-T14).",
+      "descrizione": "Si chiede la ricorrenza o il costo di una delle due versioni ricorsive di power, oppure di una versione 'veloce' scritta male che fa due chiamate su n/2 invece di salvarne il risultato.",
+      "conoscenze": [
+        "Versione semplice: xⁿ = x · xⁿ⁻¹, una chiamata su n − 1: T(n) = T(n − 1) + Θ(1) ⇒ Θ(n).",
+        "Versione veloce: se n è pari xⁿ = x^(n/2) · x^(n/2), se dispari xⁿ = x · x^((n−1)/2) · x^((n−1)/2); una sola chiamata su n // 2, il risultato salvato in a e usato due volte: T(n) = T(n/2) + Θ(1) ⇒ Θ(log n).",
+        "Il numero di chiamate della versione veloce è circa log₂ n + 2: per n = 13 i parametri sono 13, 6, 3, 1, 0.",
+        "Se si scrive power(x, n // 2) * power(x, n // 2) le chiamate diventano due: T(n) = 2T(n/2) + Θ(1), che con i metodi delle Lezioni 4–5 vale Θ(n): si perde il vantaggio.",
+        "Spazio: Θ(n) per la versione semplice, Θ(log n) per quella veloce."
+      ],
+      "procedimento": [
+        "Contare quante chiamate ricorsive fa la singola invocazione (una sola se il risultato è salvato in una variabile).",
+        "Vedere come cambia n (n − 1 oppure n // 2).",
+        "Scrivere la ricorrenza e usare il risultato della dispensa."
+      ],
+      "trappole": [
+        "Pensare che la versione veloce costi Θ(n) perché 'servono comunque n moltiplicazioni'.",
+        "Leggere a * a come due chiamate ricorsive.",
+        "Non accorgersi che power(x, n // 2) * power(x, n // 2) fa due chiamate e rispondere T(n/2) + Θ(1).",
+        "Scrivere T(n − 1) + Θ(1) per la versione veloce guardando il ramo dispari ((n − 1) // 2 è comunque circa n/2)."
+      ],
+      "come_generare_varianti": "Mostrare una delle due versioni della dispensa (anche con nomi diversi, base fissa 2 o 3, caso base n == 1) e chiedere il costo o la ricorrenza; oppure mostrare la variante con due chiamate su n // 2 e chiedere la ricorrenza (risposta 2T(n/2) + Θ(1); non chiedere la soluzione, che è della Lezione 5); oppure chiedere quante chiamate fa la versione veloce per un n dato tra 10 e 100 (verificare con una simulazione). Distrattori: Θ(n) per la versione veloce, Θ(log n) per quella semplice, T(n/2) + Θ(1) per la versione con due chiamate, T(n − 1) + Θ(1) per la versione veloce, Θ(n log n)."
+    },
+    {
+      "id": "L03-T08",
+      "titolo": "Palindroma ricorsiva: ricorrenza T(n − 2) e casi",
+      "argomento": "Esempi della dispensa",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 3, Esempio 3 'Palindromi' (palindroma(A, inizio, fine): T(n) = T(n − 2) + Θ(1) ⇒ Θ(n)).",
+      "descrizione": "Si chiede la ricorrenza o il costo della funzione palindroma con due indici, il caso migliore e il peggiore, quante chiamate fa su una lista data, oppure il costo della versione con slicing A[1:-1].",
+      "conoscenze": [
+        "Una lista è palindroma se ha al più un elemento, oppure se gli estremi sono uguali e la sottolista centrale è palindroma.",
+        "Caso base: inizio >= fine (zero o un elemento) → True. Se A[inizio] != A[fine] → False senza altre chiamate.",
+        "Ogni chiamata restringe la porzione di 2 elementi: T(n) = T(n − 2) + Θ(1) ⇒ Θ(n) (circa n/2 chiamate).",
+        "Caso peggiore (lista palindroma): Θ(n). Caso migliore (estremi diversi): O(1).",
+        "Con [1, 5, 4, 8, 4, 5, 1] le chiamate sono 4: (0, 6), (1, 5), (2, 4), (3, 3).",
+        "Con slicing palindroma(A[1:-1]): T(n) = T(n − 2) + Θ(n) ⇒ Θ(n²)."
+      ],
+      "procedimento": [
+        "Vedere di quanto si riduce la porzione: due indici che si avvicinano di 1 ciascuno → n − 2.",
+        "Scrivere T(n) = T(n − 2) + Θ(1): la riduzione è sottrattiva, non un dimezzamento, quindi Θ(n).",
+        "Per il caso migliore o il numero di chiamate, simulare sugli indici."
+      ],
+      "trappole": [
+        "Rispondere Θ(log n) pensando che 'lavorare dai due estremi' dimezzi il problema.",
+        "Leggere i due indici come due chiamate ricorsive (2T(n − 1)).",
+        "Aggiungere un Θ(n) per lo slicing anche quando la funzione usa gli indici, e rispondere Θ(n²).",
+        "Dimenticare l'uscita anticipata e dare Θ(n) anche per il caso migliore.",
+        "Nel conteggio delle chiamate dimenticare quella del caso base.",
+        "Nella versione con slicing A[1:-1] considerare la copia gratuita e rispondere T(n − 2) + Θ(1), cioè Θ(n)."
+      ],
+      "come_generare_varianti": "Variare la richiesta: ricorrenza e costo nel caso peggiore; caso migliore e peggiore insieme; numero di chiamate su una lista concreta (palindroma o no, di lunghezza pari o dispari, verificando con una simulazione); costo della versione con slicing A[1:-1] (Θ(n²)). Distrattori: T(n/2) + Θ(1) con Θ(log n); T(n − 2) + Θ(n) con Θ(n²) (se la versione è senza slicing); 2T(n − 1) + Θ(1) con Θ(2ⁿ); Θ(n) anche per il caso migliore."
+    },
+    {
+      "id": "L03-T09",
+      "titolo": "Permutazioni: n! risultati e costo Θ(n·n!)",
+      "argomento": "Esempi della dispensa",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 3, Esempio 4 'Permutazioni di {1, …, n}' (Permuta(n), T(n) = Θ(n·n!)).",
+      "descrizione": "Si chiede il costo di Permuta(n), quante permutazioni restituisce, quante liste costruisce, oppure l'ordine in cui compaiono le permutazioni nella lista restituita per n piccolo.",
+      "conoscenze": [
+        "Idea: se n = 1 l'unica permutazione è [1]; altrimenti si calcolano le permutazioni di {1, …, n − 1} e si inserisce n in tutte le n posizioni di ciascuna.",
+        "Permuta(n) restituisce n! liste, ciascuna lunga n.",
+        "Costruire nuova = p[:i] + [n] + p[i:] costa Θ(n) (slicing e concatenazione): al livello n si costruiscono n·(n − 1)! = n! liste, per Θ(n·n!) lavoro; i livelli inferiori costano meno.",
+        "La dispensa scrive la ricorrenza come T(n) = n·T(n − 1) + Θ(n!) e conclude T(n) = Θ(n·n!). Contando dal codice (una sola chiamata Permuta(n − 1), poi n! liste di lunghezza n) si ottiene T(n) = T(n − 1) + Θ(n·n!), con la stessa soluzione Θ(n·n!).",
+        "Nessun algoritmo che produce n! liste di lunghezza n può costare meno di Θ(n·n!): è la dimensione dell'output.",
+        "Permuta(3) = [[3, 2, 1], [2, 3, 1], [2, 1, 3], [3, 1, 2], [1, 3, 2], [1, 2, 3]]."
+      ],
+      "procedimento": [
+        "Contare quante liste produce il livello n (n!) e quanto costa costruirne una (Θ(n)).",
+        "Il livello n domina i precedenti: Θ(n·n!)."
+      ],
+      "trappole": [
+        "Rispondere Θ(n!) contando le permutazioni ma non il costo Θ(n) per costruirne ciascuna (costo nascosto di slicing e concatenazione).",
+        "Rispondere Θ(2ⁿ) confondendo le crescite esponenziali.",
+        "Rispondere Θ(n²) guardando i due for annidati senza considerare che il ciclo esterno scorre (n − 1)! permutazioni.",
+        "Pensare che Permuta(n − 1) venga chiamata n volte perché la dispensa scrive n·T(n − 1)."
+      ],
+      "come_generare_varianti": "Chiedere: il costo di Permuta(n) (opzioni Θ(n!), Θ(n·n!), Θ(n²), Θ(2ⁿ) o Θ(nⁿ)); il numero di liste restituite da Permuta(4) (24; distrattori 16, 4, 96); la k-esima lista restituita da Permuta(3) o Permuta(4) (verificare eseguendo il codice della dispensa); quante volte viene chiamata Permuta durante Permuta(n) (n volte, una per livello). Non chiedere di scegliere tra le due forme della ricorrenza (n·T(n − 1) + Θ(n!) contro T(n − 1) + Θ(n·n!)): la dispensa usa la prima, il codice suggerisce la seconda, e la domanda sarebbe ambigua."
+    },
+    {
+      "id": "L03-T10",
+      "titolo": "Fibonacci ricorsivo: ricorrenza e costo esponenziale",
+      "argomento": "Esempi della dispensa",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 3, Esempio 5 'Numeri di Fibonacci' (1/4: definizione; 2/4: FibonacciR, T(n) = T(n − 1) + T(n − 2) + Θ(1) ⇒ Θ(2ⁿ), chiamate ridondanti; 5/5: confronto sperimentale).",
+      "descrizione": "Si chiede la ricorrenza o il costo di FibonacciR, oppure il motivo della crescita esponenziale.",
+      "conoscenze": [
+        "F(0) = 0, F(1) = 1, F(n) = F(n − 1) + F(n − 2) per n > 1; valori 0, 1, 1, 2, 3, 5, 8, 13, 21, …",
+        "FibonacciR fa due chiamate, su n − 1 e n − 2: T(n) = T(n − 1) + T(n − 2) + Θ(1).",
+        "La dispensa dà T(n) = Θ(2ⁿ): costo esponenziale.",
+        "Causa: chiamate ridondanti, lo stesso F(k) viene ricalcolato molte volte (nel calcolo di F(5), F(3), F(2), F(1), F(0) vengono calcolati più volte).",
+        "Nella tabella della dispensa FibonacciR(40) richiede circa 10 secondi, mentre FibonacciI(5000) circa un millesimo di secondo.",
+        "Lo spazio di FibonacciR è invece Θ(n) (vedi L03-T05)."
+      ],
+      "procedimento": [
+        "Contare le chiamate nel passo ricorsivo: due, su n − 1 e n − 2.",
+        "Scrivere la ricorrenza sommando i due termini.",
+        "Ricordare il risultato della dispensa: Θ(2ⁿ), dovuto alle chiamate ripetute."
+      ],
+      "trappole": [
+        "Pensare che il costo sia Θ(n) perché 'calcola n valori' (vale per la versione iterativa, non per la ricorsiva).",
+        "Scrivere T(n) = T(n − 1) + Θ(1) contando una sola chiamata, o 2T(n/2) + Θ(1) confondendo n − 1 con n/2.",
+        "Confondere il tempo Θ(2ⁿ) con lo spazio Θ(n).",
+        "Attribuire la lentezza alla grandezza dei numeri invece che alle chiamate ridondanti."
+      ],
+      "come_generare_varianti": "Chiedere la ricorrenza, il costo, oppure il motivo dell'inefficienza (opzioni: chiamate ripetute sugli stessi valori; caso base sbagliato; numeri troppo grandi; stack overflow). Si possono usare varianti con tre termini (G(n) = G(n − 1) + G(n − 2) + G(n − 3)) chiedendo solo la ricorrenza. Opzioni di costo tra Θ(n), Θ(n²), Θ(log n), Θ(2ⁿ). Non mettere tra le opzioni sia Θ(2ⁿ) sia Θ(φⁿ) (φ ≈ 1,618): la dispensa usa Θ(2ⁿ), il valore esatto è Θ(φⁿ), e le due opzioni insieme renderebbero la domanda ambigua."
+    },
+    {
+      "id": "L03-T11",
+      "titolo": "Traccia di una ricorsione: numero di chiamate e valore restituito",
+      "argomento": "Tracce di esecuzione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 3, Esempio 5 (chiamate ridondanti nel calcolo di F(5)), 'Complessità di Spazio' (frame di fattoriale(5)), Esempi 2 e 3 (chiamate di power e palindroma), Esercizi ('Stampare gli elementi di una lista in ordine inverso').",
+      "descrizione": "Si dà una funzione ricorsiva della dispensa (o simile) e un input piccolo; si chiede quante volte viene chiamata con un certo argomento, quante chiamate fa in totale, cosa restituisce o cosa stampa.",
+      "conoscenze": [
+        "In FibonacciR(5): FibonacciR(4) 1 volta, FibonacciR(3) 2 volte, FibonacciR(2) 3 volte, FibonacciR(1) 5 volte, FibonacciR(0) 3 volte; 15 chiamate in totale.",
+        "In FibonacciR(6): 25 chiamate; FibonacciR(2) 5 volte, FibonacciR(1) 8 volte, FibonacciR(0) 5 volte.",
+        "Regola: durante FibonacciR(n), FibonacciR(k) con 1 ≤ k ≤ n viene chiamata F(n − k + 1) volte; FibonacciR(0) viene chiamata F(n − 1) volte (n ≥ 2).",
+        "Power veloce con n = 13: chiamate con parametro 13, 6, 3, 1, 0 (5 chiamate). fattorialeR(5): 6 chiamate.",
+        "Una stampa fatta prima della chiamata ricorsiva esce nell'ordine di discesa; fatta dopo, in ordine inverso (durante la risalita)."
+      ],
+      "procedimento": [
+        "Disegnare l'albero delle chiamate (o la catena, se c'è una sola chiamata per livello).",
+        "Contare i nodi con l'argomento richiesto, o tutti i nodi.",
+        "Per i valori, risalire dalle foglie (casi base) verso la radice."
+      ],
+      "trappole": [
+        "Contare ogni F(k) una volta sola, come se i valori venissero salvati (risposta 1).",
+        "Confondere il numero di chiamate su F(k) con il valore F(n) o con il conteggio di un k vicino.",
+        "Dimenticare le chiamate del caso base, o una delle due chiamate di un nodo.",
+        "Invertire l'ordine di stampa (print prima o dopo la chiamata)."
+      ],
+      "come_generare_varianti": "Usare FibonacciR con n da 4 a 7 (chiamate su un certo k, oppure il totale), power veloce con n tra 10 e 40 (numero di chiamate o sequenza dei parametri), palindroma su liste di 5–8 elementi (numero di chiamate), una funzione di stampa ricorsiva con print prima o dopo la chiamata (cosa stampa). Calcolare sempre la risposta con uno script. Distrattori: 1 (nessuna ripetizione), il valore F(n), il conteggio senza i casi base, il conteggio di un k adiacente."
+    },
+    {
+      "id": "L03-T12",
+      "titolo": "Fibonacci iterativo: tempo Θ(n), spazio Θ(n) o Θ(1)",
+      "argomento": "Esempi della dispensa",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 3, Esempio 5 (1/4: formula di Binet; 3/4: FibonacciI con lista, tempo Θ(n), spazio Θ(n); 4/4: versione ottimizzata con due variabili, tempo Θ(n), spazio Θ(1); 5/5: confronto sperimentale).",
+      "descrizione": "Si chiede tempo e spazio di una delle due versioni iterative, il confronto con FibonacciR, oppure perché si preferisce l'iterativa alla formula di Binet.",
+      "conoscenze": [
+        "FibonacciI con lista F di n + 1 elementi: ogni valore viene calcolato una volta e salvato; tempo Θ(n), spazio Θ(n).",
+        "Versione ottimizzata con a, b = b, a + b: per F(n) servono solo F(n − 1) e F(n − 2); tempo Θ(n), spazio Θ(1).",
+        "FibonacciR: tempo Θ(2ⁿ), spazio Θ(n) (stack).",
+        "Formula di Binet F(n) = (Φⁿ − (1 − Φ)ⁿ)/√5 con Φ = (1 + √5)/2: con n grandi può dare errori numerici dovuti agli arrotondamenti."
+      ],
+      "procedimento": [
+        "Riconoscere la versione: con la lista (spazio Θ(n)) o con due variabili (spazio Θ(1)).",
+        "Il ciclo for i in range(2, n + 1) fa n − 1 iterazioni O(1): tempo Θ(n)."
+      ],
+      "trappole": [
+        "Attribuire alla versione con due variabili lo spazio Θ(n) della versione con la lista, o viceversa.",
+        "Pensare che FibonacciI e FibonacciR abbiano lo stesso costo perché calcolano lo stesso valore.",
+        "Pensare che la formula di Binet sia sempre esatta in Python.",
+        "Dare spazio Θ(1) a FibonacciR perché non usa liste."
+      ],
+      "come_generare_varianti": "Mostrare una delle due versioni iterative (o mettere a confronto le tre versioni) e chiedere tempo e spazio, con opzioni a coppie: (Θ(n), Θ(1)), (Θ(n), Θ(n)), (Θ(2ⁿ), Θ(n)), (Θ(log n), Θ(1)). Oppure chiedere quale affermazione su Fibonacci è vera tra quattro (ricorsivo esponenziale per chiamate ridondanti; iterativo lineare; Binet soggetta ad arrotondamenti; spazio Θ(1) della versione ottimizzata), con distrattori invertiti. Non chiedere il valore restituito per n = 0: le versioni iterative della dispensa non gestiscono quel caso (la versione con due variabili restituisce 1, quella con la lista dà un errore di indice)."
+    },
+    {
+      "id": "L03-T13",
+      "titolo": "Progettare con una ricorrenza imposta (esercizi)",
+      "argomento": "Esercizi con ricorrenza imposta",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 3, Esercizi: con T(n) = T(n − 1) + Θ(1) (somma dei pari, minimo e massimo, posizioni diverse in due stringhe binarie, stampa inversa); conversione in binario con T(n) = T(n/2) + Θ(log n); coppie (i, j) con A[i] = A[j] e sottoliste con somma pari con T(n) = T(n − 1) + Θ(n); sottoinsieme con somma x con T(n) = 2T(n − 1) + O(1).",
+      "descrizione": "Si dà un problema degli esercizi (o simile) e una ricorrenza imposta; si chiede quale schema di soluzione ricorsiva è corretto e rispetta quella ricorrenza. In alternativa si dà lo schema e si chiede quale delle ricorrenze degli esercizi lo descrive.",
+      "conoscenze": [
+        "T(n) = T(n − 1) + Θ(1): una chiamata sul resto (indice + 1 o primi n − 1 elementi) e lavoro costante sull'elemento corrente. Esempi: somma dei pari, minimo e massimo (restituendo una coppia), posizioni diverse tra due stringhe, stampa inversa.",
+        "T(n) = T(n − 1) + Θ(n): una chiamata sui primi n − 1 elementi più un ciclo sugli elementi precedenti. Esempi: coppie con A[i] = A[j], contando con un ciclo le coppie che terminano nell'ultima posizione; sottoliste con somma pari, contando con un ciclo quelle che terminano nell'ultima posizione.",
+        "T(n) = 2T(n − 1) + O(1): due chiamate su n − 1. Esempio: sottoinsieme con somma x, provando l'elemento corrente dentro (x − A[i]) e fuori (x) dal sottoinsieme.",
+        "T(n) = T(n/2) + Θ(log n): una chiamata su n // 2 più lavoro proporzionale al numero di cifre. Esempio: binario(n // 2) + str(n % 2), dove la concatenazione costa Θ(log n).",
+        "Risultati della dispensa: T(n − 1) + Θ(1) ⇒ Θ(n); T(n − 1) + Θ(n) ⇒ Θ(n²)."
+      ],
+      "procedimento": [
+        "Per ogni schema proposto, verificare prima che risolva il problema (uno schema con la ricorrenza giusta ma risultato sbagliato va scartato).",
+        "Contare le chiamate e la dimensione dei sottoproblemi.",
+        "Stimare il lavoro non ricorsivo (ciclo sui precedenti Θ(n), confronto Θ(1), concatenazione Θ(log n)).",
+        "Confrontare con la ricorrenza imposta."
+      ],
+      "trappole": [
+        "Scegliere uno schema con la ricorrenza giusta ma che calcola un'altra cosa (per esempio confrontare l'ultimo elemento solo con il penultimo).",
+        "Contare una sola chiamata quando lo schema ne fa due (con or tra due chiamate, nel caso peggiore vengono eseguite entrambe).",
+        "Scegliere la divisione in due metà quando la ricorrenza chiede n − 1.",
+        "Ignorare il costo del ciclo interno o della concatenazione."
+      ],
+      "come_generare_varianti": "Usare gli otto problemi degli esercizi della dispensa (o problemi analoghi su liste e interi) con la loro ricorrenza imposta. Le quattro opzioni descrivono a parole (o in 3–5 righe di codice) quattro schemi: uno corretto con la ricorrenza giusta; uno corretto ma con un'altra ricorrenza (due chiamate, divisione in metà, slicing); uno con la ricorrenza giusta ma che risolve male il problema; uno con un'altra ricorrenza e anche sbagliato. Forma inversa: dato lo schema in codice, chiedere la ricorrenza tra T(n − 1) + Θ(1), T(n − 1) + Θ(n), 2T(n − 1) + O(1), T(n/2) + Θ(log n). Per il sottoinsieme scrivere 'nel caso peggiore'. Verificare con uno script che lo schema corretto dia la risposta dell'esempio."
+    },
+    {
+      "id": "L03-T14",
+      "titolo": "Aperta: funzione ricorsiva su un intero (potenza, fattoriale, binario)",
+      "argomento": "Scrittura di funzioni ricorsive",
+      "formato": "aperta",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Prova di luglio 2026, domanda 8 ('Scrivere una funzione ricorsiva in Python che, dato l'intero n, restituisca il valore 3ⁿ'). Dispensa 3, 'Definizione di Funzioni Ricorsive' (fattorialeR), Esempio 2 (power semplice e veloce), Esercizi (conversione in binario).",
+      "descrizione": "Si chiede di scrivere in pseudocodice Python una funzione ricorsiva breve su un intero n: potenza con base fissa (2ⁿ, 3ⁿ) o generica (xⁿ), fattoriale, potenza veloce, conversione in binario, somma 1 + … + n. Si valuta la presenza del caso base corretto e del passo ricorsivo.",
+      "conoscenze": [
+        "Schema: caso base (if n == 0: return 1 per potenze e fattoriale) e passo ricorsivo su n − 1.",
+        "3ⁿ = 3 · 3ⁿ⁻¹; xⁿ = x · xⁿ⁻¹; n! = n · (n − 1)!.",
+        "Se n può essere negativo (soluzione ufficiale di luglio): 3ⁿ = 1 / 3⁻ⁿ.",
+        "Versione veloce: a = power(x, n // 2); return a * a se n è pari, x * a * a se è dispari.",
+        "Binario: caso base n <= 1 → str(n); altrimenti binario(n // 2) + str(n % 2)."
+      ],
+      "procedimento": [
+        "Scrivere il caso base, che restituisce il valore senza chiamate.",
+        "Gestire eventuali casi speciali (n negativo, se il testo dice 'dato l'intero n').",
+        "Scrivere il passo ricorsivo che riduce n e combina il risultato con un'operazione O(1).",
+        "Controllare a mano su n = 0, 1, 2."
+      ],
+      "trappole": [
+        "Dimenticare il caso base o metterlo dopo la chiamata ricorsiva.",
+        "Caso base return 0 per una potenza (il risultato diventa sempre 0) o return 3 per n == 0.",
+        "Scrivere 3 ** n o un ciclo: la funzione deve essere ricorsiva.",
+        "Chiamare pow_3(n) invece di pow_3(n − 1) (ricorsione infinita).",
+        "Nella versione veloce scrivere power(x, n // 2) * power(x, n // 2): corretto ma Θ(n) invece di Θ(log n).",
+        "Ignorare n negativo quando il testo dice 'dato l'intero n' (la soluzione ufficiale lo gestisce)."
+      ],
+      "come_generare_varianti": "Variare la funzione: 2ⁿ, 5ⁿ, xⁿ, xⁿ in tempo Θ(log n), n!, somma 1 + 2 + … + n, prodotto dei numeri pari fino a n, conversione di n in binario (T(n) = T(n/2) + Θ(log n)), numero di cifre di n, somma delle cifre di n. Indicare nel testo il dominio di n (n ≥ 0 oppure intero qualsiasi) e, se serve, il costo richiesto. La soluzione modello deve essere in stile Python come nella dispensa, 3–8 righe, verificata eseguendola su alcuni valori. La spiegazione indica caso base, passo ricorsivo, ricorrenza e costo."
+    }
+  ]
+}

@@ -1,0 +1,671 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 12,
+    "titolo": "Alberi",
+    "file": "PL12.pdf",
+    "contenuti": [
+      "Definizione di albero e terminologia: radice, foglia, nodo interno, antenato, discendente, figlio, fratelli, altezza, livello; un albero con n nodi ha n − 1 archi",
+      "Alberi binari ordinati (figlio sinistro e destro distinti); confronto con le liste: in t passi una lista raggiunge t + 1 nodi, un albero binario fino a 2^(t+1) − 1",
+      "Rappresentazione con record e puntatori (classe NodoA con key, left, right) e costruzione di un albero; generazione di un albero casuale in O(n)",
+      "Visite in profondità pre-order, in-order, post-order: definizione, esempio, codice ricorsivo, costo Θ(n)",
+      "Analisi formale del costo delle visite: T(n) = T(k) + T(n − 1 − k) + Θ(1), O(n) per sostituzione, Ω(n) perché ogni nodo è visitato",
+      "Visita per livelli con coda: versione con pop(0) O(n²) e versione con deque O(n)",
+      "Funzioni ricorsive su alberi: numero di foglie, altezza (albero vuoto = −1)",
+      "Rappresentazione con array (figli in 2i + 1 e 2i + 2): adatta ad alberi completi o quasi completi, spazio O(2ⁿ) per un albero con soli figli destri",
+      "Rappresentazione con vettore dei padri: P[i] = padre di i, radice −1; pregi (compatta, padre in O(1)) e limiti (figli in O(n), nessuna distinzione sinistro/destro)",
+      "Esercizi: massimo e minimo, figli unici, cancellare le foglie, cammino radice-foglia con somma x, cammino di valore massimo, cammino tra due foglie, valore più frequente, cancellare i nodi semplici, primo antenato comune, somma dei nodi fino al livello k, albero completo e quasi completo, inserimento nel primo livello non pieno, cammino uguale alla matricola in O(1), conversioni tra puntatori e array"
+    ],
+    "nota": "È la lezione con più domande nelle due prove ufficiali (maggio 9, 10, 11; luglio 9, 10). Notazione per descrivere un albero nel testo delle domande: X(S, D), dove X è la chiave, S il sottoalbero sinistro e D il destro; '-' indica un sottoalbero vuoto; una foglia si scrive con la sola chiave. Esempio: 8(4(2, 6), 10(9(-, 7), -)) è l'albero del lucido 'Alberi Binari Ordinati' (7 è figlio destro di 9). In alternativa si può mostrare la costruzione con NodoA come nel lucido 'Esempio di struttura in memoria'. Il codice usa i campi della dispensa (key, left, right); nello scritto di luglio i tutor usano fsin e fdes: sono equivalenti. Gli alberi binari di ricerca sono nella Lezione 14 e gli heap nella Lezione 9: qui si usano solo come richiamo."
+  },
+  "tipi": [
+    {
+      "id": "L12-T01",
+      "titolo": "Terminologia di base su un albero dato",
+      "argomento": "Definizioni e terminologia",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 12, 'Terminologia di Base negli Alberi' (definizioni e figura con h = 3; osservazione sugli n − 1 archi) e 'Alberi Binari Ordinati'.",
+      "descrizione": "Si chiede una definizione (radice, foglia, nodo interno, antenato, discendente, fratelli, livello, altezza) oppure di applicarla a un albero dato: contare foglie e nodi interni, dare l'altezza, il livello di un nodo, gli antenati o i discendenti, il numero di archi.",
+      "conoscenze": [
+        "Radice: unico nodo senza genitore. Foglia: nodo senza figli. Nodo interno: nodo con almeno un figlio (anche la radice, se ha figli).",
+        "Un nodo con un solo figlio è interno, non è una foglia.",
+        "Antenato di x: nodo sul cammino dalla radice a x. Discendente di x: nodo raggiungibile scendendo da x. Fratelli: nodi con lo stesso genitore.",
+        "Livello di un nodo: numero di archi dalla radice (radice = livello 0).",
+        "Altezza: numero di archi del cammino più lungo dalla radice a una foglia; un solo nodo ha altezza 0, l'albero vuoto −1.",
+        "Un albero con n nodi ha n − 1 archi: ogni nodo tranne la radice ha esattamente un genitore.",
+        "In un albero binario ordinato ogni nodo ha al più due figli, distinti in sinistro e destro."
+      ],
+      "procedimento": [
+        "Disegnare l'albero a partire dalla descrizione (notazione X(S, D) o costruzione con NodoA).",
+        "Per ogni nodo segnare se ha figli (interno) o no (foglia) e scrivere il suo livello.",
+        "L'altezza è il livello massimo; gli archi sono n − 1."
+      ],
+      "trappole": [
+        "Non contare la radice tra i nodi interni.",
+        "Contare come foglia un nodo che ha un solo figlio (per esempio perché manca il figlio sinistro).",
+        "Misurare l'altezza o il livello in nodi invece che in archi (risultato più grande di 1).",
+        "Dire che un albero con n nodi ha n archi.",
+        "Considerare un nodo antenato di sé stesso escluso/incluso in modo diverso dalla definizione, o confondere antenati e discendenti."
+      ],
+      "come_generare_varianti": "Usare alberi binari di 6–10 nodi con almeno un nodo con un solo figlio (dove si annidano gli errori su foglie e nodi interni) e un ramo più lungo degli altri. Chiedere una combinazione di: numero di foglie, nodi interni, altezza, livello di un nodo dato, antenati o discendenti di un nodo, numero di archi. Distrattori: radice esclusa dai nodi interni; nodo con un solo figlio contato come foglia; altezza contata in nodi (+1); archi = n. Le opzioni devono essere coerenti fra loro dove possibile (foglie + interni = n) così da non tradirsi. In alternativa: domanda di sola definizione (quale affermazione è vera) con distrattori presi dalle stesse trappole."
+    },
+    {
+      "id": "L12-T02",
+      "titolo": "Numero massimo di nodi al livello i",
+      "argomento": "Conteggi su alberi binari",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 12, 'Confronto: Alberi Binari vs Liste Concatenate' (albero binario completo). Prova di luglio 2026, domanda 9: numero massimo di nodi al livello i, con la radice a livello 0, è 2^i.",
+      "descrizione": "Si chiede quanti nodi può avere al massimo un singolo livello i di un albero binario (radice a livello 0), in forma simbolica o con un valore di i dato.",
+      "conoscenze": [
+        "Ogni nodo ha al più due figli: il livello i + 1 ha al più il doppio dei nodi del livello i.",
+        "Livello 0: 1 nodo; livello 1: 2; livello 2: 4; livello i: 2^i.",
+        "Il numero n di nodi dell'albero non conta: il massimo dipende solo da i (purché n sia abbastanza grande).",
+        "La somma dei livelli da 0 a i è 2^(i+1) − 1 (vedi L12-T03): non va confusa con il singolo livello."
+      ],
+      "procedimento": [
+        "Partire da 1 nodo al livello 0 e raddoppiare a ogni livello.",
+        "Rispondere 2^i, oppure calcolare la potenza per il valore dato."
+      ],
+      "trappole": [
+        "Rispondere 2^(i+1) − 1 o 2^i − 1, confondendo il livello con l'insieme dei livelli fino a i.",
+        "Rispondere 2i (crescita lineare invece che esponenziale) o 2^(2i).",
+        "Contare i livelli partendo da 1 (rispondere 2^(i−1))."
+      ],
+      "come_generare_varianti": "Forma simbolica come a luglio (opzioni tra 2^i, 2^(i/2), 2^i + 1, 2^(2i), 2i, 2^(i+1) − 1, 2^(i−1)) oppure numerica con i tra 2 e 10. Specificare sempre la convenzione 'radice a livello 0'. Variante: radice a livello 1 dichiarata nel testo, e allora la risposta è 2^(i−1). Distrattori: totale fino al livello i, 2^i − 1, 2i, valore con livello sfasato di uno."
+    },
+    {
+      "id": "L12-T03",
+      "titolo": "Nodi raggiungibili in t passi e nodi massimi per altezza h",
+      "argomento": "Conteggi su alberi binari",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Confronto: Alberi Binari vs Liste Concatenate' (in t passi: t + 1 nodi in una lista, 2^(t+1) − 1 in un albero binario; con 3 passi 15 contro 4). Collegato a prova di luglio 2026, domanda 9, e allo scritto di luglio 2026, esercizio 2 (albero completo se e solo se n = 2^(h+1) − 1).",
+      "descrizione": "Si chiede quanti nodi al massimo ha un albero binario di altezza h, quanti nodi si raggiungono dalla radice in al più t passi (confronto con una lista concatenata), oppure l'altezza minima o massima di un albero binario con n nodi.",
+      "conoscenze": [
+        "Somma dei livelli da 0 a h: 1 + 2 + 4 + … + 2^h = 2^(h+1) − 1.",
+        "In al più t passi dalla radice: fino a 2^(t+1) − 1 nodi in un albero binario completo, solo t + 1 in una lista.",
+        "Un albero binario di altezza h ha almeno h + 1 nodi (catena) e al più 2^(h+1) − 1 (completo).",
+        "Con n nodi l'altezza è almeno ⌊log₂ n⌋ e al più n − 1: quindi h = Ω(log n) e h = O(n).",
+        "L'albero è completo se e solo se n = 2^(h+1) − 1."
+      ],
+      "procedimento": [
+        "Capire se la domanda riguarda un livello solo (2^i, vedi L12-T02) o tutti i livelli fino a h o t (somma geometrica).",
+        "Applicare 2^(h+1) − 1, oppure invertire: 2^(h+1) − 1 ≥ n ⇒ h ≥ ⌊log₂ n⌋."
+      ],
+      "trappole": [
+        "Rispondere 2^h (solo l'ultimo livello) invece della somma.",
+        "Rispondere 2^h − 1 o 2^(h+1), sbagliando di uno l'esponente o la sottrazione.",
+        "Per la lista contare t nodi invece di t + 1 (si conta anche il nodo di partenza).",
+        "Dire che un albero binario con n nodi ha sempre altezza log n (vale solo per alberi bilanciati; nel caso peggiore è n − 1)."
+      ],
+      "come_generare_varianti": "Variare h o t tra 2 e 7 e chiedere: nodi massimi con altezza h; nodi raggiungibili in al più t passi in un albero binario e in una lista (coppia di numeri); altezza minima con n nodi (n tra 7 e 1000, attenzione ai valori 2^k e 2^k − 1); intervallo di altezze possibili per n nodi (opzioni come 'tra ⌊log₂ n⌋ e n − 1'). Distrattori: 2^h, 2^h − 1, 2^(h+1), t nodi per la lista, altezza sempre log n."
+    },
+    {
+      "id": "L12-T04",
+      "titolo": "Visite pre-order, in-order, post-order: sequenza e riconoscimento",
+      "argomento": "Visite in profondità",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Ordini di Visita in un Albero Binario', 'Esempio di Visite in un Albero Binario' (A B D E C F G / D B E A F C G / D E B F G C A) e 'Visite Ricorsive'. Richiamo: prova di luglio 2026, domanda 11 (visita in-ordine su un ABR, Lezione 14).",
+      "descrizione": "Dato un albero, si chiede la sequenza di una delle tre visite in profondità; oppure, dati albero e sequenza, quale visita l'ha prodotta; oppure una proprietà delle visite (dove compare la radice, quale nodo è primo o ultimo).",
+      "conoscenze": [
+        "Pre-order: nodo, sottoalbero sinistro, sottoalbero destro. La radice è la prima.",
+        "In-order: sottoalbero sinistro, nodo, sottoalbero destro. La radice separa i nodi del sottoalbero sinistro da quelli del destro.",
+        "Post-order: sottoalbero sinistro, sottoalbero destro, nodo. La radice è l'ultima.",
+        "Nelle tre visite le foglie compaiono sempre nello stesso ordine relativo (da sinistra a destra).",
+        "Per un nodo con un solo figlio, la posizione (sinistro o destro) cambia la visita in-order, non pre-order e post-order.",
+        "L'in-order dà le chiavi in ordine crescente solo se l'albero è un ABR (Lezione 14); su un albero qualunque no."
+      ],
+      "procedimento": [
+        "Disegnare l'albero, segnando se ogni figlio unico è sinistro o destro.",
+        "Applicare la regola ricorsivamente, sottoalbero per sottoalbero (scrivere il risultato di ogni sottoalbero tra parentesi aiuta).",
+        "Per riconoscere una visita: guardare dove sta la radice (prima, in mezzo, ultima), poi confrontare con la sequenza calcolata."
+      ],
+      "trappole": [
+        "Trattare un figlio destro unico come sinistro (o viceversa) nell'in-order.",
+        "Dare le chiavi in ordine crescente come visita in-order di un albero che non è un ABR.",
+        "Scambiare pre-order e post-order, o scrivere il post-order come pre-order letto al contrario.",
+        "Visitare per livelli invece che in profondità."
+      ],
+      "come_generare_varianti": "Alberi di 6–9 nodi, non ABR, con almeno un nodo con un solo figlio (destro, per rendere visibile l'errore nell'in-order) e chiavi numeriche o lettere. Chiedere una delle tre visite, oppure 'quale visita produce questa sequenza' (opzioni: pre, in, post, per livelli; la sequenza deve corrispondere a una sola). Distrattori: le altre due visite, la sequenza ordinata delle chiavi, la visita con il figlio unico spostato dall'altra parte, il pre-order rovesciato. Verificare ogni sequenza eseguendo le visite con Python."
+    },
+    {
+      "id": "L12-T05",
+      "titolo": "Visita per livelli: ordine dei nodi",
+      "argomento": "Visita per livelli",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Visita dell'albero per Livello' e 'Visita per Livello con Complessità Ottimale O(n)'; Esercizio 6 del secondo gruppo (inserire x nel primo livello non pieno, nella posizione libera più a sinistra).",
+      "descrizione": "Dato un albero, si chiede la sequenza della visita per livelli (in ampiezza), oppure il contenuto della coda a un certo passo, oppure dove finisce un nodo inserito nel primo livello non pieno nella posizione più a sinistra.",
+      "conoscenze": [
+        "Si visita livello per livello dalla radice; dentro un livello, da sinistra a destra.",
+        "Si usa una coda (FIFO): si estrae un nodo, lo si visita, si accodano il figlio sinistro e poi il destro.",
+        "Con una pila (LIFO) al posto della coda si ottiene una visita in profondità, non per livelli.",
+        "Il primo nodo, in ordine di visita per livelli, che non ha due figli è quello che riceve un nuovo nodo 'nel primo livello non pieno, più a sinistra': va a sinistra se il sinistro manca, altrimenti a destra."
+      ],
+      "procedimento": [
+        "Scrivere i nodi di ogni livello da sinistra a destra (o simulare la coda).",
+        "Concatenare i livelli.",
+        "Per l'inserimento: scorrere i nodi in ordine per livelli e fermarsi al primo con un posto libero."
+      ],
+      "trappole": [
+        "Usare l'ordine pre-order (visita in profondità).",
+        "Simulare con una pila invece che con una coda.",
+        "Accodare prima il figlio destro (livelli da destra a sinistra).",
+        "Per l'inserimento, scegliere il primo posto libero di un livello più profondo o non controllare i nodi con un solo figlio."
+      ],
+      "come_generare_varianti": "Alberi di 7–10 nodi su 3–4 livelli, con buchi in livelli diversi. Chiedere la sequenza per livelli, il contenuto della coda dopo k estrazioni, o il padre e il lato del nodo inserito nel primo livello non pieno. Distrattori: pre-order, simulazione con pila, livelli da destra a sinistra, e per l'inserimento il primo buco del livello più profondo. Verificare le sequenze con Python (deque)."
+    },
+    {
+      "id": "L12-T06",
+      "titolo": "Costo delle visite e delle funzioni ricorsive con lavoro O(1) per nodo",
+      "argomento": "Costo delle visite",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 12, 'Visite Ricorsive' (osservazione: complessità Θ(n) perché ogni nodo è visitato una volta), 'Calcolare il Numero di Foglie', 'Calcolare l'Altezza'. Prova di maggio 2026, domanda 9: costo della visita in pre-order con record e puntatori = Θ(n).",
+      "descrizione": "Si chiede il costo di una visita (pre, in, post-order o per livelli con deque) o di una funzione ricorsiva che fa lavoro costante in ogni nodo (contare foglie o nodi, altezza, somma delle chiavi, massimo), su un albero di n nodi memorizzato con puntatori.",
+      "conoscenze": [
+        "Ogni nodo viene visitato esattamente una volta e il lavoro per nodo è O(1): Θ(n).",
+        "Le chiamate su None sono n + 1 (una per ogni puntatore vuoto): il totale delle chiamate è 2n + 1, ancora Θ(n).",
+        "Il costo non dipende dalla forma dell'albero: Θ(n) sia per un albero bilanciato sia per uno degenere.",
+        "Θ(h) è il costo di chi scende lungo un solo cammino (per esempio la ricerca in un ABR, Lezione 14), non di una visita."
+      ],
+      "procedimento": [
+        "Controllare che la funzione visiti ogni nodo una volta sola.",
+        "Controllare che il lavoro in ogni nodo sia costante (nessun ciclo, nessuna chiamata a funzioni che visitano sottoalberi, nessuna concatenazione di liste).",
+        "Se sì, il costo è Θ(n)."
+      ],
+      "trappole": [
+        "Rispondere Θ(log n) o Θ(h), confondendo la visita con la discesa lungo un cammino.",
+        "Rispondere Θ(n log n) per analogia con mergesort (due chiamate ricorsive).",
+        "Rispondere Θ(n²) pensando che due chiamate per nodo raddoppino il lavoro a ogni livello.",
+        "Scegliere 'nessuno dei precedenti' perché l'albero potrebbe essere sbilanciato."
+      ],
+      "come_generare_varianti": "Variare la visita (pre, in, post, per livelli con deque) o la funzione (conta_foglie, altezza, somma delle chiavi, massimo, numero di nodi con chiave pari), e specificare sempre 'n nodi' e 'record e puntatori'. Opzioni scelte tra Θ(n), Θ(n²), Θ(n log n), Θ(log n), Θ(h), 'nessuno dei precedenti'. Non usare funzioni che concatenano liste o richiamano altezza in ogni nodo: quelle sono L12-T09."
+    },
+    {
+      "id": "L12-T07",
+      "titolo": "Ricorrenza delle visite e metodo di sostituzione",
+      "argomento": "Costo delle visite",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 12, 'Costo delle visite: analisi formale' (T(n) = T(k) + T(n − 1 − k) + Θ(1); ipotesi T(m) ≤ cm; T(n) ≤ cn − c + d ≤ cn per c ≥ d; Ω(n) perché ogni nodo è visitato). Il metodo di sostituzione è nella Lezione 5.",
+      "descrizione": "Si chiede quale ricorrenza descrive una visita (o una funzione ricorsiva con lavoro costante per nodo) su un albero qualunque, oppure un passaggio della dimostrazione per sostituzione che la soluzione è O(n), oppure la soluzione nei casi particolari (k = 0, k = (n − 1)/2).",
+      "conoscenze": [
+        "Se il sottoalbero sinistro ha k nodi (0 ≤ k < n), il destro ne ha n − 1 − k: la radice non sta in nessuno dei due.",
+        "Ricorrenza: T(n) = T(k) + T(n − 1 − k) + Θ(1), con T(0) = Θ(1). Le due chiamate si sommano.",
+        "Sostituzione: con T(m) ≤ cm per m < n si ottiene T(n) ≤ ck + c(n − 1 − k) + d = cn − c + d ≤ cn se c ≥ d.",
+        "Lower bound Ω(n) perché ogni nodo è visitato almeno una volta: quindi Θ(n).",
+        "Casi particolari: k = 0 (albero degenere) dà T(n) = T(n − 1) + Θ(1) = Θ(n); albero completo dà T(n) = 2T(n/2) + Θ(1) = Θ(n). Entrambi Θ(n), ma nessuno dei due descrive un albero qualunque."
+      ],
+      "procedimento": [
+        "Contare i nodi dei due sottoalberi (k e n − 1 − k) e il lavoro sulla radice (costante).",
+        "Scrivere la somma delle due chiamate più Θ(1).",
+        "Per la sostituzione: sostituire l'ipotesi nei due termini, sommare, e trovare la condizione sulle costanti che lascia ≤ cn."
+      ],
+      "trappole": [
+        "Fare la media delle due chiamate: (T(k) + T(n − 1 − k))/2 + Θ(1).",
+        "Scrivere 2T(n/2) + Θ(1) per un albero qualunque, che vale solo se è completo.",
+        "Scrivere T(k) + T(n − k) + Θ(1), dimenticando che la radice non sta nei sottoalberi.",
+        "Nella sostituzione, arrivare a T(n) ≤ cn + d e concludere comunque O(n) (non dimostra l'ipotesi, che è ≤ cn).",
+        "Concludere Θ(n log n) da 2T(n/2) + Θ(1) per analogia con mergesort."
+      ],
+      "come_generare_varianti": "Tre forme: (1) quale ricorrenza descrive la visita (o conta_foglie, altezza) su un albero qualunque con k nodi a sinistra; (2) quale disuguaglianza si ottiene sostituendo T(m) ≤ cm, e quale condizione su c chiude la dimostrazione (c ≥ d); (3) ricorrenza e soluzione per un albero degenere o completo. Distrattori presi dalle trappole: media, 2T(n/2), T(n − k), cn + d, Θ(n log n). Una sola opzione deve essere la ricorrenza generale corretta."
+    },
+    {
+      "id": "L12-T08",
+      "titolo": "Visita per livelli: costo con pop(0) e con deque",
+      "argomento": "Visita per livelli",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Visita dell'albero per Livello' (versione con lista e pop(0): O(n²) nel caso peggiore) e 'Visita per Livello con Complessità Ottimale O(n)' (deque, popleft e append O(1)); 'Creazione di un Albero Binario' (rimozione da disponibili in O(1) scambiando con l'ultimo). Costi delle operazioni Python: Lezione 2 e Lezione 11.",
+      "descrizione": "Si chiede il costo della visita per livelli realizzata con una list Python e pop(0), oppure con deque e popleft, o quale modifica la rende lineare. Rientra qui anche il costo di altri algoritmi su alberi con operazioni su liste nascoste (rimozione con remove invece dello scambio con l'ultimo nella generazione casuale).",
+      "conoscenze": [
+        "lista.pop(0) sposta tutti gli elementi rimasti: costa O(lunghezza della coda).",
+        "Su un albero completo la coda arriva a circa n/2 nodi: la versione con pop(0) costa Θ(n²) (circa n²/4 spostamenti).",
+        "Con deque, popleft() e append() costano O(1): la visita costa Θ(n).",
+        "Su un albero degenere (catena) la coda contiene al più un nodo: anche pop(0) costa O(1) e la visita è Θ(n). Il Θ(n²) è il caso peggiore, non il costo su ogni albero.",
+        "Nella generazione casuale, togliere un elemento con disponibili[x] = disponibili[-1]; disponibili.pop() costa O(1); disponibili.remove(padre) o pop(x) costerebbero O(n)."
+      ],
+      "procedimento": [
+        "Contare quante volte si estrae dalla coda (n).",
+        "Chiedersi quanto costa ogni estrazione con la struttura usata.",
+        "Stimare la lunghezza massima della coda nel caso peggiore (albero completo: Θ(n))."
+      ],
+      "trappole": [
+        "Rispondere Θ(n) perché ogni nodo entra ed esce una sola volta, ignorando il costo di pop(0).",
+        "Pensare che una list Python sia una coda efficiente.",
+        "Dire che la versione con pop(0) costa Θ(n²) anche su un albero degenere.",
+        "Rispondere Θ(n log n) supponendo che la coda sia lunga log n.",
+        "Nella generazione casuale, considerare O(1) la rimozione del padre pieno con disponibili.remove(padre) (o pop(x)): la list sposta gli elementi e ogni rimozione costa O(n), quindi la generazione costa Θ(n²) invece di Θ(n)."
+      ],
+      "come_generare_varianti": "Mostrare il codice della visita per livelli con coda = [p] e pop(0), oppure con deque e popleft, oppure con insert(0, x) e pop(); chiedere il costo nel caso peggiore, il costo su un albero degenere, o quale sostituzione rende il costo O(n). Distrattori: Θ(n) (costo apparente), Θ(n log n), Θ(n²) dove la risposta è Θ(n). Variante sulla generazione casuale: costo se il padre pieno viene tolto con remove."
+    },
+    {
+      "id": "L12-T09",
+      "titolo": "Costo di funzioni su alberi diverso da Θ(n)",
+      "argomento": "Costo delle visite",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 12, 'ESERCIZI' (la complessità va sempre valutata e se possibile deve essere O(n)) ed Esercizio 1 dell'ultimo gruppo (cammino uguale alla matricola in O(1)). Scritto di luglio 2026, esercizio 2 (seconda soluzione: altezza e numero di nodi calcolati una volta sola, O(n)).",
+      "descrizione": "Una funzione ricorsiva su un albero che in ogni nodo fa lavoro non costante (richiama altezza o conta i nodi di un sottoalbero, concatena liste) oppure che esplora solo una parte dell'albero (un solo cammino, o una profondità limitata da una costante). Si chiede il costo nel caso peggiore.",
+      "conoscenze": [
+        "Se in ogni nodo si chiama una funzione che visita il suo sottoalbero, il costo è la somma delle dimensioni dei sottoalberi: Θ(n²) su un albero degenere, Θ(n log n) su uno completo. Caso peggiore Θ(n²).",
+        "Restituire una lista con f(p.left) + [p.key] + f(p.right) copia a ogni nodo tutte le chiavi del sottoalbero: stesso costo, Θ(n²) nel caso peggiore.",
+        "Restituire più valori insieme (per esempio una coppia (esito, altezza)) evita di ricalcolare e riporta il costo a Θ(n).",
+        "Una funzione che scende lungo un solo ramo costa O(h), che nel caso peggiore è O(n).",
+        "Se la profondità esplorata è limitata da una costante (le cifre di una matricola sono un numero fisso), i nodi visitati sono al più 2^(costante + 1) − 1: costo O(1)."
+      ],
+      "procedimento": [
+        "Scrivere il lavoro fatto in un nodo, oltre alle chiamate ricorsive.",
+        "Sommare quel lavoro su tutti i nodi; provare l'albero degenere (caso peggiore tipico) e l'albero completo.",
+        "Se la ricorsione non visita tutti i nodi, contare solo quelli effettivamente visitati."
+      ],
+      "trappole": [
+        "Rispondere Θ(n) perché 'ogni nodo è visitato una volta', ignorando il lavoro nascosto nella chiamata ad altezza o nella concatenazione.",
+        "Rispondere Θ(n log n) supponendo che l'albero sia bilanciato.",
+        "Pensare che una funzione con due chiamate ricorsive costi sempre Θ(n) anche se si ferma a profondità costante (o sempre Θ(n) anche se scende in un solo ramo)."
+      ],
+      "come_generare_varianti": "Partire da una funzione corretta ma inefficiente: controllo di bilanciamento che chiama altezza in ogni nodo; conteggio dei nodi del sottoalbero in ogni nodo; lista delle chiavi in-order con concatenazioni; ricerca limitata a profondità k costante; discesa sempre a sinistra. Chiedere il costo nel caso peggiore (specificarlo). Opzioni: Θ(n), Θ(n log n), Θ(n²), O(1) o Θ(h), con il distrattore Θ(n) sempre presente. Evitare opzioni come O(n·h) che sarebbero anch'esse corrette."
+    },
+    {
+      "id": "L12-T10",
+      "titolo": "Valore restituito da una funzione ricorsiva su un albero dato",
+      "argomento": "Funzioni ricorsive su alberi",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Calcolare il Numero di Foglie', 'Calcolare l'Altezza' ed Esercizi (massimo e minimo, figli unici, somma dei nodi fino al livello k, primo antenato comune, cammino di valore massimo, nodi semplici).",
+      "descrizione": "Si mostra una funzione ricorsiva breve (conteggio, somma con parametro di livello, altezza, massimo, figli unici, antenato comune) e un albero; si chiede che valore restituisce, oppure che cosa calcola in generale.",
+      "conoscenze": [
+        "Un parametro che cala di uno a ogni chiamata (k − 1) misura il livello: con k di partenza e test k < 0 si sommano i livelli da 0 a k.",
+        "altezza restituisce −1 sull'albero vuoto e 0 su una foglia.",
+        "conta_foglie restituisce 0 su None e 1 su un nodo senza figli.",
+        "Figlio unico: nodo il cui genitore ha un solo figlio. Nodo semplice: nodo con un solo figlio.",
+        "Primo antenato comune di x e y: il nodo più profondo che è antenato di entrambi (può essere x o y stesso)."
+      ],
+      "procedimento": [
+        "Calcolare il risultato dal basso: prima le foglie e i None, poi i nodi sopra (post-order).",
+        "Tenere traccia dei parametri passati (livello residuo, somma residua) annotandoli accanto a ogni nodo.",
+        "Combinare i risultati dei figli come fa il return."
+      ],
+      "trappole": [
+        "Sbagliare di un livello con il parametro k (sommare i livelli < k o ≤ k + 1).",
+        "Sommare solo il livello k invece di tutti i livelli fino a k.",
+        "Restituire 0 o 1 sull'albero vuoto dove la funzione restituisce −1 (o viceversa).",
+        "Confondere figli unici (i figli) con nodi semplici (i genitori)."
+      ],
+      "come_generare_varianti": "Scegliere una funzione di 4–6 righe tra: somma dei livelli fino a k, conteggio dei nodi con una proprietà, altezza, massimo, lista dei figli unici, numero di nodi semplici, antenato comune; un albero di 6–9 nodi con almeno un nodo con un solo figlio; chiedere il valore restituito su quell'albero (o su un parametro dato). Distrattori: l'errore di un livello, il totale di tutti i nodi, il solo livello k, il risultato con la convenzione sbagliata sull'albero vuoto. Calcolare il valore eseguendo la funzione in Python."
+    },
+    {
+      "id": "L12-T11",
+      "titolo": "Caso base e controllo di None nelle ricorsioni su alberi",
+      "argomento": "Funzioni ricorsive su alberi",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 12, 'Calcolare il Numero di Foglie' (casi base: None → 0, foglia → 1), 'Calcolare l'Altezza' (None → −1) ed Esercizi 4 e 5 del primo gruppo (cammini radice-foglia). Scritto del 3 novembre 2026: esiste un cammino radice-foglia con tutti i nodi pari.",
+      "descrizione": "Si mostra una funzione ricorsiva su un albero con un caso base sbagliato (None → True in una ricerca di cammino, None → 0 in un massimo o in un minimo di cammino) o senza controllo di None (accesso a p.left.key); si chiede che cosa restituisce su un albero dato, se è corretta, oppure quale di quattro versioni è quella corretta.",
+      "conoscenze": [
+        "Un cammino radice-foglia termina in una foglia (nodo senza figli), non in un None: un nodo con un solo figlio non è la fine di un cammino.",
+        "Con 'if p is None: return True' e un or sui figli, un nodo con un solo figlio fa terminare il cammino nel lato vuoto: la funzione restituisce True anche quando nessun cammino radice-foglia ha la proprietà.",
+        "Lo schema corretto: None → False (nessun cammino), foglia → verifica la condizione, altrimenti or sui due figli.",
+        "In un massimo (o minimo) sui cammini, None → 0 fa scegliere il lato vuoto quando l'altro ramo ha somma negativa (o positiva per il minimo).",
+        "p.left.key con p.left = None solleva un errore: prima si controlla che il figlio esista (o si delega il controllo alla chiamata ricorsiva).",
+        "Per l'albero vuoto 'esiste un cammino' è False; 'tutti i cammini hanno la proprietà' è True (vacuamente)."
+      ],
+      "procedimento": [
+        "Individuare i nodi con un solo figlio: sono quelli dove un caso base sbagliato cambia il risultato.",
+        "Simulare la funzione dal basso, scrivendo il valore restituito dalle chiamate su None.",
+        "Confrontare con la risposta vera ottenuta elencando i cammini radice-foglia."
+      ],
+      "trappole": [
+        "Considerare foglia un nodo che ha un solo figlio.",
+        "Pensare che la funzione con None → True sia corretta perché funziona su alberi in cui ogni nodo ha 0 o 2 figli.",
+        "Credere che manchi il controllo di None quando la funzione lo fa nella chiamata ricorsiva (o viceversa non accorgersi di un accesso a p.left.key).",
+        "Usare None → 0 come caso base di un massimo di cammino con chiavi negative.",
+        "Considerare corretta la versione che verifica la condizione finale su None invece che sulla foglia (per esempio None → x == 0 nella ricerca di un cammino con somma x): come None → True, sbaglia sui nodi con un solo figlio."
+      ],
+      "come_generare_varianti": "Scegliere una proprietà di cammino (tutti pari, somma x, tutti positivi, chiavi crescenti, massimo della somma) e scrivere la versione con l'errore tipico. L'albero deve avere un nodo con un solo figlio tale che l'errore cambi il risultato (verificarlo eseguendo entrambe le versioni in Python). Domande possibili: cosa restituisce la funzione, se è corretta, quale tra quattro versioni è corretta (le altre tre con None → True, senza test sulla foglia, con accesso a p.left.key senza controllo). Distrattori: 'risponde correttamente', 'solleva un errore' dove non lo fa, il valore che darebbe la funzione corretta."
+    },
+    {
+      "id": "L12-T12",
+      "titolo": "Pseudocodice di una visita in profondità",
+      "argomento": "Visite in profondità",
+      "formato": "aperta",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 12, 'Visite Ricorsive: Preorder / Inorder / Postorder'. Prova di maggio 2026, domanda 11: pseudocodice della visita in pre-order di un albero memorizzato con record e puntatori, dato il puntatore alla radice.",
+      "descrizione": "Si chiede di scrivere lo pseudocodice ricorsivo di una visita pre-order, in-order o post-order, data la radice; a volte la visita deve stampare le chiavi, a volte restituirle in una lista o applicare un'operazione a ogni nodo.",
+      "conoscenze": [
+        "Caso base: se p è None non si fa nulla (return).",
+        "Pre-order: elabora p, poi visita p.left, poi p.right. In-order: p.left, p, p.right. Post-order: p.left, p.right, p.",
+        "Per restituire una lista in tempo O(n) si passa alla ricorsione una lista accumulatore e si usa append; costruire la lista con concatenazioni (f(p.left) + [p.key] + f(p.right)) costa Θ(n²) nel caso peggiore.",
+        "La visita costa Θ(n)."
+      ],
+      "procedimento": [
+        "Scrivere il caso base su None.",
+        "Mettere l'elaborazione del nodo nella posizione giusta rispetto alle due chiamate ricorsive.",
+        "Se serve una lista, usare una funzione ausiliaria con l'accumulatore."
+      ],
+      "trappole": [
+        "Dimenticare il caso base e accedere a p.key con p = None.",
+        "Mettere l'elaborazione del nodo nella posizione di un'altra visita.",
+        "Chiamare la ricorsione sullo stesso nodo o due volte sullo stesso figlio.",
+        "Usare variabili globali per accumulare il risultato (vietato negli esercizi della dispensa).",
+        "Costruire la lista con concatenazioni senza accorgersi del costo."
+      ],
+      "come_generare_varianti": "Variare la visita (pre, in, post), l'azione (stampare, restituire la lista, sommare le chiavi in quell'ordine, applicare una funzione) e i nomi dei campi (left/right oppure fsin/fdes). Nella soluzione: caso base, posizione corretta dell'azione, nessuna variabile globale. Indicare nella spiegazione le alternative accettabili (if p != None: … invece di if p is None: return) e gli errori che fanno perdere punti."
+    },
+    {
+      "id": "L12-T13",
+      "titolo": "Contare o sommare nodi con una proprietà",
+      "argomento": "Funzioni ricorsive su alberi",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Calcolare il Numero di Foglie dell'Albero' ed Esercizi (figli unici; somma dei nodi che si trovano nei livelli al più k; nodi semplici).",
+      "descrizione": "Si chiede una funzione ricorsiva che conta o somma i nodi che soddisfano una proprietà locale: foglie, nodi interni, nodi con un solo figlio (semplici), figli unici, nodi con chiave pari, nodi nei livelli al più k (con un parametro).",
+      "conoscenze": [
+        "Schema: None → 0; contributo del nodo (0 o 1, o la chiave) + risultato sul sinistro + risultato sul destro.",
+        "Foglia: p.left is None and p.right is None.",
+        "Nodo semplice: esattamente uno dei due figli è None. Figlio unico: lo si riconosce dal padre (il padre è semplice).",
+        "Per i livelli si passa un parametro che cala di uno scendendo; con k < 0 si restituisce 0.",
+        "Costo Θ(n): lavoro costante per nodo."
+      ],
+      "procedimento": [
+        "Scrivere il caso base su None (0).",
+        "Scrivere la condizione sul nodo corrente.",
+        "Restituire contributo del nodo + chiamate sui due figli."
+      ],
+      "trappole": [
+        "Restituire 1 su None (si contano i puntatori vuoti).",
+        "Restituire 1 su una foglia senza prima controllare che il nodo non sia None.",
+        "Fermare la ricorsione su un nodo con un solo figlio, perdendo il suo sottoalbero.",
+        "Usare un contatore globale invece di restituire il valore."
+      ],
+      "come_generare_varianti": "Variare la proprietà (foglie, nodi interni, nodi semplici, nodi con due figli, figli unici restituiti in lista, chiavi pari, foglie con chiave maggiore di x, somma dei nodi nei livelli al più k, numero di nodi al livello k). Nella soluzione: caso base su None, condizione sul nodo, somma delle chiamate, nessuna variabile globale. Nella spiegazione: costo Θ(n) ed errore tipico sul caso base."
+    },
+    {
+      "id": "L12-T14",
+      "titolo": "Altezza, massimo e minimo: combinare i sottoalberi con max o min",
+      "argomento": "Funzioni ricorsive su alberi",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Calcolare l'Altezza dell'Albero' (albero vuoto = −1) ed Esercizio 1 del primo gruppo (coppia (massimo, minimo) di un albero non vuoto). Scritto di luglio 2026, esercizio 2 (altezza usata per verificare la completezza).",
+      "descrizione": "Si chiede una funzione ricorsiva che combina i risultati dei due sottoalberi con max o min: altezza, chiave massima, chiave minima, coppia (massimo, minimo), profondità minima di una foglia.",
+      "conoscenze": [
+        "Altezza: None → −1; altrimenti 1 + max(altezza sinistra, altezza destra). Una foglia ha altezza 0.",
+        "Massimo delle chiavi: max tra p.key e i massimi dei figli che esistono; su None si può restituire −∞ (float('-inf')) per il massimo e +∞ per il minimo.",
+        "Restituire una coppia (massimo, minimo) evita due visite separate; il costo resta Θ(n).",
+        "Profondità minima di una foglia: un nodo con un solo figlio non è una foglia, quindi non si deve fare il min con il lato vuoto."
+      ],
+      "procedimento": [
+        "Scegliere il valore per l'albero vuoto che non altera max o min (−1 per l'altezza, −∞ o +∞ per le chiavi) oppure trattare a parte i figli mancanti.",
+        "Calcolare ricorsivamente i valori dei figli.",
+        "Combinare con max o min e aggiungere il contributo del nodo."
+      ],
+      "trappole": [
+        "Usare 0 come altezza dell'albero vuoto (risultato più grande di 1 rispetto alla convenzione della dispensa).",
+        "Usare 0 come valore neutro per il massimo con chiavi negative (o per il minimo con chiavi positive).",
+        "Nella profondità minima, fare il min con il lato vuoto di un nodo con un solo figlio.",
+        "Calcolare massimo e minimo con due funzioni e chiamarle in ogni nodo (costo non lineare)."
+      ],
+      "come_generare_varianti": "Variare la richiesta (altezza, massimo, minimo, coppia (massimo, minimo), profondità minima di una foglia, altezza contata in nodi) e la convenzione richiesta sul vuoto, dichiarandola nel testo. Nella soluzione: valore sul vuoto coerente con la convenzione, combinazione con max/min, costo Θ(n)."
+    },
+    {
+      "id": "L12-T15",
+      "titolo": "Cammino radice-foglia con una proprietà",
+      "argomento": "Funzioni ricorsive su alberi",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 12, Esercizi 4 (cammino radice-foglia con somma x) e 5 (valore massimo dei cammini radice-foglia) del primo gruppo; Esercizio 1 dell'ultimo gruppo (cammino uguale alle cifre della matricola). Scritto del 3 novembre 2026: esiste un cammino radice-foglia con tutti i nodi pari.",
+      "descrizione": "Si chiede una funzione ricorsiva che dice se esiste un cammino dalla radice a una foglia con una proprietà (tutte le chiavi pari, somma uguale a x, chiavi uguali a una sequenza data), oppure che restituisce il valore massimo (o minimo) della somma lungo i cammini radice-foglia.",
+      "conoscenze": [
+        "Il cammino deve arrivare a una foglia: la verifica finale si fa sul nodo senza figli, non su None.",
+        "Esistenza: None → False; se il nodo viola la proprietà → False; se è una foglia → True (o il controllo finale, per esempio somma residua = 0); altrimenti or sulle due chiamate.",
+        "Per la somma si passa il residuo x − p.key ai figli.",
+        "Per la sequenza (matricola) si passa l'indice della cifra successiva; la profondità è limitata dalla lunghezza della sequenza.",
+        "Valore massimo: foglia → p.key; un solo figlio → p.key + valore di quel figlio; due figli → p.key + max dei due.",
+        "Costo O(n) (l'or può fermarsi prima); con la sequenza di lunghezza costante il costo è O(1)."
+      ],
+      "procedimento": [
+        "Decidere cosa passare verso il basso (residuo, indice) e cosa restituire verso l'alto (booleano, valore).",
+        "Scrivere i casi base: None, nodo che viola la proprietà, foglia.",
+        "Combinare con or (esistenza) o max (valore migliore), senza considerare il lato vuoto."
+      ],
+      "trappole": [
+        "Usare None → True: un nodo con un solo figlio sembra la fine di un cammino.",
+        "Controllare la somma su None (x == 0 quando p è None) invece che sulla foglia: stesso errore.",
+        "Nel massimo, usare None → 0 e fare max con il lato vuoto.",
+        "Usare and invece di or (si verifica che tutti i cammini abbiano la proprietà).",
+        "Accedere a p.left.key senza controllare che p.left esista."
+      ],
+      "come_generare_varianti": "Variare la proprietà: tutte le chiavi pari (o dispari, positive, maggiori di x), somma uguale a x, chiavi strettamente crescenti lungo il cammino, sequenza uguale a una lista data, valore massimo o minimo dei cammini. Variante 'per ogni cammino' (and, con None → True accettabile solo se si gestisce la foglia). Nella soluzione: caso None, controllo sul nodo, foglia, or/max sui figli; nella spiegazione mostrare un albero in cui None → True darebbe la risposta sbagliata. Verificare la soluzione in Python su alberi con nodi con un solo figlio."
+    },
+    {
+      "id": "L12-T16",
+      "titolo": "Albero completo e quasi completo",
+      "argomento": "Funzioni ricorsive su alberi",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 12, Esercizi 4 (albero completo: tutti i livelli pieni) e 5 (completo o quasi completo: tutti i livelli pieni tranne al più l'ultimo, con i nodi a sinistra) del secondo gruppo. Scritto di luglio 2026, esercizio 2 (soluzioni dei tutor: coppia (esito, altezza), oppure n = 2^(h+1) − 1). Collegato alla prova di maggio 2026, domande 6 e 10.",
+      "descrizione": "Si chiede una funzione ricorsiva che dice se un albero binario è completo (tutti i livelli pieni) o quasi completo (tutti pieni tranne l'ultimo, riempito da sinistra), in tempo O(n).",
+      "conoscenze": [
+        "Completo: ogni nodo interno ha due figli e tutte le foglie sono allo stesso livello; equivalente a n = 2^(h+1) − 1.",
+        "Soluzione ricorsiva in Θ(n): restituire la coppia (completo?, altezza); un nodo è radice di un albero completo se i due sottoalberi sono completi e hanno la stessa altezza.",
+        "Soluzione alternativa: calcolare altezza h e numero di nodi n con due visite e confrontare n con 2^(h+1) − 1.",
+        "Quasi completo: nella visita per livelli, dopo il primo figlio mancante non deve comparire nessun altro nodo. Equivalente: nella rappresentazione con array le posizioni occupate sono esattamente 0, …, n − 1.",
+        "Chiamare altezza in ogni nodo per confrontare i sottoalberi costa Θ(n²) nel caso peggiore.",
+        "Albero vuoto: si considera completo e quasi completo (n = 0 = 2^(h+1) − 1 con h = −1; nessuna posizione occupata). Il caso base r is None restituisce quindi True."
+      ],
+      "procedimento": [
+        "Scegliere tra la ricorsione con coppia di valori e il confronto n = 2^(h+1) − 1 (completo) o la visita per livelli (quasi completo).",
+        "Scrivere i casi base: l'albero vuoto è completo con altezza −1.",
+        "Combinare: esito = esito sinistro and esito destro and altezze uguali; altezza = 1 + max."
+      ],
+      "trappole": [
+        "Controllare solo che ogni nodo abbia 0 o 2 figli (non basta: le foglie possono stare a livelli diversi).",
+        "Controllare solo che le foglie siano allo stesso livello (non basta: una catena ha una sola foglia).",
+        "Ricalcolare l'altezza in ogni nodo (Θ(n²)).",
+        "Per il quasi completo, accettare un buco a sinistra con un nodo più a destra nello stesso livello."
+      ],
+      "come_generare_varianti": "Chiedere: albero completo; albero quasi completo; albero in cui ogni nodo interno ha due figli; tutte le foglie allo stesso livello. Richiedere O(n) e niente variabili globali. Nella spiegazione, un controesempio per la soluzione parziale tipica (1(2(4, 5), 3) ha tutti i nodi con 0 o 2 figli ma non è completo). Verificare la soluzione in Python confrontandola con il criterio sulle posizioni dell'array."
+    },
+    {
+      "id": "L12-T17",
+      "titolo": "Funzioni che modificano l'albero: cancellare foglie o nodi semplici",
+      "argomento": "Funzioni ricorsive su alberi",
+      "formato": "aperta",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 12, Esercizio 3 del primo gruppo (cancellare le foglie e restituire la radice eventualmente modificata) ed Esercizio 1 del secondo gruppo (cancellare tutti i nodi semplici).",
+      "descrizione": "Si chiede una funzione ricorsiva che cancella dall'albero i nodi con una proprietà (foglie, nodi semplici, nodi con chiave x) e restituisce la nuova radice, che può cambiare o diventare None.",
+      "conoscenze": [
+        "Schema: la funzione restituisce la radice del sottoalbero modificato, e il padre si aggiorna con p.left = f(p.left) e p.right = f(p.right).",
+        "Cancellare le foglie: se p è una foglia si restituisce None; si controlla la proprietà prima di modificare i figli, altrimenti i nodi che diventano foglie vengono cancellati a cascata (e si svuota l'albero).",
+        "Cancellare i nodi semplici: si sistemano prima i figli, poi, se p ha un solo figlio, si restituisce quel figlio (già sistemato) al posto di p.",
+        "Se la radice stessa viene cancellata, la nuova radice è il valore restituito: per questo la funzione deve restituirla.",
+        "Costo Θ(n)."
+      ],
+      "procedimento": [
+        "Decidere se la proprietà va valutata sull'albero originale (prima della ricorsione) o su quello già modificato.",
+        "Scrivere il caso None → None.",
+        "Aggiornare i puntatori dei figli con il risultato delle chiamate e restituire il nodo, o il suo sostituto."
+      ],
+      "trappole": [
+        "Chiamare la ricorsione sui figli prima di controllare se p è una foglia: si cancellano anche i nodi che diventano foglie.",
+        "Non riassegnare p.left e p.right con il valore restituito (il padre continua a puntare al nodo cancellato).",
+        "Non restituire la radice (o non gestire la cancellazione della radice).",
+        "Nei nodi semplici, collegare al padre il figlio non ancora sistemato, lasciando nodi semplici nel suo sottoalbero."
+      ],
+      "come_generare_varianti": "Variare cosa si cancella (foglie, foglie con chiave pari, nodi semplici, sottoalberi con radice di chiave x) e chiedere la funzione con la radice restituita. Nella spiegazione: l'albero risultante su un esempio piccolo, verificato in Python (per esempio da 8(4(2, 6), 10(9(-, 7), -)) cancellando le foglie si ottiene 8(4, 10(9, -)); cancellando i nodi semplici si ottiene 8(4(2, 6), 7))."
+    },
+    {
+      "id": "L12-T18",
+      "titolo": "Rappresentazione posizionale (array): quando conviene",
+      "argomento": "Rappresentazione degli alberi",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 12, 'Rappresentazione di un Albero Binario con un Array' (efficiente se l'albero è completo o quasi completo, come negli heap) e 'Limiti della Rappresentazione con Array per Alberi Sbilanciati' (a_k = 2^(k+1) − 2, spazio O(2ⁿ)). Prova di maggio 2026, domanda 10: la notazione posizionale è adatta se l'albero è completo o quasi completo. Richiamo: maggio 2026, domanda 6 (heap = albero binario completo o quasi completo, Lezione 9).",
+      "descrizione": "Si chiede per quali alberi la rappresentazione con array (figli in 2i + 1 e 2i + 2) è adatta, quanto spazio richiede nel caso peggiore, quali sono vantaggi e svantaggi rispetto ai puntatori.",
+      "conoscenze": [
+        "Nessun puntatore: figli e padre si calcolano con formule aritmetiche in O(1).",
+        "Un albero completo o quasi completo con n nodi occupa esattamente le posizioni 0, …, n − 1: nessuno spreco.",
+        "Un albero con soli figli destri mette il k-esimo nodo in posizione 2^(k+1) − 2: con n nodi servono 2ⁿ − 1 celle, spazio O(2ⁿ).",
+        "Spreco esponenziale per tutti gli alberi molto sbilanciati o degeneri.",
+        "'Foglie tutte allo stesso livello' non basta: anche una catena ha l'unica foglia su un solo livello."
+      ],
+      "procedimento": [
+        "Chiedersi se le posizioni occupate dall'albero sono contigue a partire da 0.",
+        "Se l'albero ha cammini lunghi con buchi a sinistra (o a destra), l'array cresce in modo esponenziale con l'altezza."
+      ],
+      "trappole": [
+        "Scegliere 'foglie tutte allo stesso livello' (vale anche per una catena).",
+        "Pensare che l'array sia adatto ad alberi degeneri perché ogni nodo ha un solo figlio.",
+        "Dire che lo spazio è sempre Θ(n) perché ci sono n nodi.",
+        "Confondere la rappresentazione posizionale con il vettore dei padri, che occupa sempre n celle."
+      ],
+      "come_generare_varianti": "Forme: (1) quando è adatta la notazione posizionale (come maggio), con opzioni tra completo o quasi completo, molto sbilanciato, degenere, foglie allo stesso livello, ABR qualunque; (2) quale albero richiede spazio esponenziale; (3) dimensione dell'array per una catena di n nodi di soli figli destri (2ⁿ − 1, O(2ⁿ)); (4) vantaggio principale (niente puntatori, accesso aritmetico). La risposta corretta deve essere una sola: 'completo o quasi completo' non va affiancato a 'heap' come opzione separata."
+    },
+    {
+      "id": "L12-T19",
+      "titolo": "Rappresentazione con array: indici, padre e dimensione minima",
+      "argomento": "Rappresentazione degli alberi",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Rappresentazione di un Albero Binario con un Array' (H = [10, 15, 30, 40, 50, 100]), 'Limiti della Rappresentazione con Array' (posizioni 0, 2, 6, 14, 30) ed Esercizi 2 e 3 dell'ultimo gruppo (array di dimensione minima da un albero; puntatori da un array in O(n)).",
+      "descrizione": "Si chiede la posizione di un nodo nell'array, il padre o i figli di una posizione, la dimensione minima dell'array per un albero dato, oppure si legge un array (con celle vuote) e si chiede la struttura dell'albero.",
+      "conoscenze": [
+        "Indici da 0: figlio sinistro di i in 2i + 1, figlio destro in 2i + 2, padre di i > 0 in (i − 1) // 2.",
+        "Le posizioni vuote si segnano con None; la dimensione minima è (posizione occupata massima) + 1.",
+        "Catena di soli figli destri: posizioni 0, 2, 6, 14, 30, … = 2^(k+1) − 2.",
+        "Catena di soli figli sinistri: posizioni 0, 1, 3, 7, 15, … = 2^k − 1.",
+        "Costruire i puntatori da un array costa O(lunghezza dell'array): ogni cella si collega ai figli con le formule."
+      ],
+      "procedimento": [
+        "Assegnare 0 alla radice e scendere applicando 2i + 1 (sinistra) e 2i + 2 (destra).",
+        "La dimensione minima è il massimo indice usato più uno.",
+        "Per leggere un array: per ogni posizione non vuota, i figli sono in 2i + 1 e 2i + 2."
+      ],
+      "trappole": [
+        "Usare le formule con indici da 1 (2i e 2i + 1) mentre la dispensa usa indici da 0.",
+        "Mettere un figlio destro unico in 2i + 1.",
+        "Scrivere i nodi in ordine per livelli senza lasciare buchi (dimensione n anche per alberi non quasi completi).",
+        "Calcolare il padre con i // 2 invece di (i − 1) // 2."
+      ],
+      "come_generare_varianti": "Alberi di 5–8 nodi non quasi completi (con almeno un buco) oppure un array con None da interpretare. Chiedere: posizione di un nodo, dimensione minima, padre di una posizione, figli di una posizione, quale array rappresenta l'albero. Distrattori: formule con indici da 1, figlio destro messo a sinistra, array compattato senza buchi. Verificare le posizioni con Python."
+    },
+    {
+      "id": "L12-T20",
+      "titolo": "Vettore dei padri: costo delle operazioni",
+      "argomento": "Rappresentazione degli alberi",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Rappresentazione dell'Albero con un Vettore dei Padri' e 'Pregi e Limiti' (padre in O(1); per i figli bisogna scandire tutto il vettore; nessuna distinzione tra figlio sinistro e destro; non adatto alle visite). Prova di luglio 2026, domanda 10: livello di un nodo x con il vettore dei padri in O(h).",
+      "descrizione": "Si chiede il costo di un'operazione su un albero di n nodi e altezza h rappresentato con il vettore dei padri: padre, livello, antenati, figli, foglie, radice, altezza, oppure quale informazione la rappresentazione non contiene.",
+      "conoscenze": [
+        "Padre di x: P[x], O(1).",
+        "Livello di x (o elenco degli antenati): risalire x → P[x] → … fino a −1, al più h passi: O(h).",
+        "Figli di x: scandire tutto il vettore cercando P[i] == x: Θ(n).",
+        "Foglie: un nodo è foglia se non compare come valore in P; con un vettore di marcatori si trovano tutte in O(n).",
+        "Radice: l'indice con P[i] = −1. Scandendo il vettore costa O(n); risalendo da un nodo qualsiasi costa O(h).",
+        "Altezza dell'albero: O(n) con i livelli memorizzati (o calcolati dal basso); risalire da ogni nodo senza memorizzare costa O(n·h).",
+        "Non si distingue figlio sinistro da destro: le visite in ordine non sono definite senza informazioni aggiuntive.",
+        "Primo antenato comune di x e y: si marcano gli antenati di x e si risale da y, O(h)."
+      ],
+      "procedimento": [
+        "Chiedersi se l'operazione va 'verso l'alto' (seguire P: O(1) per passo, al più h passi) o 'verso il basso' (cercare chi ha x come padre: scansione O(n)).",
+        "Esprimere il costo con h quando si risale, con n quando si scandisce."
+      ],
+      "trappole": [
+        "Rispondere O(1) per il livello o per i figli, come se fossero memorizzati.",
+        "Rispondere O(n) per il livello (è vero come limite superiore, ma la risposta attesa è O(h), più precisa).",
+        "Rispondere O(log n), supponendo l'albero bilanciato.",
+        "Pensare che il vettore dei padri indichi se un figlio è sinistro o destro.",
+        "Rispondere O(h) o O(n) per un'operazione che legge un numero costante di celle (padre P[x], nonno P[P[x]]), come se si dovesse risalire fino alla radice o scandire il vettore."
+      ],
+      "come_generare_varianti": "Variare l'operazione (livello, profondità, antenati, figli, numero di figli, foglie, radice, fratelli, antenato comune) e dare sempre n e h nel testo. Opzioni tra O(1), O(log n), O(h), O(n). Quando la risposta è O(h), evitare di mettere O(n) come unica alternativa ragionevole (o chiedere 'la stima più precisa'). Variante concettuale: quale operazione non si può fare / quale informazione manca (sinistro o destro)."
+    },
+    {
+      "id": "L12-T21",
+      "titolo": "Vettore dei padri: leggere l'albero",
+      "argomento": "Rappresentazione degli alberi",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 12, 'Rappresentazione dell'Albero con un Vettore dei Padri' (esempio P = [2, 4, 5, 4, 5, −1, 2]: radice 5, figli di 5 sono 4 e 2, figli di 4 sono 3 e 1, figli di 2 sono 0 e 6).",
+      "descrizione": "Dato un vettore dei padri P, si chiede la radice, i figli di un nodo, le foglie, il livello di un nodo, l'altezza dell'albero, o quale disegno corrisponde a P.",
+      "conoscenze": [
+        "P[i] è l'indice del padre del nodo i; la radice ha P[i] = −1.",
+        "Le foglie sono gli indici che non compaiono come valore in P.",
+        "I figli di x sono gli indici i con P[i] = x.",
+        "Il livello di x è il numero di passi x → P[x] → … per arrivare alla radice.",
+        "L'altezza è il livello massimo.",
+        "P non dice quale figlio è sinistro e quale destro: più disegni che differiscono solo per lo scambio dei figli sono rappresentati dallo stesso P."
+      ],
+      "procedimento": [
+        "Trovare la radice (valore −1).",
+        "Raggruppare gli indici per valore di P: ogni gruppo è l'insieme dei figli di quel nodo.",
+        "Ricostruire i livelli dalla radice in giù; le foglie sono gli indici senza figli."
+      ],
+      "trappole": [
+        "Leggere P al contrario (P[i] come figlio di i).",
+        "Contare tra le foglie la radice perché il suo valore è −1.",
+        "Scambiare indici e valori: prendere come foglie i nodi che compaiono in P (quelli sono i nodi interni).",
+        "Contare l'altezza o il livello in nodi invece che in archi.",
+        "Scartare un disegno corretto perché i figli sono disegnati in ordine diverso."
+      ],
+      "come_generare_varianti": "Vettori di 6–9 elementi con radice non in posizione 0, almeno un nodo con un solo figlio e un ramo più lungo. Chiedere radice, figli di un nodo, foglie, livello di un nodo, altezza, o quale P corrisponde a un disegno. Distrattori: lettura al contrario, radice tra le foglie, nodi interni al posto delle foglie, altezza +1. Verificare con Python."
+    },
+    {
+      "id": "L12-T22",
+      "titolo": "Ricorsione su due alberi: uguali, speculari, stessa forma",
+      "argomento": "Funzioni ricorsive su alberi",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Schema delle funzioni ricorsive su alberi della Dispensa 12 (caso base su None, chiamate sui due figli) applicato a due alberi alla volta. Formato delle domande aperte: maggio 2026 domanda 11 (visita pre-order ricorsiva) e luglio 2026 domanda 8 (3ⁿ ricorsiva).",
+      "descrizione": "Si chiede una funzione ricorsiva che riceve le radici di due alberi binari e li confronta (stesse chiavi e stessa forma, solo stessa forma, uno speculare dell'altro), oppure che restituisce un nuovo albero ricavato dal primo (copia o speculare).",
+      "conoscenze": [
+        "Casi base per due alberi: entrambi None → True; uno solo None → False. Solo dopo si può leggere .key.",
+        "Uguali: chiavi delle radici uguali and sinistro con sinistro and destro con destro.",
+        "Speculari: chiavi uguali and r1.left con r2.right and r1.right con r2.left.",
+        "Stessa forma: come uguali, senza confrontare le chiavi.",
+        "Copia o speculare di un albero: None → None; altrimenti nuovo nodo con la stessa chiave e figli costruiti ricorsivamente (scambiati per lo speculare).",
+        "Tempo O(n) (si visita al più ogni nodo una volta), spazio O(h) per lo stack."
+      ],
+      "procedimento": [
+        "Scrivere il caso 'entrambi vuoti' e il caso 'uno solo vuoto'.",
+        "Confrontare le chiavi delle radici, se richiesto.",
+        "Combinare con and le due chiamate sulle coppie di sottoalberi giuste.",
+        "Controllare su alberi vuoti, un nodo, alberi della stessa forma con una chiave diversa, forme diverse."
+      ],
+      "trappole": [
+        "Gestire solo il caso in cui entrambi sono None e poi leggere r1.key quando uno solo è None (errore).",
+        "Restituire True quando uno solo dei due è None (alberi di forma diversa risultano uguali).",
+        "Per gli speculari confrontare sinistro con sinistro e destro con destro.",
+        "Combinare le chiamate con or invece di and.",
+        "Confrontare solo le chiavi delle radici, o solo la forma, senza esaminare tutta la struttura richiesta."
+      ],
+      "come_generare_varianti": "Variare il compito: alberi uguali; stessa forma (chiavi ignorate); uno speculare dell'altro; albero simmetrico (speculare di sé stesso, con una funzione ausiliaria su due sottoalberi); costruire e restituire lo speculare come nuovo albero; trasformare l'albero nel suo speculare scambiando i figli sul posto; contare le posizioni in cui due alberi hanno entrambi un nodo. Usare NodoA(key) con campi key, left, right, oppure chiave, fsin, fdes nello stile dell'esame. Chiedere la complessità. Verificare la soluzione con uno script su alberi vuoti, un nodo, forme diverse e chiavi diverse."
+    }
+  ]
+}

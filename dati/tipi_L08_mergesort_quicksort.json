@@ -1,0 +1,455 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 8,
+    "titolo": "Il problema dell'ordinamento 2/2: mergesort e quicksort",
+    "file": "PL8.pdf",
+    "contenuti": [
+      "Algoritmi che raggiungono il limite inferiore Ω(n log n) degli ordinamenti per confronti: mergesort e quicksort",
+      "Paradigma divide et impera: dividere, risolvere ricorsivamente, combinare",
+      "Mergesort con slicing (merge_sort(A) e fondi(As, Ad)); esempio di esecuzione su [6, 1, 9, 0, 3, 8, 5, 4]",
+      "Funzione fondi: due indici che scorrono le liste ordinate, poi copia della parte rimasta; costo lineare",
+      "Ricorrenza T(n) = 2T(n/2) + Θ(n), soluzione Θ(n log n) in ogni caso",
+      "Mergesort con indici merge_sort(A, i, j) e fondi(A, i, m, j) con lista d'appoggio B; mergesort non è in loco (memoria extra Θ(n))",
+      "Mergesort iterativo bottom-up: k = 1, 2, 4, …; ogni fase Θ(n); ⌈log n⌉ fasi; totale Θ(n log n)",
+      "Quicksort in loco: Quick_sort(A, primo, ultimo) e Partiziona(A, inizio, fine) con pivot = primo elemento; il pivot finisce nella posizione definitiva",
+      "Costi del quicksort: migliore 2T(n/2) + Θ(n) = Θ(n log n); peggiore T(n−1) + Θ(n) = Θ(n²); medio con pivot casuale Θ(n log n); stack O(log n) in media",
+      "Scelta casuale del pivot (randint e scambio con il primo); ricorrenza del caso medio T(n) = (2/n)·Σ_{q=0}^{n−1} T(q) + Θ(n)",
+      "Dimostrazione per sostituzione del caso medio con l'ipotesi T(n) ≤ c(n+1)·log₂(n+2) e stima della sommatoria"
+    ],
+    "nota": "Prova di maggio, domanda 5 (costo del Merge Sort Θ(n log n)). La prova di luglio, domanda 4 (array quasi ordinato: la risposta è Insertion Sort, Lezione 7) usa Merge Sort e Quick Sort come distrattori. L'Esercizio 1 dello scritto di luglio usa fondi e la struttura del mergesort (fusione di N liste ordinate di K elementi). Il codice della dispensa ha due imprecisioni da non riprodurre nelle varianti: merge_sort(A) con slicing non usa il valore restituito dalle chiamate ricorsive; merge_sort_iterativo chiama fondi(A, l, m, r) con intervalli semiaperti [l, m) e [m, r), mentre fondi(A, i, m, j) della versione con indici usa intervalli chiusi."
+  },
+  "tipi": [
+    {
+      "id": "L08-T01",
+      "titolo": "Divide et impera: dove si fa il lavoro",
+      "argomento": "Divide et impera",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 8, 'Mergesort: Funzionamento Generale' e 'Quicksort: Funzionamento Generale'.",
+      "descrizione": "Domanda sul paradigma divide et impera: le tre fasi (dividere, risolvere ricorsivamente, combinare) e in quale fase mergesort e quicksort svolgono il lavoro lineare di ogni chiamata.",
+      "conoscenze": [
+        "Divide et impera: si divide il problema in sottoproblemi più piccoli dello stesso tipo, li si risolve ricorsivamente, si combinano le soluzioni.",
+        "Mergesort: la divisione è banale (a metà per posizione, m = len(A) // 2); il lavoro Θ(n) è nella combinazione (fondi).",
+        "Quicksort: il lavoro Θ(n) è nella divisione (Partiziona); la combinazione è nulla, perché dopo le due chiamate ricorsive l'array è già ordinato.",
+        "Mergesort divide sempre a metà; quicksort divide in parti la cui dimensione dipende dal pivot.",
+        "Entrambi sono ricorsivi, entrambi ordinano per confronti."
+      ],
+      "procedimento": [
+        "Ricordare la struttura del codice: in merge_sort la chiamata a fondi viene dopo le chiamate ricorsive; in Quick_sort la chiamata a Partiziona viene prima.",
+        "Associare la fase che precede le chiamate alla divisione e quella che le segue alla combinazione."
+      ],
+      "trappole": [
+        "Invertire i ruoli: dire che il quicksort fa il lavoro nella fusione e il mergesort nella partizione.",
+        "Pensare che il quicksort abbia una fase di fusione finale.",
+        "Pensare che il mergesort scelga un pivot o divida per valore invece che per posizione.",
+        "Confondere divide et impera con un algoritmo iterativo o con la ricerca binaria (che ha un solo sottoproblema)."
+      ],
+      "come_generare_varianti": "Chiedere: (a) in quale fase ciascun algoritmo fa il lavoro Θ(n); (b) quale affermazione sul paradigma è vera; (c) quale algoritmo divide per posizione e quale per valore; (d) quale delle due fasi è vuota nel quicksort. Distrattori: ruoli invertiti, 'entrambi nella fusione', 'entrambi nella divisione', una frase che attribuisce al mergesort la scelta di un pivot. Una sola opzione deve essere coerente con entrambi gli algoritmi."
+    },
+    {
+      "id": "L08-T02",
+      "titolo": "Costo del mergesort",
+      "argomento": "Mergesort: costo",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 8, 'Mergesort: Analisi della Complessità'. Prova di maggio, domanda 5 ('Il costo computazionale del Merge Sort è: Θ(n²), Ω(n²), Θ(n log n), O(n)' → Θ(n log n)).",
+      "descrizione": "Si chiede il costo del mergesort, in generale o in un caso specifico (input già ordinato, ordinato al contrario, caso migliore, caso peggiore). La risposta è sempre Θ(n log n).",
+      "conoscenze": [
+        "Il mergesort costa Θ(n log n) in ogni caso: migliore, peggiore e medio coincidono.",
+        "Il motivo: la divisione è sempre a metà, indipendentemente dai valori, e fondi costa sempre Θ(n) perché copia tutti gli elementi in B.",
+        "Anche su un array già ordinato il mergesort fa tutte le divisioni e tutte le fusioni.",
+        "Θ(n log n) è ottimo per gli ordinamenti per confronti (limite inferiore Ω(n log n), Lezione 7)."
+      ],
+      "procedimento": [
+        "Ricordare che la struttura delle chiamate del mergesort non dipende dai valori.",
+        "Rispondere Θ(n log n); tra le opzioni scartare quelle che non sono vere (per esempio O(n), Ω(n²))."
+      ],
+      "trappole": [
+        "Rispondere Θ(n) su input già ordinato, confondendo con il caso migliore di insertion sort o bubble sort.",
+        "Rispondere Θ(n²) nel caso peggiore, confondendo con il quicksort.",
+        "Scegliere un'opzione O o Ω falsa: Ω(n²) è falsa, O(n) è falsa; O(n²) sarebbe vera ma non stretta (non usarla come distrattore se c'è anche Θ(n log n), oppure chiedere esplicitamente la stima stretta)."
+      ],
+      "come_generare_varianti": "Variare la richiesta: costo in generale, nel caso migliore, nel caso peggiore, su input ordinato, su input decrescente, su input con tutti gli elementi uguali. Distrattori: Θ(n) (caso migliore degli ordinamenti elementari), Θ(n²) (quicksort al caso peggiore), Θ(log n), Ω(n²) o O(n). Se un'opzione è O(n²) o Ω(n), la domanda deve chiedere la stima stretta (Θ), altrimenti ci sarebbero due risposte vere."
+    },
+    {
+      "id": "L08-T03",
+      "titolo": "Ricorrenza del mergesort e sue modifiche",
+      "argomento": "Mergesort: costo",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 8, 'Mergesort: Analisi della Complessità' (T(n) = 2T(n/2) + Θ(n) per n > 1, Θ(1) per n ≤ 1). Le tecniche di soluzione sono delle Lezioni 4 e 5.",
+      "descrizione": "Si chiede quale ricorrenza descrive il mergesort, oppure la ricorrenza (e la soluzione) di una versione modificata: divisione in tre parti, divisione sbilanciata, fusione più costosa o più economica.",
+      "conoscenze": [
+        "Mergesort: due chiamate su metà (2T(n/2)) più fusione lineare (Θ(n)); caso base Θ(1) per n ≤ 1. Soluzione Θ(n log n).",
+        "Il numero di chiamate si somma: due chiamate danno 2T(n/2), non T(n/2).",
+        "Lo slicing A[:m] e A[m:] della prima versione costa Θ(n) per chiamata: non cambia la ricorrenza, il termine è già Θ(n).",
+        "Dividere in a parti uguali e fondere in tempo lineare: aT(n/a) + Θ(n) = Θ(n log n).",
+        "Divisione sbilanciata in proporzione costante (n/4 e 3n/4) con fusione lineare: ancora Θ(n log n). Divisione in 1 e n−1: T(n−1) + Θ(n) = Θ(n²).",
+        "Fusione Θ(n²) al posto di fondi: 2T(n/2) + Θ(n²) = Θ(n²)."
+      ],
+      "procedimento": [
+        "Contare le chiamate ricorsive e la dimensione di ciascuna.",
+        "Stimare il costo del lavoro non ricorsivo (divisione + fusione) in funzione di n.",
+        "Scrivere T(n) = (somma delle chiamate) + (lavoro non ricorsivo) e, se richiesto, risolverla (albero di ricorsione o teorema principale)."
+      ],
+      "trappole": [
+        "Scrivere T(n/2) invece di 2T(n/2), cioè fare la media delle due chiamate invece della somma (porta a Θ(n)).",
+        "Scrivere 2T(n/2) + Θ(1), dimenticando che fondi è lineare (porta a Θ(n)).",
+        "Confondere con la ricorrenza della ricerca binaria T(n/2) + Θ(1) o con quella del quicksort al caso peggiore T(n−1) + Θ(n).",
+        "Pensare che una divisione 1/4–3/4 porti a Θ(n²)."
+      ],
+      "come_generare_varianti": "Due famiglie. (1) Riconoscere la ricorrenza di merge_sort (versione con slicing o con indici): opzioni 2T(n/2) + Θ(n), T(n/2) + Θ(n), 2T(n/2) + Θ(1), T(n−1) + Θ(n). (2) Modifica descritta a parole (tre parti uguali, divisione n/4 e 3n/4, fusione sostituita da un algoritmo quadratico, chiamata ricorsiva su una sola metà) e richiesta della soluzione. Evitare opzioni che differiscono solo per la base del logaritmo (Θ(n log₃ n) è la stessa classe di Θ(n log n)). Per le soluzioni usare ricorrenze risolvibili con gli strumenti delle Lezioni 4 e 5."
+    },
+    {
+      "id": "L08-T04",
+      "titolo": "Costo di fondi e di fusioni ripetute",
+      "argomento": "Mergesort: fusione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 8, 'Mergesort: Codice della Fusione con intervalli' e 'Mergesort: Analisi della Complessità' (fusione Θ(n)). Scritto di luglio, Esercizio 1 (N liste ordinate di K elementi: fusione in sequenza Θ(KN²), fusione a coppie come nel mergesort Θ(KN log N)).",
+      "descrizione": "Si chiede il costo di fondi su due liste ordinate di lunghezze date, o il costo totale di più fusioni (in sequenza o a coppie, ad albero).",
+      "conoscenze": [
+        "fondi su liste di lunghezza n e m costa Θ(n + m): ogni elemento viene aggiunto a B una sola volta, e ogni iterazione dei tre while fa O(1) lavoro.",
+        "Il costo non dipende dai valori: anche se un solo confronto basta a esaurire una lista, gli altri elementi vanno comunque copiati.",
+        "Numero di confronti: almeno min(n, m), al più n + m − 1.",
+        "Fondere N liste di K elementi in sequenza (A = fondi(A, L_i)): 2K + 3K + … + NK = Θ(KN²).",
+        "Fonderle a coppie, livello per livello, come nel mergesort: log N livelli, ciascuno Θ(KN): Θ(KN log N)."
+      ],
+      "procedimento": [
+        "Per una fusione: sommare le lunghezze delle due liste.",
+        "Per più fusioni: scrivere la lunghezza delle liste a ogni fusione e sommare (somma aritmetica se una lista cresce sempre, somma per livelli se si fonde a coppie)."
+      ],
+      "trappole": [
+        "Dire Θ(1) o Θ(min(n, m)) quando una lista si esaurisce subito, dimenticando la copia degli elementi rimasti.",
+        "Dire Θ(n·m) pensando a un confronto di tutti contro tutti.",
+        "Moltiplicare il numero di fusioni per la dimensione finale nel caso a coppie (N·KN) o dimenticare che in sequenza la lista accumulata cresce (rispondere Θ(KN)).",
+        "Confondere fusione in sequenza (Θ(KN²)) e fusione a coppie (Θ(KN log N))."
+      ],
+      "come_generare_varianti": "Variare: lunghezze delle due liste (n e n, n e 1, n e √n, n e log n), oppure numero e lunghezza delle liste da fondere e la strategia (in sequenza o a coppie). Distrattori: Θ(1) o Θ(lunghezza minore) (dimentica la copia), Θ(n·m) (tutti contro tutti), l'altra strategia di fusione multipla, Θ(KN) (dimentica che la lista accumulata cresce)."
+    },
+    {
+      "id": "L08-T05",
+      "titolo": "Traccia della fusione di due liste ordinate",
+      "argomento": "Mergesort: fusione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 8, 'Mergesort: Codice della Fusione con intervalli' (funzione fondi(As, Ad)) e 'Mergesort: Esempio di Esecuzione'.",
+      "descrizione": "Date due liste ordinate, si chiede di simulare fondi: numero di confronti eseguiti nel primo while, contenuto di B dopo k passi, valori di i e j a un certo punto, o quali elementi vengono copiati dai while finali.",
+      "conoscenze": [
+        "A ogni iterazione del primo while si confronta As[i] con Ad[j]: se As[i] <= Ad[j] si aggiunge As[i] e i += 1, altrimenti Ad[j] e j += 1.",
+        "Il primo while termina quando una delle due liste è esaurita; i due while successivi copiano i rimanenti senza confronti.",
+        "Con <= a parità di valore si prende prima l'elemento di As (fusione stabile).",
+        "Confronti nel primo while = numero di elementi inseriti in B prima che una lista si esaurisca."
+      ],
+      "procedimento": [
+        "Simulare passo per passo tenendo i, j e B.",
+        "Fermarsi quando i = len(As) o j = len(Ad): il numero di iterazioni fatte è il numero di confronti.",
+        "Aggiungere in coda i rimanenti dell'altra lista."
+      ],
+      "trappole": [
+        "Contare n + m confronti, includendo le copie finali.",
+        "Dare sempre n + m − 1 (il massimo) senza simulare.",
+        "In caso di valori uguali prendere l'elemento di Ad (invertire il <=).",
+        "Pensare che i e j avanzino insieme a ogni iterazione."
+      ],
+      "come_generare_varianti": "Scegliere As e Ad ordinate di 3–6 elementi (lunghezze anche diverse), con valori interi piccoli, in modo che le due liste si alternino e che una si esaurisca qualche passo prima dell'altra. Chiedere: numero di confronti, B dopo k inserimenti, valori di i e j quando una lista finisce, elementi copiati dai while finali. Verificare con Python. Distrattori: n + m, n + m − 1, min(n, m) e il valore ottenuto sbagliando un passo (per esempio con valori uguali presi da Ad)."
+    },
+    {
+      "id": "L08-T06",
+      "titolo": "Traccia del mergesort ricorsivo",
+      "argomento": "Mergesort: esecuzione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 8, 'Mergesort: Esempio di Esecuzione' (figura su [6, 1, 9, 0, 3, 8, 5, 4]) e 'Mergesort: Implementazione con indici' (merge_sort(A, i, j), m = (i + j) // 2).",
+      "descrizione": "Dato un array piccolo, si chiede lo stato di A dopo la k-esima chiamata a fondi del merge_sort ricorsivo con indici, oppure quali intervalli vengono fusi e in che ordine, oppure quante chiamate a fondi si fanno in tutto.",
+      "conoscenze": [
+        "m = (i + j) // 2: la metà sinistra A[i..m] ha un elemento in più quando la lunghezza è dispari.",
+        "L'ordine è in profondità: prima si ordina completamente la metà sinistra (con tutte le sue fusioni), poi la destra, poi si fondono le due.",
+        "Le fusioni avvengono quindi in post-ordine sull'albero delle chiamate, non livello per livello.",
+        "Su n elementi le chiamate a fondi sono n − 1 (una per ogni nodo interno dell'albero di ricorsione)."
+      ],
+      "procedimento": [
+        "Disegnare l'albero degli intervalli [i..j] usando m = (i + j) // 2.",
+        "Elencare le fusioni in post-ordine (sinistra, destra, poi il nodo).",
+        "Applicare le fusioni nell'ordine fino a quella richiesta e scrivere A."
+      ],
+      "trappole": [
+        "Fondere livello per livello (prima tutte le coppie, poi le quaterne): è l'ordine del mergesort iterativo bottom-up, non di quello ricorsivo.",
+        "Dividere con la metà più grande a destra (m = (i + j + 1) // 2) quando la lunghezza è dispari.",
+        "Contare male le fusioni (fermarsi una prima o una dopo).",
+        "Pensare che la divisione sposti gli elementi."
+      ],
+      "come_generare_varianti": "Array di 6–8 interi distinti; chiedere A dopo la k-esima fusione (k tra 2 e 5), l'intervallo della k-esima fusione, o il numero totale di chiamate a fondi. Verificare eseguendo merge_sort con indici della dispensa in Python. Distrattori: stato dopo k fusioni fatte livello per livello (bottom-up), stato dopo k − 1 e k + 1 fusioni, stato con la divisione dispari sbagliata."
+    },
+    {
+      "id": "L08-T07",
+      "titolo": "Mergesort iterativo bottom-up",
+      "argomento": "Mergesort: esecuzione",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 2,
+      "fonte": "Dispensa 8, 'Merge Sort iterativo (bottom-up) 1/2' e '2/2' (k = 1, 2, 4, …; fase Θ(n); ⌈log n⌉ iterazioni).",
+      "descrizione": "Si chiede il numero di fasi del mergesort iterativo, il numero di fusioni in una fase, il costo di una fase o del totale, oppure il contenuto dell'array dopo una fase.",
+      "conoscenze": [
+        "Si parte da sottosequenze di lunghezza k = 1 e si raddoppia: k = 1, 2, 4, 8, … finché k < n.",
+        "Nella fase con lunghezza k si fondono coppie contigue A[i:i+k] e A[i+k:i+2k], con i = 0, 2k, 4k, …: circa n/(2k) fusioni su liste di al più 2k elementi; costo della fase Θ(n).",
+        "Se l'ultima sottosequenza non ha una compagna (i + k ≥ n) non viene fusa; se la compagna è solo più corta di k, la fusione si fa.",
+        "Numero di fasi ⌈log₂ n⌉ (per esempio 3 per n = 7 o 8, 4 per n = 9).",
+        "Costo totale Θ(n log n), come la versione ricorsiva; nessuna ricorsione."
+      ],
+      "procedimento": [
+        "Elencare i valori di k minori di n.",
+        "Per ogni fase, dividere l'array in blocchi di 2k e fondere le due metà di ciascun blocco (l'ultimo blocco può essere incompleto).",
+        "Per il numero di fasi calcolare ⌈log₂ n⌉."
+      ],
+      "trappole": [
+        "Contare log₂ n fasi senza arrotondare per eccesso, o contare anche k = n.",
+        "Pensare che ogni fase costi Θ(n log n) o Θ(k) invece di Θ(n).",
+        "Non fondere l'ultimo blocco quando la seconda metà è più corta di k (si fonde: m < r).",
+        "Confondere lo stato dopo una fase con quello della versione ricorsiva."
+      ],
+      "come_generare_varianti": "Array di 6–9 interi distinti; chiedere: numero di fasi per un n dato (5, 7, 9, 16, 17, 100, 1000), numero di fusioni nella fase k, contenuto dopo la fase k = 1 o k = 2, costo totale. Verificare in Python (fusione di A[l:m] e A[m:r] con l = i, m = min(i + k, n), r = min(i + 2k, n)). Distrattori: stato dopo una fase in meno, array già ordinato, stato con l'ultimo blocco corto non fuso, ⌊log₂ n⌋ al posto di ⌈log₂ n⌉."
+    },
+    {
+      "id": "L08-T08",
+      "titolo": "Traccia di Partiziona",
+      "argomento": "Quicksort: partizione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 8, 'Funzione di Partizione' (Partiziona(A, inizio, fine) con pivot = A[inizio], indici i e j, scambio finale A[inizio], A[j]) e 'Quicksort in-place'.",
+      "descrizione": "Dato un array piccolo, si chiede il contenuto dell'array dopo una chiamata a Partiziona della dispensa e/o il valore restituito, oppure lo stato dopo le prime chiamate di Quick_sort.",
+      "conoscenze": [
+        "pivot = A[inizio]; i parte da inizio + 1, j da fine.",
+        "A ogni iterazione si fa una sola delle tre azioni: se A[i] < pivot, i += 1; altrimenti, se A[j] >= pivot, j −= 1; altrimenti si scambiano A[i] e A[j] e si muovono entrambi.",
+        "Il ciclo termina quando i > j; poi si scambia A[inizio] con A[j] e si restituisce j.",
+        "L'ordine relativo degli elementi non è conservato: gli scambi portano elementi da destra a sinistra.",
+        "Dopo la chiamata, a sinistra del pivot ci sono solo elementi minori, a destra solo maggiori o uguali; le due parti non sono ordinate."
+      ],
+      "procedimento": [
+        "Scrivere l'array con gli indici, segnare pivot, i e j.",
+        "Applicare il ciclo una iterazione alla volta rispettando l'ordine dei test (prima A[i] < pivot, poi A[j] >= pivot).",
+        "Alla fine scambiare A[inizio] con A[j] e scrivere il risultato."
+      ],
+      "trappole": [
+        "Dimenticare lo scambio finale del pivot (il pivot resta in posizione inizio).",
+        "Conservare l'ordine originale degli elementi in ciascuna parte, come in una partizione stabile.",
+        "Ordinare le due parti, come se Partiziona fosse l'intero quicksort.",
+        "Scambiare il pivot con A[i] invece che con A[j], o restituire i.",
+        "Muovere i e j insieme anche quando non c'è scambio."
+      ],
+      "come_generare_varianti": "Array di 6–9 interi distinti con il primo elemento di valore intermedio (tra il terzo e il settimo più piccolo), in modo che servano almeno due scambi. Chiedere il contenuto dopo Partiziona(A, 0, n−1), il valore restituito, o lo stato dopo la seconda chiamata a Partiziona dentro Quick_sort. Eseguire esattamente il codice della dispensa in Python. Distrattori: risultato senza lo scambio finale, partizione stabile (stessi elementi a sinistra e a destra ma in ordine originale), array ordinato, risultato dello scambio con A[i]."
+    },
+    {
+      "id": "L08-T09",
+      "titolo": "Posizione finale del pivot e correttezza del quicksort",
+      "argomento": "Quicksort: partizione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 8, 'Quicksort: Funzionamento Generale' ('il pivot viene sempre posizionato nella sua posizione definitiva'), 'Quicksort in-place' e 'Funzione di Partizione' (restituisce la posizione finale del pivot).",
+      "descrizione": "Si chiede in quale indice finisce il pivot dopo Partiziona (senza simulare tutto), quale proprietà vale dopo la partizione, o perché il quicksort è corretto.",
+      "conoscenze": [
+        "Dopo Partiziona(A, inizio, fine) il pivot è in posizione inizio + (numero di elementi di A[inizio+1..fine] minori del pivot).",
+        "Questa è la sua posizione definitiva: le chiamate successive lavorano su A[inizio..medio−1] e A[medio+1..fine] e non lo spostano più.",
+        "Elementi fuori da A[inizio..fine] non vengono toccati.",
+        "Dopo la partizione: A[inizio..medio−1] < pivot ≤ A[medio+1..fine]; le due parti non sono ordinate.",
+        "Correttezza: per induzione, le due parti vengono ordinate dalle chiamate ricorsive; poiché ogni elemento a sinistra è minore di ogni elemento a destra, l'intero intervallo risulta ordinato senza fusione."
+      ],
+      "procedimento": [
+        "Contare gli elementi dell'intervallo, escluso il pivot, strettamente minori del pivot.",
+        "Sommare l'indice inizio.",
+        "Per domande sulle proprietà, ricordare cosa garantisce Partiziona e cosa no."
+      ],
+      "trappole": [
+        "Dimenticare di sommare inizio quando l'intervallo non parte da 0.",
+        "Contare gli elementi minori in tutto l'array invece che nell'intervallo.",
+        "Contare anche gli elementi uguali al pivot (nella dispensa gli uguali vanno a destra) o sbagliare di uno.",
+        "Credere che dopo Partiziona la parte sinistra sia ordinata.",
+        "Credere che serva una fase di fusione per la correttezza."
+      ],
+      "come_generare_varianti": "Array di 8–10 interi distinti e una chiamata Partiziona(A, inizio, fine) con inizio > 0 in metà delle varianti, in modo che il conteggio nell'intervallo e quello nell'intero array diano indici diversi. Chiedere l'indice restituito, oppure quale affermazione vale dopo la chiamata, oppure perché il quicksort è corretto. Verificare con Python. Distrattori: indice senza inizio, indice calcolato su tutto l'array, indice +1 o −1, affermazioni 'la parte sinistra è ordinata' o 'il pivot è in A[inizio]'."
+    },
+    {
+      "id": "L08-T10",
+      "titolo": "Costi e ricorrenze del quicksort nei tre casi",
+      "argomento": "Quicksort: costo",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 8, 'Quicksort: Analisi della Complessità' (migliore 2T(n/2) + Θ(n) ⇒ Θ(n log n); peggiore T(n−1) + Θ(n) ⇒ Θ(n²); medio con pivot casuale ⇒ Θ(n log n)).",
+      "descrizione": "Si chiede il costo del quicksort nel caso migliore, peggiore o medio, oppure quale ricorrenza descrive uno di questi casi, oppure quale affermazione O/Ω/Θ è corretta per il quicksort.",
+      "conoscenze": [
+        "Partiziona costa Θ(n) sull'intervallo di n elementi (i e j si avvicinano di almeno 1 a ogni iterazione).",
+        "Caso migliore: partizioni bilanciate, T(n) = 2T(n/2) + Θ(n) = Θ(n log n).",
+        "Caso peggiore: una parte vuota e l'altra di n − 1 elementi, T(n) = T(n − 1) + Θ(n) = Θ(n²).",
+        "Caso medio con pivot casuale: Θ(n log n).",
+        "Il costo del quicksort in generale si scrive O(n²) e Ω(n log n); Θ(n²) vale solo per il caso peggiore."
+      ],
+      "procedimento": [
+        "Individuare il caso richiesto.",
+        "Associare la forma delle partizioni alla ricorrenza e la ricorrenza alla soluzione."
+      ],
+      "trappole": [
+        "Rispondere Θ(n log n) per il caso peggiore (il costo 'ottimista').",
+        "Scrivere il caso peggiore come 2T(n − 1) + Θ(n) (due chiamate di dimensione n − 1, costo esponenziale) invece di T(n − 1) + T(0) + Θ(n).",
+        "Scrivere T(n − 1) + Θ(1) dimenticando che la partizione è lineare (porta a Θ(n)).",
+        "Dire che il quicksort è Θ(n²) senza specificare il caso, o Θ(n log n) in ogni caso come il mergesort.",
+        "Scambiare le ricorrenze dei due casi: scrivere T(n − 1) + Θ(n) per il caso migliore o 2T(n/2) + Θ(n) per il caso peggiore."
+      ],
+      "come_generare_varianti": "Chiedere una coppia (migliore, peggiore), una sola ricorrenza, il costo medio, o quale affermazione è vera tra 'O(n²)', 'Θ(n log n) in ogni caso', 'Θ(n²) in ogni caso', 'Ω(n²)'. Distrattori dalle trappole: ricorrenze con Θ(1) al posto di Θ(n), 2T(n − 1), T(n/2) al posto di 2T(n/2), costi del mergesort attribuiti al quicksort."
+    },
+    {
+      "id": "L08-T11",
+      "titolo": "Forma delle partizioni e input del caso peggiore",
+      "argomento": "Quicksort: costo",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 8, 'Quicksort: Analisi della Complessità' (partizione sbilanciata T(n−1) + Θ(n)) e 'Funzione di Partizione' (pivot = primo elemento, gli uguali vanno a destra). Prova di luglio, domanda 4 (array quasi ordinato: Quick Sort è un distrattore; la risposta Insertion Sort è della Lezione 7).",
+      "descrizione": "Si chiede il costo del quicksort della dispensa (pivot = primo elemento) su un input specifico (ordinato, decrescente, tutti uguali, quasi ordinato, casuale) o con una data forma delle partizioni (proporzione costante, parte di dimensione costante).",
+      "conoscenze": [
+        "Con pivot = primo elemento, un array ordinato in senso crescente dà sempre il pivot minimo: parte sinistra vuota, destra di n − 1 elementi, Θ(n²).",
+        "Array decrescente: il primo pivot è il massimo e finisce in fondo; la parte rimasta ha il minimo in testa; si alternano pivot estremi e il costo è Θ(n²).",
+        "Tutti gli elementi uguali: con la Partiziona della dispensa (A[j] >= pivot fa scendere j fino a inizio) il pivot resta in testa e la destra ha n − 1 elementi: Θ(n²), anche con pivot casuale.",
+        "Array quasi ordinato: partizioni quasi sempre sbilanciate, costo Θ(n²) nel caso peggiore.",
+        "Partizioni in proporzione costante (per esempio 1/10 e 9/10) a ogni livello: profondità Θ(log n), costo Θ(n log n). Una parte di dimensione costante (0, 1, 5 elementi) a ogni livello: Θ(n²)."
+      ],
+      "procedimento": [
+        "Simulare la prima partizione sull'input dato e vedere le dimensioni delle due parti.",
+        "Controllare se lo stesso sbilanciamento si ripete nelle chiamate successive.",
+        "Proporzione costante → Θ(n log n); differenza costante (n − 1, n − c) → Θ(n²)."
+      ],
+      "trappole": [
+        "Rispondere Θ(n log n) su input già ordinato, ragionando come se il quicksort beneficiasse dell'ordine.",
+        "Rispondere Θ(n) su input ordinato, confondendo con insertion sort.",
+        "Pensare che solo l'input crescente sia un caso peggiore e non quello decrescente o con elementi tutti uguali.",
+        "Pensare che una divisione 1/10–9/10 dia Θ(n²) perché è sbilanciata.",
+        "Pensare che basti non avere una parte vuota: una parte di dimensione costante (per esempio 10 elementi) a ogni livello darebbe ancora Θ(n log n), mentre dà Θ(n²)."
+      ],
+      "come_generare_varianti": "Variare l'input (crescente, decrescente, tutti uguali, quasi ordinato con un numero costante di elementi fuori posto, ordinato tranne il primo elemento che è il massimo) o la forma delle partizioni descritta a parole (1/3–2/3, 1/100–99/100, 1 e n − 2, 10 e n − 11). Precisare sempre 'pivot = primo elemento' o 'Partiziona della dispensa'. Distrattori: Θ(n log n), Θ(n), Θ(n²), Θ(log n), e affermazioni come 'solo l'input crescente è peggiore'."
+    },
+    {
+      "id": "L08-T12",
+      "titolo": "Pivot casuale e ricorrenza del caso medio",
+      "argomento": "Quicksort: caso medio",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 8, 'Scelta casuale del Pivot' (k = random.randint(i, j), scambio con A[i]) e 'Ricorrenza al caso medio' (T(n) = (1/n)·Σ_{k=0}^{n−1} [T(k) + T(n−1−k)] + Θ(n) = (2/n)·Σ_{q=0}^{n−1} T(q) + Θ(n) = O(n log n)).",
+      "descrizione": "Si chiede come si sceglie il pivot a caso, con quale probabilità ogni elemento diventa pivot, quale ricorrenza descrive il tempo atteso, o la sua soluzione.",
+      "conoscenze": [
+        "Per scegliere un pivot uniforme in A[i..j] basta scambiare A[i] con A[k], k = random.randint(i, j), e poi usare A[i] come pivot.",
+        "Ipotesi: elementi distinti; ogni elemento è il pivot con probabilità 1/n.",
+        "Se il pivot è il k-esimo più piccolo (0 ≤ k ≤ n − 1), le parti hanno k e n − 1 − k elementi.",
+        "Tempo atteso: media sulle n scelte del pivot della somma delle due chiamate: T(n) = (1/n)·Σ_{k=0}^{n−1} [T(k) + T(n − 1 − k)] + Θ(n).",
+        "Ogni T(q) compare due volte nella somma: T(n) = (2/n)·Σ_{q=0}^{n−1} T(q) + Θ(n).",
+        "Soluzione: O(n log n) (quindi Θ(n log n)). La casualità riduce la probabilità di partizioni sbilanciate ma non elimina il caso peggiore Θ(n²)."
+      ],
+      "procedimento": [
+        "Scrivere il costo per un pivot fissato: T(k) + T(n − 1 − k) + Θ(n).",
+        "Fare la media sulle n posizioni possibili del pivot (fattore 1/n).",
+        "Raccogliere i termini uguali: fattore 2/n."
+      ],
+      "trappole": [
+        "Dimenticare il fattore 1/n: si somma il costo di tutte le scelte possibili invece di farne la media.",
+        "Fare la media delle due chiamate dentro la stessa scelta ((T(k) + T(n−1−k))/2): le due chiamate vanno sommate, la media è solo sulle scelte del pivot.",
+        "Scrivere (1/n)·Σ T(q) dimenticando che ogni T(q) compare due volte.",
+        "Pensare che con pivot casuale il costo sia Θ(n log n) anche nel caso peggiore."
+      ],
+      "come_generare_varianti": "Chiedere: (a) la ricorrenza del caso medio in una delle due forme; (b) la probabilità che un dato elemento sia il pivot; (c) le dimensioni delle parti se il pivot è il k-esimo più piccolo; (d) a cosa serve lo scambio di A[i] con A[k]; (e) la soluzione. Distrattori: ricorrenza senza 1/n, con 1/n al posto di 2/n, con la media delle due chiamate, ricorrenza del caso peggiore; probabilità 1/2 o 1/log n; soluzione Θ(n²) o Θ(n)."
+    },
+    {
+      "id": "L08-T13",
+      "titolo": "Idea della dimostrazione del caso medio per sostituzione",
+      "argomento": "Quicksort: caso medio",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 8, 'Metodo di sostituzione 1/3', '2/3' e 'Stima della sommatoria' (ipotesi T(n) ≤ c(n+1)·log₂(n+2); casi base con c ≥ a; termine −cn/4 + bn ≤ 0 con c ≥ 4b; c = 4·max{a, b}). Il metodo di sostituzione in generale è della Lezione 5.",
+      "descrizione": "Domanda concettuale sulla dimostrazione che il caso medio è O(n log n): perché si usa l'ipotesi c(n+1)·log₂(n+2), che ruolo hanno le costanti, quale parte della stima assorbe il termine bn. Non si chiedono i passaggi algebrici.",
+      "conoscenze": [
+        "Si riscrive la ricorrenza come T(n) = a per n ≤ 1 e T(n) = (2/n)·Σ_{q=0}^{n−1} T(q) + bn per n ≥ 2.",
+        "Si ipotizza T(n) ≤ c(n+1)·log₂(n+2): con c·n·log₂ n il caso base fallirebbe, perché per n = 1 (e n = 0) vale 0 < a.",
+        "Casi base n = 0 e n = 1: bastano c ≥ a (log₂ 2 = 1, log₂ 3 > 1).",
+        "La stima della somma produce un termine negativo −cn/4 che assorbe +bn se c ≥ 4b.",
+        "Con c = 4·max{a, b} valgono sia i casi base sia il passo induttivo: T(n) = O(n log n).",
+        "(n+1)·log₂(n+2) è Θ(n log n): l'ipotesi modificata non cambia la classe."
+      ],
+      "procedimento": [
+        "Individuare a quale parte della dimostrazione si riferisce la domanda (ipotesi, casi base, passo induttivo, scelta di c).",
+        "Collegarla alla motivazione: il caso base per la forma dell'ipotesi, il termine −cn/4 per la condizione c ≥ 4b."
+      ],
+      "trappole": [
+        "Pensare che +1 e +2 servano a cambiare la classe del limite (per esempio a ottenere Θ(n log² n)).",
+        "Pensare che c ≥ 4b serva ai casi base (servono c ≥ a).",
+        "Pensare che la dimostrazione dia un limite inferiore: per sostituzione qui si dimostra solo O(n log n).",
+        "Confondere con la dimostrazione del caso peggiore."
+      ],
+      "come_generare_varianti": "Chiedere una sola idea per variante: perché c(n+1)·log₂(n+2) invece di c·n·log₂ n; quale condizione su c serve ai casi base; quale al passo induttivo; quale valore di c chiude la dimostrazione; a quale classe appartiene (n+1)·log₂(n+2). Distrattori dalle trappole. Non chiedere calcoli sulla sommatoria."
+    },
+    {
+      "id": "L08-T14",
+      "titolo": "Spazio aggiuntivo e ordinamento in loco",
+      "argomento": "Spazio e in loco",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 8, 'Mergesort: Implementazione con Intervalli' e 'Considerazioni sull'Efficienza' (fondi richiede comunque un vettore temporaneo; mergesort non è in-place), 'Quicksort in-place' e 'Quicksort: Analisi della Complessità' (O(log n) spazio di stack ricorsivo). Lo spazio dello stack in generale è della Lezione 3.",
+      "descrizione": "Si chiede quanta memoria aggiuntiva usano mergesort e quicksort, quale dei due è in loco, o quanto spazio occupa lo stack della ricorsione.",
+      "conoscenze": [
+        "In loco: l'ordinamento avviene nella lista stessa senza strutture ausiliarie proporzionali a n.",
+        "Mergesort non è in loco: anche nella versione con indici fondi usa la lista d'appoggio B, fino a n elementi: Θ(n) memoria extra. Lo stack ha profondità Θ(log n).",
+        "La versione con slicing crea anche le sottoliste As e Ad a ogni chiamata (copie Θ(n) per livello); la versione con indici evita le copie ma non B.",
+        "Quicksort con Partiziona è in loco: solo scambi dentro A.",
+        "Lo spazio del quicksort è quello dello stack: O(log n) in media (profondità logaritmica con partizioni bilanciate); nel caso peggiore la profondità arriva a n − 1, quindi Θ(n)."
+      ],
+      "procedimento": [
+        "Chiedersi se l'algoritmo crea liste ausiliarie proporzionali a n.",
+        "Per lo stack, stimare la profondità massima dell'albero delle chiamate nel caso richiesto."
+      ],
+      "trappole": [
+        "Pensare che il mergesort con indici sia in loco perché non fa slicing.",
+        "Dire che il quicksort usa Θ(1) spazio dimenticando lo stack.",
+        "Dire che il quicksort usa Θ(n) spazio come il mergesort, o O(log n) anche nel caso peggiore.",
+        "Confondere memoria extra e tempo (rispondere Θ(n log n))."
+      ],
+      "come_generare_varianti": "Chiedere: quale algoritmo è in loco; memoria extra del mergesort (versione con slicing o con indici); spazio dello stack del quicksort in media o nel caso peggiore; quale affermazione è vera tra quattro che mescolano mergesort e quicksort. Distrattori dalle trappole; una sola affermazione deve essere vera."
+    },
+    {
+      "id": "L08-T15",
+      "titolo": "Confronto tra mergesort e quicksort",
+      "argomento": "Confronto tra algoritmi",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 8, 'Ordinamento in O(n log n)', 'Considerazioni sull'Efficienza', 'Quicksort: Analisi della Complessità' (conclusione: molto efficiente in pratica, in loco). Prova di luglio, domanda 4 (scelta dell'algoritmo su un array quasi ordinato; la risposta Insertion Sort è della Lezione 7). Limite inferiore Ω(n log n): Lezione 7.",
+      "descrizione": "Si chiede quale algoritmo scegliere in uno scenario (garanzia sul caso peggiore, memoria scarsa, input già ordinato) o quale affermazione di confronto tra mergesort e quicksort è vera.",
+      "conoscenze": [
+        "Mergesort: Θ(n log n) garantito in ogni caso; memoria extra Θ(n); non in loco.",
+        "Quicksort: Θ(n log n) nel caso migliore e medio, Θ(n²) nel caso peggiore; in loco con stack O(log n) in media; molto efficiente in pratica.",
+        "Con pivot = primo elemento il quicksort è lento proprio su input ordinati o quasi ordinati; il mergesort no.",
+        "Il pivot casuale rende improbabile il caso peggiore ma non dà una garanzia.",
+        "Entrambi sono ordinamenti per confronti e raggiungono il limite inferiore Ω(n log n) (nel caso del quicksort, in media)."
+      ],
+      "procedimento": [
+        "Individuare il vincolo dello scenario: garanzia nel caso peggiore, memoria, tipo di input.",
+        "Scartare l'algoritmo che viola il vincolo (quicksort per la garanzia, mergesort per la memoria)."
+      ],
+      "trappole": [
+        "Scegliere il quicksort quando serve una garanzia sul caso peggiore, perché 'in pratica è il più veloce'.",
+        "Pensare che il pivot casuale garantisca O(n log n) nel caso peggiore.",
+        "Scegliere il mergesort quando la memoria extra non è disponibile.",
+        "Pensare che il quicksort sia più veloce del mergesort in senso asintotico."
+      ],
+      "come_generare_varianti": "Scenari: serve O(n log n) garantito (mergesort); memoria extra O(log n) e costo medio O(n log n) (quicksort con pivot casuale); input già ordinato e pivot = primo elemento (evitare il quicksort); affermazioni vere/false sul confronto. Le opzioni possono includere quicksort con pivot primo, quicksort con pivot casuale, mergesort e un ordinamento elementare (insertion sort, selection sort), ma in questo tipo la risposta corretta deve essere mergesort o quicksort; le domande in cui vince l'insertion sort appartengono alla Lezione 7."
+    }
+  ]
+}

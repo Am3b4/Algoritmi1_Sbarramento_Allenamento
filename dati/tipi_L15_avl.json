@@ -1,0 +1,437 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 15,
+    "titolo": "Alberi bilanciati AVL",
+    "file": "PL15.pdf",
+    "contenuti": [
+      "Motivazione: ricerca, inserimento e cancellazione in un ABR costano O(h); altezza minima ⌊log₂ n⌋; albero bilanciato se h = O(log n)",
+      "Fattore di bilanciamento bf(n) = altezza(n.sinistro) − altezza(n.destro), con altezza del vuoto −1; figura con i bf di ogni nodo (anche −3)",
+      "Albero AVL: albero binario di ricerca con −1 ≤ bf ≤ 1 in ogni nodo",
+      "Numero minimo di nodi N(h) = 1 + N(h−1) + N(h−2), N(0) = 1, N(1) = 2; N(h) ≥ 2^(h/2); h ≤ 2 log₂ n, quindi h = O(log n)",
+      "Classe Nodo con key, left, right, parent, altezza; bf calcolato in O(1) dal campo altezza",
+      "Rotazioni destra e sinistra: locali, O(1), visita in-order invariata; codice di rotazione_sinistra con aggiornamento di parent e altezze",
+      "Ribilanciamento dopo inserimento: risalita con parent, primo nodo sbilanciato (bf = ±2), casi LL, LR, RR, RL e relative rotazioni singole o doppie; il sottoalbero torna all'altezza di prima",
+      "Esempio: inserimento di 10, 2, 3, 8, 6, 4, 7, 5 in un AVL vuoto",
+      "Ribilanciamento dopo cancellazione: la risalita prosegue fino alla radice e possono servire più rotazioni; costo O(log n)",
+      "Esercizi: limite N(h) ≥ 2^(h/2+1) − 1 per sostituzione; inserimento di 4, 3, 1, 7, 6, 5, 9, 8 e cancellazione della radice; verifica che un albero di ricerca sia AVL in O(n)"
+    ],
+    "nota": "Nessuna domanda delle due prove ufficiali tratta gli AVL in modo diretto; la domanda 15 di luglio (inserimento in un ABR bilanciato: O(log n)) appartiene alla Lezione 14 ed è solo richiamata in L15-T13. Notazione degli alberi usata negli esempi: chiave(sinistro, destro), con '-' per il sottoalbero vuoto e la sola chiave per una foglia. Nella figura dell'esempio di inserimenti la dispensa indica le rotazioni doppie con il nipote che sale ('rotazioni S-D su 3', 'rotazioni R-L su 6'), mentre il testo le descrive come 'sinistra su b, poi destra su a': nelle varianti usare la forma del testo. Il lucido 'Regola generale' dice che l'altezza torna invariata 'nel caso LL e RR', ma il lucido 'Caso 2 (2/2)' afferma lo stesso per LR (h + 2): dopo un inserimento qualunque correzione ripristina l'altezza, e le varianti non devono affermare il contrario. Tutti gli alberi degli esempi sono stati verificati con un'implementazione AVL in Python (cancellazione con il successore, come nella Lezione 14)."
+  },
+  "tipi": [
+    {
+      "id": "L15-T01",
+      "titolo": "Albero bilanciato e definizione di AVL",
+      "argomento": "Definizioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 15, 'Motivazione per l'uso di Alberi Bilanciati' e 'Alberi AVL: Definizione e Proprietà'. I distrattori 'albero completo o quasi completo' e 'foglie allo stesso livello' compaiono a maggio, domanda 6 (heap, Lezione 9).",
+      "descrizione": "Domanda di definizione: cosa vuol dire che un albero è bilanciato (h = O(log n)), che cos'è un albero AVL (ABR con |bf| ≤ 1 in ogni nodo), differenza tra AVL, albero completo, heap e albero con le foglie allo stesso livello.",
+      "conoscenze": [
+        "In un ABR ricerca, inserimento e cancellazione costano O(h); con n nodi l'altezza minima è ⌊log₂ n⌋ (alberi completi o quasi completi).",
+        "Un albero si dice bilanciato se la sua altezza è h = O(log n).",
+        "Un albero AVL è un albero binario di ricerca in cui per ogni nodo −1 ≤ bf ≤ 1, con bf = h(sinistro) − h(destro).",
+        "La condizione deve valere per OGNI nodo, non solo per la radice.",
+        "Un AVL non deve essere completo o quasi completo, e le profondità delle sue foglie possono differire di più di 1 (l'AVL minimo di altezza 4 ha una foglia a profondità 2). Un albero quasi completo che sia un ABR è invece sempre un AVL.",
+        "Un AVL è bilanciato: h ≤ 2 log₂ n."
+      ],
+      "procedimento": [
+        "Ricordare le due condizioni: proprietà di ABR e |bf| ≤ 1 in ogni nodo.",
+        "Scartare le opzioni che parlano di completezza, livelli delle foglie o della sola radice."
+      ],
+      "trappole": [
+        "Confondere un AVL con un heap o con un albero completo o quasi completo.",
+        "Richiedere |bf| ≤ 1 solo nella radice.",
+        "Credere che in un AVL le foglie stiano tutte allo stesso livello, o su livelli che differiscono al più di 1.",
+        "Dimenticare che un AVL è anzitutto un albero binario di ricerca."
+      ],
+      "come_generare_varianti": "Chiedere la definizione di albero AVL, la definizione di albero bilanciato (h = O(log n) contro h = O(n), h = O(√n), h = ⌊log₂ n⌋ esatto) oppure quale affermazione sugli AVL è vera (o falsa). Distrattori presi dalle trappole: 'albero binario completo o quasi completo', 'tutte le foglie allo stesso livello', 'foglie su livelli che differiscono al più di 1', 'solo la radice ha bf in {−1, 0, +1}', 'ogni nodo ha 0 o 2 figli'. Se si chiede l'affermazione falsa, le altre tre devono essere fatti esplicitamente veri della dispensa."
+    },
+    {
+      "id": "L15-T02",
+      "titolo": "Calcolo del fattore di bilanciamento",
+      "argomento": "Fattore di bilanciamento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 15, 'Il Fattore di Bilanciamento nei BST' (figura con il bf accanto a ogni nodo, compreso un nodo con bf −3) e 'La classe Nodo per gli alberi AVL' (bf = h(left) − h(right)).",
+      "descrizione": "Dato un albero binario in notazione testuale, si chiede il fattore di bilanciamento di un nodo indicato, oppure quale nodo ha |bf| massimo, oppure quanti nodi hanno bf diverso da 0.",
+      "conoscenze": [
+        "bf(n) = altezza(n.sinistro) − altezza(n.destro): positivo se il nodo pesa a sinistra, negativo se pesa a destra.",
+        "Altezza del sottoalbero vuoto = −1, di una foglia = 0; altezza(n) = 1 + max(altezze dei figli).",
+        "Una foglia ha bf 0; un nodo che ha come unico figlio una foglia ha bf ±1.",
+        "Il bf si definisce per qualunque albero binario e può valere ±2, ±3, …; in un AVL vale solo −1, 0 o +1."
+      ],
+      "procedimento": [
+        "Calcolare le altezze dal basso (foglia 0, vuoto −1).",
+        "Per il nodo richiesto: altezza del sottoalbero sinistro meno altezza del destro, con il segno."
+      ],
+      "trappole": [
+        "Usare 0 come altezza del sottoalbero vuoto (il risultato si sposta di 1).",
+        "Invertire il segno (destro − sinistro).",
+        "Contare i nodi dei sottoalberi invece delle altezze.",
+        "Guardare solo se i figli ci sono o no, invece delle altezze dei sottoalberi."
+      ],
+      "come_generare_varianti": "Alberi di 6–12 nodi scritti come chiave(sinistro, destro), con '-' per il vuoto; ripetere la notazione nella domanda. Chiedere il bf di un nodo con sottoalberi di altezze diverse, meglio se uno dei due è vuoto (così la convenzione −1 conta) e se il numero di nodi differisce dall'altezza. Distrattori: il valore calcolato con vuoto = 0, il valore con il segno invertito, la differenza del numero di nodi. Verificare che i quattro valori siano distinti. Variante: 'quale nodo ha bf −2?' con quattro nodi dello stesso albero come opzioni."
+    },
+    {
+      "id": "L15-T03",
+      "titolo": "Riconoscere se un albero dato è AVL",
+      "argomento": "Fattore di bilanciamento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 15, 'Alberi AVL: Definizione e Proprietà'; figura di 'Effetti di Inserimento e Cancellazione su un AVL' (dopo l'inserimento di 5 la radice ha bf +2); Esercizio 3.",
+      "descrizione": "Si mostrano quattro alberi e si chiede quale è un AVL (o quale non lo è); oppure, dato un albero, si chiede se è AVL e quale nodo viola la condizione.",
+      "conoscenze": [
+        "AVL = proprietà di ABR (in-order crescente) + |bf| ≤ 1 in ogni nodo.",
+        "La radice può avere bf 0 o ±1 anche se un nodo interno ha bf ±2.",
+        "Un albero in cui ogni nodo ha 0 o 2 figli non è per questo bilanciato.",
+        "Conviene calcolare le altezze dal basso e controllare tutti i nodi."
+      ],
+      "procedimento": [
+        "Controllare che le chiavi rispettino l'ordine di un ABR.",
+        "Calcolare dal basso altezze e bf di tutti i nodi.",
+        "Un solo nodo con |bf| ≥ 2 basta a escludere l'albero."
+      ],
+      "trappole": [
+        "Controllare solo il bf della radice.",
+        "Pensare che un albero 'pieno' (0 o 2 figli per nodo) sia bilanciato.",
+        "Dimenticare la proprietà di ABR.",
+        "Usare 0 come altezza del vuoto e non vedere una catena di tre nodi."
+      ],
+      "come_generare_varianti": "Quattro alberi di 6–9 nodi; esattamente uno deve soddisfare entrambe le proprietà (o esattamente uno non soddisfarle, se si chiede quello che non è AVL). Costruire i distrattori così: (1) radice con bf 0 o ±1 ma un nodo interno con bf ±2 (una catena di tre nodi in un sottoalbero); (2) albero in cui ogni nodo ha 0 o 2 figli ma la radice ha bf ±2; (3) albero perfettamente bilanciato con una chiave dalla parte sbagliata (non è un ABR). L'albero corretto conviene che abbia foglie a profondità diverse, così non sembra 'perfetto'. Verificare tutto con uno script."
+    },
+    {
+      "id": "L15-T04",
+      "titolo": "Numero minimo di nodi N(h)",
+      "argomento": "Altezza di un AVL",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 15, 'Proprietà del Bilanciamento in AVL (1/2)'; Esercizio 1.",
+      "descrizione": "Si chiede la ricorrenza di N(h) (numero minimo di nodi di un AVL di altezza h), i suoi casi base, il valore di N(h) per un h piccolo, oppure perché i sottoalberi della radice di un AVL minimo hanno altezze h−1 e h−2.",
+      "conoscenze": [
+        "N(0) = 1, N(1) = 2, N(h) = 1 + N(h−1) + N(h−2) per h ≥ 2: la radice più un sottoalbero minimo di altezza h−1 e uno di altezza h−2 (il più sbilanciato possibile).",
+        "Valori: N(0..8) = 1, 2, 4, 7, 12, 20, 33, 54, 88. Vale N(h) = F(h+3) − 1, con F numeri di Fibonacci (F₁ = F₂ = 1).",
+        "Il numero massimo di nodi di un albero binario di altezza h è 2^(h+1) − 1 (albero completo), anche per un AVL.",
+        "Una catena di h+1 nodi ha altezza h ma per h ≥ 2 non è un AVL."
+      ],
+      "procedimento": [
+        "Partire da N(0) = 1, N(1) = 2.",
+        "Applicare N(h) = 1 + N(h−1) + N(h−2) fino all'h richiesto, senza dimenticare il +1 della radice."
+      ],
+      "trappole": [
+        "Dimenticare il +1 della radice: 1, 2, 3, 5, 8, 13, … (Fibonacci puro).",
+        "Confondere il minimo con il massimo 2^(h+1) − 1.",
+        "Sbagliare indice e dare N(h−1) o N(h+1).",
+        "Rispondere h + 1, pensando alla catena, che non è un AVL.",
+        "Scrivere la ricorrenza con due sottoalberi di altezza h−1: N(h) = 2N(h−1) + 1."
+      ],
+      "come_generare_varianti": "h tra 2 e 8. Chiedere N(h) oppure quale tra quattro ricorrenze è quella giusta (con e senza +1, h−1 e h−2 contro h−1 e h−1, casi base N(1) = 1 o 3). Distrattori numerici: il valore senza +1 (1, 2, 3, 5, 8, 13, 21, 34, 55), N(h−1), N(h+1), 2^(h+1) − 1, h + 1. Sceglierne tre diversi dal corretto e tra loro."
+    },
+    {
+      "id": "L15-T05",
+      "titolo": "Altezza di un AVL con n nodi e limite h ≤ 2 log₂ n",
+      "argomento": "Altezza di un AVL",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 15, 'Proprietà del Bilanciamento in AVL (2/2)' (N(h) ≥ 2^(h/2), h ≤ 2 log₂ n); Esercizio 1 (N(h) ≥ 2^(h/2+1) − 1).",
+      "descrizione": "Dato n, si chiede l'altezza massima (o minima) che può avere un AVL con n nodi, se un AVL con n nodi può avere altezza h, oppure quale limite sull'altezza vale (h ≤ 2 log₂ n, h = O(log n)).",
+      "conoscenze": [
+        "Altezza massima di un AVL con n nodi = il più grande h con N(h) ≤ n. Tabella: n = 1 → 0; 2–3 → 1; 4–6 → 2; 7–11 → 3; 12–19 → 4; 20–32 → 5; 33–53 → 6; 54–87 → 7.",
+        "Altezza minima = ⌊log₂ n⌋ (albero quasi completo, che è un AVL).",
+        "N(h) ≥ 2^(h/2), quindi n ≥ 2^(h/2) e h ≤ 2 log₂ n: h = O(log n). Con il minimo ⌊log₂ n⌋ l'altezza di ogni AVL è Θ(log n).",
+        "2 log₂ n è un limite superiore, non l'altezza esatta: per n = 12 vale circa 7,2, ma l'altezza massima è 4."
+      ],
+      "procedimento": [
+        "Calcolare N(0), N(1), N(2), … finché supera n.",
+        "L'altezza massima è l'ultimo h con N(h) ≤ n; un AVL di altezza h con n nodi esiste solo se N(h) ≤ n ≤ 2^(h+1) − 1."
+      ],
+      "trappole": [
+        "Rispondere ⌊log₂ n⌋ (altezza minima) quando si chiede la massima.",
+        "Prendere ⌊2 log₂ n⌋ come altezza esatta.",
+        "Rispondere n − 1 (ABR degenere), dimenticando che l'albero è un AVL.",
+        "Sbagliare il confronto e prendere il primo h con N(h) ≥ n."
+      ],
+      "come_generare_varianti": "Scegliere n per cui altezza minima e massima sono diverse e diverse da ⌊2 log₂ n⌋ e da n − 1, per esempio n = 7 (min 2, max 3, ⌊2 log₂ n⌋ = 5), n = 12–15 (min 3, max 4), n = 20–31 (min 4, max 5), n = 33–53 (min 5, max 6). Evitare n da 8 a 11 se si chiede la massima (coincide con la minima). Distrattori: ⌊log₂ n⌋, ⌊2 log₂ n⌋, n − 1, h con N(h) ≥ n. Varianti: 'un AVL con 15 nodi può avere altezza 5?' (no, N(5) = 20); 'quale limite vale per l'altezza di un AVL?' con h ≤ 2 log₂ n, h ≤ log₂ n, h ≤ √n, h = Θ(n)."
+    },
+    {
+      "id": "L15-T06",
+      "titolo": "Effetto di una rotazione singola",
+      "argomento": "Rotazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 15, 'Rotazioni per il Ribilanciamento' (figura con a, b, T1, T2, T3) e 'Implementazione Python delle Rotazioni'.",
+      "descrizione": "Dato un albero e un nodo, si chiede quale albero si ottiene con una rotazione destra (o sinistra) su quel nodo; oppure quale affermazione sulle rotazioni è vera (in-order invariato, costo O(1), quale sottoalbero cambia padre).",
+      "conoscenze": [
+        "Rotazione destra su a (b = a.left): b prende il posto di a, a diventa figlio destro di b, il sottoalbero destro di b (T2) diventa sottoalbero sinistro di a. T1 resta a sinistra di b, T3 a destra di a.",
+        "Rotazione sinistra su a (b = a.right): simmetrica; b.left (T2) diventa a.right.",
+        "La visita in-order non cambia: il risultato è ancora un ABR con le stesse chiavi. La visita in pre-order invece cambia.",
+        "Coinvolge un numero costante di nodi e puntatori: costo O(1).",
+        "Nella rotazione destra T1 sale di un livello, T3 scende di uno, T2 resta alla stessa profondità.",
+        "Rotazione destra e sinistra sono l'una l'inversa dell'altra."
+      ],
+      "procedimento": [
+        "Individuare a, b (figlio sinistro per la destra, destro per la sinistra) e T1, T2, T3.",
+        "Mettere b al posto di a, appendere a sotto b dal lato opposto e spostare T2 sotto a.",
+        "Controllare che l'in-order sia invariato."
+      ],
+      "trappole": [
+        "Ruotare nel verso sbagliato (nella rotazione destra sale il figlio sinistro).",
+        "Lasciare T2 attaccato a b o appenderlo dal lato sbagliato.",
+        "Confondere la rotazione singola con la doppia (far salire il nipote).",
+        "Pensare che una rotazione costi O(log n) o O(n)."
+      ],
+      "come_generare_varianti": "Alberi di 5–8 nodi; rotazione sulla radice o su un nodo interno; T2 non vuoto (altrimenti l'errore su T2 non si vede). Chiedere l'albero risultante o la sua visita in pre-order. Distrattori: rotazione nel verso opposto; a appeso sotto T2 con T2 lasciato sotto b (ABR valido ma diverso); risultato della rotazione doppia (sale il nipote). Tutte le opzioni hanno lo stesso in-order: dirlo nella spiegazione. Varianti teoriche: 'dopo una rotazione quale visita resta invariata?' (in-order, non pre-order, post-order o per livelli), 'quanto costa una rotazione?' (O(1))."
+    },
+    {
+      "id": "L15-T07",
+      "titolo": "Campi del nodo AVL e codice della rotazione",
+      "argomento": "Rotazioni",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 2,
+      "fonte": "Dispensa 15, 'La classe Nodo per gli alberi AVL' e 'Implementazione Python delle Rotazioni' (rotazione_sinistra).",
+      "descrizione": "Domande sul codice della dispensa: campi della classe Nodo, a cosa servono parent e altezza, quali puntatori modifica la rotazione, in che ordine si aggiornano le altezze, che cosa restituisce la funzione e quanto costa.",
+      "conoscenze": [
+        "Nodo: key, left, right, parent, altezza (0 alla creazione: un nodo nuovo è una foglia).",
+        "parent serve a risalire dalla foglia inserita verso la radice; altezza serve a calcolare bf in O(1), senza visitare i sottoalberi.",
+        "rotazione_sinistra(a): b = a.right; a.right = b.left (e, se non è None, il suo parent diventa a); b.left = a; b.parent = a.parent; a.parent = b.",
+        "Si aggiorna prima a.altezza e poi b.altezza, perché dopo la rotazione a è figlio di b. Un figlio None conta altezza −1.",
+        "Le altezze di T1, T2, T3 non cambiano: si ricalcolano solo a e b. Costo O(1).",
+        "La funzione restituisce b, nuova radice del sottoalbero: chi la chiama deve collegare b al vecchio padre di a (o farne la radice dell'albero)."
+      ],
+      "procedimento": [
+        "Disegnare lo schema a, b, T1, T2, T3.",
+        "Seguire gli assegnamenti del codice uno per uno."
+      ],
+      "trappole": [
+        "Pensare che l'ordine degli aggiornamenti delle altezze sia indifferente.",
+        "Credere che la rotazione aggiorni le altezze di tutti gli antenati e quindi costi O(log n).",
+        "Dimenticare di aggiornare il parent di T2 o di b.",
+        "Usare 0 come altezza di un figlio None.",
+        "Pensare che senza il campo altezza il bf si calcoli comunque in O(1)."
+      ],
+      "come_generare_varianti": "Mostrare il codice di rotazione_sinistra (o della destra simmetrica: b = a.left; a.left = b.right; if b.right is not None: b.right.parent = a; b.right = a; b.parent = a.parent; a.parent = b; poi altezze di a e di b) con una riga mancante o con i due aggiornamenti di altezza scambiati, e chiedere cosa succede; oppure chiedere quale affermazione sui campi parent e altezza è vera. Distrattori dalle trappole."
+    },
+    {
+      "id": "L15-T08",
+      "titolo": "Casi LL, LR, RR, RL e loro correzione",
+      "argomento": "Casi di sbilanciamento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 15, 'Casi di Sbilanciamento negli AVL', 'Ribilanciamento nel Caso bf(a) = +2', 'Caso LR: Inserimento nel sottoalbero destro di b (1/2)'.",
+      "descrizione": "Dati il bf del primo nodo sbilanciato a e quello del figlio b dal lato più alto (oppure la posizione dell'inserimento: sottoalbero sinistro o destro del figlio sinistro o destro di a), si chiede il caso e quali rotazioni lo correggono, in che ordine e su quali nodi.",
+      "conoscenze": [
+        "bf(a) = +2, b = a.left. bf(b) = +1 → caso LL: rotazione destra su a. bf(b) = −1 → caso LR: rotazione sinistra su b, poi rotazione destra su a.",
+        "bf(a) = −2, b = a.right. bf(b) = −1 → caso RR: rotazione sinistra su a. bf(b) = +1 → caso RL: rotazione destra su b, poi rotazione sinistra su a.",
+        "Segni uguali → rotazione singola; segni opposti → rotazione doppia.",
+        "L'ultima rotazione è sempre su a, verso il lato più basso: con bf(a) = +2 sempre a destra, con bf(a) = −2 sempre a sinistra. Nella doppia, la prima rotazione è su b e nel verso opposto.",
+        "Il nome indica il cammino da a al nodo inserito: LR = sottoalbero destro (R) del figlio sinistro (L).",
+        "Nella figura dell'esempio la dispensa nomina le doppie rotazioni con il nipote x che sale (per esempio 'rotazioni S-D su 3'): è la stessa operazione."
+      ],
+      "procedimento": [
+        "Segno di bf(a): + → il figlio alto è il sinistro (L…), − → il destro (R…).",
+        "Segno di bf(b): + → L, − → R. Si ottiene il nome del caso.",
+        "Segni uguali: una rotazione su a (destra se +2, sinistra se −2). Segni opposti: prima b nel verso opposto, poi a."
+      ],
+      "trappole": [
+        "Scambiare la correzione di LR con quella di RL.",
+        "Ruotare a nel verso sbagliato (con bf(a) = +2 l'ultima rotazione su a è sempre a destra).",
+        "Usare una rotazione singola nei casi LR e RL.",
+        "Invertire l'ordine della doppia rotazione (prima a, poi b) o ruotare due volte lo stesso nodo.",
+        "Leggere il nome del caso al contrario (LR come 'sinistro del destro')."
+      ],
+      "come_generare_varianti": "Variare bf(a) ∈ {+2, −2} e bf(b) ∈ {+1, −1}, oppure descrivere la posizione del nuovo nodo ('nel sottoalbero destro del figlio sinistro di a'). Chiedere il nome del caso, la sequenza di rotazioni o entrambi. Distrattori: la correzione del caso speculare (LR ↔ RL), la rotazione singola, la doppia con ordine o nodi invertiti, la rotazione nel verso opposto. Non usare bf(b) = 0 (dopo un inserimento non capita)."
+    },
+    {
+      "id": "L15-T09",
+      "titolo": "Inserimento in un AVL dato e ribilanciamento",
+      "argomento": "Inserimento e ribilanciamento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 15, figura di 'Effetti di Inserimento e Cancellazione su un AVL' (inserimento di 5 in 10(3(2, 7), 15)), 'Caso 1: Rotazione destra e ripristino del bilanciamento', 'Caso 2: Rotazione a sinistra di b seguita da Rotazione a destra di a', 'Regola generale del ribilanciamento negli AVL'.",
+      "descrizione": "Dato un AVL e una chiave, si inserisce la chiave come in un ABR, si risale fino al primo nodo sbilanciato, si classifica il caso e si applicano le rotazioni. Si chiede l'albero finale, la nuova radice, la visita in pre-order, oppure quale nodo è sbilanciato o se serve una rotazione.",
+      "conoscenze": [
+        "L'inserimento avviene come in un ABR: il nuovo nodo è una foglia.",
+        "Solo i nodi sul cammino dalla foglia alla radice cambiano altezza; si corregge il primo nodo con |bf| = 2 che si incontra risalendo.",
+        "LL o RR: il figlio b sale al posto di a. LR o RL: sale il nipote x, che diventa radice del sottoalbero con b e a come figli.",
+        "Dopo la correzione il sottoalbero torna all'altezza che aveva prima dell'inserimento: gli antenati non cambiano e basta una correzione per inserimento.",
+        "Dopo LL o RR, a e b hanno bf 0; dopo LR o RL cambiano solo i bf di a, b e x, e risultano bilanciati."
+      ],
+      "procedimento": [
+        "Inserire la chiave come in un ABR.",
+        "Ricalcolare le altezze lungo il cammino verso la radice fino al primo nodo con |bf| = 2.",
+        "Determinare il caso con i segni di bf(a) e bf(b).",
+        "Applicare la rotazione singola o doppia e controllare che l'in-order sia invariato e i bf in [−1, 1]."
+      ],
+      "trappole": [
+        "Controllare solo il padre del nuovo nodo e concludere che non serve nessuna rotazione.",
+        "Usare una rotazione singola in un caso LR o RL (l'albero resta sbilanciato).",
+        "Far salire il nodo inserito invece del nipote x (coincidono solo se x è proprio il nuovo nodo).",
+        "Ruotare su un nodo sbagliato (la radice invece del primo nodo sbilanciato dal basso).",
+        "Confondere LR con RL."
+      ],
+      "come_generare_varianti": "AVL di 4–9 nodi e una chiave che crea uno dei quattro casi; preferire casi in cui il nodo sbilanciato non è il padre del nuovo nodo e il nipote x è diverso dal nodo inserito (così 'far salire il nuovo nodo' è un distrattore distinto). Calcolare il risultato con un'implementazione AVL in Python. Distrattori: risultato della sola rotazione singola, albero senza rotazioni, albero con il nuovo nodo in radice (ABR valido ma non prodotto dall'algoritmo), risultato della correzione del caso speculare. Opzioni in notazione chiave(sinistro, destro) o come visita in pre-order."
+    },
+    {
+      "id": "L15-T10",
+      "titolo": "Sequenze di inserimenti in un AVL vuoto",
+      "argomento": "Inserimento e ribilanciamento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 15, 'Esempio di inserimenti in AVL' (10, 2, 3, 8, 6, 4, 7, 5: LR su 10 all'inserimento di 3, LL su 10 a 6, RL su 3 a 4; risultato 6(3(2, 4(-, 5)), 8(7, 10))); Esercizio 2 (4, 3, 1, 7, 6, 5, 9, 8: LL su 4 a 1, RL su 4 a 6, RL su 3 a 5, RL su 7 a 8; risultato 4(3(1, -), 6(5, 8(7, 9)))).",
+      "descrizione": "Si inseriscono in ordine alcune chiavi in un AVL inizialmente vuoto. Si chiede la radice finale, l'albero finale (o la sua visita in pre-order), quante correzioni avvengono, a quale inserimento avviene la prima, oppure quale tra quattro sequenze non provoca rotazioni.",
+      "conoscenze": [
+        "Ogni inserimento si tratta come in L15-T09: inserire, risalire, correggere il primo nodo sbilanciato, poi proseguire con l'albero ribilanciato.",
+        "Una catena di tre nodi (un nodo con un solo figlio che ha a sua volta un solo figlio) ha sempre la cima con |bf| = 2: serve sempre una correzione, singola se la catena è dritta (LL, RR), doppia se è a zig-zag (LR, RL).",
+        "Inserendo 1, 2, …, 7 in ordine si hanno 4 rotazioni RR (agli inserimenti di 3, 5, 6, 7) e si ottiene l'albero perfetto 4(2(1, 3), 6(5, 7)).",
+        "Inserendo le chiavi livello per livello (ogni chiave è la mediana del suo intervallo, per esempio 4, 2, 6, 1, 3, 5, 7) non avviene nessuna rotazione.",
+        "La radice finale di solito non è la prima chiave inserita."
+      ],
+      "procedimento": [
+        "Inserire una chiave alla volta disegnando l'albero.",
+        "Dopo ogni inserimento ricalcolare i bf sul cammino; al primo |bf| = 2 applicare la correzione del caso.",
+        "Continuare dall'albero ribilanciato, non da quello che si avrebbe in un ABR semplice."
+      ],
+      "trappole": [
+        "Non accorgersi che una catena di tre nodi, anche a zig-zag come 3, 1, 2, richiede sempre una rotazione.",
+        "Costruire l'ABR senza ribilanciare e ruotare solo alla fine.",
+        "Dopo una rotazione, continuare a inserire nell'albero di prima.",
+        "Confondere LR e RL o ruotare nel verso sbagliato.",
+        "Dare come radice finale la prima chiave inserita.",
+        "Correggere uno zig-zag (caso LR o RL) con una sola rotazione singola invece che con la doppia.",
+        "Non ribilanciare mai: dare l'ABR ottenuto con i soli inserimenti, senza nessuna rotazione."
+      ],
+      "come_generare_varianti": "Sequenze di 3–9 chiavi distinte; calcolare il risultato sempre con un'implementazione AVL in Python (inserimento ricorsivo con ricalcolo delle altezze e rotazioni), mai a mano. 'Quale sequenza non provoca rotazioni': la corretta inserisce mediane livello per livello; i distrattori contengono una catena di tre nodi, uno dritta (LL o RR), uno a zig-zag (LR o RL), uno con la catena nascosta in fondo alla sequenza. 'Radice finale': distrattori = prima chiave inserita, radice dopo la prima rotazione, mediana delle chiavi (se diversa dalla corretta). 'Numero di rotazioni': dire esplicitamente se una doppia conta come una correzione o come due rotazioni."
+    },
+    {
+      "id": "L15-T11",
+      "titolo": "Strategia di ribilanciamento dopo inserimento e cancellazione",
+      "argomento": "Ribilanciamento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 15, 'Strategia di Ribilanciamento dopo Inserimento', 'Procedura Dettagliata di Ribilanciamento', 'Caso 1: Rotazione destra e ripristino del bilanciamento (2/2)', 'Regola generale del ribilanciamento negli AVL', 'Strategia di Ribilanciamento dopo Cancellazione'.",
+      "descrizione": "Domande teoriche sul processo: quali nodi possono cambiare altezza o bf, dove si ferma la risalita, quante correzioni servono dopo un inserimento e dopo una cancellazione, cosa succede agli antenati dopo la correzione, quali bf hanno a e b dopo la rotazione.",
+      "conoscenze": [
+        "Dopo un inserimento o una cancellazione solo i nodi sul cammino fino alla radice possono cambiare altezza e bf.",
+        "Si risale con il puntatore parent aggiornando altezza e bf; dopo un inserimento ci si ferma al primo nodo sbilanciato (bf = ±2) oppure quando un'altezza non cambia.",
+        "Dopo un inserimento si corregge solo il primo nodo sbilanciato: il sottoalbero torna all'altezza h + 2 che aveva prima dell'inserimento (lo dice la dispensa per LL e anche per LR), quindi gli antenati non cambiano. Al più una correzione, singola o doppia.",
+        "Dopo LL o RR, a e b hanno bf 0; dopo LR o RL cambiano solo i bf di a, b e x.",
+        "Dopo una cancellazione un sottoalbero si abbassa; la risalita prosegue fino alla radice e possono servire più rotazioni successive, ciascuna singola o doppia.",
+        "In entrambi i casi la procedura costa O(log n)."
+      ],
+      "procedimento": [
+        "Distinguere inserimento (una correzione, poi la risalita si ferma) e cancellazione (correzioni possibili a cascata).",
+        "Ricordare che dopo un inserimento la correzione ripristina l'altezza precedente."
+      ],
+      "trappole": [
+        "Pensare che dopo un inserimento servano rotazioni a cascata fino alla radice (vale per la cancellazione).",
+        "Pensare che dopo una cancellazione basti sempre una rotazione.",
+        "Correggere la radice o il nodo sbilanciato più in alto invece del primo incontrato risalendo.",
+        "Credere che vadano ricontrollati i bf di tutti i nodi dell'albero (O(n)).",
+        "Credere che dopo la correzione il sottoalbero sia più alto di 1."
+      ],
+      "come_generare_varianti": "Chiedere quale affermazione sul ribilanciamento è vera (o falsa). Far variare: inserimento o cancellazione, caso singolo o doppio, cosa succede agli antenati, quali nodi cambiano bf, dove si ferma la risalita, quante correzioni al massimo. Distrattori dalle trappole. Non scrivere affermazioni secondo cui dopo LR o RL (in un inserimento) l'altezza non viene ripristinata: la dispensa dice che viene ripristinata."
+    },
+    {
+      "id": "L15-T12",
+      "titolo": "Cancellazione in un AVL con ribilanciamento",
+      "argomento": "Cancellazione",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 15, 'Strategia di Ribilanciamento dopo Cancellazione'; Esercizio 2 (rimozione della radice dall'AVL costruito con 4, 3, 1, 7, 6, 5, 9, 8). Cancellazione da ABR con il successore: Lezione 14.",
+      "descrizione": "Dato un AVL, si cancella una chiave (nodo con due figli sostituito dal successore) e si ribilancia risalendo. Si chiede l'albero finale, il nodo che diventa sbilanciato o il numero di rotazioni.",
+      "conoscenze": [
+        "Cancellazione come in un ABR (Lezione 14): una foglia si toglie; un nodo con un figlio è sostituito dal figlio; un nodo con due figli prende la chiave del successore (minimo del sottoalbero destro) e si cancella il successore.",
+        "Si risale dal padre del nodo rimosso fisicamente. Un nodo si sbilancia perché un suo sottoalbero si è abbassato: lo sbilanciamento è dalla parte opposta alla cancellazione.",
+        "Il caso si sceglie con bf(a) e il bf del figlio b dal lato più alto: segni uguali → singola, opposti → doppia. Se bf(b) = 0 (capita solo nelle cancellazioni; la dispensa non lo tratta) si usa la rotazione singola.",
+        "Dopo la correzione il sottoalbero può risultare più basso di prima: si continua a risalire e possono servire altre rotazioni.",
+        "Esercizio 2: da 4(3(1, -), 6(5, 8(7, 9))) si cancella 4; il successore 5 va in radice e il nodo 6 resta con sinistro vuoto e destro 8(7, 9): bf(6) = −2, bf(8) = 0 → rotazione sinistra su 6. Risultato 5(3(1, -), 8(6(-, 7), 9))."
+      ],
+      "procedimento": [
+        "Cancellare come in un ABR usando il successore.",
+        "Risalire dal padre del nodo eliminato fisicamente ricalcolando altezze e bf.",
+        "Correggere ogni nodo con |bf| = 2 che si incontra e proseguire fino alla radice."
+      ],
+      "trappole": [
+        "Dimenticare il ribilanciamento: l'ABR ottenuto non è un AVL.",
+        "Usare il predecessore invece del successore.",
+        "Ruotare sulla radice o su un nodo diverso da quello sbilanciato.",
+        "Scegliere il figlio b dal lato della cancellazione invece che dal lato più alto.",
+        "Fermarsi dopo la prima rotazione anche se l'altezza del sottoalbero è diminuita."
+      ],
+      "come_generare_varianti": "AVL di 6–12 nodi; cancellare una foglia, un nodo con un figlio o la radice; scrivere sempre nella domanda 'usando il successore'. Calcolare il risultato con un'implementazione AVL in Python. Preferire casi con bf(b) = ±1; se bf(b) = 0, non mettere tra i distrattori il risultato della rotazione doppia (è anch'esso un AVL e renderebbe la domanda ambigua). Distrattori: albero senza ribilanciamento, risultato ottenuto con il predecessore (e ribilanciato), rotazione sul nodo sbagliato. Per una cascata di due rotazioni usare un AVL minimo: da 8(5(3(2(1, -), 4), 7(6, -)), 11(10(9, -), 12)) cancellando 12 si ha LL su 11 e poi LL su 8, con risultato 5(3(2(1, -), 4), 8(7(6, -), 10(9, 11)))."
+    },
+    {
+      "id": "L15-T13",
+      "titolo": "Costo delle operazioni su un AVL",
+      "argomento": "Costi",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 15, 'Effetti di Inserimento e Cancellazione su un AVL', 'Implementazione Python delle Rotazioni' (O(1)), 'Strategia di Ribilanciamento dopo Cancellazione' (O(log n)), 'Conclusioni'. Richiamo: luglio 2026, domanda 15 (inserimento in un ABR bilanciato: O(log n)), che appartiene alla Lezione 14.",
+      "descrizione": "Si chiede il costo nel caso peggiore di ricerca, inserimento, cancellazione, di una rotazione o del ribilanciamento in un AVL, anche a confronto con un ABR non bilanciato; oppure il costo di n inserimenti, della visita in-order, della verifica che un albero sia AVL.",
+      "conoscenze": [
+        "Ricerca, inserimento e cancellazione in un AVL: O(h) = O(log n) nel caso peggiore, ribilanciamento compreso.",
+        "Una rotazione (singola o doppia): O(1).",
+        "Ribilanciamento dopo un inserimento: risalita O(log n) e una sola correzione. Dopo una cancellazione: fino a O(log n) rotazioni da O(1) ciascuna, quindi O(log n).",
+        "In un ABR qualunque le stesse operazioni costano O(h), che nel caso peggiore (albero degenere) è Θ(n).",
+        "Costruire un AVL con n inserimenti: O(n log n). Visita in-order: Θ(n). Minimo o massimo: O(log n). Verifica che un albero sia AVL: O(n)."
+      ],
+      "procedimento": [
+        "Ricordare che in un AVL h = O(log n).",
+        "Sommare ricerca del punto, modifica e risalita: tutti O(log n)."
+      ],
+      "trappole": [
+        "Rispondere O(n) pensando all'ABR degenere.",
+        "Rispondere O(1) perché le rotazioni sono O(1), dimenticando ricerca e risalita.",
+        "Rispondere O(log² n) per la cancellazione, moltiplicando O(log n) rotazioni per O(log n) ciascuna.",
+        "Per n inserimenti rispondere O(log n) o O(n).",
+        "Credere che una rotazione costi Θ(log n) o Θ(n), come se dovesse aggiornare tutti gli antenati o spostare un intero sottoalbero."
+      ],
+      "come_generare_varianti": "Far variare l'operazione (ricerca, inserimento, cancellazione, una rotazione, ribilanciamento dopo un inserimento, n inserimenti a partire dall'albero vuoto, visita in-order, minimo, verifica AVL) e il tipo di albero (AVL o ABR qualunque, caso peggiore). Distrattori tra O(1), O(log n), O(log² n), O(n), O(n log n), scegliendo i tre legati alle trappole dell'operazione chiesta."
+    },
+    {
+      "id": "L15-T14",
+      "titolo": "Verifica che un albero sia AVL in O(n)",
+      "argomento": "Pseudocodice",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 15, Esercizio 3; 'La classe Nodo per gli alberi AVL' (altezza del vuoto −1). Schema ricorsivo come la visita in post-order (Lezione 12); il formato ricorda la domanda aperta di maggio (domanda 11, visita in pre-order).",
+      "descrizione": "Scrivere una funzione ricorsiva che, data la radice di un albero binario di ricerca (nodi con key, left, right), dica se è un AVL in tempo O(n). Di solito si usa una funzione ausiliaria ricorsiva che restituisce la coppia (bilanciato, altezza).",
+      "conoscenze": [
+        "Visita in post-order: prima i risultati dei figli, poi quello del nodo.",
+        "Ogni chiamata restituisce (bilanciato, altezza); il sottoalbero vuoto restituisce (True, −1).",
+        "Un nodo è bilanciato se lo sono entrambi i sottoalberi e |h_s − h_d| ≤ 1; la sua altezza è 1 + max(h_s, h_d).",
+        "Ogni nodo è visitato una volta con lavoro O(1): T(n) = Θ(n).",
+        "Chiamare una funzione altezza separata in ogni nodo costa Θ(n log n) se l'albero è bilanciato e Θ(n²) nel caso peggiore (albero degenere).",
+        "Il campo altezza, se c'è, non va usato: l'esercizio parte da un albero di ricerca qualunque, quindi le altezze si ricalcolano."
+      ],
+      "procedimento": [
+        "Caso base: r is None → (True, −1).",
+        "Chiamate ricorsive su r.left e r.right.",
+        "Combinare: ok = ok_s and ok_d and abs(h_s − h_d) <= 1; altezza = 1 + max(h_s, h_d).",
+        "Funzione principale che restituisce solo il booleano."
+      ],
+      "trappole": [
+        "Restituire solo True/False dal caso base, senza altezza: il padre non può calcolare il proprio bf.",
+        "Mescolare le convenzioni (vuoto 0 e foglia 0).",
+        "Chiamare una funzione altezza separata per ogni nodo: Θ(n²) nel caso peggiore, non O(n).",
+        "Controllare |bf| ≤ 1 solo nella radice, o non propagare il False dei sottoalberi.",
+        "Dimenticare il controllo su None prima di accedere a r.left."
+      ],
+      "come_generare_varianti": "Variare la richiesta: restituire la coppia (bilanciato, altezza); restituire solo True/False; restituire l'altezza se l'albero è AVL e −2 altrimenti; contare i nodi con |bf| > 1. La soluzione è sempre una sola visita in post-order con caso base sul vuoto di altezza −1, costo Θ(n). Per una versione a risposta multipla: mostrare la soluzione che chiama altezza(r.left) e altezza(r.right) in ogni nodo e chiedere il costo nel caso peggiore (Θ(n²)), con distrattori Θ(n), Θ(n log n), Θ(log n)."
+    }
+  ]
+}

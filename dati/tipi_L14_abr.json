@@ -1,0 +1,597 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 14,
+    "titolo": "Alberi binari di ricerca (ABR / BST)",
+    "file": "PL14.pdf",
+    "contenuti": [
+      "Motivazione: l'ABR come implementazione di un dizionario (ricerca, inserimento, cancellazione) in tempo O(h); confronto con le liste, dove la ricerca costa Ω(n); un albero di altezza h ha fino a Θ(2^h) nodi, quindi h ≈ log₂ n nel caso bilanciato",
+      "Proprietà dell'ABR: per ogni nodo, chiavi del sottoalbero sinistro minori e del sottoalbero destro maggiori; chiavi distinte; classe NodoABR (key, left, right; il campo parent non viene usato)",
+      "Ricerca iterativa e ricorsiva: un nodo per livello, caso migliore O(1) (radice), caso peggiore O(h); spazio O(1) per la versione iterativa",
+      "Inserimento iterativo e ricorsivo come nuova foglia, duplicati ignorati: caso migliore O(1), caso peggiore Θ(h), spazio O(1) per la versione iterativa",
+      "Cancellazione iterativa e ricorsiva con tre casi: foglia, un solo figlio (rimpiazzato dal figlio), due figli (si copia la chiave del successore = minimo del sottoalbero destro, poi si rimuove il successore); caso peggiore Θ(h)",
+      "Altezza tra ⌊log₂ n⌋ e n − 1 secondo l'ordine di inserimento; inserimenti in ordine crescente producono un albero degenere",
+      "Esercizi: stampa in ordine crescente; costruzione con 20, 7, 18, 15, 30, 19, 12 e cancellazione della radice e di 18; ordini di inserimento delle chiavi 1..7 per altezza 6 e 2; massimo ricorsivo e iterativo; predecessore di x; chiavi in [x, y]; verifica che un albero sia un ABR; fusione di due ABR (chiavi separate in O(min(h1, h2)), chiavi qualsiasi)"
+    ],
+    "nota": "Lezione molto presente nelle prove ufficiali: maggio 2026 domande 13 e 14, luglio 2026 domande 11, 13, 14 e 15. Il tipo L14-T20 copre la domanda 15 di maggio 2026 sui B-alberi, argomento che non compare in nessuna dispensa. Convenzioni usate in tutti i tipi: altezza dell'albero vuoto −1 (un solo nodo: 0); cancellazione con il successore come nella dispensa; alberi scritti nel testo con la notazione k(S, D), '-' per il sottoalbero vuoto. Le visite in sé sono nella Lezione 12; gli alberi AVL nella Lezione 15."
+  },
+  "tipi": [
+    {
+      "id": "L14-T01",
+      "titolo": "Proprietà dell'ABR: definizione e riconoscimento",
+      "argomento": "Proprietà dell'ABR",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Dispensa 14, 'Alberi Binari di Ricerca (BST)' (proprietà strutturale, chiavi distinte) ed Esercizio 2 della seconda serie (verificare se un albero è un ABR). Prova di luglio 2026, domanda 14 (proprietà sempre vera di un ABR).",
+      "descrizione": "Due forme. (1) Teorica: quale proprietà è sempre vera in un ABR (luglio 14). (2) Concreta: quale tra quattro alberi binari dati è un ABR (o quale non lo è). La seconda forma richiede di controllare la proprietà su interi sottoalberi, non solo tra padre e figli.",
+      "conoscenze": [
+        "Per ogni nodo x: tutte le chiavi del sottoalbero sinistro sono minori di x.key e tutte quelle del sottoalbero destro sono maggiori.",
+        "Si assumono chiavi distinte (la dispensa non considera i duplicati).",
+        "La proprietà riguarda tutto il sottoalbero: confrontare ogni nodo solo con i suoi figli non basta. Equivalente: ogni nodo ha chiave compresa nell'intervallo imposto da tutti i suoi antenati.",
+        "Un albero binario è un ABR se e solo se la sua visita in ordine (in-order) dà una sequenza strettamente crescente.",
+        "Un ABR non è necessariamente bilanciato né completo: può essere una catena; i nodi hanno 0, 1 o 2 figli; ogni nodo contiene una sola chiave.",
+        "Non sono sempre vere: 'il minimo sta nella radice', 'il massimo sta in una foglia', 'le foglie sono tutte allo stesso livello', 'l'albero è completo'."
+      ],
+      "procedimento": [
+        "Domanda teorica: confrontare ogni opzione con la definizione e cercare un piccolo controesempio (un ABR di 2–3 nodi) per le affermazioni false.",
+        "Albero dato: scendere dalla radice tenendo per ogni nodo l'intervallo (basso, alto) ammesso dagli antenati e controllare che la chiave vi cada; in alternativa scrivere la visita in ordine e controllare che sia crescente."
+      ],
+      "trappole": [
+        "Controllare solo padre-figli: 10(5(2, 12), 15) è corretto localmente, ma 12 sta nel sottoalbero sinistro di 10.",
+        "Confondere l'ABR con l'heap (minimo o massimo nella radice) o con un albero completo.",
+        "Credere che il massimo stia sempre in una foglia: il nodo più a destra può avere un figlio sinistro.",
+        "Scambiare sinistra e destra (minori a destra).",
+        "Pensare che un nodo possa contenere più chiavi (confusione con i B-alberi, L14-T20)."
+      ],
+      "come_generare_varianti": "Forma teorica: opzione corretta = la definizione (o una sua conseguenza sempre vera, per esempio 'la visita in ordine restituisce le chiavi in ordine crescente'); tre distrattori tra: minimo nella radice, massimo in una foglia, foglie tutte allo stesso livello, albero completo o quasi completo, ogni nodo contiene almeno due chiavi, ogni padre è minore dei figli. Non usare come distrattori affermazioni necessarie ma deboli (per esempio 'ogni nodo è maggiore del figlio sinistro'), perché anch'esse sono sempre vere. Forma concreta: quattro alberi di 5–8 nodi in notazione k(S, D) (spiegata nel testo), uno solo ABR; distrattori: violazione nascosta (un nipote corretto rispetto al padre ma non rispetto al nonno), violazione locale evidente, albero speculare (minori a destra) o con una chiave ripetuta. Variante: 'quale NON è un ABR' con tre ABR e uno con violazione nascosta. Verificare ogni albero con un controllo per intervalli in uno script."
+    },
+    {
+      "id": "L14-T02",
+      "titolo": "Posizione della chiave minima e massima",
+      "argomento": "Minimo, massimo, predecessore, successore",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Prova di maggio 2026, domanda 14 (la chiave minima si trova nel nodo più a sinistra, che può non essere foglia); luglio 2026, domanda 14, distrattori 'minimo nella radice' e 'massimo in una foglia'. Dispensa 14, proprietà dell'ABR, Esercizio 4 (massimo) e 'Cancellazione: i tre casi' (successore = minimo del sottoalbero destro).",
+      "descrizione": "Dove si trova la chiave minima o massima di un ABR o di un suo sottoalbero, come si raggiunge e quanto costa. Forma teorica (come maggio 14) o su un albero dato in cui il minimo o il massimo non è una foglia.",
+      "conoscenze": [
+        "Minimo: dalla radice si scende sempre a sinistra finché il figlio sinistro è None. È il nodo più a sinistra, che può avere un figlio destro: quindi può non essere una foglia.",
+        "Massimo: simmetrico, si scende sempre a destra; il nodo più a destra può avere un figlio sinistro.",
+        "Il minimo sta nella radice solo se la radice non ha figlio sinistro (per esempio con inserimenti in ordine crescente).",
+        "Costo O(h), caso peggiore Θ(h); spazio O(1) nella versione iterativa.",
+        "Il minimo del sottoalbero destro di un nodo è il suo successore (usato nella cancellazione con due figli)."
+      ],
+      "procedimento": [
+        "Partire dalla radice.",
+        "Seguire i puntatori left (minimo) o right (massimo) finché esistono.",
+        "Il nodo in cui ci si ferma è la risposta, che abbia o no un figlio dall'altro lato."
+      ],
+      "trappole": [
+        "Scegliere 'la foglia più a sinistra': se il nodo più a sinistra ha un figlio destro, quella foglia è più grande del minimo.",
+        "Pensare che il minimo sia nella radice (confusione con l'heap minimo).",
+        "Scegliere la foglia più profonda.",
+        "Per il massimo: scegliere la foglia più a destra invece del nodo più a destra."
+      ],
+      "come_generare_varianti": "Forma teorica: chiedere dove si trova il minimo (o il massimo) di un ABR o del sottoalbero destro/sinistro di un nodo; opzioni: 'nel nodo più a sinistra (destra), che può non essere foglia' (corretta), 'nella foglia più a sinistra (destra)', 'nella radice', 'nella foglia più profonda'. Forma concreta: ABR di 6–9 nodi in notazione k(S, D) (spiegata nel testo) in cui il nodo più a sinistra ha un figlio destro e/o il nodo più a destra ha un figlio sinistro; chiedere il minimo, il massimo o la coppia; distrattori: foglia più a sinistra/destra, radice, foglia più profonda. Variante sul costo: O(h), con distrattori O(1), O(log n), O(n)."
+    },
+    {
+      "id": "L14-T03",
+      "titolo": "Visita in ordine: chiavi in ordine crescente",
+      "argomento": "Visite e ordinamento",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Prova di luglio 2026, domanda 11 (quale visita dà le chiavi in ordine crescente: in ordine). Dispensa 14, Esercizio 1 (stampa in ordine crescente, complessità temporale e spaziale). Le visite in sé sono nella Lezione 12.",
+      "descrizione": "Quale visita di un ABR restituisce le chiavi in ordine crescente (o decrescente); quale sequenza produce la visita in ordine di un ABR costruito da una sequenza data; costo in tempo e spazio della stampa ordinata; costo dell'ordinamento tramite ABR.",
+      "conoscenze": [
+        "Visita in ordine (simmetrica, in-order): sottoalbero sinistro, nodo, sottoalbero destro. Su un ABR dà le chiavi in ordine crescente, qualunque sia la forma dell'albero.",
+        "Ordine decrescente: visita in ordine con i figli scambiati (destro, nodo, sinistro).",
+        "Pre-ordine, post-ordine e visita per livelli (in ampiezza) dipendono dalla forma e in generale non danno le chiavi ordinate.",
+        "Stampa ordinata: Θ(n) tempo (ogni nodo una volta); spazio O(h) per la pila della ricorsione (O(n) se degenere, O(log n) se bilanciato).",
+        "Ordinare n chiavi inserendole in un ABR e facendo la visita in ordine costa Θ(n²) nel caso peggiore (albero degenere) e O(n log n) se l'albero resta bilanciato."
+      ],
+      "procedimento": [
+        "Per 'quale visita': in ordine (in-order).",
+        "Per 'quale sequenza produce la visita in ordine': non serve costruire l'albero, basta ordinare le chiavi.",
+        "Per il costo: n nodi visitati con lavoro O(1) ciascuno = Θ(n); spazio = profondità massima della ricorsione = O(h)."
+      ],
+      "trappole": [
+        "Scegliere il pre-ordine perché la radice viene 'prima', o la visita per livelli perché sembra ordinata dall'alto.",
+        "Costruire l'albero e sbagliare la traccia, quando bastava ordinare le chiavi.",
+        "Rispondere con la sequenza di inserimento, che non è ordinata.",
+        "Dire che la stampa ordinata costa Θ(n log n) (come un ordinamento per confronti) o Θ(h); dire che lo spazio della versione ricorsiva è O(1).",
+        "Ordinamento tramite ABR (n inserimenti in un ABR vuoto e poi visita in ordine): rispondere Θ(n log n) nel caso peggiore, supponendo che l'albero resti bilanciato, oppure Θ(n) contando solo la visita e dimenticando il costo degli inserimenti."
+      ],
+      "come_generare_varianti": "(1) Teorica: quale visita dà le chiavi in ordine crescente (o decrescente); distrattori: pre-ordine, post-ordine, ampiezza. (2) Su una sequenza di 7–10 chiavi distinte, non ordinata, inserita in un ABR vuoto: chiedere la sequenza della visita in ordine; distrattori: la sequenza di inserimento (o la visita per livelli), la pre-order e la post-order dell'albero ottenuto, calcolate con uno script. Le quattro opzioni devono essere tutte diverse. (3) Costo della stampa ordinata (Θ(n)) o spazio (O(h)); distrattori Θ(n log n), Θ(h), O(1). (4) Ordinamento con ABR: Θ(n²) nel caso peggiore, distrattore O(n log n)."
+    },
+    {
+      "id": "L14-T04",
+      "titolo": "Costo delle operazioni in funzione dell'altezza h",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Prova di maggio 2026, domanda 13 (ricerca in un ABR con n nodi e altezza h: O(h)). Dispensa 14, 'Perché usare gli ABR' (tre operazioni in O(h)), 'Ricerca: complessità', 'Inserimento: complessità', 'Cancellazione: complessità'.",
+      "descrizione": "Costo di ricerca, inserimento, cancellazione, minimo, massimo, predecessore o successore in un ABR di altezza h: caso migliore, caso peggiore, spazio, versione iterativa o ricorsiva. Il testo dà h (con o senza n).",
+      "conoscenze": [
+        "Ogni operazione segue un unico cammino dalla radice verso il basso, un livello per iterazione: O(h); caso peggiore Θ(h) (ricerca fino alla foglia più profonda, inserimento come foglia alla massima profondità, cancellazione con successore alla massima profondità).",
+        "Caso migliore O(1): chiave nella radice, albero vuoto o nuovo nodo da inserire subito, nodo da cancellare foglia o con un figlio e subito raggiungibile.",
+        "Cancellazione con due figli: si scende fino al nodo e poi, nello stesso verso, fino al successore; i due tratti si sommano: in totale O(h), non O(h²).",
+        "Spazio: O(1) per le versioni iterative; O(h) per le versioni ricorsive (pila delle chiamate).",
+        "h è il numero di archi del cammino più lungo radice-foglia (albero vuoto −1). Un albero di altezza h ha al più 2^(h+1) − 1 nodi, cioè Θ(2^h)."
+      ],
+      "procedimento": [
+        "Riconoscere che l'operazione scende lungo un solo cammino dalla radice.",
+        "Il costo è la lunghezza di quel cammino: al più h (caso peggiore), costante nel caso migliore.",
+        "Per lo spazio controllare se la versione è ricorsiva (O(h)) o iterativa (O(1))."
+      ],
+      "trappole": [
+        "Rispondere O(log n) come se ogni ABR fosse bilanciato: vale solo se h = O(log n).",
+        "Rispondere O(log h), confondendo con la ricerca binaria.",
+        "Moltiplicare la ricerca del nodo per la ricerca del successore: O(h²).",
+        "Dire che la versione ricorsiva usa spazio O(1).",
+        "Dare Θ(h) anche come caso migliore."
+      ],
+      "come_generare_varianti": "Variare l'operazione (ricerca, inserimento, cancellazione, minimo, massimo, predecessore, successore), il caso (migliore, peggiore), la grandezza (tempo, spazio) e la versione (iterativa, ricorsiva). Il testo dice 'ABR con n nodi e altezza h', senza ipotesi di bilanciamento. Opzioni prese da: Θ(h), Θ(log n), Θ(log h), Θ(h²), Θ(n log n), Θ(1). Usare Θ e non O: O(h²) e O(n log n) sono limiti superiori veri anche quando la risposta è O(h). Le domande in cui il costo va espresso solo in funzione di n appartengono a L14-T05."
+    },
+    {
+      "id": "L14-T05",
+      "titolo": "Costo in funzione di n: ABR bilanciato e degenere",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Prova di luglio 2026, domanda 15 (inserimento in un ABR bilanciato: O(log n)); maggio 2026, domanda 13 (O(log n) come distrattore). Dispensa 14, 'Liste vs. Alberi Binari: efficienza della ricerca' (h ≈ log₂ n nel caso bilanciato).",
+      "descrizione": "Costo di una o più operazioni su un ABR espresso in funzione di n: bisogna tradurre h secondo le informazioni date (albero bilanciato, degenere, nessuna ipotesi, costruito da una sequenza ordinata). Comprende il costo di n inserimenti successivi.",
+      "conoscenze": [
+        "h varia tra ⌊log₂ n⌋ (albero bilanciato) e n − 1 (albero degenere, una catena).",
+        "ABR bilanciato: ricerca, inserimento e cancellazione O(log n).",
+        "Nessuna ipotesi sulla forma: caso peggiore O(n), raggiunto (Θ(n)) su un albero degenere.",
+        "Inserimenti in ordine crescente o decrescente producono una catena: l'i-esimo costa Θ(i), in totale 0 + 1 + … + (n − 1) = Θ(n²).",
+        "Se l'albero resta bilanciato, n inserimenti costano O(n log n).",
+        "Le operazioni della dispensa non ribilanciano l'albero: per garantire h = O(log n) servono alberi bilanciati come gli AVL (Lezione 15)."
+      ],
+      "procedimento": [
+        "Il costo di un'operazione è O(h).",
+        "Ricavare h dalle informazioni: bilanciato → log n; nessuna ipotesi, inserimenti ordinati o albero degenere → n.",
+        "Per sequenze di operazioni sommare i costi delle singole operazioni (somma aritmetica se l'albero cresce come una catena)."
+      ],
+      "trappole": [
+        "Rispondere O(log n) senza ipotesi di bilanciamento (costo 'ottimista').",
+        "Rispondere O(n) per un albero dichiarato bilanciato.",
+        "Per n inserimenti in ordine crescente rispondere Θ(n log n) o Θ(n).",
+        "Confondere O(n) con Θ(n): su un ABR qualsiasi il caso peggiore è O(n), ma non tutti gli ABR costano Θ(n)."
+      ],
+      "come_generare_varianti": "Variare l'ipotesi sulla forma (bilanciato; degenere; costruito inserendo 1, 2, …, n o n, n − 1, …, 1; nessuna ipotesi, caso peggiore), l'operazione (ricerca, inserimento, cancellazione, minimo) e la quantità (una operazione oppure n operazioni). Dire sempre in modo esplicito se l'albero è bilanciato. Opzioni prese da O(1), O(log n), O(n), O(n log n), Θ(n²), scegliendo i tre distrattori legati alle trappole."
+    },
+    {
+      "id": "L14-T06",
+      "titolo": "Altezza dell'ABR e ordine di inserimento",
+      "argomento": "Forma e altezza",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 14, Esercizio 3 (chiavi da 1 a 7: un ordine che dà altezza 6 e uno che dà altezza 2); 'Liste vs. Alberi Binari' (h ≈ log₂ n nel caso bilanciato).",
+      "descrizione": "Dato un insieme di chiavi, quale ordine di inserimento produce un albero di altezza minima o massima (o un'altezza data); quali sono l'altezza minima e massima possibili con n chiavi; riconoscere gli ordini che producono una catena.",
+      "conoscenze": [
+        "Con n chiavi: altezza minima ⌊log₂ n⌋, altezza massima n − 1 (albero vuoto −1, un nodo 0).",
+        "Altezza n − 1 (catena): ogni chiave inserita è il minimo o il massimo tra quelle non ancora inserite. Esempi: ordine crescente, decrescente, a zig-zag 1, 7, 2, 6, 3, 5, 4. Con le chiavi 1..7 sono 2⁶ = 64 ordini su 7! = 5040.",
+        "Altezza minima: la radice è la mediana e, ricorsivamente, ogni sottoalbero ha come radice la propria mediana, inserita prima delle altre chiavi del sottoalbero. Con 1..7: 4 per primo, 2 prima di 1 e 3, 6 prima di 5 e 7 (per esempio 4, 2, 6, 1, 3, 5, 7; 80 ordini su 5040).",
+        "L'ordine relativo tra chiavi di sottoalberi diversi non conta: 4, 6, 2, 7, 5, 3, 1 dà lo stesso albero di 4, 2, 6, 1, 3, 5, 7."
+      ],
+      "procedimento": [
+        "Altezza massima: controllare che ogni chiave sia il minimo o il massimo delle rimanenti.",
+        "Altezza minima: costruire l'albero bilanciato (mediana in radice, poi ricorsivamente) e controllare che nella sequenza ogni nodo compaia prima dei suoi discendenti.",
+        "Nel dubbio, costruire l'albero dell'opzione e misurarne l'altezza contando gli archi."
+      ],
+      "trappole": [
+        "Credere che basti inserire per prima la mediana: 4, 1, 2, 3, 5, 6, 7 ha altezza 3.",
+        "Credere che alternare chiavi piccole e grandi bilanci l'albero: 1, 7, 2, 6, 3, 5, 4 è una catena.",
+        "Contare l'altezza in nodi (7 o 3) invece che in archi (6 o 2).",
+        "Pensare che l'altezza dipenda solo da n e non dall'ordine di inserimento."
+      ],
+      "come_generare_varianti": "Usare le chiavi 1..7 o 1..15 (oppure 7–15 chiavi qualsiasi). Chiedere: quale ordine dà altezza minima (o massima, o un'altezza data); l'altezza minima o massima possibile con n chiavi; quale ordine NON produce una catena. Una sola opzione deve soddisfare la richiesta: costruire con uno script l'albero di ogni opzione e misurarne l'altezza. Distrattori: mediana per prima ma resto in ordine; zig-zag; ordine quasi crescente; ordine 'bilanciato' con un nodo inserito prima di un suo antenato. Per le domande numeriche: altezza contata in nodi, n, log₂ n arrotondato per eccesso."
+    },
+    {
+      "id": "L14-T07",
+      "titolo": "Costruzione di un ABR da una sequenza di inserimenti",
+      "argomento": "Costruzione e inserimento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 14, 'Inserimento: idea di base' e codice; Esercizio 2 (inserire 20, 7, 18, 15, 30, 19, 12 e mostrare l'albero).",
+      "descrizione": "Data una sequenza di chiavi da inserire in un ABR vuoto, chiedere una proprietà dell'albero ottenuto: altezza, padre o profondità di una chiave, numero di foglie, figli di un nodo, visita in pre-ordine, post-ordine o per livelli.",
+      "conoscenze": [
+        "La prima chiave diventa la radice e non cambia più (in assenza di cancellazioni).",
+        "Ogni nuova chiave scende dalla radice (minore → sinistra, maggiore → destra) e diventa una foglia nel primo posto libero.",
+        "I nodi già presenti non si spostano mai durante un inserimento; una chiave già presente non viene inserita di nuovo.",
+        "Esercizio 2: 20, 7, 18, 15, 30, 19, 12 dà 20(7(-, 18(15(12, -), 19)), 30), di altezza 4.",
+        "Altezza = numero di archi del cammino più lungo dalla radice a una foglia."
+      ],
+      "procedimento": [
+        "Inserire le chiavi una alla volta, ripercorrendo ogni volta il cammino dalla radice.",
+        "Disegnare l'albero (o scriverlo in notazione k(S, D)).",
+        "Leggere la proprietà richiesta (per l'altezza contare gli archi)."
+      ],
+      "trappole": [
+        "Riorganizzare l'albero per bilanciarlo o mettere la mediana in radice.",
+        "Confrontare la nuova chiave solo con l'ultima inserita invece di scendere dalla radice.",
+        "Contare l'altezza in nodi (una unità in più).",
+        "Supporre l'albero bilanciato e rispondere ⌊log₂ n⌋.",
+        "Sbagliare direzione in un confronto a metà del cammino."
+      ],
+      "come_generare_varianti": "Sequenze di 8–12 chiavi distinte (numeri a due cifre), non ordinate, che producano alberi con almeno un ramo lungo e un nodo con un solo figlio. Chiedere una sola proprietà. Distrattori per l'altezza: altezza in nodi, ⌊log₂ n⌋ (albero supposto bilanciato), n − 1, altezza ottenuta sbagliando una direzione. Per padre o figli: il padre ottenuto confrontando solo con l'ultima chiave, il nonno, il nodo speculare. Per le visite: la pre-order corretta contro la sequenza di inserimento, la visita per livelli e una pre-order con un nodo dal lato sbagliato. Calcolare tutto con uno script che implementa inserisci della dispensa."
+    },
+    {
+      "id": "L14-T08",
+      "titolo": "Sequenza di inserimento compatibile con un ABR dato",
+      "argomento": "Costruzione e inserimento",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 3,
+      "fonte": "Prova di luglio 2026, domanda 13 (dato l'ABR con chiavi 10, 5, 12, 7, 11, 15, 4, quale sequenza lo può aver generato: 'nessuna di queste', perché nessuna sequenza contiene la chiave 4). Dispensa 14, inserimento ed Esercizio 2.",
+      "descrizione": "Dato un ABR, si chiede quale tra alcune sequenze di inserimento (a partire dall'albero vuoto) può averlo generato. Spesso una delle opzioni è 'nessuna di queste'.",
+      "conoscenze": [
+        "Una sequenza genera l'albero se e solo se: contiene esattamente le chiavi dell'albero, né più né meno; la prima è la radice; ogni chiave compare dopo il proprio padre (e quindi dopo tutti i suoi antenati).",
+        "L'ordine tra chiavi di rami diversi è libero: in generale un albero ha molte sequenze generatrici; la visita in pre-ordine e quella per livelli sono sempre tra queste.",
+        "Due chiavi in relazione antenato-discendente devono comparire in quest'ordine; se il discendente arriva prima, prende il posto dell'antenato."
+      ],
+      "procedimento": [
+        "Contare le chiavi di ogni sequenza e confrontarle con quelle dell'albero.",
+        "Controllare che la prima chiave sia la radice.",
+        "Per ogni chiave verificare che il padre compaia prima (oppure costruire l'albero dalla sequenza e confrontarlo).",
+        "Se nessuna sequenza supera tutti i controlli, scegliere 'nessuna di queste'."
+      ],
+      "trappole": [
+        "Non contare le chiavi: a luglio le sequenze avevano 6 chiavi e l'albero 7.",
+        "Accettare una sequenza in cui un figlio precede il padre (per esempio 15, 11, 8, …: 11 diventa figlio sinistro di 15 al posto di 8).",
+        "Credere che la sequenza debba coincidere con la visita per livelli.",
+        "Fermarsi alla radice giusta senza controllare il resto."
+      ],
+      "come_generare_varianti": "Dare (in notazione k(S, D), spiegata nel testo) un ABR di 6–8 nodi con almeno due livelli sotto la radice. Opzioni: tre sequenze più 'nessuna di queste', oppure quattro sequenze. Distrattori: radice sbagliata; un figlio inserito prima del padre; una chiave mancante o diversa da quelle dell'albero; due chiavi che finiscono dal lato sbagliato. La sequenza corretta, quando c'è, non deve essere la visita per livelli. In circa un terzo delle varianti la risposta corretta deve essere 'nessuna di queste' (come a luglio), con distrattori che falliscono per motivi diversi. Verificare costruendo l'albero da ogni sequenza con uno script."
+    },
+    {
+      "id": "L14-T09",
+      "titolo": "Sequenza di nodi visitati durante una ricerca",
+      "argomento": "Ricerca",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 14, 'Ricerca: idea di base' e codice ('L'algoritmo visita al più un nodo per ogni livello dell'albero'). Esercizio classico dei testi di algoritmi.",
+      "descrizione": "Si danno quattro sequenze di chiavi che dovrebbero essere i nodi visitati cercando una chiave x in un ABR; si chiede quale non può esserlo (o quale sola può esserlo).",
+      "conoscenze": [
+        "La ricerca segue un solo cammino: in ogni nodo, se x < chiave va a sinistra, se x > chiave va a destra.",
+        "Dopo aver visitato il nodo k, tutti i nodi successivi stanno dalla stessa parte di k in cui sta x: tutti minori di k se x < k, tutti maggiori se x > k.",
+        "Quindi esiste un intervallo (basso, alto) che si restringe a ogni passo, e ogni chiave successiva deve cadere al suo interno.",
+        "La sequenza termina con x (se presente) e ha al più h + 1 chiavi."
+      ],
+      "procedimento": [
+        "Partire con l'intervallo (−∞, +∞).",
+        "Per ogni chiave k della sequenza: controllare che stia nell'intervallo; poi, se x < k, porre alto = k, se x > k, porre basso = k.",
+        "La prima chiave fuori dall'intervallo rende la sequenza impossibile."
+      ],
+      "trappole": [
+        "Controllare solo coppie consecutive: la violazione riguarda di solito un nodo visitato due o più passi prima.",
+        "Considerare impossibile una sequenza solo perché non è monotona (lo zig-zag è normale).",
+        "Dimenticare che anche il limite basso si restringe, non solo quello alto."
+      ],
+      "come_generare_varianti": "Fissare x (numero a due o tre cifre) e chiavi tra 1 e 100 (o tra 1 e 1000). Generare tre sequenze valide di 6–9 chiavi, con zig-zag ampi, e una impossibile in cui la chiave che viola il vincolo è corretta rispetto al nodo immediatamente precedente ma non rispetto a uno più in alto. Variante inversa: tre sequenze impossibili e una possibile. Verificare ogni sequenza con la procedura degli intervalli in uno script."
+    },
+    {
+      "id": "L14-T10",
+      "titolo": "Cancellazione: i tre casi e il successore",
+      "argomento": "Cancellazione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 14, 'Cancellazione: idea generale', 'Cancellazione: i tre casi' (figure con l'albero 8, 3, 10, 1, 6, 14, 4, 7, 13), codice iterativo e ricorsivo.",
+      "descrizione": "Domande sul funzionamento della cancellazione senza una traccia lunga: quale caso si applica a un nodo, con quale nodo si sostituisce un nodo con due figli, quanti figli può avere il successore, che fine fa il suo figlio, cosa fa un certo ramo del codice.",
+      "conoscenze": [
+        "Caso 1, foglia: si rimuove (il puntatore del padre diventa None; se era la radice l'albero diventa vuoto).",
+        "Caso 2, un solo figlio: il nodo è rimpiazzato dal suo unico figlio, con tutto il sottoalbero, che viene attaccato al padre.",
+        "Caso 3, due figli: si copia nel nodo la chiave del successore, cioè il minimo del sottoalbero destro (una volta a destra, poi sempre a sinistra), e poi si rimuove il successore.",
+        "Il successore non ha figlio sinistro (altrimenti non sarebbe il minimo): la sua rimozione è un caso 1 o 2, e il suo eventuale figlio destro prende il suo posto.",
+        "Il successore coincide con il figlio destro del nodo solo quando il figlio destro non ha figlio sinistro.",
+        "Nel codice il nodo resta al suo posto e cambia solo la chiave (nodo.key = succ.key); la versione ricorsiva rimuove poi il successore con cancella(root.right, succ.key).",
+        "Se la chiave non c'è l'albero resta invariato; la cancellazione non ribilancia.",
+        "Il predecessore (massimo del sottoalbero sinistro) darebbe anch'esso un ABR valido, ma la dispensa usa il successore."
+      ],
+      "procedimento": [
+        "Trovare il nodo e contare i suoi figli.",
+        "Applicare il caso corrispondente.",
+        "Nel caso 3: scendere una volta a destra e poi sempre a sinistra; copiare la chiave; riattaccare il figlio destro del successore al padre del successore."
+      ],
+      "trappole": [
+        "Sostituire il nodo con il suo figlio destro invece che con il minimo del sottoalbero destro.",
+        "Scegliere il massimo del sottoalbero destro (viola la proprietà) o, con l'algoritmo della dispensa, il massimo del sottoalbero sinistro.",
+        "Pensare che il successore possa avere due figli o un figlio sinistro.",
+        "Nel caso 2 eliminare anche il sottoalbero del figlio.",
+        "Applicare il caso 3 a un nodo con un solo figlio."
+      ],
+      "come_generare_varianti": "Domande teoriche: con quale nodo si sostituisce un nodo con due figli; quanti figli può avere il successore (0 o 1, solo destro); che fine fa il figlio destro del successore; in quale caso rientra un nodo dato; cosa restituisce la versione ricorsiva per un nodo con un solo figlio. Oppure, su un ABR di 5–8 nodi in notazione k(S, D), chiedere soltanto quale chiave prende il posto della chiave cancellata, scegliendo un nodo il cui figlio destro ha un figlio sinistro. Distrattori: figlio destro, massimo del sottoalbero destro, massimo del sottoalbero sinistro (predecessore), foglia più profonda; 'due figli', 'solo un figlio sinistro'. Scrivere sempre 'con l'algoritmo della dispensa' o 'usando il successore'."
+    },
+    {
+      "id": "L14-T11",
+      "titolo": "Traccia di cancellazioni su un ABR dato",
+      "argomento": "Cancellazione",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 14, Esercizio 2 (dopo gli inserimenti 20, 7, 18, 15, 30, 19, 12, cancellare la radice e poi la chiave 18) e figure di 'Cancellazione: i tre casi' (cancellazione di 13, 10 e 3 dall'albero 8, 3, 10, 1, 6, 14, 4, 7, 13).",
+      "descrizione": "Dato un ABR (o la sequenza che lo costruisce), si cancellano una o due chiavi e si chiede com'è l'albero risultante: la nuova radice, il figlio di un nodo, la visita in pre-ordine, l'altezza.",
+      "conoscenze": [
+        "I tre casi e il successore come in L14-T10.",
+        "Esercizio 2: l'albero è 20(7(-, 18(15(12, -), 19)), 30). Cancellando 20 (due figli) il successore è 30, figlio destro senza figlio sinistro: 30(7(-, 18(15(12, -), 19)), -). Cancellando poi 18 (due figli) il successore è 19: 30(7(-, 19(15(12, -), -)), -).",
+        "Figure della dispensa, albero 8(3(1, 6(4, 7)), 10(-, 14(13, -))): cancellare 13 (foglia) la toglie; cancellare 10 (un figlio) fa salire 14 come figlio destro di 8; cancellare 3 (due figli) mette 4 al posto di 3: 8(4(1, 6(-, 7)), 10(-, 14(13, -))).",
+        "Le cancellazioni successive si applicano all'albero già modificato."
+      ],
+      "procedimento": [
+        "Costruire l'albero se è dato tramite una sequenza.",
+        "Per ogni chiave da cancellare individuare il caso; nel caso 3 trovare il minimo del sottoalbero destro, copiarne la chiave e attaccare il suo figlio destro (se c'è) al padre del successore.",
+        "Leggere sull'albero finale la proprietà richiesta."
+      ],
+      "trappole": [
+        "Far salire il figlio destro al posto del nodo cancellato.",
+        "Dimenticare il figlio destro del successore (il suo sottoalbero si perde).",
+        "Usare il predecessore: si ottiene un ABR valido ma diverso da quello della dispensa.",
+        "Applicare la seconda cancellazione all'albero di partenza."
+      ],
+      "come_generare_varianti": "ABR di 9–12 nodi (dato in notazione k(S, D) o tramite sequenza di inserimento) in cui il nodo da cancellare ha due figli, il suo figlio destro ha un figlio sinistro (così il successore è diverso dal figlio destro) e il successore ha un figlio destro. Chiedere una proprietà precisa del risultato (radice, figlio di un nodo, pre-order, altezza). Distrattori: il risultato con il figlio destro promosso, quello con il predecessore, quello in cui il figlio destro del successore viene perso. Variante a due cancellazioni come l'Esercizio 2. Calcolare tutto con le funzioni cancella della dispensa (iterativa e ricorsiva danno lo stesso albero)."
+    },
+    {
+      "id": "L14-T12",
+      "titolo": "Predecessore e successore di una chiave",
+      "argomento": "Minimo, massimo, predecessore, successore",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 14, Esercizio 5 (predecessore massimo di x, None se non esiste, con complessità) e 'Cancellazione: i tre casi' (successore = minimo del sottoalbero destro).",
+      "descrizione": "Dato un ABR e una chiave x (presente o no), trovare il predecessore (massima chiave minore di x) o il successore (minima chiave maggiore di x); oppure dire dove si trova e quanto costa trovarlo.",
+      "conoscenze": [
+        "Predecessore di un nodo con sottoalbero sinistro: il massimo di quel sottoalbero (una volta a sinistra, poi sempre a destra).",
+        "Senza sottoalbero sinistro: l'antenato più vicino di cui il nodo sta nel sottoalbero destro (si risale finché si arriva a un antenato 'da destra'); se non esiste il predecessore è None (x è il minimo).",
+        "Successore: simmetrico (minimo del sottoalbero destro, oppure antenato più vicino di cui il nodo sta nel sottoalbero sinistro).",
+        "Algoritmo dell'Esercizio 5 senza puntatore al padre: si scende dalla radice; se la chiave del nodo è minore di x la si ricorda come candidata e si va a destra, altrimenti si va a sinistra; alla fine la candidata è il predecessore. Funziona anche se x non è nell'albero.",
+        "Costo O(h), spazio O(1).",
+        "Predecessore e successore sono le chiavi adiacenti a x nella visita in ordine."
+      ],
+      "procedimento": [
+        "Scrivere la visita in ordine (le chiavi ordinate) e prendere la chiave adiacente a x; oppure",
+        "applicare le regole: se c'è il sottoalbero sinistro prenderne il massimo, altrimenti risalire fino al primo antenato raggiunto da destra."
+      ],
+      "trappole": [
+        "Rispondere con il padre del nodo.",
+        "Rispondere None perché il nodo non ha figlio sinistro.",
+        "Prendere il figlio sinistro invece del massimo del sottoalbero sinistro.",
+        "Confondere predecessore e successore.",
+        "Dare come costo O(n) (visita completa) oppure O(1)."
+      ],
+      "come_generare_varianti": "ABR di 9–12 nodi in notazione k(S, D) (spiegata nel testo). Chiedere il predecessore o il successore di: un nodo con sottoalbero sinistro profondo; una foglia figlia sinistra (la risposta è un antenato lontano); il minimo o il massimo (risposta None); una chiave non presente. Distrattori: il padre, un figlio diretto, None, la chiave adiacente dall'altro lato (successore al posto del predecessore). Variante sul costo: O(h), con distrattori O(1), O(n), O(log n). Verificare con la visita in ordine."
+    },
+    {
+      "id": "L14-T13",
+      "titolo": "ABR a confronto con heap, liste e tabelle hash",
+      "argomento": "Confronto tra strutture",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 14, 'Perché usare gli ABR' (dizionario con ricerca, inserimento, cancellazione) e 'Liste vs. Alberi Binari' (ricerca Ω(n) nelle liste). Confronto con la Lezione 9 (heap) e la Lezione 13 (tabelle hash); prova di maggio 2026, domanda 6 (un heap non è un albero di ricerca), solo come richiamo.",
+      "descrizione": "Si confrontano ABR, heap, liste concatenate e tabelle hash su proprietà e costi: quale operazione è più efficiente in quale struttura, quale affermazione vale per entrambe, quale struttura scegliere per un certo uso.",
+      "conoscenze": [
+        "ABR: sinistra < nodo < destra; visita in ordine ordinata; ricerca, inserimento, cancellazione, minimo, massimo, predecessore e successore in O(h); non è necessariamente bilanciato.",
+        "Heap minimo: ogni padre ≤ figli, nessun ordine tra fratelli; sempre quasi completo (altezza ⌊log₂ n⌋); minimo O(1); inserimento ed estrazione del minimo O(log n); ricerca di una chiave qualsiasi O(n); costruzione O(n).",
+        "Lista concatenata: ricerca Ω(n) nel caso peggiore.",
+        "Tabella hash: ricerca O(1) in media, ma nessun ordine: minimo, successore o elenco ordinato costano O(n) o più.",
+        "Costruire un ABR da n chiavi costa O(n log n) se resta bilanciato, Θ(n²) nel caso peggiore; un heap si costruisce in O(n)."
+      ],
+      "procedimento": [
+        "Per ogni operazione nelle opzioni scrivere il costo nelle due strutture.",
+        "Confrontare e scegliere l'opzione che rispetta la richiesta (più efficiente, uguale, vera per entrambe)."
+      ],
+      "trappole": [
+        "Pensare che l'heap sia un albero di ricerca e permetta la ricerca di una chiave in O(log n).",
+        "Pensare che l'ABR sia sempre bilanciato come l'heap.",
+        "Pensare che il minimo di un ABR costi O(1) come nell'heap minimo.",
+        "Pensare che la visita in ordine di un heap dia le chiavi ordinate."
+      ],
+      "come_generare_varianti": "Chiedere quale operazione è più efficiente in una struttura che nell'altra, quale affermazione è vera per entrambe, oppure quale struttura scegliere per un uso (ricerca per chiave con ordine → ABR bilanciato; solo minimo → heap; sola ricerca per chiave → tabella hash). Specificare sempre 'ABR bilanciato' o 'ABR qualsiasi'. Distrattori: operazioni in cui vince l'heap (minimo, costruzione) o in cui si pareggia (inserimento in ABR bilanciato e in heap)."
+    },
+    {
+      "id": "L14-T14",
+      "titolo": "Chiavi in un intervallo e fusione di due ABR",
+      "argomento": "Algoritmi su ABR",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 3,
+      "fonte": "Dispensa 14, Esercizi della seconda serie: 1 (chiavi comprese tra x e y, con complessità), 3 (fusione di due ABR con chiavi del primo minori di quelle del secondo, tempo O(min(h1, h2)) e spazio O(1)), 4 (fusione di due ABR con chiavi distinte qualsiasi, costo in funzione di n1 e n2).",
+      "descrizione": "Costo o idea corretta di algoritmi costruiti sulle operazioni di base: elenco delle chiavi in un intervallo [x, y]; fusione di due ABR con chiavi separate; fusione di due ABR qualsiasi.",
+      "conoscenze": [
+        "Chiavi in [x, y]: visita in ordine 'potata', che scende a sinistra solo se x < chiave e a destra solo se chiave < y. Costo O(h + k), dove k è il numero di chiavi restituite (nel caso peggiore O(n)).",
+        "Fusione con tutte le chiavi di T1 minori di quelle di T2: basta attaccare T2 come figlio destro del massimo di T1 (che non ha figlio destro), oppure T1 come figlio sinistro del minimo di T2 (che non ha figlio sinistro). Scendendo in parallelo lungo il cammino destro di T1 e quello sinistro di T2, e fermandosi al primo che finisce, il costo è O(min(h1, h2)) con spazio O(1).",
+        "Dopo quella fusione l'altezza può arrivare a h1 + h2 + 1: l'albero non viene ribilanciato.",
+        "Fusione di due ABR qualsiasi: visita in ordine dei due alberi (due liste ordinate), fusione delle liste come nel mergesort, costruzione di un ABR bilanciato dalla lista ordinata (elemento centrale come radice, ricorsivamente): Θ(n1 + n2) in tutto."
+      ],
+      "procedimento": [
+        "Individuare l'idea dell'algoritmo (visita potata; attacco di un albero sotto il massimo o il minimo dell'altro; visita + fusione + costruzione).",
+        "Sommare i costi delle fasi."
+      ],
+      "trappole": [
+        "Intervallo: rispondere O(k) ignorando la discesa, O(h · k) cercando ogni chiave da capo, oppure O(log n + k) senza ipotesi di bilanciamento.",
+        "Fusione con chiavi separate: O(h1 + h2) o O(max(h1, h2)) (scendere in entrambi fino in fondo), oppure O(n1 + n2) (ricostruire tutto quando non serve).",
+        "Fusione qualsiasi: inserire le n2 chiavi una per una nel primo albero e dire O(n2 log n1) senza ipotesi di bilanciamento (nel caso peggiore è O(n2 · (n1 + n2)))."
+      ],
+      "come_generare_varianti": "Tre famiglie: costo della ricerca in un intervallo; costo o idea della fusione con chiavi separate; costo della fusione generale in funzione di n1 e n2. Distrattori presi dalle trappole. Varianti concrete: dato un ABR di 8–10 nodi in notazione k(S, D) e un intervallo [x, y], chiedere quali chiavi restituisce la funzione (in ordine crescente) o quale nodo non viene visitato dalla versione potata."
+    },
+    {
+      "id": "L14-T15",
+      "titolo": "Pseudocodice della ricerca in un ABR",
+      "argomento": "Ricerca",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 14, 'Ricerca: implementazione in Python' (versioni iterativa e ricorsiva) e 'Ricerca: complessità'. Formato come la prova di maggio 2026, domanda 11 (pseudocodice di una funzione ricorsiva su un albero).",
+      "descrizione": "Scrivere la funzione ricorsiva che, data la radice di un ABR e una chiave x, restituisce True se x è presente e False altrimenti; talvolta indicarne costo e spazio.",
+      "conoscenze": [
+        "Caso base: nodo None → False (sottoalbero vuoto, la chiave non c'è).",
+        "Se nodo.key == x → True; se x < nodo.key si continua solo nel sottoalbero sinistro, altrimenti solo nel destro.",
+        "Una sola chiamata ricorsiva per livello: tempo O(h), spazio O(h) per lo stack.",
+        "Campi del nodo come nella dispensa: key, left, right."
+      ],
+      "procedimento": [
+        "Scrivere il caso base nodo is None.",
+        "Confrontare x con nodo.key: uguale → True.",
+        "Fare una sola chiamata, sul lato giusto, preceduta da return."
+      ],
+      "trappole": [
+        "Chiamare la ricorsione su entrambi i sottoalberi: la funzione resta corretta ma diventa una visita O(n).",
+        "Dimenticare return davanti alla chiamata ricorsiva: in Python la funzione restituisce None.",
+        "Dimenticare il controllo nodo is None (errore su None.key) o scrivere il caso base None → True.",
+        "Invertire la direzione (x < nodo.key → destra)."
+      ],
+      "come_generare_varianti": "Chiedere la versione ricorsiva, oppure una variante: restituire il nodo invece di True/False; restituire la profondità di x (−1 se assente); contare i nodi visitati; restituire la chiave più piccola maggiore o uguale a x (None se non c'è, più difficile). A volte chiedere anche costo e spazio (O(h) e O(h)). La soluzione deve usare lo stile della dispensa (campi key, left, right, None per il vuoto)."
+    },
+    {
+      "id": "L14-T16",
+      "titolo": "Pseudocodice dell'inserimento ricorsivo in un ABR",
+      "argomento": "Costruzione e inserimento",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 14, 'Inserimento: implementazione in Python' (versioni iterativa e ricorsiva) e 'Inserimento: complessità'.",
+      "descrizione": "Scrivere la funzione ricorsiva che inserisce una chiave x in un ABR e restituisce la radice dell'albero risultante.",
+      "conoscenze": [
+        "Se il (sotto)albero è vuoto si crea il nuovo nodo e lo si restituisce: è così che il nodo viene collegato al padre.",
+        "root.left = inserisci(root.left, x): l'assegnamento riattacca il sottoalbero (eventualmente nuovo) al padre.",
+        "Se x è già presente non si fa nulla; la funzione restituisce sempre la radice.",
+        "Tempo O(h) (caso peggiore Θ(h)); spazio O(h) per lo stack."
+      ],
+      "procedimento": [
+        "Caso base: root is None → return NodoABR(x).",
+        "Confrontare x con root.key e richiamare la funzione sul lato giusto, assegnando il risultato al figlio corrispondente.",
+        "Restituire root."
+      ],
+      "trappole": [
+        "Chiamare inserisci(root.left, x) senza assegnare il risultato a root.left: il nuovo nodo non viene mai collegato.",
+        "Non restituire root alla fine: il chiamante riceve None e perde l'albero.",
+        "Scrivere root = NodoABR(x) su una variabile locale nel caso generale invece di restituire il nuovo nodo dal caso base e assegnarlo con root.left = ….",
+        "Inserire i duplicati, o non gestire l'albero vuoto."
+      ],
+      "come_generare_varianti": "Chiedere la versione ricorsiva; varianti: inserimento che restituisce anche se la chiave è stata inserita; inserimento che ammette duplicati a destra; inserimento che aggiorna un campo contatore se la chiave c'è già. Usare la classe NodoABR della dispensa (costruttore NodoABR(x), campi key, left, right). Chiedere a volte il costo (O(h))."
+    },
+    {
+      "id": "L14-T17",
+      "titolo": "Pseudocodice ricorsivo del massimo (o minimo)",
+      "argomento": "Minimo, massimo, predecessore, successore",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 14, Esercizio 4 (massimo di un ABR, None se l'albero è vuoto; versione ricorsiva). Collegato alla prova di maggio 2026, domanda 14 (posizione del minimo).",
+      "descrizione": "Scrivere una funzione ricorsiva che restituisce la chiave massima (o minima) di un ABR, None se l'albero è vuoto.",
+      "conoscenze": [
+        "Il massimo è nel nodo più a destra: si segue right finché non è None; il minimo simmetricamente con left.",
+        "Il nodo più a destra può avere un figlio sinistro: la condizione di arresto è root.right is None, non 'il nodo è una foglia'.",
+        "Albero vuoto: restituire None (richiesto dalla dispensa).",
+        "Tempo O(h), spazio O(h) per lo stack."
+      ],
+      "procedimento": [
+        "Gestire l'albero vuoto.",
+        "Se non c'è figlio destro restituire root.key, altrimenti restituire la chiamata sul figlio destro."
+      ],
+      "trappole": [
+        "Fermarsi solo sulle foglie (condizione left is None and right is None): si scende a sinistra o si sbaglia risultato.",
+        "Restituire il nodo invece della chiave, o dimenticare il caso dell'albero vuoto.",
+        "Fare una visita completa dell'albero (max tra radice, max sinistro e max destro): corretta ma O(n), non sfrutta la proprietà dell'ABR.",
+        "Dimenticare return davanti alla chiamata ricorsiva: la funzione restituisce None."
+      ],
+      "come_generare_varianti": "Chiedere il massimo o il minimo; varianti: massimo del sottoalbero sinistro di un nodo dato (predecessore di un nodo con due figli); seconda chiave più grande (più difficile); massimo di un albero binario qualsiasi (non di ricerca), che richiede invece la visita completa. Chiedere talvolta anche il costo (O(h))."
+    },
+    {
+      "id": "L14-T18",
+      "titolo": "Pseudocodice della stampa in ordine crescente",
+      "argomento": "Visite e ordinamento",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 14, Esercizio 1 (stampare gli elementi di un ABR in ordine crescente, con complessità temporale e spaziale). Formato come la prova di maggio 2026, domanda 11 (pseudocodice della visita in pre-ordine); luglio 2026, domanda 11 (la visita in ordine dà le chiavi ordinate).",
+      "descrizione": "Scrivere la procedura ricorsiva che stampa (o restituisce in una lista) le chiavi di un ABR in ordine crescente (o decrescente) e valutarne costo e spazio.",
+      "conoscenze": [
+        "Visita in ordine: prima il sottoalbero sinistro, poi il nodo, poi il destro.",
+        "Ordine decrescente: prima il destro, poi il nodo, poi il sinistro.",
+        "Tempo Θ(n) (ogni nodo una volta); spazio O(h) per la pila della ricorsione.",
+        "Per restituire una lista conviene fare append su una lista passata come parametro; costruirla con concatenazioni sinistra + [key] + destra ha un costo nascosto (O(n · h), Θ(n²) su un albero degenere)."
+      ],
+      "procedimento": [
+        "Controllare che il nodo non sia None.",
+        "Chiamata sul sinistro, stampa della chiave, chiamata sul destro."
+      ],
+      "trappole": [
+        "Stampare la chiave prima delle chiamate (pre-ordine) o dopo (post-ordine).",
+        "Dimenticare il controllo su None.",
+        "Dichiarare un costo Θ(n log n) (come un ordinamento) o uno spazio O(1).",
+        "Restituire la lista con concatenazioni a ogni livello senza considerarne il costo."
+      ],
+      "come_generare_varianti": "Chiedere: stampa in ordine crescente; stampa in ordine decrescente; funzione che restituisce la lista ordinata; funzione che restituisce la k-esima chiave più piccola (visita in ordine con contatore). Chiedere sempre anche costo e spazio."
+    },
+    {
+      "id": "L14-T19",
+      "titolo": "Pseudocodice: verificare se un albero binario è un ABR",
+      "argomento": "Proprietà dell'ABR",
+      "formato": "aperta",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 14, Esercizio 2 della seconda serie (verificare che un albero binario sia un ABR: chiavi distinte, sottoalbero sinistro minore e destro maggiore per ogni nodo).",
+      "descrizione": "Scrivere una funzione ricorsiva che, data la radice di un albero binario qualsiasi, restituisce True se è un ABR (chiavi distinte, proprietà valida per ogni nodo) e False altrimenti; valutarne il costo.",
+      "conoscenze": [
+        "Il controllo solo tra padre e figli non basta: serve il vincolo di tutti gli antenati, cioè un intervallo (basso, alto) passato nella ricorsione.",
+        "Scendendo a sinistra il limite alto diventa la chiave del nodo; scendendo a destra lo diventa il limite basso.",
+        "Confronti stretti (≤ basso o ≥ alto → False) rifiutano anche le chiavi ripetute.",
+        "Alternativa: visita in ordine che controlla che ogni chiave sia maggiore della precedente.",
+        "Tempo Θ(n) nel caso peggiore (se l'albero è un ABR si visitano tutti i nodi); spazio O(h).",
+        "Qui il caso base None → True è corretto (l'albero vuoto è un ABR)."
+      ],
+      "procedimento": [
+        "Definire una funzione ricorsiva con i due limiti (inizialmente nessun limite).",
+        "Se il nodo è None restituire True.",
+        "Se la chiave esce dall'intervallo restituire False.",
+        "Richiamare sul sinistro con alto = chiave e sul destro con basso = chiave, combinando con and."
+      ],
+      "trappole": [
+        "Controllo solo locale (figlio sinistro minore, figlio destro maggiore): accetta 10(5(2, 12), 15), che non è un ABR.",
+        "Accedere a nodo.left.key senza controllare che nodo.left non sia None.",
+        "Usare < e > non stretti nel modo sbagliato e accettare chiavi duplicate.",
+        "Ricalcolare a ogni nodo massimo e minimo dei sottoalberi con una visita completa: corretto ma O(n · h), cioè Θ(n²) nel caso peggiore.",
+        "Dimenticare di combinare con and i risultati dei due sottoalberi (per esempio restituire solo quello sinistro)."
+      ],
+      "come_generare_varianti": "Chiedere la funzione di verifica (con intervalli o con visita in ordine); varianti: mostrare una soluzione con il solo controllo locale e chiedere un controesempio (un albero accettato che non è un ABR); chiedere anche costo e spazio. Notazione dei nodi come nella dispensa (key, left, right)."
+    },
+    {
+      "id": "L14-T20",
+      "titolo": "B-alberi: nozioni di base",
+      "argomento": "B-alberi",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Prova di maggio 2026, domanda 15 (in un B-albero un nodo con k chiavi ha k + 1 figli). Argomento NON presente nelle dispense del corso: servono solo le nozioni minime elencate qui, collegate agli alberi di ricerca della Lezione 14.",
+      "descrizione": "Domande di definizione sui B-alberi: numero di figli di un nodo con k chiavi, foglie tutte allo stesso livello, uso per la memoria secondaria, altezza logaritmica, differenze con l'ABR.",
+      "conoscenze": [
+        "Un B-albero è un albero di ricerca non binario e bilanciato, pensato per la memoria secondaria (dischi): ogni nodo occupa un blocco e contiene molte chiavi, così l'altezza, e quindi il numero di accessi al disco, resta piccola.",
+        "Le chiavi di un nodo sono in ordine crescente; un nodo interno con k chiavi ha k + 1 figli: le k chiavi dividono i valori in k + 1 intervalli, uno per figlio (come nell'ABR: 1 chiave, 2 figli).",
+        "Tutte le foglie stanno allo stesso livello.",
+        "Ogni nodo tranne la radice ha un numero minimo e massimo di chiavi (con grado minimo t: tra t − 1 e 2t − 1 chiavi, quindi tra t e 2t figli).",
+        "Altezza O(log n) (più precisamente O(log_t n)): ricerca, inserimento e cancellazione visitano O(log n) nodi; un B-albero non può degenerare in una catena."
+      ],
+      "procedimento": [
+        "Ricordare la regola 'k chiavi → k + 1 figli' e le proprietà sopra.",
+        "Escludere le opzioni che descrivono un ABR (albero binario, possibile degenerazione) o un heap (quasi completo)."
+      ],
+      "trappole": [
+        "Rispondere k figli (una chiave per figlio) o k − 1.",
+        "Rispondere 2k − 1, confondendo con il numero massimo di chiavi 2t − 1.",
+        "Pensare che sia un albero binario o che possa degenerare come un ABR.",
+        "Confondere 'foglie tutte allo stesso livello' (B-albero) con 'albero quasi completo' (heap)."
+      ],
+      "come_generare_varianti": "Domande brevi: figli di un nodo con k chiavi (k simbolico o numerico, per esempio 4 chiavi → 5 figli); quale affermazione è vera per un B-albero (foglie tutte allo stesso livello; usato per la memoria secondaria; altezza logaritmica; un nodo contiene più chiavi ordinate); differenza con l'ABR. Distrattori: k, k − 1, 2k − 1, 2k; 'è un albero binario', 'può degenerare in una catena', 'le foglie possono stare a livelli diversi'. Non chiedere gli algoritmi di divisione e fusione dei nodi, che non sono nel programma delle dispense."
+    }
+  ]
+}

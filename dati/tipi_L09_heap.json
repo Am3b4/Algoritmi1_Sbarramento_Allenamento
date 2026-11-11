@@ -1,0 +1,416 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 9,
+    "titolo": "Struttura dati: Min-Heap (e heapsort)",
+    "file": "PL9.pdf",
+    "contenuti": [
+      "Motivazione: array ordinato (minimo O(1), inserimento O(n)) contro array non ordinato (minimo O(n), inserimento O(1)); l'heap dà minimo O(1), inserimento ed estrazione O(log n), creazione O(n)",
+      "Albero binario: radice, figli, foglie, livello, altezza",
+      "Definizione di min-heap: proprietà di ordine (ogni nodo ≤ dei figli) e di compattezza (albero completo o quasi completo, ultimo livello riempito da sinistra); il minimo è in radice; max-heap simmetrico",
+      "Altezza di un heap: h = O(log n), con la dimostrazione n > Σ_{i=0..h−1} 2^i = 2^h − 1",
+      "Rappresentazione in array per livelli, indici da 0: padre (i − 1)//2, figli 2i + 1 e 2i + 2",
+      "Inserimento (heappush): append e risalita, O(log n)",
+      "Estrazione del minimo (heappop): ultimo elemento in radice e discesa scambiando con il figlio minore, O(log n)",
+      "Costruzione con heapify: heapify_down sui nodi interni da n//2 − 1 a 0; costo O(n) contro O(n log n) di n heappush",
+      "Libreria heapq: heapify, heappop, heappush su list (min-heap)",
+      "Heapsort con heapq: heapify + n estrazioni in una lista B; O(n log n), non in loco",
+      "Esercizio: inserimenti successivi di [60, 30, 50, 20, 10, 30] in un heap vuoto e 4 estrazioni"
+    ],
+    "nota": "Due domande delle prove ufficiali vengono da questa lezione: maggio domanda 6 (un heap massimo è un albero binario completo o quasi completo) e luglio domanda 6 (ricerca del minimo in un heap massimo: O(n)). Le prove usano spesso il max-heap, la dispensa il min-heap: le varianti devono alternare i due. Tutte le tracce degli esempi sono state verificate eseguendo il codice della dispensa (heappush, heappop, heapify_down, heapify) in Python, con indici da 0 e figli 2i + 1, 2i + 2. Nota sui pari merito nel codice della dispensa: in heappush si risale solo se il nuovo valore è strettamente minore del padre; in heappop, a parità tra i figli si sceglie il sinistro, e ci si ferma se il padre è ≤ del figlio minore."
+  },
+  "tipi": [
+    {
+      "id": "L09-T01",
+      "titolo": "Definizione di heap: ordine e forma",
+      "argomento": "Definizione e proprietà",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 9, 'Definizione di Min-Heap' (proprietà di ordine e di compattezza). Prova di maggio 2026, domanda 6 ('Un heap massimo è: … d) un albero binario completo o quasi completo').",
+      "descrizione": "Domanda di definizione: che cos'è un heap (minimo o massimo), quali due proprietà deve rispettare, che cosa non è (albero di ricerca, array ordinato, albero con tutte le foglie allo stesso livello). Le opzioni possono descrivere la forma, l'ordine o entrambi.",
+      "conoscenze": [
+        "Un min-heap è un albero binario con due proprietà: ordine (ogni nodo ha valore ≤ di quello dei suoi figli) e compattezza (albero completo o quasi completo).",
+        "Quasi completo: tutti i livelli sono pieni tranne forse l'ultimo, che è riempito da sinistra verso destra senza buchi.",
+        "Max-heap: stessa forma, ordine rovesciato (ogni nodo ≥ dei figli); il massimo è in radice.",
+        "In un min-heap il minimo è sempre in radice.",
+        "Un heap non è un albero binario di ricerca: non c'è nessun ordine tra figlio sinistro e figlio destro, né tra sottoalbero sinistro e destro.",
+        "Un heap non è un array ordinato: un array ordinato in modo crescente è un min-heap, ma quasi tutti i min-heap non sono ordinati.",
+        "Le foglie di un heap possono stare su due livelli diversi (l'ultimo e il penultimo)."
+      ],
+      "procedimento": [
+        "Cercare l'opzione che parla di albero binario completo o quasi completo (forma) e/o di ordine tra padre e figli.",
+        "Scartare le opzioni che parlano di albero di ricerca, di array ordinato o di foglie tutte allo stesso livello."
+      ],
+      "trappole": [
+        "Scegliere 'array ordinato' perché l'heap 'tiene in ordine' gli elementi.",
+        "Scegliere 'albero di ricerca bilanciato' perché l'heap è bilanciato e serve a cercare il minimo.",
+        "Scegliere 'albero con le foglie tutte allo stesso livello' (sarebbe solo il caso completo, non quello quasi completo).",
+        "Invertire min e max: dire che in un max-heap ogni nodo è ≤ dei figli.",
+        "Pensare che tra fratelli ci sia un ordine (figlio sinistro minore del destro), come in un albero di ricerca."
+      ],
+      "come_generare_varianti": "Alternare 'heap massimo' e 'heap minimo' nella domanda. Formulazioni: 'Un heap massimo è:', 'Quale proprietà deve soddisfare un min-heap?', 'Quale affermazione su un heap è vera?'. La risposta corretta descrive la forma (albero binario completo o quasi completo) oppure forma e ordine insieme; mai una sola proprietà se la domanda chiede la definizione completa. Distrattori fissi, da scegliere tra: albero (binario) di ricerca bilanciato; array ordinato (crescente o decrescente); albero in cui le foglie sono tutte allo stesso livello; albero in cui ogni nodo è ≥ dei figli (per il min-heap, cioè min e max invertiti); albero in cui il figlio sinistro è minore del destro. Non mettere tra le opzioni due affermazioni entrambe vere (per esempio 'albero quasi completo' e 'albero con il minimo in radice' per un min-heap): la risposta deve essere unica."
+    },
+    {
+      "id": "L09-T02",
+      "titolo": "Riconoscere se un array è un heap",
+      "argomento": "Definizione e proprietà",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 9, 'Definizione di Min-Heap' e 'Rappresentazione con Array' (A = [3, 5, 8, 10, 12, 9]).",
+      "descrizione": "Si danno quattro array (o quattro alberi disegnati) e si chiede quale rappresenta un min-heap (o un max-heap). Oppure si chiede quale affermazione è vera sul rapporto tra array ordinati e heap.",
+      "conoscenze": [
+        "Un array A è un min-heap se e solo se A[(i − 1)//2] ≤ A[i] per ogni i ≥ 1, cioè ogni elemento è ≥ del padre.",
+        "Equivalente: per ogni nodo interno i, A[i] ≤ A[2i + 1] e (se esiste) A[i] ≤ A[2i + 2].",
+        "La forma è sempre quasi completa: un array senza buchi rappresenta sempre un albero quasi completo, quindi conta solo l'ordine.",
+        "Un array ordinato in modo crescente è sempre un min-heap; il contrario è falso.",
+        "Un albero di ricerca letto per livelli (per esempio [5, 3, 8, 1, 4, 7, 9]) non è un min-heap: la radice non è il minimo."
+      ],
+      "procedimento": [
+        "Controllare che il primo elemento sia il minimo (il massimo per un max-heap): se no, scartare subito.",
+        "Per ogni nodo interno i da 0 a n//2 − 1 confrontare A[i] con A[2i + 1] e A[2i + 2].",
+        "Basta una violazione, anche in profondità, per escludere l'array."
+      ],
+      "trappole": [
+        "Controllare solo la radice e i suoi due figli e non i livelli più bassi.",
+        "Scartare un heap valido perché non è ordinato.",
+        "Scegliere un albero di ricerca letto per livelli.",
+        "Scegliere un max-heap quando si chiede un min-heap (o viceversa).",
+        "Pensare che il figlio sinistro debba essere minore del destro."
+      ],
+      "come_generare_varianti": "Costruire un solo array valido (8–10 elementi, non ordinato, con almeno un figlio destro minore del sinistro) e tre array non validi, ciascuno legato a una trappola: (1) violazione solo a un livello profondo (radice e figli giusti, ma per esempio A[3] < A[1]); (2) albero di ricerca letto per livelli; (3) max-heap valido. Non inserire mai tra i distrattori un array ordinato in modo crescente quando si chiede un min-heap: sarebbe anch'esso corretto. Verificare con uno script che esattamente un array soddisfi A[(i−1)//2] ≤ A[i] per ogni i. Variante a parole: 'Quale affermazione è vera?' con opzioni 'ogni array ordinato in modo crescente è un min-heap' (vera), 'ogni min-heap è un array ordinato', 'in un min-heap il figlio sinistro è minore del destro', 'in un min-heap ogni livello contiene valori maggiori di tutti quelli del livello precedente'."
+    },
+    {
+      "id": "L09-T03",
+      "titolo": "Dove si trovano il secondo minimo e il massimo",
+      "argomento": "Definizione e proprietà",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 2,
+      "fonte": "Dispensa 9, 'Definizione di Min-Heap' ('il minimo è sempre in cima'); conseguenza della proprietà di ordine.",
+      "descrizione": "Si chiede in quali posizioni (o a quale livello) può trovarsi un certo elemento di un heap con valori distinti: il secondo più piccolo, il k-esimo più piccolo, il massimo di un min-heap (o il minimo di un max-heap).",
+      "conoscenze": [
+        "Il minimo di un min-heap è in radice (indice 0).",
+        "Con valori distinti, il secondo minimo è un figlio della radice: indice 1 oppure 2, senza sapere quale.",
+        "Il k-esimo minimo può trovarsi al più al livello k − 1: tutti i suoi antenati sono più piccoli, e sono al massimo k − 1.",
+        "Con valori distinti, il massimo di un min-heap è in una foglia (un nodo interno ha almeno un figlio più grande); le foglie sono gli indici da n//2 a n − 1.",
+        "Simmetricamente, in un max-heap il secondo massimo è un figlio della radice e il minimo è in una foglia."
+      ],
+      "procedimento": [
+        "Usare la proprietà di ordine: ogni antenato di un nodo è minore o uguale al nodo.",
+        "Contare quanti elementi devono essere più piccoli del valore cercato e dedurre a che profondità può stare.",
+        "Per l'estremo opposto (massimo in un min-heap) ricordare che non può avere figli."
+      ],
+      "trappole": [
+        "Dire che il secondo minimo è sempre il figlio sinistro (indice 1).",
+        "Dire che il massimo di un min-heap è sempre l'ultimo elemento dell'array.",
+        "Dire che il massimo è nella foglia più a destra o più profonda.",
+        "Confondere con l'albero di ricerca e cercare il minimo 'più a sinistra'."
+      ],
+      "come_generare_varianti": "Alternare min-heap e max-heap, e chiedere la posizione di: secondo minimo (o secondo massimo), terzo minimo (livelli 1 o 2, cioè indici da 1 a 6), massimo di un min-heap (una qualunque foglia, indici da n//2 a n − 1). Specificare sempre 'con elementi distinti'. Opzioni costruite come: posizione corretta (insieme di posizioni possibili); posizione fissa 'sempre in posizione 1' (trappola del figlio sinistro); 'sempre in ultima posizione'; 'in qualunque posizione'. Variante con heap dato: mostrare un array e chiedere l'indice del secondo minimo, verificando che sia in posizione 2 (figlio destro) almeno nella metà delle varianti."
+    },
+    {
+      "id": "L09-T04",
+      "titolo": "Ricerca del minimo in un max-heap (o del massimo in un min-heap)",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Prova di luglio 2026, domanda 6 ('Il costo computazionale della ricerca del minimo in un heap massimo è: a) O(n)'). Dispensa 9, 'Definizione di Min-Heap' e 'Motivazione Iniziale' (in un array non ordinato il minimo costa O(n)).",
+      "descrizione": "Si chiede il costo di cercare in un heap l'elemento all'estremo opposto rispetto alla radice: il minimo in un max-heap o il massimo in un min-heap. La risposta è lineare, non logaritmica né costante.",
+      "conoscenze": [
+        "In un max-heap la radice è il massimo: leggerlo costa O(1). Il minimo invece sta in una foglia, ma in una qualunque.",
+        "Le foglie sono circa metà dei nodi (indici da n//2 a n − 1, cioè ⌈n/2⌉ nodi).",
+        "La proprietà di ordine non dice nulla sull'ordine tra le foglie: bisogna guardarle tutte, Θ(n/2) = Θ(n).",
+        "Il minimo sta su qualche cammino radice-foglia, ma non si sa quale: scendere lungo un solo ramo (O(log n)) non basta.",
+        "Simmetrico: il massimo di un min-heap costa Θ(n)."
+      ],
+      "procedimento": [
+        "Riconoscere che si cerca l'estremo opposto a quello in radice.",
+        "Ricordare che sta tra le foglie, che sono circa n/2 e non ordinate tra loro.",
+        "Concludere: scansione lineare, O(n)."
+      ],
+      "trappole": [
+        "Rispondere O(1) confondendo con la lettura dell'estremo in radice.",
+        "Rispondere O(log n) pensando a una discesa lungo l'altezza (come in heappop o in un albero di ricerca).",
+        "Rispondere O(n log n) pensando di dover prima ordinare o estrarre tutto.",
+        "Pensare che il minimo di un max-heap sia sempre l'ultimo elemento dell'array (costo O(1))."
+      ],
+      "come_generare_varianti": "Alternare 'minimo in un heap massimo' e 'massimo in un heap minimo'; alternare il formato delle opzioni (O(n), Θ(n), 'lineare in n'). Opzioni fisse: O(1), O(log n), O(n), O(n log n), con la corretta in posizione diversa a ogni variante. Variante più ricca: 'quanti elementi bisogna esaminare al più?' con opzioni circa n/2 (le foglie), log₂ n, 1, n log n. Variante di confronto: 'leggere il massimo in un max-heap costa … mentre cercare il minimo costa …' (O(1) e O(n)). Non usare O(n) e Θ(n) come due opzioni distinte nella stessa domanda."
+    },
+    {
+      "id": "L09-T05",
+      "titolo": "Altezza di un heap e numero di nodi per livello",
+      "argomento": "Altezza e struttura",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 9, 'Altezza di un Min-Heap: O(log n)' (dimostrazione con n > Σ_{i=0..h−1} 2^i = 2^h − 1) e 'Cos'è un albero binario' (livello, altezza). Il numero massimo di nodi al livello i (2^i) è anche alla prova di luglio 2026, domanda 9, ma quella appartiene alla Lezione 12.",
+      "descrizione": "Si chiede l'altezza di un heap con n nodi (numerica o asintotica), il numero minimo o massimo di nodi di un heap di altezza h, oppure un passaggio della dimostrazione che l'altezza è O(log n).",
+      "conoscenze": [
+        "Altezza = numero di archi del cammino più lungo dalla radice a una foglia; un heap con un solo nodo ha altezza 0.",
+        "Al livello i di un albero binario ci sono al più 2^i nodi; in un heap tutti i livelli tranne l'ultimo sono pieni.",
+        "Un heap di altezza h ha tra 2^h nodi (ultimo livello con un solo nodo) e 2^(h+1) − 1 nodi (albero completo).",
+        "Quindi l'altezza di un heap con n nodi è esattamente ⌊log₂ n⌋, cioè Θ(log n).",
+        "Dimostrazione della dispensa: i livelli da 0 a h − 1 sono pieni, quindi n > Σ_{i=0..h−1} 2^i = 2^h − 1, da cui h < log₂(n + 1) e h = O(log n).",
+        "Per questo inserimento ed estrazione, che fanno al più h scambi, costano O(log n)."
+      ],
+      "procedimento": [
+        "Per l'altezza numerica: trovare la potenza di 2 più grande che non supera n; l'esponente è l'altezza.",
+        "Per i nodi: minimo 2^h, massimo 2^(h+1) − 1.",
+        "Per la dimostrazione: sommare i nodi dei livelli pieni (somma geometrica) e risolvere per h."
+      ],
+      "trappole": [
+        "Usare ⌈log₂ n⌉ invece di ⌊log₂ n⌋ (per n = 20 dire 5 invece di 4).",
+        "Contare i livelli invece degli archi (altezza + 1).",
+        "Rispondere O(n) pensando a un albero binario qualsiasi, che può essere degenere: l'heap non lo è mai.",
+        "Pensare che un heap di altezza h abbia sempre 2^(h+1) − 1 nodi."
+      ],
+      "come_generare_varianti": "Variare n (scegliere valori che non siano potenze di 2, così ⌊log₂ n⌋ ≠ ⌈log₂ n⌉: 6, 12, 20, 50, 100, 1000) e chiedere l'altezza; oppure dare h e chiedere il numero minimo (2^h) o massimo (2^(h+1) − 1) di nodi; oppure chiedere la classe asintotica (Θ(log n)). Distrattori: ⌈log₂ n⌉, ⌊log₂ n⌋ + 1 (livelli contati come nodi), n − 1 (albero degenere), n/2. Per la dimostrazione: chiedere quale disuguaglianza si usa (n > 2^h − 1) con distrattori n < 2^h − 1, n = 2^h, n > h²."
+    },
+    {
+      "id": "L09-T06",
+      "titolo": "Rappresentazione in array: padre, figli, nodi interni e foglie",
+      "argomento": "Rappresentazione in array",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 9, 'Rappresentazione con Array' (padre (i − 1)//2, figli 2i + 1 e 2i + 2) e 'Costruzione di un Min-Heap: Concetto di Heapify' (con n = 12 i nodi interni sono 5, 4, 3, 2, 1, 0). Collegato alla prova di maggio 2026, domanda 10 (notazione posizionale adatta ad alberi completi o quasi completi), che appartiene alla Lezione 12.",
+      "descrizione": "Dato l'indice i di un nodo in un heap memorizzato in array (indici da 0) si chiede l'indice del padre o dei figli; oppure, dato n, quali indici sono nodi interni e quali foglie; oppure a quale livello si trova l'indice i.",
+      "conoscenze": [
+        "Gli elementi sono memorizzati per livelli, da sinistra a destra, a partire dall'indice 0 (la radice).",
+        "Padre di i (per i > 0): (i − 1)//2. Figlio sinistro: 2i + 1. Figlio destro: 2i + 2.",
+        "Un indice esiste solo se è < n: il nodo i è interno se 2i + 1 < n.",
+        "Nodi interni: indici da 0 a n//2 − 1. Foglie: indici da n//2 a n − 1 (sono ⌈n/2⌉).",
+        "Il livello dell'indice i è ⌊log₂(i + 1)⌋: il livello k contiene gli indici da 2^k − 1 a 2^(k+1) − 2.",
+        "La rappresentazione non spreca spazio proprio perché l'heap è quasi completo."
+      ],
+      "procedimento": [
+        "Applicare la formula richiesta con la divisione intera.",
+        "Controllare che gli indici ottenuti siano < n.",
+        "Per i nodi interni calcolare n//2 − 1."
+      ],
+      "trappole": [
+        "Usare le formule con indici da 1 (padre i//2, figli 2i e 2i + 1).",
+        "Dire che i nodi interni vanno da 0 a n//2 (uno di troppo) o da 0 a n/2 senza divisione intera.",
+        "Dimenticare che un figlio esiste solo se il suo indice è < n.",
+        "Pensare che le foglie siano solo l'ultimo livello."
+      ],
+      "come_generare_varianti": "Variare n (pari e dispari, da 9 a 25) e l'indice i; chiedere padre, figli, intervallo dei nodi interni, numero di foglie, livello di un indice, oppure 'quale tra quattro indici è una foglia'. Per ogni domanda costruire i distrattori con: le formule a base 1 (padre i//2, figli 2i e 2i + 1); n//2 al posto di n//2 − 1; un figlio di indice ≥ n dichiarato esistente. Scegliere i e n in modo che le formule a base 0 e a base 1 diano risultati diversi (per esempio i pari per il padre: (i − 1)//2 ≠ i//2)."
+    },
+    {
+      "id": "L09-T07",
+      "titolo": "Traccia di heappush su un array dato",
+      "argomento": "Tracce delle operazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 9, 'Inserimento in un Min-Heap' (esempio: inseriamo 2) e 'Codice Python: Inserimento (heappush)' ([3, 5, 8, 10, 12] → heappush(A, 2) → [2, 5, 3, 10, 12, 8]).",
+      "descrizione": "Dato un min-heap in forma di array e un valore x, si chiede lo stato dell'array dopo heappush(A, x), eseguito con il codice della dispensa (append in fondo e risalita finché è minore del padre).",
+      "conoscenze": [
+        "heappush: A.append(x), poi finché i > 0 e A[i] < A[(i − 1)//2] scambia con il padre e sale (i = (i − 1)//2).",
+        "La risalita continua finché serve: può fermarsi subito (x ≥ padre, nessuno scambio), a metà, o arrivare in radice.",
+        "Si confronta solo con il padre, mai con il fratello: il fratello resta dov'è.",
+        "Con valore uguale al padre non si scambia (il confronto è stretto).",
+        "Costo: al più h = ⌊log₂ n⌋ scambi, O(log n)."
+      ],
+      "procedimento": [
+        "Aggiungere x in fondo all'array (indice n).",
+        "Calcolare il padre (i − 1)//2 e confrontare: se x è minore, scambiare.",
+        "Ripetere dal nuovo indice finché x non è ≥ del padre o si è arrivati all'indice 0.",
+        "Riscrivere l'array finale."
+      ],
+      "trappole": [
+        "Fermarsi dopo il primo scambio anche se x è ancora minore del nuovo padre.",
+        "Non fare nessuna risalita e lasciare x in fondo.",
+        "Rispondere con l'array ordinato.",
+        "Confrontare x con la radice invece che con il padre, o scambiarlo con il fratello.",
+        "Usare la formula del padre a base 1 (i//2) e scambiare con il nodo sbagliato.",
+        "Fare comunque almeno uno scambio con il padre, anche quando x non è minore (nel max-heap: maggiore) del padre."
+      ],
+      "come_generare_varianti": "Partire da un min-heap valido di 6–10 elementi (verificarlo). Scegliere x in uno di tre casi, alternandoli: (1) nessuno scambio (x ≥ del padre della posizione n); (2) risalita di più livelli che si ferma prima della radice; (3) risalita fino alla radice. Eseguire davvero heappush della dispensa in Python. Distrattori: array con la risalita fermata dopo il primo scambio; array con x lasciato in fondo; array ordinato; array ottenuto scambiando con il padre calcolato come i//2. Nel caso (1) il distrattore 'un passo' coincide con altri: sostituirlo con l'array in cui x è stato fatto risalire di un livello anche se non era minore. Controllare che le quattro opzioni siano tutte diverse. Si può usare anche un max-heap (risalita finché x è maggiore del padre), dichiarandolo nel testo."
+    },
+    {
+      "id": "L09-T08",
+      "titolo": "Traccia di heappop su un array dato",
+      "argomento": "Tracce delle operazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 9, 'Estrazione del minimo' (esempio: estrai 2) e 'Codice Python: Estrazione (heappop)' ([2, 4, 6, 10, 8, 9, 12] → [4, 8, 6, 10, 12, 9]).",
+      "descrizione": "Dato un min-heap in forma di array, si chiede lo stato dell'array (ed eventualmente il valore restituito) dopo heappop(A), eseguito con il codice della dispensa: l'ultimo elemento va in radice e scende scambiandosi con il figlio più piccolo finché serve.",
+      "conoscenze": [
+        "heappop: x = A[0]; A[0] = A[−1]; A.pop(); poi discesa da i = 0.",
+        "Discesa: finché 2i + 1 < n, scegliere il figlio minore tra 2i + 1 e 2i + 2 (se il destro esiste ed è strettamente minore, si prende il destro); se A[i] ≤ A[figlio] ci si ferma, altrimenti si scambia e si scende.",
+        "Si scambia con il figlio MINORE, non con il sinistro: scambiare con il maggiore lascerebbe un padre più grande dell'altro figlio.",
+        "La discesa può durare più livelli: dopo uno scambio bisogna ricontrollare con i nuovi figli.",
+        "A parità tra i due figli si sceglie il sinistro; se il nodo è uguale al figlio minore ci si ferma (per esempio [1, 3, 5, 3] → [3, 3, 5] senza scambi).",
+        "Il valore restituito è il vecchio A[0]; l'array finale ha n − 1 elementi. Costo O(log n)."
+      ],
+      "procedimento": [
+        "Salvare A[0] (è il valore restituito).",
+        "Copiare l'ultimo elemento in posizione 0 e togliere l'ultima casella.",
+        "Dal nodo corrente: trovare il figlio minore, confrontare, scambiare se serve, scendere; ripetere finché il nodo è ≤ del figlio minore o è una foglia.",
+        "Riscrivere l'array finale."
+      ],
+      "trappole": [
+        "Fermarsi dopo il primo scambio e lasciare il valore a metà altezza.",
+        "Scambiare sempre con il figlio sinistro invece che con il minore dei due.",
+        "Togliere il primo elemento e far scorrere gli altri a sinistra (come pop(0)), senza spostare l'ultimo in radice.",
+        "Rispondere con l'array ordinato dei rimanenti.",
+        "Dimenticare che l'array finale ha un elemento in meno."
+      ],
+      "come_generare_varianti": "Partire da un min-heap valido di 7–10 elementi (verificarlo). Costruirlo in modo che la discesa (1) duri almeno due livelli e (2) in almeno un passo il figlio destro sia il minore: così 'un passo solo', 'figlio sinistro' e 'corretto' danno tre array diversi. In alcune varianti usare un heap in cui la discesa si ferma subito (serve un pari merito tra l'ultimo elemento e un figlio della radice, per esempio [1, 3, 5, 3]) o in cui si ferma a metà. Eseguire davvero heappop della dispensa in Python, e calcolare con lo stesso script le versioni sbagliate: discesa fermata dopo il primo scambio; discesa sempre verso il figlio sinistro; A[1:] (scorrimento come pop(0)); array ordinato. Scegliere i tre distrattori diversi tra loro e dalla risposta. Variante: chiedere 'quanti scambi esegue heappop' (risposta numerica, distrattori 1, h, numero sbagliato per scelta del figlio sinistro). Si può usare un max-heap (scambio con il figlio maggiore), dichiarandolo."
+    },
+    {
+      "id": "L09-T09",
+      "titolo": "Inserimenti successivi ed estrazioni ripetute (esercizio della dispensa)",
+      "argomento": "Tracce delle operazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 9, Esercizi, esercizio 1: A = [60, 30, 50, 20, 10, 30], inserire uno dopo l'altro in un heap vuoto, poi effettuare 4 estrazioni mostrando il vettore dopo ogni operazione.",
+      "descrizione": "Una sequenza di operazioni: si inseriscono uno dopo l'altro in un heap vuoto gli elementi di una lista (con heappush), oppure si eseguono più estrazioni consecutive (heappop), o le due cose insieme. Si chiede lo stato del vettore dopo un certo numero di operazioni.",
+      "conoscenze": [
+        "Ogni inserimento è un heappush completo (append e risalita) sull'heap prodotto dal passo prima.",
+        "Ogni estrazione è un heappop completo sull'heap prodotto dal passo prima; le estrazioni restituiscono gli elementi in ordine crescente.",
+        "Soluzione dell'esercizio della dispensa (verificata). Inserimenti: [60] → [30, 60] → [30, 60, 50] → [20, 30, 50, 60] → [10, 20, 50, 60, 30] → [10, 20, 30, 60, 30, 50]. Estrazioni: 10 → [20, 30, 30, 60, 50]; 20 → [30, 50, 30, 60]; 30 → [30, 50, 60]; 30 → [50, 60].",
+        "L'heap ottenuto per inserimenti successivi può differire da quello ottenuto con heapify sullo stesso array (per esempio [9, 7, 5, 3, 1, 8, 2]: inserimenti → [1, 3, 2, 9, 5, 8, 7], heapify → [1, 3, 2, 9, 7, 8, 5]); per [60, 30, 50, 20, 10, 30] i due coincidono."
+      ],
+      "procedimento": [
+        "Eseguire le operazioni una alla volta, scrivendo il vettore dopo ciascuna.",
+        "Per ogni inserimento: append e risalita completa; per ogni estrazione: ultimo in radice e discesa completa verso il figlio minore.",
+        "Leggere lo stato richiesto."
+      ],
+      "trappole": [
+        "Far risalire ogni nuovo elemento di un solo livello.",
+        "Confrontare il nuovo elemento con la radice invece che con il padre.",
+        "Scrivere l'array ordinato invece dello stato reale del vettore.",
+        "Nelle estrazioni, scendere verso il figlio sinistro o fermarsi dopo il primo scambio.",
+        "Pensare che inserimenti successivi e heapify diano sempre lo stesso array."
+      ],
+      "come_generare_varianti": "Usare liste di 5–7 interi (anche con un valore ripetuto, come nella dispensa) e chiedere: lo stato dopo tutti gli inserimenti; lo stato dopo k inserimenti; lo stato dopo j estrazioni dall'heap ottenuto (dare l'heap di partenza nel testo se la domanda riguarda solo le estrazioni); la sequenza dei valori estratti. Eseguire tutto con il codice della dispensa in Python. Distrattori calcolati con lo stesso script: risalita di un solo livello per ogni inserimento; ultimo elemento confrontato solo con la radice (lasciato in fondo se maggiore della radice); array ordinato; per le estrazioni, discesa verso il figlio sinistro o fermata dopo un passo. Attenzione: su alcune liste due distrattori coincidono tra loro o con la risposta (per esempio, per due estrazioni da [10, 20, 30, 60, 30, 50] le versioni 'un passo' e 'figlio sinistro' danno la risposta corretta): in quel caso cambiare lista o distrattore, finché le quattro opzioni sono diverse e una sola è giusta."
+    },
+    {
+      "id": "L09-T10",
+      "titolo": "Traccia di heapify su un array dato",
+      "argomento": "Costruzione dell'heap",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 9, 'Costruzione di un Min-Heap: Concetto di Heapify', 'Costruzione di un Min-Heap da un Array (Heapify)' (A = [12, 3, 8, 4, 18, 16, 14, 11, 15, 17, 10, 1], 6 iterazioni) e 'Implementazione della funzione heapify'.",
+      "descrizione": "Dato un array arbitrario, si chiede il risultato di heapify (codice della dispensa), lo stato dopo una certa iterazione, quali nodi vengono aggiustati e in che ordine, o quanti scambi si fanno.",
+      "conoscenze": [
+        "heapify: for i in range(n//2 − 1, −1, −1): heapify_down(A, i). Si parte dall'ultimo nodo interno e si va verso la radice.",
+        "heapify_down è la stessa discesa di heappop: scambio con il figlio minore, finché serve (anche per più livelli).",
+        "Quando si tratta il nodo i, i suoi due sottoalberi sono già heap.",
+        "Le foglie (indici da n//2 a n − 1) non vengono toccate direttamente.",
+        "Esempio della dispensa (verificato): [12, 3, 8, 4, 18, 16, 14, 11, 15, 17, 10, 1]; dopo i = 5: [12, 3, 8, 4, 18, 1, 14, 11, 15, 17, 10, 16]; dopo i = 4: [12, 3, 8, 4, 10, 1, 14, 11, 15, 17, 18, 16]; i = 3 e i = 1 non cambiano nulla; dopo i = 2: [12, 3, 1, 4, 10, 8, 14, 11, 15, 17, 18, 16]; dopo i = 0: [1, 3, 8, 4, 10, 12, 14, 11, 15, 17, 18, 16].",
+        "Il risultato di heapify può essere diverso da quello di n heappush successivi sullo stesso array (sullo stesso esempio: [1, 4, 3, 11, 10, 8, 14, 12, 15, 18, 17, 16])."
+      ],
+      "procedimento": [
+        "Calcolare n//2 − 1: è il primo nodo da aggiustare.",
+        "Per i da n//2 − 1 fino a 0: far scendere A[i] scambiandolo con il figlio minore finché è maggiore di esso.",
+        "Dopo ogni iterazione riscrivere l'array; alla fine verificare che sia un min-heap."
+      ],
+      "trappole": [
+        "Nella discesa fermarsi dopo il primo scambio (il valore della radice resta a metà).",
+        "Scambiare con il figlio sinistro invece che con il minore.",
+        "Processare i nodi in ordine crescente di indice (dalla radice in giù): il risultato non è un heap.",
+        "Dare il risultato degli inserimenti successivi o l'array ordinato.",
+        "Partire da n//2 invece che da n//2 − 1, o processare anche le foglie (non cambia il risultato ma sbaglia il conteggio dei nodi)."
+      ],
+      "come_generare_varianti": "Array di 7–12 elementi distinti, non quasi-heap, scelti in modo che la discesa dalla radice (o da un altro nodo) duri almeno due livelli. Chiedere il risultato finale, lo stato dopo l'iterazione su un indice dato, l'insieme degli indici su cui si chiama heapify_down, o il numero totale di scambi. Eseguire il codice della dispensa in Python e, con lo stesso script, calcolare i distrattori: discesa limitata a un passo; nodi presi in ordine crescente; risultato di n heappush sullo stesso array; array ordinato. Scegliere array per cui questi quattro risultati siano diversi tra loro. Si può riusare l'array della dispensa per domande sugli stati intermedi."
+    },
+    {
+      "id": "L09-T11",
+      "titolo": "Costo di heapify O(n) contro n inserimenti O(n log n)",
+      "argomento": "Costruzione dell'heap",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 9, 'Implementazione della funzione heapify' (complessità O(n)) e 'Perché heapify è O(n)' (T(n) ≤ Σ_{i=0..h} i·2^(h−i) = 2^h·Σ i/2^i < 2·2^h = O(n); 'molto più efficiente di eseguire heappush n volte, che sarebbe O(n log n)').",
+      "descrizione": "Si chiede il costo di costruire un heap da n elementi con heapify o con n inserimenti successivi, il confronto tra i due, oppure il motivo per cui heapify costa O(n) anche se ogni heapify_down costa O(log n).",
+      "conoscenze": [
+        "heapify chiama heapify_down su circa n/2 nodi interni; la stima grossolana (n/2)·O(log n) = O(n log n) è corretta come limite superiore ma non stretta.",
+        "Il costo di heapify_down su un nodo dipende dalla sua altezza (distanza dalle foglie), non dalla sua profondità: ci sono al più 2^(h−i) nodi ad altezza i e ognuno costa al più i.",
+        "Somma: Σ_{i=0..h} i·2^(h−i) = 2^h·Σ i/2^i < 2·2^h ≤ 2n, perché Σ_{i≥0} i/2^i = 2 e 2^h ≤ n. Quindi heapify costa O(n).",
+        "La maggior parte dei nodi sta in basso e scende di pochi livelli; solo la radice può scendere di h livelli.",
+        "n heappush successivi costano O(n log n) (ogni inserimento risale fino a log n livelli).",
+        "heapq.heapify ha lo stesso costo O(n)."
+      ],
+      "procedimento": [
+        "Distinguere il metodo: heapify (discesa dai nodi interni, dal basso) oppure n heappush (risalita, un elemento alla volta).",
+        "heapify → O(n); n heappush → O(n log n).",
+        "Per la motivazione: il lavoro di ogni nodo è proporzionale alla sua altezza, e i nodi alti sono pochi."
+      ],
+      "trappole": [
+        "Dire che heapify costa O(n log n) perché chiama n/2 volte una funzione O(log n).",
+        "Dire che n heappush costano O(n) come heapify.",
+        "Dire che heapify costa O(log n) (confusione con il costo di un singolo heapify_down).",
+        "Motivare l'O(n) dicendo che heapify_down costa O(1)."
+      ],
+      "come_generare_varianti": "Formulazioni: 'costruire un min-heap a partire da un array di n elementi con heapify costa …'; 'inserire n elementi uno alla volta in un heap vuoto costa …'; coppie '(heapify, n heappush)'; 'perché heapify costa O(n)?' con quattro motivazioni. Distrattori: O(n log n) per heapify; O(n) per n heappush; O(log n); O(n²). Per la motivazione: opzione corretta 'perché il costo di ogni discesa è proporzionale all'altezza del nodo e la maggior parte dei nodi ha altezza piccola'; distrattori 'perché ogni discesa costa O(1)', 'perché si processano solo log n nodi', 'perché l'array è già quasi ordinato'."
+    },
+    {
+      "id": "L09-T12",
+      "titolo": "Costi delle operazioni su heap e confronto con gli array; libreria heapq",
+      "argomento": "Costo delle operazioni",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 9, 'Motivazione Iniziale' (tabella array ordinato / array non ordinato e costi del min-heap) e 'Python e Heap: la libreria heapq'.",
+      "descrizione": "Si chiede il costo di una singola operazione su un heap di n elementi (leggere il minimo, inserire, estrarre il minimo, costruire), il confronto con array ordinato e non ordinato, oppure una proprietà della libreria heapq.",
+      "conoscenze": [
+        "Min-heap: leggere il minimo (A[0]) O(1); inserimento O(log n); estrazione del minimo O(log n); creazione con heapify O(n).",
+        "Array ordinato: creazione O(n log n), minimo O(1), inserimento O(n) (bisogna spostare elementi).",
+        "Array non ordinato: creazione O(1), minimo O(n), inserimento O(1).",
+        "Leggere il minimo non lo toglie: O(1). Estrarlo richiede di ripristinare l'heap: O(log n).",
+        "heapq lavora su normali list Python, che vanno trattate come min-heap solo tramite le sue funzioni: heapq.heapify(A) O(n), heapq.heappop(A) O(log n), heapq.heappush(A, x) O(log n); il minimo è A[0].",
+        "heapq implementa un min-heap: heappop restituisce sempre il minimo, non il massimo."
+      ],
+      "procedimento": [
+        "Capire se l'operazione legge soltanto (O(1)), modifica un elemento con risalita o discesa (O(log n)) o costruisce tutto (O(n)).",
+        "Per i confronti con gli array usare la tabella della motivazione."
+      ],
+      "trappole": [
+        "Confondere leggere il minimo (O(1)) con estrarlo (O(log n)).",
+        "Dire che l'inserimento costa O(1) perché si fa un append (si dimentica la risalita).",
+        "Dire che l'array ordinato è migliore dell'heap perché il minimo costa O(1) in entrambi (si dimentica l'inserimento O(n)).",
+        "Pensare che heapq sia un max-heap o che una list diventi un heap senza chiamare heapify."
+      ],
+      "come_generare_varianti": "Chiedere il costo di una delle operazioni (lettura del minimo, inserimento, estrazione, heapify, heapq.X), oppure una coppia (lettura, estrazione), oppure quale struttura tra heap, array ordinato e array non ordinato ha un certo profilo di costi, oppure quale affermazione su heapq è vera. Distrattori costruiti con le trappole: O(log n) per la lettura del minimo, O(1) per l'estrazione o per l'inserimento, O(n) per l'inserimento (costo dell'array ordinato). Per le domande su heapq: 'heapq.heappop(A) restituisce il massimo', 'heapq usa una classe Heap separata', 'heapq.heapify costa O(n log n)'."
+    },
+    {
+      "id": "L09-T13",
+      "titolo": "Heapsort: costo, spazio e confronto",
+      "argomento": "Heapsort",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 9, 'heapsort: come funziona?' e 'HeapSort con Min-Heap in Python' (heapq.heapify + n heappop in una lista B; 'non è in-place perché alloca una lista B di output'). Heap Sort compare tra le opzioni della prova di luglio 2026, domanda 4 (array quasi ordinato: la risposta è Insertion Sort, Lezione 7).",
+      "descrizione": "Si chiede il costo di heapsort (caso migliore, peggiore), da cosa deriva, se la versione della dispensa è in loco, o come si comporta su input particolari (già ordinato, quasi ordinato) rispetto ad altri algoritmi.",
+      "conoscenze": [
+        "Heapsort: heapify O(n), poi n estrazioni del minimo O(log n) ciascuna: O(n) + O(n log n) = O(n log n).",
+        "Il costo è Θ(n log n) anche su input già ordinato (con elementi distinti): le estrazioni lavorano comunque (l'ultimo elemento portato in radice deve scendere). Non ha il caso migliore lineare di insertion sort.",
+        "Θ(n log n) è ottimo per gli ordinamenti per confronti (limite inferiore Ω(n log n), Lezione 7).",
+        "La versione della dispensa con heapq usa una seconda lista B di n elementi: NON è in loco, usa O(n) spazio aggiuntivo; inoltre svuota la lista A ricevuta.",
+        "Con un min-heap gli elementi escono in ordine crescente."
+      ],
+      "procedimento": [
+        "Scomporre: costo della costruzione + n × costo dell'estrazione.",
+        "Tenere il termine dominante.",
+        "Per lo spazio: guardare se il codice alloca una struttura di n elementi oltre all'input."
+      ],
+      "trappole": [
+        "Dire che heapsort costa O(n) perché heapify costa O(n) (si dimenticano le n estrazioni).",
+        "Dire che la versione della dispensa è in loco.",
+        "Dire che su input ordinato heapsort costa Θ(n).",
+        "Dire che heapsort ha caso peggiore O(n²) come quicksort.",
+        "Dire che costa O(n log² n) o O(n² log n) moltiplicando male."
+      ],
+      "come_generare_varianti": "Formulazioni: 'il costo di heapsort è …'; 'quale affermazione sull'heapsort della dispensa è vera'; 'su un array già ordinato heapsort costa …'; 'perché heapsort costa O(n log n)'. Mostrare a volte il codice della dispensa. Opzioni con coppie (costo, in loco sì/no) o affermazioni. Distrattori: O(n) perché heapify è lineare; Θ(n log n) e in loco; O(n²) nel caso peggiore; Θ(n) su input ordinato. Non chiedere la stabilità (la dispensa non ne parla)."
+    }
+  ]
+}

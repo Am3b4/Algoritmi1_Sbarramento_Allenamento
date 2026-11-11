@@ -1,0 +1,474 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 7,
+    "titolo": "Il problema dell'ordinamento 1/2",
+    "file": "PL7.pdf",
+    "contenuti": [
+      "Selection Sort: ricerca del minimo nella parte non ordinata e scambio con il primo elemento non ordinato; n(n−1)/2 confronti, sempre Θ(n²); in loco",
+      "Insertion Sort: inserimento del primo elemento non ordinato nella parte ordinata spostando a destra i maggiori; caso migliore Θ(n) (ordinato), peggiore Θ(n²) (decrescente), medio Θ(n²) (circa n(n−1)/4 spostamenti)",
+      "Bubble Sort: scambi tra adiacenti, dopo i passate gli ultimi i elementi sono in posizione; versione base sempre Θ(n²); versione con flag scambi: migliore O(n), peggiore Θ(n²)",
+      "Albero di decisione: nodi interni = confronti, foglie = permutazioni; teorema h ≥ log₂ f; n! foglie, quindi h ≥ log₂ n! = Ω(n log n)",
+      "Limite inferiore Ω(n log n) nel caso peggiore per ogni algoritmo basato su confronti",
+      "Counting Sort per interi non negativi: array C delle occorrenze, ricostruzione; tempo O(n + k), spazio O(k), con k valore massimo",
+      "Bucket Sort: k bucket, indice ⌊x·k/(M+1)⌋, ordinamento dei bucket e concatenazione; O(n) se i dati sono equidistribuiti e k = Θ(n); caso pessimo con tutti gli elementi in un bucket",
+      "Esercizi: costo su input tutti uguali, ordinati, decrescenti; Insertion Sort con ricerca binaria; Counting Sort con interi negativi e k = max − min; stabilità di Bubble, Selection e Insertion Sort"
+    ],
+    "nota": "Due domande della prova di luglio 2026 vengono da questa lezione: la 4 (array quasi ordinato con un numero costante di elementi fuori posto → Insertion Sort) e la 5 (Bubble Sort nel caso migliore Θ(n)). Mergesort e Quicksort sono della Lezione 8: qui compaiono solo come distrattori. Le tracce (stato dell'array dopo k passate) vanno sempre verificate eseguendo il codice della dispensa."
+  },
+  "tipi": [
+    {
+      "id": "L07-T01",
+      "titolo": "Selection Sort: stato dell'array dopo k passate",
+      "argomento": "Tracce degli ordinamenti quadratici",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Ordinamento per Selezione (Selection Sort)' e 'Codice Python: Selection Sort'.",
+      "descrizione": "Dato un array piccolo (5–8 elementi), si chiede come appare dopo k iterazioni del ciclo esterno (for i) del Selection Sort della dispensa. Le opzioni sbagliate sono gli stati prodotti da altri algoritmi o da un'esecuzione sbagliata.",
+      "conoscenze": [
+        "Alla passata i si cerca l'indice del minimo in A[i..n−1] e si scambia A[i] con A[indice_min]: un solo scambio per passata, anche se il minimo è già in posizione (scambio con sé stesso).",
+        "Dopo k passate A[0..k−1] contiene i k elementi più piccoli, in ordine e nella posizione finale.",
+        "Il resto dell'array cambia solo per gli scambi: l'elemento che stava in posizione i finisce dove stava il minimo, gli altri non si muovono.",
+        "Il ciclo esterno fa n − 1 passate (range(n − 1))."
+      ],
+      "procedimento": [
+        "Per ogni passata i = 0, …, k−1: trovare il minimo di A[i..n−1] (con elementi uguali, il primo che compare, perché il confronto è <).",
+        "Scambiarlo con A[i], lasciando fermo tutto il resto.",
+        "Confrontare lo stato ottenuto con le opzioni."
+      ],
+      "trappole": [
+        "Far scorrere gli elementi a destra per far posto al minimo (come nell'Insertion Sort) invece di fare uno scambio: il prefisso è giusto ma il resto è in ordine diverso.",
+        "Confondere con l'Insertion Sort: prefisso ordinato fatto dai primi elementi dell'input, non dai minimi.",
+        "Confondere con il Bubble Sort: i massimi in fondo invece dei minimi all'inizio.",
+        "Contare una passata in più o in meno, soprattutto quando una passata non cambia nulla perché il minimo è già al suo posto."
+      ],
+      "come_generare_varianti": "Scegliere un array di 5–8 interi distinti e k tra 1 e 3. Calcolare con Python lo stato dopo k passate di Selection Sort e, come distrattori, lo stato dopo k passate di Bubble Sort, dopo k iterazioni di Insertion Sort, e lo stato ottenuto spostando il minimo con scorrimento invece che con scambio (o lo stato dopo k ± 1 passate). Controllare che i quattro array siano tutti diversi; se due coincidono, cambiare l'input. Talvolta inserire una passata in cui il minimo è già in posizione."
+    },
+    {
+      "id": "L07-T02",
+      "titolo": "Insertion Sort: stato dell'array dopo k iterazioni",
+      "argomento": "Tracce degli ordinamenti quadratici",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Ordinamento per Inserimento (Insertion Sort)' e 'Codice Python: Insertion Sort'.",
+      "descrizione": "Dato un array piccolo, si chiede come appare dopo k iterazioni del ciclo for dell'Insertion Sort (i = 1, …, k), oppure quanti spostamenti fa una certa iterazione.",
+      "conoscenze": [
+        "All'iterazione i si salva x = A[i] e si spostano di una posizione a destra gli elementi di A[0..i−1] maggiori di x (confronto stretto A[j] > x), poi x va in A[j+1].",
+        "Dopo k iterazioni A[0..k] contiene i primi k+1 elementi dell'input, ordinati; A[k+1..n−1] non è stato toccato.",
+        "Il for parte da i = 1: l'elemento A[0] da solo è già una parte ordinata.",
+        "Il numero di spostamenti all'iterazione i è il numero di elementi di A[0..i−1] maggiori di x."
+      ],
+      "procedimento": [
+        "Per i = 1, …, k: prendere x = A[i] e inserirlo nel prefisso ordinato A[0..i−1], spostando a destra i maggiori.",
+        "Lasciare invariata la parte dopo la posizione k.",
+        "Confrontare con le opzioni."
+      ],
+      "trappole": [
+        "Contare le iterazioni a partire da i = 0 e fermarsi un'iterazione prima.",
+        "Mettere nel prefisso i minimi di tutto l'array (comportamento del Selection Sort).",
+        "Spostare anche gli elementi uguali a x (il confronto è stretto).",
+        "Confondere con il Bubble Sort (massimi in fondo)."
+      ],
+      "come_generare_varianti": "Array di 5–8 interi (anche con un duplicato), k tra 2 e 4. Calcolare con Python lo stato corretto e, come distrattori, lo stato dopo k − 1 (o k + 1) iterazioni, lo stato di Selection Sort dopo k passate, lo stato di Bubble Sort dopo k passate. Verificare che le quattro opzioni siano diverse. Variante: chiedere quanti spostamenti esegue l'iterazione i (distrattori: i, i − 1, numero di elementi minori di x)."
+    },
+    {
+      "id": "L07-T03",
+      "titolo": "Bubble Sort: stato dell'array dopo k passate",
+      "argomento": "Tracce degli ordinamenti quadratici",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Ordinamento a Bolle (Bubble Sort)' e 'Codice base del Bubble Sort' ('Dopo i passate, gli ultimi i elementi dell'array sono già in posizione corretta').",
+      "descrizione": "Dato un array piccolo, si chiede come appare dopo k passate del Bubble Sort (k iterazioni del ciclo esterno), oppure quanti scambi fa la prima passata.",
+      "conoscenze": [
+        "Una passata confronta A[j] e A[j+1] per j = 0, …, n−i−2 e li scambia se A[j] > A[j+1].",
+        "Durante una passata il massimo della parte non ordinata viene trascinato fino in fondo; gli altri elementi grandi avanzano, i piccoli arretrano di al più una posizione per passata.",
+        "Dopo k passate gli ultimi k elementi sono i k più grandi, in posizione finale.",
+        "Il numero totale di scambi è uguale al numero di inversioni dell'input."
+      ],
+      "procedimento": [
+        "Simulare ogni passata da sinistra a destra, scambiando le coppie adiacenti fuori ordine.",
+        "Ripetere k volte, accorciando la parte esaminata di uno a ogni passata.",
+        "Controllare che gli ultimi k elementi siano i k massimi in ordine."
+      ],
+      "trappole": [
+        "Fare un solo scambio per passata (solo il massimo che si sposta) invece di tutti gli scambi adiacenti.",
+        "Fermarsi dopo k − 1 passate.",
+        "Mettere i minimi all'inizio (Selection Sort) o ordinare il prefisso (Insertion Sort).",
+        "Pensare che un elemento piccolo in fondo arrivi all'inizio in una sola passata: arretra di una posizione per passata."
+      ],
+      "come_generare_varianti": "Array di 5–8 interi distinti, k tra 1 e 3. Calcolare con Python lo stato dopo k passate e, come distrattori, lo stato dopo k − 1 passate, lo stato di Selection Sort e di Insertion Sort dopo k passi, oppure lo stato in cui si sposta solo il massimo. Variante: numero di scambi della prima passata o numero totale di scambi (= inversioni), con distrattori n − 1, n(n−1)/2 e il numero di scambi di una sola passata."
+    },
+    {
+      "id": "L07-T04",
+      "titolo": "Invarianti: riconoscere l'algoritmo da uno stato intermedio",
+      "argomento": "Invarianti degli ordinamenti quadratici",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 7, descrizioni di Selection, Insertion e Bubble Sort (parte ordinata a sinistra con i minimi; parte ordinata a sinistra con i primi elementi; parte ordinata a destra con i massimi).",
+      "descrizione": "Si mostrano l'input e uno stato intermedio (oppure si descrive una proprietà del prefisso o del suffisso) e si chiede quale algoritmo può averlo prodotto, o quale affermazione sull'array dopo k passate è sempre vera.",
+      "conoscenze": [
+        "Selection Sort dopo k passate: A[0..k−1] contiene i k minimi, ordinati e in posizione finale.",
+        "Insertion Sort dopo k iterazioni: A[0..k] contiene i primi k+1 elementi dell'input ordinati tra loro, ma non necessariamente in posizione finale; il resto è intatto.",
+        "Bubble Sort dopo k passate: A[n−k..n−1] contiene i k massimi, ordinati e in posizione finale; la parte sinistra è in genere disordinata.",
+        "Un prefisso ordinato che non contiene il minimo dell'array esclude il Selection Sort; un suffisso con i massimi al loro posto e prefisso disordinato indica il Bubble Sort."
+      ],
+      "procedimento": [
+        "Guardare l'inizio dell'array: ci sono i minimi globali? (Selection) Ci sono i primi elementi dell'input ordinati? (Insertion)",
+        "Guardare la fine: ci sono i massimi globali in ordine? (Bubble)",
+        "Controllare che la parte non toccata sia compatibile (Insertion lascia intatta la parte destra)."
+      ],
+      "trappole": [
+        "Credere che la parte ordinata dell'Insertion Sort sia già in posizione finale.",
+        "Attribuire al Selection Sort un prefisso ordinato che non contiene i minimi.",
+        "Dimenticare che il Bubble Sort accumula i massimi a destra, non i minimi a sinistra.",
+        "Scegliere 'nessuno dei tre' senza controllare il suffisso."
+      ],
+      "come_generare_varianti": "Partire da un input di 6–8 elementi distinti e calcolare con Python gli stati intermedi dei tre algoritmi per k = 1, 2, 3. Mostrare uno di questi stati e verificare che non coincida con nessuno stato degli altri due algoritmi per nessun k; le opzioni sono i tre algoritmi più 'nessuno dei tre'. Variante: 'quale proprietà vale sempre dopo k passate dell'algoritmo X?' con le tre invarianti più una falsa (per esempio 'il prefisso è in posizione finale' per Insertion Sort)."
+    },
+    {
+      "id": "L07-T05",
+      "titolo": "Bubble Sort con e senza flag: caso migliore e peggiore",
+      "argomento": "Costi degli ordinamenti quadratici",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 1,
+      "fonte": "Dispensa 7, 'Codice base del Bubble Sort' (Θ(n²) anche su array ordinato) e 'Bubble Sort ottimizzato' (flag scambi: migliore O(n), peggiore Θ(n²)). Prova di luglio 2026, domanda 5 ('Nel caso migliore, il costo computazionale del Bubble Sort è: Θ(n)').",
+      "descrizione": "Si chiede il costo del Bubble Sort nel caso migliore o peggiore, con o senza flag, oppure il numero di confronti su un array già ordinato o decrescente.",
+      "conoscenze": [
+        "Versione base: il ciclo interno gira sempre; Σ (n − i − 1) = n(n−1)/2 confronti su ogni input: Θ(n²) sempre.",
+        "Versione con flag scambi: se una passata non fa scambi l'algoritmo termina. Su array ordinato basta una passata di n − 1 confronti: Θ(n).",
+        "Caso peggiore (array decrescente): n − 1 passate, n(n−1)/2 confronti e scambi: Θ(n²).",
+        "Quando si parla di 'caso migliore del Bubble Sort' si intende la versione ottimizzata: Θ(n). Il caso migliore non è mai O(1): bisogna almeno controllare tutte le coppie adiacenti."
+      ],
+      "procedimento": [
+        "Capire quale versione è in gioco (con o senza flag) e quale input (ordinato, decrescente, generico).",
+        "Contare le passate e i confronti per passata."
+      ],
+      "trappole": [
+        "Rispondere O(1) per l'array già ordinato: serve comunque una passata completa.",
+        "Rispondere Θ(n²) dimenticando il flag (vale solo per la versione base).",
+        "Rispondere Θ(n log n) per analogia con il limite inferiore.",
+        "Pensare che il flag migliori anche il caso peggiore.",
+        "Rispondere Θ(n) (cioè n − 1 confronti) per la versione base su array ordinato, attribuendole il flag che non ha."
+      ],
+      "come_generare_varianti": "Variare versione (base o con flag), caso (migliore, peggiore, array decrescente, array ordinato) e forma della domanda (classe Θ, numero esatto di confronti o di passate su n elementi o su un n dato, per esempio n = 10 → 9 confronti oppure 45). Distrattori fissi: O(1), Θ(n), Θ(n log n), Θ(n²), oppure 0, n − 1, n(n−1)/2, n log₂ n confronti. Per il numero esatto, verificare con Python."
+    },
+    {
+      "id": "L07-T06",
+      "titolo": "Selection e Insertion Sort: casi migliore, peggiore e medio",
+      "argomento": "Costi degli ordinamenti quadratici",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Complessità e caratteristiche di Selection Sort' (sempre Θ(n²), anche su array ordinato), 'Complessità dell'Insertion Sort' e 'Caso medio dell'Insertion Sort' (n(n−1)/4 spostamenti attesi).",
+      "descrizione": "Si chiede il costo di Selection Sort o Insertion Sort in un caso dato, il numero di confronti o spostamenti, oppure quale affermazione sui loro costi è vera.",
+      "conoscenze": [
+        "Selection Sort: per ogni i il ciclo interno fa n − i − 1 confronti, totale n(n−1)/2 su ogni input: Θ(n²) nel caso migliore, medio e peggiore. Fa al più n − 1 scambi.",
+        "Insertion Sort, caso migliore (array ordinato): il while si ferma subito, n − 1 confronti e 0 spostamenti: Θ(n).",
+        "Insertion Sort, caso peggiore (array decrescente): l'iterazione i fa i spostamenti, totale n(n−1)/2: Θ(n²).",
+        "Insertion Sort, caso medio: in media i/2 spostamenti all'iterazione i, totale n(n−1)/4: ancora Θ(n²).",
+        "Poiché migliore e peggiore differiscono, il costo dell'Insertion Sort in generale si scrive O(n²) e Ω(n)."
+      ],
+      "procedimento": [
+        "Identificare l'algoritmo e il caso richiesto.",
+        "Per il Selection Sort ricordare che il numero di confronti non dipende dall'input.",
+        "Per l'Insertion Sort contare gli spostamenti: 0 (ordinato), i/2 in media, i (decrescente)."
+      ],
+      "trappole": [
+        "Dire che il Selection Sort costa Θ(n) su array ordinato perché non sposta nulla: i confronti sono comunque n(n−1)/2.",
+        "Dire che il caso medio dell'Insertion Sort è Θ(n log n) perché 'si sposta solo metà'.",
+        "Attribuire all'Insertion Sort il comportamento del Selection Sort (Θ(n²) anche su ordinato).",
+        "Scrivere Θ(n²) come costo dell'Insertion Sort senza specificare il caso."
+      ],
+      "come_generare_varianti": "Chiedere: costo di uno dei due algoritmi in un caso (migliore, peggiore, medio, array ordinato, array decrescente); numero esatto di confronti del Selection Sort o di spostamenti dell'Insertion Sort su un n piccolo (verificare con Python); quale affermazione è vera tra quattro. Distrattori: Θ(n) per il Selection Sort su ordinato, Θ(n log n) per il caso medio, Θ(n²) per l'Insertion Sort su ordinato, n(n−1)/4 scambiato con n(n−1)/2."
+    },
+    {
+      "id": "L07-T07",
+      "titolo": "Costo su input tutti uguali, ordinati o decrescenti",
+      "argomento": "Costi degli ordinamenti quadratici",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 7, Esercizio 1 ('Qual è il costo computazionale dei tre algoritmi … quando la lista ha gli elementi tutti uguali? E quando è già ordinata? E quando è ordinata in modo decrescente?').",
+      "descrizione": "Si fissa un input particolare (tutti uguali, ordinato, decrescente) e si chiede il costo di uno o più dei tre algoritmi, di solito come terna (Selection, Insertion, Bubble).",
+      "conoscenze": [
+        "Tutti uguali: Selection Θ(n²) (confronti fissi); Insertion Θ(n), perché A[j] > x è falso subito; Bubble con flag Θ(n), perché A[j] > A[j+1] è sempre falso e dopo una passata termina; Bubble base Θ(n²).",
+        "Già ordinato: Selection Θ(n²); Insertion Θ(n); Bubble con flag Θ(n); Bubble base Θ(n²).",
+        "Decrescente (elementi distinti): tutti e tre Θ(n²).",
+        "Il caso 'tutti uguali' si comporta come il caso 'ordinato' perché i confronti della dispensa sono stretti (> e <)."
+      ],
+      "procedimento": [
+        "Per ogni algoritmo chiedersi se il numero di confronti dipende dall'input (Selection e Bubble base: no).",
+        "Per Insertion e Bubble con flag controllare se il confronto stretto fa uscire subito dal while o evita ogni scambio."
+      ],
+      "trappole": [
+        "Pensare che con elementi uguali l'Insertion Sort sposti ogni elemento (come se il confronto fosse ≥).",
+        "Dare Θ(n) anche al Selection Sort su input favorevole.",
+        "Dare Θ(n) al Bubble Sort su input ordinato senza chiedersi se c'è il flag.",
+        "Pensare che su array decrescente il Selection Sort faccia meno lavoro degli altri (fa meno scambi, ma gli stessi confronti)."
+      ],
+      "come_generare_varianti": "Scegliere un input (tutti uguali, ordinato, decrescente, ordinato con duplicati) e una richiesta: terna dei costi nell'ordine Selection, Insertion, Bubble (specificare sempre se il Bubble ha il flag), oppure il costo di un solo algoritmo, oppure 'quale dei tre resta Θ(n²) anche su questo input'. Distrattori: tutti Θ(n), tutti Θ(n²), la terna con Insertion Θ(n²) (errore del ≥), la terna con Selection Θ(n)."
+    },
+    {
+      "id": "L07-T08",
+      "titolo": "Array quasi ordinato: scegliere l'algoritmo adattivo",
+      "argomento": "Costi degli ordinamenti quadratici",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Prova di luglio 2026, domanda 4 (array grande quasi ordinato, un numero costante di elementi fuori posto: Insertion Sort, contro Merge Sort, Quick Sort, Heap Sort). Dispensa 7, 'Complessità dell'Insertion Sort' (il costo dipende dagli spostamenti) e 'Bubble Sort ottimizzato'.",
+      "descrizione": "L'input è quasi ordinato (un numero costante di elementi fuori posto, oppure un solo elemento spostato all'inizio o alla fine). Si chiede quale algoritmo garantisce il costo migliore, o il costo di un algoritmo dato su quell'input.",
+      "conoscenze": [
+        "Un algoritmo è adattivo se il suo costo diminuisce quando l'input è già quasi ordinato. Insertion Sort e Bubble Sort con flag lo sono; Selection Sort e Bubble Sort base no.",
+        "Il costo dell'Insertion Sort è Θ(n + numero di spostamenti), e gli spostamenti sono le coppie fuori ordine (inversioni). Con c elementi fuori posto, c costante, le inversioni sono al più circa c·n: costo Θ(n).",
+        "Il Bubble Sort con flag è veloce se gli elementi fuori posto devono andare verso destra, ma un elemento piccolo in fondo arretra di una sola posizione per passata: su [2, 3, …, n, 1] servono n − 1 passate, Θ(n²).",
+        "Merge Sort e Heap Sort costano Θ(n log n) su ogni input; il Quick Sort con pivot fisso su input quasi ordinato può degenerare in Θ(n²) (Lezioni 8 e 9)."
+      ],
+      "procedimento": [
+        "Contare quanti elementi sono fuori posto e quanto lontano devono andare.",
+        "Insertion Sort: un elemento fuori posto costa al più O(n) spostamenti, quindi O(c·n) in totale.",
+        "Per il Bubble Sort con flag contare le passate: tante quante le posizioni che l'elemento più lontano deve percorrere verso sinistra."
+      ],
+      "trappole": [
+        "Scegliere Merge Sort o Heap Sort perché 'Θ(n log n) è il costo migliore': il limite Ω(n log n) vale nel caso peggiore, qui l'Insertion Sort fa Θ(n).",
+        "Scegliere il Quick Sort, che su input quasi ordinato può essere quadratico.",
+        "Pensare che il Bubble Sort con flag sia sempre Θ(n) su input quasi ordinato.",
+        "Scegliere il Selection Sort, che non si adatta all'input.",
+        "Pensare che il Bubble Sort con flag sia Θ(n²) anche quando gli elementi fuori posto devono spostarsi di poche posizioni o andare verso destra (il massimo in testa arriva in fondo in una sola passata)."
+      ],
+      "come_generare_varianti": "Variare l'input (c elementi scambiati a caso; minimo in ultima posizione [2, 3, …, n, 1]; massimo in prima posizione [n, 1, 2, …, n−1]; array ordinato con le ultime 5 posizioni disordinate) e la domanda (quale algoritmo garantisce il costo migliore; coppia di costi Insertion/Bubble con flag; costo di un singolo algoritmo). Valori corretti: Insertion Θ(n) in tutti questi casi; Bubble con flag Θ(n²) con il minimo in fondo, Θ(n) con il massimo in testa (2 passate). Con le ultime 5 posizioni disordinate Bubble con flag è Θ(n) solo se quegli elementi devono spostarsi di poche posizioni: se uno di essi va portato in testa, scende di una posizione per passata e servono Θ(n²) confronti. Indicare sempre nel testo dove vanno gli elementi fuori posto. Verificare i conteggi con Python su n = 20 e n = 40. Distrattori: Merge Sort, Heap Sort, Quick Sort, Selection Sort, oppure coppie di costi invertite."
+    },
+    {
+      "id": "L07-T09",
+      "titolo": "Stabilità e ordinamento in loco",
+      "argomento": "Proprietà degli algoritmi di ordinamento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, Esercizio 4 (definizione di algoritmo stabile; quale tra Bubble, Selection e Insertion Sort è stabile e perché) e 'Complessità e caratteristiche di Selection Sort' ('Algoritmo in-place, non richiede memoria aggiuntiva'); 'Counting Sort Complessità' (spazio O(k)).",
+      "descrizione": "Si chiede quali algoritmi sono stabili, cosa produce un algoritmo su elementi uguali etichettati (2a, 2b), come una modifica del confronto cambia la stabilità, oppure quali algoritmi ordinano in loco e quanta memoria aggiuntiva usano.",
+      "conoscenze": [
+        "Stabile: elementi con la stessa chiave restano nell'ordine relativo che avevano nell'input.",
+        "Insertion Sort è stabile: con A[j] > x non supera mai un elemento uguale. Con A[j] >= x diventerebbe instabile.",
+        "Bubble Sort è stabile: scambia solo adiacenti con A[j] > A[j+1], mai due uguali. Con >= diventerebbe instabile.",
+        "Selection Sort non è stabile: lo scambio a distanza può portare un elemento oltre un suo uguale. Esempio: [2a, 2b, 1] → [1, 2b, 2a].",
+        "In loco (in-place): memoria aggiuntiva O(1). Selection, Insertion e Bubble Sort sono in loco; Counting Sort usa O(k) memoria per C; Bucket Sort usa O(n + k) per i bucket e l'array risultato."
+      ],
+      "procedimento": [
+        "Per la stabilità: cercare un input con due elementi uguali e uno più piccolo dopo di loro, e simulare.",
+        "Controllare se il confronto è stretto (> o <) e se gli scambi sono solo tra adiacenti.",
+        "Per la memoria: guardare se l'algoritmo crea strutture di dimensione dipendente da n o da k."
+      ],
+      "trappole": [
+        "Dire che tutti gli algoritmi quadratici sono stabili.",
+        "Dire che il Selection Sort è stabile perché 'sceglie il primo minimo': lo scambio sposta l'elemento A[i] lontano.",
+        "Non accorgersi che passare da > a >= rende instabili Insertion e Bubble Sort.",
+        "Confondere stabile con in loco, o dire che il Counting Sort è in loco."
+      ],
+      "come_generare_varianti": "Forme possibili: (1) quali algoritmi sono stabili, con combinazioni dei tre come opzioni; (2) dato un input con chiavi ripetute etichettate (2a, 2b, …), il risultato di un algoritmo, verificato con Python; (3) effetto di sostituire > con >= in Insertion o Bubble Sort; (4) quale algoritmo non è in loco (Counting Sort, Bucket Sort) o quanta memoria usa (O(1), O(k), O(n + k)). Distrattori: tutti stabili, solo Insertion, Selection e Insertion; per la memoria, O(1) per il Counting Sort."
+    },
+    {
+      "id": "L07-T10",
+      "titolo": "Insertion Sort con ricerca binaria della posizione",
+      "argomento": "Costi degli ordinamenti quadratici",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 7, Esercizio 2 ('Nell'algoritmo di Insertion sort, è possibile ricercare la posizione in cui inserire l'elemento i-esimo tramite la ricerca binaria. Come cambia il costo computazionale?'). Ricerca binaria: Lezione 6.",
+      "descrizione": "Si sostituisce la scansione all'indietro dell'Insertion Sort con una ricerca binaria nel prefisso ordinato. Si chiede il nuovo numero di confronti, il costo nel caso peggiore o nel caso migliore.",
+      "conoscenze": [
+        "La ricerca binaria in A[0..i−1] costa O(log i): i confronti in totale diventano Σ log i = Θ(n log n).",
+        "Trovata la posizione, bisogna comunque spostare a destra tutti gli elementi maggiori: nel caso peggiore i spostamenti, totale Θ(n²).",
+        "Costo nel caso peggiore e medio: resta Θ(n²), perché dominano gli spostamenti.",
+        "Nel caso migliore (array ordinato) la versione standard fa 1 confronto per iterazione, Θ(n); con la ricerca binaria sempre eseguita si fanno Θ(log i) confronti per iterazione: Θ(n log n), cioè peggio."
+      ],
+      "procedimento": [
+        "Separare il costo dei confronti da quello degli spostamenti.",
+        "Sommare: Θ(n log n) + Θ(n²) = Θ(n²) nel caso peggiore."
+      ],
+      "trappole": [
+        "Rispondere Θ(n log n) contando solo i confronti (costo ottimista che ignora gli spostamenti).",
+        "Moltiplicare ricerca binaria e spostamenti: Θ(n² log n).",
+        "Pensare che il caso migliore resti Θ(n) anche con la ricerca binaria.",
+        "Dire che con la ricerca binaria i confronti restano Θ(n²), confondendoli con gli spostamenti."
+      ],
+      "come_generare_varianti": "Chiedere a turno: costo nel caso peggiore; numero di confronti nel caso peggiore; costo nel caso migliore; quale affermazione è vera. Distrattori: Θ(n log n) come costo totale, Θ(n² log n), Θ(n) per il caso migliore, Θ(log n)."
+    },
+    {
+      "id": "L07-T11",
+      "titolo": "Albero di decisione: foglie, altezza, numero di confronti",
+      "argomento": "Limite inferiore per l'ordinamento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Cos'è un albero di decisione', 'Esempio: albero di decisione per Insertion Sort con 3 elementi', 'Relazione tra altezza e numero di foglie' (h ≥ log₂ f), 'Relazione tra il numero di foglie e l'altezza dell'albero' (n! foglie).",
+      "descrizione": "Domande numeriche o di definizione sull'albero di decisione: cosa sono nodi interni e foglie, quante foglie servono per n elementi, altezza minima, numero minimo di confronti nel caso peggiore per un n piccolo, cosa rappresenta il cammino più lungo.",
+      "conoscenze": [
+        "Nodo interno = un confronto tra due elementi (due esiti); foglia = una permutazione ordinata dell'input; cammino radice–foglia = esecuzione su un input; lunghezza del cammino = numero di confronti.",
+        "Il cammino più lungo (l'altezza h) è il caso peggiore.",
+        "Teorema: un albero binario di altezza h ha al più 2^h foglie, quindi h ≥ log₂ f.",
+        "Per ordinare n elementi distinti servono almeno n! foglie, quindi h ≥ log₂ n! e, essendo h intero, h ≥ ⌈log₂ n!⌉.",
+        "Valori: n = 3 → 6 foglie, h ≥ 3; n = 4 → 24 foglie, h ≥ 5; n = 5 → 120 foglie, h ≥ 7.",
+        "Nell'esempio della dispensa (Insertion Sort, n = 3) l'altezza è 3: due foglie a profondità 2, quattro a profondità 3."
+      ],
+      "procedimento": [
+        "Calcolare n!.",
+        "Trovare la più piccola potenza di 2 maggiore o uguale a n!: il suo esponente è il numero minimo di confronti nel caso peggiore."
+      ],
+      "trappole": [
+        "Mettere n foglie (una per elemento) o 2ⁿ foglie invece di n!.",
+        "Arrotondare log₂ n! per difetto (per n = 4: 4 invece di 5).",
+        "Confondere altezza (caso peggiore) con profondità minima di una foglia (caso migliore).",
+        "Pensare che le foglie siano i confronti."
+      ],
+      "come_generare_varianti": "Variare n tra 3 e 6 e chiedere: numero di foglie; altezza minima di un albero di decisione; numero minimo di confronti nel caso peggiore; numero massimo di foglie di un albero di altezza h data (2^h); cosa rappresentano nodi, foglie, cammini. Calcolare ⌈log₂ n!⌉ con Python. Distrattori: n foglie, 2ⁿ foglie, arrotondamento per difetto, n(n−1)/2 confronti (il caso peggiore dell'Insertion Sort, che è un limite superiore e non inferiore)."
+    },
+    {
+      "id": "L07-T12",
+      "titolo": "Limite inferiore Ω(n log n): enunciato e portata",
+      "argomento": "Limite inferiore per l'ordinamento",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Introduzione al limite inferiore', 'Relazione tra il numero di foglie e l'altezza dell'albero' (T(n) ≥ log₂ n! ≥ (n/2) log₂ (n/2)), 'Conclusione' e 'Algoritmi di ordinamento a complessità lineare'.",
+      "descrizione": "Si chiede quale affermazione sul limite inferiore è corretta: a quali algoritmi si applica, in quale caso, come si dimostra, e perché Counting Sort e Bucket Sort non lo contraddicono.",
+      "conoscenze": [
+        "Ogni algoritmo di ordinamento basato su confronti richiede Ω(n log n) confronti nel caso peggiore.",
+        "Dimostrazione: n! foglie, h ≥ log₂ n!, e n! ≥ (n/2)^(n/2) dà log₂ n! ≥ (n/2)·log₂(n/2) = Ω(n log n).",
+        "Il limite riguarda il caso peggiore: nel caso migliore un algoritmo per confronti può costare Θ(n) (Insertion Sort, Bubble Sort con flag su input ordinato).",
+        "Counting Sort e Bucket Sort non confrontano elementi tra loro ma usano i valori come indici, sfruttando ipotesi sull'input (interi in un intervallo limitato, distribuzione uniforme): possono essere O(n) senza contraddire il teorema.",
+        "Merge Sort (Lezione 8) e Heap Sort (Lezione 9) sono Θ(n log n) nel caso peggiore: sono ottimi tra gli algoritmi per confronti."
+      ],
+      "procedimento": [
+        "Controllare se l'affermazione parla di algoritmi basati su confronti.",
+        "Controllare se parla del caso peggiore o di ogni caso.",
+        "Escludere le affermazioni che estendono il limite a tutti gli algoritmi o a tutti i casi."
+      ],
+      "trappole": [
+        "Dire che nessun algoritmo può ordinare in meno di n log n (dimenticando Counting e Bucket Sort).",
+        "Dire che il limite vale anche nel caso migliore.",
+        "Pensare che il limite dica Ω(n²) per gli algoritmi semplici o O(n log n) per tutti.",
+        "Dire che il Counting Sort contraddice il teorema."
+      ],
+      "come_generare_varianti": "Quattro affermazioni sul limite, una sola vera. Variare la formulazione vera (enunciato; 'log₂ n! = Θ(n log n)'; 'Counting Sort può essere lineare perché non è basato su confronti'; 'il numero minimo di confronti nel caso peggiore è l'altezza minima dell'albero di decisione'). Distrattori costruiti dalle trappole: limite esteso a ogni algoritmo, a ogni caso, scambio O/Ω, Counting Sort come controesempio."
+    },
+    {
+      "id": "L07-T13",
+      "titolo": "Counting Sort: traccia dell'array dei conteggi",
+      "argomento": "Ordinamenti lineari",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Counting Sort' e 'Counting Sort Implementazione Python'; Esercizio 3 (estensione agli interi negativi con indice x − min).",
+      "descrizione": "Dato un array di interi piccoli, si chiede il contenuto dell'array C dopo il ciclo di conteggio, la sua lunghezza, o il valore di una sua cella; nella variante con interi negativi, la cella in cui si conta un valore dato.",
+      "conoscenze": [
+        "k = max(A); C = [0] * (k + 1): ci sono k + 1 contatori, per i valori 0, 1, …, k.",
+        "Primo ciclo: C[A[i]] += 1, quindi C[v] è il numero di occorrenze di v.",
+        "Ricostruzione: per ogni v da 0 a k si scrive v in A per C[v] volte.",
+        "La versione della dispensa non usa le somme cumulative di C.",
+        "Con interi negativi: C ha max − min + 1 celle, il valore x si conta in C[x − min] e in ricostruzione si scrive i + min."
+      ],
+      "procedimento": [
+        "Calcolare k = max(A) (o max − min con i negativi) e la lunghezza di C.",
+        "Contare le occorrenze di ogni valore e metterle nella cella giusta, includendo gli zeri per i valori assenti."
+      ],
+      "trappole": [
+        "Dare a C lunghezza n o k invece di k + 1 (dimenticando il valore 0).",
+        "Scrivere le somme cumulative (versione di altri libri) invece dei conteggi.",
+        "Confondere C con l'array ordinato in uscita.",
+        "Con i negativi, usare x come indice o mettere il valore minimo in C[1]."
+      ],
+      "come_generare_varianti": "Array di 6–9 interi in [0, 5] con ripetizioni e almeno un valore assente; oppure interi in [−4, 3] per la variante con i negativi. Chiedere C completo, la lunghezza di C, C[v] per un v dato, o l'indice in cui si conta un valore negativo. Calcolare con Python. Distrattori: somme cumulative, C allungato a n celle, array ordinato, C senza la cella 0 o con offset sbagliato."
+    },
+    {
+      "id": "L07-T14",
+      "titolo": "Counting Sort: costo, spazio, quando conviene",
+      "argomento": "Ordinamenti lineari",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Counting Sort Complessità' (O(n + k), spazio O(k), conveniente se k = O(n)) ed Esercizio 3 (interi negativi, k = max − min).",
+      "descrizione": "Si chiede il costo in tempo o in spazio del Counting Sort in funzione di n e k, il costo quando k dipende da n (k = O(n), k = n², k = 2ⁿ), quando conviene, o come cambia il costo con l'estensione agli interi negativi.",
+      "conoscenze": [
+        "Tempo O(n + k): max in O(n), inizializzazione di C in O(k), conteggio in O(n), ricostruzione in O(n + k).",
+        "Spazio aggiuntivo O(k) per l'array C.",
+        "Se k = O(n) il costo è O(n); se k = n² il costo è Θ(n²); se k è enorme rispetto a n (per esempio 2ⁿ, oppure un solo valore molto grande) diventa inefficiente in tempo e spazio.",
+        "Funziona su interi non negativi; per interi qualsiasi si usa l'offset min e k = max − min: il costo resta O(n + k).",
+        "Non usa confronti tra elementi: per questo può scendere sotto Ω(n log n)."
+      ],
+      "procedimento": [
+        "Esprimere k in funzione di n.",
+        "Sostituire in O(n + k) e tenere il termine dominante, sia per il tempo sia per lo spazio O(k)."
+      ],
+      "trappole": [
+        "Rispondere sempre O(n) ignorando k (costo ottimista).",
+        "Dimenticare lo spazio O(k) o dire che è in loco.",
+        "Usare il numero di valori distinti invece del valore massimo (o dell'ampiezza max − min).",
+        "Pensare che con i negativi il Counting Sort non sia applicabile, o che il costo diventi O(n + max)."
+      ],
+      "come_generare_varianti": "Variare l'intervallo dei valori: [0, 100] (costante), [0, n], [0, n log n], [0, n²], [0, 2ⁿ], [−n, n], [n², n² + n] (con l'offset k = n). Chiedere tempo, spazio, entrambi, o se conviene rispetto a un algoritmo Θ(n log n). Distrattori: O(n), O(n log n), O(k) da solo, tempo giusto con spazio O(1) o O(n)."
+    },
+    {
+      "id": "L07-T15",
+      "titolo": "Bucket Sort: indice del bucket e distribuzione",
+      "argomento": "Ordinamenti lineari",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Bucket Sort' (i = ⌊x·k/(M+1)⌋) e 'Bucket Sort: implementazione in Python' (i = x * k // (M + 1), M = max(A)).",
+      "descrizione": "Dati un array di interi non negativi e il numero di bucket k, si chiede in quale bucket finisce un elemento, quali elementi stanno in un bucket, o quanti elementi ha il bucket più pieno.",
+      "conoscenze": [
+        "M = max(A); l'elemento x va nel bucket i = ⌊x·k/(M+1)⌋.",
+        "Il + 1 garantisce che il massimo vada nel bucket k − 1 e non nel bucket k (che non esiste).",
+        "Ogni bucket corrisponde a un sotto-intervallo di ampiezza (M+1)/k.",
+        "Gli elementi entrano nei bucket nell'ordine in cui compaiono in A; poi ogni bucket viene ordinato e i bucket vengono concatenati."
+      ],
+      "procedimento": [
+        "Calcolare M e il denominatore M + 1.",
+        "Per ogni elemento calcolare x·k, dividere per M + 1 e arrotondare per difetto.",
+        "Raggruppare gli elementi per indice."
+      ],
+      "trappole": [
+        "Dividere per M invece che per M + 1 (il massimo finisce in un bucket inesistente e altri valori cambiano bucket).",
+        "Arrotondare per eccesso invece che per difetto.",
+        "Usare x // k come indice.",
+        "Dimenticare che gli indici partono da 0."
+      ],
+      "come_generare_varianti": "Array di 6–9 interi non negativi e k tra 3 e 5, scelti in modo che almeno un elemento cambi bucket se si divide per M invece che per M + 1. Chiedere il bucket di un elemento, il contenuto di un bucket o la dimensione del bucket più pieno. Calcolare con Python la versione corretta e quelle sbagliate (divisione per M, arrotondamento per eccesso, x // k) e usarle come distrattori, controllando che siano diverse."
+    },
+    {
+      "id": "L07-T16",
+      "titolo": "Bucket Sort: caso ottimo, caso pessimo e condizioni di linearità",
+      "argomento": "Ordinamenti lineari",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 7, 'Bucket Sort: complessità struttura generale' (O(n + Σ costo ordinamento B[i]), k = Θ(n)) e 'Bucket Sort: casi ottimo e pessimo'.",
+      "descrizione": "Si chiede il costo del Bucket Sort in uno scenario (elementi equidistribuiti, tutti in un bucket, numero di bucket costante), con un algoritmo dato per ordinare i bucket, oppure quali condizioni servono per avere costo lineare.",
+      "conoscenze": [
+        "Costo: O(n + Σ costo di ordinamento dei bucket), più O(k) per creare e concatenare i bucket.",
+        "Caso ottimo: k = Θ(n) e dati equidistribuiti, ogni bucket ha Θ(1) elementi: O(n).",
+        "Caso pessimo: tutti gli elementi in un bucket; il costo è quello dell'algoritmo usato sul bucket: Θ(n²) con Insertion Sort, O(n log n) con Merge Sort (o con sort() di Python).",
+        "Condizioni per la linearità: elementi equidistribuiti tra i bucket e k proporzionale a n.",
+        "Con k costante i bucket hanno Θ(n) elementi ciascuno: non si guadagna asintoticamente."
+      ],
+      "procedimento": [
+        "Capire quanti elementi finiscono in ogni bucket nello scenario dato.",
+        "Applicare a ciascun bucket il costo dell'algoritmo con cui viene ordinato e sommare.",
+        "Aggiungere O(n + k) per distribuzione e concatenazione."
+      ],
+      "trappole": [
+        "Rispondere O(n) in ogni caso perché 'il Bucket Sort è lineare' (costo ottimista).",
+        "Dimenticare quale algoritmo ordina i bucket: con Insertion Sort il caso pessimo è Θ(n²), non O(n log n).",
+        "Pensare che basti avere k = Θ(n) senza la distribuzione uniforme.",
+        "Rispondere O(n + k) senza considerare l'ordinamento dei bucket.",
+        "Applicare il costo dell'algoritmo usato per i bucket a tutti gli n elementi (Θ(n²) con Insertion Sort) anche quando ogni bucket ne contiene pochi."
+      ],
+      "come_generare_varianti": "Variare la distribuzione (uniforme, tutti in un bucket, metà in un bucket, √n bucket pieni), il numero di bucket (k = n, k = costante, k = √n) e l'algoritmo per i bucket (Insertion Sort, Merge Sort, sort() di Python). Calcolare il costo come somma sui bucket. Distrattori: O(n), O(n log n), Θ(n²), O(n + k)."
+    }
+  ]
+}

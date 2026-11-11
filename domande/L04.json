@@ -1,0 +1,1685 @@
+{
+  "lezione": 4,
+  "generato_con": "claude-sonnet-5-5",
+  "domande": [
+    {
+      "id": "L04-T01-01",
+      "tipo": "L04-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è la soluzione della ricorrenza T(n) = T(n − 1) + Θ(n²), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(n² log n)",
+        "Θ(2ⁿ)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E5",
+        "E4"
+      ],
+      "spiegazione": "Espandendo: T(n) = Θ(n²) + Θ((n − 1)²) + Θ((n − 2)²) + … + Θ(1). I termini sono circa n e la loro somma è Σ i² = Θ(n³). Θ(n²) è soltanto il primo termine; Θ(n² log n) moltiplica per un numero logaritmico di passi, mentre i passi sono n; Θ(2ⁿ) è la soluzione di 2T(n − 1) + Θ(1), che ha due chiamate."
+    },
+    {
+      "id": "L04-T01-02",
+      "tipo": "L04-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Dato T(n) = T(n − 3) + Θ(1), con T(n) = Θ(1) per n ≤ 2, quale classe descrive T(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(2^(n/3))",
+        "Θ(1)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "E2",
+        null
+      ],
+      "spiegazione": "Ogni chiamata toglie 3 a n e aggiunge un costo costante: servono circa n/3 espansioni, quindi T(n) è la somma di circa n/3 termini Θ(1), cioè Θ(n). Θ(log n) si otterrebbe leggendo T(n − 3) come T(n/3); Θ(1) è soltanto il primo termine; Θ(2^(n/3)) è la soluzione di 2T(n − 3) + Θ(1), con due chiamate."
+    },
+    {
+      "id": "L04-T01-03",
+      "tipo": "L04-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è la soluzione di T(n) = T(n − 1) + Θ(log n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(log² n)",
+        "Θ(n log n)",
+        "Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E5",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Espandendo: T(n) = Θ(log n) + Θ(log (n − 1)) + … + Θ(log 2) + Θ(1). I termini sono circa n e la somma è log(n!) = Θ(n log n): almeno n/2 termini valgono almeno log(n/2), quindi la somma è Ω(n log n), e ogni termine è al più log n, quindi è O(n log n). Θ(log n) è il solo primo termine; Θ(log² n) moltiplica per un numero logaritmico di passi invece che per n; Θ(n) trascura il logaritmo."
+    },
+    {
+      "id": "L04-T01-04",
+      "tipo": "L04-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione di T(n) = T(n − 2) + Θ(3ⁿ), con T(0) = T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(3ⁿ)",
+        "Θ(n·3ⁿ)",
+        "Θ(3ⁿ log n)",
+        "Θ(3^(n/2))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "I termini della somma sono 3ⁿ, 3^(n−2), 3^(n−4), …: una serie geometrica di ragione 1/9, la cui somma è al più (9/8)·3ⁿ. Il primo termine da solo vale già 3ⁿ, quindi T(n) = Θ(3ⁿ). Moltiplicare per il numero di passi (circa n/2) dà Θ(n·3ⁿ) e per un numero logaritmico di passi Θ(3ⁿ log n): entrambi sono errori, perché i termini decrescono rapidamente. Θ(3^(n/2)) è più piccolo del primo termine, che T(n) contiene."
+    },
+    {
+      "id": "L04-T01-05",
+      "tipo": "L04-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si consideri T(n) = T(n − 5) + Θ(n³), con T(n) = Θ(1) per n ≤ 4. Quale tra le seguenti è la soluzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(n⁴)",
+        "Θ(n³ log n)",
+        "Θ(2^(n/5))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E5",
+        "E4"
+      ],
+      "spiegazione": "Espandendo: T(n) = Θ(n³) + Θ((n − 5)³) + Θ((n − 10)³) + … + Θ(1), circa n/5 termini. I primi n/10 circa valgono almeno (n/2)³ e nessuno supera n³, quindi la somma è compresa tra circa (n/10)·(n/2)³ e (n/5)·n³: Θ(n⁴). Θ(n³) è soltanto il primo termine (si ottiene anche leggendo T(n − 5) come T(n/5)); Θ(n³ log n) moltiplica per un numero logaritmico di passi, mentre i passi sono circa n/5; Θ(2^(n/5)) è la soluzione di 2T(n − 5) + Θ(n³), con due chiamate."
+    },
+    {
+      "id": "L04-T01-06",
+      "tipo": "L04-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la classe della soluzione di T(n) = T(n − 1) + Θ(√n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n^(3/2))",
+        "Θ(√n)",
+        "Θ(√n log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E5",
+        "altro"
+      ],
+      "spiegazione": "Espandendo: T(n) = Θ(√n) + Θ(√(n − 1)) + … + Θ(1), cioè n termini. Almeno n/2 termini valgono almeno √(n/2) e nessuno supera √n, quindi la somma è compresa tra (n/2)·√(n/2) e n·√n: Θ(n^(3/2)). Θ(√n) è soltanto il primo termine; Θ(√n log n) moltiplica per un numero logaritmico di passi, mentre i passi sono n."
+    },
+    {
+      "id": "L04-T02-01",
+      "tipo": "L04-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Ricordando che Σ_{i=0}^{n−1} (n − i) = Θ(n²), qual è la soluzione di T(n) = 4T(n − 1) + Θ(n), con T(0) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n·4ⁿ)",
+        "Θ(4ⁿ)",
+        "Θ(2ⁿ)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E6"
+      ],
+      "spiegazione": "Dopo k passi T(n) = 4^k·T(n − k) + Σ_{i=0}^{k−1} 4^i·Θ(n − i). Con k = n il primo termine vale 4ⁿ·Θ(1). Nella somma ogni (n − i) è moltiplicato per 4^i: con j = n − i diventa 4ⁿ·Σ j/4^j, e Σ j/4^j converge, quindi la somma è O(4ⁿ). Il suggerimento riguarda la somma senza il fattore 4^i e porta a Θ(n²), che è sbagliato. Θ(n·4ⁿ) moltiplica foglie e costo della radice invece di sommare; Θ(2ⁿ) usa la base sbagliata."
+    },
+    {
+      "id": "L04-T02-02",
+      "tipo": "L04-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Data T(n) = 3T(n − 3) + Θ(n), con T(n) = Θ(1) per n ≤ 2, la soluzione è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(3^(n/3))",
+        "Θ(3ⁿ)",
+        "Θ(n²)",
+        "Θ(n·3^(n/3))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E5",
+        "E2"
+      ],
+      "spiegazione": "Dopo k passi T(n) = 3^k·T(n − 3k) + Σ_{i=0}^{k−1} 3^i·Θ(n − 3i). Il caso base si raggiunge per k ≈ n/3 e il primo termine vale 3^(n/3)·Θ(1). La somma non lo supera: con j = n − 3i ogni termine è 3^((n−j)/3)·Θ(j) = 3^(n/3)·Θ(j/3^(j/3)), e Σ j/3^(j/3) converge. Quindi T(n) = Θ(3^(n/3)). Θ(3ⁿ) non divide l'esponente per b = 3; Θ(n²) ignora il fattore 3 davanti a T e tratta la ricorrenza come T(n − 3) + Θ(n); Θ(n·3^(n/3)) moltiplica foglie e costo della radice."
+    },
+    {
+      "id": "L04-T02-03",
+      "tipo": "L04-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Ricordando che Σ_{i=0}^{n/2} (n − 2i)³ = Θ(n⁴), determinare la soluzione di T(n) = 2T(n − 2) + Θ(n³), con T(0) = T(1) = Θ(1).",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n⁴)",
+        "Θ(n³·2^(n/2))",
+        "Θ(2ⁿ)",
+        "Θ(2^(n/2))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E4",
+        null
+      ],
+      "spiegazione": "Dopo k passi T(n) = 2^k·T(n − 2k) + Σ_{i=0}^{k−1} 2^i·Θ((n − 2i)³). Il caso base si raggiunge per k ≈ n/2 e il primo termine vale 2^(n/2)·Θ(1). Con j = n − 2i ogni termine della somma è 2^((n−j)/2)·Θ(j³) = 2^(n/2)·Θ(j³/2^(j/2)) e Σ j³/2^(j/2) converge: la somma è O(2^(n/2)). Il suggerimento riguarda la somma senza il fattore 2^i e porta a Θ(n⁴), che è sbagliato. Θ(n³·2^(n/2)) moltiplica foglie e costo della radice; Θ(2ⁿ) non divide l'esponente per b = 2."
+    },
+    {
+      "id": "L04-T02-04",
+      "tipo": "L04-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si consideri T(n) = 2T(n − 3) + Θ(n²), con T(n) = Θ(1) per n ≤ 2. Qual è la soluzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(2ⁿ)",
+        "Θ(2^(n/3))",
+        "Θ(n³)",
+        "Θ(n²·2^(n/3))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E5",
+        "E2"
+      ],
+      "spiegazione": "Dopo k passi T(n) = 2^k·T(n − 3k) + Σ_{i=0}^{k−1} 2^i·Θ((n − 3i)²). Il caso base si raggiunge per k ≈ n/3 e il primo termine vale 2^(n/3)·Θ(1). Con j = n − 3i i termini della somma sono 2^((n−j)/3)·Θ(j²) = 2^(n/3)·Θ(j²/2^(j/3)) e Σ j²/2^(j/3) converge: la somma è O(2^(n/3)). Θ(2ⁿ) non divide l'esponente per b = 3; Θ(n³) ignora il fattore 2 e tratta la ricorrenza come T(n − 3) + Θ(n²); Θ(n²·2^(n/3)) moltiplica foglie e costo della radice."
+    },
+    {
+      "id": "L04-T02-05",
+      "tipo": "L04-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Data T(n) = 4T(n − 2) + Θ(1), con T(0) = T(1) = Θ(1), quale classe descrive T(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(4ⁿ)",
+        "Θ(n)",
+        "Θ(2ⁿ)",
+        "Θ(2^(n/2))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E5",
+        null,
+        "E6"
+      ],
+      "spiegazione": "Dopo k passi T(n) = 4^k·T(n − 2k) + Σ_{i=0}^{k−1} 4^i·Θ(1). Il caso base si raggiunge per k ≈ n/2, e il primo termine vale 4^(n/2) = 2ⁿ. La somma geometrica Σ 4^i, con i da 0 a k − 1, vale (4^k − 1)/3 e ha lo stesso ordine. Quindi T(n) = Θ(2ⁿ). Θ(4ⁿ) non divide l'esponente per b = 2; Θ(n) ignora il fattore 4 davanti a T e tratta la ricorrenza come T(n − 2) + Θ(1); Θ(2^(n/2)) usa la base 2 per abitudine, come se le chiamate fossero due."
+    },
+    {
+      "id": "L04-T02-06",
+      "tipo": "L04-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la soluzione di T(n) = 2T(n − 1) + Θ(n log n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(2ⁿ)",
+        "Θ(n² log n)",
+        "Θ(n·log n·2ⁿ)",
+        "Θ(4ⁿ)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Dopo k passi T(n) = 2^k·T(n − k) + Σ_{i=0}^{k−1} 2^i·Θ((n − i) log (n − i)). Per k = n − 1 il primo termine vale Θ(2ⁿ). Nella somma, con j = n − i, ogni termine è 2ⁿ·Θ(j log j/2^j) e Σ j log j/2^j converge: la somma è O(2ⁿ). Θ(n² log n) ignora il fattore 2 e tratta la ricorrenza come T(n − 1) + f(n); Θ(n·log n·2ⁿ) moltiplica foglie e costo della radice; Θ(4ⁿ) usa una base che non corrisponde al numero di chiamate."
+    },
+    {
+      "id": "L04-T02-07",
+      "tipo": "L04-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Ricordando che Σ_{i=0}^{n/3} (n − 3i)² = Θ(n³), qual è la soluzione di T(n) = 9T(n − 3) + Θ(n²), con T(n) = Θ(1) per n ≤ 2?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(9^(n/3))",
+        "Θ(n²·9^(n/3))",
+        "Θ(9ⁿ)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "Dopo k passi T(n) = 9^k·T(n − 3k) + Σ_{i=0}^{k−1} 9^i·Θ((n − 3i)²). Il caso base si raggiunge per k ≈ n/3 e il primo termine vale 9^(n/3)·Θ(1). Con j = n − 3i ogni termine della somma è 9^((n−j)/3)·Θ(j²) = 9^(n/3)·Θ(j²/9^(j/3)) e Σ j²/9^(j/3) converge: la somma è O(9^(n/3)), quindi T(n) = Θ(9^(n/3)) = Θ(3^(2n/3)). Il suggerimento riguarda la somma senza il fattore 9^i e porta a Θ(n³), che è sbagliato. Θ(n²·9^(n/3)) moltiplica foglie e costo della radice; Θ(9ⁿ) non divide l'esponente per b = 3."
+    },
+    {
+      "id": "L04-T02-08",
+      "tipo": "L04-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Ricordando che Σ_{i=0}^{n/2} (n − 2i) = Θ(n²), si determini la soluzione di T(n) = 3T(n − 2) + Θ(n), con T(0) = T(1) = Θ(1).",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(3ⁿ)",
+        "Θ(3^(n/2))",
+        "Θ(2^(n/2))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E4",
+        null,
+        "E6"
+      ],
+      "spiegazione": "Dopo k passi T(n) = 3^k·T(n − 2k) + Σ_{i=0}^{k−1} 3^i·Θ(n − 2i). Il caso base si raggiunge per k ≈ n/2 e il primo termine vale 3^(n/2)·Θ(1). Con j = n − 2i ogni termine della somma è 3^((n−j)/2)·Θ(j) = 3^(n/2)·Θ(j/3^(j/2)) e Σ j/3^(j/2) converge: la somma è O(3^(n/2)). Il suggerimento riguarda la somma senza il fattore 3^i e porta a Θ(n²), che è sbagliato. Θ(3ⁿ) non divide l'esponente per b = 2; Θ(2^(n/2)) usa la base sbagliata."
+    },
+    {
+      "id": "L04-T03-01",
+      "tipo": "L04-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la soluzione di T(n) = 4T(n − 2) + Θ(3ⁿ), con T(0) = T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(4^(n/2))",
+        "Θ(12ⁿ)",
+        "Θ(3ⁿ)",
+        "Θ(n·3ⁿ)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Al passo i il contributo è 4^i·3^(n − 2i) = 3ⁿ·(4/9)^i: una serie geometrica di ragione 4/9 < 1, la cui somma è al più (9/5)·3ⁿ, e il primo termine da solo vale 3ⁿ. Le foglie valgono solo 4^(n/2) = 2ⁿ, che è più piccolo. Θ(4^(n/2)) guarda soltanto le foglie, Θ(12ⁿ) moltiplica le basi, Θ(n·3ⁿ) moltiplica il numero di passi per il costo della radice."
+    },
+    {
+      "id": "L04-T03-02",
+      "tipo": "L04-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Determinare la soluzione di T(n) = 5T(n − 2) + Θ(2ⁿ), con T(0) = T(1) = Θ(1).",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(2ⁿ)",
+        "Θ(5ⁿ)",
+        "Θ(10ⁿ)",
+        "Θ(5^(n/2))"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E5",
+        "E3",
+        null
+      ],
+      "spiegazione": "Al passo i il contributo è 5^i·2^(n − 2i) = 2ⁿ·(5/4)^i: una serie geometrica di ragione 5/4 > 1, dominata dall'ultimo termine, per i ≈ n/2, che vale circa 5^(n/2). Quindi T(n) = Θ(5^(n/2)) ≈ Θ(2,24ⁿ), che cresce più di 2ⁿ. Θ(2ⁿ) guarda solo il costo della radice; Θ(5ⁿ) non divide l'esponente per b = 2; Θ(10ⁿ) moltiplica le basi."
+    },
+    {
+      "id": "L04-T03-03",
+      "tipo": "L04-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione della ricorrenza T(n) = 8T(n − 3) + Θ(2ⁿ), con T(n) = Θ(1) per n ≤ 2, è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(2ⁿ)",
+        "Θ(n·2ⁿ)",
+        "Θ(16ⁿ)",
+        "Θ(8ⁿ)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E6",
+        null,
+        "E3",
+        "E5"
+      ],
+      "spiegazione": "Al passo i il contributo è 8^i·2^(n − 3i) = 2ⁿ·(8/8)^i = 2ⁿ: tutti i circa n/3 termini valgono 2ⁿ, quindi la somma è Θ(n·2ⁿ). Θ(2ⁿ) dimentica il fattore n e conta un solo termine (qui coincide anche con Θ(8^(n/3)), che è il valore delle sole foglie). Θ(16ⁿ) moltiplica le basi; Θ(8ⁿ) non divide l'esponente per b = 3."
+    },
+    {
+      "id": "L04-T04-01",
+      "tipo": "L04-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "La soluzione della ricorrenza T(n) = T(n/3) + Θ(1), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(log n)",
+        "Θ(1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Espandendo: T(n) = Θ(1) + T(n/3) = Θ(1) + Θ(1) + T(n/9) = … L'argomento arriva a 1 dopo log₃ n passi, quindi la somma ha log₃ n termini Θ(1): T(n) = Θ(log n). Θ(n) si ottiene confondendo con una ricorrenza a due chiamate come 2T(n/2) + Θ(1), oppure leggendo T(n/3) come T(n − 3); Θ(1) ignora il fatto che i termini sono log₃ n."
+    },
+    {
+      "id": "L04-T04-02",
+      "tipo": "L04-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Qual è la soluzione di T(n) = T(n/2) + Θ(n³), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(n³ log n)",
+        "Θ(n⁴)",
+        "Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Espandendo: T(n) = Θ(n³) + Θ(n³/8) + Θ(n³/64) + …, una serie geometrica di ragione 1/8 con somma al più (8/7)·n³; il primo termine vale già n³: T(n) = Θ(n³). Θ(n³ log n) moltiplica n³ per i log₂ n livelli, ma i costi decrescono in modo geometrico; Θ(n⁴) nasce dal leggere T(n/2) come T(n − 2); Θ(log n) è la soluzione con costo Θ(1)."
+    },
+    {
+      "id": "L04-T04-03",
+      "tipo": "L04-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Dato T(n) = T(n/3) + Θ(n²), con T(1) = Θ(1), quale classe descrive T(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n² log n)",
+        "Θ(n³)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "I termini sono n², n²/9, n²/81, …: una serie geometrica di ragione 1/9, con somma al più (9/8)·n². Il primo termine vale già n², quindi T(n) = Θ(n²). Θ(n² log n) moltiplica n² per il numero di livelli; Θ(n³) legge T(n/3) come T(n − 3); Θ(n) è più piccolo del solo costo della radice, che T(n) contiene."
+    },
+    {
+      "id": "L04-T04-04",
+      "tipo": "L04-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si consideri T(n) = T(n/2) + Θ(√n), con T(1) = Θ(1). La sua soluzione è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n log n)",
+        "Θ(√n)",
+        "Θ(n^(3/2))",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Espandendo: T(n) = √n + √(n/2) + √(n/4) + …, una serie geometrica di ragione 1/√2 ≈ 0,71, con somma al più √n/(1 − 1/√2) ≈ 3,4·√n. Il primo termine vale già √n: T(n) = Θ(√n). Θ(√n log n) moltiplica per il numero di livelli; Θ(n^(3/2)) legge T(n/2) come T(n − 2); Θ(log n) è la soluzione con costo Θ(1)."
+    },
+    {
+      "id": "L04-T04-05",
+      "tipo": "L04-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La ricorrenza T(n) = T(n/10) + Θ(n³), con T(1) = Θ(1), ha soluzione:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³ log n)",
+        "Θ(n⁴)",
+        "Θ(n³)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "I termini sono n³, n³/1000, n³/10⁶, …: una serie geometrica di ragione 1/1000, la cui somma è meno di 1,01·n³. Il primo termine vale già n³: T(n) = Θ(n³). Qui dividere per 10 invece che per 2 cambia soltanto la costante della somma geometrica. Θ(n³ log n) moltiplica per il numero di livelli; Θ(n⁴) legge T(n/10) come T(n − 10); Θ(log n) è la soluzione con costo Θ(1)."
+    },
+    {
+      "id": "L04-T04-06",
+      "tipo": "L04-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la soluzione di T(n) = T(n/4) + Θ(1), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(√n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni chiamata divide l'input per 4 e costa Θ(1): la catena ha circa log₄ n nodi, quindi T(n) = Θ(log n). Θ(n) nasce dal confondere la ricorrenza con una a due chiamate come 2T(n/2) + Θ(1) (oppure dal leggere T(n/4) come T(n − 4)); Θ(√n) è la soluzione di 2T(n/4) + Θ(1), che ha due chiamate; Θ(n log n) attribuisce a ogni livello un costo Θ(n), mentre ogni livello ha un solo nodo di costo Θ(1)."
+    },
+    {
+      "id": "L04-T04-07",
+      "tipo": "L04-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Un algoritmo ricorsivo su un input di dimensione n esegue un ciclo di Θ(n) operazioni e poi richiama sé stesso una sola volta su un input di dimensione n/4 (con n = 1 il costo è Θ(1)). Qual è il suo tempo di esecuzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "E4",
+        null
+      ],
+      "spiegazione": "Il tempo soddisfa T(n) = T(n/4) + Θ(n). Espandendo: T(n) = Θ(n) + Θ(n/4) + Θ(n/16) + …, serie geometrica di ragione 1/4, con somma al più (4/3)·n. Il primo termine vale già n: T(n) = Θ(n). Θ(n log n) moltiplica n per il numero di livelli; Θ(n²) legge n/4 come n − 4; Θ(log n) conta soltanto i livelli."
+    },
+    {
+      "id": "L04-T04-08",
+      "tipo": "L04-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Determinare la soluzione di T(n) = T(n/2) + Θ(n²), con T(1) = Θ(1).",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n² log n)",
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "I termini sono n², n²/4, n²/16, …: una serie geometrica di ragione 1/4, con somma al più (4/3)·n². Il primo termine vale già n²: T(n) = Θ(n²). Θ(n² log n) moltiplica per il numero di livelli; Θ(n³) legge T(n/2) come T(n − 2); Θ(log n) è la soluzione con costo Θ(1)."
+    },
+    {
+      "id": "L04-T05-01",
+      "tipo": "L04-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il metodo iterativo a T(n) = 3T(n/2) + Θ(n), con T(1) = Θ(1). Quale espressione si ottiene per T(n) dopo k espansioni?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3^k·T(n/2^k) + Σ_{i=0}^{k−1} Θ(n/2^i)",
+        "3^k·T(n/2^k) + Σ_{i=0}^{k−1} 3^i·Θ(n/2^i)",
+        "3·T(n/2^k) + Σ_{i=0}^{k−1} 3^i·Θ(n/2^i)",
+        "3^k·T(n − 2k) + Σ_{i=0}^{k−1} 3^i·Θ(n − 2i)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E5"
+      ],
+      "spiegazione": "Espandendo due volte: T(n) = 3T(n/2) + Θ(n) = 3[3T(n/4) + Θ(n/2)] + Θ(n) = 9T(n/4) + 3Θ(n/2) + Θ(n). A ogni passo il numero di chiamate si triplica e l'argomento si dimezza: dopo k passi ci sono 3^k chiamate su n/2^k, e il costo Θ(n/2^i) del passo i compare 3^i volte. Senza il fattore 3^i si perde il numero di chiamate; il coefficiente 3 al posto di 3^k non tiene conto che i coefficienti si moltiplicano; T(n − 2k) tratta la ricorrenza come sottrattiva."
+    },
+    {
+      "id": "L04-T05-02",
+      "tipo": "L04-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Si applica il metodo iterativo a T(n) = 2T(n − 3) + Θ(n), con T(1) = Θ(1) e n − 1 multiplo di 3. Per quale valore di k l'argomento di T raggiunge il caso base?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "k = (n − 1)/3",
+        "k = log₃ n",
+        "k = n − 1",
+        "k = (n − 1)/2"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Dopo k espansioni l'argomento è n − 3k. Si arriva al caso base T(1) quando n − 3k = 1, cioè k = (n − 1)/3. k = log₃ n tratta la ricorrenza come divisiva (n/3^k = 1), mentre qui si sottrae 3; k = (n − 1)/2 usa a = 2 al posto di b = 3; k = n − 1 dimentica che a ogni passo si sottrae 3."
+    },
+    {
+      "id": "L04-T05-03",
+      "tipo": "L04-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il metodo iterativo a T(n) = 9T(n/3) + Θ(n), con T(1) = Θ(1) e n potenza di 3. Quando l'argomento di T raggiunge il caso base, quanto vale il coefficiente 9^k davanti a T(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n",
+        "9^(n/3)",
+        "n²",
+        "√n"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E5",
+        null,
+        "altro"
+      ],
+      "spiegazione": "L'argomento è n/3^k e vale 1 per k = log₃ n: si divide per b = 3, non per a = 9. Allora 9^k = 9^(log₃ n) = (3^(log₃ n))² = n². Con k = log₉ n (base a al posto di b) si otterrebbe 9^k = n; con k = n/3 (come per una ricorrenza sottrattiva) 9^(n/3); √n scambia l'esponente 2 con 1/2."
+    },
+    {
+      "id": "L04-T05-04",
+      "tipo": "L04-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il metodo iterativo a T(n) = 2T(n − 2) + Θ(n²), con T(0) = T(1) = Θ(1). Quale espressione si ottiene per T(n) dopo k espansioni?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2^k·T(n − 2k) + Σ_{i=0}^{k−1} Θ((n − 2i)²)",
+        "2·T(n − 2k) + Σ_{i=0}^{k−1} 2^i·Θ((n − 2i)²)",
+        "2^k·T(n/2^k) + Σ_{i=0}^{k−1} 2^i·Θ((n/2^i)²)",
+        "2^k·T(n − 2k) + Σ_{i=0}^{k−1} 2^i·Θ((n − 2i)²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E5",
+        null
+      ],
+      "spiegazione": "Espandendo due volte: T(n) = 2T(n − 2) + Θ(n²) = 2[2T(n − 4) + Θ((n − 2)²)] + Θ(n²) = 4T(n − 4) + 2Θ((n − 2)²) + Θ(n²). A ogni passo le chiamate raddoppiano e l'argomento cala di 2: dopo k passi ci sono 2^k chiamate su n − 2k, e il costo Θ((n − 2i)²) del passo i compare 2^i volte. Senza il fattore 2^i si perde il numero di chiamate; il coefficiente 2 al posto di 2^k non tiene conto che i coefficienti si moltiplicano; T(n/2^k) tratta la ricorrenza come divisiva."
+    },
+    {
+      "id": "L04-T05-05",
+      "tipo": "L04-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si applica il metodo iterativo a T(n) = 3T(n − 2) + Θ(1), con T(0) = Θ(1) e n pari. Per quale valore di k si raggiunge il caso base T(0) e quanto vale allora il coefficiente 3^k davanti a T(0)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "k = log₂ n; 3^k = n^(log₂ 3)",
+        "k = n/2; 3^k = 3^(n/2)",
+        "k = n/3; 3^k = 3^(n/3)",
+        "k = n; 3^k = 3ⁿ"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Dopo k passi l'argomento è n − 2k, che vale 0 per k = n/2 (n pari); il coefficiente è allora 3^(n/2). k = log₂ n vale per le ricorrenze divisive (n/2^k = 1), non per questa, in cui si sottrae 2; k = n/3 usa a = 3 al posto di b = 2; k = n dimentica che a ogni passo si sottrae 2."
+    },
+    {
+      "id": "L04-T05-06",
+      "tipo": "L04-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si applica il metodo iterativo a T(n) = 4T(n/2) + Θ(n²), con T(1) = Θ(1) e n potenza di 2. Dopo k passi T(n) = 4^k·T(n/2^k) + Σ_{i=0}^{k−1} 4^i·Θ((n/2^i)²). Per k = log₂ n, quale ordine di grandezza ha la somma?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n⁴)",
+        "Θ(n² log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ogni termine vale 4^i·(n/2^i)² = n²: sono tutti uguali, e con k = log₂ n termini la somma è Θ(n² log n). Θ(n²) dimentica il coefficiente 4^i (i termini diventerebbero n²/4^i, con somma geometrica Θ(n²)); Θ(log n) conta i termini invece di sommarli; Θ(n⁴) moltiplica il numero di foglie 4^k = n² per il costo della radice n²."
+    },
+    {
+      "id": "L04-T06-01",
+      "tipo": "L04-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nel metodo dell'albero per T(n) = aT(n/b) + f(n), con la radice al livello 0, quanto costa in totale un livello k sopra le foglie?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "a^k·f(n/b^k)",
+        "a^k·T(n/b^k)",
+        "a^k·f(n)",
+        "a·f(n/b^k)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni nodo ha a figli, quindi al livello k ci sono a^k nodi; ognuno è un sottoproblema di dimensione n/b^k e porta il costo non ricorsivo f(n/b^k). Il livello costa in totale a^k·f(n/b^k), e la soluzione è la somma dei costi di tutti i livelli. a^k·T(n/b^k) è il costo degli interi sottoalberi che partono dal livello k, non del solo livello; a^k·f(n) non riduce la dimensione dei sottoproblemi; a·f(n/b^k) conta a nodi invece di a^k."
+    },
+    {
+      "id": "L04-T06-02",
+      "tipo": "L04-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Per risolvere T(n) = 2T(n/2) + Θ(n) con il metodo dell'albero, quali costi si sommano per ottenere T(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Soltanto i costi delle foglie",
+        "I costi di tutti i livelli, dalla radice alle foglie",
+        "Soltanto il costo della radice",
+        "Il costo della radice moltiplicato per il numero di nodi dell'albero"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Nel metodo dell'albero ogni nodo è un sottoproblema e porta il costo non ricorsivo f della propria dimensione: si calcola il costo di ciascun livello e si sommano i costi di tutti i livelli. Qui ogni livello costa Θ(n) e i livelli sono log₂ n + 1, quindi T(n) = Θ(n log n). Considerare solo la radice o solo le foglie darebbe Θ(n)."
+    },
+    {
+      "id": "L04-T06-03",
+      "tipo": "L04-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nell'albero di ricorsione di T(n) = 3T(n/2) + Θ(n²), con la radice al livello 0, che cosa rappresenta un nodo al livello k?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Un sottoproblema di dimensione n/2^k, che porta il costo Θ((n/2^k)²)",
+        "Un sottoproblema di dimensione n/2^k, che porta il costo T(n/2^k)",
+        "Un sottoproblema di dimensione n/3^k, che porta il costo Θ((n/3^k)²)",
+        "Un sottoproblema di dimensione n − k, che porta il costo Θ((n − k)²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni discesa dimezza la dimensione (b = 2): un nodo al livello k ha dimensione n/2^k e porta il costo non ricorsivo f applicato a quella dimensione, cioè Θ((n/2^k)²). T(n/2^k) è il costo dell'intero sottoalbero del nodo, non il costo che il nodo porta da solo. Il numero 3 è il numero di figli, non il divisore; n − k è la dimensione nelle ricorrenze sottrattive."
+    },
+    {
+      "id": "L04-T06-04",
+      "tipo": "L04-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In quale ordine si eseguono i passi del metodo iterativo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ipotizzare la forma della soluzione, espandere la ricorrenza, esplicitare la somma, verificare l'ipotesi con le condizioni iniziali",
+        "Esplicitare la somma, espandere la ricorrenza, riconoscere il pattern al passo k, usare le condizioni iniziali",
+        "Espandere la ricorrenza, riconoscere il pattern al passo k, esplicitare e semplificare la somma, usare le condizioni iniziali",
+        "Usare le condizioni iniziali, riconoscere il pattern al passo k, espandere la ricorrenza, esplicitare la somma"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Si parte espandendo la ricorrenza; dalle prime espansioni si riconosce il pattern al passo k; poi si scrive e si semplifica la somma; infine le condizioni iniziali fissano il k per cui l'argomento di T raggiunge il caso base e il valore di T in quel punto. Partire da una soluzione ipotizzata è il metodo di sostituzione. Prima di espandere e riconoscere il pattern non si sa ancora quale somma scrivere né quale k usare."
+    },
+    {
+      "id": "L04-T06-05",
+      "tipo": "L04-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale tra le seguenti affermazioni sul metodo dell'albero è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Fornisce sempre direttamente un Θ, anche con alberi sbilanciati: non servono mai un limite superiore e uno inferiore separati",
+        "Con un albero sbilanciato si può ottenere un limite superiore dalla somma dei livelli e uno inferiore dalla radice; se coincidono, si ha il Θ",
+        "La soluzione è sempre data dalla somma dei costi delle sole foglie dell'albero, qualunque sia la ricorrenza",
+        "In T(n) = aT(n/b) + f(n) ogni nodo del livello k porta il costo T(n/b^k) del proprio sottoproblema"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Con alberi sbilanciati i rami hanno altezze diverse e i livelli bassi sono incompleti: per T(n) = T(n/2) + T(n/4) + Θ(n) il livello k costa al più (3/4)^k·Θ(n), da cui O(n), mentre la radice da sola dà Ω(n); i due limiti coincidono e danno Θ(n). Il metodo quindi non fornisce sempre direttamente un Θ: a volte servono due limiti separati. Sommare le sole foglie ignora il costo degli altri livelli; un nodo porta il costo non ricorsivo f(n/b^k), mentre T(n/b^k) è il costo dell'intero sottoalbero."
+    },
+    {
+      "id": "L04-T06-06",
+      "tipo": "L04-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale tra le seguenti affermazioni sul metodo iterativo è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Richiede di ipotizzare la soluzione all'inizio e di verificarla sostituendola nella ricorrenza",
+        "Si applica soltanto a ricorrenze con una sola chiamata ricorsiva",
+        "Non richiede di ipotizzare in anticipo la soluzione: la forma si ricava dal pattern delle espansioni",
+        "Il termine con il caso base si può sempre trascurare, perché non influisce sulla soluzione"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il metodo iterativo ricava la soluzione dall'espansione, senza alcuna ipotesi iniziale (che è propria del metodo di sostituzione). Si usa anche con più chiamate: per 2T(n/2) + Θ(1) dà 2^k·T(n/2^k) + Σ_{i=0}^{k−1} 2^i·Θ(1). Il termine con il caso base non si può trascurare: nello stesso esempio, con k = log₂ n, vale 2^(log₂ n)·Θ(1) = Θ(n)."
+    },
+    {
+      "id": "L04-T07-01",
+      "tipo": "L04-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero di ricorsione di T(n) = 2T(n/3) + Θ(n²), con la radice al livello 0, quanto vale il costo totale del livello i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "2^i·Θ(n²)",
+        "(2/3)^i·Θ(n²)",
+        "(2/9)^i·Θ(n²)",
+        "(9/2)^i·Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Al livello i ci sono 2^i nodi di dimensione n/3^i, ognuno di costo Θ((n/3^i)²) = Θ(n²/9^i): il livello costa (2/9)^i·Θ(n²). 2^i·Θ(n²) non riduce la dimensione dei sottoproblemi; (2/3)^i tratta n² come se fosse lineare (divide per 3^i invece che per 9^i); (9/2)^i inverte il rapporto."
+    },
+    {
+      "id": "L04-T07-02",
+      "tipo": "L04-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero di ricorsione di T(n) = 5T(n/4) + Θ(n), con la radice al livello 0, quanto costa il livello i e qual è l'indice dell'ultimo livello (sottoproblemi di dimensione 1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5^i·Θ(n); l'ultimo livello è i = log₄ n",
+        "(5/4)^i·Θ(n); l'ultimo livello è i = log₅ n",
+        "(4/5)^i·Θ(n); l'ultimo livello è i = log₄ n",
+        "(5/4)^i·Θ(n); l'ultimo livello è i = log₄ n"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Al livello i ci sono 5^i nodi di dimensione n/4^i, ognuno di costo Θ(n/4^i): il livello costa (5/4)^i·Θ(n). L'ultimo livello ha n/4^i = 1, cioè i = log₄ n: si divide per b = 4. 5^i·Θ(n) non riduce la dimensione dei sottoproblemi; log₅ n usa a come base del logaritmo; (4/5)^i inverte il rapporto."
+    },
+    {
+      "id": "L04-T07-03",
+      "tipo": "L04-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quante foglie, cioè sottoproblemi di dimensione 1, ha l'albero di ricorsione di T(n) = 3T(n/2) + Θ(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "n",
+        "n^(log₂ 3)",
+        "n^(log₃ 2)",
+        "3·log₂ n"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Al livello i ci sono 3^i nodi e l'ultimo livello è i = log₂ n, dove 3^(log₂ n) = n^(log₂ 3) ≈ n^1,58 nodi di dimensione 1. Le foglie sono esattamente n soltanto quando a = b; qui a = 3 e b = 2, e n^(log₂ 3) cresce più di n. n^(log₃ 2) inverte i ruoli di a e b; 3·log₂ n conta 3 nodi per livello invece di 3^i."
+    },
+    {
+      "id": "L04-T07-04",
+      "tipo": "L04-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nell'albero di ricorsione di T(n) = 4T(n/3) + Θ(n²), la radice è il livello 0. Quanti nodi ha il livello 2, che dimensione ha ciascuno e quanto vale il costo totale del livello?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "16 nodi di dimensione n/9; costo totale (16/81)·Θ(n²)",
+        "16 nodi di dimensione n/9; costo totale 16·Θ(n²)",
+        "16 nodi di dimensione n/9; costo totale (16/9)·Θ(n²)",
+        "4 nodi di dimensione n/9; costo totale (4/81)·Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Al livello 2 ci sono 4² = 16 nodi, ognuno di dimensione n/3² = n/9 e di costo Θ((n/9)²) = Θ(n²/81): in totale (16/81)·Θ(n²). 16·Θ(n²) non applica f alla dimensione ridotta; (16/9)·Θ(n²) tratta n² come lineare, dividendo per 9 invece che per 81; 4 nodi sono quelli del livello 1."
+    },
+    {
+      "id": "L04-T07-05",
+      "tipo": "L04-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero di ricorsione di T(n) = T(n/3) + Θ(n²), con la radice al livello 0, quanti nodi ha il livello i e quanto costa ciascuno?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1 nodo di dimensione n/3^i; costo Θ(n²)",
+        "1 nodo di dimensione n/3^i; costo Θ(n²/3^i)",
+        "1 nodo di dimensione n/3^i; costo Θ(n²/9^i)",
+        "1 nodo di dimensione n − 3i; costo Θ((n − 3i)²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Con a = 1 ogni livello ha un solo nodo: l'albero è una catena. Al livello i la dimensione è n/3^i e il costo è Θ((n/3^i)²) = Θ(n²/9^i). Θ(n²) non applica f alla dimensione ridotta; Θ(n²/3^i) tratta n² come lineare (3^i al posto di 9^i); n − 3i è la dimensione nelle ricorrenze sottrattive."
+    },
+    {
+      "id": "L04-T07-06",
+      "tipo": "L04-T07",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Nell'albero di ricorsione di T(n) = 8T(n/2) + Θ(n²) la radice è il livello 0 e le foglie sono i sottoproblemi di dimensione 1. Qual è l'indice del livello delle foglie?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "i = log₂ n",
+        "i = log₈ n",
+        "i = log₂ n + 1",
+        "i = n/2"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni discesa divide la dimensione per b = 2: al livello i la dimensione è n/2^i, che vale 1 per i = log₂ n. log₈ n usa a come base del logaritmo; log₂ n + 1 è il numero dei livelli, non l'indice dell'ultimo (i livelli vanno da 0 a log₂ n); n/2 è la dimensione dopo un solo passo."
+    },
+    {
+      "id": "L04-T08-01",
+      "tipo": "L04-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Uno studente risolve T(n) = 3T(n/3) + Θ(n), con T(1) = Θ(1), e scrive T(n) = Θ(n log₃ n). Com'è la sua risposta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Sbagliata: la base del logaritmo cambia la classe, e la soluzione è Θ(n log₂ n)",
+        "Giusta: Θ(n log₃ n) è la stessa classe di Θ(n log₂ n), perché log₃ n = log₂ n/log₂ 3",
+        "Sbagliata: domina il costo della radice, e la soluzione è Θ(n)",
+        "Giusta, ma è una classe diversa da Θ(n log₂ n), la soluzione di 2T(n/2) + Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E1",
+        "E4"
+      ],
+      "spiegazione": "Al livello i ci sono 3^i nodi di costo Θ(n/3^i): ogni livello costa Θ(n) e i livelli sono log₃ n + 1, quindi T(n) = Θ(n log₃ n) e la risposta è giusta. Poiché log₃ n = log₂ n/log₂ 3 e log₂ 3 è una costante, Θ(n log₃ n) = Θ(n log₂ n): la base del logaritmo cambia solo una costante, non la classe. Θ(n) considera solo il costo della radice."
+    },
+    {
+      "id": "L04-T08-02",
+      "tipo": "L04-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si consideri T(n) = 4T(n/2) + Θ(n²), con T(1) = Θ(1). Quale classe descrive T(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n² log n)",
+        "Θ(n²)",
+        "Θ(n² log² n)",
+        "Θ(n³)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Al livello i ci sono 4^i nodi di dimensione n/2^i, ognuno di costo Θ(n²/4^i): ogni livello costa Θ(n²). I livelli sono log₂ n + 1, quindi T(n) = Θ(n² log n). Θ(n²) considera solo la radice; Θ(n² log² n) conta i livelli due volte; Θ(n³) è la soluzione di 8T(n/2) + Θ(n²), con più chiamate."
+    },
+    {
+      "id": "L04-T08-03",
+      "tipo": "L04-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la soluzione di T(n) = 8T(n/2) + Θ(n³), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(log n)",
+        "Θ(n³ log n)",
+        "Θ(n³ log² n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Al livello i ci sono 8^i nodi di dimensione n/2^i, ognuno di costo Θ(n³/8^i): ogni livello costa Θ(n³). I livelli sono log₂ n + 1, quindi T(n) = Θ(n³ log n). Θ(n³) considera solo la radice; Θ(log n) conta soltanto i livelli; Θ(n³ log² n) conta i livelli due volte."
+    },
+    {
+      "id": "L04-T08-04",
+      "tipo": "L04-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione di T(n) = 2T(n/4) + Θ(√n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n)",
+        "Θ(log n)",
+        "Θ(n)",
+        "Θ(√n log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Al livello i ci sono 2^i nodi di dimensione n/4^i, ognuno di costo Θ(√(n/4^i)) = Θ(√n/2^i): ogni livello costa Θ(√n). I livelli sono log₄ n + 1, quindi T(n) = Θ(√n log n). Θ(√n) considera solo la radice; Θ(log n) solo i livelli; Θ(n) è la soluzione di 2T(n/2) + Θ(√n): si è letto n/4 come n/2."
+    },
+    {
+      "id": "L04-T08-05",
+      "tipo": "L04-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è la soluzione di T(n) = 16T(n/4) + Θ(n²), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n² log n)",
+        "Θ(n²)",
+        "Θ(log n)",
+        "Θ(n⁴)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Al livello i ci sono 16^i nodi di dimensione n/4^i, ognuno di costo Θ(n²/16^i): ogni livello costa Θ(n²). I livelli sono log₄ n + 1 = Θ(log n), quindi T(n) = Θ(n² log n). Θ(n²) considera solo la radice; Θ(log n) solo i livelli; Θ(n⁴) è la soluzione di 16T(n/2) + Θ(n²) e scambia b = 4 con 2."
+    },
+    {
+      "id": "L04-T08-06",
+      "tipo": "L04-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La ricorrenza del Merge Sort, T(n) = 2T(n/2) + Θ(n), ha soluzione Θ(n log n). Quale tra le seguenti ricorrenze, tutte con T(1) = Θ(1), ha la stessa soluzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "T(n) = 2T(n/2) + Θ(n log n)",
+        "T(n) = 8T(n/8) + Θ(n)",
+        "T(n) = 4T(n/2) + Θ(n)",
+        "T(n) = T(n/2) + Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "In 8T(n/8) + Θ(n) il livello i ha 8^i nodi di costo Θ(n/8^i): ogni livello costa Θ(n) e i livelli sono log₈ n + 1, quindi Θ(n log n). In 2T(n/2) + Θ(n log n) il livello i costa n·(log n − i) e la soluzione è Θ(n log² n): la si sceglie guardando solo il costo della radice. 4T(n/2) + Θ(n) ha livelli che crescono (2^i·n) e soluzione Θ(n²): non va confusa con 4T(n/4) + Θ(n). T(n/2) + Θ(n) ha un solo nodo per livello e soluzione Θ(n)."
+    },
+    {
+      "id": "L04-T09-01",
+      "tipo": "L04-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione della ricorrenza T(n) = 5T(n/2) + Θ(n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n^(1 + log₂ 5))",
+        "Θ(n^(log₂ 5))",
+        "Θ(n^(log₅ 2))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Al livello i ci sono 5^i nodi di costo Θ(n/2^i): il livello costa (5/2)^i·Θ(n), con ragione 5/2 > 1, e cresce scendendo. Domina l'ultimo livello: 5^(log₂ n) = n^(log₂ 5) ≈ n^2,32 foglie di costo Θ(1). Θ(n) guarda solo la radice; Θ(n^(1 + log₂ 5)) moltiplica foglie e costo della radice; Θ(n^(log₅ 2)) inverte il logaritmo."
+    },
+    {
+      "id": "L04-T09-02",
+      "tipo": "L04-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si consideri T(n) = 27T(n/3) + Θ(n²), con T(1) = Θ(1). Qual è la soluzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³)",
+        "Θ(n² log n)",
+        "Θ(n⁵)",
+        "Θ(n^(1/3))"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Al livello i ci sono 27^i nodi di costo Θ((n/3^i)²): il livello costa 3^i·Θ(n²), con ragione 27/9 = 3 > 1, e cresce scendendo. Domina l'ultimo livello: 27^(log₃ n) = n^(log₃ 27) = n³ foglie. Θ(n² log n) suppone livelli di costo uguale; Θ(n⁵) moltiplica foglie e costo della radice; Θ(n^(1/3)) inverte il logaritmo (n^(log₂₇ 3))."
+    },
+    {
+      "id": "L04-T09-03",
+      "tipo": "L04-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la soluzione di T(n) = 4T(n/2) + Θ(1), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(√n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E5",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "Al livello i ci sono 4^i nodi di costo Θ(1): il livello costa 4^i·Θ(1) e cresce scendendo. Domina l'ultimo livello: 4^(log₂ n) = n^(log₂ 4) = n² foglie. Θ(log n) è la soluzione di T(n/2) + Θ(1), con una sola chiamata; Θ(√n) inverte il logaritmo (n^(log₄ 2)); Θ(n) è la soluzione di 2T(n/2) + Θ(1), con due sole chiamate."
+    },
+    {
+      "id": "L04-T09-04",
+      "tipo": "L04-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione di T(n) = 3T(n/4) + Θ(√n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(√n log n)",
+        "Θ(n^(log₄ 3))",
+        "Θ(√n)",
+        "Θ(n^(log₃ 4))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "Il livello i costa 3^i·Θ(√(n/4^i)) = (3/2)^i·Θ(√n): ragione 3/2 > 1, il costo cresce scendendo. Domina l'ultimo livello: 3^(log₄ n) = n^(log₄ 3) ≈ n^0,79, che supera √n = n^0,5. Θ(√n) guarda solo la radice; Θ(√n log n) suppone livelli di costo uguale; Θ(n^(log₃ 4)) inverte il logaritmo."
+    },
+    {
+      "id": "L04-T09-05",
+      "tipo": "L04-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è la soluzione di T(n) = 8T(n/3) + Θ(n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n^(1 + log₃ 8))",
+        "Θ(n^(log₃ 8))",
+        "Θ(n^(log₈ 3))"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "Il livello i costa 8^i·Θ(n/3^i) = (8/3)^i·Θ(n): ragione 8/3 > 1, il costo cresce scendendo. Domina l'ultimo livello: 8^(log₃ n) = n^(log₃ 8) ≈ n^1,89. Θ(n log n) suppone livelli di costo uguale; Θ(n^(1 + log₃ 8)) moltiplica foglie e costo della radice; Θ(n^(log₈ 3)) inverte il logaritmo."
+    },
+    {
+      "id": "L04-T09-06",
+      "tipo": "L04-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La ricorrenza T(n) = 16T(n/4) + Θ(n), con T(1) = Θ(1), ha soluzione:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n³)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il livello i costa 16^i·Θ(n/4^i) = 4^i·Θ(n): ragione 4 > 1, il costo cresce scendendo. Domina l'ultimo livello: 16^(log₄ n) = n^(log₄ 16) = n² foglie. Θ(n log n) suppone livelli di costo uguale; Θ(n) guarda solo la radice; Θ(n³) moltiplica foglie e costo della radice."
+    },
+    {
+      "id": "L04-T10-01",
+      "tipo": "L04-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione della ricorrenza T(n) = 2T(n/2) + Θ(n²), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n² log n)",
+        "Θ(n)",
+        "Θ(n³)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Al livello i ci sono 2^i nodi di costo Θ(n²/4^i): il livello costa (1/2)^i·Θ(n²) e decresce scendendo. La somma è al più 2·Θ(n²) e la radice da sola vale Θ(n²): T(n) = Θ(n²). Θ(n² log n) suppone livelli di costo uguale; Θ(n) conta soltanto le foglie; Θ(n³) moltiplica foglie e costo della radice."
+    },
+    {
+      "id": "L04-T10-02",
+      "tipo": "L04-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si consideri T(n) = 7T(n/2) + Θ(n³), con T(1) = Θ(1). Qual è la soluzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³ log n)",
+        "Θ(n³)",
+        "Θ(n^(log₂ 7))",
+        "Θ(n^(3 + log₂ 7))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il livello i costa 7^i·Θ(n³/8^i) = (7/8)^i·Θ(n³): ragione 7/8 < 1, il costo decresce scendendo. La somma è al più 8·Θ(n³) e la radice da sola vale Θ(n³): T(n) = Θ(n³). Le foglie sono n^(log₂ 7) ≈ n^2,81, meno di n³. Θ(n³ log n) suppone livelli di costo uguale; Θ(n^(log₂ 7)) guarda soltanto le foglie; Θ(n^(3 + log₂ 7)) le moltiplica per il costo della radice."
+    },
+    {
+      "id": "L04-T10-03",
+      "tipo": "L04-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Qual è la soluzione di T(n) = 4T(n/3) + Θ(n²), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n^(log₃ 4))",
+        "Θ(n² log n)",
+        "Θ(n³)",
+        "Θ(n²)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il livello i costa 4^i·Θ(n²/9^i) = (4/9)^i·Θ(n²): ragione 4/9 < 1, il costo decresce scendendo. La somma è al più (9/5)·Θ(n²) e la radice da sola vale Θ(n²): T(n) = Θ(n²). Le foglie sono n^(log₃ 4) ≈ n^1,26, meno di n². Θ(n^(log₃ 4)) guarda soltanto le foglie; Θ(n² log n) suppone livelli di costo uguale; Θ(n³) assume che le quattro chiamate facciano crescere la soluzione oltre f(n), cosa che qui non avviene."
+    },
+    {
+      "id": "L04-T10-04",
+      "tipo": "L04-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La soluzione di T(n) = 4T(n/2) + Θ(n³), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n³ log n)",
+        "Θ(n²)",
+        "Θ(n³)",
+        "Θ(n⁵)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il livello i costa 4^i·Θ(n³/8^i) = (1/2)^i·Θ(n³): ragione 1/2 < 1, il costo decresce scendendo. La somma è al più 2·Θ(n³) e la radice da sola vale Θ(n³): T(n) = Θ(n³). Le foglie sono 4^(log₂ n) = n², meno di n³. Θ(n³ log n) suppone livelli di costo uguale; Θ(n²) guarda soltanto le foglie; Θ(n⁵) le moltiplica per il costo della radice."
+    },
+    {
+      "id": "L04-T10-05",
+      "tipo": "L04-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è la soluzione di T(n) = 3T(n/4) + Θ(n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n^(log₄ 3))",
+        "Θ(n^(1 + log₄ 3))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il livello i costa 3^i·Θ(n/4^i) = (3/4)^i·Θ(n): ragione 3/4 < 1, il costo decresce scendendo. La somma è al più 4·Θ(n) e la radice da sola vale Θ(n): T(n) = Θ(n). Le foglie sono n^(log₄ 3) ≈ n^0,79, meno di n. Θ(n log n) suppone livelli di costo uguale; Θ(n^(log₄ 3)) guarda soltanto le foglie; Θ(n^(1 + log₄ 3)) le moltiplica per il costo della radice."
+    },
+    {
+      "id": "L04-T10-06",
+      "tipo": "L04-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si consideri T(n) = 5T(n/3) + Θ(n²), con T(1) = Θ(1). Quale classe descrive T(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n² log n)",
+        "Θ(n^(log₃ 5))",
+        "Θ(n²)",
+        "Θ(n³)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il livello i costa 5^i·Θ(n²/9^i) = (5/9)^i·Θ(n²): ragione 5/9 < 1, il costo decresce scendendo. La somma è al più (9/4)·Θ(n²) e la radice da sola vale Θ(n²): T(n) = Θ(n²). Le foglie sono n^(log₃ 5) ≈ n^1,46, meno di n². Θ(n² log n) suppone livelli di costo uguale; Θ(n^(log₃ 5)) guarda soltanto le foglie; Θ(n³) assume che le cinque chiamate facciano crescere la soluzione oltre f(n), cosa che qui non avviene."
+    },
+    {
+      "id": "L04-T11-01",
+      "tipo": "L04-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione della ricorrenza T(n) = 3T(n/3) + Θ(n log n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n log log n)",
+        "Θ(n log³ n)",
+        "Θ(n log² n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Al livello i ci sono 3^i nodi di dimensione n/3^i, ognuno di costo Θ((n/3^i)·log(n/3^i)): il livello costa Θ(n·(log n − i·log 3)), che scende linearmente da n log n (radice) a circa n. Sono Θ(log n) livelli, con costi in progressione aritmetica: la somma è Θ(n log² n). Θ(n log n) considera solo la radice; Θ(n log log n) confonde la somma aritmetica con quella armonica; Θ(n log³ n) aggiunge un logaritmo di troppo."
+    },
+    {
+      "id": "L04-T11-02",
+      "tipo": "L04-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è la soluzione di T(n) = 3T(n/3) + Θ(n/log n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log log n)",
+        "Θ(n)",
+        "Θ(n log n)",
+        "Θ(n/log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E4",
+        "E2"
+      ],
+      "spiegazione": "Con m = log₃ n livelli, il livello i costa Θ(n/(m − i)), perché log(n/3^i) = (m − i)·log 3: i costi sono n/m, n/(m − 1), …, n/1. La somma è n·(1 + 1/2 + … + 1/m) = Θ(n log m) = Θ(n log log n), perché la somma armonica fino a m vale Θ(log m). Θ(n) tratta log(n/3^i) come log n su tutti i livelli (m termini uguali a n/m); Θ(n log n) ignora il fattore 1/log n, come se f fosse n: è la soluzione di 3T(n/3) + Θ(n); Θ(n/log n) considera solo la radice."
+    },
+    {
+      "id": "L04-T11-03",
+      "tipo": "L04-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si consideri T(n) = T(n/3) + Θ(log n), con T(1) = Θ(1). Qual è la soluzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(log n)",
+        "Θ(log log n)",
+        "Θ(log² n)",
+        "Θ(log³ n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "A ogni livello c'è un solo nodo, di costo Θ(log(n/3^i)) = Θ(log n − i·log 3). Con m = log₃ n livelli i costi sono proporzionali a m, m − 1, …, 1, e la somma aritmetica vale Θ(m²) = Θ(log² n). Θ(log n) considera solo la radice; Θ(log log n) confonde la somma aritmetica con quella armonica; Θ(log³ n) aggiunge un logaritmo di troppo."
+    },
+    {
+      "id": "L04-T11-04",
+      "tipo": "L04-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero di ricorsione di T(n) = 2T(n/2) + Θ(n log n), con la radice al livello 0 e i logaritmi in base 2, quanto costa il livello i?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n), uguale per ogni livello",
+        "Θ(n·(log n − i))",
+        "Θ(n), uguale per ogni livello",
+        "Θ(2^i·n·(log n − i))"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Al livello i ci sono 2^i nodi di dimensione n/2^i, ognuno di costo Θ((n/2^i)·log(n/2^i)): in totale Θ(n·log(n/2^i)) = Θ(n·(log n − i)). Il costo non è lo stesso su tutti i livelli: scende da n log n (radice) a circa n (ultimo livello). Θ(n log n) su ogni livello tratta log(n/2^i) come log n; Θ(n) su ogni livello ignora il fattore logaritmico, come se f fosse n; l'ultima opzione non riduce il fattore n/2^i."
+    },
+    {
+      "id": "L04-T11-05",
+      "tipo": "L04-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione di T(n) = 4T(n/2) + Θ(n²/log n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²)",
+        "Θ(n² log n)",
+        "Θ(n² log² n)",
+        "Θ(n² log log n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E4",
+        "E3",
+        null
+      ],
+      "spiegazione": "Il livello i costa 4^i·Θ((n/2^i)²/log(n/2^i)) = Θ(n²/(log n − i)). Con m = log₂ n i costi sono n²/m, n²/(m − 1), …, n²/1, e la somma n²·(1 + 1/2 + … + 1/m) = Θ(n² log m) = Θ(n² log log n). Θ(n²) tratta log(n/2^i) come log n su tutti i livelli (m termini uguali a n²/m); Θ(n² log n) ignora il fattore 1/log n, come se f fosse n²; Θ(n² log² n) scambia la somma armonica con quella aritmetica: n²·(1 + 2 + … + m) invece di n²·(1 + 1/2 + … + 1/m)."
+    },
+    {
+      "id": "L04-T11-06",
+      "tipo": "L04-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è la soluzione di T(n) = 2T(n/2) + Θ(n log² n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log² n)",
+        "Θ(n log³ n)",
+        "Θ(n log n)",
+        "Θ(n log⁴ n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Il livello i ha 2^i nodi di dimensione n/2^i, ognuno di costo Θ((n/2^i)·log²(n/2^i)): con i logaritmi in base 2 il livello costa Θ(n·(log n − i)²). Ponendo j = log n − i i costi sono n·j² per j da 1 a log n, e Σ j² fino a m vale Θ(m³): T(n) = Θ(n log³ n). Θ(n log² n) considera solo la radice; Θ(n log n) ignora il fattore log² n, come se f fosse n; Θ(n log⁴ n) sopravvaluta la somma dei quadrati."
+    },
+    {
+      "id": "L04-T12-01",
+      "tipo": "L04-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La soluzione della ricorrenza T(n) = T(n/2) + T(n/4) + T(n/8) + Θ(n), con T(1) = Θ(1), è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n^(log₂ 3))",
+        "Θ(n)",
+        "Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La somma delle frazioni è 1/2 + 1/4 + 1/8 = 7/8 < 1: il livello k costa al più (7/8)^k·Θ(n), una serie geometrica decrescente con somma al più 8·Θ(n), quindi T(n) = O(n). La radice da sola costa Θ(n), quindi T(n) = Ω(n). Insieme: Θ(n). Θ(n log n) moltiplica n per il numero di livelli, ma i livelli non costano tutti n; Θ(n^(log₂ 3)) tratta la ricorrenza come 3T(n/2) + Θ(n), mentre due sottoproblemi sono molto più piccoli; Θ(log n) conta soltanto i livelli."
+    },
+    {
+      "id": "L04-T12-02",
+      "tipo": "L04-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Qual è la soluzione di T(n) = T(n/3) + T(2n/3) + Θ(n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(n²)",
+        "Θ(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "La somma delle frazioni è 1/3 + 2/3 = 1: ogni livello completo costa Θ(n). I rami hanno altezze diverse: il più corto segue il sottoproblema n/3 (altezza log₃ n), il più lungo 2n/3 (altezza log_{3/2} n), entrambe Θ(log n). Fino al livello log₃ n tutti i livelli sono completi e costano n, quindi T(n) = Ω(n log n); nessun livello costa più di n e i livelli sono al più log_{3/2} n, quindi T(n) = O(n log n). Θ(n) applicherebbe una serie geometrica che qui non c'è (la ragione è 1); Θ(n²) moltiplica il numero di nodi per il costo della radice; Θ(log n) conta soltanto i livelli."
+    },
+    {
+      "id": "L04-T12-03",
+      "tipo": "L04-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero di ricorsione di T(n) = T(n/2) + T(n/5) + Θ(n), con la radice al livello 0, quanto costa al più il livello k?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), uguale per ogni livello",
+        "2^k·Θ(n)",
+        "(1/2)^k·Θ(n)",
+        "(7/10)^k·Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "A ogni passo la dimensione totale dei sottoproblemi si moltiplica per 1/2 + 1/5 = 7/10: al livello k la somma delle dimensioni è al più (7/10)^k·n, e il livello costa al più (7/10)^k·Θ(n) (nei rami che finiscono prima i livelli bassi costano ancora meno). Θ(n) per ogni livello vale per 2T(n/2) + Θ(n), dove le frazioni sommano a 1 e l'albero è completo; 2^k·Θ(n) moltiplica il numero di nodi per il costo della radice; (1/2)^k considera soltanto il sottoproblema più grande."
+    },
+    {
+      "id": "L04-T12-04",
+      "tipo": "L04-T12",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nell'albero di ricorsione di T(n) = T(n/3) + T(n/5) + Θ(n), qual è l'altezza del ramo più lungo, cioè il numero di passi fino a un sottoproblema di dimensione 1?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "log₅ n",
+        "log₃ n",
+        "log_{15/8} n",
+        "log₈ n"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il ramo più lungo segue sempre il sottoproblema più grande, quello di dimensione n/3: dopo h passi la dimensione è n/3^h, che vale 1 per h = log₃ n. Il ramo più corto, che segue n/5, ha altezza log₅ n. log_{15/8} n usa la somma delle frazioni, 8/15, come fattore di riduzione, ma la dimensione di un singolo sottoproblema si riduce di un fattore 3 (o 5); log₈ n divide per la somma dei denominatori."
+    },
+    {
+      "id": "L04-T12-05",
+      "tipo": "L04-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale ragionamento porta alla soluzione corretta di T(n) = T(n/3) + T(n/4) + Θ(n), con T(1) = Θ(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Ogni livello costa Θ(n) e i livelli sono Θ(log n): la soluzione è Θ(n log n)",
+        "I nodi sono circa n e ciascuno costa quanto la radice, Θ(n): la soluzione è Θ(n²)",
+        "Il livello k costa al più (7/12)^k·Θ(n): la serie geometrica dà O(n), la radice dà Ω(n), quindi Θ(n)",
+        "Conta soltanto l'altezza del ramo più lungo, log₃ n: la soluzione è Θ(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "La somma delle frazioni è 1/3 + 1/4 = 7/12 < 1: il livello k costa al più (7/12)^k·Θ(n), serie geometrica decrescente con somma al più (12/5)·Θ(n), quindi T(n) = O(n); la radice da sola costa Θ(n), quindi T(n) = Ω(n): Θ(n). I livelli non costano tutti n, quindi non si moltiplica per il numero di livelli; i nodi non costano ciascuno quanto la radice, perché i sottoproblemi sono più piccoli; contare i soli livelli ignora il costo di ciascuno."
+    },
+    {
+      "id": "L04-T12-06",
+      "tipo": "L04-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Per T(n) = T(n/5) + T(3n/5) + Θ(n), con T(1) = Θ(1), quale coppia indica l'altezza del ramo più lungo dell'albero di ricorsione e la soluzione?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "log₅ n; Θ(n)",
+        "log_{5/3} n; Θ(n)",
+        "log_{5/3} n; Θ(n log n)",
+        "log_{5/4} n; Θ(n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il ramo più lungo segue sempre il sottoproblema più grande, 3n/5: dopo h passi la dimensione è (3/5)^h·n, che vale 1 per h = log_{5/3} n. La somma delle frazioni è 1/5 + 3/5 = 4/5 < 1: il livello k costa al più (4/5)^k·Θ(n), quindi T(n) = O(n), e la radice da sola dà Ω(n): Θ(n). log₅ n è l'altezza del ramo più corto; Θ(n log n) moltiplica n per il numero di livelli, ma i livelli decrescono; log_{5/4} n usa la somma delle frazioni come se fosse la riduzione di un singolo sottoproblema."
+    }
+  ]
+}

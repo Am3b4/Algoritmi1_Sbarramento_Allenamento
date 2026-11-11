@@ -1,0 +1,11 @@
+# Materiale dei docenti (dispense, prove ufficiali, testi estratti): non va pubblicato.
+fonti/
+
+# Dati del sito: si rigenerano con `python strumenti/costruisci_sito.py`
+# a partire da dati/ e domande/, che restano l'unica copia da modificare.
+sito/dati/
+
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

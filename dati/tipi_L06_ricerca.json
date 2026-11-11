@@ -1,0 +1,445 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 6,
+    "titolo": "Il problema della ricerca",
+    "file": "PL6.pdf",
+    "contenuti": [
+      "Il problema della ricerca: trovare un elemento x in un insieme di dati",
+      "Ricerca lineare: codice (indice della prima occorrenza o None), caso ottimo O(1) con x in prima posizione, caso pessimo O(n) con x assente",
+      "Caso medio della ricerca lineare con x in posizione uniforme: Σ i·(1/n) = (n+1)/2 = Θ(n)",
+      "Limite inferiore Ω(n) per la ricerca in assenza di informazioni sui dati",
+      "Ricerca binaria: requisito di lista ordinata, idea del dimezzamento, aggiornamento di inizio, fine e medio = (inizio + fine) // 2",
+      "Ricerca binaria: codice iterativo e codice ricorsivo (chiamata iniziale con 0 e len(lista) − 1)",
+      "Ricerca binaria: caso ottimo O(1) con x al centro, caso pessimo O(log n) da n/2^k = 1",
+      "Ricerca binaria: caso medio con n(i) = 2^(i−1) posizioni raggiungibili all'iterazione i, E = log n − 1 + 1/n = Θ(log n)",
+      "Confronto tra ricerca lineare (nessun requisito) e binaria (richiede pre-ordinamento)",
+      "Esercizi, versione generica e versione su vettore ordinato: occorrenze di x, duplicati, elementi in [a, b], coppia con somma x, minimo valore maggiore di x"
+    ],
+    "nota": "Nessuna domanda delle due prove ufficiali viene direttamente da questa lezione. La domanda 3 di maggio 2026 (T(n) = T(n/2) + Θ(1) → Θ(log n)) è la ricorrenza della ricerca binaria, ma si risolve con i metodi delle Lezioni 4 e 5. Lo spazio Θ(1) contro Θ(log n) e il requisito dell'accesso diretto non sono scritti nei lucidi: derivano dal codice (lista[medio]) e dalle Lezioni 3 (spazio dello stack) e 10 (accesso all'i-esimo elemento di una lista concatenata). Tutte le tracce degli esempi usano indici da 0 e medio = (inizio + fine) // 2, e sono state verificate eseguendo il codice della dispensa in Python."
+  },
+  "tipi": [
+    {
+      "id": "L06-T01",
+      "titolo": "Ricerca lineare: caso ottimo e caso pessimo",
+      "argomento": "Ricerca lineare",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 1,
+      "fonte": "Dispensa 6, 'Ricerca Lineare - Descrizione e Codice' e 'Ricerca Lineare: Complessità nei casi estremi'.",
+      "descrizione": "Si chiede quando si verifica il caso ottimo o il caso pessimo della ricerca lineare, quanto costano, oppure quanti confronti lista[i] == x esegue il codice su una lista concreta.",
+      "conoscenze": [
+        "Il codice scorre gli indici da 0 a n − 1 e restituisce il primo i con lista[i] == x; se arriva in fondo restituisce None.",
+        "Caso ottimo: x è il primo elemento. Un solo confronto, O(1).",
+        "Caso pessimo: x non è presente (oppure è solo in ultima posizione). n confronti, Θ(n).",
+        "Se x compare più volte, la funzione si ferma alla prima occorrenza: i confronti sono (indice della prima occorrenza) + 1.",
+        "Il costo dell'algoritmo è O(n) e Ω(1); non è Θ(n) in ogni caso, perché nel caso ottimo basta un confronto. Il caso pessimo e il caso medio ((n + 1)/2 confronti) sono entrambi Θ(n).",
+        "La ricerca lineare non richiede che la lista sia ordinata."
+      ],
+      "procedimento": [
+        "Trovare l'indice della prima occorrenza di x (indici da 0).",
+        "Confronti = indice + 1; se x manca, confronti = n.",
+        "Per le domande sui casi: ottimo = x subito trovato, pessimo = lista scorsa tutta."
+      ],
+      "trappole": [
+        "Indicare come caso ottimo 'la lista ha un solo elemento' o 'n piccolo': il caso ottimo si definisce a parità di n.",
+        "Indicare l'ultima posizione come caso ottimo, oppure contare fino all'ultima occorrenza invece che alla prima.",
+        "Confondere con la ricerca binaria: caso ottimo 'x al centro' o caso pessimo Θ(log n).",
+        "Contare i confronti senza il + 1 (rispondere con l'indice invece del numero di confronti).",
+        "Dire che la ricerca lineare costa Θ(n) in ogni caso."
+      ],
+      "come_generare_varianti": "Tre forme. (a) Concettuale: opzioni con coppie (situazione del caso ottimo, costo del caso pessimo) o (caso ottimo, caso pessimo); distrattori: 'lista con un solo elemento', 'x al centro', 'x ultimo elemento', Θ(log n). (b) Numerica: lista non ordinata di 8–12 interi, x presente una o due volte oppure assente; chiedere quanti confronti lista[i] == x esegue la funzione. Distrattori: indice della prima occorrenza senza + 1, confronti fino all'ultima occorrenza, n. Controllare che i quattro numeri siano diversi. (c) Affermazioni su O, Ω, Θ (vera: 'O(n) e Ω(1)'; false: 'Θ(n) in ogni caso', 'Θ(1) in ogni caso', 'Θ(log n) nel caso pessimo')."
+    },
+    {
+      "id": "L06-T02",
+      "titolo": "Ricerca lineare: caso medio (n+1)/2",
+      "argomento": "Ricerca lineare",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 6, 'Ricerca Lineare: Complessità nel caso medio' (Σ i·(1/n) = (n+1)/2 = Θ(n)).",
+      "descrizione": "Si chiede il numero medio di confronti della ricerca lineare quando x è presente con probabilità uniforme in ogni posizione, per un n dato o in forma generale, oppure la classe di complessità del caso medio.",
+      "conoscenze": [
+        "Ipotesi: x è presente e si trova in ciascuna delle n posizioni con probabilità 1/n.",
+        "Se x è nella posizione i (contando da 1) servono i confronti.",
+        "Numero medio di confronti: Σ_{i=1..n} i·(1/n) = (1/n)·n(n+1)/2 = (n+1)/2.",
+        "(n+1)/2 = Θ(n): il caso medio resta lineare; la costante 1/2 non cambia la classe.",
+        "Il caso medio richiede un'ipotesi sulla distribuzione degli input."
+      ],
+      "procedimento": [
+        "Scrivere la somma dei confronti pesati per la probabilità 1/n.",
+        "Usare la formula di Gauss e semplificare n: (n+1)/2.",
+        "Per un n numerico sostituire; per la classe, togliere le costanti."
+      ],
+      "trappole": [
+        "Rispondere n/2 invece di (n+1)/2 (posizioni contate da 0 o media approssimata).",
+        "Dimenticare il fattore 1/n e rispondere n(n+1)/2.",
+        "Rispondere n (il caso pessimo) oppure log₂ n (la ricerca binaria).",
+        "Pensare che Θ(n/2) sia una classe diversa da Θ(n), o che 'in media' la lineare sia sublineare."
+      ],
+      "come_generare_varianti": "Variare n (dispari o pari: 99 → 50, 20 → 10,5, 7 → 4) oppure chiedere la formula generale o la classe. Distrattori costruiti dalle trappole: n/2, n(n+1)/2, n, log₂ n (arrotondato). Variante più difficile, frequenza bassa: x presente con probabilità uniforme solo nelle prime m posizioni → (m+1)/2 confronti; calcolare il valore esatto e verificarlo con una media fatta in Python. Non cambiare l'ipotesi della dispensa senza dirlo esplicitamente nel testo."
+    },
+    {
+      "id": "L06-T03",
+      "titolo": "Limite inferiore Ω(n) senza ipotesi sui dati",
+      "argomento": "Ricerca lineare",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 6, 'Ricerca Lineare: Complessità nel caso medio', nota importante: in assenza di informazioni sui dati ogni elemento va considerato almeno una volta, quindi lower bound Ω(n).",
+      "descrizione": "Si chiede il costo minimo, nel caso peggiore, di qualsiasi algoritmo di ricerca su dati senza struttura (lista non ordinata), oppure perché la ricerca lineare non si può migliorare in quel caso.",
+      "conoscenze": [
+        "Se non si sa nulla sui dati, un elemento non esaminato potrebbe essere proprio x: nel caso peggiore ogni algoritmo deve guardarli tutti.",
+        "Quindi ogni algoritmo di ricerca su dati qualsiasi costa Ω(n) nel caso peggiore.",
+        "La ricerca lineare costa O(n): è asintoticamente ottima nel caso generale.",
+        "Il limite riguarda il problema (tutti gli algoritmi), non il caso ottimo di un algoritmo: un singolo input può costare O(1).",
+        "Con un'informazione in più (lista ordinata) il limite cambia: la ricerca binaria costa O(log n)."
+      ],
+      "procedimento": [
+        "Controllare se la domanda dà informazioni sui dati (ordinamento o altro).",
+        "Se non ce ne sono: Ω(n) nel caso peggiore, e la lineare è ottima.",
+        "Scartare le opzioni che presuppongono un ordinamento o un dimezzamento."
+      ],
+      "trappole": [
+        "Pensare che un algoritmo 'furbo' (dimezzare, saltare elementi) dia O(log n) anche su dati non ordinati.",
+        "Pensare che serva ordinare e che il limite sia quindi Ω(n log n).",
+        "Leggere Ω(n) come 'ogni ricerca fa n confronti': nel caso ottimo bastano O(1).",
+        "Confondere il limite inferiore del problema con il caso ottimo dell'algoritmo (Ω(1))."
+      ],
+      "come_generare_varianti": "Chiedere: il costo minimo nel caso peggiore di qualsiasi algoritmo su lista non ordinata; quale affermazione è vera; quale costo è impossibile da ottenere su dati non ordinati (O(log n)). Opzioni con motivazione breve, una per trappola: dimezzamento → Ω(log n), ordinamento → Ω(n log n), primo elemento → Ω(1). Si può alternare con la versione 'lista ordinata' per far notare che il limite dipende dalle informazioni sui dati, ma senza chiedere il limite inferiore della ricerca su dati ordinati (non trattato nella dispensa)."
+    },
+    {
+      "id": "L06-T04",
+      "titolo": "Requisiti della ricerca binaria: ordinamento e accesso diretto",
+      "argomento": "Ricerca binaria: idea e requisiti",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 6, 'Ricerca Binaria - Idea generale' (condizione: insiemi ordinati) e 'Confronto tra Ricerca Lineare e Binaria'. L'accesso diretto deriva dall'uso di lista[medio]; il costo dell'accesso all'i-esimo elemento di una lista concatenata è nella Lezione 10 (prova di maggio 2026, domanda 7).",
+      "descrizione": "Si chiede quali condizioni servono perché la ricerca binaria sia corretta ed efficiente, oppure cosa succede se una manca (lista non ordinata, lista concatenata, elementi ripetuti).",
+      "conoscenze": [
+        "La lista deve essere ordinata: solo così, confrontando x con lista[medio], si può scartare una metà.",
+        "Su una lista non ordinata la funzione può restituire None anche se x è presente: con [5, 1, 9, 3, 7] e x = 1 esamina 9 (indice 2) e 5 (indice 0) e restituisce None.",
+        "Serve l'accesso diretto in O(1) all'elemento lista[medio] (array, list di Python). Su una lista concatenata raggiungere il centro costa Θ(n): il costo O(log n) non vale più e non si fa meglio della ricerca lineare.",
+        "Non serve che gli elementi siano distinti: con ripetizioni la funzione restituisce una occorrenza qualsiasi, non necessariamente la prima (con [2, 4, 4, 4, 4, 9, 11] e x = 4 restituisce 3).",
+        "n potenza di 2 è solo un'ipotesi di comodo dell'analisi del caso medio."
+      ],
+      "procedimento": [
+        "Ricordare i due requisiti: ordinamento e accesso diretto.",
+        "Per ogni opzione chiedersi se la condizione serve davvero alla correttezza o al costo.",
+        "Su un input concreto non ordinato, eseguire la traccia per vedere cosa restituisce."
+      ],
+      "trappole": [
+        "Citare solo l'ordinamento e dimenticare l'accesso diretto.",
+        "Credere che servano elementi distinti o n potenza di 2.",
+        "Credere che su una lista non ordinata la ricerca binaria trovi comunque x, solo più lentamente: in realtà può sbagliare.",
+        "Credere che con elementi ripetuti restituisca sempre la prima occorrenza.",
+        "Credere che su una lista concatenata ordinata la ricerca binaria costi ancora O(log n)."
+      ],
+      "come_generare_varianti": "Forme: (a) quali condizioni sono necessarie, con opzioni che combinano ordinamento, accesso diretto, elementi distinti, n potenza di 2; (b) lista non ordinata concreta di 5–7 elementi: cosa restituisce la funzione (verificare con Python che il risultato sia None o un indice sbagliato pur essendo x presente); (c) lista ordinata con ripetizioni: quale indice restituisce (verificare con Python; scegliere un caso in cui non è la prima occorrenza); (d) ricerca binaria su lista concatenata: si ottiene O(log n)? No, perché l'accesso al centro costa Θ(n). Per (d) non chiedere il costo esatto della versione su lista concatenata, che dipende da come si raggiunge il centro: chiedere solo se il costo O(log n) resta valido."
+    },
+    {
+      "id": "L06-T05",
+      "titolo": "Traccia della ricerca binaria su una lista data",
+      "argomento": "Ricerca binaria: traccia",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 6, 'Ricerca Binaria - Idea generale' e 'Ricerca Binaria - Codice Iterativo' (inizio = 0, fine = len(lista) − 1, medio = (inizio + fine) // 2, inizio = medio + 1, fine = medio − 1, ciclo finché inizio ≤ fine).",
+      "descrizione": "Data una lista ordinata concreta e un valore x, si chiede la sequenza dei valori di medio (o degli elementi lista[medio] esaminati), il numero di iterazioni, i valori di inizio e fine a un certo passo o all'uscita, oppure il valore restituito. Rientra qui anche la traccia di un codice con una modifica errata (while inizio < fine, inizio = medio).",
+      "conoscenze": [
+        "Indici da 0: inizio = 0, fine = len(lista) − 1.",
+        "medio = (inizio + fine) // 2, arrotondato per difetto.",
+        "lista[medio] == x: restituisce medio. lista[medio] < x: inizio = medio + 1. lista[medio] > x: fine = medio − 1.",
+        "Il ciclo continua finché inizio ≤ fine; se x manca si esce con inizio = fine + 1 e si restituisce None.",
+        "La versione ricorsiva esamina gli stessi valori di medio della versione iterativa.",
+        "Con while inizio < fine l'intervallo di un solo elemento non viene esaminato: un x presente può non essere trovato. Con inizio = medio (senza + 1) il ciclo può non terminare quando inizio == fine e lista[medio] < x."
+      ],
+      "procedimento": [
+        "Scrivere una tabella con colonne inizio, fine, medio, lista[medio], esito del confronto.",
+        "A ogni riga calcolare medio per difetto e aggiornare un solo estremo.",
+        "Fermarsi quando lista[medio] == x oppure quando inizio > fine.",
+        "Leggere dalla tabella la grandezza chiesta."
+      ],
+      "trappole": [
+        "Arrotondare medio per eccesso.",
+        "Invertire la direzione (andare a sinistra quando lista[medio] < x).",
+        "Fermarsi quando inizio == fine (come con while inizio < fine) e saltare l'ultimo confronto.",
+        "Aggiornare con inizio = medio o fine = medio, senza ± 1.",
+        "Contare gli indici da 1.",
+        "Dare come esito il medio dell'ultimo passo anche quando x non è stato trovato."
+      ],
+      "come_generare_varianti": "Liste ordinate di 8–16 interi distinti (non solo con n potenza di 2) e x presente lontano dal centro oppure assente, in modo che servano 3–4 iterazioni. Chiedere una sola grandezza: sequenza di medio, sequenza di lista[medio], numero di iterazioni, (inizio, fine) all'uscita o valore restituito. Costruire i distrattori eseguendo davvero le versioni sbagliate: arrotondamento per eccesso, direzione invertita, while inizio < fine, indici da 1. Verificare ogni traccia con uno script Python che riproduce il codice della dispensa e scartare x per cui una versione sbagliata dà lo stesso risultato della corretta. Variante su codice modificato: mostrare il codice con while inizio < fine e chiedere cosa restituisce per un x presente che finisce in un intervallo di un elemento (con la lista dell'esempio e x = 34 la versione con < esamina 25, 40, 30 e restituisce None, quella corretta restituisce 7); oppure mostrare inizio = medio e chiedere se il ciclo termina."
+    },
+    {
+      "id": "L06-T06",
+      "titolo": "Numero massimo di confronti della ricerca binaria",
+      "argomento": "Ricerca binaria: costo",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 6, 'Ricerca Binaria - Complessità nei casi estremi' (dopo k iterazioni l'intervallo è n/2^k; n = 2^k ⇒ k = log₂ n).",
+      "descrizione": "Dato n concreto, si chiede il numero massimo di elementi esaminati (iterazioni del ciclo) dalla ricerca binaria, oppure di quanto cresce questo numero se n raddoppia, o il confronto con la ricerca lineare.",
+      "conoscenze": [
+        "Ogni iterazione esamina un solo elemento, lista[medio], e almeno dimezza l'intervallo.",
+        "Numero massimo di iterazioni: ⌊log₂ n⌋ + 1. Se n non è una potenza di 2 coincide con ⌈log₂ n⌉. La dispensa lo approssima con log₂ n.",
+        "Valori utili: 2^10 = 1024, quindi n = 1000 → 10; n = 10^6 → 20; n = 100 → 7.",
+        "Raddoppiando n il massimo cresce di 1, non raddoppia.",
+        "La ricerca lineare, nel caso pessimo, esamina tutti gli n elementi."
+      ],
+      "procedimento": [
+        "Trovare k con 2^k ≤ n < 2^(k+1).",
+        "Il massimo di elementi esaminati è k + 1.",
+        "Per il raddoppio: log₂(2n) = log₂ n + 1."
+      ],
+      "trappole": [
+        "Rispondere ⌊log₂ n⌋ e dimenticare l'ultima iterazione (n = 1000 → 9).",
+        "Rispondere n/2 (il caso medio della ricerca lineare) o n.",
+        "Pensare che raddoppiando n raddoppino i confronti.",
+        "Contare due confronti per iterazione (== e <) quando la domanda chiede gli elementi esaminati."
+      ],
+      "come_generare_varianti": "Usare n che non sono potenze di 2 (50 → 6, 100 → 7, 1000 → 10, 2000 → 11, 5000 → 13, 10^6 → 20), così ⌊log₂ n⌋ + 1 = ⌈log₂ n⌉ e non c'è ambiguità con l'approssimazione log₂ n della dispensa. Se si usa n = 2^k, la risposta è k + 1: dirlo nella spiegazione e verificare. Nel testo chiedere 'il numero massimo di elementi esaminati' o 'di iterazioni del ciclo while', mai 'confronti' senza precisare (ogni iterazione fa fino a due confronti). Verificare ogni valore con uno script Python che esegue la ricerca su range(n) per tutti gli x presenti e assenti e prende il massimo. Distrattori: ⌊log₂ n⌋, n/2, n. Variante: 'se n passa da N a 2N, il massimo cresce di' → 1; distrattori: raddoppia, cresce di log₂ N, resta uguale."
+    },
+    {
+      "id": "L06-T07",
+      "titolo": "Ricerca binaria: caso ottimo e caso pessimo",
+      "argomento": "Ricerca binaria: costo",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 6, 'Ricerca Binaria - Complessità nei casi estremi'. La ricorrenza T(n) = T(n/2) + Θ(1) della versione ricorsiva è la domanda 3 della prova di maggio 2026 (risolta nelle Lezioni 4 e 5).",
+      "descrizione": "Si chiede in quale situazione si ha il caso ottimo o pessimo della ricerca binaria e quanto costano, oppure quale affermazione O, Ω, Θ sul suo costo è corretta, anche in confronto con la ricerca lineare.",
+      "conoscenze": [
+        "Caso ottimo: x è nella posizione centrale (il primo medio, (n − 1) // 2); un confronto, O(1).",
+        "Caso pessimo: x non è presente; l'intervallo si dimezza finché si svuota.",
+        "Dopo k iterazioni l'intervallo ha circa n/2^k elementi; diventa 1 per k = log₂ n: caso pessimo Θ(log n).",
+        "Ricorrenza della versione ricorsiva: T(n) = T(n/2) + Θ(1) → Θ(log n).",
+        "Costo complessivo: O(log n) e Ω(1).",
+        "Ricerca lineare: ottimo O(1) con x in prima posizione, pessimo Θ(n)."
+      ],
+      "procedimento": [
+        "Caso ottimo: quale x viene trovato al primo confronto? Quello in posizione medio iniziale.",
+        "Caso pessimo: contare i dimezzamenti fino all'intervallo vuoto.",
+        "Controllare che le situazioni nelle opzioni siano quelle della ricerca binaria e non della lineare."
+      ],
+      "trappole": [
+        "Dire che il caso ottimo è x in prima posizione (vale per la lineare).",
+        "Dare Θ(n) come caso pessimo.",
+        "Dire che la ricerca binaria costa Θ(log n) in ogni caso.",
+        "Invertire i casi: x assente come caso ottimo."
+      ],
+      "come_generare_varianti": "Opzioni con coppie (situazione, costo) o affermazioni O, Ω, Θ. Si può chiedere: la situazione del caso ottimo; il costo del caso pessimo; quale affermazione è vera tra 'O(log n) e Ω(1)', 'Θ(log n) in ogni caso', 'Θ(n) nel caso pessimo', 'O(1) nel caso pessimo se x è il primo elemento'; il confronto lineare/binaria nei due casi. Distrattori presi dalla ricerca lineare (x in prima posizione, Θ(n))."
+    },
+    {
+      "id": "L06-T08",
+      "titolo": "Ricerca binaria: caso medio",
+      "argomento": "Ricerca binaria: costo",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 6, 'Ricerca Binaria - Complessità nel caso medio (1/2)' e '(2/2)' (n(i) = 2^(i−1), E = Σ i·2^(i−1)/n, Σ_{i=1..k} i·2^(i−1) = (k − 1)·2^k + 1, E = log n − 1 + 1/n).",
+      "descrizione": "Si chiede un passaggio dell'analisi del caso medio della ricerca binaria: quante posizioni sono raggiungibili alla i-esima iterazione, la probabilità corrispondente, il valore di E per n = 2^k, oppure la conclusione (Θ(log n), meno di uno sotto il massimo).",
+      "conoscenze": [
+        "Ipotesi: n potenza di 2 e x in posizione uniforme.",
+        "Alla iterazione i si raggiungono n(i) = 2^(i−1) posizioni: 1, 2, 4, 8, …",
+        "Probabilità che x sia trovato alla iterazione i: 2^(i−1)/n.",
+        "E = Σ_{i=1..log n} i·2^(i−1)/n; con Σ_{i=1..k} i·2^(i−1) = (k − 1)·2^k + 1 si ottiene E = log n − 1 + 1/n.",
+        "Il caso medio è Θ(log n), come il caso pessimo. Nel modello della dispensa (al più log n iterazioni) differisce dal massimo di meno di uno; rispetto al massimo esatto del codice, ⌊log₂ n⌋ + 1 iterazioni, la differenza è meno di due.",
+        "Circa metà delle posizioni viene trovata solo all'ultima iterazione: per questo la media è vicina al massimo."
+      ],
+      "procedimento": [
+        "Per n(i): raddoppiare a ogni iterazione partendo da 1.",
+        "Per E con n = 2^k: sostituire nella formula k − 1 + 1/2^k.",
+        "Per la classe: E ≈ log n − 1 = Θ(log n)."
+      ],
+      "trappole": [
+        "Rispondere n(i) = i oppure 2^i (errore di uno nell'esponente).",
+        "Confondere le posizioni raggiungibili alla iterazione i (2^(i−1)) con la dimensione dell'intervallo (n/2^(i−1)).",
+        "Pensare per analogia con la lineare che il caso medio sia (log n)/2 circa.",
+        "Pensare che il caso medio sia O(1) perché il caso ottimo lo è."
+      ],
+      "come_generare_varianti": "Chiedere: n(i) per i da 2 a 6; la probabilità 2^(i−1)/n per n e i dati; E secondo la formula per n = 2^k (n = 16 → 3 + 1/16, n = 1024 → 9 + 1/1024); la conclusione. Restare dentro l'analisi della dispensa e scrivere 'secondo l'analisi della dispensa' nel testo: per un n concreto il valore esatto ottenuto eseguendo il codice è leggermente diverso (con n = 1024 la media reale è circa 9,012, la formula dà 9,001), quindi non chiedere medie calcolate su codice reale. Distrattori: i, 2^i, n/2^(i−1), (log n)/2, n/2."
+    },
+    {
+      "id": "L06-T09",
+      "titolo": "Versione ricorsiva: ricorrenza, spazio e slicing",
+      "argomento": "Ricerca binaria: costo",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 6, 'Ricerca Binaria - Codice ricorsivo' (chiamata iniziale con 0 e len(lista) − 1, gli indici delimitano l'intervallo). Spazio dello stack: Lezione 3; costo dello slicing: Lezione 2. Ricorrenza T(n) = T(n/2) + Θ(1): prova di maggio 2026, domanda 3.",
+      "descrizione": "Si chiede lo spazio aggiuntivo della versione iterativa e di quella ricorsiva, la ricorrenza della versione ricorsiva, oppure il costo di una versione ricorsiva che passa sottoliste con lo slicing invece degli indici inizio e fine.",
+      "conoscenze": [
+        "Versione ricorsiva: una sola chiamata su metà intervallo più lavoro O(1): T(n) = T(n/2) + Θ(1) = Θ(log n) nel caso pessimo, come l'iterativa.",
+        "Spazio aggiuntivo: iterativa Θ(1) (solo inizio, fine, medio); ricorsiva Θ(log n) nel caso pessimo, per i record di attivazione sullo stack.",
+        "La lista viene passata per riferimento: con gli indici non si copia nulla.",
+        "Con lo slicing (lista[medio+1:] o lista[:medio]) ogni chiamata copia metà intervallo: T(n) = T(n/2) + Θ(n) = Θ(n) in tempo e Θ(n) in spazio (n/2 + n/4 + … copie vive insieme sullo stack).",
+        "Con lo slicing, inoltre, l'indice restituito è relativo alla sottolista, non alla lista originale."
+      ],
+      "procedimento": [
+        "Contare le chiamate ricorsive effettivamente eseguite (una sola) e il lavoro non ricorsivo di ogni chiamata.",
+        "Profondità massima della ricorsione = numero di dimezzamenti ≈ log₂ n: è lo spazio dello stack.",
+        "Se c'è slicing, aggiungere il costo della copia al lavoro non ricorsivo e risolvere la nuova ricorrenza."
+      ],
+      "trappole": [
+        "Dire che anche la ricorsiva usa spazio Θ(1).",
+        "Dire che la ricorsiva usa spazio Θ(n), come se copiasse la lista o facesse n chiamate.",
+        "Considerare lo slicing gratuito e rispondere Θ(log n) per la versione con sottoliste.",
+        "Scrivere T(n) = 2T(n/2) + Θ(1) perché nel codice compaiono due chiamate (ne viene eseguita una sola) e ottenere Θ(n).",
+        "Scrivere la media delle chiamate o T(n − 1) invece di T(n/2).",
+        "Moltiplicare il costo di una copia, Θ(n), per log n livelli e ottenere Θ(n log n) per la versione con slicing, invece di sommare n/2 + n/4 + … = Θ(n).",
+        "Non contare l'ultima chiamata, quella con intervallo vuoto (inizio > fine) che restituisce None."
+      ],
+      "come_generare_varianti": "Forme: (a) spazio delle due versioni (coppie di classi); (b) quale ricorrenza descrive la versione ricorsiva (T(n/2) + Θ(1) contro 2T(n/2) + Θ(1), T(n − 1) + Θ(1), T(n/2) + Θ(n)); (c) codice ricorsivo con slicing (return Ricerca(lista[medio+1:], x)): costo in tempo, Θ(n); (d) numero di chiamate ricorsive o profondità massima su una lista concreta, verificata con Python (con la lista di 11 elementi di L06-T05 e x = 35 si attivano 5 chiamate, l'ultima con intervallo vuoto). Distrattori dalle trappole. Non chiedere la soluzione di ricorrenze diverse da queste due (sono materia delle Lezioni 4 e 5)."
+    },
+    {
+      "id": "L06-T10",
+      "titolo": "Lineare o binaria: il costo del pre-ordinamento",
+      "argomento": "Confronto lineare e binaria",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 6, 'Confronto tra Ricerca Lineare e Binaria' (la binaria richiede un pre-ordinamento). Il costo Θ(n log n) dell'ordinamento è nelle Lezioni 7 e 8.",
+      "descrizione": "Su una lista non ordinata bisogna eseguire una o più ricerche (k ricerche): si chiede la strategia più efficiente o il costo totale di 'ricerca lineare ogni volta' contro 'ordinare una volta e poi usare la ricerca binaria'.",
+      "conoscenze": [
+        "Ricerca lineare: nessun requisito, O(n) per ricerca; k ricerche costano O(k·n).",
+        "Ricerca binaria: O(log n) per ricerca, ma su lista non ordinata bisogna prima ordinare, Θ(n log n) con mergesort o heapsort.",
+        "Ordinare e fare k ricerche binarie: O(n log n + k·log n).",
+        "Una ricerca (o un numero costante): conviene la lineare, Θ(n) < Θ(n log n).",
+        "k = Θ(n) ricerche: lineare Θ(n²), ordinare + binarie Θ(n log n): conviene ordinare.",
+        "k = Θ(log n): entrambe Θ(n log n). Se la lista è già ordinata, la binaria conviene sempre."
+      ],
+      "procedimento": [
+        "Scrivere il costo totale della strategia lineare: k·n.",
+        "Scrivere il costo totale della strategia con ordinamento: n log n + k log n.",
+        "Confrontare le due espressioni per il valore di k dato."
+      ],
+      "trappole": [
+        "Ignorare il costo dell'ordinamento e dare Θ(log n) alla strategia 'ordina e cerca' (errore del costo ottimista).",
+        "Applicare la ricerca binaria direttamente alla lista non ordinata.",
+        "Pensare che ordinare convenga sempre perché poi la ricerca è logaritmica.",
+        "Moltiplicare il costo dell'ordinamento per il numero di ricerche invece di sommarlo (ordinare una volta sola basta)."
+      ],
+      "come_generare_varianti": "Variare k: 1, una costante, log n, √n, n, n². Chiedere la strategia migliore o il costo totale di una strategia. Opzioni: (lineare, Θ(k·n)), (ordina + binarie, Θ(n log n + k log n)), più i distrattori 'ordina + binarie Θ(k log n)' (ordinamento ignorato), 'binaria diretta Θ(log n)', 'Θ(k · n log n)' (ordinamento ripetuto). Con k = log n le due strategie si equivalgono: in quel caso la risposta corretta deve dirlo esplicitamente, e nessun'altra opzione deve essere vera."
+    },
+    {
+      "id": "L06-T11",
+      "titolo": "Contare con la ricerca binaria: occorrenze di x ed elementi in [a, b]",
+      "argomento": "Esercizi: generico contro ordinato",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 6, Esercizi a pagina 15: esercizio 1 (numero di occorrenze di x) ed esercizio 3 (elementi nell'intervallo chiuso [a, b], vettore ordinato con valori distinti); l'esercizio su [a, b] è ripetuto a pagina 16 (esercizio 2).",
+      "descrizione": "Si chiede il costo del miglior algoritmo per contare le occorrenze di x, o gli elementi compresi in [a, b], su un vettore qualsiasi e su un vettore ordinato; oppure il costo di un approccio intermedio (trovare x con la ricerca binaria e poi scorrere i vicini).",
+      "conoscenze": [
+        "Vettore qualsiasi: una scansione che conta, Θ(n); non si può fare meglio (vedi L06-T03) e ordinare costerebbe di più.",
+        "Vettore ordinato: le occorrenze di x sono contigue. Con due ricerche binarie modificate si trovano la prima posizione con A[i] ≥ x e la prima con A[i] > x: la differenza è il numero di occorrenze. Costo O(log n).",
+        "Ricerca binaria modificata: quando si trova x non ci si ferma, ma si continua a sinistra (per la prima posizione) o a destra (per l'ultima).",
+        "Intervallo [a, b] su vettore ordinato: (prima posizione con A[i] > b) − (prima posizione con A[i] ≥ a). Costo O(log n), indipendente da quanti elementi cadono nell'intervallo.",
+        "Trovare x con la ricerca binaria standard e poi scorrere a sinistra e a destra costa O(log n + k), con k occorrenze: Θ(n) nel caso pessimo (tutti gli elementi uguali a x). Lo stesso vale scorrendo da a fino a b."
+      ],
+      "procedimento": [
+        "Capire se il vettore è ordinato.",
+        "Se non lo è: scansione Θ(n).",
+        "Se lo è: due ricerche binarie dei bordi, O(log n).",
+        "Per un approccio dato, chiedersi quanti elementi scorre nel caso pessimo."
+      ],
+      "trappole": [
+        "Dare O(log n) all'approccio 'trova e poi espandi' (costo ottimista, ignora le k occorrenze).",
+        "Pensare che la ricerca binaria standard restituisca la prima occorrenza.",
+        "Su un vettore non ordinato, ordinare prima (Θ(n log n)) o pensare di poter scendere sotto Θ(n).",
+        "Dare il caso ottimo (x al centro, unica occorrenza: O(1)) come costo dell'algoritmo."
+      ],
+      "come_generare_varianti": "Forme: (a) costo del miglior algoritmo su vettore qualsiasi e su vettore ordinato (coppie di classi); (b) costo nel caso pessimo dell'approccio 'trova e espandi' o 'scorri da a a b'; (c) quali due ricerche danno il conteggio; (d) traccia concreta: vettore ordinato di 10–14 elementi con ripetizioni, chiedere le due posizioni di bordo e il conteggio, verificati con uno script Python che implementa le due ricerche modificate e controlla il risultato con A.count(x) o con il conteggio diretto in [a, b]. Distrattori: Θ(log n), Θ(n log n), O(1), Θ(n), scegliendo i tre legati alle trappole."
+    },
+    {
+      "id": "L06-T12",
+      "titolo": "Duplicati: vettore qualsiasi contro vettore ordinato",
+      "argomento": "Esercizi: generico contro ordinato",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 6, Esercizi a pagina 15, esercizio 2 (vettore di interi ≥ 0: determinare se ci sono duplicati).",
+      "descrizione": "Si chiede il costo di un algoritmo per decidere se un vettore contiene elementi ripetuti, nella versione generica e in quella su vettore ordinato, oppure il costo di un codice dato.",
+      "conoscenze": [
+        "Vettore qualsiasi, confronto di tutte le coppie i < j: Θ(n²) nel caso pessimo.",
+        "Vettore qualsiasi, ordinare e poi confrontare gli adiacenti: Θ(n log n).",
+        "Interi ≥ 0 con valore massimo M: vettore di contatori (o di booleani) di dimensione M + 1, Θ(n + M) (idea del counting sort, Lezione 7).",
+        "Vettore ordinato: i duplicati sono adiacenti; basta confrontare A[i] con A[i + 1] per i da 0 a n − 2: Θ(n) nel caso pessimo, O(1) nel migliore.",
+        "Su vettore ordinato la ricerca binaria non aiuta: non c'è un valore da cercare, e se non ci sono duplicati bisogna controllare tutte le n − 1 coppie adiacenti."
+      ],
+      "procedimento": [
+        "Controllare se il vettore è ordinato e se ci sono altre informazioni (valori interi limitati).",
+        "Ordinato: scansione degli adiacenti, Θ(n).",
+        "Qualsiasi: scegliere tra le soluzioni sopra in base a quanto chiede la domanda (miglior costo, costo di un codice dato)."
+      ],
+      "trappole": [
+        "Rispondere Θ(log n) per il vettore ordinato pensando alla ricerca binaria.",
+        "Confrontare tutte le coppie anche su un vettore ordinato (Θ(n²)).",
+        "Dimenticare il costo dell'ordinamento nella versione generica.",
+        "Non vedere costi nascosti in un codice dato: if A[i] in A[i+1:] dentro un ciclo costa Θ(n²) (slicing e in su lista, Lezione 2)."
+      ],
+      "come_generare_varianti": "Forme: (a) costo del miglior algoritmo su vettore ordinato (Θ(n)); (b) costo di una strategia data su vettore qualsiasi (tutte le coppie, ordina e scandisci, contatori con M dato); (c) costo di un codice Python dato, anche con operazioni nascoste. Distrattori: Θ(log n), Θ(n log n), Θ(n²), ciascuno con la motivazione sbagliata tipica. Non usare set o dizionari come risposta corretta (sono della Lezione 13); possono comparire solo nella spiegazione."
+    },
+    {
+      "id": "L06-T13",
+      "titolo": "Coppia con somma x: doppio ciclo, ricerche binarie, due indici",
+      "argomento": "Esercizi: generico contro ordinato",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 6, Esercizi a pagina 16, esercizio 1 (due elementi distinti di A con somma x). La versione con ordinamento preliminare è nella Dispensa 2 (vedi L02-T14).",
+      "descrizione": "Si chiede il costo di un algoritmo che decide se esistono due elementi distinti con somma x: doppio ciclo su vettore qualsiasi, una ricerca binaria di x − A[i] per ogni i, oppure la scansione a due indici su vettore ordinato. Può chiedere anche una traccia dei due indici.",
+      "conoscenze": [
+        "Vettore qualsiasi: tutte le coppie i < j, Θ(n²) nel caso pessimo.",
+        "Vettore ordinato, per ogni i ricerca binaria di x − A[i] tra le posizioni dopo i: n ricerche da O(log n), O(n log n).",
+        "Vettore ordinato, due indici: i = 0, j = n − 1; se A[i] + A[j] == x si risponde True; se è minore si incrementa i; se è maggiore si decrementa j; si continua finché i < j. La distanza j − i cala di 1 a ogni passo: Θ(n).",
+        "Elementi distinti significa posizioni diverse: con x = 2·A[i] e una sola copia di A[i] la risposta è False (per questo la condizione è i < j).",
+        "Esempio verificato: A = [2, 5, 9], x = 10 → False."
+      ],
+      "procedimento": [
+        "Individuare la strategia descritta.",
+        "Contare: coppie (n²/2), ricerche binarie (n · log n) o passi dei due indici (al più n − 1).",
+        "Per una traccia, applicare le regole di spostamento passo per passo."
+      ],
+      "trappole": [
+        "Vedere due indici e rispondere Θ(n²).",
+        "Rispondere Θ(log n) pensando che i due indici dimezzino l'intervallo.",
+        "Confondere la scansione a due indici (Θ(n)) con la versione a ricerche binarie (Θ(n log n)).",
+        "Usare i ≤ j e sommare un elemento con se stesso.",
+        "Spostare l'indice sbagliato (decrementare j quando la somma è minore di x)."
+      ],
+      "come_generare_varianti": "Forme: (a) costo di una delle tre strategie; (b) quale strategia è la migliore su vettore ordinato; (c) traccia dei due indici su un vettore ordinato di 6–9 elementi: numero di iterazioni o coppia trovata, verificati con Python (es. A = [1, 3, 4, 6, 8, 11, 14], x = 17: 1 + 14 = 15 < 17 → i = 1; 3 + 14 = 17 → True dopo 2 iterazioni; con x = 100 il ciclo fa 6 iterazioni e restituisce False); (d) caso limite x = 2·A[i]. Distrattori: Θ(n²), Θ(log n), Θ(n log n), Θ(n)."
+    },
+    {
+      "id": "L06-T14",
+      "titolo": "Minimo valore maggiore di x",
+      "argomento": "Esercizi: generico contro ordinato",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 6, Esercizi a pagina 16, esercizio 3 (minimo valore maggiore di x, oppure None). La traccia usa il codice di 'Ricerca Binaria - Codice Iterativo'.",
+      "descrizione": "Si chiede il costo del miglior algoritmo per trovare il minimo valore maggiore di x su un vettore qualsiasi e su un vettore ordinato, oppure, data una traccia della ricerca binaria con x assente, dove si trova la risposta all'uscita dal ciclo.",
+      "conoscenze": [
+        "Vettore qualsiasi: una scansione che tiene il minimo tra gli elementi > x, Θ(n). Non serve ordinare.",
+        "Vettore ordinato: ricerca binaria modificata, O(log n). Se A[medio] > x, medio è un candidato e si continua a sinistra (fine = medio − 1); altrimenti si va a destra (inizio = medio + 1).",
+        "Con la ricerca binaria della dispensa, su un vettore senza ripetizioni e x assente: all'uscita inizio = fine + 1, A[inizio] è il minimo valore maggiore di x (se inizio < n, altrimenti la risposta è None) e A[fine] è il massimo valore minore di x.",
+        "Se x è presente (senza ripetizioni) la risposta è l'elemento successivo, se esiste. Con ripetizioni di x serve la versione modificata, che va a destra anche quando A[medio] == x.",
+        "Esempio verificato: lista = [4, 9, 13, 18, 25, 31, 40, 47], x = 26 → medio 3, 5, 4; all'uscita inizio = 5, fine = 4; risposta 31."
+      ],
+      "procedimento": [
+        "Capire se il vettore è ordinato: no → scansione Θ(n); sì → ricerca binaria O(log n).",
+        "Per una traccia: eseguire la ricerca binaria fino all'uscita, poi leggere A[inizio].",
+        "Controllare il caso inizio = n (nessun elemento maggiore di x → None)."
+      ],
+      "trappole": [
+        "Prendere A[fine] (il massimo minore di x) invece di A[inizio].",
+        "Fermarsi un passo prima, quando inizio == fine.",
+        "Dare O(log n) anche per il vettore qualsiasi, oppure ordinare prima (Θ(n log n)).",
+        "Restituire l'indice invece del valore.",
+        "Dimenticare il caso in cui x è maggiore o uguale al massimo (risposta None)."
+      ],
+      "come_generare_varianti": "Forme: (a) coppia di costi (vettore qualsiasi, vettore ordinato): corretta (Θ(n), O(log n)); distrattori (O(log n), O(log n)), (Θ(n log n), O(log n)), (Θ(n), Θ(n)). (b) Traccia: vettore ordinato di 7–12 interi distinti, x assente, chiedere inizio e fine all'uscita e il valore cercato; costruire i distrattori con A[fine], con la traccia fermata quando inizio == fine e con un aggiornamento sbagliato all'ultimo passo. Includere ogni tanto x maggiore del massimo (inizio = n, risposta None). Verificare ogni traccia con Python e confrontare con min(v for v in A if v > x)."
+    }
+  ]
+}

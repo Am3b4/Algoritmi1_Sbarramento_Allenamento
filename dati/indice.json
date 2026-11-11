@@ -1,0 +1,125 @@
+{
+  "_descrizione": "Indice dei cataloghi dei tipi di domanda, una voce per lezione. Lo schema dei campi è in schema.json.",
+  "lezioni": [
+    {
+      "lezione": 1,
+      "titolo": "Notazione asintotica",
+      "file": "tipi_L01_notazione_asintotica.json",
+      "tipi": 15,
+      "alta": 2,
+      "aperte": 0
+    },
+    {
+      "lezione": 2,
+      "titolo": "Complessità temporale di algoritmi iterativi",
+      "file": "tipi_L02_costo_iterativi.json",
+      "tipi": 15,
+      "alta": 0,
+      "aperte": 0
+    },
+    {
+      "lezione": 3,
+      "titolo": "Funzioni ricorsive",
+      "file": "tipi_L03_funzioni_ricorsive.json",
+      "tipi": 14,
+      "alta": 2,
+      "aperte": 1
+    },
+    {
+      "lezione": 4,
+      "titolo": "Come risolvere equazioni di ricorrenza (parte 1): metodo iterativo e metodo dell'albero",
+      "file": "tipi_L04_ricorrenze_iterativo_albero.json",
+      "tipi": 12,
+      "alta": 2,
+      "aperte": 0
+    },
+    {
+      "lezione": 5,
+      "titolo": "Come risolvere equazioni di ricorrenza (parte 2): metodo di sostituzione e teorema principale",
+      "file": "tipi_L05_sostituzione_teorema_principale.json",
+      "tipi": 15,
+      "alta": 3,
+      "aperte": 0
+    },
+    {
+      "lezione": 6,
+      "titolo": "Il problema della ricerca",
+      "file": "tipi_L06_ricerca.json",
+      "tipi": 14,
+      "alta": 0,
+      "aperte": 0
+    },
+    {
+      "lezione": 7,
+      "titolo": "Il problema dell'ordinamento 1/2",
+      "file": "tipi_L07_ordinamento_quadratici_lineari.json",
+      "tipi": 16,
+      "alta": 2,
+      "aperte": 0
+    },
+    {
+      "lezione": 8,
+      "titolo": "Il problema dell'ordinamento 2/2: mergesort e quicksort",
+      "file": "tipi_L08_mergesort_quicksort.json",
+      "tipi": 15,
+      "alta": 1,
+      "aperte": 0
+    },
+    {
+      "lezione": 9,
+      "titolo": "Struttura dati: Min-Heap (e heapsort)",
+      "file": "tipi_L09_heap.json",
+      "tipi": 13,
+      "alta": 2,
+      "aperte": 0
+    },
+    {
+      "lezione": 10,
+      "titolo": "Liste concatenate",
+      "file": "tipi_L10_liste_concatenate.json",
+      "tipi": 18,
+      "alta": 3,
+      "aperte": 5
+    },
+    {
+      "lezione": 11,
+      "titolo": "Pile e code",
+      "file": "tipi_L11_pile_code.json",
+      "tipi": 9,
+      "alta": 0,
+      "aperte": 0
+    },
+    {
+      "lezione": 12,
+      "titolo": "Alberi",
+      "file": "tipi_L12_alberi.json",
+      "tipi": 22,
+      "alta": 5,
+      "aperte": 7
+    },
+    {
+      "lezione": 13,
+      "titolo": "Dizionari e tabelle hash",
+      "file": "tipi_L13_hash.json",
+      "tipi": 18,
+      "alta": 2,
+      "aperte": 0
+    },
+    {
+      "lezione": 14,
+      "titolo": "Alberi binari di ricerca (ABR / BST)",
+      "file": "tipi_L14_abr.json",
+      "tipi": 20,
+      "alta": 7,
+      "aperte": 5
+    },
+    {
+      "lezione": 15,
+      "titolo": "Alberi bilanciati AVL",
+      "file": "tipi_L15_avl.json",
+      "tipi": 14,
+      "alta": 0,
+      "aperte": 1
+    }
+  ]
+}

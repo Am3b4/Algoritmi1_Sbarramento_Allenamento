@@ -1,0 +1,27 @@
+{
+  "scopo": "Catalogo dei TIPI di domanda del test di sbarramento di Algoritmi 1 (Sapienza, docenti Calamoneri e Monti), una lezione per file. Ogni tipo descrive una famiglia di domande: da qui un altro modello genera le varianti, e il sito registra gli errori per tipo.",
+  "formato_test": "15 domande in 15 minuti; risposta esatta +2, errata -1, non data 0; soglia 18/30 (in precedenza 21/30). 14 domande hanno 4 opzioni (a, b, c, d) con una sola risposta corretta; una domanda per prova è aperta e chiede sempre di scrivere una funzione ricorsiva (pseudocodice): su un intero (luglio 2026), su una lista concatenata o su un albero (maggio 2026).",
+  "campi": {
+    "id": "Identificativo stabile del tipo, LLL-TNN (lezione, numero). Il sito lo usa come chiave per le statistiche: non va mai cambiato.",
+    "titolo": "Nome breve del tipo, mostrato nelle statistiche.",
+    "argomento": "Etichetta per raggruppare i tipi nelle statistiche (più tipi possono avere lo stesso argomento).",
+    "formato": "multipla (4 opzioni, una corretta) oppure aperta. I tipi aperti sono solo funzioni ricorsive da scrivere, su un intero (L03), su liste concatenate (L10) o su alberi (L12, L14, L15): le altre lezioni non hanno tipi aperti.",
+    "frequenza": "alta = compare in forma quasi identica nelle prove ufficiali; media = coperto dalla dispensa e plausibile; bassa = possibile ma raro.",
+    "difficolta": "1 = definizione o fatto da ricordare; 2 = un passaggio di ragionamento; 3 = più passaggi o una trappola.",
+    "fonte": "Dove compare: lucidi della dispensa e/o domanda delle prove ufficiali.",
+    "descrizione": "Cosa chiede la domanda, in modo che chi genera varianti capisca il perimetro del tipo.",
+    "conoscenze": "Fatti e definizioni necessari per rispondere.",
+    "procedimento": "Passi per arrivare alla risposta corretta.",
+    "trappole": "Errori tipici dello studente; vanno usati per costruire le opzioni sbagliate (distrattori). L'ordine della lista è fisso: la voce i-esima ha il codice Ei (E1 la prima) e le domande usano questi codici nel campo errori. Le nuove trappole si aggiungono solo in fondo, senza riordinare né cancellare quelle esistenti.",
+    "come_generare_varianti": "Istruzioni per chi genera: cosa far variare, quali vincoli rispettare perché la risposta corretta sia una sola, come costruire i distrattori.",
+    "esempio": "Una domanda modello del tipo, con opzioni, risposta corretta e spiegazione. Serve a fissare stile e livello, non è una variante da riusare."
+  },
+  "convenzioni": {
+    "alberi_nel_testo": "Un albero si scrive k(S, D): chiave k, sottoalbero sinistro S, sottoalbero destro D; '-' indica il sottoalbero vuoto; una foglia si scrive solo con la chiave. Esempio: 8(4(2, -), 10).",
+    "altezza": "Altezza dell'albero vuoto = −1, di una foglia = 0 (come nella dispensa 12).",
+    "heap": "Min-heap in array con indici da 0: figli 2i+1 e 2i+2, padre (i−1)//2 (dispensa 9).",
+    "cancellazione_abr": "Nodo con due figli sostituito dal successore, cioè il minimo del sottoalbero destro (dispensa 14).",
+    "hash": "Scansione lineare h(k, i) = (h(k) + i) mod m; cancellazione con DELETED; l'inserimento riusa la prima cella DELETED incontrata (codice della dispensa 13).",
+    "pseudocodice": "Stile Python come nelle dispense; nelle domande sugli esercizi d'esame i campi dei nodi si chiamano chiave, fsin, fdes."
+  }
+}

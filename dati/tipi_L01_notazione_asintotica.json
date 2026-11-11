@@ -1,0 +1,420 @@
+{
+  "_schema": "schema.json",
+  "lezione": {
+    "numero": 1,
+    "titolo": "Notazione asintotica",
+    "file": "PL1b.pdf",
+    "contenuti": [
+      "Perché serve l'analisi asintotica (confronto tra n e log n per n grande)",
+      "Tassi di crescita: log n, n, n log n, n², esponenziali",
+      "Definizioni formali di O, Ω, Θ con costanti c e n0",
+      "Metodo del limite del rapporto",
+      "Polinomi: Θ(n^d); la base del logaritmo è irrilevante",
+      "Algebra dell'asintotica: somma, costanti moltiplicative, prodotto, transitività",
+      "Asintotica delle somme: forma chiusa (aritmetica, geometrica), limiti asintotici (somma dei logaritmi, somma di potenze), metodo dell'integrale (armonica, potenze, logaritmi)",
+      "Esercizi: ordinare funzioni per crescita e partizionarle in classi; dimostrare o confutare relazioni col limite; confrontabilità delle classi O(5ⁿ) e O(2ⁿ)"
+    ]
+  },
+  "tipi": [
+    {
+      "id": "L01-T01",
+      "titolo": "Θ di una somma di termini",
+      "argomento": "Termine dominante",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, Algebra dell'asintotica (esempi 1-3). Prova di maggio 2026, domanda 1: f(n) = 5·2ⁿ·log n + n⁴ è in Θ(2ⁿ log n).",
+      "descrizione": "Si dà una funzione f(n) scritta come somma di due o tre termini (con coefficienti costanti, prodotti di potenze, logaritmi ed esponenziali) e si chiede a quale classe Θ appartiene.",
+      "conoscenze": [
+        "In una somma conta solo il termine che cresce più velocemente; i coefficienti costanti si eliminano.",
+        "Un termine è un prodotto: il fattore logaritmico di un termine resta (2ⁿ·log n non si riduce a 2ⁿ).",
+        "Gerarchia: costanti < log log n < log n < log^k n < n^ε (0<ε<1) < n < n log n < n^k < cⁿ (c>1) < n! < nⁿ.",
+        "Per confrontare n^a·log n con n^b (b>a) basta confrontare log n con n^(b−a): vince sempre la potenza."
+      ],
+      "procedimento": [
+        "Riscrivere ogni termine come prodotto di fattori noti (esponenziale, potenza, logaritmo).",
+        "Confrontare i termini a coppie partendo dal fattore più forte (esponenziale, poi potenza, poi logaritmo).",
+        "La risposta è il termine vincente senza coefficiente, con tutti i suoi fattori."
+      ],
+      "trappole": [
+        "Togliere il fattore log dal termine dominante (rispondere Θ(2ⁿ) invece di Θ(2ⁿ log n)).",
+        "Moltiplicare i due termini maggiori (rispondere Θ(n⁴·2ⁿ)).",
+        "Scegliere il termine con il coefficiente o l'esponente numerico più grande invece di quello che cresce di più (n⁴ contro 2ⁿ).",
+        "Pensare che n log n superi n^1,5 perché c'è un log in più."
+      ],
+      "come_generare_varianti": "Scegliere 2-3 termini da famiglie diverse: log^a n, n^b, n^b·log^a n, cⁿ, cⁿ·n^b, n!; usare coefficienti da 1 a 10 ed esponenti razionali semplici (1/2, 1,5, 2, 3, 4). Il termine dominante deve essere unico. Opzioni: (1) il dominante corretto; (2) il dominante senza il suo fattore secondario; (3) il secondo termine per crescita; (4) il prodotto dei due termini maggiori oppure il dominante moltiplicato per un log in più."
+    },
+    {
+      "id": "L01-T02",
+      "titolo": "Quale relazione asintotica è vera (o falsa)",
+      "argomento": "Confronto tra funzioni",
+      "formato": "multipla",
+      "frequenza": "alta",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, Esercizi 2 (dimostra o confuta). Prova di luglio 2026, domanda 1: tra n = Ω(n²), n^(1/3) = Ω(n^(1/2)), log n = Ω(√n), n = Ω(log n) è vera l'ultima.",
+      "descrizione": "Quattro affermazioni del tipo f(n) = O(g(n)), Ω o Θ; si chiede quale è vera (oppure quale è falsa). Le funzioni sono semplici ma le notazioni sono mescolate.",
+      "conoscenze": [
+        "f = O(g): f cresce al più come g. f = Ω(g): almeno come g. f = Θ(g): esattamente come g.",
+        "f = O(g) se e solo se g = Ω(f).",
+        "Gerarchia di crescita (vedi L01-T01).",
+        "Θ richiede entrambe le direzioni: n = O(n²) è vero, n = Θ(n²) è falso."
+      ],
+      "procedimento": [
+        "Per ogni affermazione stabilire chi cresce di più tra f e g.",
+        "Tradurre: O vuol dire f ≤ g, Ω vuol dire f ≥ g, Θ vuol dire stessa classe.",
+        "Se la domanda chiede la falsa, cercare l'unica che contraddice la gerarchia."
+      ],
+      "trappole": [
+        "Leggere Ω come se fosse O (direzione invertita).",
+        "Pensare che basi esponenziali diverse siano equivalenti (2ⁿ = Θ(3ⁿ) è falso).",
+        "Pensare che basi logaritmiche diverse cambino la classe (log₂ n = Θ(log₁₀ n) è vero).",
+        "Confondere potenze frazionarie: n^(1/3) cresce meno di n^(1/2)."
+      ],
+      "come_generare_varianti": "Costruire 4 affermazioni con funzioni dalla gerarchia, alternando O, Ω e Θ; per la versione 'quale è vera' una sola deve esserlo, per 'quale è falsa' una sola falsa. Includere almeno un'affermazione che sarebbe vera con la notazione opposta (esempio n² = O(n) contro n² = Ω(n)), una su basi di esponenziali o logaritmi, e una con potenze frazionarie o log^k n contro n^ε."
+    },
+    {
+      "id": "L01-T03",
+      "titolo": "Ordinare funzioni per velocità di crescita",
+      "argomento": "Gerarchia di crescita",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, Tassi di crescita e Esercizi 1 (ordinare una lista di funzioni dalla più lenta alla più veloce).",
+      "descrizione": "Si danno 4 o 5 funzioni e si chiede l'ordine corretto di crescita asintotica, oppure quale cresce più velocemente (o più lentamente) delle altre.",
+      "conoscenze": [
+        "Gerarchia: 1 < log log n < log n < log² n < √n < n < n log n < n² < n³ < 2ⁿ < 3ⁿ < n! < nⁿ.",
+        "Qualsiasi potenza di log n (anche log¹⁰⁰ n) cresce meno di qualsiasi n^ε con ε > 0.",
+        "Qualsiasi polinomio cresce meno di qualsiasi esponenziale con base > 1."
+      ],
+      "procedimento": [
+        "Riscrivere le funzioni nascoste in forma standard (vedi L01-T05): 2^(log n) = n, log(n!) = Θ(n log n).",
+        "Collocare ogni funzione nella gerarchia.",
+        "Per due funzioni dello stesso livello, confrontare il fattore secondario (n² log n contro n²)."
+      ],
+      "trappole": [
+        "Mettere log² n sopra √n.",
+        "Mettere n¹⁰⁰ sopra 2ⁿ (vale solo per n piccoli).",
+        "Mettere n! sotto 2ⁿ o pensare che n! e nⁿ siano equivalenti.",
+        "Trattare 2^(log n) come un esponenziale."
+      ],
+      "come_generare_varianti": "Scegliere 4 funzioni da livelli diversi della gerarchia, includendone almeno una 'travestita' (2^(log₂ n), log(n!), n^(1/2) scritta come √n, 4^(log₂ n) = n²). Opzioni: 4 ordinamenti, di cui uno corretto e tre ottenuti scambiando due funzioni adiacenti che lo studente confonde spesso (log² n e √n, n¹⁰ e 2ⁿ, 2ⁿ e n!). In alternativa chiedere 'quale cresce più velocemente' con 4 funzioni."
+    },
+    {
+      "id": "L01-T04",
+      "titolo": "Funzioni nella stessa classe Θ",
+      "argomento": "Gerarchia di crescita",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 3,
+      "fonte": "Dispensa 1, Esercizi 1 punto 2 (partizionare la lista di funzioni in classi di complessità).",
+      "descrizione": "Si chiede quale coppia di funzioni appartiene alla stessa classe Θ, oppure quale funzione è Θ di una funzione data. Le funzioni sono spesso scritte in forme diverse ma equivalenti.",
+      "conoscenze": [
+        "log(n!) = Θ(n log n); lg(nⁿ) = n lg n; quindi log(n!) e lg(nⁿ) sono nella stessa classe.",
+        "2^(lg n) = n; 4^(lg n) = n²; (√2)^(lg n) = √n.",
+        "(lg n)^(lg n) = n^(lg lg n): stessa funzione scritta in due modi.",
+        "Costanti moltiplicative e basi dei log non cambiano la classe; basi degli esponenziali sì (2ⁿ e 2^(n+1) stessa classe, 2ⁿ e 2^(2n) no)."
+      ],
+      "procedimento": [
+        "Portare ogni funzione in forma standard usando le identità su log ed esponenziali.",
+        "Eliminare costanti moltiplicative.",
+        "Due funzioni sono nella stessa classe se il limite del rapporto è finito e positivo."
+      ],
+      "trappole": [
+        "Credere che 2^(n+1) e 2ⁿ siano in classi diverse (2^(n+1) = 2·2ⁿ).",
+        "Credere che 2^(2n) e 2ⁿ siano nella stessa classe (2^(2n) = 4ⁿ).",
+        "Non riconoscere che 2^(lg n) è n.",
+        "Credere che log(n!) sia Θ(n!) o Θ(log n)."
+      ],
+      "come_generare_varianti": "Partire da una funzione base (n, n², n log n, 2ⁿ) e produrre una forma travestita equivalente con una delle identità; le opzioni sbagliate sono forme travestite di classi vicine (per n²: n² log n, 2^(lg n), 2^(2 lg n + 1) vs 4^(lg n)). Verificare con il limite del rapporto che una sola opzione sia nella stessa classe."
+    },
+    {
+      "id": "L01-T05",
+      "titolo": "Riscrivere logaritmi ed esponenziali",
+      "argomento": "Identità su log ed esponenziali",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, lucido 'La base del logaritmo è irrilevante' e funzioni dell'Esercizio 1 (2^(lg n), 4^(lg n), lg(nⁿ), (lg n)^(lg n)).",
+      "descrizione": "Si chiede la classe Θ di una singola espressione con logaritmi ed esponenziali annidati, che va prima semplificata.",
+      "conoscenze": [
+        "a^(log_a n) = n; in generale a^(log_b n) = n^(log_b a).",
+        "log(n^k) = k·log n, quindi log(n²) = Θ(log n), non Θ(log² n).",
+        "log_a n = log_b n / log_b a: cambia solo una costante.",
+        "log(a·b) = log a + log b; log(n!) = Θ(n log n)."
+      ],
+      "procedimento": [
+        "Individuare la regola giusta (esponente dentro il log, log dentro l'esponente, cambio di base).",
+        "Semplificare fino a una funzione standard.",
+        "Eliminare le costanti e scegliere la classe."
+      ],
+      "trappole": [
+        "Confondere log(n²) con (log n)².",
+        "Trattare 4^(log₂ n) come esponenziale invece di n².",
+        "Pensare che la base del logaritmo cambi la classe.",
+        "Calcolare 2^(2 log₂ n) come 2n invece di n²."
+      ],
+      "come_generare_varianti": "Variare la base (2, 4, 8, √2), la posizione del log (esponente, argomento) e il coefficiente (log(n³), 2^(3 log₂ n), 8^(log₂ n), n^(1/log₂ n) = 2 costante). Opzioni: il risultato corretto, il risultato con l'errore 'log dell'esponente' (log(n²) → log² n), la forma che lo tratta come esponenziale, una potenza sbagliata di uno."
+    },
+    {
+      "id": "L01-T06",
+      "titolo": "Base del logaritmo e base dell'esponenziale",
+      "argomento": "Identità su log ed esponenziali",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, esercizio 'La base del logaritmo è irrilevante' ed Esercizi 2 punto 2 (le classi O(5ⁿ) e O(2ⁿ), Ω(5ⁿ) e Ω(2ⁿ), Θ(5ⁿ) e Θ(2ⁿ) sono inconfrontabili?).",
+      "descrizione": "Domande sul fatto che cambiare la base del logaritmo non cambia la classe, mentre cambiare la base dell'esponenziale sì; anche sul contenimento tra classi O, Ω e Θ di esponenziali diversi.",
+      "conoscenze": [
+        "log_a n = Θ(log_b n) per ogni a, b > 1: per questo si scrive Θ(log n) senza base.",
+        "cⁿ e dⁿ con c ≠ d sono in classi Θ diverse: (d/c)ⁿ tende a 0 o a infinito.",
+        "Contenimenti: O(2ⁿ) ⊂ O(5ⁿ); Ω(5ⁿ) ⊂ Ω(2ⁿ); Θ(2ⁿ) e Θ(5ⁿ) sono disgiunte.",
+        "Costante nell'esponente: 2^(n+5) = 32·2ⁿ resta Θ(2ⁿ); moltiplicatore nell'esponente: 2^(2n) = 4ⁿ cambia classe."
+      ],
+      "procedimento": [
+        "Distinguere se la costante sta nella base del log (irrilevante), nella base dell'esponenziale (rilevante) o nell'esponente (rilevante se moltiplica n, irrilevante se si somma).",
+        "Per i contenimenti tra classi: ogni funzione che cresce al più come 2ⁿ cresce anche al più come 5ⁿ, non il contrario."
+      ],
+      "trappole": [
+        "Pensare che log₂ n e log₁₀ n stiano in classi diverse.",
+        "Pensare che 2ⁿ e 3ⁿ stiano nella stessa classe 'perché sono tutti esponenziali'.",
+        "Invertire il contenimento tra O(2ⁿ) e O(5ⁿ).",
+        "Trattare 2^(n+1) come 4ⁿ o 2^(2n) come 2ⁿ."
+      ],
+      "come_generare_varianti": "Variare le basi (2, 3, 4, 5, 10, e), il tipo di classe (O, Ω, Θ) e la posizione della costante. Per i contenimenti chiedere 'quale affermazione è vera' con opzioni tipo O(2ⁿ) ⊆ O(5ⁿ), O(5ⁿ) ⊆ O(2ⁿ), Θ(2ⁿ) = Θ(5ⁿ), Ω(2ⁿ) ⊆ Ω(5ⁿ)."
+    },
+    {
+      "id": "L01-T07",
+      "titolo": "Metodo del limite del rapporto",
+      "argomento": "Definizioni e metodo del limite",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, lucidi 'Metodo del limite del rapporto' (tre casi ed esempi: log₂ n = O(n), √n·n = Ω(√n log n), 5n + ln n = Θ(n)) ed Esercizi 2 punto 1.",
+      "descrizione": "Due varianti: (a) si dà il valore di lim f(n)/g(n) e si chiede cosa si può concludere; (b) si dà una coppia f, g e si chiede il valore del limite o la relazione che ne segue.",
+      "conoscenze": [
+        "L = 0: f = O(g) ma non Θ (f cresce strettamente meno).",
+        "L finito e positivo: f = Θ(g) (quindi anche O e Ω).",
+        "L = +∞: f = Ω(g) ma non Θ.",
+        "Per calcolare il limite si dividono numeratore e denominatore per il termine dominante."
+      ],
+      "procedimento": [
+        "Calcolare il limite del rapporto (o leggerlo dal testo).",
+        "Applicare la tabella dei tre casi.",
+        "Attenzione a ciò che il limite esclude: L = 0 esclude Θ e Ω."
+      ],
+      "trappole": [
+        "Con L = 0 concludere Ω, invertendo il significato.",
+        "Con L finito e positivo concludere solo O e non Θ.",
+        "Pensare che L = 1 sia necessario per Θ (basta qualsiasi costante positiva, ad esempio 5).",
+        "Calcolare male il limite tenendo i termini non dominanti."
+      ],
+      "come_generare_varianti": "Variante (a): scegliere L tra 0, una costante positiva (1/2, 3, 7), +∞, e chiedere la conclusione corretta; distrattori con la notazione invertita e con Θ al posto di O. Variante (b): coppie come (3n² + 5n, n²), (n log n, n^1,5), (2ⁿ, n¹⁰), con opzioni L = 0, L = 3, L = +∞, 'il limite non esiste'."
+    },
+    {
+      "id": "L01-T08",
+      "titolo": "Definizioni formali di O, Ω, Θ",
+      "argomento": "Definizioni e metodo del limite",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, lucidi 'Notazione O', 'Notazione Ω', 'Notazione Θ' (definizioni con ∃c > 0, ∃n0, ∀n ≥ n0).",
+      "descrizione": "Si chiede quale formula definisce una notazione, quale significato intuitivo ha (limite superiore, inferiore, stima precisa), oppure quale coppia di costanti (c, n0) dimostra una relazione concreta.",
+      "conoscenze": [
+        "f ∈ O(g) ⇔ ∃c > 0, ∃n0, ∀n ≥ n0: f(n) ≤ c·g(n).",
+        "f ∈ Ω(g) ⇔ ∃c > 0, ∃n0, ∀n ≥ n0: f(n) ≥ c·g(n).",
+        "f ∈ Θ(g) ⇔ ∃c1, c2 > 0, ∃n0, ∀n ≥ n0: c1·g(n) ≤ f(n) ≤ c2·g(n).",
+        "Le disuguaglianze devono valere da n0 in poi, non per ogni n."
+      ],
+      "procedimento": [
+        "Per riconoscere una definizione: controllare il verso della disuguaglianza e i quantificatori (esiste c, per ogni n ≥ n0).",
+        "Per scegliere (c, n0): sostituire e verificare la disuguaglianza da n0 in poi; per esempio 3n + 5 ≤ 4n vale per n ≥ 5."
+      ],
+      "trappole": [
+        "Invertire i quantificatori (per ogni c invece di esiste c).",
+        "Richiedere che la disuguaglianza valga per ogni n ≥ 1.",
+        "Confondere il verso: O usa ≤, Ω usa ≥.",
+        "Scegliere c troppo piccolo così che la disuguaglianza non valga mai."
+      ],
+      "come_generare_varianti": "Tre sottotipi: (1) 'quale formula definisce Ω(g)' con opzioni che variano verso e quantificatori; (2) 'cosa descrive la notazione Ω' (limite inferiore, superiore, stima precisa, caso medio); (3) 'quale coppia (c, n0) dimostra che f = O(g)' con f lineare o quadratica a coefficienti piccoli e una sola coppia valida tra quattro."
+    },
+    {
+      "id": "L01-T09",
+      "titolo": "Proprietà e algebra delle notazioni",
+      "argomento": "Algebra dell'asintotica",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, lucidi 'Algebra dell'asintotica: regole fondamentali' (somma, costanti moltiplicative, prodotto, transitività) e 'Confronto tra le tre notazioni'.",
+      "descrizione": "Domande astratte su f, g, h: date alcune relazioni, cosa segue? Oppure quale regola è vera.",
+      "conoscenze": [
+        "Somma: f = Θ(g) e h = O(g) ⇒ f + h = Θ(g).",
+        "Costante: c > 0 e f = Θ(g) ⇒ c·f = Θ(g).",
+        "Prodotto: f = Θ(g) e h = Θ(k) ⇒ f·h = Θ(g·k).",
+        "Transitività: f = Θ(g) e g = Θ(h) ⇒ f = Θ(h) (vale anche per O e per Ω).",
+        "Simmetria e dualità: f = Θ(g) ⇔ g = Θ(f); f = O(g) ⇔ g = Ω(f); f = Θ(g) ⇔ f = O(g) e f = Ω(g)."
+      ],
+      "procedimento": [
+        "Individuare la regola che si applica.",
+        "Per scartare un'opzione basta un controesempio concreto (f = n, g = n²)."
+      ],
+      "trappole": [
+        "Pensare che f = O(g) implichi g = O(f) (vale solo per Θ).",
+        "Pensare che f = O(g) e g = Ω(h) diano una relazione tra f e h.",
+        "Applicare la regola della somma con h che cresce più di g.",
+        "Credere che O(f) − O(f) = 0."
+      ],
+      "come_generare_varianti": "Formulare con lettere f, g, h o con funzioni concrete. Ogni opzione è un'implicazione; una sola è sempre vera, le altre falliscono con un controesempio semplice (n contro n², log n contro n). Variare la regola: somma, prodotto, transitività, simmetria di Θ, dualità O/Ω."
+    },
+    {
+      "id": "L01-T10",
+      "titolo": "Polinomi e potenze traslate",
+      "argomento": "Termine dominante",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 1,
+      "fonte": "Dispensa 1, Esercizio 1 'Polinomio asintoticamente positivo' (P_d(n) = Θ(n^d)) ed Esercizi 2 (per esempio (n + 10)³ = Θ(n³), 10n³ + 2n² = Ω(n⁴)?).",
+      "descrizione": "Classe Θ di un polinomio, di una potenza di un binomio (n + a)^k, o verifica di una relazione O/Ω tra un polinomio e una potenza.",
+      "conoscenze": [
+        "Un polinomio di grado d con coefficiente direttore positivo è Θ(n^d).",
+        "(n + a)^k = Θ(n^k) per ogni costante a: sviluppando, il termine dominante è n^k.",
+        "Un polinomio di grado d è O(n^e) per ogni e ≥ d e Ω(n^e) per ogni e ≤ d."
+      ],
+      "procedimento": [
+        "Trovare il grado (esponente più alto con coefficiente non nullo).",
+        "Confrontare il grado con l'esponente della funzione di riferimento."
+      ],
+      "trappole": [
+        "Pensare che coefficienti grandi (1000n²) cambino la classe.",
+        "Sviluppare male (n + 10)³ e credere che sia Θ(n⁴) o Θ(1000n³) diverso da Θ(n³).",
+        "Dire che 10n³ + 2n² è Ω(n⁴)."
+      ],
+      "come_generare_varianti": "Variare grado (1-4), coefficienti (anche grandi o frazionari), termini di grado inferiore e la potenza del binomio (n + a)^k con a fino a 100. Chiedere la classe Θ oppure quale relazione O/Ω è vera."
+    },
+    {
+      "id": "L01-T11",
+      "titolo": "Somme aritmetiche e di potenze",
+      "argomento": "Asintotica delle somme",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, 'Somma aritmetica e formula chiusa' (Σ i = n(n+1)/2 = Θ(n²)) e 'Somma di potenze' (Σ i^c = Θ(n^(c+1))). Le stesse somme ricompaiono nel costo dei cicli annidati (Lezione 2).",
+      "descrizione": "Si chiede la classe Θ di una sommatoria Σ_{i=1..n} f(i) con f polinomiale, oppure della sua forma equivalente scritta come 1 + 2 + … + n.",
+      "conoscenze": [
+        "Σ_{i=1..n} i = n(n+1)/2 = Θ(n²).",
+        "Σ_{i=1..n} i^c = Θ(n^(c+1)) per ogni costante c > 0.",
+        "Σ_{i=1..n} c = c·n = Θ(n) per una costante c.",
+        "Somme che partono da metà (Σ_{i=n/2..n}) hanno la stessa classe della somma intera."
+      ],
+      "procedimento": [
+        "Riconoscere il termine generale.",
+        "Applicare la formula: la sommatoria alza l'esponente di uno.",
+        "In alternativa: stima superiore n·f(n) e stima inferiore (n/2)·f(n/2)."
+      ],
+      "trappole": [
+        "Rispondere Θ(n) per Σ i (contare i termini invece di sommarli).",
+        "Rispondere Θ(n^c) per Σ i^c (non alzare l'esponente).",
+        "Confondere Σ i² con (Σ i)²."
+      ],
+      "come_generare_varianti": "Variare il termine generale (i, i², i³, √i, 3i + 2, n − i), gli estremi (da 1 a n, da 0 a n − 1, da n/2 a n) e la scrittura (simbolo di sommatoria oppure 1 + 2 + … + n). Distrattori: esponente non alzato, esponente alzato di due, Θ(n log n)."
+    },
+    {
+      "id": "L01-T12",
+      "titolo": "Somme geometriche",
+      "argomento": "Asintotica delle somme",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, 'Somma geometrica' (formula chiusa e tre casi: c = 1, c > 1, 0 < c < 1). Torna nel metodo iterativo per le ricorrenze (Lezione 4) e nei cicli con variabile che raddoppia o si dimezza (Lezione 2).",
+      "descrizione": "Classe Θ di Σ_{i=0..k} c^i al variare di c, oppure di una somma scritta per esteso come 1 + 2 + 4 + … + 2^k o n + n/2 + n/4 + … + 1.",
+      "conoscenze": [
+        "c > 1: la somma è Θ(c^k), domina l'ultimo termine (1 + 2 + … + 2^k = 2^(k+1) − 1).",
+        "c = 1: la somma è Θ(k).",
+        "0 < c < 1: la somma è Θ(1), domina il primo termine (1 + 1/2 + 1/4 + … < 2).",
+        "n + n/2 + n/4 + … + 1 < 2n = Θ(n)."
+      ],
+      "procedimento": [
+        "Individuare la ragione c.",
+        "Applicare il caso: c > 1 ultimo termine, c < 1 primo termine, c = 1 numero di termini."
+      ],
+      "trappole": [
+        "Moltiplicare numero di termini per termine massimo (n + n/2 + … diventa n log n).",
+        "Pensare che una somma con infiniti termini decrescenti sia infinita.",
+        "Per 1 + 2 + … + 2^k rispondere Θ(k·2^k)."
+      ],
+      "come_generare_varianti": "Variare la ragione (2, 3, 1/2, 1/3, 1), il numero di termini (k, log n, n) e la forma (sommatoria o elenco). Usare spesso le due forme che compaiono nei cicli: 1 + 2 + 4 + … fino a n e n + n/2 + n/4 + … fino a 1, entrambe Θ(n). Distrattori: Θ(n log n), Θ(log n), Θ(2ⁿ)."
+    },
+    {
+      "id": "L01-T13",
+      "titolo": "Somma dei logaritmi, log(n!) e somma armonica",
+      "argomento": "Asintotica delle somme",
+      "formato": "multipla",
+      "frequenza": "media",
+      "difficolta": 2,
+      "fonte": "Dispensa 1, 'Metodo dei limiti asintotici: somma dei logaritmi' (Σ log i = Θ(n log n)) e 'Metodo dell'integrale: somma armonica' (Σ 1/i = Θ(log n)). Torna nel limite inferiore Ω(n log n) per l'ordinamento (Lezione 7).",
+      "descrizione": "Classe Θ di Σ_{i=1..n} log i, di log(n!), di Σ_{i=1..n} 1/i, o di somme simili come Σ i·log i.",
+      "conoscenze": [
+        "Σ_{i=1..n} log i = log(n!) = Θ(n log n): stima superiore n·log n, inferiore (n/2)·log(n/2).",
+        "Σ_{i=1..n} 1/i = Θ(log n) (integrale di 1/x).",
+        "Σ_{i=1..n} i·log i = Θ(n² log n)."
+      ],
+      "procedimento": [
+        "Stima superiore: n volte il termine più grande.",
+        "Stima inferiore: tenere solo la metà alta dei termini, ciascuno almeno uguale al valore in n/2.",
+        "Se coincidono, quella è la classe Θ."
+      ],
+      "trappole": [
+        "Rispondere Θ(log n) per Σ log i (confondere con un solo logaritmo).",
+        "Rispondere Θ(n!) per log(n!).",
+        "Rispondere Θ(n) o Θ(1) per la somma armonica."
+      ],
+      "come_generare_varianti": "Variare la forma (Σ log i, log(n!), log 1 + log 2 + … + log n, Σ 1/i, Σ i log i, Σ log(i²)). Distrattori: Θ(log n), Θ(n), Θ(n²), Θ(log² n)."
+    },
+    {
+      "id": "L01-T14",
+      "titolo": "Metodi per l'asintotica di una somma",
+      "argomento": "Asintotica delle somme",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 1,
+      "fonte": "Dispensa 1, 'Introduzione ai metodi per determinare l'asintotica di una somma' e 'Conclusione sui metodi delle somme'.",
+      "descrizione": "Domanda concettuale su quale metodo usare o su come funziona: forma chiusa, limiti asintotici (stima superiore e inferiore), integrale (per funzioni monotone).",
+      "conoscenze": [
+        "Forma chiusa: si trova una formula senza sommatoria e poi se ne prende il limite del rapporto.",
+        "Limiti asintotici: si maggiorano e si minorano i termini con funzioni più semplici; se le due stime hanno lo stesso ordine si ottiene Θ.",
+        "Integrale: si approssima Σ f(i) con l'integrale di f; serve f monotona."
+      ],
+      "procedimento": [
+        "Riconoscere dalla descrizione quale metodo viene usato o quale requisito serve."
+      ],
+      "trappole": [
+        "Pensare che il metodo dell'integrale valga per qualsiasi f, anche non monotona.",
+        "Pensare che una sola stima (solo superiore) basti per Θ."
+      ],
+      "come_generare_varianti": "Descrivere un procedimento e chiedere il nome del metodo, oppure chiedere il requisito (monotonia) o cosa si ottiene con una sola delle due stime (solo O o solo Ω). Opzioni: i tre metodi più il teorema principale come distrattore (che riguarda le ricorrenze)."
+    },
+    {
+      "id": "L01-T15",
+      "titolo": "Stima pratica del numero di passi",
+      "argomento": "Confronto tra algoritmi",
+      "formato": "multipla",
+      "frequenza": "bassa",
+      "difficolta": 1,
+      "fonte": "Dispensa 1, 'Motivazione intuitiva' e 'Confronto tra algoritmi' (con n = 10⁹ un algoritmo lineare fa 10⁹ passi, uno logaritmico circa 30).",
+      "descrizione": "Si dà n concreto e il costo di uno o due algoritmi; si chiede circa quanti passi servono, quale algoritmo conviene per n grande, oppure da quale n uno diventa migliore dell'altro.",
+      "conoscenze": [
+        "log₂ 1000 ≈ 10, log₂ 10⁶ ≈ 20, log₂ 10⁹ ≈ 30.",
+        "Per n abbastanza grande vince sempre l'algoritmo con la classe asintotica minore, qualunque siano le costanti.",
+        "Soglia di convenienza: per 100n contro n² si risolve 100n < n², cioè n > 100."
+      ],
+      "procedimento": [
+        "Sostituire n nella funzione di costo usando le approssimazioni dei logaritmi.",
+        "Per la soglia, risolvere la disuguaglianza tra i due costi."
+      ],
+      "trappole": [
+        "Pensare che una costante grande (1000n) renda un algoritmo lineare peggiore di uno quadratico per ogni n.",
+        "Confondere log₂ 10⁹ con 10⁹/2 o con 9."
+      ],
+      "come_generare_varianti": "Variare n (10³, 10⁶, 10⁹, 2²⁰), le funzioni di costo (n, log n, n log n, n², 2ⁿ) e le costanti delle coppie da confrontare (50n contro n², 100 n log n contro n², 2ⁿ contro n³). Opzioni numeriche con ordini di grandezza diversi."
+    }
+  ]
+}

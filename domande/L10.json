@@ -1,0 +1,2066 @@
+{
+  "lezione": 10,
+  "generato_con": "claude-sonnet-5-5",
+  "domande": [
+    {
+      "id": "L10-T01-01",
+      "tipo": "L10-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione su array (struttura statica) e lista concatenata (struttura dinamica) è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "I nodi di una lista concatenata occupano celle consecutive di memoria, così si passa da un nodo al successivo con un calcolo sull'indirizzo.",
+        "A parità di elementi memorizzati, la lista concatenata occupa meno memoria dell'array, perché ogni nodo contiene solo il valore.",
+        "L'array ha dimensione fissa decisa all'inizio; la lista concatenata può crescere e ridursi durante l'esecuzione.",
+        "In un array inserire un elemento in una posizione intermedia costa O(1), perché basta scrivere nella cella giusta."
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E4"
+      ],
+      "spiegazione": "L'array ha dimensione fissa e memoria contigua; la lista cresce e si riduce, con nodi sparsi collegati da next. Ogni nodo contiene anche il riferimento next, quindi la lista non occupa meno memoria. Inserire in mezzo a un array richiede di spostare elementi: O(n)."
+    },
+    {
+      "id": "L10-T01-02",
+      "tipo": "L10-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nell'array l'elemento di indice i si raggiunge in O(1); nella lista concatenata semplice bisogna seguire next a partire dalla testa.",
+        "In una lista concatenata semplice il nodo i-esimo si raggiunge in O(1), perché i nodi sono in memoria uno dopo l'altro.",
+        "In una lista concatenata inserire un nodo costa sempre O(1), anche partendo dalla sola testa e volendo inserire dopo l'ultimo nodo.",
+        "Inserire un elemento in testa a un array, mantenendo gli altri nello stesso ordine, costa O(1), come in una lista."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "L'array ha accesso diretto con un calcolo sull'indirizzo iniziale; la lista ha nodi sparsi e si attraversa seguendo next. Inserire in testa a un array obbliga a spostare tutti gli elementi (O(n)). Inserire in coda a una lista con la sola testa richiede prima di arrivare all'ultimo nodo."
+    },
+    {
+      "id": "L10-T01-03",
+      "tipo": "L10-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si vuole inserire un nuovo elemento subito dopo un elemento già individuato: in una lista concatenata di n nodi si ha il riferimento q al nodo, in un array di n elementi se ne conosce l'indice. Quale confronto è corretto?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Lista: O(1); array: O(1), perché basta scrivere nella cella giusta.",
+        "Lista: O(n), perché bisogna spostare i nodi successivi; array: O(1).",
+        "Lista: Θ(n), perché bisogna prima raggiungere la posizione dalla testa; array: O(n).",
+        "Lista: O(1), basta modificare dei riferimenti; array: O(n), bisogna spostare gli elementi successivi."
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "In una lista, avendo già il riferimento q, l'inserimento consiste nel cambiare due riferimenti (nuovo.next = q.next; q.next = nuovo): O(1). Nell'array le celle successive vanno spostate di una posizione: O(n). Nella lista nessun nodo viene spostato in memoria."
+    },
+    {
+      "id": "L10-T01-04",
+      "tipo": "L10-T01",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sulla lista concatenata semplice è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "I suoi nodi devono essere allocati in un unico blocco contiguo, altrimenti il campo next non può funzionare.",
+        "Ogni nodo contiene, oltre al valore, un riferimento al nodo successivo: c'è un overhead di memoria che l'array non ha.",
+        "A parità di elementi memorizzati occupa meno memoria dell'array, perché non ha bisogno di riferimenti.",
+        "Qualsiasi inserimento o rimozione costa O(1), perché non si spostano mai elementi."
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il campo next è un costo di memoria in più per ogni nodo. I nodi possono stare ovunque in memoria: next li collega. Non spostare elementi non basta per avere O(1): se si parte dalla testa bisogna prima raggiungere il punto giusto."
+    },
+    {
+      "id": "L10-T01-05",
+      "tipo": "L10-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale coppia di caratteristiche descrive correttamente una lista concatenata semplice?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Nodi contigui in memoria, accesso diretto con un calcolo sull'indirizzo.",
+        "Nodi sparsi in memoria, accesso a un nodo qualsiasi in O(1) per posizione.",
+        "Nodi sparsi in memoria, occupazione di memoria minore di un array con gli stessi elementi.",
+        "Nodi sparsi in memoria, accesso sequenziale seguendo next."
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E1",
+        "E2",
+        null
+      ],
+      "spiegazione": "I nodi di una lista possono stare in qualunque punto della memoria e si raggiungono partendo dalla testa e seguendo next. Contiguità e accesso diretto sono proprietà dell'array; la lista, inoltre, occupa più memoria dell'array, perché ogni nodo contiene anche il riferimento next."
+    },
+    {
+      "id": "L10-T01-06",
+      "tipo": "L10-T01",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una lista concatenata semplice ha n nodi e si dispone solo del puntatore alla testa. Si vuole inserire una nuova chiave subito dopo il nodo che contiene la chiave k (presente nella lista). Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il costo è O(n): prima bisogna cercare il nodo con chiave k, poi il collegamento costa O(1).",
+        "Il costo è O(1), perché in una lista concatenata inserire un nodo costa sempre O(1).",
+        "Il costo è O(1), perché si raggiunge il nodo con chiave k direttamente, come con A[i] in un array.",
+        "Non è possibile: senza indici non si può inserire in una posizione intermedia di una lista."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Cambiare i riferimenti costa O(1), ma solo dopo aver trovato il nodo: la ricerca parte dalla testa e nel caso peggiore scorre tutta la lista, O(n). Con il riferimento al nodo già in mano l'inserimento sarebbe O(1)."
+    },
+    {
+      "id": "L10-T02-01",
+      "tipo": "L10-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il frammento legge la chiave del nodo in posizione i di una lista concatenata semplice di n nodi (testa in posizione 0, 0 ≤ i < n). Quale limitazione del costo è corretta per ogni valore di i?",
+      "codice": "q = testa\nfor _ in range(i):\n    q = q.next\nprint(q.key)",
+      "albero": null,
+      "opzioni": [
+        "O(n)",
+        "Θ(n)",
+        "O(1)",
+        "O(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo segue next i volte: costo Θ(i). Poiché i ≤ n − 1, il costo è O(n), ma non è Θ(n) per ogni i: per i = 0 non si segue nessun next. Non c'è accesso diretto come in A[i]."
+    },
+    {
+      "id": "L10-T02-02",
+      "tipo": "L10-T02",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Una lista concatenata semplice di n nodi è accessibile solo tramite il puntatore alla testa. Il costo per leggere la chiave dell'ultimo nodo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1)",
+        "O(log n)",
+        "Θ(n)",
+        "Θ(n²)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Per arrivare all'ultimo nodo bisogna seguire next n − 1 volte a partire dalla testa: Θ(n) per ogni lista di n nodi. Non esiste un calcolo sull'indirizzo come per A[n − 1] in un array, e non si può procedere per dimezzamenti."
+    },
+    {
+      "id": "L10-T02-03",
+      "tipo": "L10-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista concatenata semplice è ordinata in modo crescente e contiene n chiavi. Si cerca una chiave x, scorrendo dalla testa e fermandosi non appena si trova x o una chiave maggiore. Quale limitazione del costo vale per ogni input?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(log n), applicando la ricerca binaria sul nodo centrale",
+        "O(n)",
+        "Θ(n) per ogni input, anche se x è nella testa",
+        "O(1), perché la lista è ordinata"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Nel caso peggiore (x maggiore di tutte le chiavi, oppure nell'ultimo nodo) si percorre tutta la lista, quindi per ogni input il costo è O(n). Non è Θ(n) per ogni input: se x è la chiave della testa basta un confronto. La ricerca binaria richiede di raggiungere il nodo centrale, e questo costa già tempo lineare."
+    },
+    {
+      "id": "L10-T02-04",
+      "tipo": "L10-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista concatenata semplice ordinata in modo crescente ha n nodi (n dispari) e si ha solo il puntatore alla testa. Si vuole leggere la chiave mediana, cioè quella del nodo in posizione (n − 1)/2. Il costo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1), come per la mediana di un array ordinato",
+        "Θ(log n), perché la lista è ordinata e si procede per dimezzamenti",
+        "Θ(n log n)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Per arrivare al nodo in posizione (n − 1)/2 si seguono (n − 1)/2 collegamenti: Θ(n) per ogni n. Nell'array ordinato la mediana è A[(n − 1)/2] in O(1), ma nella lista non c'è accesso diretto e l'ordinamento non aiuta a saltare i nodi."
+    },
+    {
+      "id": "L10-T02-05",
+      "tipo": "L10-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Su una lista concatenata semplice di n nodi, con il solo puntatore alla testa, si leggono le chiavi dei nodi in posizione 0, ⌊n/2⌋ e n − 1, ripartendo ogni volta dalla testa. Il costo totale è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(1), perché sono solo tre accessi",
+        "Θ(log n)",
+        "Θ(n²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il primo accesso costa Θ(1), il secondo circa n/2 passi, il terzo n − 1: in totale Θ(n). Tre accessi non sono tre operazioni O(1), perché nella lista un accesso per posizione non è in tempo costante."
+    },
+    {
+      "id": "L10-T02-06",
+      "tipo": "L10-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si cerca la chiave x in una lista concatenata semplice non ordinata di n nodi. Quale coppia descrive correttamente il costo nel caso migliore e nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n) in ogni caso, anche quando x è nella testa",
+        "O(1) in ogni caso, come con A[i] in un array",
+        "Migliore O(1) (x nella testa), peggiore O(n) (x in fondo o assente)",
+        "Migliore O(1), peggiore O(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Si controllano i nodi uno dopo l'altro: se x è la chiave della testa basta un confronto, se è in fondo o assente si esaminano tutti i nodi. La lista non è ordinata, quindi non si può escludere nessun nodo e non esiste un caso peggiore logaritmico."
+    },
+    {
+      "id": "L10-T02-07",
+      "tipo": "L10-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Il frammento stampa le chiavi di una lista concatenata semplice di n nodi usando, per ogni posizione i, una nuova scansione che parte dalla testa. Quale costo ha?",
+      "codice": "for i in range(n):\n    q = testa\n    for _ in range(i):\n        q = q.next\n    print(q.key)",
+      "albero": null,
+      "opzioni": [
+        "Θ(n), perché ogni accesso per posizione costa O(1)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(n³)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Per la posizione i la scansione segue i collegamenti: 0 + 1 + … + (n − 1) = n(n − 1)/2 passi, cioè Θ(n²). Θ(n) sarebbe il costo con accesso diretto (o con un solo ciclo p = p.next), ma qui ogni stampa riparte dalla testa."
+    },
+    {
+      "id": "L10-T02-08",
+      "tipo": "L10-T02",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una lista concatenata semplice di n nodi è ordinata in modo decrescente e si ha solo il puntatore alla testa. Quale coppia descrive i costi per leggere la chiave massima e la chiave minima?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Massimo e minimo entrambi in O(1), perché la lista è ordinata",
+        "Massimo in O(1), minimo in O(log n)",
+        "Massimo e minimo entrambi in Θ(n)",
+        "Massimo in O(1), minimo in Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "In una lista decrescente il massimo è la chiave della testa: O(1). Il minimo è nell'ultimo nodo, che si raggiunge solo scorrendo da capo: Θ(n). L'ordinamento non permette né accesso diretto né ricerca binaria."
+    },
+    {
+      "id": "L10-T03-01",
+      "tipo": "L10-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In una lista concatenata semplice di n nodi si conosce soltanto il puntatore alla testa. Come si accede al penultimo nodo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si scorre la lista dalla testa fino al nodo q con q.next.next uguale a None, in tempo lineare.",
+        "Si usa il campo prev dell'ultimo nodo, in O(1).",
+        "Si accede direttamente alla posizione n − 2, in O(1).",
+        "Bastano O(log n) accessi, procedendo per dimezzamenti."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Ogni nodo di una lista semplice conosce solo il successivo: non ci sono collegamenti all'indietro né accesso per posizione. Il penultimo si trova scorrendo dalla testa fino al nodo il cui next.next è None: Θ(n)."
+    },
+    {
+      "id": "L10-T03-02",
+      "tipo": "L10-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Una lista doppiamente concatenata (campi next e prev) di n nodi ha il puntatore alla testa e il puntatore alla coda. Qual è il modo più efficiente per accedere al penultimo nodo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Bisogna scorrere la lista dalla testa fino al penultimo, in tempo lineare.",
+        "Si accede direttamente alla posizione n − 2, in O(1).",
+        "Bastano O(log n) accessi, procedendo per dimezzamenti.",
+        "Si legge coda.prev, in tempo costante."
+      ],
+      "corretta": 3,
+      "errori": [
+        "altro",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Nella lista doppiamente concatenata ogni nodo conosce anche il precedente: dal puntatore alla coda, coda.prev è il penultimo nodo, in O(1). Il prezzo è un riferimento in più per ogni nodo. La scansione dalla testa funzionerebbe, ma sarebbe inutilmente lineare."
+    },
+    {
+      "id": "L10-T03-03",
+      "tipo": "L10-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In una lista concatenata semplice di n nodi si conoscono il puntatore alla testa e il puntatore all'ultimo nodo. Come si accede al terzultimo nodo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Dall'ultimo nodo si torna indietro di due nodi, in O(1).",
+        "Si scorre dalla testa fino al nodo q con q.next.next.next uguale a None, in tempo lineare.",
+        "Si accede direttamente alla posizione n − 3, in O(1).",
+        "Bastano O(log n) accessi, procedendo per dimezzamenti."
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il puntatore alla coda non aiuta: l'ultimo nodo non sa chi lo precede e non c'è accesso per posizione. Si parte dalla testa e si avanza finché q.next.next.next è None: Θ(n)."
+    },
+    {
+      "id": "L10-T03-04",
+      "tipo": "L10-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In una lista concatenata semplice di n nodi si ha il solo puntatore alla testa e un riferimento r a un nodo qualsiasi della lista, diverso dalla testa. Come si ottiene il nodo che precede r?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si legge r.prev, in O(1).",
+        "Si accede alla posizione dell'indice di r diminuita di uno, in O(1).",
+        "Si scorre dalla testa fino al nodo q con q.next uguale a r, in tempo lineare.",
+        "Si procede per dimezzamenti sui nodi, con O(log n) accessi."
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E2",
+        null,
+        "E3"
+      ],
+      "spiegazione": "Il nodo r conosce solo il suo successore. Il predecessore si trova soltanto partendo dalla testa e avanzando finché q.next is r: nel caso peggiore Θ(n) passi. Il campo prev esiste solo nelle liste doppiamente concatenate."
+    },
+    {
+      "id": "L10-T03-05",
+      "tipo": "L10-T03",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una lista doppiamente concatenata (campi next e prev; il prev della testa è None) ha n nodi e si conosce solo il puntatore alla testa. Come si accede al penultimo nodo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "In O(1), perché basta leggere prev della testa.",
+        "Si scorre dalla testa fino all'ultimo nodo, poi si legge prev: tempo lineare.",
+        "Si accede direttamente alla posizione n − 2, in O(1).",
+        "Bastano O(log n) accessi, procedendo per dimezzamenti."
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Il campo prev permette di tornare indietro, ma bisogna prima arrivare all'ultimo nodo, e senza puntatore alla coda lo si raggiunge solo scorrendo dalla testa: Θ(n). Il prev della testa è None e non porta da nessuna parte."
+    },
+    {
+      "id": "L10-T03-06",
+      "tipo": "L10-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione sull'accesso al penultimo nodo è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "In una lista doppiamente concatenata con puntatore alla coda costa O(1); in una lista semplice serve una scansione lineare dalla testa.",
+        "In una lista semplice con puntatore alla coda costa O(1), come in una doppiamente concatenata.",
+        "In una lista semplice è l'elemento di indice n − 2 e si legge in O(1).",
+        "In entrambi i tipi di lista costa O(log n), perché si procede per dimezzamenti."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Con la coda e il campo prev si ha coda.prev in O(1). In una lista semplice l'ultimo nodo non conosce il precedente: bisogna scorrere dalla testa. Non c'è accesso per indice né ricerca per dimezzamenti."
+    },
+    {
+      "id": "L10-T03-07",
+      "tipo": "L10-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista concatenata semplice di n ≥ 2 nodi ha puntatore alla testa e alla coda. Per cancellare l'ultimo nodo bisogna individuare il penultimo. Quante volte si segue next, partendo dalla testa?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1 volta: dal puntatore alla coda si torna al penultimo",
+        "0 volte: il penultimo si legge direttamente alla posizione n − 2",
+        "⌈log₂ n⌉ volte, come in una ricerca binaria",
+        "n − 2 volte, quindi tempo lineare"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Il penultimo è il nodo in posizione n − 2: dalla testa servono n − 2 passi, quindi Θ(n). Il puntatore alla coda non permette di tornare indietro, e la lista non ha accesso per posizione né ricerca binaria."
+    },
+    {
+      "id": "L10-T03-08",
+      "tipo": "L10-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In quale dei seguenti casi il penultimo nodo si raggiunge in tempo costante?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Lista doppiamente concatenata con puntatore alla coda",
+        "Lista semplice con puntatore alla coda, tornando indietro dall'ultimo nodo",
+        "Lista semplice con solo la testa, leggendo direttamente la posizione n − 2",
+        "Lista doppiamente concatenata con la sola testa"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Servono sia il campo prev sia il puntatore alla coda: coda.prev è il penultimo. Nella lista semplice l'ultimo nodo non conosce il precedente e non c'è accesso per posizione. Con la sola testa, anche in una lista doppia bisogna prima scorrere fino all'ultimo nodo: Θ(n)."
+    },
+    {
+      "id": "L10-T04-01",
+      "tipo": "L10-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Una lista concatenata semplice di n nodi ha solo il puntatore alla testa. Il costo di inserire un nuovo nodo in coda è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1): si collega il nuovo nodo dopo l'ultimo",
+        "O(1): ogni inserimento in una lista concatenata costa O(1)",
+        "Θ(n): si deve scorrere fino all'ultimo nodo",
+        "O(log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Per collegare il nuovo nodo bisogna modificare il next dell'ultimo, che con la sola testa si raggiunge scorrendo tutta la lista: Θ(n). Il collegamento in sé costa O(1), ma la ricerca della posizione no."
+    },
+    {
+      "id": "L10-T04-02",
+      "tipo": "L10-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista concatenata semplice di n nodi ha il puntatore alla testa e il puntatore all'ultimo nodo, da mantenere aggiornati. Il costo di cancellare l'ultimo nodo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "O(1), perché si ha il puntatore all'ultimo nodo",
+        "O(1), perché cancellare un nodo in una lista costa sempre O(1)",
+        "O(log n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "Cancellare l'ultimo nodo richiede di mettere a None il next del penultimo e di far diventare il penultimo la nuova coda. In una lista semplice il penultimo si trova solo scorrendo dalla testa: Θ(n), nonostante il puntatore alla coda."
+    },
+    {
+      "id": "L10-T04-03",
+      "tipo": "L10-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista doppiamente concatenata ha puntatore alla testa e puntatore alla coda, da mantenere aggiornati. Quante delle quattro operazioni (inserimento in testa, inserimento in coda, cancellazione in testa, cancellazione in coda) costano O(1)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tre: tutte tranne la cancellazione dell'ultimo nodo",
+        "Tutte e quattro",
+        "Due: solo le operazioni in testa",
+        "Nessuna: dipende dal numero di nodi"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con testa, coda e il campo prev ogni operazione agli estremi tocca un numero costante di riferimenti. Anche la cancellazione dell'ultimo nodo è O(1), perché il penultimo è coda.prev e non va cercato scorrendo la lista."
+    },
+    {
+      "id": "L10-T04-04",
+      "tipo": "L10-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista concatenata semplice di n nodi ha solo il puntatore alla testa. Quali tra queste operazioni costano Θ(n)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Solo la cancellazione dell'ultimo nodo",
+        "Nessuna: in una lista concatenata ogni inserimento e cancellazione costa O(1)",
+        "Inserimento in testa e cancellazione in testa",
+        "Inserimento in coda e cancellazione dell'ultimo nodo"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Inserimento e cancellazione in testa sono O(1): Nodo(x, p) e p.next. In coda bisogna arrivare all'ultimo nodo (inserimento) o al penultimo (cancellazione), e con la sola testa serve una scansione: Θ(n) per entrambe."
+    },
+    {
+      "id": "L10-T04-05",
+      "tipo": "L10-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Partendo da una lista concatenata semplice vuota, con il solo puntatore alla testa, si eseguono n inserimenti consecutivi di un nuovo nodo in coda. Il costo totale è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), perché ogni inserimento in coda costa O(1)",
+        "Θ(n²)",
+        "Θ(n log n)",
+        "Θ(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "L'i-esimo inserimento deve scorrere gli i nodi già presenti: 0 + 1 + … + (n − 1) = n(n − 1)/2 passi, cioè Θ(n²). Con un puntatore alla coda ogni inserimento sarebbe O(1) e il totale Θ(n)."
+    },
+    {
+      "id": "L10-T04-06",
+      "tipo": "L10-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una lista doppiamente concatenata, con puntatori alla testa e alla coda, è inizialmente vuota. Si eseguono n inserimenti in coda e poi n cancellazioni dell'ultimo nodo, fino a svuotarla. Il costo totale è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²), perché ogni cancellazione in coda richiede di trovare il penultimo scorrendo",
+        "Θ(n log n)",
+        "Θ(n)",
+        "Θ(1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Ogni inserimento in coda e ogni cancellazione dell'ultimo nodo costano O(1): il penultimo è coda.prev e non va cercato. In totale 2n operazioni O(1): Θ(n). Il costo Θ(n²) varrebbe per una lista semplice."
+    },
+    {
+      "id": "L10-T05-01",
+      "tipo": "L10-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In una lista concatenata semplice di n nodi contenenti interi si cancellano tutti i nodi con chiave maggiore di x, con una sola scansione che tiene il riferimento al nodo precedente. Il costo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²), perché ogni cancellazione costa O(n)",
+        "Θ(n)",
+        "Θ(k), dove k è il numero di nodi cancellati",
+        "O(1), perché cancellare un nodo costa O(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Ogni nodo viene esaminato una volta e, se va tolto, la cancellazione è q.next = q.next.next, cioè O(1): in totale Θ(n). Bisogna comunque guardare tutti i nodi, anche se ne vanno cancellati pochi."
+    },
+    {
+      "id": "L10-T05-02",
+      "tipo": "L10-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Il costo di calcolare la somma di tutte le chiavi di una lista concatenata semplice di n nodi è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "lineare in n",
+        "costante, perché sommare la chiave di un nodo costa O(1)",
+        "logaritmico in n, perché la lista si può dimezzare",
+        "quadratico in n, perché per ogni nodo si riparte dalla testa"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Basta una scansione: ogni nodo si visita una volta e il lavoro per nodo è costante (una somma). Costo Θ(n): il lavoro è costante per nodo, non in totale. Non ci sono dimezzamenti possibili e non serve ripartire dalla testa."
+    },
+    {
+      "id": "L10-T05-03",
+      "tipo": "L10-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si vogliono cancellare tutti i valori pari da una list di Python A di n interi, con remove dentro un ciclo (la metà circa dei valori è pari), e da una lista concatenata di n nodi, con una scansione che tiene il riferimento al nodo precedente. I costi sono rispettivamente:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²) per entrambe, perché ogni cancellazione costa O(n)",
+        "Θ(n²) per la list di Python, O(1) per la lista concatenata, perché cancellare un nodo costa O(1)",
+        "Θ(n²) per la list di Python, Θ(n) per la lista concatenata",
+        "Θ(n) per entrambe, perché remove costa O(1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Ogni remove su una list sposta gli elementi successivi: Θ(n) per rimozione e circa n/2 rimozioni, quindi Θ(n²). Nella lista concatenata ogni cancellazione è O(1), ma i nodi da esaminare sono n: Θ(n)."
+    },
+    {
+      "id": "L10-T05-04",
+      "tipo": "L10-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si conta quanti nodi di una lista concatenata semplice di n nodi hanno chiave negativa, scorrendo la lista una sola volta. Il costo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(k), dove k è il numero di nodi con chiave negativa",
+        "O(1), perché controllare la chiave di un nodo costa O(1)",
+        "Θ(log n)",
+        "Θ(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E5",
+        "E4",
+        null
+      ],
+      "spiegazione": "Per sapere quali chiavi sono negative bisogna esaminarle tutte: n nodi, lavoro costante ciascuno, Θ(n). Il costo non dipende solo da k: anche i nodi non negativi vanno visitati."
+    },
+    {
+      "id": "L10-T05-05",
+      "tipo": "L10-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In una lista concatenata semplice di n nodi interi si raddoppia la chiave di ogni nodo con chiave dispari, con una sola scansione. Il costo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "costante, perché modificare un nodo costa O(1)",
+        "lineare in n",
+        "logaritmico in n",
+        "quadratico in n, perché ogni modifica richiede di ripartire dalla testa"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Ogni nodo si esamina una volta e si modifica in O(1): n × O(1) = Θ(n). Modificare un nodo è O(1), ma i nodi da modificare vanno prima trovati scorrendo tutta la lista."
+    },
+    {
+      "id": "L10-T05-06",
+      "tipo": "L10-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una lista concatenata semplice ha n nodi e la chiave x compare in k di essi (0 ≤ k ≤ n). Si cancellano tutte le occorrenze di x con una sola scansione, tenendo il riferimento al nodo precedente. Il costo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n)",
+        "Θ(n · k), perché ogni cancellazione costa O(n)",
+        "Θ(k)",
+        "O(1), perché cancellare un nodo costa O(1)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "La scansione visita ogni nodo una volta e ogni cancellazione costa O(1) (q.next = q.next.next): Θ(n), qualunque sia k. Il numero di cancellazioni non cambia la classe di costo, perché non c'è nessuno spostamento di elementi."
+    },
+    {
+      "id": "L10-T05-07",
+      "tipo": "L10-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "In una lista concatenata semplice di n nodi interi si eliminano, con una sola scansione, tutti i nodi la cui chiave è uguale a quella del nodo successivo. Il costo è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²), perché ogni cancellazione costa O(n)",
+        "Θ(k), dove k è il numero di nodi eliminati",
+        "Θ(n)",
+        "Θ(n log n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "A ogni passo si confrontano due nodi vicini (p.key con p.next.key) e, se hanno la stessa chiave, si toglie p cambiando il next del nodo che lo precede (tenuto in una variabile): O(1). Ogni nodo è visitato una volta: Θ(n)."
+    },
+    {
+      "id": "L10-T05-08",
+      "tipo": "L10-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si cancellano tutti i nodi con chiave pari da una lista concatenata semplice di n nodi (una scansione) e poi si stampa la lista risultante. Il costo complessivo delle due operazioni è:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "quadratico in n, perché ogni cancellazione costa O(n)",
+        "lineare nel numero k di nodi cancellati",
+        "costante, perché cancellare e stampare costano O(1) per nodo",
+        "lineare in n"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "La cancellazione costa Θ(n) (n nodi visitati, ogni cancellazione O(1)); la stampa dei nodi rimasti costa O(n). La somma è Θ(n). Il lavoro è O(1) per nodo, non in totale."
+    },
+    {
+      "id": "L10-T06-01",
+      "tipo": "L10-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si supponga che la capacità di una list di Python raddoppi quando l'array sottostante è pieno. Una list ha lunghezza 2 e capacità 2. Dopo 7 append, quante riallocazioni (con copia degli elementi) ci sono state e qual è la capacità finale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "3 riallocazioni, capacità 16",
+        "7 riallocazioni, capacità 9",
+        "3 riallocazioni, capacità 9",
+        "2 riallocazioni, capacità 8"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "spiegazione": "Lunghezza e capacità 2: il 1° append rialloca (capacità 4, lunghezza 3); il 2° porta a 4; il 3° rialloca (capacità 8, lunghezza 5); i successivi arrivano a 8; il 7° trova 8 su 8 e rialloca (capacità 16, lunghezza 9). Le riallocazioni sono 3 e la capacità finale 16: 'capacità 9' confonde la capacità con la lunghezza finale; '2 riallocazioni, capacità 8' dimentica la riallocazione del 7° append."
+    },
+    {
+      "id": "L10-T06-02",
+      "tipo": "L10-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si supponga che la capacità di una list di Python raddoppi quando l'array sottostante è pieno. Una list ha lunghezza 3 e capacità 8. Dopo 4 append, quante riallocazioni ci sono state e qual è la capacità finale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4 riallocazioni (una per append), capacità 7",
+        "Nessuna riallocazione, capacità 7",
+        "1 riallocazione, capacità 16",
+        "Nessuna riallocazione, capacità 8"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "La lunghezza passa da 3 a 7 e non supera mai la capacità 8: la list non è mai piena al momento di un append, quindi non rialloca. La capacità resta 8, anche se la lunghezza è 7. Si rialloca solo quando lunghezza = capacità."
+    },
+    {
+      "id": "L10-T06-03",
+      "tipo": "L10-T06",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una list di Python ha lunghezza 4 e capacità 4. Si supponga che, quando l'array è pieno, la capacità aumenti di 4 posizioni (non raddoppia). Dopo 9 append, quante riallocazioni ci sono state e qual è la capacità finale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "9 riallocazioni, capacità 13",
+        "3 riallocazioni, capacità 16",
+        "3 riallocazioni, capacità 13",
+        "2 riallocazioni, capacità 12"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E3",
+        "E5"
+      ],
+      "spiegazione": "Il 1° append rialloca (capacità 8, lunghezza 5); i tre successivi portano la lunghezza a 8. Il 5° rialloca (capacità 12, lunghezza 9); i tre successivi arrivano a 12. Il 9° rialloca (capacità 16, lunghezza 13). Totale: 3 riallocazioni, capacità finale 16 (la lunghezza è 13)."
+    },
+    {
+      "id": "L10-T06-04",
+      "tipo": "L10-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Che tipo di struttura è una list di Python?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Una lista concatenata di nodi, per cui insert(0, x) costa O(1).",
+        "Un array dinamico in cui len(A) restituisce la capacità allocata, non il numero di elementi.",
+        "Un array dinamico: celle contigue, accesso A[i] in O(1); quando è piena, Python alloca un array più grande e copia gli elementi.",
+        "Un array dinamico che, quando è pieno, alloca un nuovo blocco e vi copia solo il nuovo elemento."
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E3",
+        null,
+        "E4"
+      ],
+      "spiegazione": "La list di Python è un array dinamico, non una lista concatenata: ha memoria contigua e accesso diretto. Quando non c'è più spazio si alloca un array più grande e si copiano tutti gli elementi. len(A) restituisce il numero di elementi presenti, non la capacità."
+    },
+    {
+      "id": "L10-T06-05",
+      "tipo": "L10-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una list di Python ha lunghezza uguale alla capacità e si esegue un append. Che cosa succede?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Si alloca un nuovo blocco e vi si copia solo il nuovo elemento: l'append costa O(1).",
+        "Si alloca un array più grande e si copiano tutti gli elementi: quell'append costa O(n).",
+        "Si crea un nuovo nodo e lo si collega all'ultimo, senza copiare nulla.",
+        "Python solleva un errore, perché la capacità di una list è fissa."
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Con lunghezza = capacità non c'è posto per il nuovo elemento: Python alloca un array più grande e copia dentro tutti gli n elementi già presenti, poi aggiunge il nuovo. Quell'append costa O(n); gli altri, che trovano posto libero, costano O(1)."
+    },
+    {
+      "id": "L10-T06-06",
+      "tipo": "L10-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale affermazione sulle list di Python è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La capacità è il numero di posizioni allocate e può essere maggiore della lunghezza, che è il numero di elementi presenti.",
+        "A.insert(0, x) costa O(1), perché la list è una lista concatenata e basta un nuovo nodo in testa.",
+        "Ogni append rialloca l'array e copia tutti gli elementi, quindi costa sempre O(n).",
+        "len(A) restituisce la capacità dell'array sottostante."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "Capacità e lunghezza sono due numeri diversi, con capacità ≥ lunghezza. La riallocazione avviene solo quando l'array è pieno, non a ogni append. insert(0, x) costa O(n), perché sposta tutti gli elementi di una posizione."
+    },
+    {
+      "id": "L10-T07-01",
+      "tipo": "L10-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nodo(k) crea un nodo con chiave k e next uguale a None. Dopo l'esecuzione del codice, scorrendo con next a partire da a e da p, quali chiavi si leggono?",
+      "codice": "a = Nodo(5)\na.next = Nodo(8)\na.next.next = Nodo(2)\np = a\na = a.next",
+      "albero": null,
+      "opzioni": [
+        "Da a: 8, 2. Da p: 5, 8, 2.",
+        "Da a: 5, 8, 2. Da p: 5, 8, 2, perché a = a.next non modifica nulla e a resta alla testa.",
+        "Da a: 8, 2. Da p: 8, 2, perché il nodo 5 è stato cancellato.",
+        "Da a: 8. Da p: 5."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "p = a fa puntare p al nodo 5. Poi a = a.next sposta solo la variabile a sul nodo 8; i nodi e i loro campi next non cambiano. Da p si legge ancora 5, 8, 2; da a si legge 8, 2. Nessun nodo viene cancellato."
+    },
+    {
+      "id": "L10-T07-02",
+      "tipo": "L10-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nodo(k) crea un nodo con chiave k e next uguale a None. Dopo l'esecuzione del codice, quali nodi vengono liberati automaticamente dalla memoria?",
+      "codice": "x = Nodo(1)\nx.next = Nodo(2)\nx.next.next = Nodo(3)\ny = x.next.next\nx.next = None",
+      "albero": null,
+      "opzioni": [
+        "I nodi con chiave 2 e 3, perché sono stati scollegati da x",
+        "Nessun nodo: in Python i nodi vanno liberati con una cancellazione esplicita",
+        "Solo il nodo con chiave 2",
+        "Solo il nodo con chiave 3"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E3",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Dopo x.next = None, il nodo 1 non punta più al nodo 2. Il nodo 3 è però ancora puntato dalla variabile y e resta in memoria. Il nodo 2 non è puntato da nessuna variabile né da alcun next raggiungibile: viene liberato automaticamente. In Python non serve (e non c'è) una cancellazione esplicita."
+    },
+    {
+      "id": "L10-T07-03",
+      "tipo": "L10-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nodo(k) crea un nodo con chiave k e next uguale a None. Dopo l'esecuzione del codice, che cosa si legge scorrendo da lista e quali nodi vengono liberati?",
+      "codice": "lista = Nodo(4)\nlista.next = Nodo(9)\nlista.next.next = Nodo(7)\nlista.next.next.next = Nodo(1)\nq = lista.next\nq.next = q.next.next",
+      "albero": null,
+      "opzioni": [
+        "Da lista: 4, 9, 1; i nodi con chiave 7 e 1 vengono liberati.",
+        "Da lista: 4, 9, 1; il nodo con chiave 7 viene liberato.",
+        "Da lista: 4, 9, 1; nessun nodo viene liberato, perché in Python vanno liberati esplicitamente.",
+        "Da lista: 4, 9, 7, 1; nessun nodo viene liberato, perché q.next = … modifica solo la variabile q."
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "q punta al nodo 9, quindi q.next = q.next.next modifica il campo next del nodo 9: da 7 passa a 1. Da lista si legge 4, 9, 1. Il nodo 7 non è più puntato da nulla e viene liberato; il nodo 1 è ancora puntato dal nodo 9 e resta."
+    },
+    {
+      "id": "L10-T07-04",
+      "tipo": "L10-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nodo(k) crea un nodo con chiave k e next uguale a None. Dopo l'esecuzione del codice, che cosa si legge scorrendo da t e da lista, e quali nodi vengono liberati?",
+      "codice": "lista = Nodo(3)\nlista.next = Nodo(5)\nlista.next.next = Nodo(8)\nt = lista.next.next\nlista = lista.next\nlista.next = None",
+      "albero": null,
+      "opzioni": [
+        "Da t: 8. Da lista: 3, perché l'assegnamento a lista non cambia nulla. Si libera solo il nodo con chiave 5.",
+        "Da t: 8. Da lista: 5. Si liberano i nodi con chiave 3 e 8, perché non sono più collegati a lista.",
+        "Da t: 8. Da lista: 5. Nessun nodo viene liberato, perché in Python vanno liberati esplicitamente.",
+        "Da t: 8. Da lista: 5. Si libera solo il nodo con chiave 3."
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "t punta al nodo 8. lista = lista.next sposta solo la variabile sul nodo 5; poi lista.next = None modifica il campo next del nodo 5 e taglia il collegamento verso l'8. Da lista si legge 5, da t si legge 8. Il nodo 3 non è puntato da nulla e viene liberato; il nodo 8 è scollegato ma t lo punta ancora, quindi resta in memoria."
+    },
+    {
+      "id": "L10-T07-05",
+      "tipo": "L10-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Il costruttore Nodo(x, succ) crea un nodo con chiave x e successivo succ. Dopo l'esecuzione del codice, quali chiavi si leggono scorrendo da d e da c?",
+      "codice": "c = Nodo(6, Nodo(4, Nodo(9)))\nd = Nodo(1, c)\nc = c.next",
+      "albero": null,
+      "opzioni": [
+        "Da d: 1, 6, 4, 9. Da c: 6, 4, 9, perché c = c.next non cambia nulla.",
+        "Da d: 1, 4, 9. Da c: 4, 9, perché il nodo 6 è stato cancellato.",
+        "Da d: 1, 6, 4, 9. Da c: 4, 9.",
+        "Da d: 1, 6. Da c: 4, 9."
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "c punta al nodo 6, che punta a 4 → 9; d è un nuovo nodo 1 il cui next è il nodo 6. Poi c = c.next sposta solo la variabile c sul nodo 4. La lista che parte da d non cambia: 1, 6, 4, 9."
+    },
+    {
+      "id": "L10-T07-06",
+      "tipo": "L10-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Nodo(k) crea un nodo con chiave k e next uguale a None. Dopo l'esecuzione del codice, che cosa si legge scorrendo da a e da b?",
+      "codice": "a = Nodo(2)\na.next = Nodo(4)\na.next.next = Nodo(6)\na.next.next.next = Nodo(8)\nb = a.next.next\na.next.next = None",
+      "albero": null,
+      "opzioni": [
+        "Da a: 2, 4. Da b: 6, 8.",
+        "Da a: 2, 4. Da b: 6, perché il resto della lista dopo il 6 va perso con a.next.next = None.",
+        "Da a: 2, 4. Da b: niente, perché i nodi 6 e 8 sono stati liberati.",
+        "Da a: 2, 4, 6, 8. Da b: 6, 8."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "altro",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "b = a.next.next punta al nodo 6, che continua a puntare al nodo 8. L'istruzione a.next.next = None modifica il campo next del nodo 4: la lista che parte da a si ferma a 4. Il nodo 6 è ancora puntato da b: si legge 6, 8 e nessun nodo viene liberato."
+    },
+    {
+      "id": "L10-T08-01",
+      "tipo": "L10-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue lista = InserisciR(lista, 7) su lista = 2 → 5 → 9 (ordinata in modo crescente). Cosa contiene lista dopo la chiamata?",
+      "codice": "def InserisciR(p, x):\n    if p is None or p.key > x:\n        return Nodo(x, p)\n    if p.key == x:\n        return p\n    InserisciR(p.next, x)\n    return p",
+      "albero": null,
+      "opzioni": [
+        "2 → 5 → 9",
+        "2 → 5 → 7 → 9",
+        "2 → 5",
+        "7 → 9"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Quando si arriva al nodo 9 la chiamata crea correttamente Nodo(7, 9), ma il risultato non viene assegnato a p.next: il next del nodo 5 punta ancora al 9 e il nuovo nodo va perso. Nessun campo next cambia e la lista resta 2 → 5 → 9. Serve p.next = InserisciR(p.next, x). Con x = 1 funzionerebbe, perché il nuovo nodo viene restituito e assegnato a lista."
+    },
+    {
+      "id": "L10-T08-02",
+      "tipo": "L10-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La lista è 3 → 6 → 8 → 1 e si esegue lista = Cancella(lista, 8). Cosa contiene lista?",
+      "codice": "def Cancella(p, x):\n    if p is None:\n        return None\n    if p.key == x:\n        return p.next\n    q = p\n    while q.next is not None and q.next.key != x:\n        q = q.next\n    if q.next is not None:\n        n = q.next\n        n = n.next\n    return p",
+      "albero": null,
+      "opzioni": [
+        "3 → 6 → 1",
+        "3 → 6",
+        "3 → 6 → 8 → 1",
+        "6 → 8 → 1"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Il ciclo si ferma sul nodo 6, il cui successivo ha chiave 8. Ma n = q.next e poi n = n.next spostano soltanto la variabile n: nessun campo next viene modificato, quindi il nodo 8 resta collegato. Per cancellarlo serve q.next = q.next.next."
+    },
+    {
+      "id": "L10-T08-03",
+      "tipo": "L10-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La funzione CancellaR è quella della dispensa e la lista è 4 → 7 → 2. Si esegue la chiamata CancellaR(lista, x), senza assegnare il risultato a lista. Per quali chiavi x presenti nella lista il nodo con chiave x risulta eliminato dalla lista che si legge partendo da lista?",
+      "codice": "def CancellaR(p, x):\n    if p is None:\n        return None\n    if p.key == x:\n        return p.next\n    p.next = CancellaR(p.next, x)\n    return p",
+      "albero": null,
+      "opzioni": [
+        "Per ogni x presente, compreso x = 4",
+        "Solo per x = 7 e x = 2, cioè per i nodi che non sono la testa",
+        "Per nessun x: senza lista = la funzione non funziona mai",
+        "Solo per x = 4, perché la testa viene restituita"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Per un nodo che non è la testa la funzione modifica il campo next del nodo precedente (p.next = CancellaR(p.next, x)), quindi la modifica resta anche se il chiamante ignora il valore restituito. Per x = 4 la nuova testa è il nodo 7, ma solo restituita: senza lista = la variabile lista punta ancora al nodo 4."
+    },
+    {
+      "id": "L10-T08-04",
+      "tipo": "L10-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si esegue lista = CancellaTutti(lista, 5) su lista = 3 → 5 → 5 → 2 → 5. Cosa contiene lista dopo la chiamata?",
+      "codice": "def CancellaTutti(p, x):\n    if p is None:\n        return None\n    if p.key == x:\n        return CancellaTutti(p.next, x)\n    CancellaTutti(p.next, x)\n    return p",
+      "albero": null,
+      "opzioni": [
+        "3 → 2",
+        "3 → 5 → 2 → 5",
+        "3 → 5 → 5 → 2",
+        "3 → 5 → 5 → 2 → 5"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Il nodo 3 non vale 5, quindi si esegue CancellaTutti(p.next, x) senza riagganciare il risultato a p.next e si restituisce p. Nessun campo next cambia: la lista resta com'è. La versione corretta usa p.next = CancellaTutti(p.next, x) e darebbe 3 → 2."
+    },
+    {
+      "id": "L10-T08-05",
+      "tipo": "L10-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si esegue lista = CancellaR(lista, x) con la lista 6 → 2 → 8 → 4. Per quali valori di x il risultato è corretto (eliminata la prima occorrenza di x, lista invariata se x non compare)?",
+      "codice": "def CancellaR(p, x):\n    if p is None:\n        return None\n    if p.key == x:\n        return p.next\n    CancellaR(p.next, x)\n    return p",
+      "albero": null,
+      "opzioni": [
+        "Per x = 6 e per un x non presente nella lista (per esempio 5)",
+        "Per nessun x: la funzione è sbagliata, quindi non funziona mai",
+        "Per ogni x: la chiamata ricorsiva modifica comunque la lista",
+        "Solo per x = 4, cioè per l'ultimo nodo"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Con x = 6 la testa viene restituita (p.next) e assegnata a lista; con x assente non c'è nulla da cancellare e la lista resta uguale. Con x = 2, 8 o 4 la chiamata sul resto trova il nodo, ma il risultato non viene riagganciato a p.next e la lista non cambia."
+    },
+    {
+      "id": "L10-T08-06",
+      "tipo": "L10-T08",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La lista è 1 → 4 → 9 e si esegue lista = Cancella(lista, 9). Cosa contiene lista?",
+      "codice": "def Cancella(p, x):\n    if p is None:\n        return None\n    if p.key == x:\n        return p.next\n    q = p\n    while q.next is not None and q.next.key != x:\n        q = q.next\n    if q.next is not None:\n        q = q.next.next\n    return p",
+      "albero": null,
+      "opzioni": [
+        "1 → 4",
+        "1 → 4 → 9",
+        "1 → 9",
+        "4 → 9"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il ciclo arriva al nodo 4, il cui successivo è il 9. Ma q = q.next.next sposta soltanto la variabile q (che diventa None): nessun next cambia e il nodo 9 resta nella lista. Serve q.next = q.next.next."
+    },
+    {
+      "id": "L10-T09-01",
+      "tipo": "L10-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Usando le funzioni della dispensa si esegue il codice. Cosa viene stampato?",
+      "codice": "p = Crea([3, 5, 5, 8])\np = Cancella(p, 5)\np = Inserisci(p, 8)\nStampaReverse(p)",
+      "albero": null,
+      "opzioni": [
+        "8 3",
+        "8 5 3",
+        "8 8 5 3",
+        "3 5 8"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E4",
+        "E2"
+      ],
+      "spiegazione": "Crea dà 3 → 5 → 5 → 8. Cancella toglie solo la prima occorrenza del 5: 3 → 5 → 8. Inserisci(p, 8) non fa nulla, perché 8 è già presente. StampaReverse stampa dalla fine: 8 5 3. '8 3' viene da chi pensa che Cancella tolga tutte le occorrenze, '8 8 5 3' da chi pensa che Inserisci aggiunga i duplicati, '3 5 8' da chi stampa nell'ordine diretto."
+    },
+    {
+      "id": "L10-T09-02",
+      "tipo": "L10-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Usando le funzioni della dispensa si esegue il codice. Cosa viene stampato?",
+      "codice": "p = Crea([1, 4, 4, 7, 9])\np = Cancella(p, 4)\np = InserisciR(p, 6)\np = InserisciR(p, 7)\nStampaR(p)",
+      "albero": null,
+      "opzioni": [
+        "1 6 7 9",
+        "1 4 6 7 7 9",
+        "9 7 6 4 1",
+        "1 4 6 7 9"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E4",
+        "E2",
+        null
+      ],
+      "spiegazione": "Crea dà 1 → 4 → 4 → 7 → 9; Cancella toglie un solo 4: 1 → 4 → 7 → 9. InserisciR(p, 6) lo mette tra 4 e 7. InserisciR(p, 7) non cambia la lista (7 è già presente). StampaR stampa in ordine diretto: 1 4 6 7 9. Le altre opzioni nascono da Cancella che toglie tutti i 4, da un 7 inserito due volte e dalla stampa inversa."
+    },
+    {
+      "id": "L10-T09-03",
+      "tipo": "L10-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Usando le funzioni della dispensa si esegue il codice. Cosa viene stampato?",
+      "codice": "p = CreaR([4, 2, 7, 2, 9])\np = CancellaR(p, 2)\nStampaR(p)",
+      "albero": null,
+      "opzioni": [
+        "4 7 2 9",
+        "9 7 2 4",
+        "4 7 9",
+        "9 2 7 4"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "CreaR dà 4 → 2 → 7 → 2 → 9: crea il nodo dopo la chiamata ricorsiva ma lo mette davanti al resto già costruito, quindi l'ordine è quello dell'array. CancellaR toglie solo il primo 2: 4 → 7 → 2 → 9. StampaR stampa in ordine diretto: 4 7 2 9."
+    },
+    {
+      "id": "L10-T09-04",
+      "tipo": "L10-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Usando le funzioni della dispensa si esegue il codice. Cosa viene stampato?",
+      "codice": "p = Crea([2, 6, 6, 6, 9])\np = Cancella(p, 6)\np = InserisciR(p, 6)\np = InserisciR(p, 4)\nStampaReverseR(p)",
+      "albero": null,
+      "opzioni": [
+        "9 6 6 6 4 2",
+        "9 6 4 2",
+        "9 6 6 4 2",
+        "2 4 6 6 9"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "E3",
+        null,
+        "E2"
+      ],
+      "spiegazione": "Crea dà 2 → 6 → 6 → 6 → 9; Cancella toglie un solo 6: 2 → 6 → 6 → 9. InserisciR(p, 6) non cambia nulla (6 è presente); InserisciR(p, 4) dà 2 → 4 → 6 → 6 → 9. StampaReverseR stampa dopo la chiamata ricorsiva, cioè in ordine inverso: 9 6 6 4 2."
+    },
+    {
+      "id": "L10-T09-05",
+      "tipo": "L10-T09",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Usando le funzioni della dispensa si esegue il codice. Cosa viene stampato?",
+      "codice": "p = CreaR([2, 6, 9, 7, 9])\np = Cancella(p, 9)\nStampaR(p)",
+      "albero": null,
+      "opzioni": [
+        "2 6 7 9",
+        "7 9 6 2",
+        "9 7 6 2",
+        "2 6 7"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "CreaR crea la lista nell'ordine dell'array: 2 → 6 → 9 → 7 → 9. Cancella toglie solo la prima occorrenza di 9: 2 → 6 → 7 → 9. StampaR stampa in ordine diretto: 2 6 7 9. Le altre opzioni nascono da una lista creata al contrario, dalla stampa inversa e da Cancella che toglie tutti i 9."
+    },
+    {
+      "id": "L10-T09-06",
+      "tipo": "L10-T09",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Usando le funzioni della dispensa si esegue il codice. Cosa viene stampato?",
+      "codice": "p = Crea([1, 3, 3, 7])\np = InserisciR(p, 3)\np = Cancella(p, 3)\np = Inserisci(p, 5)\nStampa(p)",
+      "albero": null,
+      "opzioni": [
+        "1 3 3 5 7",
+        "1 3 5 7",
+        "1 5 7",
+        "7 5 3 1"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E3",
+        "E2"
+      ],
+      "spiegazione": "Crea dà 1 → 3 → 3 → 7. InserisciR(p, 3) non fa nulla perché 3 è presente. Cancella(p, 3) toglie solo il primo 3: 1 → 3 → 7. Inserisci(p, 5) dà 1 → 3 → 5 → 7. Stampa stampa in ordine diretto: 1 3 5 7."
+    },
+    {
+      "id": "L10-T10-01",
+      "tipo": "L10-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si considerano le due versioni della stampa di una lista concatenata di n nodi: Stampa (iterativa, con un puntatore p che avanza) e StampaR (ricorsiva: stampa la chiave, poi chiama sul resto). Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Stampa: tempo Θ(n), spazio O(1). StampaR: tempo Θ(n), spazio O(n).",
+        "Entrambe: tempo Θ(n), spazio O(1), perché non creano nuovi nodi.",
+        "Stampa: tempo Θ(n), spazio O(1). StampaR: tempo Θ(n²), spazio O(n).",
+        "Entrambe: tempo Θ(n), spazio Θ(n), perché devono ricordare la lista da stampare."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Entrambe visitano ogni nodo una volta: Θ(n). La iterativa usa solo la variabile p: spazio O(1). La ricorsiva lascia aperta una chiamata per nodo fino all'ultimo: n chiamate sullo stack, spazio O(n). La ricorsione non aumenta il tempo."
+    },
+    {
+      "id": "L10-T10-02",
+      "tipo": "L10-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si considerano Crea (iterativa) e CreaR (ricorsiva), che costruiscono una lista concatenata a partire da un array di n elementi. Considerando come spazio di lavoro tutto ciò che non sono i nodi della lista creata, quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Crea: tempo Θ(n), spazio O(1). CreaR: tempo Θ(n), spazio O(1).",
+        "Crea: tempo Θ(n), spazio O(1). CreaR: tempo Θ(n²), spazio O(n).",
+        "Entrambe: tempo Θ(n), spazio Θ(n), perché la lista creata ha n nodi.",
+        "Crea: tempo Θ(n), spazio O(1). CreaR: tempo Θ(n), spazio O(n)."
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "Crea scorre l'array una volta usando poche variabili (per esempio p e q): spazio O(1). CreaR fa una chiamata per elemento, tutte aperte contemporaneamente sullo stack: spazio O(n). Il tempo è Θ(n) per entrambe. I nodi della lista creata sono l'output e non contano come spazio di lavoro."
+    },
+    {
+      "id": "L10-T10-03",
+      "tipo": "L10-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si considera StampaReverse della dispensa nella versione iterativa: copia le chiavi della lista in una list A di Python e poi le stampa con A.pop() dalla fine, finché A non è vuota. Su una lista concatenata di n nodi, tempo e spazio di lavoro sono:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "tempo Θ(n), spazio O(1), perché è una versione iterativa",
+        "tempo Θ(n), spazio O(n)",
+        "tempo Θ(n²), spazio O(n), perché ogni pop() costa O(n)",
+        "tempo Θ(n²), spazio O(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E3",
+        "altro"
+      ],
+      "spiegazione": "La copia delle chiavi costa Θ(n); le n chiamate a pop() dalla fine costano O(1) ciascuna, quindi Θ(n) in totale. La list A contiene n chiavi: spazio O(n). Una versione iterativa non ha per forza spazio O(1): dipende dalle strutture ausiliarie."
+    },
+    {
+      "id": "L10-T10-04",
+      "tipo": "L10-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "InserisciR(p, x) inserisce x in una lista concatenata ordinata di n nodi (se non è già presente), con una funzione ricorsiva. Nel caso peggiore, tempo e spazio di lavoro sono:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "tempo O(n), spazio O(1), perché si crea un solo nodo",
+        "tempo Θ(n²), spazio O(n), a causa della ricorsione",
+        "tempo O(n), spazio O(n)",
+        "tempo O(log n), spazio O(1), perché la lista è ordinata"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E4",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Nel caso peggiore (x maggiore del massimo) la ricorsione scende fino in fondo: n chiamate, tempo O(n). Le chiamate restano tutte aperte sullo stack: spazio O(n). Il solo nodo creato non basta a dire che lo spazio è costante."
+    },
+    {
+      "id": "L10-T10-05",
+      "tipo": "L10-T10",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Quale affermazione su StampaReverseR (ricorsiva: prima chiama sul resto della lista, poi stampa la chiave) è corretta, per una lista concatenata di n nodi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il tempo è Θ(n); lo spazio O(n) è dovuto alle n chiamate annidate sullo stack.",
+        "Lo spazio è O(1): non usa strutture ausiliarie, solo i nodi della lista.",
+        "Il tempo è Θ(n²), perché ogni chiamata deve poi stampare le chiavi precedenti.",
+        "Lo spazio è O(n) perché copia le chiavi in una list di appoggio."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "Ogni nodo è visitato una volta e stampato una volta: Θ(n). Non c'è una list di appoggio, ma la ricorsione tiene aperte n chiamate (una per nodo) prima di cominciare a stampare: lo stack occupa spazio O(n)."
+    },
+    {
+      "id": "L10-T10-06",
+      "tipo": "L10-T10",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una funzione calcola la somma delle chiavi di una lista concatenata di n nodi, in una versione iterativa e in una ricorsiva. Quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "La ricorsiva ha tempo Θ(n²), perché ogni chiamata riscorre la lista.",
+        "Entrambe hanno tempo Θ(n); l'iterativa ha spazio O(1), la ricorsiva spazio O(n).",
+        "Entrambe hanno spazio O(1), perché non creano nuovi nodi.",
+        "Entrambe hanno spazio Θ(n), perché devono memorizzare le chiavi da sommare."
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "In entrambe le versioni ogni nodo è visitato una volta e contribuisce con un'addizione: Θ(n). L'iterativa usa un accumulatore e un puntatore: O(1). La ricorsiva ha una chiamata aperta per ogni nodo: O(n) di stack."
+    },
+    {
+      "id": "L10-T11-01",
+      "tipo": "L10-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "La funzione Cancella(p, x) della dispensa elimina la prima occorrenza di x da una lista concatenata di n nodi. Quali sono i costi nel caso migliore e nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n) in entrambi i casi, perché la lista si scorre sempre tutta",
+        "O(1) in entrambi i casi, perché cancellare un nodo costa O(1)",
+        "Migliore O(1) (x nella testa), peggiore Θ(n) (x assente o nell'ultimo nodo)",
+        "Migliore O(1), peggiore Θ(log n), perché si procede per dimezzamenti"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "E1"
+      ],
+      "spiegazione": "Se x è la chiave della testa si restituisce subito p.next: O(1). Se x è assente o nell'ultimo nodo, q arriva fino in fondo: Θ(n). Il collegamento q.next = q.next.next costa O(1), ma trovare il predecessore no; senza accesso diretto non ci sono dimezzamenti."
+    },
+    {
+      "id": "L10-T11-02",
+      "tipo": "L10-T11",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Perché la funzione Inserisci(p, x) della dispensa restituisce la testa della lista?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Perché la testa è già raggiungibile dal chiamante: restituirla serve solo per comodità.",
+        "Perché la testa può cambiare: se x è minore della chiave della testa, o la lista è vuota, la nuova testa è il nuovo nodo.",
+        "Perché la funzione deve restituire il nodo appena inserito.",
+        "Perché Python non ammette funzioni senza valore di ritorno."
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Inserendo prima della testa (o in una lista vuota) il chiamante deve conoscere la nuova testa, Nodo(x, p): se la funzione non la restituisse, la variabile del chiamante punterebbe ancora al vecchio primo nodo e x andrebbe perso. Il chiamante scrive p = Inserisci(p, x)."
+    },
+    {
+      "id": "L10-T11-03",
+      "tipo": "L10-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Per Cancella(p, x) su una lista concatenata non vuota, quale coppia descrive correttamente un input di caso migliore e uno di caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Migliore: x è la chiave della testa. Peggiore: x non compare nella lista.",
+        "Migliore: x non compare nella lista. Peggiore: x è la chiave della testa.",
+        "Migliore: x è la chiave del nodo centrale. Peggiore: x è la chiave della testa.",
+        "Migliore e peggiore coincidono: Cancella scorre sempre tutta la lista."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E5",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "Se x è la chiave della testa Cancella restituisce subito p.next: un solo confronto. Se x non compare, q avanza fino all'ultimo nodo: tutta la lista viene scorsa. Cancella si ferma appena trova x: non scorre sempre tutta la lista."
+    },
+    {
+      "id": "L10-T11-04",
+      "tipo": "L10-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si inserisce x in una lista concatenata di n nodi ordinata in modo decrescente (la testa contiene il massimo), con una funzione Inserisci che mantiene l'ordine e inserisce solo se x non è già presente. Quali sono i costi nel caso migliore e nel caso peggiore?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Migliore O(1), peggiore Θ(log n), perché la lista è ordinata",
+        "O(1) in entrambi i casi, perché inserire un nodo in una lista costa O(1)",
+        "Θ(n) in entrambi i casi, perché si scorre sempre tutta la lista",
+        "Migliore O(1) (x maggiore della testa o lista vuota), peggiore Θ(n) (x minore del minimo)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "E3",
+        null
+      ],
+      "spiegazione": "Con ordine decrescente la nuova testa è x se x è maggiore della chiave della testa (o la lista è vuota): O(1). Il caso peggiore è x minore del minimo: q arriva all'ultimo nodo, Θ(n). Quando x è maggiore della testa la funzione si ferma subito, quindi il costo non è Θ(n) per ogni input; l'ordine non permette la ricerca binaria."
+    },
+    {
+      "id": "L10-T11-05",
+      "tipo": "L10-T11",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "InserisciR (in una lista ordinata) e CancellaR (prima occorrenza) sono funzioni ricorsive su una lista concatenata di n nodi. Quale affermazione sul loro tempo è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Entrambe sono O(n): nel caso peggiore scendono fino in fondo, ma possono fermarsi prima.",
+        "Entrambe sono Θ(n): scendono sempre fino in fondo alla lista.",
+        "Entrambe sono O(1), perché il collegamento di un nodo costa O(1).",
+        "InserisciR è Θ(log n), perché la lista è ordinata."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "E2",
+        "E1"
+      ],
+      "spiegazione": "Ogni chiamata fa un lavoro costante e le chiamate sono al più n + 1. Nel caso peggiore (x maggiore del massimo per InserisciR, x assente per CancellaR) si arriva fino in fondo; in altri casi la ricorsione si ferma prima (x minore della testa, x nella testa). Per questo la classe giusta è O(n), non Θ(n)."
+    },
+    {
+      "id": "L10-T11-06",
+      "tipo": "L10-T11",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una lista concatenata di n nodi è ordinata in modo crescente, con chiavi tutte distinte, e Cancella(p, x) viene chiamata con x uguale alla chiave del nodo in posizione ⌊n/2⌋. Quanto costa questa chiamata?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "O(1), perché cancellare un nodo in una lista costa O(1)",
+        "Θ(n): si scorrono circa n/2 nodi",
+        "Θ(log n), perché la lista è ordinata e si può cercare per dimezzamenti",
+        "Θ(n²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "E1",
+        "altro"
+      ],
+      "spiegazione": "Cancella parte dalla testa e avanza fino a trovare x: servono circa n/2 passi, quindi Θ(n). L'ordinamento non dà accesso diretto né ricerca binaria. È un input a metà strada tra il caso migliore (x in testa, O(1)) e il peggiore (x assente, n passi), ma nello stesso ordine di grandezza del peggiore."
+    },
+    {
+      "id": "L10-T12-01",
+      "tipo": "L10-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Si vuole stabilire se una lista concatenata semplice di n nodi è palindroma (le chiavi lette da sinistra a destra e da destra a sinistra coincidono), in tempo O(n) e spazio O(1). Quale metodo funziona?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Trovare la metà con due puntatori (uno avanza di un nodo, l'altro di due), invertire in loco la seconda metà e confrontarla con la prima.",
+        "Copiare le chiavi in una list e confrontare la list con la sua inversa.",
+        "Usare una funzione ricorsiva che scende fino in fondo e confronta, in risalita, le chiavi con quelle lette dalla testa.",
+        "Confrontare la chiave di ogni nodo con quella del nodo in posizione simmetrica, raggiungendola ogni volta dalla testa."
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "I due puntatori a velocità diversa individuano la metà in O(n); invertire in loco la seconda metà usa solo variabili (O(1)) e il confronto è lineare. Copiare le chiavi in una list costa spazio O(n), la ricorsione tiene n chiamate sullo stack (O(n)), e raggiungere ogni nodo simmetrico dalla testa costerebbe Θ(n²) in tempo."
+    },
+    {
+      "id": "L10-T12-02",
+      "tipo": "L10-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "La lista concatenata semplice 3 → 8 → 1 → 6 → 2 viene ruotata verso destra di k = 7 posizioni, cioè gli ultimi nodi passano in testa (per esempio 1 → 2 → 3 ruotata di 1 diventa 3 → 1 → 2). Qual è il risultato?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1 → 6 → 2 → 3 → 8",
+        "2 → 3 → 8 → 1 → 6",
+        "6 → 2 → 3 → 8 → 1",
+        "3 → 8 → 1 → 6 → 2"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E4",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Con n = 5, ruotare di 7 equivale a ruotare di 7 mod 5 = 2: la nuova testa è il nodo in posizione n − 2 = 3, cioè il 6, e la coda 2 si collega alla vecchia testa. Risultato 6 → 2 → 3 → 8 → 1. '1 → 6 → 2 → 3 → 8' è la rotazione di 3 a destra (o di 2 a sinistra); '2 → 3 → 8 → 1 → 6' è la rotazione di 1 (nuova testa presa una posizione troppo avanti); '3 → 8 → 1 → 6 → 2' lascia la lista com'era."
+    },
+    {
+      "id": "L10-T12-03",
+      "tipo": "L10-T12",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Una lista concatenata semplice di 7 nodi 4 → 9 → 1 → 7 → 3 → 8 → 5 viene divisa in due metà con una scansione. Qual è la divisione corretta, sapendo che con n dispari la seconda metà ha un nodo in più?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "4 → 9 → 1 → 7 e 3 → 8 → 5",
+        "4 → 9 → 1 e 7 → 3 → 8 → 5",
+        "4 → 9 e 1 → 7 → 3 → 8 → 5",
+        "4 → 9 → 1 → 7 → 3 e 8 → 5"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E5",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con n = 7 la prima metà ha ⌊n/2⌋ = 3 nodi (4, 9, 1) e la seconda i restanti 4 (7, 3, 8, 5): si ferma q sul nodo in posizione ⌊n/2⌋ − 1 = 2 e si pone q.next = None dopo aver salvato il successivo. Dare il nodo in più alla prima metà contraddice la convenzione dichiarata."
+    },
+    {
+      "id": "L10-T13-01",
+      "tipo": "L10-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si separano i nodi di una lista concatenata semplice di n nodi in due liste, quella dei nodi in posizione pari e quella dei nodi in posizione dispari (posizioni contate da 0), senza creare nuovi nodi e con una funzione iterativa. Costi temporale e spaziale migliori ottenibili:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tempo Θ(n), spazio Θ(n) per le due liste risultato",
+        "Tempo Θ(n), spazio O(1)",
+        "Tempo Θ(n log n), spazio O(1)",
+        "Tempo Θ(n²), spazio O(1): per ogni nodo si riscorre la lista per conoscerne la posizione"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Si scorre la lista una volta alternando i collegamenti: ogni nodo viene agganciato in fondo alla lista pari o dispari in O(1), con un numero costante di variabili. Le due liste sono fatte degli stessi nodi, non occupano spazio aggiuntivo."
+    },
+    {
+      "id": "L10-T13-02",
+      "tipo": "L10-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si vuole ordinare una lista concatenata semplice di n nodi senza creare nuovi nodi (si cambiano solo i collegamenti next). Qual è il miglior tempo ottenibile?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n log n), con il mergesort sulle liste (divisione a metà e fusione)",
+        "Θ(n²): senza accesso diretto non si può fare meglio",
+        "Θ(n): basta una sola scansione",
+        "Θ(n log² n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il mergesort funziona bene sulle liste: si divide a metà in Θ(n), si ordinano le due metà e si fondono in Θ(n) cambiando solo i next. La ricorrenza dà Θ(n log n). L'accesso diretto non serve; Θ(n²) è il costo, per esempio, dell'insertion sort sui nodi."
+    },
+    {
+      "id": "L10-T13-03",
+      "tipo": "L10-T13",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si fondono due liste concatenate ordinate in modo crescente, di n e m nodi, con una funzione ricorsiva che riusa i nodi esistenti (p.next = Fondi(p.next, q), oppure q.next = Fondi(p, q.next)). Tempo e spazio di lavoro nel caso peggiore sono:",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tempo Θ(n · m), spazio O(1)",
+        "Tempo Θ((n + m) log(n + m)), spazio O(n + m)",
+        "Tempo Θ(n + m), spazio O(1), perché non crea nodi",
+        "Tempo Θ(n + m), spazio O(n + m) per lo stack"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E2",
+        "E3",
+        "altro",
+        null
+      ],
+      "spiegazione": "Ogni chiamata aggancia un nodo al risultato; nel caso peggiore (chiavi delle due liste alternate fino alla fine) le chiamate sono circa n + m: Θ(n + m). Le chiamate restano annidate fino alla fine: lo stack occupa O(n + m). La versione iterativa avrebbe spazio O(1); la fusione non è un riordinamento completo (niente n log n) e non scorre una lista per ogni nodo dell'altra (niente n · m)."
+    },
+    {
+      "id": "L10-T14-01",
+      "tipo": "L10-T14",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva CancellaPrima(p, x) che, data la testa p di una lista concatenata di interi e un intero x, elimini la sola prima occorrenza di x (se presente) e restituisca la testa della lista modificata. Indicare la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def CancellaPrima(p, x):\n    if p is None:\n        return None\n    if p.key == x:\n        # il nodo p va eliminato: il resto della lista non si tocca\n        return p.next\n    p.next = CancellaPrima(p.next, x)\n    return p\n\n# uso: lista = CancellaPrima(lista, x)\n# tempo O(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base p is None: restituisce None, senza accedere a p.key",
+        "Se p.key == x restituisce p.next e non richiama la funzione sul resto (le altre occorrenze restano)",
+        "Nel caso generale riaggancia con p.next = CancellaPrima(p.next, x) e restituisce p",
+        "Nessuna variabile globale; il chiamante usa lista = CancellaPrima(lista, x)",
+        "Complessità: tempo O(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "La funzione restituisce la testa della lista che riceve. Se il primo nodo ha chiave x, la nuova testa è p.next: il resto resta intatto, quindi solo la prima occorrenza sparisce. Altrimenti il risultato della chiamata sul resto va riagganciato a p.next (senza assegnazione la cancellazione andrebbe persa). Nel caso peggiore (x assente) le n chiamate annidate danno tempo O(n) e spazio O(n); se x è in testa basta O(1)."
+    },
+    {
+      "id": "L10-T14-02",
+      "tipo": "L10-T14",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva CancellaTutte(p, x) che, data la testa p di una lista concatenata di interi e un intero x, elimini tutti i nodi con chiave x e restituisca la testa della lista modificata. Indicare la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def CancellaTutte(p, x):\n    if p is None:\n        return None\n    if p.key == x:\n        # p va eliminato: la nuova testa è il resto già ripulito\n        return CancellaTutte(p.next, x)\n    p.next = CancellaTutte(p.next, x)\n    return p\n\n# uso: lista = CancellaTutte(lista, x)\n# tempo Θ(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base p is None: restituisce None",
+        "Se p.key == x restituisce CancellaTutte(p.next, x), non p.next: altrimenti due occorrenze consecutive lascerebbero la seconda",
+        "Se p resta, riaggancia con p.next = CancellaTutte(p.next, x) e restituisce p",
+        "Nessuna variabile globale; il chiamante usa lista = CancellaTutte(lista, x)",
+        "Complessità: tempo Θ(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "Rispetto alla cancellazione della prima occorrenza cambia solo il caso in cui p va eliminato: il resto va ripulito a sua volta, quindi si restituisce il risultato della chiamata sul resto. Su 5 → 5 → 1 → 5 con x = 5 si ottiene 1. Ogni nodo è visitato una volta, in ogni caso: Θ(n); la profondità della ricorsione è n: spazio O(n)."
+    },
+    {
+      "id": "L10-T14-03",
+      "tipo": "L10-T14",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva CancellaUltimo(p) che, data la testa p di una lista concatenata di interi, elimini l'ultimo nodo (se la lista è vuota non fa nulla) e restituisca la testa della lista modificata. Indicare la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def CancellaUltimo(p):\n    if p is None:\n        return None\n    if p.next is None:\n        # p è l'ultimo nodo: sparisce\n        return None\n    p.next = CancellaUltimo(p.next)\n    return p\n\n# uso: lista = CancellaUltimo(lista)\n# tempo Θ(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Gestisce la lista vuota: if p is None: return None",
+        "Caso base p.next is None (ultimo nodo): restituisce None, così il nodo sparisce e una lista di un solo nodo diventa vuota",
+        "Nel caso generale riaggancia con p.next = CancellaUltimo(p.next) e restituisce p",
+        "Non legge p.next.key né p.next.next senza aver controllato che p.next non sia None",
+        "Complessità: tempo Θ(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "Il controllo p.next is None riconosce l'ultimo nodo, che deve essere sostituito da None nel next del nodo precedente (grazie al riaggancio p.next = …). Con la lista vuota il primo controllo evita di leggere p.next. Si scende sempre fino all'ultimo nodo: Θ(n); le n chiamate annidate occupano spazio O(n)."
+    },
+    {
+      "id": "L10-T15-01",
+      "tipo": "L10-T15",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva InserisciR(p, x) che, data la testa p di una lista concatenata ordinata in modo decrescente e un intero x, inserisca x mantenendo l'ordine, solo se x non è già presente, e restituisca la testa della lista. Il costruttore Nodo(k, succ) crea un nodo con chiave k e successivo succ. Indicarne la complessità.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def InserisciR(p, x):\n    if p is None or p.key < x:\n        # lista vuota o x va prima di p (ordine decrescente): il nuovo nodo punta a p\n        return Nodo(x, p)\n    if p.key == x:\n        # già presente: nessuna modifica\n        return p\n    p.next = InserisciR(p.next, x)\n    return p\n\n# uso: lista = InserisciR(lista, x)\n# tempo O(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base: p is None oppure p.key < x (ordine decrescente) → restituisce Nodo(x, p), con next = p",
+        "Se p.key == x restituisce p senza modificare nulla",
+        "Nel caso generale riaggancia con p.next = InserisciR(p.next, x) e restituisce p (non il nuovo nodo)",
+        "Confronto nel verso giusto per l'ordine decrescente, e controllo p is None prima di leggere p.key",
+        "Complessità: tempo O(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "Poiché la lista è decrescente, x va prima del primo nodo con chiave minore di x: lì si restituisce Nodo(x, p), che diventa la testa della sottolista e punta al resto. Se si trova x non si inserisce. Altrimenti x va nel resto e il risultato si riaggancia a p.next. Caso peggiore: x minore del minimo, n chiamate annidate: tempo O(n) e spazio O(n)."
+    },
+    {
+      "id": "L10-T15-02",
+      "tipo": "L10-T15",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva InserisciR(p, x) che, data la testa p di una lista concatenata ordinata in modo crescente e un intero x, inserisca x mantenendo l'ordine e ammettendo i duplicati (se x è già presente, ne compare un'altra copia), e restituisca la testa. Il costruttore Nodo(k, succ) crea un nodo con chiave k e successivo succ. Indicarne la complessità.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def InserisciR(p, x):\n    if p is None or p.key >= x:\n        # lista vuota o x non è maggiore di p: il nuovo nodo va prima di p\n        return Nodo(x, p)\n    p.next = InserisciR(p.next, x)\n    return p\n\n# uso: lista = InserisciR(lista, x)\n# tempo O(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base: p is None o p.key >= x → restituisce Nodo(x, p), con next = p",
+        "Nessun controllo di uguaglianza che scarti x: i duplicati sono ammessi",
+        "Nel caso generale riaggancia con p.next = InserisciR(p.next, x) e restituisce p",
+        "Il chiamante usa lista = InserisciR(lista, x); nessuna variabile globale",
+        "Complessità: tempo O(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "Con i duplicati ammessi basta anticipare l'inserimento anche quando p.key è uguale a x (p.key >= x): la copia di x finisce subito prima della prima occorrenza. Se x è maggiore di tutte le chiavi si scende fino a p is None. Caso peggiore: n chiamate annidate, tempo O(n) e spazio O(n)."
+    },
+    {
+      "id": "L10-T15-03",
+      "tipo": "L10-T15",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva InserisciR(p, x) che, data la testa p di una lista concatenata ordinata in modo crescente e un intero x, inserisca x mantenendo l'ordine solo se x non è già presente, e restituisca la coppia (testa, inserito), dove inserito vale True se x è stato inserito e False altrimenti. Il costruttore Nodo(k, succ) crea un nodo con chiave k e successivo succ. Indicarne la complessità.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def InserisciR(p, x):\n    if p is None or p.key > x:\n        # x va prima di p (o in fondo): nodo nuovo, inserimento avvenuto\n        return (Nodo(x, p), True)\n    if p.key == x:\n        # già presente: lista invariata\n        return (p, False)\n    resto, inserito = InserisciR(p.next, x)\n    p.next = resto\n    return (p, inserito)\n\n# uso: lista, ok = InserisciR(lista, x)\n# tempo O(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base: p is None o p.key > x → restituisce (Nodo(x, p), True)",
+        "Se p.key == x restituisce (p, False) senza modificare nulla",
+        "Nel caso generale prende la coppia restituita dalla chiamata sul resto, riaggancia la testa a p.next e restituisce (p, inserito)",
+        "Restituisce sempre una coppia, in tutti i casi",
+        "Complessità: tempo O(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "Oltre alla testa, ogni chiamata deve propagare verso l'alto l'informazione 'inserito': si scompone la coppia restituita dal resto, si riaggancia la nuova testa del resto a p.next e si restituisce di nuovo una coppia. Il resto della struttura è identico a InserisciR. Caso peggiore (x maggiore del massimo): tempo O(n), spazio O(n)."
+    },
+    {
+      "id": "L10-T16-01",
+      "tipo": "L10-T16",
+      "formato": "aperta",
+      "difficolta": 1,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva Somma(p) che, data la testa p di una lista concatenata di interi, restituisca la somma di tutte le chiavi (0 se la lista è vuota). Indicare la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def Somma(p):\n    if p is None:\n        return 0\n    return p.key + Somma(p.next)\n\n# tempo Θ(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base p is None: restituisce 0 (non None, altrimenti p.key + None dà errore)",
+        "Caso generale: restituisce p.key + Somma(p.next), con return davanti",
+        "Non modifica la lista e non usa variabili globali",
+        "Complessità: tempo Θ(n), spazio O(n) per lo stack (non O(1))"
+      ],
+      "spiegazione": "La somma di una lista vuota è 0; altrimenti è la chiave del primo nodo più la somma del resto. Ogni nodo è visitato una volta: Θ(n). Le n chiamate sono tutte aperte quando si raggiunge il caso base: spazio O(n)."
+    },
+    {
+      "id": "L10-T16-02",
+      "tipo": "L10-T16",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva Massimo(p) che, data la testa p di una lista concatenata di interi (anche negativi), restituisca la chiave massima, oppure None se la lista è vuota. Indicare la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def Massimo(p):\n    if p is None:\n        return None          # la lista vuota non ha massimo\n    if p.next is None:\n        return p.key         # un solo nodo: è il massimo\n    m = Massimo(p.next)\n    return max(p.key, m)\n\n# tempo Θ(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Gestisce la lista vuota (p is None) restituendo None, senza usare 0 come valore neutro: le chiavi potrebbero essere tutte negative",
+        "Caso base p.next is None: restituisce p.key (si arriva qui solo se p non è None)",
+        "Caso generale: restituisce il maggiore tra p.key e il massimo del resto",
+        "Non legge p.next senza aver controllato p is None",
+        "Complessità: tempo Θ(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "La lista vuota non ha massimo, quindi si restituisce None; l'ultimo nodo è il massimo della sottolista di un solo nodo. Altrimenti il massimo è il maggiore tra p.key e il massimo del resto (già calcolato con una chiamata sulla lista non vuota p.next). Usare 0 per la lista vuota darebbe un risultato sbagliato con chiavi tutte negative. Θ(n) in tempo, O(n) di stack."
+    },
+    {
+      "id": "L10-T16-03",
+      "tipo": "L10-T16",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva Cali(p) che, data la testa p di una lista concatenata di interi, restituisca il numero di nodi la cui chiave è maggiore di quella del nodo successivo (nessun calo se il nodo è l'ultimo). Per 5 → 3 → 3 → 8 → 6 → 1 restituisce 3. Indicare la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def Cali(p):\n    if p is None or p.next is None:\n        return 0             # con meno di due nodi non ci sono coppie\n    if p.key > p.next.key:\n        return 1 + Cali(p.next)\n    return Cali(p.next)\n\n# tempo Θ(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base p is None or p.next is None: restituisce 0, senza leggere p.next.key quando p.next è None",
+        "Se p.key > p.next.key conta 1 e aggiunge Cali(p.next); altrimenti restituisce Cali(p.next)",
+        "Il risultato della chiamata ricorsiva è sempre usato (return o somma), mai scartato",
+        "Complessità: tempo Θ(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "Una lista con zero o un nodo non ha coppie. Altrimenti si confronta p con il successivo: se è maggiore si somma 1 al risultato del resto, altrimenti si restituisce il risultato del resto. Il controllo p.next is None evita di leggere p.next.key sull'ultimo nodo. Su 5 → 3 → 3 → 8 → 6 → 1 i cali sono 5 > 3, 8 > 6, 6 > 1: 3. Θ(n) in tempo, O(n) di stack."
+    },
+    {
+      "id": "L10-T17-01",
+      "tipo": "L10-T17",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva Posizione(p, x) che, data la testa p di una lista concatenata di interi e un intero x, restituisca la posizione della prima occorrenza di x (la testa ha posizione 0) oppure −1 se x non compare. Indicare la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def Posizione(p, x):\n    if p is None:\n        return -1            # x assente\n    if p.key == x:\n        return 0             # x è nel nodo corrente\n    r = Posizione(p.next, x)\n    if r == -1:\n        return -1            # assente anche nel resto: non si somma 1\n    return r + 1\n\n# tempo O(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base p is None: restituisce −1",
+        "Se p.key == x restituisce 0 senza altre chiamate",
+        "Nel caso generale salva r = Posizione(p.next, x) e restituisce −1 se r == −1, altrimenti r + 1 (non si somma 1 a −1: un x assente darebbe 0 o più)",
+        "La funzione non modifica la lista e non usa variabili globali",
+        "Complessità: tempo O(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "La posizione di x nella lista che parte da p è 0 se x è nella testa, altrimenti 1 più la posizione nel resto, a patto che nel resto ci sia. Se la chiamata sul resto restituisce −1, la risposta resta −1. Caso peggiore (x assente o in fondo): n chiamate, tempo O(n) e spazio O(n); se x è nella testa basta una chiamata."
+    },
+    {
+      "id": "L10-T17-02",
+      "tipo": "L10-T17",
+      "formato": "aperta",
+      "difficolta": 1,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva TuttePari(p) che, data la testa p di una lista concatenata di interi, restituisca True se tutte le chiavi sono pari (anche se la lista è vuota) e False altrimenti. Indicare la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def TuttePari(p):\n    if p is None:\n        return True          # nessun nodo viola la proprietà\n    if p.key % 2 != 0:\n        return False         # un nodo dispari: risposta nota\n    return TuttePari(p.next)\n\n# tempo O(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base p is None: restituisce True (nessun nodo viola la proprietà), non False",
+        "Se p.key è dispari (p.key % 2 != 0) restituisce False subito, senza altre chiamate",
+        "Altrimenti restituisce TuttePari(p.next), con return davanti",
+        "Complessità: tempo O(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "La proprietà 'tutti i nodi sono pari' vale banalmente per la lista vuota, quindi il caso base è True. Appena si trova un nodo dispari la risposta è False; altrimenti dipende dal resto. Caso peggiore (tutte pari): n chiamate, tempo O(n) e spazio O(n). Con p.key % 2 != 0 il controllo funziona anche per le chiavi negative."
+    },
+    {
+      "id": "L10-T17-03",
+      "tipo": "L10-T17",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva DueUguali(p) che, data la testa p di una lista concatenata di interi, restituisca True se esistono due nodi consecutivi con la stessa chiave e False altrimenti. Indicare la complessità temporale e spaziale.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def DueUguali(p):\n    if p is None or p.next is None:\n        return False         # servono almeno due nodi\n    if p.key == p.next.key:\n        return True          # coppia trovata\n    return DueUguali(p.next)\n\n# tempo O(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base p is None or p.next is None: restituisce False, prima di leggere p.next.key",
+        "Se p.key == p.next.key restituisce True subito",
+        "Altrimenti restituisce DueUguali(p.next), con return davanti",
+        "Complessità: tempo O(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "La proprietà riguarda coppie di nodi vicini, quindi servono almeno due nodi: con zero o uno la risposta è False. Altrimenti si confronta p con il successivo e, se diverse, si delega al resto. Il controllo p.next is None evita l'errore sull'ultimo nodo. Caso peggiore (nessuna coppia): n chiamate, tempo O(n) e spazio O(n)."
+    },
+    {
+      "id": "L10-T18-01",
+      "tipo": "L10-T18",
+      "formato": "aperta",
+      "difficolta": 2,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva CopiaMaggiori(p, x) che, data la testa p di una lista concatenata di interi e un intero x, restituisca la testa di una lista nuova, composta da nodi nuovi, contenente (nello stesso ordine) le sole chiavi maggiori di x. La lista di partenza non deve cambiare. Il costruttore Nodo(k, succ) crea un nodo con chiave k e successivo succ. Indicare la complessità.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def CopiaMaggiori(p, x):\n    if p is None:\n        return None\n    if p.key > x:\n        # nodo nuovo: non si riusa p\n        return Nodo(p.key, CopiaMaggiori(p.next, x))\n    return CopiaMaggiori(p.next, x)\n\n# uso: nuova = CopiaMaggiori(lista, x); la lista di partenza non cambia\n# tempo Θ(n), spazio O(n) per lo stack (più i nodi creati)",
+      "controlli": [
+        "Caso base p is None: restituisce None",
+        "Se p.key > x crea un nodo nuovo: Nodo(p.key, CopiaMaggiori(p.next, x)); non riusa p né p.next",
+        "Altrimenti restituisce CopiaMaggiori(p.next, x), saltando p",
+        "Il risultato della chiamata ricorsiva è sempre usato (come next del nuovo nodo o come valore restituito)",
+        "Complessità: tempo Θ(n), spazio O(n) per lo stack, più i nodi creati"
+      ],
+      "spiegazione": "Il costruttore Nodo(p.key, resto) crea il nodo già collegato alla copia filtrata del resto. Se p non soddisfa la condizione, la copia coincide con quella del resto. La lista originale non è toccata e non condivide nodi con la copia. Ogni nodo è visitato una volta: Θ(n); le n chiamate annidate occupano spazio O(n)."
+    },
+    {
+      "id": "L10-T18-02",
+      "tipo": "L10-T18",
+      "formato": "aperta",
+      "difficolta": 1,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva InserisciInCoda(p, x) che, data la testa p di una lista concatenata di interi e un intero x, aggiunga un nodo con chiave x in fondo alla lista e restituisca la testa. Il costruttore Nodo(k, succ) crea un nodo con chiave k e successivo succ. Indicare la complessità.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def InserisciInCoda(p, x):\n    if p is None:\n        return Nodo(x, None)\n    p.next = InserisciInCoda(p.next, x)\n    return p\n\n# uso: lista = InserisciInCoda(lista, x)\n# tempo Θ(n), spazio O(n) per lo stack",
+      "controlli": [
+        "Caso base p is None: restituisce Nodo(x, None), non None (altrimenti x si perde)",
+        "Nel caso generale riaggancia con p.next = InserisciInCoda(p.next, x)",
+        "Restituisce p (la testa originale), non il nuovo nodo",
+        "Funziona anche sulla lista vuota: restituisce una lista con il solo nodo x",
+        "Complessità: tempo Θ(n), spazio O(n) per lo stack"
+      ],
+      "spiegazione": "Si scende fino alla fine della lista: lì la lista vuota diventa Nodo(x, None). Risalendo, ogni nodo riaggancia a p.next la testa della sottolista con x in coda e restituisce se stesso, così la testa originale non cambia (tranne che per la lista vuota). Si scorrono tutti i nodi: Θ(n); n chiamate annidate: spazio O(n)."
+    },
+    {
+      "id": "L10-T18-03",
+      "tipo": "L10-T18",
+      "formato": "aperta",
+      "difficolta": 3,
+      "testo": "Scrivere lo pseudocodice di una funzione ricorsiva Fondi(p, q) che, date le teste p e q di due liste concatenate ordinate in modo crescente, restituisca la testa di un'unica lista ordinata che contiene tutti i nodi, riusando i nodi esistenti (senza crearne di nuovi). Indicare la complessità, con n e m numero di nodi delle due liste.",
+      "codice": null,
+      "albero": null,
+      "soluzione": "def Fondi(p, q):\n    if p is None:\n        return q\n    if q is None:\n        return p\n    if p.key <= q.key:\n        p.next = Fondi(p.next, q)\n        return p\n    q.next = Fondi(p, q.next)\n    return q\n\n# uso: lista = Fondi(p, q); nessun nodo nuovo\n# tempo O(n + m) (Θ(n + m) nel caso peggiore), spazio O(n + m) per lo stack",
+      "controlli": [
+        "Se una lista è vuota restituisce l'altra (non None)",
+        "Se p.key <= q.key aggancia a p il resto fuso: p.next = Fondi(p.next, q), e restituisce p",
+        "Altrimenti, simmetricamente, q.next = Fondi(p, q.next) e restituisce q (si passa p, non p.next)",
+        "Non crea nodi e non usa variabili globali",
+        "Complessità: tempo O(n + m) (Θ(n + m) nel caso peggiore), spazio O(n + m) per lo stack"
+      ],
+      "spiegazione": "Il primo nodo della lista fusa è la minore delle due teste; a quel nodo si aggancia la fusione del resto della sua lista con l'altra lista intera. Quando una lista finisce, il resto dell'altra è già in ordine e si restituisce così com'è. Ogni chiamata sistema un nodo e ci si ferma appena una lista è vuota: al più n + m chiamate, tempo O(n + m) (Θ(n + m) nel caso peggiore, con le chiavi alternate fino alla fine) e spazio O(n + m) per lo stack."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+# A ogni modifica (e a ogni pull request) controlla le domande e la logica del sito.
+# Sul ramo principale, se i controlli passano, pubblica la cartella sito/ su GitHub Pages.
+# Per attivarlo: Settings → Pages → Source: "GitHub Actions".
+name: Controlla e pubblica
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  controlla:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Nessun esempio delle prove ufficiali nel catalogo
+        run: python strumenti/esempi.py controlla
+      - name: Formato delle domande
+        run: python strumenti/valida_formato.py
+      - name: Dati del sito
+        run: python strumenti/costruisci_sito.py
+      - name: Logica del sito
+        run: node strumenti/prova_logica.mjs
+      - name: Prepara la pubblicazione
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: sito
+
+  pubblica:
+    if: github.event_name != 'pull_request'
+    needs: controlla
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.pagine.outputs.page_url }}
+    steps:
+      - id: pagine
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,1110 @@
+{
+  "lezione": 11,
+  "generato_con": "claude-haiku-5-5",
+  "domande": [
+    {
+      "id": "L11-T01-01",
+      "tipo": "L11-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale associazione tra struttura e politica è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Pila: FIFO, push e pop sulla cima",
+        "Pila: LIFO, push e pop sulla cima",
+        "Pila: LIFO, enqueue e dequeue sulla cima",
+        "Pila: pop estrae il primo elemento inserito, push sulla cima"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E4"
+      ],
+      "spiegazione": "La pila è LIFO: esce per primo l'elemento inserito più di recente, e push e pop lavorano entrambi sulla cima. Enqueue e dequeue sono le operazioni della coda."
+    },
+    {
+      "id": "L11-T01-02",
+      "tipo": "L11-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale descrizione della coda è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Coda: FIFO, enqueue in coda e dequeue dalla testa",
+        "Coda: LIFO, enqueue in coda e dequeue dalla testa",
+        "Coda: FIFO, push in coda e pop dalla testa",
+        "Coda: FIFO, enqueue e dequeue dalla coda"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "spiegazione": "La coda è FIFO: esce per primo il primo elemento inserito. Si inserisce in coda con enqueue e si estrae dalla testa con dequeue. Push e pop sono le operazioni della pila."
+    },
+    {
+      "id": "L11-T01-03",
+      "tipo": "L11-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale politica segue una pila?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "FIFO: esce per primo il primo elemento inserito",
+        "Gli elementi escono in ordine casuale",
+        "Esce per primo l'elemento con il valore più piccolo",
+        "LIFO: esce per primo l'ultimo elemento inserito"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "La pila è LIFO (Last In, First Out): l'ultimo elemento inserito è il primo a uscire. La politica FIFO è quella della coda."
+    },
+    {
+      "id": "L11-T01-04",
+      "tipo": "L11-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Su una coda, da quale estremità avviene la dequeue?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Dalla coda: esce l'elemento inserito per ultimo",
+        "Dalla cima: esce l'elemento inserito per ultimo",
+        "Dalla testa: esce per primo l'elemento inserito per primo",
+        "Da una posizione scelta dall'utente"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Nella coda si inserisce in coda (enqueue) e si estrae dalla testa (dequeue), quindi esce per primo l'elemento inserito per primo. La parola 'coda' indica anche l'estremità dove si inserisce, non quella da cui si estrae; la cima è un termine della pila."
+    },
+    {
+      "id": "L11-T01-05",
+      "tipo": "L11-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Su una pila, quali nomi hanno le operazioni di inserimento ed estrazione, e su quale estremità agiscono?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "enqueue e dequeue, sulla cima",
+        "push e pop, sulla cima",
+        "push e pop, sul fondo della struttura",
+        "insert e remove, sulla testa"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Nella pila le operazioni sono push (inserimento) e pop (estrazione), entrambe sulla cima, cioè sull'ultimo elemento inserito. Enqueue e dequeue sono le operazioni della coda."
+    },
+    {
+      "id": "L11-T01-06",
+      "tipo": "L11-T01",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale affermazione sulla coda è vera?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Il primo elemento inserito è il primo a essere estratto",
+        "L'ultimo elemento inserito è il primo a essere estratto",
+        "Gli elementi escono in ordine casuale",
+        "La dequeue estrae dall'estremità chiamata coda, dove avvengono gli inserimenti"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "E3"
+      ],
+      "spiegazione": "La coda è FIFO: il primo elemento inserito è il primo a uscire, e la dequeue lo estrae dalla testa. L'ultimo inserito esce per primo solo nella pila; l'estremità chiamata coda è quella dove si inserisce."
+    },
+    {
+      "id": "L11-T02-01",
+      "tipo": "L11-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una pila inizialmente vuota si eseguono, nell'ordine: push(46), push(53), pop(), pop(), push(47), pop(), push(28), push(23), push(21). Quali valori restituiscono le pop, nell'ordine? Una pop su pila vuota restituisce None.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "46, 53, 47",
+        "53, 46, 47",
+        "21, 23, 28",
+        "47, 46, 53"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Le pop danno 53, 46, 47: con LIFO si estrae la cima, cioè l'ultimo inserito. Con la regola della coda (FIFO) si otterrebbe 46, 53, 47; eseguendo prima tutti gli inserimenti e poi le estrazioni, 21, 23, 28."
+    },
+    {
+      "id": "L11-T02-02",
+      "tipo": "L11-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una coda inizialmente vuota si eseguono, nell'ordine: dequeue(), enqueue(94), enqueue(47), enqueue(17), dequeue(), dequeue(), enqueue(84), dequeue(). Quali valori restituiscono le dequeue, nell'ordine? Una dequeue su coda vuota restituisce None.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "None, 94, 47, 17",
+        "None, 17, 47, 84",
+        "94, 47, 17, 84",
+        "17, 47, 94, None"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "La prima dequeue trova la coda vuota: restituisce None e non cambia nulla. Poi, con FIFO, escono 94 e 47; dopo enqueue(84) esce 17. Con la regola della pila si otterrebbe None, 17, 47, 84; eseguendo prima tutti gli inserimenti si perde il None iniziale e si ottiene 94, 47, 17, 84."
+    },
+    {
+      "id": "L11-T02-03",
+      "tipo": "L11-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una pila inizialmente vuota si eseguono, nell'ordine: push(20), push(33), push(74), push(15), pop(), push(87), push(90), pop(). Qual è il contenuto finale della pila, dal fondo alla cima?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[74, 15, 87, 90]",
+        "[20, 33, 74, 15]",
+        "[87, 74, 33, 20]",
+        "[20, 33, 74, 87]"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "E2",
+        "altro",
+        null
+      ],
+      "spiegazione": "La prima pop toglie 15, la seconda toglie 90: resta [20, 33, 74, 87]. Con la regola della coda (FIFO) si otterrebbe [74, 15, 87, 90]; eseguendo prima tutti i push e poi le due pop si toglierebbero 90 e 87, lasciando [20, 33, 74, 15]."
+    },
+    {
+      "id": "L11-T02-04",
+      "tipo": "L11-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una coda inizialmente vuota si eseguono, nell'ordine: enqueue(3), enqueue(15), enqueue(32), dequeue(), enqueue(19), enqueue(90), dequeue(). Quali valori restituiscono le dequeue, nell'ordine? Una dequeue su coda vuota restituisce None.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "32, 90",
+        "90, 19",
+        "3, 15",
+        "15, 3"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Le dequeue danno 3, 15: con FIFO si estrae la testa, cioè il primo inserito. Con la regola della pila (LIFO) si otterrebbe 32, 90."
+    },
+    {
+      "id": "L11-T02-05",
+      "tipo": "L11-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una pila inizialmente vuota si eseguono, nell'ordine: push(98), push(3), pop(), push(12), pop(), pop(), push(36), push(68), pop(). Quali valori restituiscono le pop, nell'ordine? Una pop su pila vuota restituisce None.",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "98, 3, 12, 36",
+        "3, 12, 98, 68",
+        "68, 36, 12, 3",
+        "68, 98, 12, 3"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Le pop danno 3, 12, 98, 68: con LIFO si estrae la cima, cioè l'ultimo inserito. Con la regola della coda (FIFO) si otterrebbe 98, 3, 12, 36; eseguendo prima tutti gli inserimenti e poi le estrazioni, 68, 36, 12, 3."
+    },
+    {
+      "id": "L11-T02-06",
+      "tipo": "L11-T02",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Su una coda inizialmente vuota si eseguono, nell'ordine: enqueue(52), enqueue(4), dequeue(), enqueue(74), dequeue(), enqueue(8), enqueue(34). Qual è il contenuto finale della coda, dalla testa alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "[74, 8, 34]",
+        "[52, 8, 34]",
+        "[52, 4, 74]",
+        "[34, 8, 74]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Alla fine il contenuto è [74, 8, 34]. Con la regola della pila (LIFO) si otterrebbe [52, 8, 34]."
+    },
+    {
+      "id": "L11-T03-01",
+      "tipo": "L11-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Pila con la cima in posizione 0 in una list Python: push(x) esegue pila.insert(0, x) e pop() esegue pila.pop(0). Con n elementi nella pila, quale costo hanno push e pop?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Entrambe O(1), come in una lista concatenata",
+        "Entrambe O(n): spostano tutti gli altri elementi di una posizione",
+        "push O(1), pop O(n)",
+        "push O(n), pop O(1)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E2",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "insert(0, x) e pop(0) spostano tutti gli altri elementi di una posizione: entrambe O(n). La struttura resta LIFO, ma il costo cresce con n."
+    },
+    {
+      "id": "L11-T03-02",
+      "tipo": "L11-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale implementazione di pila con una list Python ha push e pop entrambe O(1) e resta LIFO?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "push = pila.append(x), pop = pila.pop()",
+        "push = pila.insert(0, x), pop = pila.pop(0)",
+        "push = pila.append(x), pop = pila.pop(0)",
+        "push = pila.append(x), pop = pila[-1]"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "spiegazione": "Nella dispensa la cima è l'ultimo elemento della list: append e pop() lavorano in fondo e costano O(1). Le altre tre versioni o costano O(n) (insert e pop in posizione 0) o non sono una pila (pop(0) con append è una coda, pila[-1] non toglie nulla)."
+    },
+    {
+      "id": "L11-T03-03",
+      "tipo": "L11-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con una pila realizzata con una list Python (push = append), quale espressione restituisce e toglie l'elemento inserito più di recente?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "pila.pop(0)",
+        "pila[-1]",
+        "pila[0]",
+        "pila.pop()"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E4",
+        "altro",
+        null
+      ],
+      "spiegazione": "pila.pop() restituisce e toglie l'ultimo elemento della list, cioè la cima. pila.pop(0) toglie il primo elemento, il più vecchio: con append è un comportamento da coda. pila[-1] legge la cima senza toglierla."
+    },
+    {
+      "id": "L11-T03-04",
+      "tipo": "L11-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Si implementa una pila con una list Python scrivendo push(x) come pila.insert(0, x) e pop come pila.pop(), cioè togliendo l'ultimo elemento della list. Con n elementi, quale affermazione è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "È una pila (LIFO); push costa O(n), pop costa O(1)",
+        "È una coda (FIFO); push costa O(1), pop costa O(1)",
+        "È una coda (FIFO); push costa O(n), pop costa O(1)",
+        "È una coda (FIFO); push costa O(1), pop costa O(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "E2",
+        null,
+        "altro"
+      ],
+      "spiegazione": "insert(0, x) mette il nuovo elemento in posizione 0, mentre pop() toglie l'ultimo, cioè il più vecchio: inserimento ed estrazione avvengono a estremità opposte, quindi la struttura è FIFO. insert(0, x) sposta tutti gli elementi (O(n)); pop() non sposta nulla (O(1)). Chi confonde pop() con pop(0) pensa che esca l'ultimo inserito e la crede ancora una pila."
+    },
+    {
+      "id": "L11-T03-05",
+      "tipo": "L11-T03",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Una pila è una list con la cima in fondo. Cosa succede con pila[-1] su una pila non vuota?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Restituisce la cima, e la list perde l'elemento",
+        "Restituisce la cima, e la list resta invariata",
+        "Restituisce il primo elemento inserito, e la list resta invariata",
+        "Restituisce il primo elemento inserito, e la list perde l'elemento"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "pila[-1] legge l'ultimo elemento senza toglierlo: per estrarre serve pop(). Chi crede che legga e tolga usa pila[-1] come pop."
+    },
+    {
+      "id": "L11-T03-06",
+      "tipo": "L11-T03",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "In una pila realizzata con una list Python, push esegue pila.append(x) ma, per errore, pop esegue pila.pop(0). Partendo da una pila vuota si eseguono push(4), push(7), push(1) e poi una pop. Che valore restituisce la pop, e quanto costa in generale questa pop su una list di n elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1, costo O(1): toglie l'ultimo elemento come pop()",
+        "4, costo O(n): toglie il primo elemento e sposta gli altri",
+        "4, costo O(1): toglie il primo elemento senza spostare gli altri",
+        "1, costo O(n): toglie l'ultimo elemento dopo aver scorso la list"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "pop(0) toglie il primo elemento della list, cioè 4, il più vecchio: con append la struttura si comporta da coda, non da pila. Inoltre gli elementi rimasti si spostano tutti di una posizione: O(n). Restituire 1 significa confondere pop(0) con pop()."
+    },
+    {
+      "id": "L11-T04-01",
+      "tipo": "L11-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Coda realizzata con una list Python: enqueue = coda.append(x), dequeue = coda.pop(0). Partendo da una coda vuota si eseguono n enqueue e poi n dequeue. Qual è il costo totale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), perché pop(0) costa O(1)",
+        "Θ(n²), perché ogni pop(0) costa O(k) con k elementi nella coda",
+        "Θ(n log n), perché ogni pop(0) costa O(log k)",
+        "Θ(n³), perché ogni pop(0) costa O(k²)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Ogni pop(0) su una coda di k elementi sposta k − 1 elementi. Le n dequeue lavorano su code di n, n − 1, …, 1 elementi: circa n²/2 spostamenti, Θ(n²). Le enqueue costano solo Θ(n)."
+    },
+    {
+      "id": "L11-T04-02",
+      "tipo": "L11-T04",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "In una coda realizzata con una list Python (dequeue = coda.pop(0)), qual è il costo di una dequeue quando la coda contiene k elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(k): tutti gli altri elementi si spostano di una posizione",
+        "Θ(1), come pop()",
+        "Θ(log k), come una ricerca binaria",
+        "Θ(k²)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "pop(0) toglie il primo elemento e sposta a sinistra i k − 1 rimasti: Θ(k). pop() invece toglie l'ultimo elemento senza spostare nulla: O(1)."
+    },
+    {
+      "id": "L11-T04-03",
+      "tipo": "L11-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Coda con list Python: enqueue = coda.append(x), dequeue = coda.pop(0). Quali sono i costi di enqueue e dequeue, con n elementi nella coda?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "enqueue O(n), dequeue O(1)",
+        "enqueue O(1), dequeue O(1)",
+        "enqueue O(1), dequeue O(log n)",
+        "enqueue O(1), dequeue O(n)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "E1",
+        "altro",
+        null
+      ],
+      "spiegazione": "append aggiunge in fondo senza spostare nulla: O(1). pop(0) sposta tutti gli elementi rimasti: O(n) con n elementi nella coda, e non O(log n), perché nessuno di essi resta al suo posto."
+    },
+    {
+      "id": "L11-T04-04",
+      "tipo": "L11-T04",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Un ciclo while coda: x = coda.pop(0) svuota una coda di n elementi (coda realizzata con una list Python). Qual è il costo totale del ciclo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n), perché la coda si accorcia a ogni estrazione",
+        "Θ(n), perché ogni pop(0) costa O(1)",
+        "Θ(n²), perché la pop(0) su k elementi ne sposta k − 1",
+        "Θ(n log n), perché ogni pop(0) costa O(log k)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E2",
+        "E1",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Le estrazioni lavorano su code di n, n − 1, …, 1 elementi e spostano n − 1, n − 2, …, 0 elementi: in tutto n(n − 1)/2 = Θ(n²). La coda che si accorcia rende più economiche le ultime estrazioni, ma le prime n/2 spostano ciascuna almeno n/2 − 1 elementi, e la somma resta quadratica."
+    },
+    {
+      "id": "L11-T04-05",
+      "tipo": "L11-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Coda con list Python: enqueue = coda.append(x), dequeue = coda.pop(0). La coda contiene all'inizio 5 elementi. Si ripete n volte la coppia di operazioni: enqueue di un nuovo elemento, poi una dequeue. Qual è il costo totale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²), perché ogni pop(0) costa O(n)",
+        "Θ(n), perché la coda ha sempre 5 o 6 elementi e ogni pop(0) costa O(1)",
+        "Θ(n²), perché ogni enqueue costa O(n)",
+        "Θ(n log n), perché ogni pop(0) costa O(log n)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E4",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Il costo di pop(0) dipende dagli elementi presenti nella coda, non dal numero di operazioni eseguite. Qui la coda ha sempre 5 o 6 elementi: ogni pop(0) sposta 5 elementi, costo costante. n coppie di operazioni costano quindi Θ(n). Il Θ(n²) vale quando la coda contiene Θ(n) elementi."
+    },
+    {
+      "id": "L11-T04-06",
+      "tipo": "L11-T04",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Partendo da una coda vuota, con list Python (enqueue = append, dequeue = pop(0)), si eseguono n enqueue e poi n/2 dequeue, con n pari. Qual è il costo totale?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²), perché ogni dequeue sposta almeno n/2 elementi",
+        "Θ(n), perché pop(0) costa O(1)",
+        "Θ(n), perché la coda si accorcia a ogni dequeue",
+        "Θ(n log n), perché ogni pop(0) costa O(log k)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Le n/2 dequeue lavorano su code di n, n − 1, …, n/2 + 1 elementi e ognuna sposta almeno n/2 elementi: in tutto circa 3n²/8 spostamenti, quindi Θ(n²). Le n enqueue aggiungono solo Θ(n)."
+    },
+    {
+      "id": "L11-T05-01",
+      "tipo": "L11-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Coda con cancellazione logica (list coda e indice testa; all'inizio coda = [] e testa = 0). Si eseguono, nell'ordine: enqueue(82), enqueue(37), dequeue(), enqueue(81), enqueue(46), enqueue(31), dequeue(), enqueue(42). Ogni dequeue riassegna testa. Alla fine, quali valori hanno testa e len(coda), e quanti elementi sono presenti nella coda?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "testa = 0, len(coda) = 4, elementi presenti = 4",
+        "testa = 2, len(coda) = 6, elementi presenti = 4",
+        "testa = 2, len(coda) = 6, elementi presenti = 6",
+        "testa = 0, len(coda) = 6, elementi presenti = 6"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E1",
+        null,
+        "E2",
+        "E5"
+      ],
+      "spiegazione": "Le dequeue fanno avanzare testa a 2 senza togliere nulla: la list ha ancora 6 elementi e quelli validi sono coda[2:], cioè 4. Chi conta tutta la list sbaglia il conteggio; chi crede che dequeue tolga davvero l'elemento ottiene len(coda) = 4 con testa 0; chi dimentica di riassegnare testa lascia testa = 0."
+    },
+    {
+      "id": "L11-T05-02",
+      "tipo": "L11-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Coda con cancellazione logica (list e indice testa), partendo da coda vuota: si eseguono 6 enqueue e poi 6 dequeue. Quante posizioni della list restano occupate alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "6",
+        "0, perché le dequeue liberano la memoria",
+        "12",
+        "7"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La list non diminuisce mai: dopo 6 enqueue ha 6 posizioni, e le dequeue spostano solo l'indice testa. Restano quindi 6 posizioni occupate: la cancellazione logica migliora il tempo, non lo spazio."
+    },
+    {
+      "id": "L11-T05-03",
+      "tipo": "L11-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Coda con cancellazione logica (list e indice testa, con coda = [] e testa = 0). Dopo enqueue(4), enqueue(2), dequeue(), dequeue(), come si verifica che la coda non contenga elementi presenti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "len(coda) == 0",
+        "testa == 0",
+        "testa > len(coda)",
+        "testa >= len(coda)"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Dopo le due dequeue testa vale 2 e len(coda) vale 2: la coda è vuota, ma la list non lo è. La condizione giusta è testa >= len(coda); len(coda) == 0 dà il risultato sbagliato proprio in questo caso."
+    },
+    {
+      "id": "L11-T05-04",
+      "tipo": "L11-T05",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Coda con cancellazione logica (list coda e indice testa; all'inizio coda = [] e testa = 0). Si eseguono, nell'ordine: enqueue(65), dequeue(), enqueue(47), dequeue(), enqueue(22), enqueue(81). Ogni dequeue riassegna testa. Alla fine, quali valori hanno testa e len(coda), e quanti elementi sono presenti nella coda?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "testa = 0, len(coda) = 2, elementi presenti = 2",
+        "testa = 2, len(coda) = 4, elementi presenti = 4",
+        "testa = 2, len(coda) = 4, elementi presenti = 2",
+        "testa = 0, len(coda) = 4, elementi presenti = 4"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "E2",
+        null,
+        "E5"
+      ],
+      "spiegazione": "Le dequeue fanno avanzare testa a 2 senza togliere nulla: la list ha ancora 4 elementi e quelli validi sono coda[2:], cioè 2. Chi conta tutta la list sbaglia il conteggio; chi crede che dequeue tolga davvero l'elemento ottiene len(coda) = 2 con testa 0; chi dimentica di riassegnare testa lascia testa = 0."
+    },
+    {
+      "id": "L11-T05-05",
+      "tipo": "L11-T05",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Coda con cancellazione logica della dispensa (list coda e indice testa; all'inizio coda = [] e testa = 0). La dequeue restituisce None e lascia testa invariato se testa >= len(coda); altrimenti restituisce coda[testa] e testa + 1. Si eseguono, nell'ordine: enqueue(22), dequeue(), dequeue(), enqueue(46), enqueue(93), dequeue(). Ogni dequeue riassegna testa. Quali valori restituiscono le tre dequeue, e quanto vale testa alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "22, 22, 22; alla fine testa = 0",
+        "22, None, 93; alla fine testa = 3",
+        "22, None, 46; alla fine testa = 0",
+        "22, None, 46; alla fine testa = 2"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E5",
+        "altro",
+        "E1",
+        null
+      ],
+      "spiegazione": "La prima dequeue restituisce 22 e porta testa a 1. La seconda trova testa = 1 = len(coda): la coda è vuota anche se la list contiene 22, quindi restituisce None e testa resta 1. Dopo i due enqueue coda = [22, 46, 93] e la terza dequeue restituisce coda[1] = 46, con testa = 2. Testa = 0 è il risultato di chi crede che dequeue tolga davvero l'elemento; 22, 22, 22 nasce dal non riassegnare testa."
+    },
+    {
+      "id": "L11-T05-06",
+      "tipo": "L11-T05",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Coda con cancellazione logica (list e indice testa). Qual è il costo di enqueue e di dequeue, e che cosa succede allo spazio dopo n enqueue e n dequeue?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "enqueue O(1), dequeue O(1); lo spazio non si libera",
+        "enqueue O(1), dequeue O(1); lo spazio si libera",
+        "enqueue O(1), dequeue Θ(n) come pop(0); lo spazio non si libera",
+        "enqueue O(1), dequeue Θ(n) come pop(0); lo spazio si libera"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "E1"
+      ],
+      "spiegazione": "enqueue è un append e dequeue incrementa solo testa senza spostare elementi: entrambe O(1). Però la list non diminuisce: dopo n enqueue e n dequeue occupa ancora n posizioni. Chi crede che dequeue tolga davvero l'elemento la confonde con la versione pop(0), che costa Θ(n)."
+    },
+    {
+      "id": "L11-T06-01",
+      "tipo": "L11-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale implementazione di una coda ha enqueue e dequeue entrambe O(1) e occupa uno spazio proporzionale al numero di elementi presenti?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "list con append per l'enqueue e pop(0) per la dequeue",
+        "Lista concatenata semplice con puntatori a testa e coda",
+        "Lista concatenata semplice con il solo puntatore alla testa",
+        "list con append e indice testa (cancellazione logica)"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Con i puntatori a testa e coda si inserisce dopo l'ultimo nodo e si toglie il primo in O(1), e i nodi estratti non occupano più memoria. Con pop(0) la dequeue costa O(n); senza puntatore alla coda l'enqueue deve scorrere la lista, O(n); la cancellazione logica ha costi O(1) ma non libera lo spazio degli elementi estratti."
+    },
+    {
+      "id": "L11-T06-02",
+      "tipo": "L11-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Coda su lista concatenata semplice con il solo puntatore alla testa (nessun puntatore alla coda), con n nodi. Qual è il costo di enqueue (inserimento in coda) e di dequeue (estrazione dalla testa)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "enqueue Θ(n), dequeue Θ(1)",
+        "enqueue Θ(1), dequeue Θ(1)",
+        "enqueue Θ(1), dequeue Θ(n)",
+        "enqueue Θ(n), dequeue Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Senza puntatore alla coda bisogna scorrere tutti i nodi fino all'ultimo: Θ(n). La dequeue dalla testa aggiorna solo il puntatore testa: Θ(1)."
+    },
+    {
+      "id": "L11-T06-03",
+      "tipo": "L11-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Coda a puntatori (testa e coda) della dispensa. Partendo da una coda vuota si eseguono n enqueue e poi n dequeue. Quanti nodi occupano ancora memoria alla fine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Tutti gli n nodi: la lista a puntatori non libera la memoria",
+        "n/2 nodi",
+        "2n nodi",
+        "Nessuno: lo spazio è proporzionale agli elementi presenti"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E4",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Lo spazio della lista a puntatori cresce e diminuisce con il numero di elementi presenti. Dopo n enqueue e n dequeue non ce ne sono più, quindi nessun nodo resta in uso."
+    },
+    {
+      "id": "L11-T06-04",
+      "tipo": "L11-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Coda a puntatori della dispensa: da quale estremità si estrae, e che costo ha la dequeue?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Dalla coda della lista, Θ(1)",
+        "Dalla testa, Θ(n)",
+        "Dalla testa, Θ(1)",
+        "Dalla coda della lista, Θ(n)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "E3"
+      ],
+      "spiegazione": "La dequeue estrae dalla testa: la nuova testa è testa.next, Θ(1), senza spostare gli altri nodi. L'inserimento avviene invece in coda, grazie al puntatore alla coda; estrarre dalla coda della lista richiederebbe di trovare il penultimo nodo."
+    },
+    {
+      "id": "L11-T06-05",
+      "tipo": "L11-T06",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Nella coda a puntatori della dispensa (lista concatenata semplice, nodi con key e next, puntatori a testa e coda) si inserisce in coda e si estrae dalla testa. Perché non si fa il contrario, inserendo in testa ed estraendo dalla coda della lista?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Non cambierebbe nulla: con i puntatori a testa e coda entrambe le scelte costano O(1)",
+        "Perché inserire in testa costerebbe Θ(n): bisognerebbe spostare tutti i nodi",
+        "Perché per togliere l'ultimo nodo serve il penultimo, raggiungibile solo dalla testa: Θ(n)",
+        "Perché inserendo in testa ed estraendo dalla coda la struttura diventerebbe una pila"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E1",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "Dopo aver tolto l'ultimo nodo bisogna mettere a None il next del penultimo e spostare lì il puntatore coda, ma in una lista semplice il penultimo si trova solo scorrendo dalla testa: Θ(n). Inserire in testa costerebbe invece O(1), e la politica resterebbe FIFO, perché inserimento ed estrazione avverrebbero comunque a estremità opposte."
+    },
+    {
+      "id": "L11-T06-06",
+      "tipo": "L11-T06",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Con il codice della dispensa qui sotto, quale sequenza esegue l'enqueue di un nodo q su una coda non vuota, e che costo ha?",
+      "codice": "def enqueue(testa, coda, x):\n    q = Nodo(x)\n    if testa == None:\n        return q, q\n    coda.next = q\n    return testa, q",
+      "albero": null,
+      "opzioni": [
+        "coda.next = q, poi la coda diventa q: Θ(1)",
+        "scorrere da testa fino all'ultimo nodo, poi next = q: Θ(1)",
+        "testa.next = q, poi la testa diventa q: Θ(1)",
+        "coda.next = q, poi la coda diventa q: Θ(n)"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E2",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Su una coda non vuota l'enqueue collega q dopo il nodo puntato da coda e restituisce q come nuova coda: Θ(1) grazie al puntatore alla coda. Scorrere la lista per trovare l'ultimo nodo costerebbe Θ(n)."
+    },
+    {
+      "id": "L11-T07-01",
+      "tipo": "L11-T07",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Data la dequeue qui sotto, con una coda di un solo nodo (testa == coda), cosa restituisce la chiamata dequeue(testa, coda)?",
+      "codice": "def dequeue(testa, coda):\n    if testa == None:\n        return None, None, None\n    if testa == coda:\n        return testa.key, None, None\n    return testa.key, testa.next, coda",
+      "albero": null,
+      "opzioni": [
+        "(valore del nodo, None, coda): coda resta sul nodo estratto",
+        "(valore del nodo, None, None): testa e coda diventano None",
+        "(None, None, None): la coda con un solo elemento è vuota",
+        "(valore del nodo, testa, coda): nessun puntatore cambia"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "Con un solo nodo il caso testa == coda restituisce (testa.key, None, None): anche la coda torna a None, così non resta un riferimento al nodo estratto."
+    },
+    {
+      "id": "L11-T07-02",
+      "tipo": "L11-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Coda a puntatori della dispensa (codice qui sotto), inizialmente testa = coda = None. Si eseguono, riassegnando ogni volta i puntatori restituiti: enqueue(6), dequeue(), dequeue(), enqueue(2). Quali valori restituiscono le due dequeue, e come sono testa e coda alla fine?",
+      "codice": "def enqueue(testa, coda, x):\n    q = Nodo(x)\n    if testa == None:\n        return q, q\n    coda.next = q\n    return testa, q\n\ndef dequeue(testa, coda):\n    if testa == None:\n        return None, None, None\n    if testa == coda:\n        return testa.key, None, None\n    return testa.key, testa.next, coda",
+      "albero": null,
+      "opzioni": [
+        "6 e None; testa.key = 2 e coda.key = 2",
+        "6, poi errore: la seconda dequeue legge testa.key con testa = None",
+        "None e None; testa = None e coda.key = 2",
+        "6 e None; testa.key = 6 e coda.key = 2"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "enqueue(6) su coda vuota restituisce (q, q). La prima dequeue trova testa == coda: restituisce 6 e riporta testa e coda a None. La seconda trova testa == None e restituisce None senza errori. enqueue(2) su coda vuota rende il nodo 2 sia testa sia coda. Se l'enqueue su coda vuota lasciasse testa = None, entrambe le dequeue restituirebbero None."
+    },
+    {
+      "id": "L11-T07-03",
+      "tipo": "L11-T07",
+      "formato": "multipla",
+      "difficolta": 3,
+      "testo": "Coda a puntatori della dispensa, inizialmente testa = coda = None. Si eseguono: enqueue(5), enqueue(9), dequeue(), dequeue(). Alla fine, come sono testa e coda?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "testa = None, coda.key = 9",
+        "testa.key = 9, coda.key = 9",
+        "testa.key = 9, coda = None",
+        "testa = None e coda = None: la coda è vuota"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E3",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Dopo le due enqueue la coda ha due nodi (5 e 9). La prima dequeue toglie 5 e lascia testa = coda = nodo 9. La seconda dequeue ha un solo nodo: il caso testa == coda riporta entrambi a None. Lasciare coda sul nodo 9 è l'errore di chi aggiorna solo la testa."
+    },
+    {
+      "id": "L11-T08-01",
+      "tipo": "L11-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Si vuole usare una collections.deque d come pila (LIFO), con push e pop entrambe O(1). Quale coppia (push, pop) è corretta?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "d.append(x) e d.popleft()",
+        "d.append(x) e d.pop()",
+        "d.append(x) e d.pop(0), come per le list",
+        "d.appendleft(x) e d.pop()"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E4",
+        "altro"
+      ],
+      "spiegazione": "append e pop() lavorano entrambi sull'estremità destra: l'ultimo inserito è il primo a uscire, LIFO, in O(1). append con popleft() e appendleft con pop() lavorano su estremità opposte e danno una coda. deque.pop() non accetta argomenti, quindi pop(0) dà errore."
+    },
+    {
+      "id": "L11-T08-02",
+      "tipo": "L11-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "d = collections.deque(); d.append(4); d.append(7); d.appendleft(1). Cosa restituisce d.popleft()?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "1",
+        "7",
+        "4",
+        "None"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E1",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "appendleft(1) mette 1 in testa: d = [1, 4, 7], e popleft() restituisce 1. Usando pop() al posto di popleft() si otterrebbe 7, l'elemento in fondo."
+    },
+    {
+      "id": "L11-T08-03",
+      "tipo": "L11-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Una deque d riceve, nell'ordine, d.append(3), d.append(8), d.append(5), poi si eseguono due chiamate popleft(). Quali valori restituiscono, nell'ordine?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "5, 8",
+        "8, 5",
+        "3, 5",
+        "3, 8"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "popleft estrae dalla testa, cioè dal primo inserito: prima 3, poi 8. Con pop() si estrarrebbero 5 e poi 8, come in una pila."
+    },
+    {
+      "id": "L11-T08-04",
+      "tipo": "L11-T08",
+      "formato": "multipla",
+      "difficolta": 2,
+      "testo": "Quale costo totale ha svuotare con popleft() una deque di n elementi?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n²), perché popleft costa O(n) come list.pop(0)",
+        "Θ(n log n)",
+        "Θ(n), perché ogni popleft costa O(1)",
+        "Θ(1)"
+      ],
+      "corretta": 2,
+      "errori": [
+        "E3",
+        "altro",
+        null,
+        "altro"
+      ],
+      "spiegazione": "popleft non sposta gli altri elementi: ogni chiamata costa O(1), quindi n chiamate costano Θ(n)."
+    },
+    {
+      "id": "L11-T08-05",
+      "tipo": "L11-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Su una deque, quanto costa popleft() rispetto a list.pop(0)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Θ(n): sposta gli altri elementi, come list.pop(0)",
+        "Θ(1): non sposta gli altri elementi",
+        "Θ(log n): usa una ricerca binaria",
+        "Θ(n²): scorre tutta la deque"
+      ],
+      "corretta": 1,
+      "errori": [
+        "E3",
+        null,
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "La deque è una coda a doppia estremità: popleft toglie l'elemento a sinistra senza spostare gli altri, Θ(1). Il costo Θ(n) riguarda list.pop(0), che sposta tutti gli elementi rimasti."
+    },
+    {
+      "id": "L11-T08-06",
+      "tipo": "L11-T08",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Che cosa succede con deque.pop(0)?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Solleva un errore: pop() non accetta argomenti",
+        "Toglie il primo elemento, come list.pop(0)",
+        "Toglie l'ultimo elemento e lo restituisce",
+        "Restituisce None senza modificare la deque"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E4",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "deque.pop() lavora sul lato destro e non accetta argomenti: pop(0) dà TypeError. Per togliere dalla testa si usa popleft()."
+    },
+    {
+      "id": "L11-T09-01",
+      "tipo": "L11-T09",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale struttura serve per il pulsante 'indietro' di un browser (torna alla pagina visitata prima di quella attuale), e quale per elaborare i nodi di un albero livello per livello?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Coda per il pulsante indietro, coda per la visita per livelli",
+        "Pila per il pulsante indietro, coda per la visita per livelli",
+        "Pila per il pulsante indietro, pila per la visita per livelli",
+        "Coda per il pulsante indietro, pila per la visita per livelli"
+      ],
+      "corretta": 1,
+      "errori": [
+        "altro",
+        null,
+        "E2",
+        "altro"
+      ],
+      "spiegazione": "Il pulsante indietro riporta all'ultima pagina lasciata, poi a quella prima ancora: LIFO, pila. La visita per livelli elabora i nodi nell'ordine di scoperta: FIFO, coda; con una pila si otterrebbe una visita in profondità."
+    },
+    {
+      "id": "L11-T09-02",
+      "tipo": "L11-T09",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale struttura conviene per annullare l'ultima modifica di un editor (undo), e quale per servire le richieste nell'ordine di arrivo?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Pila per l'undo, coda per le richieste",
+        "Coda per entrambe, perché in entrambi i casi c'è una fila di attesa",
+        "Coda per l'undo, pila per le richieste",
+        "Pila per entrambe"
+      ],
+      "corretta": 0,
+      "errori": [
+        null,
+        "E3",
+        "altro",
+        "altro"
+      ],
+      "spiegazione": "L'undo torna indietro dall'ultima azione: LIFO, pila. Le richieste si servono nell'ordine di arrivo: FIFO, coda."
+    },
+    {
+      "id": "L11-T09-03",
+      "tipo": "L11-T09",
+      "formato": "multipla",
+      "difficolta": 1,
+      "testo": "Quale struttura serve per le chiamate di una funzione ricorsiva, e quale per la stampa dei documenti nell'ordine di invio?",
+      "codice": null,
+      "albero": null,
+      "opzioni": [
+        "Coda per la ricorsione, coda per la stampa",
+        "Pila per entrambe",
+        "Coda per entrambe",
+        "Pila per la ricorsione, coda per la stampa"
+      ],
+      "corretta": 3,
+      "errori": [
+        "E1",
+        "altro",
+        "altro",
+        null
+      ],
+      "spiegazione": "Le chiamate si chiudono in ordine inverso a quello di apertura: LIFO, pila. I documenti stampati nell'ordine di invio: FIFO, coda."
+    }
+  ]
+}

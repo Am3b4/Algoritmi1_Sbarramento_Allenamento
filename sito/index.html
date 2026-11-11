@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Algoritmi 1 · Allenamento allo sbarramento</title>
+  <meta name="description" content="Simulazioni e allenamento per il test di sbarramento di Algoritmi 1. Sito non ufficiale, fatto da studenti.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23256abf'/%3E%3Cpath d='M16 9v5M16 14l-6 6M16 14l6 6' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='16' cy='8' r='3.5' fill='%23fff'/%3E%3Ccircle cx='9.5' cy='21' r='3.5' fill='%23fff'/%3E%3Ccircle cx='22.5' cy='21' r='3.5' fill='%23fff'/%3E%3C/svg%3E">
+  <script>
+    // Il tema si imposta prima di disegnare la pagina, per non far lampeggiare i colori.
+    try {
+      var tema = (JSON.parse(localStorage.getItem('algo1.impostazioni')) || {}).tema;
+      var scuro = tema === 'scuro' || (tema !== 'chiaro' && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.tema = scuro ? 'scuro' : 'chiaro';
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/stile.css">
+</head>
+<body>
+  <a class="salta" href="#schermata">Vai al contenuto</a>
+  <header class="testata-sito">
+    <a class="marchio" href="#/">Algoritmi 1 <span>· Allenamento</span></a>
+    <nav aria-label="Sezioni">
+      <a href="#/statistiche">Statistiche</a>
+      <a href="#/impostazioni">Impostazioni</a>
+    </nav>
+  </header>
+  <main id="schermata" tabindex="-1">
+    <p class="tenue">Carico le domande…</p>
+    <noscript><p>Questo sito ha bisogno di JavaScript per funzionare.</p></noscript>
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
